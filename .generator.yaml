@@ -1,0 +1,4 @@
+disallowAdditionalPropertiesIfNotPresent: false
+generateInterfaces: true
+isGoSubmodule: true
+packageName: isp
