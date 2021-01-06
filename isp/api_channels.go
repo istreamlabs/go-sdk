@@ -1,8 +1,6 @@
 /*
  * iStreamPlanet Channels API
  *
- * This API provides a way to list, create, and run channels.  Channels consist of inputs (ingest), transcoding settings like codecs and bitrates, and outputs (publishing).  List calls use cursor-based pagination with [RFC 5988](https://tools.ietf.org/html/rfc5988) Link headers. Clients *should* read this header and follow the next link to read all pages of results. 
- *
  * API version: 0.0.0
  */
 
@@ -494,6 +492,18 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(Channel)
+			localVarHTTPResponse = resp
+		}
+	}
+
 	return localVarReturnValue, localVarHTTPResponse, executionError
 }
 
@@ -644,6 +654,18 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 			error: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]Summary2)
+			localVarHTTPResponse = resp
+		}
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, executionError

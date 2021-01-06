@@ -1,8 +1,6 @@
 /*
  * iStreamPlanet Channels API
  *
- * This API provides a way to list, create, and run channels.  Channels consist of inputs (ingest), transcoding settings like codecs and bitrates, and outputs (publishing).  List calls use cursor-based pagination with [RFC 5988](https://tools.ietf.org/html/rfc5988) Link headers. Clients *should* read this header and follow the next link to read all pages of results. 
- *
  * API version: 0.0.0
  */
 

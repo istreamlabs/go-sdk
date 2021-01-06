@@ -1,8 +1,6 @@
 /*
  * iStreamPlanet Channels API
  *
- * This API provides a way to list, create, and run channels.  Channels consist of inputs (ingest), transcoding settings like codecs and bitrates, and outputs (publishing).  List calls use cursor-based pagination with [RFC 5988](https://tools.ietf.org/html/rfc5988) Link headers. Clients *should* read this header and follow the next link to read all pages of results.
- *
  * API version: 0.0.0
  */
 
@@ -51,6 +49,7 @@ type APIClient struct {
 	ChannelOperationsApi ChannelOperationsApi
 
 	ChannelsApi ChannelsApi
+
 
 	SourcesApi SourcesApi
 }
@@ -162,6 +161,7 @@ func parameterToJson(obj interface{}) (string, error) {
 	}
 	return string(jsonBuf), err
 }
+
 
 // callAPI do the request.
 func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
@@ -372,9 +372,9 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 		return nil
 	}
 	if jsonCheck.MatchString(contentType) {
-		if actualObj, ok := v.(interface{ GetActualInstance() interface{} }); ok { // oneOf, anyOf schemas
-			if unmarshalObj, ok := actualObj.(interface{ UnmarshalJSON([]byte) error }); ok { // make sure it has UnmarshalJSON defined
-				if err = unmarshalObj.UnmarshalJSON(b); err != nil {
+		if actualObj, ok := v.(interface{GetActualInstance() interface{}}); ok { // oneOf, anyOf schemas
+			if unmarshalObj, ok := actualObj.(interface{UnmarshalJSON([]byte) error}); ok { // make sure it has UnmarshalJSON defined
+				if err = unmarshalObj.UnmarshalJSON(b); err!= nil {
 					return err
 				}
 			} else {

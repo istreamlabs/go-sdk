@@ -1,3 +1,4 @@
+templateDir: templates
 disallowAdditionalPropertiesIfNotPresent: false
 generateInterfaces: true
 isGoSubmodule: true
