@@ -25,6 +25,21 @@ var (
 type ChannelOperationsApi interface {
 
 	/*
+	 * GetSignals Get Signals
+	 * Returns the active signals for a channel.
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param channelId Unique channel identifier
+	 * @return ApiGetSignalsRequest
+	 */
+	GetSignals(ctx _context.Context, channelId string) ApiGetSignalsRequest
+
+	/*
+	 * GetSignalsExecute executes the request
+	 * @return []Segment
+	 */
+	GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *_nethttp.Response, GenericOpenAPIError)
+
+	/*
 	 * InsertScte35 Insert SCTE-35
 	 * Inserts a SCTE-35 formatted binary payload into the channel.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -37,6 +52,20 @@ type ChannelOperationsApi interface {
 	 * InsertScte35Execute executes the request
 	 */
 	InsertScte35Execute(r ApiInsertScte35Request) (*_nethttp.Response, GenericOpenAPIError)
+
+	/*
+	 * PreviewImage Get Preview Image
+	 * Get a static image of what your channel is currently outputting.  Valid Accept headers are: image/jpeg
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param channelId Unique channel identifier
+	 * @return ApiPreviewImageRequest
+	 */
+	PreviewImage(ctx _context.Context, channelId string) ApiPreviewImageRequest
+
+	/*
+	 * PreviewImageExecute executes the request
+	 */
+	PreviewImageExecute(r ApiPreviewImageRequest) (*_nethttp.Response, GenericOpenAPIError)
 
 	/*
 	 * ProgramEnd Program End
@@ -139,6 +168,178 @@ type ChannelOperationsApi interface {
 
 // ChannelOperationsApiService ChannelOperationsApi service
 type ChannelOperationsApiService service
+
+type ApiGetSignalsRequest struct {
+	ctx _context.Context
+	ApiService ChannelOperationsApi
+	channelId string
+}
+
+
+func (r ApiGetSignalsRequest) Execute() ([]Segment, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.GetSignalsExecute(r)
+}
+
+/*
+ * GetSignals Get Signals
+ * Returns the active signals for a channel.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param channelId Unique channel identifier
+ * @return ApiGetSignalsRequest
+ */
+func (a *ChannelOperationsApiService) GetSignals(ctx _context.Context, channelId string) ApiGetSignalsRequest {
+	return ApiGetSignalsRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return []Segment
+ */
+func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+		localVarReturnValue  []Segment
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.GetSignals")
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/signal"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]Segment)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, executionError
+}
 
 type ApiInsertScte35Request struct {
 	ctx _context.Context
@@ -252,6 +453,163 @@ func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Reque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, executionError
+}
+
+type ApiPreviewImageRequest struct {
+	ctx _context.Context
+	ApiService ChannelOperationsApi
+	channelId string
+	accept *string
+}
+
+func (r ApiPreviewImageRequest) Accept(accept string) ApiPreviewImageRequest {
+	r.accept = &accept
+	return r
+}
+
+func (r ApiPreviewImageRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.PreviewImageExecute(r)
+}
+
+/*
+ * PreviewImage Get Preview Image
+ * Get a static image of what your channel is currently outputting.  Valid Accept headers are: image/jpeg
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param channelId Unique channel identifier
+ * @return ApiPreviewImageRequest
+ */
+func (a *ChannelOperationsApiService) PreviewImage(ctx _context.Context, channelId string) ApiPreviewImageRequest {
+	return ApiPreviewImageRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+/*
+ * Execute executes the request
+ */
+func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageRequest) (*_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.PreviewImage")
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/preview-image"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.accept != nil {
+		localVarHeaderParams["Accept"] = parameterToString(*r.accept, "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

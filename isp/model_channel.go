@@ -10,33 +10,39 @@ package isp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // Channel struct for Channel
 type Channel struct {
-	// Audio encoder settings for each audio track
-	AudioEncodings *[]ChannelAudioEncodings `json:"audio_encodings,omitempty"`
-	// Channel source
-	AudioSources *[]ChannelAudioSources `json:"audio_sources,omitempty"`
-	// Unique channel ID
+	// Date and time the channel was created.
+	Created *time.Time `json:"created,omitempty"`
+	// Unique identifier for this channel.
 	Id *string `json:"id,omitempty"`
-	// Channel name
+	Ingest ChannelIngest `json:"ingest"`
+	// Date and time the channel was last modified.
+	Modified *time.Time `json:"modified,omitempty"`
+	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty"`
-	Segmenter *ChannelSegmenter `json:"segmenter,omitempty"`
-	// Link to this resource
+	// Packaging configures media format and content protection settings.
+	Packaging *map[string]interface{} `json:"packaging,omitempty"`
+	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
+	ResourceClass *string `json:"resource_class,omitempty"`
+	// Self link for the channel.
 	Self *string `json:"self,omitempty"`
-	Source ChannelSource `json:"source"`
-	// Video encoder settings for each video layer
-	VideoEncodings *[]ChannelVideoEncodings `json:"video_encodings,omitempty"`
+	Signaling *ChannelSignaling `json:"signaling,omitempty"`
+	Transcode ChannelTranscode `json:"transcode"`
 }
 
 // NewChannel instantiates a new Channel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannel(source ChannelSource, ) *Channel {
+func NewChannel(ingest ChannelIngest, transcode ChannelTranscode, ) *Channel {
 	this := Channel{}
-	this.Source = source
+	this.Ingest = ingest
+	this.Transcode = transcode
 	return &this
 }
 
@@ -48,68 +54,36 @@ func NewChannelWithDefaults() *Channel {
 	return &this
 }
 
-// GetAudioEncodings returns the AudioEncodings field value if set, zero value otherwise.
-func (o *Channel) GetAudioEncodings() []ChannelAudioEncodings {
-	if o == nil || o.AudioEncodings == nil {
-		var ret []ChannelAudioEncodings
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *Channel) GetCreated() time.Time {
+	if o == nil || o.Created == nil {
+		var ret time.Time
 		return ret
 	}
-	return *o.AudioEncodings
+	return *o.Created
 }
 
-// GetAudioEncodingsOk returns a tuple with the AudioEncodings field value if set, nil otherwise
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetAudioEncodingsOk() (*[]ChannelAudioEncodings, bool) {
-	if o == nil || o.AudioEncodings == nil {
+func (o *Channel) GetCreatedOk() (*time.Time, bool) {
+	if o == nil || o.Created == nil {
 		return nil, false
 	}
-	return o.AudioEncodings, true
+	return o.Created, true
 }
 
-// HasAudioEncodings returns a boolean if a field has been set.
-func (o *Channel) HasAudioEncodings() bool {
-	if o != nil && o.AudioEncodings != nil {
+// HasCreated returns a boolean if a field has been set.
+func (o *Channel) HasCreated() bool {
+	if o != nil && o.Created != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetAudioEncodings gets a reference to the given []ChannelAudioEncodings and assigns it to the AudioEncodings field.
-func (o *Channel) SetAudioEncodings(v []ChannelAudioEncodings) {
-	o.AudioEncodings = &v
-}
-
-// GetAudioSources returns the AudioSources field value if set, zero value otherwise.
-func (o *Channel) GetAudioSources() []ChannelAudioSources {
-	if o == nil || o.AudioSources == nil {
-		var ret []ChannelAudioSources
-		return ret
-	}
-	return *o.AudioSources
-}
-
-// GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Channel) GetAudioSourcesOk() (*[]ChannelAudioSources, bool) {
-	if o == nil || o.AudioSources == nil {
-		return nil, false
-	}
-	return o.AudioSources, true
-}
-
-// HasAudioSources returns a boolean if a field has been set.
-func (o *Channel) HasAudioSources() bool {
-	if o != nil && o.AudioSources != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAudioSources gets a reference to the given []ChannelAudioSources and assigns it to the AudioSources field.
-func (o *Channel) SetAudioSources(v []ChannelAudioSources) {
-	o.AudioSources = &v
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *Channel) SetCreated(v time.Time) {
+	o.Created = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -144,6 +118,62 @@ func (o *Channel) SetId(v string) {
 	o.Id = &v
 }
 
+// GetIngest returns the Ingest field value
+func (o *Channel) GetIngest() ChannelIngest {
+	if o == nil  {
+		var ret ChannelIngest
+		return ret
+	}
+
+	return o.Ingest
+}
+
+// GetIngestOk returns a tuple with the Ingest field value
+// and a boolean to check if the value has been set.
+func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Ingest, true
+}
+
+// SetIngest sets field value
+func (o *Channel) SetIngest(v ChannelIngest) {
+	o.Ingest = v
+}
+
+// GetModified returns the Modified field value if set, zero value otherwise.
+func (o *Channel) GetModified() time.Time {
+	if o == nil || o.Modified == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.Modified
+}
+
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetModifiedOk() (*time.Time, bool) {
+	if o == nil || o.Modified == nil {
+		return nil, false
+	}
+	return o.Modified, true
+}
+
+// HasModified returns a boolean if a field has been set.
+func (o *Channel) HasModified() bool {
+	if o != nil && o.Modified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+func (o *Channel) SetModified(v time.Time) {
+	o.Modified = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Channel) GetName() string {
 	if o == nil || o.Name == nil {
@@ -176,36 +206,100 @@ func (o *Channel) SetName(v string) {
 	o.Name = &v
 }
 
-// GetSegmenter returns the Segmenter field value if set, zero value otherwise.
-func (o *Channel) GetSegmenter() ChannelSegmenter {
-	if o == nil || o.Segmenter == nil {
-		var ret ChannelSegmenter
+// GetPackaging returns the Packaging field value if set, zero value otherwise.
+func (o *Channel) GetPackaging() map[string]interface{} {
+	if o == nil || o.Packaging == nil {
+		var ret map[string]interface{}
 		return ret
 	}
-	return *o.Segmenter
+	return *o.Packaging
 }
 
-// GetSegmenterOk returns a tuple with the Segmenter field value if set, nil otherwise
+// GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSegmenterOk() (*ChannelSegmenter, bool) {
-	if o == nil || o.Segmenter == nil {
+func (o *Channel) GetPackagingOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Packaging == nil {
 		return nil, false
 	}
-	return o.Segmenter, true
+	return o.Packaging, true
 }
 
-// HasSegmenter returns a boolean if a field has been set.
-func (o *Channel) HasSegmenter() bool {
-	if o != nil && o.Segmenter != nil {
+// HasPackaging returns a boolean if a field has been set.
+func (o *Channel) HasPackaging() bool {
+	if o != nil && o.Packaging != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetSegmenter gets a reference to the given ChannelSegmenter and assigns it to the Segmenter field.
-func (o *Channel) SetSegmenter(v ChannelSegmenter) {
-	o.Segmenter = &v
+// SetPackaging gets a reference to the given map[string]interface{} and assigns it to the Packaging field.
+func (o *Channel) SetPackaging(v map[string]interface{}) {
+	o.Packaging = &v
+}
+
+// GetPublishing returns the Publishing field value if set, zero value otherwise.
+func (o *Channel) GetPublishing() ChannelPublishing {
+	if o == nil || o.Publishing == nil {
+		var ret ChannelPublishing
+		return ret
+	}
+	return *o.Publishing
+}
+
+// GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetPublishingOk() (*ChannelPublishing, bool) {
+	if o == nil || o.Publishing == nil {
+		return nil, false
+	}
+	return o.Publishing, true
+}
+
+// HasPublishing returns a boolean if a field has been set.
+func (o *Channel) HasPublishing() bool {
+	if o != nil && o.Publishing != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
+func (o *Channel) SetPublishing(v ChannelPublishing) {
+	o.Publishing = &v
+}
+
+// GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
+func (o *Channel) GetResourceClass() string {
+	if o == nil || o.ResourceClass == nil {
+		var ret string
+		return ret
+	}
+	return *o.ResourceClass
+}
+
+// GetResourceClassOk returns a tuple with the ResourceClass field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetResourceClassOk() (*string, bool) {
+	if o == nil || o.ResourceClass == nil {
+		return nil, false
+	}
+	return o.ResourceClass, true
+}
+
+// HasResourceClass returns a boolean if a field has been set.
+func (o *Channel) HasResourceClass() bool {
+	if o != nil && o.ResourceClass != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetResourceClass gets a reference to the given string and assigns it to the ResourceClass field.
+func (o *Channel) SetResourceClass(v string) {
+	o.ResourceClass = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
@@ -240,87 +334,96 @@ func (o *Channel) SetSelf(v string) {
 	o.Self = &v
 }
 
-// GetSource returns the Source field value
-func (o *Channel) GetSource() ChannelSource {
-	if o == nil  {
-		var ret ChannelSource
+// GetSignaling returns the Signaling field value if set, zero value otherwise.
+func (o *Channel) GetSignaling() ChannelSignaling {
+	if o == nil || o.Signaling == nil {
+		var ret ChannelSignaling
 		return ret
 	}
-
-	return o.Source
+	return *o.Signaling
 }
 
-// GetSourceOk returns a tuple with the Source field value
+// GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSourceOk() (*ChannelSource, bool) {
-	if o == nil  {
+func (o *Channel) GetSignalingOk() (*ChannelSignaling, bool) {
+	if o == nil || o.Signaling == nil {
 		return nil, false
 	}
-	return &o.Source, true
+	return o.Signaling, true
 }
 
-// SetSource sets field value
-func (o *Channel) SetSource(v ChannelSource) {
-	o.Source = v
-}
-
-// GetVideoEncodings returns the VideoEncodings field value if set, zero value otherwise.
-func (o *Channel) GetVideoEncodings() []ChannelVideoEncodings {
-	if o == nil || o.VideoEncodings == nil {
-		var ret []ChannelVideoEncodings
-		return ret
-	}
-	return *o.VideoEncodings
-}
-
-// GetVideoEncodingsOk returns a tuple with the VideoEncodings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Channel) GetVideoEncodingsOk() (*[]ChannelVideoEncodings, bool) {
-	if o == nil || o.VideoEncodings == nil {
-		return nil, false
-	}
-	return o.VideoEncodings, true
-}
-
-// HasVideoEncodings returns a boolean if a field has been set.
-func (o *Channel) HasVideoEncodings() bool {
-	if o != nil && o.VideoEncodings != nil {
+// HasSignaling returns a boolean if a field has been set.
+func (o *Channel) HasSignaling() bool {
+	if o != nil && o.Signaling != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetVideoEncodings gets a reference to the given []ChannelVideoEncodings and assigns it to the VideoEncodings field.
-func (o *Channel) SetVideoEncodings(v []ChannelVideoEncodings) {
-	o.VideoEncodings = &v
+// SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
+func (o *Channel) SetSignaling(v ChannelSignaling) {
+	o.Signaling = &v
+}
+
+// GetTranscode returns the Transcode field value
+func (o *Channel) GetTranscode() ChannelTranscode {
+	if o == nil  {
+		var ret ChannelTranscode
+		return ret
+	}
+
+	return o.Transcode
+}
+
+// GetTranscodeOk returns a tuple with the Transcode field value
+// and a boolean to check if the value has been set.
+func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
+	if o == nil  {
+		return nil, false
+	}
+	return &o.Transcode, true
+}
+
+// SetTranscode sets field value
+func (o *Channel) SetTranscode(v ChannelTranscode) {
+	o.Transcode = v
 }
 
 func (o Channel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.AudioEncodings != nil {
-		toSerialize["audio_encodings"] = o.AudioEncodings
-	}
-	if o.AudioSources != nil {
-		toSerialize["audio_sources"] = o.AudioSources
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if true {
+		toSerialize["ingest"] = o.Ingest
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.Segmenter != nil {
-		toSerialize["segmenter"] = o.Segmenter
+	if o.Packaging != nil {
+		toSerialize["packaging"] = o.Packaging
+	}
+	if o.Publishing != nil {
+		toSerialize["publishing"] = o.Publishing
+	}
+	if o.ResourceClass != nil {
+		toSerialize["resource_class"] = o.ResourceClass
 	}
 	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
-	if true {
-		toSerialize["source"] = o.Source
+	if o.Signaling != nil {
+		toSerialize["signaling"] = o.Signaling
 	}
-	if o.VideoEncodings != nil {
-		toSerialize["video_encodings"] = o.VideoEncodings
+	if true {
+		toSerialize["transcode"] = o.Transcode
 	}
 	return json.Marshal(toSerialize)
 }

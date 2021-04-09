@@ -22,14 +22,14 @@ type Summary2 struct {
 	Name *string `json:"name,omitempty"`
 	// Link to this resource
 	Self *string `json:"self,omitempty"`
-	Source ChannelSource `json:"source"`
+	Source Summary2Source `json:"source"`
 }
 
 // NewSummary2 instantiates a new Summary2 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSummary2(etag string, id string, source ChannelSource, ) *Summary2 {
+func NewSummary2(etag string, id string, source Summary2Source, ) *Summary2 {
 	this := Summary2{}
 	this.Etag = etag
 	this.Id = id
@@ -158,9 +158,9 @@ func (o *Summary2) SetSelf(v string) {
 }
 
 // GetSource returns the Source field value
-func (o *Summary2) GetSource() ChannelSource {
+func (o *Summary2) GetSource() Summary2Source {
 	if o == nil  {
-		var ret ChannelSource
+		var ret Summary2Source
 		return ret
 	}
 
@@ -169,7 +169,7 @@ func (o *Summary2) GetSource() ChannelSource {
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *Summary2) GetSourceOk() (*ChannelSource, bool) {
+func (o *Summary2) GetSourceOk() (*Summary2Source, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -177,7 +177,7 @@ func (o *Summary2) GetSourceOk() (*ChannelSource, bool) {
 }
 
 // SetSource sets field value
-func (o *Summary2) SetSource(v ChannelSource) {
+func (o *Summary2) SetSource(v Summary2Source) {
 	o.Source = v
 }
 

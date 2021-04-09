@@ -222,16 +222,16 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_n
 type ApiListSourcesRequest struct {
 	ctx _context.Context
 	ApiService SourcesApi
-	cursor *string
 	pageSize *int32
+	cursor *string
 }
 
-func (r ApiListSourcesRequest) Cursor(cursor string) ApiListSourcesRequest {
-	r.cursor = &cursor
-	return r
-}
 func (r ApiListSourcesRequest) PageSize(pageSize int32) ApiListSourcesRequest {
 	r.pageSize = &pageSize
+	return r
+}
+func (r ApiListSourcesRequest) Cursor(cursor string) ApiListSourcesRequest {
+	r.cursor = &cursor
 	return r
 }
 
@@ -279,11 +279,11 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.cursor != nil {
-		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
-	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

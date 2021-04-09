@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// ChannelSource Channel source
-type ChannelSource struct {
+// Summary2Source Channel source
+type Summary2Source struct {
 	// Station source ID
 	Id string `json:"id"`
 	// Source name
@@ -23,28 +23,28 @@ type ChannelSource struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ChannelSource ChannelSource
+type _Summary2Source Summary2Source
 
-// NewChannelSource instantiates a new ChannelSource object
+// NewSummary2Source instantiates a new Summary2Source object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelSource(id string, ) *ChannelSource {
-	this := ChannelSource{}
+func NewSummary2Source(id string, ) *Summary2Source {
+	this := Summary2Source{}
 	this.Id = id
 	return &this
 }
 
-// NewChannelSourceWithDefaults instantiates a new ChannelSource object
+// NewSummary2SourceWithDefaults instantiates a new Summary2Source object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelSourceWithDefaults() *ChannelSource {
-	this := ChannelSource{}
+func NewSummary2SourceWithDefaults() *Summary2Source {
+	this := Summary2Source{}
 	return &this
 }
 
 // GetId returns the Id field value
-func (o *ChannelSource) GetId() string {
+func (o *Summary2Source) GetId() string {
 	if o == nil  {
 		var ret string
 		return ret
@@ -55,7 +55,7 @@ func (o *ChannelSource) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ChannelSource) GetIdOk() (*string, bool) {
+func (o *Summary2Source) GetIdOk() (*string, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -63,12 +63,12 @@ func (o *ChannelSource) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *ChannelSource) SetId(v string) {
+func (o *Summary2Source) SetId(v string) {
 	o.Id = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ChannelSource) GetName() string {
+func (o *Summary2Source) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -78,7 +78,7 @@ func (o *ChannelSource) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSource) GetNameOk() (*string, bool) {
+func (o *Summary2Source) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -86,7 +86,7 @@ func (o *ChannelSource) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ChannelSource) HasName() bool {
+func (o *Summary2Source) HasName() bool {
 	if o != nil && o.Name != nil {
 		return true
 	}
@@ -95,12 +95,12 @@ func (o *ChannelSource) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ChannelSource) SetName(v string) {
+func (o *Summary2Source) SetName(v string) {
 	o.Name = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
-func (o *ChannelSource) GetSelf() string {
+func (o *Summary2Source) GetSelf() string {
 	if o == nil || o.Self == nil {
 		var ret string
 		return ret
@@ -110,7 +110,7 @@ func (o *ChannelSource) GetSelf() string {
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSource) GetSelfOk() (*string, bool) {
+func (o *Summary2Source) GetSelfOk() (*string, bool) {
 	if o == nil || o.Self == nil {
 		return nil, false
 	}
@@ -118,7 +118,7 @@ func (o *ChannelSource) GetSelfOk() (*string, bool) {
 }
 
 // HasSelf returns a boolean if a field has been set.
-func (o *ChannelSource) HasSelf() bool {
+func (o *Summary2Source) HasSelf() bool {
 	if o != nil && o.Self != nil {
 		return true
 	}
@@ -127,11 +127,11 @@ func (o *ChannelSource) HasSelf() bool {
 }
 
 // SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *ChannelSource) SetSelf(v string) {
+func (o *Summary2Source) SetSelf(v string) {
 	o.Self = &v
 }
 
-func (o ChannelSource) MarshalJSON() ([]byte, error) {
+func (o Summary2Source) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
 		toSerialize["id"] = o.Id
@@ -150,11 +150,11 @@ func (o ChannelSource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ChannelSource) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelSource := _ChannelSource{}
+func (o *Summary2Source) UnmarshalJSON(bytes []byte) (err error) {
+	varSummary2Source := _Summary2Source{}
 
-	if err = json.Unmarshal(bytes, &varChannelSource); err == nil {
-		*o = ChannelSource(varChannelSource)
+	if err = json.Unmarshal(bytes, &varSummary2Source); err == nil {
+		*o = Summary2Source(varSummary2Source)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -169,38 +169,38 @@ func (o *ChannelSource) UnmarshalJSON(bytes []byte) (err error) {
 	return err
 }
 
-type NullableChannelSource struct {
-	value *ChannelSource
+type NullableSummary2Source struct {
+	value *Summary2Source
 	isSet bool
 }
 
-func (v NullableChannelSource) Get() *ChannelSource {
+func (v NullableSummary2Source) Get() *Summary2Source {
 	return v.value
 }
 
-func (v *NullableChannelSource) Set(val *ChannelSource) {
+func (v *NullableSummary2Source) Set(val *Summary2Source) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelSource) IsSet() bool {
+func (v NullableSummary2Source) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelSource) Unset() {
+func (v *NullableSummary2Source) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelSource(val *ChannelSource) *NullableChannelSource {
-	return &NullableChannelSource{value: val, isSet: true}
+func NewNullableSummary2Source(val *Summary2Source) *NullableSummary2Source {
+	return &NullableSummary2Source{value: val, isSet: true}
 }
 
-func (v NullableChannelSource) MarshalJSON() ([]byte, error) {
+func (v NullableSummary2Source) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelSource) UnmarshalJSON(src []byte) error {
+func (v *NullableSummary2Source) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
