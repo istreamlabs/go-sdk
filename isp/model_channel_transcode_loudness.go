@@ -12,13 +12,15 @@ import (
 	"encoding/json"
 )
 
-// ChannelTranscodeLoudness Loudness adjustment settings.
+// ChannelTranscodeLoudness Loudness normalization settings.
 type ChannelTranscodeLoudness struct {
-	// Only supported for (E)AC-3 codecs
+	// Enable Dialog Intelligence. Only supported for (E)AC-3 encoders.
 	DialogIntel *bool `json:"dialog_intel,omitempty"`
+	// Loudness normalization LKFS setting. Default value is -24.
 	Lkfs *int32 `json:"lkfs,omitempty"`
-	// Only supported for non-(E)AC-3 codecs
+	// Loudness Range. Only supported for non-(E)AC-3 encoders. Default value is 7.0.
 	Lra *float32 `json:"lra,omitempty"`
+	// Peak Limit. Default value is -2.0.
 	PeakLimit *float32 `json:"peak_limit,omitempty"`
 	AdditionalProperties map[string]interface{}
 }

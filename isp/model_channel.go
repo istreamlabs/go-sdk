@@ -27,6 +27,8 @@ type Channel struct {
 	// Packaging configures media format and content protection settings.
 	Packaging *map[string]interface{} `json:"packaging,omitempty"`
 	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
+	Region *string `json:"region,omitempty"`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
 	ResourceClass *string `json:"resource_class,omitempty"`
 	// Self link for the channel.
@@ -270,6 +272,38 @@ func (o *Channel) SetPublishing(v ChannelPublishing) {
 	o.Publishing = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *Channel) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *Channel) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *Channel) SetRegion(v string) {
+	o.Region = &v
+}
+
 // GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
 func (o *Channel) GetResourceClass() string {
 	if o == nil || o.ResourceClass == nil {
@@ -412,6 +446,9 @@ func (o Channel) MarshalJSON() ([]byte, error) {
 	}
 	if o.Publishing != nil {
 		toSerialize["publishing"] = o.Publishing
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
 	}
 	if o.ResourceClass != nil {
 		toSerialize["resource_class"] = o.ResourceClass

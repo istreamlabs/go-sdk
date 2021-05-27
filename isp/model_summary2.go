@@ -18,7 +18,7 @@ type Summary2 struct {
 	Etag string `json:"etag"`
 	// Unique channel ID
 	Id string `json:"id"`
-	// Channel name
+	// Friendly channel description
 	Name *string `json:"name,omitempty"`
 	// Link to this resource
 	Self *string `json:"self,omitempty"`

@@ -18,6 +18,8 @@ type ChannelSignalingSegmentSettings struct {
 	DefaultDurationSecs *int32 `json:"default_duration_secs,omitempty"`
 	// Determines whether to include the default duration in the output SCTE-35 messages when the input SCTE-35 message did not specify a duration.
 	EmitDefaultDuration *bool `json:"emit_default_duration,omitempty"`
+	// Determines whether to match Segment End signaling by Event ID or not. This can be useful for scenarios where the Event ID for the Segment End signal is different from Segment Start, such as when the two signals originate from disparate systems.
+	IgnoreEndEventId *bool `json:"ignore_end_event_id,omitempty"`
 	// Specifies a 'correction' to the splice_time of in-band SCTE-35 in milliseconds.
 	OffsetMillis *int32 `json:"offset_millis,omitempty"`
 	// Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration.
@@ -107,6 +109,38 @@ func (o *ChannelSignalingSegmentSettings) HasEmitDefaultDuration() bool {
 // SetEmitDefaultDuration gets a reference to the given bool and assigns it to the EmitDefaultDuration field.
 func (o *ChannelSignalingSegmentSettings) SetEmitDefaultDuration(v bool) {
 	o.EmitDefaultDuration = &v
+}
+
+// GetIgnoreEndEventId returns the IgnoreEndEventId field value if set, zero value otherwise.
+func (o *ChannelSignalingSegmentSettings) GetIgnoreEndEventId() bool {
+	if o == nil || o.IgnoreEndEventId == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IgnoreEndEventId
+}
+
+// GetIgnoreEndEventIdOk returns a tuple with the IgnoreEndEventId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelSignalingSegmentSettings) GetIgnoreEndEventIdOk() (*bool, bool) {
+	if o == nil || o.IgnoreEndEventId == nil {
+		return nil, false
+	}
+	return o.IgnoreEndEventId, true
+}
+
+// HasIgnoreEndEventId returns a boolean if a field has been set.
+func (o *ChannelSignalingSegmentSettings) HasIgnoreEndEventId() bool {
+	if o != nil && o.IgnoreEndEventId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIgnoreEndEventId gets a reference to the given bool and assigns it to the IgnoreEndEventId field.
+func (o *ChannelSignalingSegmentSettings) SetIgnoreEndEventId(v bool) {
+	o.IgnoreEndEventId = &v
 }
 
 // GetOffsetMillis returns the OffsetMillis field value if set, zero value otherwise.
@@ -213,6 +247,9 @@ func (o ChannelSignalingSegmentSettings) MarshalJSON() ([]byte, error) {
 	if o.EmitDefaultDuration != nil {
 		toSerialize["emit_default_duration"] = o.EmitDefaultDuration
 	}
+	if o.IgnoreEndEventId != nil {
+		toSerialize["ignore_end_event_id"] = o.IgnoreEndEventId
+	}
 	if o.OffsetMillis != nil {
 		toSerialize["offset_millis"] = o.OffsetMillis
 	}
@@ -242,6 +279,7 @@ func (o *ChannelSignalingSegmentSettings) UnmarshalJSON(bytes []byte) (err error
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "default_duration_secs")
 		delete(additionalProperties, "emit_default_duration")
+		delete(additionalProperties, "ignore_end_event_id")
 		delete(additionalProperties, "offset_millis")
 		delete(additionalProperties, "segments")
 		delete(additionalProperties, "tier_filter")

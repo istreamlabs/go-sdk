@@ -1,6 +1,5 @@
 api_channel_operations.go
 api_channels.go
-api_signaling.go
 api_sources.go
 client.go
 configuration.go

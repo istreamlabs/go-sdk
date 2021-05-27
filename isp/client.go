@@ -50,7 +50,6 @@ type APIClient struct {
 
 	ChannelsApi ChannelsApi
 
-
 	SourcesApi SourcesApi
 }
 
