@@ -17,6 +17,7 @@ import (
 
 func main() {
 	client := isp.NewWithClientCredentials(os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("ORG"))
+	client.APIClient.GetConfig().Debug = true
 
 	ctx := context.Background()
 

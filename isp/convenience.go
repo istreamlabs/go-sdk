@@ -3,7 +3,9 @@ package isp
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"reflect"
 
@@ -134,6 +136,29 @@ func (c *HighLevelClient) DoModel(req *http.Request, model interface{}) (*http.R
 	}
 
 	return resp, nil
+}
+
+// Do the request, logging the request/response if debugging is enabled.
+func (c *HighLevelClient) Do(req *http.Request) (*http.Response, error) {
+	if c.cfg.Debug {
+		dump, err := httputil.DumpRequestOut(req, true)
+		if err != nil {
+			return nil, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+
+	res, err := c.Client.Do(req)
+
+	if c.cfg.Debug {
+		dump, err := httputil.DumpResponse(res, true)
+		if err != nil {
+			return res, err
+		}
+		log.Printf("\n%s\n", string(dump))
+	}
+
+	return res, err
 }
 
 // NewWithClientCredentials creates a new authenticated client using the OAuth
