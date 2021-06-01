@@ -140,6 +140,12 @@ func (c *HighLevelClient) DoModel(req *http.Request, model interface{}) (*http.R
 
 // Do the request, logging the request/response if debugging is enabled.
 func (c *HighLevelClient) Do(req *http.Request) (*http.Response, error) {
+	for k, v := range c.cfg.DefaultHeader {
+		if req.Header.Get(k) == "" {
+			req.Header.Set(k, v)
+		}
+	}
+
 	if c.cfg.Debug {
 		dump, err := httputil.DumpRequestOut(req, true)
 		if err != nil {
