@@ -13,34 +13,34 @@ import (
 	"encoding/json"
 )
 
-// ChannelTranscodeH264 Configure the encoder to use the H.264 codec. Only one of ['H264Settings', 'H265Settings'] may be set
-type ChannelTranscodeH264 struct {
-	// H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+// ChannelTranscodeH265 Configure the encoder to use the H.265 codec. Only one of ['H264Settings', 'H265Settings'] may be set
+type ChannelTranscodeH265 struct {
+	// H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
 	Profile *string `json:"profile,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ChannelTranscodeH264 ChannelTranscodeH264
+type _ChannelTranscodeH265 ChannelTranscodeH265
 
-// NewChannelTranscodeH264 instantiates a new ChannelTranscodeH264 object
+// NewChannelTranscodeH265 instantiates a new ChannelTranscodeH265 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelTranscodeH264() *ChannelTranscodeH264 {
-	this := ChannelTranscodeH264{}
+func NewChannelTranscodeH265() *ChannelTranscodeH265 {
+	this := ChannelTranscodeH265{}
 	return &this
 }
 
-// NewChannelTranscodeH264WithDefaults instantiates a new ChannelTranscodeH264 object
+// NewChannelTranscodeH265WithDefaults instantiates a new ChannelTranscodeH265 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelTranscodeH264WithDefaults() *ChannelTranscodeH264 {
-	this := ChannelTranscodeH264{}
+func NewChannelTranscodeH265WithDefaults() *ChannelTranscodeH265 {
+	this := ChannelTranscodeH265{}
 	return &this
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
-func (o *ChannelTranscodeH264) GetProfile() string {
+func (o *ChannelTranscodeH265) GetProfile() string {
 	if o == nil || o.Profile == nil {
 		var ret string
 		return ret
@@ -50,7 +50,7 @@ func (o *ChannelTranscodeH264) GetProfile() string {
 
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscodeH264) GetProfileOk() (*string, bool) {
+func (o *ChannelTranscodeH265) GetProfileOk() (*string, bool) {
 	if o == nil || o.Profile == nil {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *ChannelTranscodeH264) GetProfileOk() (*string, bool) {
 }
 
 // HasProfile returns a boolean if a field has been set.
-func (o *ChannelTranscodeH264) HasProfile() bool {
+func (o *ChannelTranscodeH265) HasProfile() bool {
 	if o != nil && o.Profile != nil {
 		return true
 	}
@@ -67,11 +67,11 @@ func (o *ChannelTranscodeH264) HasProfile() bool {
 }
 
 // SetProfile gets a reference to the given string and assigns it to the Profile field.
-func (o *ChannelTranscodeH264) SetProfile(v string) {
+func (o *ChannelTranscodeH265) SetProfile(v string) {
 	o.Profile = &v
 }
 
-func (o ChannelTranscodeH264) MarshalJSON() ([]byte, error) {
+func (o ChannelTranscodeH265) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Profile != nil {
 		toSerialize["profile"] = o.Profile
@@ -84,11 +84,11 @@ func (o ChannelTranscodeH264) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ChannelTranscodeH264) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelTranscodeH264 := _ChannelTranscodeH264{}
+func (o *ChannelTranscodeH265) UnmarshalJSON(bytes []byte) (err error) {
+	varChannelTranscodeH265 := _ChannelTranscodeH265{}
 
-	if err = json.Unmarshal(bytes, &varChannelTranscodeH264); err == nil {
-		*o = ChannelTranscodeH264(varChannelTranscodeH264)
+	if err = json.Unmarshal(bytes, &varChannelTranscodeH265); err == nil {
+		*o = ChannelTranscodeH265(varChannelTranscodeH265)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -101,38 +101,38 @@ func (o *ChannelTranscodeH264) UnmarshalJSON(bytes []byte) (err error) {
 	return err
 }
 
-type NullableChannelTranscodeH264 struct {
-	value *ChannelTranscodeH264
+type NullableChannelTranscodeH265 struct {
+	value *ChannelTranscodeH265
 	isSet bool
 }
 
-func (v NullableChannelTranscodeH264) Get() *ChannelTranscodeH264 {
+func (v NullableChannelTranscodeH265) Get() *ChannelTranscodeH265 {
 	return v.value
 }
 
-func (v *NullableChannelTranscodeH264) Set(val *ChannelTranscodeH264) {
+func (v *NullableChannelTranscodeH265) Set(val *ChannelTranscodeH265) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelTranscodeH264) IsSet() bool {
+func (v NullableChannelTranscodeH265) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelTranscodeH264) Unset() {
+func (v *NullableChannelTranscodeH265) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelTranscodeH264(val *ChannelTranscodeH264) *NullableChannelTranscodeH264 {
-	return &NullableChannelTranscodeH264{value: val, isSet: true}
+func NewNullableChannelTranscodeH265(val *ChannelTranscodeH265) *NullableChannelTranscodeH265 {
+	return &NullableChannelTranscodeH265{value: val, isSet: true}
 }
 
-func (v NullableChannelTranscodeH264) MarshalJSON() ([]byte, error) {
+func (v NullableChannelTranscodeH265) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelTranscodeH264) UnmarshalJSON(src []byte) error {
+func (v *NullableChannelTranscodeH265) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

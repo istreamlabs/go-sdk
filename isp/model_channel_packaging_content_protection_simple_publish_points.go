@@ -13,8 +13,8 @@ import (
 	"encoding/json"
 )
 
-// ChannelPublishingHttp HTTP destination where media segments and playlists will be published.
-type ChannelPublishingHttp struct {
+// ChannelPackagingContentProtectionSimplePublishPoints struct for ChannelPackagingContentProtectionSimplePublishPoints
+type ChannelPackagingContentProtectionSimplePublishPoints struct {
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
 	Compression *string `json:"compression,omitempty"`
 	// Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type.
@@ -32,27 +32,27 @@ type ChannelPublishingHttp struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ChannelPublishingHttp ChannelPublishingHttp
+type _ChannelPackagingContentProtectionSimplePublishPoints ChannelPackagingContentProtectionSimplePublishPoints
 
-// NewChannelPublishingHttp instantiates a new ChannelPublishingHttp object
+// NewChannelPackagingContentProtectionSimplePublishPoints instantiates a new ChannelPackagingContentProtectionSimplePublishPoints object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelPublishingHttp() *ChannelPublishingHttp {
-	this := ChannelPublishingHttp{}
+func NewChannelPackagingContentProtectionSimplePublishPoints() *ChannelPackagingContentProtectionSimplePublishPoints {
+	this := ChannelPackagingContentProtectionSimplePublishPoints{}
 	return &this
 }
 
-// NewChannelPublishingHttpWithDefaults instantiates a new ChannelPublishingHttp object
+// NewChannelPackagingContentProtectionSimplePublishPointsWithDefaults instantiates a new ChannelPackagingContentProtectionSimplePublishPoints object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelPublishingHttpWithDefaults() *ChannelPublishingHttp {
-	this := ChannelPublishingHttp{}
+func NewChannelPackagingContentProtectionSimplePublishPointsWithDefaults() *ChannelPackagingContentProtectionSimplePublishPoints {
+	this := ChannelPackagingContentProtectionSimplePublishPoints{}
 	return &this
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetCompression() string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetCompression() string {
 	if o == nil || o.Compression == nil {
 		var ret string
 		return ret
@@ -62,7 +62,7 @@ func (o *ChannelPublishingHttp) GetCompression() string {
 
 // GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetCompressionOk() (*string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetCompressionOk() (*string, bool) {
 	if o == nil || o.Compression == nil {
 		return nil, false
 	}
@@ -70,7 +70,7 @@ func (o *ChannelPublishingHttp) GetCompressionOk() (*string, bool) {
 }
 
 // HasCompression returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasCompression() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasCompression() bool {
 	if o != nil && o.Compression != nil {
 		return true
 	}
@@ -79,12 +79,12 @@ func (o *ChannelPublishingHttp) HasCompression() bool {
 }
 
 // SetCompression gets a reference to the given string and assigns it to the Compression field.
-func (o *ChannelPublishingHttp) SetCompression(v string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetCompression(v string) {
 	o.Compression = &v
 }
 
 // GetCrossPlaybackPaths returns the CrossPlaybackPaths field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetCrossPlaybackPaths() []string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetCrossPlaybackPaths() []string {
 	if o == nil || o.CrossPlaybackPaths == nil {
 		var ret []string
 		return ret
@@ -94,7 +94,7 @@ func (o *ChannelPublishingHttp) GetCrossPlaybackPaths() []string {
 
 // GetCrossPlaybackPathsOk returns a tuple with the CrossPlaybackPaths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetCrossPlaybackPathsOk() (*[]string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetCrossPlaybackPathsOk() (*[]string, bool) {
 	if o == nil || o.CrossPlaybackPaths == nil {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *ChannelPublishingHttp) GetCrossPlaybackPathsOk() (*[]string, bool) {
 }
 
 // HasCrossPlaybackPaths returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasCrossPlaybackPaths() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasCrossPlaybackPaths() bool {
 	if o != nil && o.CrossPlaybackPaths != nil {
 		return true
 	}
@@ -111,12 +111,12 @@ func (o *ChannelPublishingHttp) HasCrossPlaybackPaths() bool {
 }
 
 // SetCrossPlaybackPaths gets a reference to the given []string and assigns it to the CrossPlaybackPaths field.
-func (o *ChannelPublishingHttp) SetCrossPlaybackPaths(v []string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetCrossPlaybackPaths(v []string) {
 	o.CrossPlaybackPaths = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetHeaders() map[string]string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetHeaders() map[string]string {
 	if o == nil || o.Headers == nil {
 		var ret map[string]string
 		return ret
@@ -126,7 +126,7 @@ func (o *ChannelPublishingHttp) GetHeaders() map[string]string {
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetHeadersOk() (*map[string]string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
 		return nil, false
 	}
@@ -134,7 +134,7 @@ func (o *ChannelPublishingHttp) GetHeadersOk() (*map[string]string, bool) {
 }
 
 // HasHeaders returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasHeaders() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasHeaders() bool {
 	if o != nil && o.Headers != nil {
 		return true
 	}
@@ -143,12 +143,12 @@ func (o *ChannelPublishingHttp) HasHeaders() bool {
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
-func (o *ChannelPublishingHttp) SetHeaders(v map[string]string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetHeaders(v map[string]string) {
 	o.Headers = &v
 }
 
 // GetMethod returns the Method field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetMethod() string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetMethod() string {
 	if o == nil || o.Method == nil {
 		var ret string
 		return ret
@@ -158,7 +158,7 @@ func (o *ChannelPublishingHttp) GetMethod() string {
 
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetMethodOk() (*string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetMethodOk() (*string, bool) {
 	if o == nil || o.Method == nil {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *ChannelPublishingHttp) GetMethodOk() (*string, bool) {
 }
 
 // HasMethod returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasMethod() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasMethod() bool {
 	if o != nil && o.Method != nil {
 		return true
 	}
@@ -175,12 +175,12 @@ func (o *ChannelPublishingHttp) HasMethod() bool {
 }
 
 // SetMethod gets a reference to the given string and assigns it to the Method field.
-func (o *ChannelPublishingHttp) SetMethod(v string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetMethod(v string) {
 	o.Method = &v
 }
 
 // GetPlaybackBaseUrl returns the PlaybackBaseUrl field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetPlaybackBaseUrl() string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPlaybackBaseUrl() string {
 	if o == nil || o.PlaybackBaseUrl == nil {
 		var ret string
 		return ret
@@ -190,7 +190,7 @@ func (o *ChannelPublishingHttp) GetPlaybackBaseUrl() string {
 
 // GetPlaybackBaseUrlOk returns a tuple with the PlaybackBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetPlaybackBaseUrlOk() (*string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPlaybackBaseUrlOk() (*string, bool) {
 	if o == nil || o.PlaybackBaseUrl == nil {
 		return nil, false
 	}
@@ -198,7 +198,7 @@ func (o *ChannelPublishingHttp) GetPlaybackBaseUrlOk() (*string, bool) {
 }
 
 // HasPlaybackBaseUrl returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasPlaybackBaseUrl() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasPlaybackBaseUrl() bool {
 	if o != nil && o.PlaybackBaseUrl != nil {
 		return true
 	}
@@ -207,12 +207,12 @@ func (o *ChannelPublishingHttp) HasPlaybackBaseUrl() bool {
 }
 
 // SetPlaybackBaseUrl gets a reference to the given string and assigns it to the PlaybackBaseUrl field.
-func (o *ChannelPublishingHttp) SetPlaybackBaseUrl(v string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetPlaybackBaseUrl(v string) {
 	o.PlaybackBaseUrl = &v
 }
 
 // GetPlaybackQueryParams returns the PlaybackQueryParams field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetPlaybackQueryParams() string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPlaybackQueryParams() string {
 	if o == nil || o.PlaybackQueryParams == nil {
 		var ret string
 		return ret
@@ -222,7 +222,7 @@ func (o *ChannelPublishingHttp) GetPlaybackQueryParams() string {
 
 // GetPlaybackQueryParamsOk returns a tuple with the PlaybackQueryParams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetPlaybackQueryParamsOk() (*string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPlaybackQueryParamsOk() (*string, bool) {
 	if o == nil || o.PlaybackQueryParams == nil {
 		return nil, false
 	}
@@ -230,7 +230,7 @@ func (o *ChannelPublishingHttp) GetPlaybackQueryParamsOk() (*string, bool) {
 }
 
 // HasPlaybackQueryParams returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasPlaybackQueryParams() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasPlaybackQueryParams() bool {
 	if o != nil && o.PlaybackQueryParams != nil {
 		return true
 	}
@@ -239,12 +239,12 @@ func (o *ChannelPublishingHttp) HasPlaybackQueryParams() bool {
 }
 
 // SetPlaybackQueryParams gets a reference to the given string and assigns it to the PlaybackQueryParams field.
-func (o *ChannelPublishingHttp) SetPlaybackQueryParams(v string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetPlaybackQueryParams(v string) {
 	o.PlaybackQueryParams = &v
 }
 
 // GetPublishBaseUrl returns the PublishBaseUrl field value if set, zero value otherwise.
-func (o *ChannelPublishingHttp) GetPublishBaseUrl() string {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPublishBaseUrl() string {
 	if o == nil || o.PublishBaseUrl == nil {
 		var ret string
 		return ret
@@ -254,7 +254,7 @@ func (o *ChannelPublishingHttp) GetPublishBaseUrl() string {
 
 // GetPublishBaseUrlOk returns a tuple with the PublishBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHttp) GetPublishBaseUrlOk() (*string, bool) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetPublishBaseUrlOk() (*string, bool) {
 	if o == nil || o.PublishBaseUrl == nil {
 		return nil, false
 	}
@@ -262,7 +262,7 @@ func (o *ChannelPublishingHttp) GetPublishBaseUrlOk() (*string, bool) {
 }
 
 // HasPublishBaseUrl returns a boolean if a field has been set.
-func (o *ChannelPublishingHttp) HasPublishBaseUrl() bool {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasPublishBaseUrl() bool {
 	if o != nil && o.PublishBaseUrl != nil {
 		return true
 	}
@@ -271,11 +271,11 @@ func (o *ChannelPublishingHttp) HasPublishBaseUrl() bool {
 }
 
 // SetPublishBaseUrl gets a reference to the given string and assigns it to the PublishBaseUrl field.
-func (o *ChannelPublishingHttp) SetPublishBaseUrl(v string) {
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetPublishBaseUrl(v string) {
 	o.PublishBaseUrl = &v
 }
 
-func (o ChannelPublishingHttp) MarshalJSON() ([]byte, error) {
+func (o ChannelPackagingContentProtectionSimplePublishPoints) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Compression != nil {
 		toSerialize["compression"] = o.Compression
@@ -306,11 +306,11 @@ func (o ChannelPublishingHttp) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ChannelPublishingHttp) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelPublishingHttp := _ChannelPublishingHttp{}
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) UnmarshalJSON(bytes []byte) (err error) {
+	varChannelPackagingContentProtectionSimplePublishPoints := _ChannelPackagingContentProtectionSimplePublishPoints{}
 
-	if err = json.Unmarshal(bytes, &varChannelPublishingHttp); err == nil {
-		*o = ChannelPublishingHttp(varChannelPublishingHttp)
+	if err = json.Unmarshal(bytes, &varChannelPackagingContentProtectionSimplePublishPoints); err == nil {
+		*o = ChannelPackagingContentProtectionSimplePublishPoints(varChannelPackagingContentProtectionSimplePublishPoints)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -329,38 +329,38 @@ func (o *ChannelPublishingHttp) UnmarshalJSON(bytes []byte) (err error) {
 	return err
 }
 
-type NullableChannelPublishingHttp struct {
-	value *ChannelPublishingHttp
+type NullableChannelPackagingContentProtectionSimplePublishPoints struct {
+	value *ChannelPackagingContentProtectionSimplePublishPoints
 	isSet bool
 }
 
-func (v NullableChannelPublishingHttp) Get() *ChannelPublishingHttp {
+func (v NullableChannelPackagingContentProtectionSimplePublishPoints) Get() *ChannelPackagingContentProtectionSimplePublishPoints {
 	return v.value
 }
 
-func (v *NullableChannelPublishingHttp) Set(val *ChannelPublishingHttp) {
+func (v *NullableChannelPackagingContentProtectionSimplePublishPoints) Set(val *ChannelPackagingContentProtectionSimplePublishPoints) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelPublishingHttp) IsSet() bool {
+func (v NullableChannelPackagingContentProtectionSimplePublishPoints) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelPublishingHttp) Unset() {
+func (v *NullableChannelPackagingContentProtectionSimplePublishPoints) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelPublishingHttp(val *ChannelPublishingHttp) *NullableChannelPublishingHttp {
-	return &NullableChannelPublishingHttp{value: val, isSet: true}
+func NewNullableChannelPackagingContentProtectionSimplePublishPoints(val *ChannelPackagingContentProtectionSimplePublishPoints) *NullableChannelPackagingContentProtectionSimplePublishPoints {
+	return &NullableChannelPackagingContentProtectionSimplePublishPoints{value: val, isSet: true}
 }
 
-func (v NullableChannelPublishingHttp) MarshalJSON() ([]byte, error) {
+func (v NullableChannelPackagingContentProtectionSimplePublishPoints) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelPublishingHttp) UnmarshalJSON(src []byte) error {
+func (v *NullableChannelPackagingContentProtectionSimplePublishPoints) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
