@@ -13,35 +13,35 @@ import (
 	"encoding/json"
 )
 
-// ChannelIngest Ingest configures inputs for the transcoder.
-type ChannelIngest struct {
+// PutChannelRequestIngest Ingest configures inputs for the transcoder.
+type PutChannelRequestIngest struct {
 	Slate *ChannelIngestSlate `json:"slate,omitempty"`
-	Source ChannelIngestSource `json:"source"`
+	Source PutChannelRequestIngestSource `json:"source"`
 	AdditionalProperties map[string]interface{}
 }
 
-type _ChannelIngest ChannelIngest
+type _PutChannelRequestIngest PutChannelRequestIngest
 
-// NewChannelIngest instantiates a new ChannelIngest object
+// NewPutChannelRequestIngest instantiates a new PutChannelRequestIngest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelIngest(source ChannelIngestSource) *ChannelIngest {
-	this := ChannelIngest{}
+func NewPutChannelRequestIngest(source PutChannelRequestIngestSource) *PutChannelRequestIngest {
+	this := PutChannelRequestIngest{}
 	this.Source = source
 	return &this
 }
 
-// NewChannelIngestWithDefaults instantiates a new ChannelIngest object
+// NewPutChannelRequestIngestWithDefaults instantiates a new PutChannelRequestIngest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelIngestWithDefaults() *ChannelIngest {
-	this := ChannelIngest{}
+func NewPutChannelRequestIngestWithDefaults() *PutChannelRequestIngest {
+	this := PutChannelRequestIngest{}
 	return &this
 }
 
 // GetSlate returns the Slate field value if set, zero value otherwise.
-func (o *ChannelIngest) GetSlate() ChannelIngestSlate {
+func (o *PutChannelRequestIngest) GetSlate() ChannelIngestSlate {
 	if o == nil || o.Slate == nil {
 		var ret ChannelIngestSlate
 		return ret
@@ -51,7 +51,7 @@ func (o *ChannelIngest) GetSlate() ChannelIngestSlate {
 
 // GetSlateOk returns a tuple with the Slate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
+func (o *PutChannelRequestIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
 	if o == nil || o.Slate == nil {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *ChannelIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
 }
 
 // HasSlate returns a boolean if a field has been set.
-func (o *ChannelIngest) HasSlate() bool {
+func (o *PutChannelRequestIngest) HasSlate() bool {
 	if o != nil && o.Slate != nil {
 		return true
 	}
@@ -68,14 +68,14 @@ func (o *ChannelIngest) HasSlate() bool {
 }
 
 // SetSlate gets a reference to the given ChannelIngestSlate and assigns it to the Slate field.
-func (o *ChannelIngest) SetSlate(v ChannelIngestSlate) {
+func (o *PutChannelRequestIngest) SetSlate(v ChannelIngestSlate) {
 	o.Slate = &v
 }
 
 // GetSource returns the Source field value
-func (o *ChannelIngest) GetSource() ChannelIngestSource {
+func (o *PutChannelRequestIngest) GetSource() PutChannelRequestIngestSource {
 	if o == nil {
-		var ret ChannelIngestSource
+		var ret PutChannelRequestIngestSource
 		return ret
 	}
 
@@ -84,7 +84,7 @@ func (o *ChannelIngest) GetSource() ChannelIngestSource {
 
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
-func (o *ChannelIngest) GetSourceOk() (*ChannelIngestSource, bool) {
+func (o *PutChannelRequestIngest) GetSourceOk() (*PutChannelRequestIngestSource, bool) {
 	if o == nil  {
 		return nil, false
 	}
@@ -92,11 +92,11 @@ func (o *ChannelIngest) GetSourceOk() (*ChannelIngestSource, bool) {
 }
 
 // SetSource sets field value
-func (o *ChannelIngest) SetSource(v ChannelIngestSource) {
+func (o *PutChannelRequestIngest) SetSource(v PutChannelRequestIngestSource) {
 	o.Source = v
 }
 
-func (o ChannelIngest) MarshalJSON() ([]byte, error) {
+func (o PutChannelRequestIngest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.Slate != nil {
 		toSerialize["slate"] = o.Slate
@@ -112,11 +112,11 @@ func (o ChannelIngest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *ChannelIngest) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelIngest := _ChannelIngest{}
+func (o *PutChannelRequestIngest) UnmarshalJSON(bytes []byte) (err error) {
+	varPutChannelRequestIngest := _PutChannelRequestIngest{}
 
-	if err = json.Unmarshal(bytes, &varChannelIngest); err == nil {
-		*o = ChannelIngest(varChannelIngest)
+	if err = json.Unmarshal(bytes, &varPutChannelRequestIngest); err == nil {
+		*o = PutChannelRequestIngest(varPutChannelRequestIngest)
 	}
 
 	additionalProperties := make(map[string]interface{})
@@ -130,38 +130,38 @@ func (o *ChannelIngest) UnmarshalJSON(bytes []byte) (err error) {
 	return err
 }
 
-type NullableChannelIngest struct {
-	value *ChannelIngest
+type NullablePutChannelRequestIngest struct {
+	value *PutChannelRequestIngest
 	isSet bool
 }
 
-func (v NullableChannelIngest) Get() *ChannelIngest {
+func (v NullablePutChannelRequestIngest) Get() *PutChannelRequestIngest {
 	return v.value
 }
 
-func (v *NullableChannelIngest) Set(val *ChannelIngest) {
+func (v *NullablePutChannelRequestIngest) Set(val *PutChannelRequestIngest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelIngest) IsSet() bool {
+func (v NullablePutChannelRequestIngest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelIngest) Unset() {
+func (v *NullablePutChannelRequestIngest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelIngest(val *ChannelIngest) *NullableChannelIngest {
-	return &NullableChannelIngest{value: val, isSet: true}
+func NewNullablePutChannelRequestIngest(val *PutChannelRequestIngest) *NullablePutChannelRequestIngest {
+	return &NullablePutChannelRequestIngest{value: val, isSet: true}
 }
 
-func (v NullableChannelIngest) MarshalJSON() ([]byte, error) {
+func (v NullablePutChannelRequestIngest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelIngest) UnmarshalJSON(src []byte) error {
+func (v *NullablePutChannelRequestIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
