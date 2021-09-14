@@ -21,6 +21,8 @@ type Channel struct {
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty"`
 	Ingest ChannelIngest `json:"ingest"`
+	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
+	Labels *[]string `json:"labels,omitempty"`
 	// Date and time the channel was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
@@ -142,6 +144,38 @@ func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
 // SetIngest sets field value
 func (o *Channel) SetIngest(v ChannelIngest) {
 	o.Ingest = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Channel) GetLabels() []string {
+	if o == nil || o.Labels == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetLabelsOk() (*[]string, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Channel) HasLabels() bool {
+	if o != nil && o.Labels != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *Channel) SetLabels(v []string) {
+	o.Labels = &v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
@@ -434,6 +468,9 @@ func (o Channel) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["ingest"] = o.Ingest
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
 	}
 	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified

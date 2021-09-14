@@ -388,16 +388,16 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 type ApiListChannelsRequest struct {
 	ctx _context.Context
 	ApiService ChannelsApi
-	pageSize *int32
 	cursor *string
+	pageSize *int32
 }
 
-func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
-	r.pageSize = &pageSize
-	return r
-}
 func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
 	r.cursor = &cursor
+	return r
+}
+func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
+	r.pageSize = &pageSize
 	return r
 }
 
@@ -445,11 +445,11 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}

@@ -16,10 +16,14 @@ import (
 // PutChannelRequest struct for PutChannelRequest
 type PutChannelRequest struct {
 	Ingest PutChannelRequestIngest `json:"ingest"`
+	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
+	Labels *[]string `json:"labels,omitempty"`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty"`
 	Packaging *ChannelPackaging `json:"packaging,omitempty"`
 	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
+	Region *string `json:"region,omitempty"`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
 	ResourceClass *string `json:"resource_class,omitempty"`
 	Signaling *ChannelSignaling `json:"signaling,omitempty"`
@@ -66,6 +70,38 @@ func (o *PutChannelRequest) GetIngestOk() (*PutChannelRequestIngest, bool) {
 // SetIngest sets field value
 func (o *PutChannelRequest) SetIngest(v PutChannelRequestIngest) {
 	o.Ingest = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetLabels() []string {
+	if o == nil || o.Labels == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetLabelsOk() (*[]string, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasLabels() bool {
+	if o != nil && o.Labels != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *PutChannelRequest) SetLabels(v []string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -162,6 +198,38 @@ func (o *PutChannelRequest) HasPublishing() bool {
 // SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
 func (o *PutChannelRequest) SetPublishing(v ChannelPublishing) {
 	o.Publishing = &v
+}
+
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetRegion() string {
+	if o == nil || o.Region == nil {
+		var ret string
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetRegionOk() (*string, bool) {
+	if o == nil || o.Region == nil {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasRegion() bool {
+	if o != nil && o.Region != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
+func (o *PutChannelRequest) SetRegion(v string) {
+	o.Region = &v
 }
 
 // GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
@@ -265,6 +333,9 @@ func (o PutChannelRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["ingest"] = o.Ingest
 	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -273,6 +344,9 @@ func (o PutChannelRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Publishing != nil {
 		toSerialize["publishing"] = o.Publishing
+	}
+	if o.Region != nil {
+		toSerialize["region"] = o.Region
 	}
 	if o.ResourceClass != nil {
 		toSerialize["resource_class"] = o.ResourceClass

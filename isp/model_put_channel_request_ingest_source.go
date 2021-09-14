@@ -15,6 +15,7 @@ import (
 
 // PutChannelRequestIngestSource Source provides a reference to the input media stream for this channel.
 type PutChannelRequestIngestSource struct {
+	AudioSources *[]ChannelIngestSourceAudioSources `json:"audio_sources,omitempty"`
 	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
 	CaptionsSource *string `json:"captions_source,omitempty"`
 	// Unique identifier for this source.
@@ -40,6 +41,38 @@ func NewPutChannelRequestIngestSource(id string) *PutChannelRequestIngestSource 
 func NewPutChannelRequestIngestSourceWithDefaults() *PutChannelRequestIngestSource {
 	this := PutChannelRequestIngestSource{}
 	return &this
+}
+
+// GetAudioSources returns the AudioSources field value if set, zero value otherwise.
+func (o *PutChannelRequestIngestSource) GetAudioSources() []ChannelIngestSourceAudioSources {
+	if o == nil || o.AudioSources == nil {
+		var ret []ChannelIngestSourceAudioSources
+		return ret
+	}
+	return *o.AudioSources
+}
+
+// GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequestIngestSource) GetAudioSourcesOk() (*[]ChannelIngestSourceAudioSources, bool) {
+	if o == nil || o.AudioSources == nil {
+		return nil, false
+	}
+	return o.AudioSources, true
+}
+
+// HasAudioSources returns a boolean if a field has been set.
+func (o *PutChannelRequestIngestSource) HasAudioSources() bool {
+	if o != nil && o.AudioSources != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetAudioSources gets a reference to the given []ChannelIngestSourceAudioSources and assigns it to the AudioSources field.
+func (o *PutChannelRequestIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSources) {
+	o.AudioSources = &v
 }
 
 // GetCaptionsSource returns the CaptionsSource field value if set, zero value otherwise.
@@ -100,6 +133,9 @@ func (o *PutChannelRequestIngestSource) SetId(v string) {
 
 func (o PutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.AudioSources != nil {
+		toSerialize["audio_sources"] = o.AudioSources
+	}
 	if o.CaptionsSource != nil {
 		toSerialize["captions_source"] = o.CaptionsSource
 	}
@@ -124,6 +160,7 @@ func (o *PutChannelRequestIngestSource) UnmarshalJSON(bytes []byte) (err error) 
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "audio_sources")
 		delete(additionalProperties, "captions_source")
 		delete(additionalProperties, "id")
 		o.AdditionalProperties = additionalProperties

@@ -19,6 +19,8 @@ type Summary2 struct {
 	Etag string `json:"etag"`
 	// Unique channel ID
 	Id string `json:"id"`
+	// Channel Labels
+	Labels *[]string `json:"labels,omitempty"`
 	// Friendly channel description
 	Name *string `json:"name,omitempty"`
 	// Link to this resource
@@ -92,6 +94,38 @@ func (o *Summary2) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Summary2) SetId(v string) {
 	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise.
+func (o *Summary2) GetLabels() []string {
+	if o == nil || o.Labels == nil {
+		var ret []string
+		return ret
+	}
+	return *o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Summary2) GetLabelsOk() (*[]string, bool) {
+	if o == nil || o.Labels == nil {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Summary2) HasLabels() bool {
+	if o != nil && o.Labels != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *Summary2) SetLabels(v []string) {
+	o.Labels = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -189,6 +223,9 @@ func (o Summary2) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
