@@ -7,6 +7,7 @@ model_channel.go
 model_channel_ingest.go
 model_channel_ingest_slate.go
 model_channel_ingest_source.go
+model_channel_ingest_source_audio_sources.go
 model_channel_packaging.go
 model_channel_packaging_content_protection.go
 model_channel_packaging_content_protection_atlas.go
