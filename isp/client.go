@@ -48,6 +48,8 @@ type APIClient struct {
 
 	// API Services
 
+	AuditOperationsApi AuditOperationsApi
+
 	ChannelOperationsApi ChannelOperationsApi
 
 	ChannelsApi ChannelsApi
@@ -71,6 +73,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AuditOperationsApi = (*AuditOperationsApiService)(&c.common)
 	c.ChannelOperationsApi = (*ChannelOperationsApiService)(&c.common)
 	c.ChannelsApi = (*ChannelsApiService)(&c.common)
 	c.SourcesApi = (*SourcesApiService)(&c.common)
@@ -371,6 +374,9 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 			return
 		}
 		_, err = (*f).Write(b)
+		if err != nil {
+			return
+		}
 		_, err = (*f).Seek(0, io.SeekStart)
 		return
 	}

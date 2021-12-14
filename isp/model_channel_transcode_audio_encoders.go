@@ -21,6 +21,8 @@ type ChannelTranscodeAudioEncoders struct {
 	BitRate *int32 `json:"bit_rate,omitempty"`
 	// Channels specifies the number of audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 1-6, and EAC3 supports 1-8. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono / Dolby 1.0 (C), 2 - Stereo / Dolby 2.0 (L, R), 3 - Dolby 3.0 (L, C, R), 4 - Dolby 4.0 (L, C, R, l), 5 - Dolby 5.0 (L, C, R, l, r), 6 - Dolby 5.1 (L, C, R, l, r, LFE), 7 - Dolby 7.0 (L, C, R, l, r, Lrs, Rrs), 8 - Dolby 7.1 (L, C, R, l, r, Lrs, Rrs, LFE).
 	Channels *int32 `json:"channels,omitempty"`
+	// Codec specifies the audio data encoding format.
+	Codec *string `json:"codec,omitempty"`
 	// Encoder ID. IDs must be unique for all audio encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	Loudness *ChannelTranscodeLoudness `json:"loudness,omitempty"`
@@ -144,6 +146,38 @@ func (o *ChannelTranscodeAudioEncoders) SetChannels(v int32) {
 	o.Channels = &v
 }
 
+// GetCodec returns the Codec field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncoders) GetCodec() string {
+	if o == nil || o.Codec == nil {
+		var ret string
+		return ret
+	}
+	return *o.Codec
+}
+
+// GetCodecOk returns a tuple with the Codec field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncoders) GetCodecOk() (*string, bool) {
+	if o == nil || o.Codec == nil {
+		return nil, false
+	}
+	return o.Codec, true
+}
+
+// HasCodec returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncoders) HasCodec() bool {
+	if o != nil && o.Codec != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCodec gets a reference to the given string and assigns it to the Codec field.
+func (o *ChannelTranscodeAudioEncoders) SetCodec(v string) {
+	o.Codec = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncoders) GetId() string {
 	if o == nil || o.Id == nil {
@@ -251,6 +285,9 @@ func (o ChannelTranscodeAudioEncoders) MarshalJSON() ([]byte, error) {
 	if o.Channels != nil {
 		toSerialize["channels"] = o.Channels
 	}
+	if o.Codec != nil {
+		toSerialize["codec"] = o.Codec
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -281,6 +318,7 @@ func (o *ChannelTranscodeAudioEncoders) UnmarshalJSON(bytes []byte) (err error) 
 		delete(additionalProperties, "audio_source_id")
 		delete(additionalProperties, "bit_rate")
 		delete(additionalProperties, "channels")
+		delete(additionalProperties, "codec")
 		delete(additionalProperties, "id")
 		delete(additionalProperties, "loudness")
 		delete(additionalProperties, "sample_rate")
