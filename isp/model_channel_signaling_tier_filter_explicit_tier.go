@@ -15,7 +15,7 @@ import (
 
 // ChannelSignalingTierFilterExplicitTier Only one of ['explicit_tier'] may be set.
 type ChannelSignalingTierFilterExplicitTier struct {
-	Value *int32 `json:"value,omitempty"`
+	Values *[]int32 `json:"values,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -38,42 +38,42 @@ func NewChannelSignalingTierFilterExplicitTierWithDefaults() *ChannelSignalingTi
 	return &this
 }
 
-// GetValue returns the Value field value if set, zero value otherwise.
-func (o *ChannelSignalingTierFilterExplicitTier) GetValue() int32 {
-	if o == nil || o.Value == nil {
-		var ret int32
+// GetValues returns the Values field value if set, zero value otherwise.
+func (o *ChannelSignalingTierFilterExplicitTier) GetValues() []int32 {
+	if o == nil || o.Values == nil {
+		var ret []int32
 		return ret
 	}
-	return *o.Value
+	return *o.Values
 }
 
-// GetValueOk returns a tuple with the Value field value if set, nil otherwise
+// GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSignalingTierFilterExplicitTier) GetValueOk() (*int32, bool) {
-	if o == nil || o.Value == nil {
+func (o *ChannelSignalingTierFilterExplicitTier) GetValuesOk() (*[]int32, bool) {
+	if o == nil || o.Values == nil {
 		return nil, false
 	}
-	return o.Value, true
+	return o.Values, true
 }
 
-// HasValue returns a boolean if a field has been set.
-func (o *ChannelSignalingTierFilterExplicitTier) HasValue() bool {
-	if o != nil && o.Value != nil {
+// HasValues returns a boolean if a field has been set.
+func (o *ChannelSignalingTierFilterExplicitTier) HasValues() bool {
+	if o != nil && o.Values != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetValue gets a reference to the given int32 and assigns it to the Value field.
-func (o *ChannelSignalingTierFilterExplicitTier) SetValue(v int32) {
-	o.Value = &v
+// SetValues gets a reference to the given []int32 and assigns it to the Values field.
+func (o *ChannelSignalingTierFilterExplicitTier) SetValues(v []int32) {
+	o.Values = &v
 }
 
 func (o ChannelSignalingTierFilterExplicitTier) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Value != nil {
-		toSerialize["value"] = o.Value
+	if o.Values != nil {
+		toSerialize["values"] = o.Values
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -93,7 +93,7 @@ func (o *ChannelSignalingTierFilterExplicitTier) UnmarshalJSON(bytes []byte) (er
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "value")
+		delete(additionalProperties, "values")
 		o.AdditionalProperties = additionalProperties
 	}
 

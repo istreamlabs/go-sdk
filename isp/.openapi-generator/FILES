@@ -1,3 +1,4 @@
+api_audit_operations.go
 api_channel_operations.go
 api_channels.go
 api_sources.go
@@ -34,6 +35,7 @@ model_channel_signaling_blackout_settings_slates.go
 model_channel_signaling_segment_settings.go
 model_channel_signaling_tier_filter.go
 model_channel_signaling_tier_filter_explicit_tier.go
+model_channel_timeline_entry.go
 model_channel_transcode.go
 model_channel_transcode_audio_encoders.go
 model_channel_transcode_h264.go

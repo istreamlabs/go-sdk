@@ -553,9 +553,14 @@ type ApiPutChannelRequest struct {
 	ctx _context.Context
 	ApiService ChannelsApi
 	channelId string
+	validateOnly *bool
 	putChannelRequest *PutChannelRequest
 }
 
+func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
+	r.validateOnly = &validateOnly
+	return r
+}
 func (r ApiPutChannelRequest) PutChannelRequest(putChannelRequest PutChannelRequest) ApiPutChannelRequest {
 	r.putChannelRequest = &putChannelRequest
 	return r
@@ -610,6 +615,9 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 		return nil, executionError
 	}
 
+	if r.validateOnly != nil {
+		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

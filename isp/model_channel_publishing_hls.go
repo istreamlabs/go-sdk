@@ -15,8 +15,8 @@ import (
 
 // ChannelPublishingHls HLS configures publication settings. Only one of HLS or DASH can be set.
 type ChannelPublishingHls struct {
-	// Excludes audio only playlists from being listed along side video playlists in a master playlist. Note: This does NOT affect multi-audio scenarios that would result in #EXT-X-MEDIA tags of TYPE=AUDIO.
-	ExcludeAudioOnly *bool `json:"exclude_audio_only,omitempty"`
+	// Defines how audio only variant streams are included in the master playlist, where the variant streams are defined by #EXT-X-STREAM-INF tag, the tag attributes provide information about the Stream. If NOT_SET - honor the deprecated 'exclude_audio_only' flag. Later when the deprecated flag is removed, the NOT_SET would mean INCLUDE_DEFAULT The INCLUDE_DEFAULT option - only the default 'audio only variant stream' is included in master playlist. This is the most common use case. INCLUDE_NONE - no audio only variant streams are included in the master playlist, it replaces 'exclude_audio_only' setting. INCLUDE_ALL - include all audio only variant streams in the master playlist.
+	AudioOnlyVariants *string `json:"audio_only_variants,omitempty"`
 	// Allows turning gap tags ON/OFF. When turned ON - the tag '#EXT-X-GAP' is inserted into media playlist for a missing segment. When turned OFF - Discontinuity is inserted into the playlist for missing segment(s). The default option UNDEFINED is mapped to OFF. Note: Gap tags are always inserted for the missing thumbnail segments independently of this setting
 	GapTags *string `json:"gap_tags,omitempty"`
 	// How often the master playlist(s) should be published in seconds. A value of 0 means the master playlist will only be published once at channel start.
@@ -55,36 +55,36 @@ func NewChannelPublishingHlsWithDefaults() *ChannelPublishingHls {
 	return &this
 }
 
-// GetExcludeAudioOnly returns the ExcludeAudioOnly field value if set, zero value otherwise.
-func (o *ChannelPublishingHls) GetExcludeAudioOnly() bool {
-	if o == nil || o.ExcludeAudioOnly == nil {
-		var ret bool
+// GetAudioOnlyVariants returns the AudioOnlyVariants field value if set, zero value otherwise.
+func (o *ChannelPublishingHls) GetAudioOnlyVariants() string {
+	if o == nil || o.AudioOnlyVariants == nil {
+		var ret string
 		return ret
 	}
-	return *o.ExcludeAudioOnly
+	return *o.AudioOnlyVariants
 }
 
-// GetExcludeAudioOnlyOk returns a tuple with the ExcludeAudioOnly field value if set, nil otherwise
+// GetAudioOnlyVariantsOk returns a tuple with the AudioOnlyVariants field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHls) GetExcludeAudioOnlyOk() (*bool, bool) {
-	if o == nil || o.ExcludeAudioOnly == nil {
+func (o *ChannelPublishingHls) GetAudioOnlyVariantsOk() (*string, bool) {
+	if o == nil || o.AudioOnlyVariants == nil {
 		return nil, false
 	}
-	return o.ExcludeAudioOnly, true
+	return o.AudioOnlyVariants, true
 }
 
-// HasExcludeAudioOnly returns a boolean if a field has been set.
-func (o *ChannelPublishingHls) HasExcludeAudioOnly() bool {
-	if o != nil && o.ExcludeAudioOnly != nil {
+// HasAudioOnlyVariants returns a boolean if a field has been set.
+func (o *ChannelPublishingHls) HasAudioOnlyVariants() bool {
+	if o != nil && o.AudioOnlyVariants != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetExcludeAudioOnly gets a reference to the given bool and assigns it to the ExcludeAudioOnly field.
-func (o *ChannelPublishingHls) SetExcludeAudioOnly(v bool) {
-	o.ExcludeAudioOnly = &v
+// SetAudioOnlyVariants gets a reference to the given string and assigns it to the AudioOnlyVariants field.
+func (o *ChannelPublishingHls) SetAudioOnlyVariants(v string) {
+	o.AudioOnlyVariants = &v
 }
 
 // GetGapTags returns the GapTags field value if set, zero value otherwise.
@@ -345,8 +345,8 @@ func (o *ChannelPublishingHls) SetUtcInSegmentTitle(v bool) {
 
 func (o ChannelPublishingHls) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
-	if o.ExcludeAudioOnly != nil {
-		toSerialize["exclude_audio_only"] = o.ExcludeAudioOnly
+	if o.AudioOnlyVariants != nil {
+		toSerialize["audio_only_variants"] = o.AudioOnlyVariants
 	}
 	if o.GapTags != nil {
 		toSerialize["gap_tags"] = o.GapTags
@@ -390,7 +390,7 @@ func (o *ChannelPublishingHls) UnmarshalJSON(bytes []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "exclude_audio_only")
+		delete(additionalProperties, "audio_only_variants")
 		delete(additionalProperties, "gap_tags")
 		delete(additionalProperties, "master_publish_frequency_secs")
 		delete(additionalProperties, "master_url_type")
