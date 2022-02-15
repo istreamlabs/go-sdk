@@ -13,10 +13,12 @@ import (
 	"encoding/json"
 )
 
-// ChannelPackagingContentProtectionSimple Only one of ['simple', 'atlas'] may be set.
+// ChannelPackagingContentProtectionSimple Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingContentProtectionSimple struct {
 	// Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
 	PublishPoints *[]ChannelPackagingContentProtectionSimplePublishPoints `json:"publish_points,omitempty"`
+	// Indicates which publish points must succeed for segment publishing to use the keys.
+	RequirePublish *string `json:"require_publish,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,10 +73,45 @@ func (o *ChannelPackagingContentProtectionSimple) SetPublishPoints(v []ChannelPa
 	o.PublishPoints = &v
 }
 
+// GetRequirePublish returns the RequirePublish field value if set, zero value otherwise.
+func (o *ChannelPackagingContentProtectionSimple) GetRequirePublish() string {
+	if o == nil || o.RequirePublish == nil {
+		var ret string
+		return ret
+	}
+	return *o.RequirePublish
+}
+
+// GetRequirePublishOk returns a tuple with the RequirePublish field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingContentProtectionSimple) GetRequirePublishOk() (*string, bool) {
+	if o == nil || o.RequirePublish == nil {
+		return nil, false
+	}
+	return o.RequirePublish, true
+}
+
+// HasRequirePublish returns a boolean if a field has been set.
+func (o *ChannelPackagingContentProtectionSimple) HasRequirePublish() bool {
+	if o != nil && o.RequirePublish != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequirePublish gets a reference to the given string and assigns it to the RequirePublish field.
+func (o *ChannelPackagingContentProtectionSimple) SetRequirePublish(v string) {
+	o.RequirePublish = &v
+}
+
 func (o ChannelPackagingContentProtectionSimple) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.PublishPoints != nil {
 		toSerialize["publish_points"] = o.PublishPoints
+	}
+	if o.RequirePublish != nil {
+		toSerialize["require_publish"] = o.RequirePublish
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -95,6 +132,7 @@ func (o *ChannelPackagingContentProtectionSimple) UnmarshalJSON(bytes []byte) (e
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "publish_points")
+		delete(additionalProperties, "require_publish")
 		o.AdditionalProperties = additionalProperties
 	}
 

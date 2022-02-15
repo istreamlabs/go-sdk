@@ -18,6 +18,7 @@ type ChannelPackagingContentProtection struct {
 	Atlas *ChannelPackagingContentProtectionAtlas `json:"atlas,omitempty"`
 	BulkFile *ChannelPackagingContentProtectionBulkFile `json:"bulk_file,omitempty"`
 	Common *ChannelPackagingContentProtectionCommon `json:"common,omitempty"`
+	Cpix *ChannelPackagingContentProtectionCpix `json:"cpix,omitempty"`
 	KeyRotation *ChannelPackagingContentProtectionKeyRotation `json:"key_rotation,omitempty"`
 	// Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
 	SampleAes *map[string]interface{} `json:"sample_aes,omitempty"`
@@ -140,6 +141,38 @@ func (o *ChannelPackagingContentProtection) SetCommon(v ChannelPackagingContentP
 	o.Common = &v
 }
 
+// GetCpix returns the Cpix field value if set, zero value otherwise.
+func (o *ChannelPackagingContentProtection) GetCpix() ChannelPackagingContentProtectionCpix {
+	if o == nil || o.Cpix == nil {
+		var ret ChannelPackagingContentProtectionCpix
+		return ret
+	}
+	return *o.Cpix
+}
+
+// GetCpixOk returns a tuple with the Cpix field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingContentProtection) GetCpixOk() (*ChannelPackagingContentProtectionCpix, bool) {
+	if o == nil || o.Cpix == nil {
+		return nil, false
+	}
+	return o.Cpix, true
+}
+
+// HasCpix returns a boolean if a field has been set.
+func (o *ChannelPackagingContentProtection) HasCpix() bool {
+	if o != nil && o.Cpix != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCpix gets a reference to the given ChannelPackagingContentProtectionCpix and assigns it to the Cpix field.
+func (o *ChannelPackagingContentProtection) SetCpix(v ChannelPackagingContentProtectionCpix) {
+	o.Cpix = &v
+}
+
 // GetKeyRotation returns the KeyRotation field value if set, zero value otherwise.
 func (o *ChannelPackagingContentProtection) GetKeyRotation() ChannelPackagingContentProtectionKeyRotation {
 	if o == nil || o.KeyRotation == nil {
@@ -247,6 +280,9 @@ func (o ChannelPackagingContentProtection) MarshalJSON() ([]byte, error) {
 	if o.Common != nil {
 		toSerialize["common"] = o.Common
 	}
+	if o.Cpix != nil {
+		toSerialize["cpix"] = o.Cpix
+	}
 	if o.KeyRotation != nil {
 		toSerialize["key_rotation"] = o.KeyRotation
 	}
@@ -277,6 +313,7 @@ func (o *ChannelPackagingContentProtection) UnmarshalJSON(bytes []byte) (err err
 		delete(additionalProperties, "atlas")
 		delete(additionalProperties, "bulk_file")
 		delete(additionalProperties, "common")
+		delete(additionalProperties, "cpix")
 		delete(additionalProperties, "key_rotation")
 		delete(additionalProperties, "sample_aes")
 		delete(additionalProperties, "simple")

@@ -17,6 +17,8 @@ import (
 type ChannelPackagingMp2T struct {
 	// Forces the Video and Audio Encodings to be unmuxed when there is one audio encodings. This setting will have to be uniformed across MP2T packagers within a config. When there are two or more audio encodings, unmuxed will be used automatically.
 	ForceUnmuxedAudio *bool `json:"force_unmuxed_audio,omitempty"`
+	// If true, insert ID3 tags that include a UTC timestamp. This is a Turner/WM-specific extension.
+	InsertId3UtcTime *bool `json:"insert_id3_utc_time,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -71,10 +73,45 @@ func (o *ChannelPackagingMp2T) SetForceUnmuxedAudio(v bool) {
 	o.ForceUnmuxedAudio = &v
 }
 
+// GetInsertId3UtcTime returns the InsertId3UtcTime field value if set, zero value otherwise.
+func (o *ChannelPackagingMp2T) GetInsertId3UtcTime() bool {
+	if o == nil || o.InsertId3UtcTime == nil {
+		var ret bool
+		return ret
+	}
+	return *o.InsertId3UtcTime
+}
+
+// GetInsertId3UtcTimeOk returns a tuple with the InsertId3UtcTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingMp2T) GetInsertId3UtcTimeOk() (*bool, bool) {
+	if o == nil || o.InsertId3UtcTime == nil {
+		return nil, false
+	}
+	return o.InsertId3UtcTime, true
+}
+
+// HasInsertId3UtcTime returns a boolean if a field has been set.
+func (o *ChannelPackagingMp2T) HasInsertId3UtcTime() bool {
+	if o != nil && o.InsertId3UtcTime != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetInsertId3UtcTime gets a reference to the given bool and assigns it to the InsertId3UtcTime field.
+func (o *ChannelPackagingMp2T) SetInsertId3UtcTime(v bool) {
+	o.InsertId3UtcTime = &v
+}
+
 func (o ChannelPackagingMp2T) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.ForceUnmuxedAudio != nil {
 		toSerialize["force_unmuxed_audio"] = o.ForceUnmuxedAudio
+	}
+	if o.InsertId3UtcTime != nil {
+		toSerialize["insert_id3_utc_time"] = o.InsertId3UtcTime
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -95,6 +132,7 @@ func (o *ChannelPackagingMp2T) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "force_unmuxed_audio")
+		delete(additionalProperties, "insert_id3_utc_time")
 		o.AdditionalProperties = additionalProperties
 	}
 

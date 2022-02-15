@@ -41,6 +41,21 @@ type ChannelOperationsApi interface {
 	GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *_nethttp.Response, GenericOpenAPIError)
 
 	/*
+	 * InsertId3 Insert ID3
+	 * Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	 * @param channelId Unique channel identifier
+	 * @return ApiInsertId3Request
+	 */
+	InsertId3(ctx _context.Context, channelId string) ApiInsertId3Request
+
+	/*
+	 * InsertId3Execute executes the request
+	 * @return InsertMetadataResult
+	 */
+	InsertId3Execute(r ApiInsertId3Request) (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError)
+
+	/*
 	 * InsertScte35 Insert SCTE-35
 	 * Inserts a SCTE-35 formatted binary payload into the channel.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -70,7 +85,7 @@ type ChannelOperationsApi interface {
 
 	/*
 	 * ProgramEnd Program End
-	 * Inserts a 'program end' SCTE-35 message into the channel.
+	 * Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param channelId Unique channel identifier
 	 * @return ApiProgramEndRequest
@@ -84,7 +99,7 @@ type ChannelOperationsApi interface {
 
 	/*
 	 * ProgramStart Program Start
-	 * Inserts a 'program start' SCTE-35 message into the channel.
+	 * Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	 * @param channelId Unique channel identifier
 	 * @return ApiProgramStartRequest
@@ -339,6 +354,197 @@ func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) 
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
 			localVarReturnValue = items.([]Segment)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, executionError
+}
+
+type ApiInsertId3Request struct {
+	ctx _context.Context
+	ApiService ChannelOperationsApi
+	channelId string
+	accept *string
+	insertMetadataRequest *InsertMetadataRequest
+}
+
+func (r ApiInsertId3Request) Accept(accept string) ApiInsertId3Request {
+	r.accept = &accept
+	return r
+}
+func (r ApiInsertId3Request) InsertMetadataRequest(insertMetadataRequest InsertMetadataRequest) ApiInsertId3Request {
+	r.insertMetadataRequest = &insertMetadataRequest
+	return r
+}
+
+func (r ApiInsertId3Request) Execute() (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError) {
+	return r.ApiService.InsertId3Execute(r)
+}
+
+/*
+ * InsertId3 Insert ID3
+ * Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+ * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ * @param channelId Unique channel identifier
+ * @return ApiInsertId3Request
+ */
+func (a *ChannelOperationsApiService) InsertId3(ctx _context.Context, channelId string) ApiInsertId3Request {
+	return ApiInsertId3Request{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+/*
+ * Execute executes the request
+ * @return InsertMetadataResult
+ */
+func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		executionError       GenericOpenAPIError
+		localVarReturnValue  InsertMetadataResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.InsertId3")
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/id3"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if strlen(r.channelId) > 60 {
+		executionError.error = "channelId must have less than 60 elements"
+		return localVarReturnValue, nil, executionError
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.accept != nil {
+		localVarHeaderParams["Accept"] = parameterToString(*r.accept, "")
+	}
+	// body params
+	localVarPostBody = r.insertMetadataRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, nil, executionError
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		executionError.error = err.Error()
+		return localVarReturnValue, localVarHTTPResponse, executionError
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(InsertMetadataResult)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -685,7 +891,7 @@ func (r ApiProgramEndRequest) Execute() (*_nethttp.Response, GenericOpenAPIError
 
 /*
  * ProgramEnd Program End
- * Inserts a 'program end' SCTE-35 message into the channel.
+ * Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param channelId Unique channel identifier
  * @return ApiProgramEndRequest
@@ -845,7 +1051,7 @@ func (r ApiProgramStartRequest) Execute() (*_nethttp.Response, GenericOpenAPIErr
 
 /*
  * ProgramStart Program Start
- * Inserts a 'program start' SCTE-35 message into the channel.
+ * Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
  * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param channelId Unique channel identifier
  * @return ApiProgramStartRequest

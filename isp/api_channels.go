@@ -16,6 +16,7 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
+	"time"
 )
 
 // Linger please
@@ -90,8 +91,28 @@ type ApiDeleteChannelRequest struct {
 	ctx _context.Context
 	ApiService ChannelsApi
 	channelId string
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
 }
 
+func (r ApiDeleteChannelRequest) IfMatch(ifMatch []string) ApiDeleteChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+func (r ApiDeleteChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+func (r ApiDeleteChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+func (r ApiDeleteChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
 
 func (r ApiDeleteChannelRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
 	return r.ApiService.DeleteChannelExecute(r)
@@ -159,6 +180,18 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
 		executionError.error = err.Error()
@@ -185,6 +218,26 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -223,8 +276,28 @@ type ApiGetChannelRequest struct {
 	ctx _context.Context
 	ApiService ChannelsApi
 	channelId string
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
 }
 
+func (r ApiGetChannelRequest) IfMatch(ifMatch []string) ApiGetChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+func (r ApiGetChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiGetChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+func (r ApiGetChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+func (r ApiGetChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
 
 func (r ApiGetChannelRequest) Execute() (Channel, *_nethttp.Response, GenericOpenAPIError) {
 	return r.ApiService.GetChannelExecute(r)
@@ -293,6 +366,18 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -390,6 +475,7 @@ type ApiListChannelsRequest struct {
 	ApiService ChannelsApi
 	cursor *string
 	pageSize *int32
+	q *string
 }
 
 func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
@@ -398,6 +484,10 @@ func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
 }
 func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+func (r ApiListChannelsRequest) Q(q string) ApiListChannelsRequest {
+	r.q = &q
 	return r
 }
 
@@ -450,6 +540,9 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -554,11 +647,31 @@ type ApiPutChannelRequest struct {
 	ApiService ChannelsApi
 	channelId string
 	validateOnly *bool
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
 	putChannelRequest *PutChannelRequest
 }
 
 func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
 	r.validateOnly = &validateOnly
+	return r
+}
+func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+func (r ApiPutChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPutChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+func (r ApiPutChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+func (r ApiPutChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
 	return r
 }
 func (r ApiPutChannelRequest) PutChannelRequest(putChannelRequest PutChannelRequest) ApiPutChannelRequest {
@@ -635,6 +748,18 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
 	// body params
 	localVarPostBody = r.putChannelRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
@@ -673,6 +798,26 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
