@@ -15,10 +15,13 @@ import (
 
 // ChannelPackagingContentProtectionSimplePublishPoints struct for ChannelPackagingContentProtectionSimplePublishPoints
 type ChannelPackagingContentProtectionSimplePublishPoints struct {
+	BasicAuth *ChannelPackagingContentProtectionSimpleBasicAuth `json:"basic_auth,omitempty"`
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
 	Compression *string `json:"compression,omitempty"`
 	// Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type.
 	CrossPlaybackPaths *[]string `json:"cross_playback_paths,omitempty"`
+	// (Optional) Specifies if this pubpoint should not be monitored by PLM.
+	DoNotMonitor *bool `json:"do_not_monitor,omitempty"`
 	// Allows custom HTTP headers to be set via configuration for all HTTP requests.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
@@ -49,6 +52,38 @@ func NewChannelPackagingContentProtectionSimplePublishPoints() *ChannelPackaging
 func NewChannelPackagingContentProtectionSimplePublishPointsWithDefaults() *ChannelPackagingContentProtectionSimplePublishPoints {
 	this := ChannelPackagingContentProtectionSimplePublishPoints{}
 	return &this
+}
+
+// GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetBasicAuth() ChannelPackagingContentProtectionSimpleBasicAuth {
+	if o == nil || o.BasicAuth == nil {
+		var ret ChannelPackagingContentProtectionSimpleBasicAuth
+		return ret
+	}
+	return *o.BasicAuth
+}
+
+// GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetBasicAuthOk() (*ChannelPackagingContentProtectionSimpleBasicAuth, bool) {
+	if o == nil || o.BasicAuth == nil {
+		return nil, false
+	}
+	return o.BasicAuth, true
+}
+
+// HasBasicAuth returns a boolean if a field has been set.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasBasicAuth() bool {
+	if o != nil && o.BasicAuth != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetBasicAuth gets a reference to the given ChannelPackagingContentProtectionSimpleBasicAuth and assigns it to the BasicAuth field.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetBasicAuth(v ChannelPackagingContentProtectionSimpleBasicAuth) {
+	o.BasicAuth = &v
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
@@ -113,6 +148,38 @@ func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasCrossPlaybackP
 // SetCrossPlaybackPaths gets a reference to the given []string and assigns it to the CrossPlaybackPaths field.
 func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetCrossPlaybackPaths(v []string) {
 	o.CrossPlaybackPaths = &v
+}
+
+// GetDoNotMonitor returns the DoNotMonitor field value if set, zero value otherwise.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetDoNotMonitor() bool {
+	if o == nil || o.DoNotMonitor == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DoNotMonitor
+}
+
+// GetDoNotMonitorOk returns a tuple with the DoNotMonitor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) GetDoNotMonitorOk() (*bool, bool) {
+	if o == nil || o.DoNotMonitor == nil {
+		return nil, false
+	}
+	return o.DoNotMonitor, true
+}
+
+// HasDoNotMonitor returns a boolean if a field has been set.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) HasDoNotMonitor() bool {
+	if o != nil && o.DoNotMonitor != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDoNotMonitor gets a reference to the given bool and assigns it to the DoNotMonitor field.
+func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetDoNotMonitor(v bool) {
+	o.DoNotMonitor = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
@@ -277,11 +344,17 @@ func (o *ChannelPackagingContentProtectionSimplePublishPoints) SetPublishBaseUrl
 
 func (o ChannelPackagingContentProtectionSimplePublishPoints) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.BasicAuth != nil {
+		toSerialize["basic_auth"] = o.BasicAuth
+	}
 	if o.Compression != nil {
 		toSerialize["compression"] = o.Compression
 	}
 	if o.CrossPlaybackPaths != nil {
 		toSerialize["cross_playback_paths"] = o.CrossPlaybackPaths
+	}
+	if o.DoNotMonitor != nil {
+		toSerialize["do_not_monitor"] = o.DoNotMonitor
 	}
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
@@ -316,8 +389,10 @@ func (o *ChannelPackagingContentProtectionSimplePublishPoints) UnmarshalJSON(byt
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		delete(additionalProperties, "basic_auth")
 		delete(additionalProperties, "compression")
 		delete(additionalProperties, "cross_playback_paths")
+		delete(additionalProperties, "do_not_monitor")
 		delete(additionalProperties, "headers")
 		delete(additionalProperties, "method")
 		delete(additionalProperties, "playback_base_url")

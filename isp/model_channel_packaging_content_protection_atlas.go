@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// ChannelPackagingContentProtectionAtlas Only one of ['simple', 'atlas'] may be set.
+// ChannelPackagingContentProtectionAtlas Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingContentProtectionAtlas struct {
 	// The Asset Identifier which was taken from the token entitlement service request.
 	AssetId *string `json:"asset_id,omitempty"`
