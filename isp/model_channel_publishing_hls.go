@@ -28,7 +28,7 @@ type ChannelPublishingHls struct {
 	// Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists.
 	PartialPresentations *[]ChannelPublishingHlsPartialPresentations `json:"partial_presentations,omitempty"`
 	// When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.
-	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty"`
+	PdtOnEverySecond *bool `json:"pdt_on_every_second,omitempty"`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
 	SignalingFormats *[]string `json:"signaling_formats,omitempty"`
 	// Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z
@@ -247,36 +247,36 @@ func (o *ChannelPublishingHls) SetPartialPresentations(v []ChannelPublishingHlsP
 	o.PartialPresentations = &v
 }
 
-// GetPdtOnEverySegment returns the PdtOnEverySegment field value if set, zero value otherwise.
-func (o *ChannelPublishingHls) GetPdtOnEverySegment() bool {
-	if o == nil || o.PdtOnEverySegment == nil {
+// GetPdtOnEverySecond returns the PdtOnEverySecond field value if set, zero value otherwise.
+func (o *ChannelPublishingHls) GetPdtOnEverySecond() bool {
+	if o == nil || o.PdtOnEverySecond == nil {
 		var ret bool
 		return ret
 	}
-	return *o.PdtOnEverySegment
+	return *o.PdtOnEverySecond
 }
 
-// GetPdtOnEverySegmentOk returns a tuple with the PdtOnEverySegment field value if set, nil otherwise
+// GetPdtOnEverySecondOk returns a tuple with the PdtOnEverySecond field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingHls) GetPdtOnEverySegmentOk() (*bool, bool) {
-	if o == nil || o.PdtOnEverySegment == nil {
+func (o *ChannelPublishingHls) GetPdtOnEverySecondOk() (*bool, bool) {
+	if o == nil || o.PdtOnEverySecond == nil {
 		return nil, false
 	}
-	return o.PdtOnEverySegment, true
+	return o.PdtOnEverySecond, true
 }
 
-// HasPdtOnEverySegment returns a boolean if a field has been set.
-func (o *ChannelPublishingHls) HasPdtOnEverySegment() bool {
-	if o != nil && o.PdtOnEverySegment != nil {
+// HasPdtOnEverySecond returns a boolean if a field has been set.
+func (o *ChannelPublishingHls) HasPdtOnEverySecond() bool {
+	if o != nil && o.PdtOnEverySecond != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetPdtOnEverySegment gets a reference to the given bool and assigns it to the PdtOnEverySegment field.
-func (o *ChannelPublishingHls) SetPdtOnEverySegment(v bool) {
-	o.PdtOnEverySegment = &v
+// SetPdtOnEverySecond gets a reference to the given bool and assigns it to the PdtOnEverySecond field.
+func (o *ChannelPublishingHls) SetPdtOnEverySecond(v bool) {
+	o.PdtOnEverySecond = &v
 }
 
 // GetSignalingFormats returns the SignalingFormats field value if set, zero value otherwise.
@@ -363,8 +363,8 @@ func (o ChannelPublishingHls) MarshalJSON() ([]byte, error) {
 	if o.PartialPresentations != nil {
 		toSerialize["partial_presentations"] = o.PartialPresentations
 	}
-	if o.PdtOnEverySegment != nil {
-		toSerialize["pdt_on_every_segment"] = o.PdtOnEverySegment
+	if o.PdtOnEverySecond != nil {
+		toSerialize["pdt_on_every_second"] = o.PdtOnEverySecond
 	}
 	if o.SignalingFormats != nil {
 		toSerialize["signaling_formats"] = o.SignalingFormats
@@ -396,7 +396,7 @@ func (o *ChannelPublishingHls) UnmarshalJSON(bytes []byte) (err error) {
 		delete(additionalProperties, "master_url_type")
 		delete(additionalProperties, "media_url_type")
 		delete(additionalProperties, "partial_presentations")
-		delete(additionalProperties, "pdt_on_every_segment")
+		delete(additionalProperties, "pdt_on_every_second")
 		delete(additionalProperties, "signaling_formats")
 		delete(additionalProperties, "utc_in_segment_title")
 		o.AdditionalProperties = additionalProperties

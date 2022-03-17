@@ -11,13 +11,20 @@ package isp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // PutChannelRequest struct for PutChannelRequest
 type PutChannelRequest struct {
+	// Date and time the channel was created.
+	Created *time.Time `json:"created,omitempty"`
+	// External Channel ID provided at channel creation time
+	Id *string `json:"id,omitempty"`
 	Ingest PutChannelRequestIngest `json:"ingest"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
 	Labels *[]string `json:"labels,omitempty"`
+	// Date and time the channel was last modified.
+	Modified *time.Time `json:"modified,omitempty"`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty"`
 	Packaging *ChannelPackaging `json:"packaging,omitempty"`
@@ -26,7 +33,10 @@ type PutChannelRequest struct {
 	Region *string `json:"region,omitempty"`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
 	ResourceClass *string `json:"resource_class,omitempty"`
+	// Self link for the channel.
+	Self *string `json:"self,omitempty"`
 	Signaling *ChannelSignaling `json:"signaling,omitempty"`
+	Tags *ChannelTags `json:"tags,omitempty"`
 	Transcode *ChannelTranscode `json:"transcode,omitempty"`
 }
 
@@ -46,6 +56,70 @@ func NewPutChannelRequest(ingest PutChannelRequestIngest) *PutChannelRequest {
 func NewPutChannelRequestWithDefaults() *PutChannelRequest {
 	this := PutChannelRequest{}
 	return &this
+}
+
+// GetCreated returns the Created field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetCreated() time.Time {
+	if o == nil || o.Created == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.Created
+}
+
+// GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetCreatedOk() (*time.Time, bool) {
+	if o == nil || o.Created == nil {
+		return nil, false
+	}
+	return o.Created, true
+}
+
+// HasCreated returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasCreated() bool {
+	if o != nil && o.Created != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
+func (o *PutChannelRequest) SetCreated(v time.Time) {
+	o.Created = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasId() bool {
+	if o != nil && o.Id != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *PutChannelRequest) SetId(v string) {
+	o.Id = &v
 }
 
 // GetIngest returns the Ingest field value
@@ -102,6 +176,38 @@ func (o *PutChannelRequest) HasLabels() bool {
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
 func (o *PutChannelRequest) SetLabels(v []string) {
 	o.Labels = &v
+}
+
+// GetModified returns the Modified field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetModified() time.Time {
+	if o == nil || o.Modified == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.Modified
+}
+
+// GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetModifiedOk() (*time.Time, bool) {
+	if o == nil || o.Modified == nil {
+		return nil, false
+	}
+	return o.Modified, true
+}
+
+// HasModified returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasModified() bool {
+	if o != nil && o.Modified != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
+func (o *PutChannelRequest) SetModified(v time.Time) {
+	o.Modified = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -264,6 +370,38 @@ func (o *PutChannelRequest) SetResourceClass(v string) {
 	o.ResourceClass = &v
 }
 
+// GetSelf returns the Self field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetSelf() string {
+	if o == nil || o.Self == nil {
+		var ret string
+		return ret
+	}
+	return *o.Self
+}
+
+// GetSelfOk returns a tuple with the Self field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetSelfOk() (*string, bool) {
+	if o == nil || o.Self == nil {
+		return nil, false
+	}
+	return o.Self, true
+}
+
+// HasSelf returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasSelf() bool {
+	if o != nil && o.Self != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelf gets a reference to the given string and assigns it to the Self field.
+func (o *PutChannelRequest) SetSelf(v string) {
+	o.Self = &v
+}
+
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
 func (o *PutChannelRequest) GetSignaling() ChannelSignaling {
 	if o == nil || o.Signaling == nil {
@@ -294,6 +432,38 @@ func (o *PutChannelRequest) HasSignaling() bool {
 // SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
 func (o *PutChannelRequest) SetSignaling(v ChannelSignaling) {
 	o.Signaling = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *PutChannelRequest) GetTags() ChannelTags {
+	if o == nil || o.Tags == nil {
+		var ret ChannelTags
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequest) GetTagsOk() (*ChannelTags, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *PutChannelRequest) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
+func (o *PutChannelRequest) SetTags(v ChannelTags) {
+	o.Tags = &v
 }
 
 // GetTranscode returns the Transcode field value if set, zero value otherwise.
@@ -330,11 +500,20 @@ func (o *PutChannelRequest) SetTranscode(v ChannelTranscode) {
 
 func (o PutChannelRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Created != nil {
+		toSerialize["created"] = o.Created
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if true {
 		toSerialize["ingest"] = o.Ingest
 	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
+	}
+	if o.Modified != nil {
+		toSerialize["modified"] = o.Modified
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -351,8 +530,14 @@ func (o PutChannelRequest) MarshalJSON() ([]byte, error) {
 	if o.ResourceClass != nil {
 		toSerialize["resource_class"] = o.ResourceClass
 	}
+	if o.Self != nil {
+		toSerialize["self"] = o.Self
+	}
 	if o.Signaling != nil {
 		toSerialize["signaling"] = o.Signaling
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	if o.Transcode != nil {
 		toSerialize["transcode"] = o.Transcode

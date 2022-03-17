@@ -17,7 +17,9 @@ import (
 type ChannelPublishing struct {
 	// Configures how captioning information is published.
 	ClosedCaptionStreams *[]ChannelPublishingClosedCaptionStreams `json:"closed_caption_streams,omitempty"`
-	Live2Vod *ChannelPublishingLive2Vod `json:"live2_vod,omitempty"`
+	// Set of string identifiers corresponding to features that this Channel is opting in.
+	FeatureFlags *[]string `json:"feature_flags,omitempty"`
+	Live2vod *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
 	// A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists.
 	Publications *[]ChannelPublishingPublications `json:"publications,omitempty"`
 	AdditionalProperties map[string]interface{}
@@ -74,36 +76,68 @@ func (o *ChannelPublishing) SetClosedCaptionStreams(v []ChannelPublishingClosedC
 	o.ClosedCaptionStreams = &v
 }
 
-// GetLive2Vod returns the Live2Vod field value if set, zero value otherwise.
-func (o *ChannelPublishing) GetLive2Vod() ChannelPublishingLive2Vod {
-	if o == nil || o.Live2Vod == nil {
-		var ret ChannelPublishingLive2Vod
+// GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
+func (o *ChannelPublishing) GetFeatureFlags() []string {
+	if o == nil || o.FeatureFlags == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Live2Vod
+	return *o.FeatureFlags
 }
 
-// GetLive2VodOk returns a tuple with the Live2Vod field value if set, nil otherwise
+// GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishing) GetLive2VodOk() (*ChannelPublishingLive2Vod, bool) {
-	if o == nil || o.Live2Vod == nil {
+func (o *ChannelPublishing) GetFeatureFlagsOk() (*[]string, bool) {
+	if o == nil || o.FeatureFlags == nil {
 		return nil, false
 	}
-	return o.Live2Vod, true
+	return o.FeatureFlags, true
 }
 
-// HasLive2Vod returns a boolean if a field has been set.
-func (o *ChannelPublishing) HasLive2Vod() bool {
-	if o != nil && o.Live2Vod != nil {
+// HasFeatureFlags returns a boolean if a field has been set.
+func (o *ChannelPublishing) HasFeatureFlags() bool {
+	if o != nil && o.FeatureFlags != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLive2Vod gets a reference to the given ChannelPublishingLive2Vod and assigns it to the Live2Vod field.
-func (o *ChannelPublishing) SetLive2Vod(v ChannelPublishingLive2Vod) {
-	o.Live2Vod = &v
+// SetFeatureFlags gets a reference to the given []string and assigns it to the FeatureFlags field.
+func (o *ChannelPublishing) SetFeatureFlags(v []string) {
+	o.FeatureFlags = &v
+}
+
+// GetLive2vod returns the Live2vod field value if set, zero value otherwise.
+func (o *ChannelPublishing) GetLive2vod() ChannelPublishingLive2vod {
+	if o == nil || o.Live2vod == nil {
+		var ret ChannelPublishingLive2vod
+		return ret
+	}
+	return *o.Live2vod
+}
+
+// GetLive2vodOk returns a tuple with the Live2vod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishing) GetLive2vodOk() (*ChannelPublishingLive2vod, bool) {
+	if o == nil || o.Live2vod == nil {
+		return nil, false
+	}
+	return o.Live2vod, true
+}
+
+// HasLive2vod returns a boolean if a field has been set.
+func (o *ChannelPublishing) HasLive2vod() bool {
+	if o != nil && o.Live2vod != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetLive2vod gets a reference to the given ChannelPublishingLive2vod and assigns it to the Live2vod field.
+func (o *ChannelPublishing) SetLive2vod(v ChannelPublishingLive2vod) {
+	o.Live2vod = &v
 }
 
 // GetPublications returns the Publications field value if set, zero value otherwise.
@@ -143,8 +177,11 @@ func (o ChannelPublishing) MarshalJSON() ([]byte, error) {
 	if o.ClosedCaptionStreams != nil {
 		toSerialize["closed_caption_streams"] = o.ClosedCaptionStreams
 	}
-	if o.Live2Vod != nil {
-		toSerialize["live2_vod"] = o.Live2Vod
+	if o.FeatureFlags != nil {
+		toSerialize["feature_flags"] = o.FeatureFlags
+	}
+	if o.Live2vod != nil {
+		toSerialize["live2vod"] = o.Live2vod
 	}
 	if o.Publications != nil {
 		toSerialize["publications"] = o.Publications
@@ -168,7 +205,8 @@ func (o *ChannelPublishing) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "closed_caption_streams")
-		delete(additionalProperties, "live2_vod")
+		delete(additionalProperties, "feature_flags")
+		delete(additionalProperties, "live2vod")
 		delete(additionalProperties, "publications")
 		o.AdditionalProperties = additionalProperties
 	}
