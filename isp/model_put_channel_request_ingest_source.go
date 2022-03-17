@@ -20,6 +20,8 @@ type PutChannelRequestIngestSource struct {
 	CaptionsSource *string `json:"captions_source,omitempty"`
 	// Unique identifier for this source.
 	Id string `json:"id"`
+	// Self link for the source.
+	Self *string `json:"self,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
 
@@ -131,6 +133,38 @@ func (o *PutChannelRequestIngestSource) SetId(v string) {
 	o.Id = v
 }
 
+// GetSelf returns the Self field value if set, zero value otherwise.
+func (o *PutChannelRequestIngestSource) GetSelf() string {
+	if o == nil || o.Self == nil {
+		var ret string
+		return ret
+	}
+	return *o.Self
+}
+
+// GetSelfOk returns a tuple with the Self field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequestIngestSource) GetSelfOk() (*string, bool) {
+	if o == nil || o.Self == nil {
+		return nil, false
+	}
+	return o.Self, true
+}
+
+// HasSelf returns a boolean if a field has been set.
+func (o *PutChannelRequestIngestSource) HasSelf() bool {
+	if o != nil && o.Self != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSelf gets a reference to the given string and assigns it to the Self field.
+func (o *PutChannelRequestIngestSource) SetSelf(v string) {
+	o.Self = &v
+}
+
 func (o PutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AudioSources != nil {
@@ -141,6 +175,9 @@ func (o PutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["id"] = o.Id
+	}
+	if o.Self != nil {
+		toSerialize["self"] = o.Self
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -163,6 +200,7 @@ func (o *PutChannelRequestIngestSource) UnmarshalJSON(bytes []byte) (err error) 
 		delete(additionalProperties, "audio_sources")
 		delete(additionalProperties, "captions_source")
 		delete(additionalProperties, "id")
+		delete(additionalProperties, "self")
 		o.AdditionalProperties = additionalProperties
 	}
 

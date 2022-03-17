@@ -17,6 +17,8 @@ import (
 type ChannelTranscode struct {
 	// Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc.
 	AudioEncoders *[]ChannelTranscodeAudioEncoders `json:"audio_encoders,omitempty"`
+	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper.
+	FeatureFlags *[]string `json:"feature_flags,omitempty"`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
 	Id3Mode *string `json:"id3_mode,omitempty"`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
@@ -78,6 +80,38 @@ func (o *ChannelTranscode) HasAudioEncoders() bool {
 // SetAudioEncoders gets a reference to the given []ChannelTranscodeAudioEncoders and assigns it to the AudioEncoders field.
 func (o *ChannelTranscode) SetAudioEncoders(v []ChannelTranscodeAudioEncoders) {
 	o.AudioEncoders = &v
+}
+
+// GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetFeatureFlags() []string {
+	if o == nil || o.FeatureFlags == nil {
+		var ret []string
+		return ret
+	}
+	return *o.FeatureFlags
+}
+
+// GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetFeatureFlagsOk() (*[]string, bool) {
+	if o == nil || o.FeatureFlags == nil {
+		return nil, false
+	}
+	return o.FeatureFlags, true
+}
+
+// HasFeatureFlags returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasFeatureFlags() bool {
+	if o != nil && o.FeatureFlags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFeatureFlags gets a reference to the given []string and assigns it to the FeatureFlags field.
+func (o *ChannelTranscode) SetFeatureFlags(v []string) {
+	o.FeatureFlags = &v
 }
 
 // GetId3Mode returns the Id3Mode field value if set, zero value otherwise.
@@ -245,6 +279,9 @@ func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
 	if o.AudioEncoders != nil {
 		toSerialize["audio_encoders"] = o.AudioEncoders
 	}
+	if o.FeatureFlags != nil {
+		toSerialize["feature_flags"] = o.FeatureFlags
+	}
 	if o.Id3Mode != nil {
 		toSerialize["id3_mode"] = o.Id3Mode
 	}
@@ -279,6 +316,7 @@ func (o *ChannelTranscode) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "audio_encoders")
+		delete(additionalProperties, "feature_flags")
 		delete(additionalProperties, "id3_mode")
 		delete(additionalProperties, "resize_mode")
 		delete(additionalProperties, "segmenter")

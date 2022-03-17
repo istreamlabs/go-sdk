@@ -16,7 +16,7 @@ import (
 // ChannelPackagingPackagers struct for ChannelPackagingPackagers
 type ChannelPackagingPackagers struct {
 	ContentProtection *ChannelPackagingContentProtection `json:"content_protection,omitempty"`
-	Mp2T *ChannelPackagingMp2T `json:"mp2_t,omitempty"`
+	Mp2t *ChannelPackagingMp2t `json:"mp2t,omitempty"`
 	Mp4 *ChannelPackagingMp4 `json:"mp4,omitempty"`
 	AdditionalProperties map[string]interface{}
 }
@@ -72,36 +72,36 @@ func (o *ChannelPackagingPackagers) SetContentProtection(v ChannelPackagingConte
 	o.ContentProtection = &v
 }
 
-// GetMp2T returns the Mp2T field value if set, zero value otherwise.
-func (o *ChannelPackagingPackagers) GetMp2T() ChannelPackagingMp2T {
-	if o == nil || o.Mp2T == nil {
-		var ret ChannelPackagingMp2T
+// GetMp2t returns the Mp2t field value if set, zero value otherwise.
+func (o *ChannelPackagingPackagers) GetMp2t() ChannelPackagingMp2t {
+	if o == nil || o.Mp2t == nil {
+		var ret ChannelPackagingMp2t
 		return ret
 	}
-	return *o.Mp2T
+	return *o.Mp2t
 }
 
-// GetMp2TOk returns a tuple with the Mp2T field value if set, nil otherwise
+// GetMp2tOk returns a tuple with the Mp2t field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPackagingPackagers) GetMp2TOk() (*ChannelPackagingMp2T, bool) {
-	if o == nil || o.Mp2T == nil {
+func (o *ChannelPackagingPackagers) GetMp2tOk() (*ChannelPackagingMp2t, bool) {
+	if o == nil || o.Mp2t == nil {
 		return nil, false
 	}
-	return o.Mp2T, true
+	return o.Mp2t, true
 }
 
-// HasMp2T returns a boolean if a field has been set.
-func (o *ChannelPackagingPackagers) HasMp2T() bool {
-	if o != nil && o.Mp2T != nil {
+// HasMp2t returns a boolean if a field has been set.
+func (o *ChannelPackagingPackagers) HasMp2t() bool {
+	if o != nil && o.Mp2t != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetMp2T gets a reference to the given ChannelPackagingMp2T and assigns it to the Mp2T field.
-func (o *ChannelPackagingPackagers) SetMp2T(v ChannelPackagingMp2T) {
-	o.Mp2T = &v
+// SetMp2t gets a reference to the given ChannelPackagingMp2t and assigns it to the Mp2t field.
+func (o *ChannelPackagingPackagers) SetMp2t(v ChannelPackagingMp2t) {
+	o.Mp2t = &v
 }
 
 // GetMp4 returns the Mp4 field value if set, zero value otherwise.
@@ -141,8 +141,8 @@ func (o ChannelPackagingPackagers) MarshalJSON() ([]byte, error) {
 	if o.ContentProtection != nil {
 		toSerialize["content_protection"] = o.ContentProtection
 	}
-	if o.Mp2T != nil {
-		toSerialize["mp2_t"] = o.Mp2T
+	if o.Mp2t != nil {
+		toSerialize["mp2t"] = o.Mp2t
 	}
 	if o.Mp4 != nil {
 		toSerialize["mp4"] = o.Mp4
@@ -166,7 +166,7 @@ func (o *ChannelPackagingPackagers) UnmarshalJSON(bytes []byte) (err error) {
 
 	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
 		delete(additionalProperties, "content_protection")
-		delete(additionalProperties, "mp2_t")
+		delete(additionalProperties, "mp2t")
 		delete(additionalProperties, "mp4")
 		o.AdditionalProperties = additionalProperties
 	}

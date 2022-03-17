@@ -36,6 +36,7 @@ type Channel struct {
 	// Self link for the channel.
 	Self *string `json:"self,omitempty"`
 	Signaling *ChannelSignaling `json:"signaling,omitempty"`
+	Tags *ChannelTags `json:"tags,omitempty"`
 	Transcode ChannelTranscode `json:"transcode"`
 }
 
@@ -434,6 +435,38 @@ func (o *Channel) SetSignaling(v ChannelSignaling) {
 	o.Signaling = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *Channel) GetTags() ChannelTags {
+	if o == nil || o.Tags == nil {
+		var ret ChannelTags
+		return ret
+	}
+	return *o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetTagsOk() (*ChannelTags, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *Channel) HasTags() bool {
+	if o != nil && o.Tags != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
+func (o *Channel) SetTags(v ChannelTags) {
+	o.Tags = &v
+}
+
 // GetTranscode returns the Transcode field value
 func (o *Channel) GetTranscode() ChannelTranscode {
 	if o == nil {
@@ -495,6 +528,9 @@ func (o Channel) MarshalJSON() ([]byte, error) {
 	}
 	if o.Signaling != nil {
 		toSerialize["signaling"] = o.Signaling
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 	if true {
 		toSerialize["transcode"] = o.Transcode

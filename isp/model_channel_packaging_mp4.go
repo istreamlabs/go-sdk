@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 )
 
-// ChannelPackagingMp4 Uses MP4 format for each segments. Only one of ['mp2_t', 'mp4'] may be set.
+// ChannelPackagingMp4 Uses MP4 format for each segments. Only one of ['mp2t', 'mp4'] may be set.
 type ChannelPackagingMp4 struct {
 	// CaptionPlacement defines where caption messages should be placed in the output MP4.
 	CaptionPlacement *string `json:"caption_placement,omitempty"`
