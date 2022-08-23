@@ -15,14 +15,13 @@ import (
 
 // ChannelPublishingLive2vod Live2VOD configuration used to archive the channel data, this allows clip creation after the content is no longer live.
 type ChannelPublishingLive2vod struct {
+	// BETA - (Optional) Indicates whether the system should send the unpackaged segments produced from the transcoder to the L2V system for purposes of creating mp4s and/or repackaging.
+	ClearCapture *bool `json:"clear_capture,omitempty"`
 	// Product ID that VODs will be associated with in the Live2VOD system. The value of this ID is pre-configured in the Live2VOD portal.
 	ProductId *string `json:"product_id,omitempty"`
 	// Specifies the retention time, in days, for archived content.
 	RetentionDays *int32 `json:"retention_days,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelPublishingLive2vod ChannelPublishingLive2vod
 
 // NewChannelPublishingLive2vod instantiates a new ChannelPublishingLive2vod object
 // This constructor will assign default values to properties that have it defined,
@@ -39,6 +38,38 @@ func NewChannelPublishingLive2vod() *ChannelPublishingLive2vod {
 func NewChannelPublishingLive2vodWithDefaults() *ChannelPublishingLive2vod {
 	this := ChannelPublishingLive2vod{}
 	return &this
+}
+
+// GetClearCapture returns the ClearCapture field value if set, zero value otherwise.
+func (o *ChannelPublishingLive2vod) GetClearCapture() bool {
+	if o == nil || o.ClearCapture == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ClearCapture
+}
+
+// GetClearCaptureOk returns a tuple with the ClearCapture field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingLive2vod) GetClearCaptureOk() (*bool, bool) {
+	if o == nil || o.ClearCapture == nil {
+		return nil, false
+	}
+	return o.ClearCapture, true
+}
+
+// HasClearCapture returns a boolean if a field has been set.
+func (o *ChannelPublishingLive2vod) HasClearCapture() bool {
+	if o != nil && o.ClearCapture != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetClearCapture gets a reference to the given bool and assigns it to the ClearCapture field.
+func (o *ChannelPublishingLive2vod) SetClearCapture(v bool) {
+	o.ClearCapture = &v
 }
 
 // GetProductId returns the ProductId field value if set, zero value otherwise.
@@ -107,36 +138,16 @@ func (o *ChannelPublishingLive2vod) SetRetentionDays(v int32) {
 
 func (o ChannelPublishingLive2vod) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.ClearCapture != nil {
+		toSerialize["clear_capture"] = o.ClearCapture
+	}
 	if o.ProductId != nil {
 		toSerialize["product_id"] = o.ProductId
 	}
 	if o.RetentionDays != nil {
 		toSerialize["retention_days"] = o.RetentionDays
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelPublishingLive2vod) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelPublishingLive2vod := _ChannelPublishingLive2vod{}
-
-	if err = json.Unmarshal(bytes, &varChannelPublishingLive2vod); err == nil {
-		*o = ChannelPublishingLive2vod(varChannelPublishingLive2vod)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "product_id")
-		delete(additionalProperties, "retention_days")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelPublishingLive2vod struct {

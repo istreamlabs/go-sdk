@@ -17,10 +17,7 @@ import (
 type ChannelTags struct {
 	// Indicates whether this channel is monitored by automation.
 	Monitored *bool `json:"monitored,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelTags ChannelTags
 
 // NewChannelTags instantiates a new ChannelTags object
 // This constructor will assign default values to properties that have it defined,
@@ -76,29 +73,7 @@ func (o ChannelTags) MarshalJSON() ([]byte, error) {
 	if o.Monitored != nil {
 		toSerialize["monitored"] = o.Monitored
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelTags) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelTags := _ChannelTags{}
-
-	if err = json.Unmarshal(bytes, &varChannelTags); err == nil {
-		*o = ChannelTags(varChannelTags)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "monitored")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelTags struct {

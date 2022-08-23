@@ -15,6 +15,8 @@ import (
 
 // Source struct for Source
 type Source struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// Unique source ID
 	Id string `json:"id"`
 	// Source name
@@ -42,6 +44,38 @@ func NewSourceWithDefaults() *Source {
 	return &this
 }
 
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *Source) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Source) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *Source) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *Source) SetSchema(v string) {
+	o.Schema = &v
+}
+
 // GetId returns the Id field value
 func (o *Source) GetId() string {
 	if o == nil {
@@ -55,7 +89,7 @@ func (o *Source) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Source) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -79,7 +113,7 @@ func (o *Source) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *Source) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Name, true
@@ -124,6 +158,9 @@ func (o *Source) SetSelf(v string) {
 
 func (o Source) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if true {
 		toSerialize["id"] = o.Id
 	}

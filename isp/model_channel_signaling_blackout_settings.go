@@ -18,15 +18,12 @@ type ChannelSignalingBlackoutSettings struct {
 	// Default slate URL to use for blackouts. Can be overridden by the 'slates' field.
 	DefaultBlackoutSlateUrl *string `json:"default_blackout_slate_url,omitempty"`
 	// List of signaling segment types to force blackout, e.g. add 'SPLICE_INSERT' to blackout all ads signaled via SCTE-35 splice_insert.
-	ForceBlackoutSegments *[]string `json:"force_blackout_segments,omitempty"`
+	ForceBlackoutSegments []string `json:"force_blackout_segments,omitempty"`
 	// Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
 	HonorWebDeliveryRestriction *bool `json:"honor_web_delivery_restriction,omitempty"`
 	// Per-segment type slate overrides.
-	Slates *[]ChannelSignalingBlackoutSettingsSlates `json:"slates,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Slates []ChannelSignalingBlackoutSettingsSlatesInner `json:"slates,omitempty"`
 }
-
-type _ChannelSignalingBlackoutSettings ChannelSignalingBlackoutSettings
 
 // NewChannelSignalingBlackoutSettings instantiates a new ChannelSignalingBlackoutSettings object
 // This constructor will assign default values to properties that have it defined,
@@ -83,12 +80,12 @@ func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegments() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ForceBlackoutSegments
+	return o.ForceBlackoutSegments
 }
 
 // GetForceBlackoutSegmentsOk returns a tuple with the ForceBlackoutSegments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegmentsOk() (*[]string, bool) {
+func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegmentsOk() ([]string, bool) {
 	if o == nil || o.ForceBlackoutSegments == nil {
 		return nil, false
 	}
@@ -106,7 +103,7 @@ func (o *ChannelSignalingBlackoutSettings) HasForceBlackoutSegments() bool {
 
 // SetForceBlackoutSegments gets a reference to the given []string and assigns it to the ForceBlackoutSegments field.
 func (o *ChannelSignalingBlackoutSettings) SetForceBlackoutSegments(v []string) {
-	o.ForceBlackoutSegments = &v
+	o.ForceBlackoutSegments = v
 }
 
 // GetHonorWebDeliveryRestriction returns the HonorWebDeliveryRestriction field value if set, zero value otherwise.
@@ -142,17 +139,17 @@ func (o *ChannelSignalingBlackoutSettings) SetHonorWebDeliveryRestriction(v bool
 }
 
 // GetSlates returns the Slates field value if set, zero value otherwise.
-func (o *ChannelSignalingBlackoutSettings) GetSlates() []ChannelSignalingBlackoutSettingsSlates {
+func (o *ChannelSignalingBlackoutSettings) GetSlates() []ChannelSignalingBlackoutSettingsSlatesInner {
 	if o == nil || o.Slates == nil {
-		var ret []ChannelSignalingBlackoutSettingsSlates
+		var ret []ChannelSignalingBlackoutSettingsSlatesInner
 		return ret
 	}
-	return *o.Slates
+	return o.Slates
 }
 
 // GetSlatesOk returns a tuple with the Slates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSignalingBlackoutSettings) GetSlatesOk() (*[]ChannelSignalingBlackoutSettingsSlates, bool) {
+func (o *ChannelSignalingBlackoutSettings) GetSlatesOk() ([]ChannelSignalingBlackoutSettingsSlatesInner, bool) {
 	if o == nil || o.Slates == nil {
 		return nil, false
 	}
@@ -168,9 +165,9 @@ func (o *ChannelSignalingBlackoutSettings) HasSlates() bool {
 	return false
 }
 
-// SetSlates gets a reference to the given []ChannelSignalingBlackoutSettingsSlates and assigns it to the Slates field.
-func (o *ChannelSignalingBlackoutSettings) SetSlates(v []ChannelSignalingBlackoutSettingsSlates) {
-	o.Slates = &v
+// SetSlates gets a reference to the given []ChannelSignalingBlackoutSettingsSlatesInner and assigns it to the Slates field.
+func (o *ChannelSignalingBlackoutSettings) SetSlates(v []ChannelSignalingBlackoutSettingsSlatesInner) {
+	o.Slates = v
 }
 
 func (o ChannelSignalingBlackoutSettings) MarshalJSON() ([]byte, error) {
@@ -187,32 +184,7 @@ func (o ChannelSignalingBlackoutSettings) MarshalJSON() ([]byte, error) {
 	if o.Slates != nil {
 		toSerialize["slates"] = o.Slates
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelSignalingBlackoutSettings) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelSignalingBlackoutSettings := _ChannelSignalingBlackoutSettings{}
-
-	if err = json.Unmarshal(bytes, &varChannelSignalingBlackoutSettings); err == nil {
-		*o = ChannelSignalingBlackoutSettings(varChannelSignalingBlackoutSettings)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "default_blackout_slate_url")
-		delete(additionalProperties, "force_blackout_segments")
-		delete(additionalProperties, "honor_web_delivery_restriction")
-		delete(additionalProperties, "slates")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelSignalingBlackoutSettings struct {

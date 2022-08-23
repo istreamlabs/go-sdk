@@ -16,13 +16,17 @@ import (
 
 // Channel struct for Channel
 type Channel struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// Date and time the channel was created.
 	Created *time.Time `json:"created,omitempty"`
+	// Desired running state for a channel.
+	DesiredState *string `json:"desired_state,omitempty"`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty"`
 	Ingest ChannelIngest `json:"ingest"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
-	Labels *[]string `json:"labels,omitempty"`
+	Labels []string `json:"labels,omitempty"`
 	// Date and time the channel was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
@@ -59,6 +63,38 @@ func NewChannelWithDefaults() *Channel {
 	return &this
 }
 
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *Channel) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *Channel) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *Channel) SetSchema(v string) {
+	o.Schema = &v
+}
+
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *Channel) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -89,6 +125,38 @@ func (o *Channel) HasCreated() bool {
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 func (o *Channel) SetCreated(v time.Time) {
 	o.Created = &v
+}
+
+// GetDesiredState returns the DesiredState field value if set, zero value otherwise.
+func (o *Channel) GetDesiredState() string {
+	if o == nil || o.DesiredState == nil {
+		var ret string
+		return ret
+	}
+	return *o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetDesiredStateOk() (*string, bool) {
+	if o == nil || o.DesiredState == nil {
+		return nil, false
+	}
+	return o.DesiredState, true
+}
+
+// HasDesiredState returns a boolean if a field has been set.
+func (o *Channel) HasDesiredState() bool {
+	if o != nil && o.DesiredState != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
+func (o *Channel) SetDesiredState(v string) {
+	o.DesiredState = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -136,7 +204,7 @@ func (o *Channel) GetIngest() ChannelIngest {
 // GetIngestOk returns a tuple with the Ingest field value
 // and a boolean to check if the value has been set.
 func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Ingest, true
@@ -153,12 +221,12 @@ func (o *Channel) GetLabels() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Labels
+	return o.Labels
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetLabelsOk() (*[]string, bool) {
+func (o *Channel) GetLabelsOk() ([]string, bool) {
 	if o == nil || o.Labels == nil {
 		return nil, false
 	}
@@ -176,7 +244,7 @@ func (o *Channel) HasLabels() bool {
 
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
 func (o *Channel) SetLabels(v []string) {
-	o.Labels = &v
+	o.Labels = v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
@@ -480,7 +548,7 @@ func (o *Channel) GetTranscode() ChannelTranscode {
 // GetTranscodeOk returns a tuple with the Transcode field value
 // and a boolean to check if the value has been set.
 func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Transcode, true
@@ -493,8 +561,14 @@ func (o *Channel) SetTranscode(v ChannelTranscode) {
 
 func (o Channel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if o.Created != nil {
 		toSerialize["created"] = o.Created
+	}
+	if o.DesiredState != nil {
+		toSerialize["desired_state"] = o.DesiredState
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id

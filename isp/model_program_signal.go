@@ -15,6 +15,8 @@ import (
 
 // ProgramSignal struct for ProgramSignal
 type ProgramSignal struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// Event ID
 	EventId int32 `json:"event_id"`
 }
@@ -37,6 +39,38 @@ func NewProgramSignalWithDefaults() *ProgramSignal {
 	return &this
 }
 
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *ProgramSignal) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProgramSignal) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *ProgramSignal) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *ProgramSignal) SetSchema(v string) {
+	o.Schema = &v
+}
+
 // GetEventId returns the EventId field value
 func (o *ProgramSignal) GetEventId() int32 {
 	if o == nil {
@@ -50,7 +84,7 @@ func (o *ProgramSignal) GetEventId() int32 {
 // GetEventIdOk returns a tuple with the EventId field value
 // and a boolean to check if the value has been set.
 func (o *ProgramSignal) GetEventIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.EventId, true
@@ -63,6 +97,9 @@ func (o *ProgramSignal) SetEventId(v int32) {
 
 func (o ProgramSignal) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if true {
 		toSerialize["event_id"] = o.EventId
 	}

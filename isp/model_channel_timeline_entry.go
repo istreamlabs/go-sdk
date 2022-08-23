@@ -20,6 +20,7 @@ type ChannelTimelineEntry struct {
 	Action string `json:"action"`
 	// Agent responsible for the action taken
 	Agent string `json:"agent"`
+	Query *string `json:"query,omitempty"`
 	// The request body, if any, of the original action
 	RequestBody string `json:"request_body"`
 	// HTTP Status code indicating outcome of the action.
@@ -66,7 +67,7 @@ func (o *ChannelTimelineEntry) GetAction() string {
 // GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetActionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Action, true
@@ -90,7 +91,7 @@ func (o *ChannelTimelineEntry) GetAgent() string {
 // GetAgentOk returns a tuple with the Agent field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetAgentOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Agent, true
@@ -99,6 +100,38 @@ func (o *ChannelTimelineEntry) GetAgentOk() (*string, bool) {
 // SetAgent sets field value
 func (o *ChannelTimelineEntry) SetAgent(v string) {
 	o.Agent = v
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *ChannelTimelineEntry) GetQuery() string {
+	if o == nil || o.Query == nil {
+		var ret string
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTimelineEntry) GetQueryOk() (*string, bool) {
+	if o == nil || o.Query == nil {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *ChannelTimelineEntry) HasQuery() bool {
+	if o != nil && o.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given string and assigns it to the Query field.
+func (o *ChannelTimelineEntry) SetQuery(v string) {
+	o.Query = &v
 }
 
 // GetRequestBody returns the RequestBody field value
@@ -114,7 +147,7 @@ func (o *ChannelTimelineEntry) GetRequestBody() string {
 // GetRequestBodyOk returns a tuple with the RequestBody field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetRequestBodyOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.RequestBody, true
@@ -138,7 +171,7 @@ func (o *ChannelTimelineEntry) GetStatusCode() int32 {
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetStatusCodeOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.StatusCode, true
@@ -162,7 +195,7 @@ func (o *ChannelTimelineEntry) GetTimestamp() time.Time {
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetTimestampOk() (*time.Time, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Timestamp, true
@@ -186,7 +219,7 @@ func (o *ChannelTimelineEntry) GetTraceId() string {
 // GetTraceIdOk returns a tuple with the TraceId field value
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetTraceIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.TraceId, true
@@ -204,6 +237,9 @@ func (o ChannelTimelineEntry) MarshalJSON() ([]byte, error) {
 	}
 	if true {
 		toSerialize["agent"] = o.Agent
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
 	}
 	if true {
 		toSerialize["request_body"] = o.RequestBody

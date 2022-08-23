@@ -28,7 +28,7 @@ type GenericSignal struct {
 	// Qualifier type
 	Type *string `json:"type,omitempty"`
 	// UPIDs
-	Upids *[]string `json:"upids,omitempty"`
+	Upids []string `json:"upids,omitempty"`
 }
 
 // NewGenericSignal instantiates a new GenericSignal object
@@ -100,7 +100,7 @@ func (o *GenericSignal) GetEventId() int32 {
 // GetEventIdOk returns a tuple with the EventId field value
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetEventIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.EventId, true
@@ -124,7 +124,7 @@ func (o *GenericSignal) GetSegmentType() string {
 // GetSegmentTypeOk returns a tuple with the SegmentType field value
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetSegmentTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.SegmentType, true
@@ -148,7 +148,7 @@ func (o *GenericSignal) GetSignalType() string {
 // GetSignalTypeOk returns a tuple with the SignalType field value
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetSignalTypeOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.SignalType, true
@@ -229,12 +229,12 @@ func (o *GenericSignal) GetUpids() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Upids
+	return o.Upids
 }
 
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetUpidsOk() (*[]string, bool) {
+func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
 	if o == nil || o.Upids == nil {
 		return nil, false
 	}
@@ -252,7 +252,7 @@ func (o *GenericSignal) HasUpids() bool {
 
 // SetUpids gets a reference to the given []string and assigns it to the Upids field.
 func (o *GenericSignal) SetUpids(v []string) {
-	o.Upids = &v
+	o.Upids = v
 }
 
 func (o GenericSignal) MarshalJSON() ([]byte, error) {

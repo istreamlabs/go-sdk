@@ -23,10 +23,7 @@ type ChannelTranscodeSegmenter struct {
 	SegmentDurationSecs *float64 `json:"segment_duration_secs,omitempty"`
 	// Include TEMI (Timeline and External Media Information ISO/IEC 13818-1:2019 Annex U) to mpeg-ts segments.
 	Temi *bool `json:"temi,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelTranscodeSegmenter ChannelTranscodeSegmenter
 
 // NewChannelTranscodeSegmenter instantiates a new ChannelTranscodeSegmenter object
 // This constructor will assign default values to properties that have it defined,
@@ -187,32 +184,7 @@ func (o ChannelTranscodeSegmenter) MarshalJSON() ([]byte, error) {
 	if o.Temi != nil {
 		toSerialize["temi"] = o.Temi
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelTranscodeSegmenter) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelTranscodeSegmenter := _ChannelTranscodeSegmenter{}
-
-	if err = json.Unmarshal(bytes, &varChannelTranscodeSegmenter); err == nil {
-		*o = ChannelTranscodeSegmenter(varChannelTranscodeSegmenter)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "gop_duration_secs")
-		delete(additionalProperties, "partials_mode")
-		delete(additionalProperties, "segment_duration_secs")
-		delete(additionalProperties, "temi")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelTranscodeSegmenter struct {

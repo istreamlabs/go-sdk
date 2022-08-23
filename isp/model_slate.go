@@ -15,6 +15,8 @@ import (
 
 // Slate struct for Slate
 type Slate struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// Slate duration (ms)
 	Duration *int32 `json:"duration,omitempty"`
 	// Slate url
@@ -41,6 +43,38 @@ func NewSlateWithDefaults() *Slate {
 	var duration int32 = 0
 	this.Duration = &duration
 	return &this
+}
+
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *Slate) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Slate) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *Slate) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *Slate) SetSchema(v string) {
+	o.Schema = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -88,7 +122,7 @@ func (o *Slate) GetUri() string {
 // GetUriOk returns a tuple with the Uri field value
 // and a boolean to check if the value has been set.
 func (o *Slate) GetUriOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Uri, true
@@ -101,6 +135,9 @@ func (o *Slate) SetUri(v string) {
 
 func (o Slate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if o.Duration != nil {
 		toSerialize["duration"] = o.Duration
 	}

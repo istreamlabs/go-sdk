@@ -16,16 +16,13 @@ import (
 // ChannelPublishing Publishing configures playlist formats and where to send video and playlist data.
 type ChannelPublishing struct {
 	// Configures how captioning information is published.
-	ClosedCaptionStreams *[]ChannelPublishingClosedCaptionStreams `json:"closed_caption_streams,omitempty"`
+	ClosedCaptionStreams []ChannelPublishingClosedCaptionStreamsInner `json:"closed_caption_streams,omitempty"`
 	// Set of string identifiers corresponding to features that this Channel is opting in.
-	FeatureFlags *[]string `json:"feature_flags,omitempty"`
+	FeatureFlags []string `json:"feature_flags,omitempty"`
 	Live2vod *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
 	// A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists.
-	Publications *[]ChannelPublishingPublications `json:"publications,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Publications []ChannelPublishingPublicationsInner `json:"publications,omitempty"`
 }
-
-type _ChannelPublishing ChannelPublishing
 
 // NewChannelPublishing instantiates a new ChannelPublishing object
 // This constructor will assign default values to properties that have it defined,
@@ -45,17 +42,17 @@ func NewChannelPublishingWithDefaults() *ChannelPublishing {
 }
 
 // GetClosedCaptionStreams returns the ClosedCaptionStreams field value if set, zero value otherwise.
-func (o *ChannelPublishing) GetClosedCaptionStreams() []ChannelPublishingClosedCaptionStreams {
+func (o *ChannelPublishing) GetClosedCaptionStreams() []ChannelPublishingClosedCaptionStreamsInner {
 	if o == nil || o.ClosedCaptionStreams == nil {
-		var ret []ChannelPublishingClosedCaptionStreams
+		var ret []ChannelPublishingClosedCaptionStreamsInner
 		return ret
 	}
-	return *o.ClosedCaptionStreams
+	return o.ClosedCaptionStreams
 }
 
 // GetClosedCaptionStreamsOk returns a tuple with the ClosedCaptionStreams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishing) GetClosedCaptionStreamsOk() (*[]ChannelPublishingClosedCaptionStreams, bool) {
+func (o *ChannelPublishing) GetClosedCaptionStreamsOk() ([]ChannelPublishingClosedCaptionStreamsInner, bool) {
 	if o == nil || o.ClosedCaptionStreams == nil {
 		return nil, false
 	}
@@ -71,9 +68,9 @@ func (o *ChannelPublishing) HasClosedCaptionStreams() bool {
 	return false
 }
 
-// SetClosedCaptionStreams gets a reference to the given []ChannelPublishingClosedCaptionStreams and assigns it to the ClosedCaptionStreams field.
-func (o *ChannelPublishing) SetClosedCaptionStreams(v []ChannelPublishingClosedCaptionStreams) {
-	o.ClosedCaptionStreams = &v
+// SetClosedCaptionStreams gets a reference to the given []ChannelPublishingClosedCaptionStreamsInner and assigns it to the ClosedCaptionStreams field.
+func (o *ChannelPublishing) SetClosedCaptionStreams(v []ChannelPublishingClosedCaptionStreamsInner) {
+	o.ClosedCaptionStreams = v
 }
 
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
@@ -82,12 +79,12 @@ func (o *ChannelPublishing) GetFeatureFlags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.FeatureFlags
+	return o.FeatureFlags
 }
 
 // GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishing) GetFeatureFlagsOk() (*[]string, bool) {
+func (o *ChannelPublishing) GetFeatureFlagsOk() ([]string, bool) {
 	if o == nil || o.FeatureFlags == nil {
 		return nil, false
 	}
@@ -105,7 +102,7 @@ func (o *ChannelPublishing) HasFeatureFlags() bool {
 
 // SetFeatureFlags gets a reference to the given []string and assigns it to the FeatureFlags field.
 func (o *ChannelPublishing) SetFeatureFlags(v []string) {
-	o.FeatureFlags = &v
+	o.FeatureFlags = v
 }
 
 // GetLive2vod returns the Live2vod field value if set, zero value otherwise.
@@ -141,17 +138,17 @@ func (o *ChannelPublishing) SetLive2vod(v ChannelPublishingLive2vod) {
 }
 
 // GetPublications returns the Publications field value if set, zero value otherwise.
-func (o *ChannelPublishing) GetPublications() []ChannelPublishingPublications {
+func (o *ChannelPublishing) GetPublications() []ChannelPublishingPublicationsInner {
 	if o == nil || o.Publications == nil {
-		var ret []ChannelPublishingPublications
+		var ret []ChannelPublishingPublicationsInner
 		return ret
 	}
-	return *o.Publications
+	return o.Publications
 }
 
 // GetPublicationsOk returns a tuple with the Publications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishing) GetPublicationsOk() (*[]ChannelPublishingPublications, bool) {
+func (o *ChannelPublishing) GetPublicationsOk() ([]ChannelPublishingPublicationsInner, bool) {
 	if o == nil || o.Publications == nil {
 		return nil, false
 	}
@@ -167,9 +164,9 @@ func (o *ChannelPublishing) HasPublications() bool {
 	return false
 }
 
-// SetPublications gets a reference to the given []ChannelPublishingPublications and assigns it to the Publications field.
-func (o *ChannelPublishing) SetPublications(v []ChannelPublishingPublications) {
-	o.Publications = &v
+// SetPublications gets a reference to the given []ChannelPublishingPublicationsInner and assigns it to the Publications field.
+func (o *ChannelPublishing) SetPublications(v []ChannelPublishingPublicationsInner) {
+	o.Publications = v
 }
 
 func (o ChannelPublishing) MarshalJSON() ([]byte, error) {
@@ -186,32 +183,7 @@ func (o ChannelPublishing) MarshalJSON() ([]byte, error) {
 	if o.Publications != nil {
 		toSerialize["publications"] = o.Publications
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelPublishing) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelPublishing := _ChannelPublishing{}
-
-	if err = json.Unmarshal(bytes, &varChannelPublishing); err == nil {
-		*o = ChannelPublishing(varChannelPublishing)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "closed_caption_streams")
-		delete(additionalProperties, "feature_flags")
-		delete(additionalProperties, "live2vod")
-		delete(additionalProperties, "publications")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelPublishing struct {

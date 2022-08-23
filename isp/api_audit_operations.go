@@ -11,63 +11,76 @@ package isp
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 type AuditOperationsApi interface {
 
 	/*
-	 * GetChannelTimeline Get Channel Timeline
-	 * Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiGetChannelTimelineRequest
-	 */
-	GetChannelTimeline(ctx _context.Context, channelId string) ApiGetChannelTimelineRequest
+	GetChannelTimeline Get Channel Timeline
 
-	/*
-	 * GetChannelTimelineExecute executes the request
-	 * @return []ChannelTimelineEntry
-	 */
-	GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *_nethttp.Response, GenericOpenAPIError)
+	Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiGetChannelTimelineRequest
+	*/
+	GetChannelTimeline(ctx context.Context, channelId string) ApiGetChannelTimelineRequest
+
+	// GetChannelTimelineExecute executes the request
+	//  @return []ChannelTimelineEntry
+	GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error)
 }
 
 // AuditOperationsApiService AuditOperationsApi service
 type AuditOperationsApiService service
 
 type ApiGetChannelTimelineRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService AuditOperationsApi
 	channelId string
 	offset *int32
+	cursor *string
+	pageSize *int32
 }
 
+// Number of items to skip when calling a paginated API
 func (r ApiGetChannelTimelineRequest) Offset(offset int32) ApiGetChannelTimelineRequest {
 	r.offset = &offset
 	return r
 }
 
-func (r ApiGetChannelTimelineRequest) Execute() ([]ChannelTimelineEntry, *_nethttp.Response, GenericOpenAPIError) {
+// Current page cursor
+func (r ApiGetChannelTimelineRequest) Cursor(cursor string) ApiGetChannelTimelineRequest {
+	r.cursor = &cursor
+	return r
+}
+
+// Number of items to return
+func (r ApiGetChannelTimelineRequest) PageSize(pageSize int32) ApiGetChannelTimelineRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiGetChannelTimelineRequest) Execute() ([]ChannelTimelineEntry, *http.Response, error) {
 	return r.ApiService.GetChannelTimelineExecute(r)
 }
 
 /*
- * GetChannelTimeline Get Channel Timeline
- * Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiGetChannelTimelineRequest
- */
-func (a *AuditOperationsApiService) GetChannelTimeline(ctx _context.Context, channelId string) ApiGetChannelTimelineRequest {
+GetChannelTimeline Get Channel Timeline
+
+Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiGetChannelTimelineRequest
+*/
+func (a *AuditOperationsApiService) GetChannelTimeline(ctx context.Context, channelId string) ApiGetChannelTimelineRequest {
 	return ApiGetChannelTimelineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -75,40 +88,39 @@ func (a *AuditOperationsApiService) GetChannelTimeline(ctx _context.Context, cha
 	}
 }
 
-/*
- * Execute executes the request
- * @return []ChannelTimelineEntry
- */
-func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return []ChannelTimelineEntry
+func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 		localVarReturnValue  []ChannelTimelineEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditOperationsApiService.GetChannelTimeline")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/timeline"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	if r.offset != nil {
 		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -127,28 +139,25 @@ func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTim
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -163,6 +172,16 @@ func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTim
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -206,7 +225,7 @@ func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTim
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -225,5 +244,5 @@ func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTim
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
