@@ -15,6 +15,8 @@ import (
 
 // InsertMetadataRequest struct for InsertMetadataRequest
 type InsertMetadataRequest struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// ID3 payload as UTF-8 text
 	Payload string `json:"payload"`
 }
@@ -37,6 +39,38 @@ func NewInsertMetadataRequestWithDefaults() *InsertMetadataRequest {
 	return &this
 }
 
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *InsertMetadataRequest) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *InsertMetadataRequest) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *InsertMetadataRequest) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *InsertMetadataRequest) SetSchema(v string) {
+	o.Schema = &v
+}
+
 // GetPayload returns the Payload field value
 func (o *InsertMetadataRequest) GetPayload() string {
 	if o == nil {
@@ -50,7 +84,7 @@ func (o *InsertMetadataRequest) GetPayload() string {
 // GetPayloadOk returns a tuple with the Payload field value
 // and a boolean to check if the value has been set.
 func (o *InsertMetadataRequest) GetPayloadOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Payload, true
@@ -63,6 +97,9 @@ func (o *InsertMetadataRequest) SetPayload(v string) {
 
 func (o InsertMetadataRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if true {
 		toSerialize["payload"] = o.Payload
 	}

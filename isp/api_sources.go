@@ -11,72 +11,69 @@ package isp
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 type SourcesApi interface {
 
 	/*
-	 * GetSource Get Source
-	 * Get a source's configuration
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param sourceId Unique source identifier
-	 * @return ApiGetSourceRequest
-	 */
-	GetSource(ctx _context.Context, sourceId string) ApiGetSourceRequest
+	GetSource Get Source
+
+	Get a source's configuration
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param sourceId Unique source identifier
+	@return ApiGetSourceRequest
+	*/
+	GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest
+
+	// GetSourceExecute executes the request
+	//  @return Source
+	GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error)
 
 	/*
-	 * GetSourceExecute executes the request
-	 * @return Source
-	 */
-	GetSourceExecute(r ApiGetSourceRequest) (Source, *_nethttp.Response, GenericOpenAPIError)
+	ListSources List Sources
 
-	/*
-	 * ListSources List Sources
-	 * Get a list of sources that are used to create channels.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return ApiListSourcesRequest
-	 */
-	ListSources(ctx _context.Context) ApiListSourcesRequest
+	Get a list of sources that are used to create channels.
 
-	/*
-	 * ListSourcesExecute executes the request
-	 * @return []Summary
-	 */
-	ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *_nethttp.Response, GenericOpenAPIError)
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListSourcesRequest
+	*/
+	ListSources(ctx context.Context) ApiListSourcesRequest
+
+	// ListSourcesExecute executes the request
+	//  @return []Summary
+	ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error)
 }
 
 // SourcesApiService SourcesApi service
 type SourcesApiService service
 
 type ApiGetSourceRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService SourcesApi
 	sourceId string
 }
 
-
-func (r ApiGetSourceRequest) Execute() (Source, *_nethttp.Response, GenericOpenAPIError) {
+func (r ApiGetSourceRequest) Execute() (*Source, *http.Response, error) {
 	return r.ApiService.GetSourceExecute(r)
 }
 
 /*
- * GetSource Get Source
- * Get a source's configuration
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param sourceId Unique source identifier
- * @return ApiGetSourceRequest
- */
-func (a *SourcesApiService) GetSource(ctx _context.Context, sourceId string) ApiGetSourceRequest {
+GetSource Get Source
+
+Get a source's configuration
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param sourceId Unique source identifier
+ @return ApiGetSourceRequest
+*/
+func (a *SourcesApiService) GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest {
 	return ApiGetSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -84,33 +81,27 @@ func (a *SourcesApiService) GetSource(ctx _context.Context, sourceId string) Api
 	}
 }
 
-/*
- * Execute executes the request
- * @return Source
- */
-func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return Source
+func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-		localVarReturnValue  Source
+		formFiles            []formFile
+		localVarReturnValue  *Source
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcesApiService.GetSource")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/sources/{source-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"source-id"+"}", _neturl.PathEscape(parameterToString(r.sourceId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"source-id"+"}", url.PathEscape(parameterToString(r.sourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -129,28 +120,25 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -174,6 +162,26 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_n
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -198,7 +206,7 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_n
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -212,79 +220,78 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (Source, *_n
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(Source)
+			localVarReturnValue = items.(*Source)
 			localVarHTTPResponse = resp
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListSourcesRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService SourcesApi
-	pageSize *int32
 	cursor *string
+	pageSize *int32
 }
 
-func (r ApiListSourcesRequest) PageSize(pageSize int32) ApiListSourcesRequest {
-	r.pageSize = &pageSize
-	return r
-}
+// Current page cursor
 func (r ApiListSourcesRequest) Cursor(cursor string) ApiListSourcesRequest {
 	r.cursor = &cursor
 	return r
 }
 
-func (r ApiListSourcesRequest) Execute() ([]Summary, *_nethttp.Response, GenericOpenAPIError) {
+// Number of items to return
+func (r ApiListSourcesRequest) PageSize(pageSize int32) ApiListSourcesRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListSourcesRequest) Execute() ([]Summary, *http.Response, error) {
 	return r.ApiService.ListSourcesExecute(r)
 }
 
 /*
- * ListSources List Sources
- * Get a list of sources that are used to create channels.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListSourcesRequest
- */
-func (a *SourcesApiService) ListSources(ctx _context.Context) ApiListSourcesRequest {
+ListSources List Sources
+
+Get a list of sources that are used to create channels.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListSourcesRequest
+*/
+func (a *SourcesApiService) ListSources(ctx context.Context) ApiListSourcesRequest {
 	return ApiListSourcesRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return []Summary
- */
-func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return []Summary
+func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 		localVarReturnValue  []Summary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcesApiService.ListSources")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/sources"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -303,32 +310,59 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -362,7 +396,7 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -381,5 +415,5 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }

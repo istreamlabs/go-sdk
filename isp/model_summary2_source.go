@@ -21,10 +21,7 @@ type Summary2Source struct {
 	Name *string `json:"name,omitempty"`
 	// Link to this resource
 	Self *string `json:"self,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _Summary2Source Summary2Source
 
 // NewSummary2Source instantiates a new Summary2Source object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +54,7 @@ func (o *Summary2Source) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Summary2Source) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -143,31 +140,7 @@ func (o Summary2Source) MarshalJSON() ([]byte, error) {
 	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *Summary2Source) UnmarshalJSON(bytes []byte) (err error) {
-	varSummary2Source := _Summary2Source{}
-
-	if err = json.Unmarshal(bytes, &varSummary2Source); err == nil {
-		*o = Summary2Source(varSummary2Source)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "name")
-		delete(additionalProperties, "self")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableSummary2Source struct {

@@ -11,136 +11,153 @@ package isp
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 type ChannelsApi interface {
 
 	/*
-	 * DeleteChannel Delete channel
-	 * Delete a channel and stop publishing.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiDeleteChannelRequest
-	 */
-	DeleteChannel(ctx _context.Context, channelId string) ApiDeleteChannelRequest
+	DeleteChannel Delete channel
+
+	Delete a channel and stop publishing.  This action is idempotent.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiDeleteChannelRequest
+	*/
+	DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest
+
+	// DeleteChannelExecute executes the request
+	DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error)
 
 	/*
-	 * DeleteChannelExecute executes the request
-	 */
-	DeleteChannelExecute(r ApiDeleteChannelRequest) (*_nethttp.Response, GenericOpenAPIError)
+	GetChannel Get Channel
+
+	Get a channel's configuration
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiGetChannelRequest
+	*/
+	GetChannel(ctx context.Context, channelId string) ApiGetChannelRequest
+
+	// GetChannelExecute executes the request
+	//  @return Channel
+	GetChannelExecute(r ApiGetChannelRequest) (*Channel, *http.Response, error)
 
 	/*
-	 * GetChannel Get Channel
-	 * Get a channel's configuration
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiGetChannelRequest
-	 */
-	GetChannel(ctx _context.Context, channelId string) ApiGetChannelRequest
+	GetPlaybackConfig Get Channel Playback Config
+
+	Get a channel's playback configuration
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiGetPlaybackConfigRequest
+	*/
+	GetPlaybackConfig(ctx context.Context, channelId string) ApiGetPlaybackConfigRequest
+
+	// GetPlaybackConfigExecute executes the request
+	//  @return ChannelPlayback
+	GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error)
 
 	/*
-	 * GetChannelExecute executes the request
-	 * @return Channel
-	 */
-	GetChannelExecute(r ApiGetChannelRequest) (Channel, *_nethttp.Response, GenericOpenAPIError)
+	ListChannels List channels
+
+	Get a list of your channels.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListChannelsRequest
+	*/
+	ListChannels(ctx context.Context) ApiListChannelsRequest
+
+	// ListChannelsExecute executes the request
+	//  @return []Summary2
+	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
 
 	/*
-	 * GetPlaybackConfig Get Channel Playback Config
-	 * Get a channel's playback configuration
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiGetPlaybackConfigRequest
-	 */
-	GetPlaybackConfig(ctx _context.Context, channelId string) ApiGetPlaybackConfigRequest
+	PutChannel Create/Update channel
+
+	Create or update an existing channel configuration.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiPutChannelRequest
+	*/
+	PutChannel(ctx context.Context, channelId string) ApiPutChannelRequest
+
+	// PutChannelExecute executes the request
+	PutChannelExecute(r ApiPutChannelRequest) (*http.Response, error)
 
 	/*
-	 * GetPlaybackConfigExecute executes the request
-	 * @return ChannelPlayback
-	 */
-	GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (ChannelPlayback, *_nethttp.Response, GenericOpenAPIError)
+	PutChannelDesiredState Update Channel DesiredState to ON/OFF
 
-	/*
-	 * ListChannels List channels
-	 * Get a list of your channels.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @return ApiListChannelsRequest
-	 */
-	ListChannels(ctx _context.Context) ApiListChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiPutChannelDesiredStateRequest
+	*/
+	PutChannelDesiredState(ctx context.Context, channelId string) ApiPutChannelDesiredStateRequest
 
-	/*
-	 * ListChannelsExecute executes the request
-	 * @return []Summary2
-	 */
-	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *_nethttp.Response, GenericOpenAPIError)
-
-	/*
-	 * PutChannel Create/Update channel
-	 * Create or update an existing channel configuration.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiPutChannelRequest
-	 */
-	PutChannel(ctx _context.Context, channelId string) ApiPutChannelRequest
-
-	/*
-	 * PutChannelExecute executes the request
-	 */
-	PutChannelExecute(r ApiPutChannelRequest) (*_nethttp.Response, GenericOpenAPIError)
+	// PutChannelDesiredStateExecute executes the request
+	PutChannelDesiredStateExecute(r ApiPutChannelDesiredStateRequest) (*http.Response, error)
 }
 
 // ChannelsApiService ChannelsApi service
 type ChannelsApiService service
 
 type ApiDeleteChannelRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
-	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	ifMatch *[]string
 }
 
-func (r ApiDeleteChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteChannelRequest {
-	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-func (r ApiDeleteChannelRequest) IfMatch(ifMatch []string) ApiDeleteChannelRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
 func (r ApiDeleteChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteChannelRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
 func (r ApiDeleteChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
-func (r ApiDeleteChannelRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiDeleteChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiDeleteChannelRequest) IfMatch(ifMatch []string) ApiDeleteChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteChannelExecute(r)
 }
 
 /*
- * DeleteChannel Delete channel
- * Delete a channel and stop publishing.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiDeleteChannelRequest
- */
-func (a *ChannelsApiService) DeleteChannel(ctx _context.Context, channelId string) ApiDeleteChannelRequest {
+DeleteChannel Delete channel
+
+Delete a channel and stop publishing.  This action is idempotent.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiDeleteChannelRequest
+*/
+func (a *ChannelsApiService) DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest {
 	return ApiDeleteChannelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -148,34 +165,27 @@ func (a *ChannelsApiService) DeleteChannel(ctx _context.Context, channelId strin
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.DeleteChannel")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -195,44 +205,51 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifUnmodifiedSince != nil {
-		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
-	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
 	if r.ifModifiedSince != nil {
 		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -253,6 +270,26 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -284,48 +321,57 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*_
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiGetChannelRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
+	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
 }
 
-func (r ApiGetChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiGetChannelRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-func (r ApiGetChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetChannelRequest {
-	r.ifModifiedSince = &ifModifiedSince
-	return r
-}
-func (r ApiGetChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetChannelRequest {
-	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
+// Succeeds if the server&#39;s resource matches one of the passed values.
 func (r ApiGetChannelRequest) IfMatch(ifMatch []string) ApiGetChannelRequest {
 	r.ifMatch = &ifMatch
 	return r
 }
 
-func (r ApiGetChannelRequest) Execute() (Channel, *_nethttp.Response, GenericOpenAPIError) {
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiGetChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiGetChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiGetChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiGetChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+func (r ApiGetChannelRequest) Execute() (*Channel, *http.Response, error) {
 	return r.ApiService.GetChannelExecute(r)
 }
 
 /*
- * GetChannel Get Channel
- * Get a channel's configuration
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiGetChannelRequest
- */
-func (a *ChannelsApiService) GetChannel(ctx _context.Context, channelId string) ApiGetChannelRequest {
+GetChannel Get Channel
+
+Get a channel's configuration
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiGetChannelRequest
+*/
+func (a *ChannelsApiService) GetChannel(ctx context.Context, channelId string) ApiGetChannelRequest {
 	return ApiGetChannelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -333,36 +379,29 @@ func (a *ChannelsApiService) GetChannel(ctx _context.Context, channelId string) 
 	}
 }
 
-/*
- * Execute executes the request
- * @return Channel
- */
-func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return Channel
+func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (*Channel, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-		localVarReturnValue  Channel
+		formFiles            []formFile
+		localVarReturnValue  *Channel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.GetChannel")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -381,6 +420,9 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
@@ -391,31 +433,25 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -429,7 +465,37 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -463,7 +529,7 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -477,33 +543,34 @@ func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (Channel,
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(Channel)
+			localVarReturnValue = items.(*Channel)
 			localVarHTTPResponse = resp
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiGetPlaybackConfigRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
 }
 
-
-func (r ApiGetPlaybackConfigRequest) Execute() (ChannelPlayback, *_nethttp.Response, GenericOpenAPIError) {
+func (r ApiGetPlaybackConfigRequest) Execute() (*ChannelPlayback, *http.Response, error) {
 	return r.ApiService.GetPlaybackConfigExecute(r)
 }
 
 /*
- * GetPlaybackConfig Get Channel Playback Config
- * Get a channel's playback configuration
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiGetPlaybackConfigRequest
- */
-func (a *ChannelsApiService) GetPlaybackConfig(ctx _context.Context, channelId string) ApiGetPlaybackConfigRequest {
+GetPlaybackConfig Get Channel Playback Config
+
+Get a channel's playback configuration
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiGetPlaybackConfigRequest
+*/
+func (a *ChannelsApiService) GetPlaybackConfig(ctx context.Context, channelId string) ApiGetPlaybackConfigRequest {
 	return ApiGetPlaybackConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -511,36 +578,29 @@ func (a *ChannelsApiService) GetPlaybackConfig(ctx _context.Context, channelId s
 	}
 }
 
-/*
- * Execute executes the request
- * @return ChannelPlayback
- */
-func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (ChannelPlayback, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return ChannelPlayback
+func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-		localVarReturnValue  ChannelPlayback
+		formFiles            []formFile
+		localVarReturnValue  *ChannelPlayback
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.GetPlaybackConfig")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/playback"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -560,28 +620,25 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -595,7 +652,37 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -629,7 +716,7 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -643,78 +730,86 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(ChannelPlayback)
+			localVarReturnValue = items.(*ChannelPlayback)
 			localVarHTTPResponse = resp
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiListChannelsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelsApi
 	cursor *string
 	pageSize *int32
 	q *string
+	desiredState *string
 }
 
+// Current page cursor
 func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
 	r.cursor = &cursor
 	return r
 }
+
+// Number of items to return
 func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
 	r.pageSize = &pageSize
 	return r
 }
+
+// Search query to match against for filtering a list of channels. This searches the channel ID, name, labels, and source ID.
 func (r ApiListChannelsRequest) Q(q string) ApiListChannelsRequest {
 	r.q = &q
 	return r
 }
 
-func (r ApiListChannelsRequest) Execute() ([]Summary2, *_nethttp.Response, GenericOpenAPIError) {
+// List channels that are ON or OFF
+func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannelsRequest {
+	r.desiredState = &desiredState
+	return r
+}
+
+func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
 	return r.ApiService.ListChannelsExecute(r)
 }
 
 /*
- * ListChannels List channels
- * Get a list of your channels.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @return ApiListChannelsRequest
- */
-func (a *ChannelsApiService) ListChannels(ctx _context.Context) ApiListChannelsRequest {
+ListChannels List channels
+
+Get a list of your channels.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListChannelsRequest
+*/
+func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
 }
 
-/*
- * Execute executes the request
- * @return []Summary2
- */
-func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return []Summary2
+func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 		localVarReturnValue  []Summary2
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.ListChannels")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels"
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
@@ -725,6 +820,9 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	if r.q != nil {
 		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
 	}
+	if r.desiredState != nil {
+		localVarQueryParams.Add("desired_state", parameterToString(*r.desiredState, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -742,32 +840,59 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -801,7 +926,7 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -820,58 +945,70 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiPutChannelRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
-	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
-	validateOnly *bool
 	ifUnmodifiedSince *time.Time
+	ifMatch *[]string
+	validateOnly *bool
 	putChannelRequest *PutChannelRequest
 }
 
-func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
 func (r ApiPutChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPutChannelRequest {
 	r.ifNoneMatch = &ifNoneMatch
 	return r
 }
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
 func (r ApiPutChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
-func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
-	r.validateOnly = &validateOnly
-	return r
-}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
 func (r ApiPutChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
 	return r
 }
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+// Validate request but do not otherwise process it
+func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
+	r.validateOnly = &validateOnly
+	return r
+}
+
 func (r ApiPutChannelRequest) PutChannelRequest(putChannelRequest PutChannelRequest) ApiPutChannelRequest {
 	r.putChannelRequest = &putChannelRequest
 	return r
 }
 
-func (r ApiPutChannelRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiPutChannelRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PutChannelExecute(r)
 }
 
 /*
- * PutChannel Create/Update channel
- * Create or update an existing channel configuration.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiPutChannelRequest
- */
-func (a *ChannelsApiService) PutChannel(ctx _context.Context, channelId string) ApiPutChannelRequest {
+PutChannel Create/Update channel
+
+Create or update an existing channel configuration.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiPutChannelRequest
+*/
+func (a *ChannelsApiService) PutChannel(ctx context.Context, channelId string) ApiPutChannelRequest {
 	return ApiPutChannelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -879,38 +1016,291 @@ func (a *ChannelsApiService) PutChannel(ctx _context.Context, channelId string) 
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.PutChannel")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	if r.validateOnly != nil {
 		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	// body params
+	localVarPostBody = r.putChannelRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPutChannelDesiredStateRequest struct {
+	ctx context.Context
+	ApiService ChannelsApi
+	channelId string
+	endPlaylist *bool
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	desiredStateBody *DesiredStateBody
+}
+
+// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+func (r ApiPutChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutChannelDesiredStateRequest {
+	r.endPlaylist = &endPlaylist
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutChannelDesiredStateRequest) IfMatch(ifMatch []string) ApiPutChannelDesiredStateRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiPutChannelDesiredStateRequest) IfNoneMatch(ifNoneMatch []string) ApiPutChannelDesiredStateRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiPutChannelDesiredStateRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutChannelDesiredStateRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiPutChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutChannelDesiredStateRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+func (r ApiPutChannelDesiredStateRequest) DesiredStateBody(desiredStateBody DesiredStateBody) ApiPutChannelDesiredStateRequest {
+	r.desiredStateBody = &desiredStateBody
+	return r
+}
+
+func (r ApiPutChannelDesiredStateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutChannelDesiredStateExecute(r)
+}
+
+/*
+PutChannelDesiredState Update Channel DesiredState to ON/OFF
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiPutChannelDesiredStateRequest
+*/
+func (a *ChannelsApiService) PutChannelDesiredState(ctx context.Context, channelId string) ApiPutChannelDesiredStateRequest {
+	return ApiPutChannelDesiredStateRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelsApiService) PutChannelDesiredStateExecute(r ApiPutChannelDesiredStateRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.PutChannelDesiredState")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/desired-state"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.endPlaylist != nil {
+		localVarQueryParams.Add("end_playlist", parameterToString(*r.endPlaylist, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -942,29 +1332,26 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.putChannelRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	localVarPostBody = r.desiredStateBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -988,6 +1375,16 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -998,7 +1395,27 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 412 {
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1030,5 +1447,5 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*_nethtt
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }

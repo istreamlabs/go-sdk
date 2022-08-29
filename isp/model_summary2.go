@@ -15,14 +15,18 @@ import (
 
 // Summary2 struct for Summary2
 type Summary2 struct {
+	// Desired state of channel
+	DesiredState string `json:"desired_state"`
 	// Content hash
 	Etag string `json:"etag"`
 	// Unique channel ID
 	Id string `json:"id"`
 	// Channel Labels
-	Labels *[]string `json:"labels,omitempty"`
+	Labels []string `json:"labels,omitempty"`
 	// Friendly channel description
 	Name *string `json:"name,omitempty"`
+	// Organization
+	Org string `json:"org"`
 	// Link to this resource
 	Self *string `json:"self,omitempty"`
 	Source Summary2Source `json:"source"`
@@ -32,10 +36,12 @@ type Summary2 struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSummary2(etag string, id string, source Summary2Source) *Summary2 {
+func NewSummary2(desiredState string, etag string, id string, org string, source Summary2Source) *Summary2 {
 	this := Summary2{}
+	this.DesiredState = desiredState
 	this.Etag = etag
 	this.Id = id
+	this.Org = org
 	this.Source = source
 	return &this
 }
@@ -46,6 +52,30 @@ func NewSummary2(etag string, id string, source Summary2Source) *Summary2 {
 func NewSummary2WithDefaults() *Summary2 {
 	this := Summary2{}
 	return &this
+}
+
+// GetDesiredState returns the DesiredState field value
+func (o *Summary2) GetDesiredState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value
+// and a boolean to check if the value has been set.
+func (o *Summary2) GetDesiredStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DesiredState, true
+}
+
+// SetDesiredState sets field value
+func (o *Summary2) SetDesiredState(v string) {
+	o.DesiredState = v
 }
 
 // GetEtag returns the Etag field value
@@ -61,7 +91,7 @@ func (o *Summary2) GetEtag() string {
 // GetEtagOk returns a tuple with the Etag field value
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetEtagOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Etag, true
@@ -85,7 +115,7 @@ func (o *Summary2) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
@@ -102,12 +132,12 @@ func (o *Summary2) GetLabels() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Labels
+	return o.Labels
 }
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Summary2) GetLabelsOk() (*[]string, bool) {
+func (o *Summary2) GetLabelsOk() ([]string, bool) {
 	if o == nil || o.Labels == nil {
 		return nil, false
 	}
@@ -125,7 +155,7 @@ func (o *Summary2) HasLabels() bool {
 
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
 func (o *Summary2) SetLabels(v []string) {
-	o.Labels = &v
+	o.Labels = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -158,6 +188,30 @@ func (o *Summary2) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *Summary2) SetName(v string) {
 	o.Name = &v
+}
+
+// GetOrg returns the Org field value
+func (o *Summary2) GetOrg() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Org
+}
+
+// GetOrgOk returns a tuple with the Org field value
+// and a boolean to check if the value has been set.
+func (o *Summary2) GetOrgOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Org, true
+}
+
+// SetOrg sets field value
+func (o *Summary2) SetOrg(v string) {
+	o.Org = v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
@@ -205,7 +259,7 @@ func (o *Summary2) GetSource() Summary2Source {
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetSourceOk() (*Summary2Source, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Source, true
@@ -219,6 +273,9 @@ func (o *Summary2) SetSource(v Summary2Source) {
 func (o Summary2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if true {
+		toSerialize["desired_state"] = o.DesiredState
+	}
+	if true {
 		toSerialize["etag"] = o.Etag
 	}
 	if true {
@@ -229,6 +286,9 @@ func (o Summary2) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if true {
+		toSerialize["org"] = o.Org
 	}
 	if o.Self != nil {
 		toSerialize["self"] = o.Self

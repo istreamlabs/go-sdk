@@ -17,10 +17,7 @@ import (
 type ChannelIngest struct {
 	Slate *ChannelIngestSlate `json:"slate,omitempty"`
 	Source ChannelIngestSource `json:"source"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelIngest ChannelIngest
 
 // NewChannelIngest instantiates a new ChannelIngest object
 // This constructor will assign default values to properties that have it defined,
@@ -85,7 +82,7 @@ func (o *ChannelIngest) GetSource() ChannelIngestSource {
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
 func (o *ChannelIngest) GetSourceOk() (*ChannelIngestSource, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Source, true
@@ -104,30 +101,7 @@ func (o ChannelIngest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["source"] = o.Source
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelIngest) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelIngest := _ChannelIngest{}
-
-	if err = json.Unmarshal(bytes, &varChannelIngest); err == nil {
-		*o = ChannelIngest(varChannelIngest)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "slate")
-		delete(additionalProperties, "source")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelIngest struct {

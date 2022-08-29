@@ -18,14 +18,13 @@ type ChannelSignaling struct {
 	BlackoutSettings *ChannelSignalingBlackoutSettings `json:"blackout_settings,omitempty"`
 	// Disable parsing SCTE-35 in-band signaling. Out-of-band signaling is still allowed.
 	DisableInbandParsing *bool `json:"disable_inband_parsing,omitempty"`
+	// Defines the specific PID containing the SCTE that the transcoder should process. Using '0' (default value) will pick the first PID containing SCTE-35 in the PMT.
+	SctePid *int32 `json:"scte_pid,omitempty"`
 	// Settings that apply to specific segments.
-	SegmentSettings *[]ChannelSignalingSegmentSettings `json:"segment_settings,omitempty"`
+	SegmentSettings []ChannelSignalingSegmentSettingsInner `json:"segment_settings,omitempty"`
 	// Segment types to process for in-band signaling.
-	Segments *[]string `json:"segments,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Segments []string `json:"segments,omitempty"`
 }
-
-type _ChannelSignaling ChannelSignaling
 
 // NewChannelSignaling instantiates a new ChannelSignaling object
 // This constructor will assign default values to properties that have it defined,
@@ -108,18 +107,50 @@ func (o *ChannelSignaling) SetDisableInbandParsing(v bool) {
 	o.DisableInbandParsing = &v
 }
 
-// GetSegmentSettings returns the SegmentSettings field value if set, zero value otherwise.
-func (o *ChannelSignaling) GetSegmentSettings() []ChannelSignalingSegmentSettings {
-	if o == nil || o.SegmentSettings == nil {
-		var ret []ChannelSignalingSegmentSettings
+// GetSctePid returns the SctePid field value if set, zero value otherwise.
+func (o *ChannelSignaling) GetSctePid() int32 {
+	if o == nil || o.SctePid == nil {
+		var ret int32
 		return ret
 	}
-	return *o.SegmentSettings
+	return *o.SctePid
+}
+
+// GetSctePidOk returns a tuple with the SctePid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelSignaling) GetSctePidOk() (*int32, bool) {
+	if o == nil || o.SctePid == nil {
+		return nil, false
+	}
+	return o.SctePid, true
+}
+
+// HasSctePid returns a boolean if a field has been set.
+func (o *ChannelSignaling) HasSctePid() bool {
+	if o != nil && o.SctePid != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSctePid gets a reference to the given int32 and assigns it to the SctePid field.
+func (o *ChannelSignaling) SetSctePid(v int32) {
+	o.SctePid = &v
+}
+
+// GetSegmentSettings returns the SegmentSettings field value if set, zero value otherwise.
+func (o *ChannelSignaling) GetSegmentSettings() []ChannelSignalingSegmentSettingsInner {
+	if o == nil || o.SegmentSettings == nil {
+		var ret []ChannelSignalingSegmentSettingsInner
+		return ret
+	}
+	return o.SegmentSettings
 }
 
 // GetSegmentSettingsOk returns a tuple with the SegmentSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSignaling) GetSegmentSettingsOk() (*[]ChannelSignalingSegmentSettings, bool) {
+func (o *ChannelSignaling) GetSegmentSettingsOk() ([]ChannelSignalingSegmentSettingsInner, bool) {
 	if o == nil || o.SegmentSettings == nil {
 		return nil, false
 	}
@@ -135,9 +166,9 @@ func (o *ChannelSignaling) HasSegmentSettings() bool {
 	return false
 }
 
-// SetSegmentSettings gets a reference to the given []ChannelSignalingSegmentSettings and assigns it to the SegmentSettings field.
-func (o *ChannelSignaling) SetSegmentSettings(v []ChannelSignalingSegmentSettings) {
-	o.SegmentSettings = &v
+// SetSegmentSettings gets a reference to the given []ChannelSignalingSegmentSettingsInner and assigns it to the SegmentSettings field.
+func (o *ChannelSignaling) SetSegmentSettings(v []ChannelSignalingSegmentSettingsInner) {
+	o.SegmentSettings = v
 }
 
 // GetSegments returns the Segments field value if set, zero value otherwise.
@@ -146,12 +177,12 @@ func (o *ChannelSignaling) GetSegments() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Segments
+	return o.Segments
 }
 
 // GetSegmentsOk returns a tuple with the Segments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelSignaling) GetSegmentsOk() (*[]string, bool) {
+func (o *ChannelSignaling) GetSegmentsOk() ([]string, bool) {
 	if o == nil || o.Segments == nil {
 		return nil, false
 	}
@@ -169,7 +200,7 @@ func (o *ChannelSignaling) HasSegments() bool {
 
 // SetSegments gets a reference to the given []string and assigns it to the Segments field.
 func (o *ChannelSignaling) SetSegments(v []string) {
-	o.Segments = &v
+	o.Segments = v
 }
 
 func (o ChannelSignaling) MarshalJSON() ([]byte, error) {
@@ -180,38 +211,16 @@ func (o ChannelSignaling) MarshalJSON() ([]byte, error) {
 	if o.DisableInbandParsing != nil {
 		toSerialize["disable_inband_parsing"] = o.DisableInbandParsing
 	}
+	if o.SctePid != nil {
+		toSerialize["scte_pid"] = o.SctePid
+	}
 	if o.SegmentSettings != nil {
 		toSerialize["segment_settings"] = o.SegmentSettings
 	}
 	if o.Segments != nil {
 		toSerialize["segments"] = o.Segments
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelSignaling) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelSignaling := _ChannelSignaling{}
-
-	if err = json.Unmarshal(bytes, &varChannelSignaling); err == nil {
-		*o = ChannelSignaling(varChannelSignaling)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "blackout_settings")
-		delete(additionalProperties, "disable_inband_parsing")
-		delete(additionalProperties, "segment_settings")
-		delete(additionalProperties, "segments")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelSignaling struct {

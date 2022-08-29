@@ -11,213 +11,210 @@ package isp
 
 import (
 	"bytes"
-	_context "context"
-	_ioutil "io/ioutil"
-	_nethttp "net/http"
-	_neturl "net/url"
+	"context"
+	"io/ioutil"
+	"net/http"
+	"net/url"
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
 
 type ChannelOperationsApi interface {
 
 	/*
-	 * ClearDvrWindow Clear DVR Window
-	 * Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiClearDvrWindowRequest
-	 */
-	ClearDvrWindow(ctx _context.Context, channelId string) ApiClearDvrWindowRequest
+	ClearDvrWindow Clear DVR Window
+
+	Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiClearDvrWindowRequest
+	*/
+	ClearDvrWindow(ctx context.Context, channelId string) ApiClearDvrWindowRequest
+
+	// ClearDvrWindowExecute executes the request
+	ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*http.Response, error)
 
 	/*
-	 * ClearDvrWindowExecute executes the request
-	 */
-	ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*_nethttp.Response, GenericOpenAPIError)
+	GetSignals Get Signals
+
+	Returns the active signals for a channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiGetSignalsRequest
+	*/
+	GetSignals(ctx context.Context, channelId string) ApiGetSignalsRequest
+
+	// GetSignalsExecute executes the request
+	//  @return []Segment
+	GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *http.Response, error)
 
 	/*
-	 * GetSignals Get Signals
-	 * Returns the active signals for a channel.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiGetSignalsRequest
-	 */
-	GetSignals(ctx _context.Context, channelId string) ApiGetSignalsRequest
+	InsertId3 Insert ID3
+
+	Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiInsertId3Request
+	*/
+	InsertId3(ctx context.Context, channelId string) ApiInsertId3Request
+
+	// InsertId3Execute executes the request
+	//  @return InsertMetadataResult
+	InsertId3Execute(r ApiInsertId3Request) (*InsertMetadataResult, *http.Response, error)
 
 	/*
-	 * GetSignalsExecute executes the request
-	 * @return []Segment
-	 */
-	GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *_nethttp.Response, GenericOpenAPIError)
+	InsertScte35 Insert SCTE-35
+
+	Inserts a SCTE-35 formatted binary payload into the channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiInsertScte35Request
+	*/
+	InsertScte35(ctx context.Context, channelId string) ApiInsertScte35Request
+
+	// InsertScte35Execute executes the request
+	InsertScte35Execute(r ApiInsertScte35Request) (*http.Response, error)
 
 	/*
-	 * InsertId3 Insert ID3
-	 * Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiInsertId3Request
-	 */
-	InsertId3(ctx _context.Context, channelId string) ApiInsertId3Request
+	PreviewImage Get Preview Image
+
+	Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiPreviewImageRequest
+	*/
+	PreviewImage(ctx context.Context, channelId string) ApiPreviewImageRequest
+
+	// PreviewImageExecute executes the request
+	PreviewImageExecute(r ApiPreviewImageRequest) (*http.Response, error)
 
 	/*
-	 * InsertId3Execute executes the request
-	 * @return InsertMetadataResult
-	 */
-	InsertId3Execute(r ApiInsertId3Request) (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError)
+	ProgramEnd Program End
+
+	Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiProgramEndRequest
+	*/
+	ProgramEnd(ctx context.Context, channelId string) ApiProgramEndRequest
+
+	// ProgramEndExecute executes the request
+	ProgramEndExecute(r ApiProgramEndRequest) (*http.Response, error)
 
 	/*
-	 * InsertScte35 Insert SCTE-35
-	 * Inserts a SCTE-35 formatted binary payload into the channel.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiInsertScte35Request
-	 */
-	InsertScte35(ctx _context.Context, channelId string) ApiInsertScte35Request
+	ProgramStart Program Start
+
+	Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiProgramStartRequest
+	*/
+	ProgramStart(ctx context.Context, channelId string) ApiProgramStartRequest
+
+	// ProgramStartExecute executes the request
+	ProgramStartExecute(r ApiProgramStartRequest) (*http.Response, error)
 
 	/*
-	 * InsertScte35Execute executes the request
-	 */
-	InsertScte35Execute(r ApiInsertScte35Request) (*_nethttp.Response, GenericOpenAPIError)
+	Signal Generic Signal
+
+	Inserts a SCTE-35 message into the channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiSignalRequest
+	*/
+	Signal(ctx context.Context, channelId string) ApiSignalRequest
+
+	// SignalExecute executes the request
+	SignalExecute(r ApiSignalRequest) (*http.Response, error)
 
 	/*
-	 * PreviewImage Get Preview Image
-	 * Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiPreviewImageRequest
-	 */
-	PreviewImage(ctx _context.Context, channelId string) ApiPreviewImageRequest
+	SlateIn Slate in
+
+	Replaces the current video source with a slate image or video.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiSlateInRequest
+	*/
+	SlateIn(ctx context.Context, channelId string) ApiSlateInRequest
+
+	// SlateInExecute executes the request
+	SlateInExecute(r ApiSlateInRequest) (*http.Response, error)
 
 	/*
-	 * PreviewImageExecute executes the request
-	 */
-	PreviewImageExecute(r ApiPreviewImageRequest) (*_nethttp.Response, GenericOpenAPIError)
+	SlateOut Slate out
+
+	Removes any active slate and show the source video content.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiSlateOutRequest
+	*/
+	SlateOut(ctx context.Context, channelId string) ApiSlateOutRequest
+
+	// SlateOutExecute executes the request
+	SlateOutExecute(r ApiSlateOutRequest) (*http.Response, error)
 
 	/*
-	 * ProgramEnd Program End
-	 * Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiProgramEndRequest
-	 */
-	ProgramEnd(ctx _context.Context, channelId string) ApiProgramEndRequest
+	SpliceEnd Splice Insert End
+
+	Inserts a 'splice insert end' SCTE-35 message into the channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiSpliceEndRequest
+	*/
+	SpliceEnd(ctx context.Context, channelId string) ApiSpliceEndRequest
+
+	// SpliceEndExecute executes the request
+	SpliceEndExecute(r ApiSpliceEndRequest) (*http.Response, error)
 
 	/*
-	 * ProgramEndExecute executes the request
-	 */
-	ProgramEndExecute(r ApiProgramEndRequest) (*_nethttp.Response, GenericOpenAPIError)
+	SpliceStart Splice Insert Start
 
-	/*
-	 * ProgramStart Program Start
-	 * Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiProgramStartRequest
-	 */
-	ProgramStart(ctx _context.Context, channelId string) ApiProgramStartRequest
+	Inserts a 'splice insert start' SCTE-35 message into the channel.
 
-	/*
-	 * ProgramStartExecute executes the request
-	 */
-	ProgramStartExecute(r ApiProgramStartRequest) (*_nethttp.Response, GenericOpenAPIError)
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiSpliceStartRequest
+	*/
+	SpliceStart(ctx context.Context, channelId string) ApiSpliceStartRequest
 
-	/*
-	 * Signal Generic Signal
-	 * Inserts a SCTE-35 message into the channel.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiSignalRequest
-	 */
-	Signal(ctx _context.Context, channelId string) ApiSignalRequest
-
-	/*
-	 * SignalExecute executes the request
-	 */
-	SignalExecute(r ApiSignalRequest) (*_nethttp.Response, GenericOpenAPIError)
-
-	/*
-	 * SlateIn Slate in
-	 * Replaces the current video source with a slate image or video.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiSlateInRequest
-	 */
-	SlateIn(ctx _context.Context, channelId string) ApiSlateInRequest
-
-	/*
-	 * SlateInExecute executes the request
-	 */
-	SlateInExecute(r ApiSlateInRequest) (*_nethttp.Response, GenericOpenAPIError)
-
-	/*
-	 * SlateOut Slate out
-	 * Removes any active slate and show the source video content.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiSlateOutRequest
-	 */
-	SlateOut(ctx _context.Context, channelId string) ApiSlateOutRequest
-
-	/*
-	 * SlateOutExecute executes the request
-	 */
-	SlateOutExecute(r ApiSlateOutRequest) (*_nethttp.Response, GenericOpenAPIError)
-
-	/*
-	 * SpliceEnd Splice Insert End
-	 * Inserts a 'splice insert end' SCTE-35 message into the channel.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiSpliceEndRequest
-	 */
-	SpliceEnd(ctx _context.Context, channelId string) ApiSpliceEndRequest
-
-	/*
-	 * SpliceEndExecute executes the request
-	 */
-	SpliceEndExecute(r ApiSpliceEndRequest) (*_nethttp.Response, GenericOpenAPIError)
-
-	/*
-	 * SpliceStart Splice Insert Start
-	 * Inserts a 'splice insert start' SCTE-35 message into the channel.
-	 * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	 * @param channelId Unique channel identifier
-	 * @return ApiSpliceStartRequest
-	 */
-	SpliceStart(ctx _context.Context, channelId string) ApiSpliceStartRequest
-
-	/*
-	 * SpliceStartExecute executes the request
-	 */
-	SpliceStartExecute(r ApiSpliceStartRequest) (*_nethttp.Response, GenericOpenAPIError)
+	// SpliceStartExecute executes the request
+	SpliceStartExecute(r ApiSpliceStartRequest) (*http.Response, error)
 }
 
 // ChannelOperationsApiService ChannelOperationsApi service
 type ChannelOperationsApiService service
 
 type ApiClearDvrWindowRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 }
 
-
-func (r ApiClearDvrWindowRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiClearDvrWindowRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ClearDvrWindowExecute(r)
 }
 
 /*
- * ClearDvrWindow Clear DVR Window
- * Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiClearDvrWindowRequest
- */
-func (a *ChannelOperationsApiService) ClearDvrWindow(ctx _context.Context, channelId string) ApiClearDvrWindowRequest {
+ClearDvrWindow Clear DVR Window
+
+Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiClearDvrWindowRequest
+*/
+func (a *ChannelOperationsApiService) ClearDvrWindow(ctx context.Context, channelId string) ApiClearDvrWindowRequest {
 	return ApiClearDvrWindowRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -225,34 +222,27 @@ func (a *ChannelOperationsApiService) ClearDvrWindow(ctx _context.Context, chann
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.ClearDvrWindow")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/dvr-window"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -272,28 +262,25 @@ func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -317,6 +304,26 @@ func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowR
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -329,28 +336,29 @@ func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowR
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiGetSignalsRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 }
 
-
-func (r ApiGetSignalsRequest) Execute() ([]Segment, *_nethttp.Response, GenericOpenAPIError) {
+func (r ApiGetSignalsRequest) Execute() ([]Segment, *http.Response, error) {
 	return r.ApiService.GetSignalsExecute(r)
 }
 
 /*
- * GetSignals Get Signals
- * Returns the active signals for a channel.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiGetSignalsRequest
- */
-func (a *ChannelOperationsApiService) GetSignals(ctx _context.Context, channelId string) ApiGetSignalsRequest {
+GetSignals Get Signals
+
+Returns the active signals for a channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiGetSignalsRequest
+*/
+func (a *ChannelOperationsApiService) GetSignals(ctx context.Context, channelId string) ApiGetSignalsRequest {
 	return ApiGetSignalsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -358,36 +366,29 @@ func (a *ChannelOperationsApiService) GetSignals(ctx _context.Context, channelId
 	}
 }
 
-/*
- * Execute executes the request
- * @return []Segment
- */
-func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return []Segment
+func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 		localVarReturnValue  []Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.GetSignals")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/signal"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -407,28 +408,25 @@ func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -462,6 +460,26 @@ func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) 
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -486,7 +504,7 @@ func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) 
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -505,38 +523,42 @@ func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) 
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiInsertId3Request struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	accept *string
 	insertMetadataRequest *InsertMetadataRequest
 }
 
+// List of accepted Content-Type headers
 func (r ApiInsertId3Request) Accept(accept string) ApiInsertId3Request {
 	r.accept = &accept
 	return r
 }
+
 func (r ApiInsertId3Request) InsertMetadataRequest(insertMetadataRequest InsertMetadataRequest) ApiInsertId3Request {
 	r.insertMetadataRequest = &insertMetadataRequest
 	return r
 }
 
-func (r ApiInsertId3Request) Execute() (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError) {
+func (r ApiInsertId3Request) Execute() (*InsertMetadataResult, *http.Response, error) {
 	return r.ApiService.InsertId3Execute(r)
 }
 
 /*
- * InsertId3 Insert ID3
- * Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiInsertId3Request
- */
-func (a *ChannelOperationsApiService) InsertId3(ctx _context.Context, channelId string) ApiInsertId3Request {
+InsertId3 Insert ID3
+
+Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiInsertId3Request
+*/
+func (a *ChannelOperationsApiService) InsertId3(ctx context.Context, channelId string) ApiInsertId3Request {
 	return ApiInsertId3Request{
 		ApiService: a,
 		ctx: ctx,
@@ -544,36 +566,29 @@ func (a *ChannelOperationsApiService) InsertId3(ctx _context.Context, channelId 
 	}
 }
 
-/*
- * Execute executes the request
- * @return InsertMetadataResult
- */
-func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (InsertMetadataResult, *_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+//  @return InsertMetadataResult
+func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (*InsertMetadataResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
-		localVarReturnValue  InsertMetadataResult
+		formFiles            []formFile
+		localVarReturnValue  *InsertMetadataResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.InsertId3")
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/id3"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -598,28 +613,25 @@ func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (I
 	}
 	// body params
 	localVarPostBody = r.insertMetadataRequest
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, nil, executionError
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarReturnValue, localVarHTTPResponse, executionError
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -643,7 +655,47 @@ func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (I
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -677,7 +729,7 @@ func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (I
 
 	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: err.Error(),
 		}
@@ -691,16 +743,16 @@ func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (I
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(InsertMetadataResult)
+			localVarReturnValue = items.(*InsertMetadataResult)
 			localVarHTTPResponse = resp
 		}
 	}
 
-	return localVarReturnValue, localVarHTTPResponse, executionError
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiInsertScte35Request struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	scte35 *Scte35
@@ -711,18 +763,20 @@ func (r ApiInsertScte35Request) Scte35(scte35 Scte35) ApiInsertScte35Request {
 	return r
 }
 
-func (r ApiInsertScte35Request) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiInsertScte35Request) Execute() (*http.Response, error) {
 	return r.ApiService.InsertScte35Execute(r)
 }
 
 /*
- * InsertScte35 Insert SCTE-35
- * Inserts a SCTE-35 formatted binary payload into the channel.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiInsertScte35Request
- */
-func (a *ChannelOperationsApiService) InsertScte35(ctx _context.Context, channelId string) ApiInsertScte35Request {
+InsertScte35 Insert SCTE-35
+
+Inserts a SCTE-35 formatted binary payload into the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiInsertScte35Request
+*/
+func (a *ChannelOperationsApiService) InsertScte35(ctx context.Context, channelId string) ApiInsertScte35Request {
 	return ApiInsertScte35Request{
 		ApiService: a,
 		ctx: ctx,
@@ -730,34 +784,27 @@ func (a *ChannelOperationsApiService) InsertScte35(ctx _context.Context, channel
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Request) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Request) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.InsertScte35")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/scte35"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -779,28 +826,25 @@ func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Reque
 	}
 	// body params
 	localVarPostBody = r.scte35
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -815,6 +859,46 @@ func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Reque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -846,33 +930,36 @@ func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Reque
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiPreviewImageRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	accept *string
 }
 
+// List of accepted Content-Type headers
 func (r ApiPreviewImageRequest) Accept(accept string) ApiPreviewImageRequest {
 	r.accept = &accept
 	return r
 }
 
-func (r ApiPreviewImageRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiPreviewImageRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PreviewImageExecute(r)
 }
 
 /*
- * PreviewImage Get Preview Image
- * Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiPreviewImageRequest
- */
-func (a *ChannelOperationsApiService) PreviewImage(ctx _context.Context, channelId string) ApiPreviewImageRequest {
+PreviewImage Get Preview Image
+
+Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiPreviewImageRequest
+*/
+func (a *ChannelOperationsApiService) PreviewImage(ctx context.Context, channelId string) ApiPreviewImageRequest {
 	return ApiPreviewImageRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -880,34 +967,27 @@ func (a *ChannelOperationsApiService) PreviewImage(ctx _context.Context, channel
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.PreviewImage")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/preview-image"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -930,28 +1010,25 @@ func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageReque
 	if r.accept != nil {
 		localVarHeaderParams["Accept"] = parameterToString(*r.accept, "")
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -976,6 +1053,26 @@ func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageReque
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1017,11 +1114,11 @@ func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageReque
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiProgramEndRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	programSignal *ProgramSignal
@@ -1032,18 +1129,20 @@ func (r ApiProgramEndRequest) ProgramSignal(programSignal ProgramSignal) ApiProg
 	return r
 }
 
-func (r ApiProgramEndRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiProgramEndRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ProgramEndExecute(r)
 }
 
 /*
- * ProgramEnd Program End
- * Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiProgramEndRequest
- */
-func (a *ChannelOperationsApiService) ProgramEnd(ctx _context.Context, channelId string) ApiProgramEndRequest {
+ProgramEnd Program End
+
+Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiProgramEndRequest
+*/
+func (a *ChannelOperationsApiService) ProgramEnd(ctx context.Context, channelId string) ApiProgramEndRequest {
 	return ApiProgramEndRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1051,34 +1150,27 @@ func (a *ChannelOperationsApiService) ProgramEnd(ctx _context.Context, channelId
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.ProgramEnd")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/program-end"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1100,28 +1192,25 @@ func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) 
 	}
 	// body params
 	localVarPostBody = r.programSignal
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1145,7 +1234,47 @@ func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) 
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1177,11 +1306,11 @@ func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) 
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiProgramStartRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	programSignal *ProgramSignal
@@ -1192,18 +1321,20 @@ func (r ApiProgramStartRequest) ProgramSignal(programSignal ProgramSignal) ApiPr
 	return r
 }
 
-func (r ApiProgramStartRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiProgramStartRequest) Execute() (*http.Response, error) {
 	return r.ApiService.ProgramStartExecute(r)
 }
 
 /*
- * ProgramStart Program Start
- * Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiProgramStartRequest
- */
-func (a *ChannelOperationsApiService) ProgramStart(ctx _context.Context, channelId string) ApiProgramStartRequest {
+ProgramStart Program Start
+
+Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiProgramStartRequest
+*/
+func (a *ChannelOperationsApiService) ProgramStart(ctx context.Context, channelId string) ApiProgramStartRequest {
 	return ApiProgramStartRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1211,34 +1342,27 @@ func (a *ChannelOperationsApiService) ProgramStart(ctx _context.Context, channel
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.ProgramStart")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/program-start"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1260,28 +1384,25 @@ func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartReque
 	}
 	// body params
 	localVarPostBody = r.programSignal
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1305,7 +1426,47 @@ func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartReque
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1337,11 +1498,11 @@ func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartReque
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiSignalRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	genericSignal *[]GenericSignal
@@ -1352,18 +1513,20 @@ func (r ApiSignalRequest) GenericSignal(genericSignal []GenericSignal) ApiSignal
 	return r
 }
 
-func (r ApiSignalRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiSignalRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SignalExecute(r)
 }
 
 /*
- * Signal Generic Signal
- * Inserts a SCTE-35 message into the channel.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiSignalRequest
- */
-func (a *ChannelOperationsApiService) Signal(ctx _context.Context, channelId string) ApiSignalRequest {
+Signal Generic Signal
+
+Inserts a SCTE-35 message into the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiSignalRequest
+*/
+func (a *ChannelOperationsApiService) Signal(ctx context.Context, channelId string) ApiSignalRequest {
 	return ApiSignalRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1371,34 +1534,27 @@ func (a *ChannelOperationsApiService) Signal(ctx _context.Context, channelId str
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.Signal")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/signal"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1420,28 +1576,25 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*_netht
 	}
 	// body params
 	localVarPostBody = r.genericSignal
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1456,6 +1609,46 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*_netht
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1487,11 +1680,11 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*_netht
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiSlateInRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	slate *Slate
@@ -1502,18 +1695,20 @@ func (r ApiSlateInRequest) Slate(slate Slate) ApiSlateInRequest {
 	return r
 }
 
-func (r ApiSlateInRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiSlateInRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SlateInExecute(r)
 }
 
 /*
- * SlateIn Slate in
- * Replaces the current video source with a slate image or video.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiSlateInRequest
- */
-func (a *ChannelOperationsApiService) SlateIn(ctx _context.Context, channelId string) ApiSlateInRequest {
+SlateIn Slate in
+
+Replaces the current video source with a slate image or video.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiSlateInRequest
+*/
+func (a *ChannelOperationsApiService) SlateIn(ctx context.Context, channelId string) ApiSlateInRequest {
 	return ApiSlateInRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1521,34 +1716,27 @@ func (a *ChannelOperationsApiService) SlateIn(ctx _context.Context, channelId st
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.SlateIn")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/slate"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1570,28 +1758,25 @@ func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*_net
 	}
 	// body params
 	localVarPostBody = r.slate
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1615,7 +1800,47 @@ func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*_net
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1647,28 +1872,29 @@ func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*_net
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiSlateOutRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 }
 
-
-func (r ApiSlateOutRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiSlateOutRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SlateOutExecute(r)
 }
 
 /*
- * SlateOut Slate out
- * Removes any active slate and show the source video content.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiSlateOutRequest
- */
-func (a *ChannelOperationsApiService) SlateOut(ctx _context.Context, channelId string) ApiSlateOutRequest {
+SlateOut Slate out
+
+Removes any active slate and show the source video content.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiSlateOutRequest
+*/
+func (a *ChannelOperationsApiService) SlateOut(ctx context.Context, channelId string) ApiSlateOutRequest {
 	return ApiSlateOutRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1676,34 +1902,27 @@ func (a *ChannelOperationsApiService) SlateOut(ctx _context.Context, channelId s
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.SlateOut")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/slate"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1723,28 +1942,25 @@ func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1778,6 +1994,26 @@ func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*_n
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1800,11 +2036,11 @@ func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*_n
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiSpliceEndRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	spliceInsertEndSignal *SpliceInsertEndSignal
@@ -1815,18 +2051,20 @@ func (r ApiSpliceEndRequest) SpliceInsertEndSignal(spliceInsertEndSignal SpliceI
 	return r
 }
 
-func (r ApiSpliceEndRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiSpliceEndRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SpliceEndExecute(r)
 }
 
 /*
- * SpliceEnd Splice Insert End
- * Inserts a 'splice insert end' SCTE-35 message into the channel.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiSpliceEndRequest
- */
-func (a *ChannelOperationsApiService) SpliceEnd(ctx _context.Context, channelId string) ApiSpliceEndRequest {
+SpliceEnd Splice Insert End
+
+Inserts a 'splice insert end' SCTE-35 message into the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiSpliceEndRequest
+*/
+func (a *ChannelOperationsApiService) SpliceEnd(ctx context.Context, channelId string) ApiSpliceEndRequest {
 	return ApiSpliceEndRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1834,34 +2072,27 @@ func (a *ChannelOperationsApiService) SpliceEnd(ctx _context.Context, channelId 
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.SpliceEnd")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/splice-end"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -1883,28 +2114,25 @@ func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*
 	}
 	// body params
 	localVarPostBody = r.spliceInsertEndSignal
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -1928,7 +2156,47 @@ func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1960,11 +2228,11 @@ func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }
 
 type ApiSpliceStartRequest struct {
-	ctx _context.Context
+	ctx context.Context
 	ApiService ChannelOperationsApi
 	channelId string
 	spliceInsertStartSignal *SpliceInsertStartSignal
@@ -1975,18 +2243,20 @@ func (r ApiSpliceStartRequest) SpliceInsertStartSignal(spliceInsertStartSignal S
 	return r
 }
 
-func (r ApiSpliceStartRequest) Execute() (*_nethttp.Response, GenericOpenAPIError) {
+func (r ApiSpliceStartRequest) Execute() (*http.Response, error) {
 	return r.ApiService.SpliceStartExecute(r)
 }
 
 /*
- * SpliceStart Splice Insert Start
- * Inserts a 'splice insert start' SCTE-35 message into the channel.
- * @param ctx _context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- * @param channelId Unique channel identifier
- * @return ApiSpliceStartRequest
- */
-func (a *ChannelOperationsApiService) SpliceStart(ctx _context.Context, channelId string) ApiSpliceStartRequest {
+SpliceStart Splice Insert Start
+
+Inserts a 'splice insert start' SCTE-35 message into the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiSpliceStartRequest
+*/
+func (a *ChannelOperationsApiService) SpliceStart(ctx context.Context, channelId string) ApiSpliceStartRequest {
 	return ApiSpliceStartRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1994,34 +2264,27 @@ func (a *ChannelOperationsApiService) SpliceStart(ctx _context.Context, channelI
 	}
 }
 
-/*
- * Execute executes the request
- */
-func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest) (*_nethttp.Response, GenericOpenAPIError) {
+// Execute executes the request
+func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		executionError       GenericOpenAPIError
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.SpliceStart")
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/splice-start"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", _neturl.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := _neturl.Values{}
-	localVarFormParams := _neturl.Values{}
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		executionError.error = "channelId must have less than 60 elements"
-		return nil, executionError
+		return nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -2043,28 +2306,25 @@ func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest
 	}
 	// body params
 	localVarPostBody = r.spliceInsertStartSignal
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		executionError.error = err.Error()
-		return nil, executionError
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
-	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		executionError.error = err.Error()
-		return localVarHTTPResponse, executionError
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
+		newErr := &GenericOpenAPIError{
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
@@ -2088,7 +2348,47 @@ func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2120,5 +2420,5 @@ func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest
 		return localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, executionError
+	return localVarHTTPResponse, nil
 }

@@ -17,10 +17,7 @@ import (
 type ChannelIngestSlate struct {
 	// Source loss URL defines the location of the TS file to play when no source is available. It must have one audio and one video stream. Either MPEG2 or H.264 can be used.
 	SourceLossUrl *string `json:"source_loss_url,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelIngestSlate ChannelIngestSlate
 
 // NewChannelIngestSlate instantiates a new ChannelIngestSlate object
 // This constructor will assign default values to properties that have it defined,
@@ -76,29 +73,7 @@ func (o ChannelIngestSlate) MarshalJSON() ([]byte, error) {
 	if o.SourceLossUrl != nil {
 		toSerialize["source_loss_url"] = o.SourceLossUrl
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelIngestSlate) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelIngestSlate := _ChannelIngestSlate{}
-
-	if err = json.Unmarshal(bytes, &varChannelIngestSlate); err == nil {
-		*o = ChannelIngestSlate(varChannelIngestSlate)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "source_loss_url")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelIngestSlate struct {

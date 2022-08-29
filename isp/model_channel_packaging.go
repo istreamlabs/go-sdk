@@ -16,11 +16,8 @@ import (
 // ChannelPackaging Packaging configures media format and content protection settings.
 type ChannelPackaging struct {
 	// Defines the list of packagers available for Publications.
-	Packagers *map[string]ChannelPackagingPackagers `json:"packagers,omitempty"`
-	AdditionalProperties map[string]interface{}
+	Packagers *map[string]ChannelPackagingPackagersValue `json:"packagers,omitempty"`
 }
-
-type _ChannelPackaging ChannelPackaging
 
 // NewChannelPackaging instantiates a new ChannelPackaging object
 // This constructor will assign default values to properties that have it defined,
@@ -40,9 +37,9 @@ func NewChannelPackagingWithDefaults() *ChannelPackaging {
 }
 
 // GetPackagers returns the Packagers field value if set, zero value otherwise.
-func (o *ChannelPackaging) GetPackagers() map[string]ChannelPackagingPackagers {
+func (o *ChannelPackaging) GetPackagers() map[string]ChannelPackagingPackagersValue {
 	if o == nil || o.Packagers == nil {
-		var ret map[string]ChannelPackagingPackagers
+		var ret map[string]ChannelPackagingPackagersValue
 		return ret
 	}
 	return *o.Packagers
@@ -50,7 +47,7 @@ func (o *ChannelPackaging) GetPackagers() map[string]ChannelPackagingPackagers {
 
 // GetPackagersOk returns a tuple with the Packagers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPackaging) GetPackagersOk() (*map[string]ChannelPackagingPackagers, bool) {
+func (o *ChannelPackaging) GetPackagersOk() (*map[string]ChannelPackagingPackagersValue, bool) {
 	if o == nil || o.Packagers == nil {
 		return nil, false
 	}
@@ -66,8 +63,8 @@ func (o *ChannelPackaging) HasPackagers() bool {
 	return false
 }
 
-// SetPackagers gets a reference to the given map[string]ChannelPackagingPackagers and assigns it to the Packagers field.
-func (o *ChannelPackaging) SetPackagers(v map[string]ChannelPackagingPackagers) {
+// SetPackagers gets a reference to the given map[string]ChannelPackagingPackagersValue and assigns it to the Packagers field.
+func (o *ChannelPackaging) SetPackagers(v map[string]ChannelPackagingPackagersValue) {
 	o.Packagers = &v
 }
 
@@ -76,29 +73,7 @@ func (o ChannelPackaging) MarshalJSON() ([]byte, error) {
 	if o.Packagers != nil {
 		toSerialize["packagers"] = o.Packagers
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelPackaging) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelPackaging := _ChannelPackaging{}
-
-	if err = json.Unmarshal(bytes, &varChannelPackaging); err == nil {
-		*o = ChannelPackaging(varChannelPackaging)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "packagers")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelPackaging struct {

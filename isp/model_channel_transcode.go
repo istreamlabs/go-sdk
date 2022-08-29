@@ -16,22 +16,19 @@ import (
 // ChannelTranscode Transcode configures audio/video conversion settings.
 type ChannelTranscode struct {
 	// Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc.
-	AudioEncoders *[]ChannelTranscodeAudioEncoders `json:"audio_encoders,omitempty"`
+	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty"`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper.
-	FeatureFlags *[]string `json:"feature_flags,omitempty"`
+	FeatureFlags []string `json:"feature_flags,omitempty"`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
 	Id3Mode *string `json:"id3_mode,omitempty"`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
 	ResizeMode *string `json:"resize_mode,omitempty"`
 	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
 	// Thumbnail encoders specify how to create image snapshots of the video stream.
-	ThumbnailEncoders *[]ChannelTranscodeThumbnailEncoders `json:"thumbnail_encoders,omitempty"`
+	ThumbnailEncoders []ChannelTranscodeThumbnailEncodersInner `json:"thumbnail_encoders,omitempty"`
 	// Video encoders specify video conversion settings, e.g. dimensions, codec, bitrate, etc.
-	VideoEncoders *[]ChannelTranscodeVideoEncoders `json:"video_encoders,omitempty"`
-	AdditionalProperties map[string]interface{}
+	VideoEncoders []ChannelTranscodeVideoEncodersInner `json:"video_encoders,omitempty"`
 }
-
-type _ChannelTranscode ChannelTranscode
 
 // NewChannelTranscode instantiates a new ChannelTranscode object
 // This constructor will assign default values to properties that have it defined,
@@ -51,17 +48,17 @@ func NewChannelTranscodeWithDefaults() *ChannelTranscode {
 }
 
 // GetAudioEncoders returns the AudioEncoders field value if set, zero value otherwise.
-func (o *ChannelTranscode) GetAudioEncoders() []ChannelTranscodeAudioEncoders {
+func (o *ChannelTranscode) GetAudioEncoders() []ChannelTranscodeAudioEncodersInner {
 	if o == nil || o.AudioEncoders == nil {
-		var ret []ChannelTranscodeAudioEncoders
+		var ret []ChannelTranscodeAudioEncodersInner
 		return ret
 	}
-	return *o.AudioEncoders
+	return o.AudioEncoders
 }
 
 // GetAudioEncodersOk returns a tuple with the AudioEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetAudioEncodersOk() (*[]ChannelTranscodeAudioEncoders, bool) {
+func (o *ChannelTranscode) GetAudioEncodersOk() ([]ChannelTranscodeAudioEncodersInner, bool) {
 	if o == nil || o.AudioEncoders == nil {
 		return nil, false
 	}
@@ -77,9 +74,9 @@ func (o *ChannelTranscode) HasAudioEncoders() bool {
 	return false
 }
 
-// SetAudioEncoders gets a reference to the given []ChannelTranscodeAudioEncoders and assigns it to the AudioEncoders field.
-func (o *ChannelTranscode) SetAudioEncoders(v []ChannelTranscodeAudioEncoders) {
-	o.AudioEncoders = &v
+// SetAudioEncoders gets a reference to the given []ChannelTranscodeAudioEncodersInner and assigns it to the AudioEncoders field.
+func (o *ChannelTranscode) SetAudioEncoders(v []ChannelTranscodeAudioEncodersInner) {
+	o.AudioEncoders = v
 }
 
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
@@ -88,12 +85,12 @@ func (o *ChannelTranscode) GetFeatureFlags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.FeatureFlags
+	return o.FeatureFlags
 }
 
 // GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetFeatureFlagsOk() (*[]string, bool) {
+func (o *ChannelTranscode) GetFeatureFlagsOk() ([]string, bool) {
 	if o == nil || o.FeatureFlags == nil {
 		return nil, false
 	}
@@ -111,7 +108,7 @@ func (o *ChannelTranscode) HasFeatureFlags() bool {
 
 // SetFeatureFlags gets a reference to the given []string and assigns it to the FeatureFlags field.
 func (o *ChannelTranscode) SetFeatureFlags(v []string) {
-	o.FeatureFlags = &v
+	o.FeatureFlags = v
 }
 
 // GetId3Mode returns the Id3Mode field value if set, zero value otherwise.
@@ -211,17 +208,17 @@ func (o *ChannelTranscode) SetSegmenter(v ChannelTranscodeSegmenter) {
 }
 
 // GetThumbnailEncoders returns the ThumbnailEncoders field value if set, zero value otherwise.
-func (o *ChannelTranscode) GetThumbnailEncoders() []ChannelTranscodeThumbnailEncoders {
+func (o *ChannelTranscode) GetThumbnailEncoders() []ChannelTranscodeThumbnailEncodersInner {
 	if o == nil || o.ThumbnailEncoders == nil {
-		var ret []ChannelTranscodeThumbnailEncoders
+		var ret []ChannelTranscodeThumbnailEncodersInner
 		return ret
 	}
-	return *o.ThumbnailEncoders
+	return o.ThumbnailEncoders
 }
 
 // GetThumbnailEncodersOk returns a tuple with the ThumbnailEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetThumbnailEncodersOk() (*[]ChannelTranscodeThumbnailEncoders, bool) {
+func (o *ChannelTranscode) GetThumbnailEncodersOk() ([]ChannelTranscodeThumbnailEncodersInner, bool) {
 	if o == nil || o.ThumbnailEncoders == nil {
 		return nil, false
 	}
@@ -237,23 +234,23 @@ func (o *ChannelTranscode) HasThumbnailEncoders() bool {
 	return false
 }
 
-// SetThumbnailEncoders gets a reference to the given []ChannelTranscodeThumbnailEncoders and assigns it to the ThumbnailEncoders field.
-func (o *ChannelTranscode) SetThumbnailEncoders(v []ChannelTranscodeThumbnailEncoders) {
-	o.ThumbnailEncoders = &v
+// SetThumbnailEncoders gets a reference to the given []ChannelTranscodeThumbnailEncodersInner and assigns it to the ThumbnailEncoders field.
+func (o *ChannelTranscode) SetThumbnailEncoders(v []ChannelTranscodeThumbnailEncodersInner) {
+	o.ThumbnailEncoders = v
 }
 
 // GetVideoEncoders returns the VideoEncoders field value if set, zero value otherwise.
-func (o *ChannelTranscode) GetVideoEncoders() []ChannelTranscodeVideoEncoders {
+func (o *ChannelTranscode) GetVideoEncoders() []ChannelTranscodeVideoEncodersInner {
 	if o == nil || o.VideoEncoders == nil {
-		var ret []ChannelTranscodeVideoEncoders
+		var ret []ChannelTranscodeVideoEncodersInner
 		return ret
 	}
-	return *o.VideoEncoders
+	return o.VideoEncoders
 }
 
 // GetVideoEncodersOk returns a tuple with the VideoEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetVideoEncodersOk() (*[]ChannelTranscodeVideoEncoders, bool) {
+func (o *ChannelTranscode) GetVideoEncodersOk() ([]ChannelTranscodeVideoEncodersInner, bool) {
 	if o == nil || o.VideoEncoders == nil {
 		return nil, false
 	}
@@ -269,9 +266,9 @@ func (o *ChannelTranscode) HasVideoEncoders() bool {
 	return false
 }
 
-// SetVideoEncoders gets a reference to the given []ChannelTranscodeVideoEncoders and assigns it to the VideoEncoders field.
-func (o *ChannelTranscode) SetVideoEncoders(v []ChannelTranscodeVideoEncoders) {
-	o.VideoEncoders = &v
+// SetVideoEncoders gets a reference to the given []ChannelTranscodeVideoEncodersInner and assigns it to the VideoEncoders field.
+func (o *ChannelTranscode) SetVideoEncoders(v []ChannelTranscodeVideoEncodersInner) {
+	o.VideoEncoders = v
 }
 
 func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
@@ -297,35 +294,7 @@ func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
 	if o.VideoEncoders != nil {
 		toSerialize["video_encoders"] = o.VideoEncoders
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelTranscode) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelTranscode := _ChannelTranscode{}
-
-	if err = json.Unmarshal(bytes, &varChannelTranscode); err == nil {
-		*o = ChannelTranscode(varChannelTranscode)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "audio_encoders")
-		delete(additionalProperties, "feature_flags")
-		delete(additionalProperties, "id3_mode")
-		delete(additionalProperties, "resize_mode")
-		delete(additionalProperties, "segmenter")
-		delete(additionalProperties, "thumbnail_encoders")
-		delete(additionalProperties, "video_encoders")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelTranscode struct {

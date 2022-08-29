@@ -15,12 +15,14 @@ import (
 
 // ChannelPlayback struct for ChannelPlayback
 type ChannelPlayback struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// CMAF playback configurations
-	Cmaf *[]ChannelPlaybackCmaf `json:"cmaf,omitempty"`
+	Cmaf []ChannelPlaybackCmafInner `json:"cmaf,omitempty"`
 	// Dash playback configurations
-	Dash *[]ChannelPlaybackCmaf `json:"dash,omitempty"`
+	Dash []ChannelPlaybackCmafInner `json:"dash,omitempty"`
 	// HLS playback configurations
-	Hls *[]ChannelPlaybackCmaf `json:"hls,omitempty"`
+	Hls []ChannelPlaybackCmafInner `json:"hls,omitempty"`
 }
 
 // NewChannelPlayback instantiates a new ChannelPlayback object
@@ -40,18 +42,50 @@ func NewChannelPlaybackWithDefaults() *ChannelPlayback {
 	return &this
 }
 
-// GetCmaf returns the Cmaf field value if set, zero value otherwise.
-func (o *ChannelPlayback) GetCmaf() []ChannelPlaybackCmaf {
-	if o == nil || o.Cmaf == nil {
-		var ret []ChannelPlaybackCmaf
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *ChannelPlayback) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
 		return ret
 	}
-	return *o.Cmaf
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPlayback) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *ChannelPlayback) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *ChannelPlayback) SetSchema(v string) {
+	o.Schema = &v
+}
+
+// GetCmaf returns the Cmaf field value if set, zero value otherwise.
+func (o *ChannelPlayback) GetCmaf() []ChannelPlaybackCmafInner {
+	if o == nil || o.Cmaf == nil {
+		var ret []ChannelPlaybackCmafInner
+		return ret
+	}
+	return o.Cmaf
 }
 
 // GetCmafOk returns a tuple with the Cmaf field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlayback) GetCmafOk() (*[]ChannelPlaybackCmaf, bool) {
+func (o *ChannelPlayback) GetCmafOk() ([]ChannelPlaybackCmafInner, bool) {
 	if o == nil || o.Cmaf == nil {
 		return nil, false
 	}
@@ -67,23 +101,23 @@ func (o *ChannelPlayback) HasCmaf() bool {
 	return false
 }
 
-// SetCmaf gets a reference to the given []ChannelPlaybackCmaf and assigns it to the Cmaf field.
-func (o *ChannelPlayback) SetCmaf(v []ChannelPlaybackCmaf) {
-	o.Cmaf = &v
+// SetCmaf gets a reference to the given []ChannelPlaybackCmafInner and assigns it to the Cmaf field.
+func (o *ChannelPlayback) SetCmaf(v []ChannelPlaybackCmafInner) {
+	o.Cmaf = v
 }
 
 // GetDash returns the Dash field value if set, zero value otherwise.
-func (o *ChannelPlayback) GetDash() []ChannelPlaybackCmaf {
+func (o *ChannelPlayback) GetDash() []ChannelPlaybackCmafInner {
 	if o == nil || o.Dash == nil {
-		var ret []ChannelPlaybackCmaf
+		var ret []ChannelPlaybackCmafInner
 		return ret
 	}
-	return *o.Dash
+	return o.Dash
 }
 
 // GetDashOk returns a tuple with the Dash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlayback) GetDashOk() (*[]ChannelPlaybackCmaf, bool) {
+func (o *ChannelPlayback) GetDashOk() ([]ChannelPlaybackCmafInner, bool) {
 	if o == nil || o.Dash == nil {
 		return nil, false
 	}
@@ -99,23 +133,23 @@ func (o *ChannelPlayback) HasDash() bool {
 	return false
 }
 
-// SetDash gets a reference to the given []ChannelPlaybackCmaf and assigns it to the Dash field.
-func (o *ChannelPlayback) SetDash(v []ChannelPlaybackCmaf) {
-	o.Dash = &v
+// SetDash gets a reference to the given []ChannelPlaybackCmafInner and assigns it to the Dash field.
+func (o *ChannelPlayback) SetDash(v []ChannelPlaybackCmafInner) {
+	o.Dash = v
 }
 
 // GetHls returns the Hls field value if set, zero value otherwise.
-func (o *ChannelPlayback) GetHls() []ChannelPlaybackCmaf {
+func (o *ChannelPlayback) GetHls() []ChannelPlaybackCmafInner {
 	if o == nil || o.Hls == nil {
-		var ret []ChannelPlaybackCmaf
+		var ret []ChannelPlaybackCmafInner
 		return ret
 	}
-	return *o.Hls
+	return o.Hls
 }
 
 // GetHlsOk returns a tuple with the Hls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlayback) GetHlsOk() (*[]ChannelPlaybackCmaf, bool) {
+func (o *ChannelPlayback) GetHlsOk() ([]ChannelPlaybackCmafInner, bool) {
 	if o == nil || o.Hls == nil {
 		return nil, false
 	}
@@ -131,13 +165,16 @@ func (o *ChannelPlayback) HasHls() bool {
 	return false
 }
 
-// SetHls gets a reference to the given []ChannelPlaybackCmaf and assigns it to the Hls field.
-func (o *ChannelPlayback) SetHls(v []ChannelPlaybackCmaf) {
-	o.Hls = &v
+// SetHls gets a reference to the given []ChannelPlaybackCmafInner and assigns it to the Hls field.
+func (o *ChannelPlayback) SetHls(v []ChannelPlaybackCmafInner) {
+	o.Hls = v
 }
 
 func (o ChannelPlayback) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if o.Cmaf != nil {
 		toSerialize["cmaf"] = o.Cmaf
 	}

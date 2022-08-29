@@ -15,17 +15,14 @@ import (
 
 // ChannelIngestSource Source provides a reference to the input media stream for this channel.
 type ChannelIngestSource struct {
-	AudioSources *[]ChannelIngestSourceAudioSources `json:"audio_sources,omitempty"`
+	AudioSources []ChannelIngestSourceAudioSourcesInner `json:"audio_sources,omitempty"`
 	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
 	CaptionsSource *string `json:"captions_source,omitempty"`
 	// Unique identifier for this source.
 	Id *string `json:"id,omitempty"`
 	// Self link for the source.
 	Self *string `json:"self,omitempty"`
-	AdditionalProperties map[string]interface{}
 }
-
-type _ChannelIngestSource ChannelIngestSource
 
 // NewChannelIngestSource instantiates a new ChannelIngestSource object
 // This constructor will assign default values to properties that have it defined,
@@ -45,17 +42,17 @@ func NewChannelIngestSourceWithDefaults() *ChannelIngestSource {
 }
 
 // GetAudioSources returns the AudioSources field value if set, zero value otherwise.
-func (o *ChannelIngestSource) GetAudioSources() []ChannelIngestSourceAudioSources {
+func (o *ChannelIngestSource) GetAudioSources() []ChannelIngestSourceAudioSourcesInner {
 	if o == nil || o.AudioSources == nil {
-		var ret []ChannelIngestSourceAudioSources
+		var ret []ChannelIngestSourceAudioSourcesInner
 		return ret
 	}
-	return *o.AudioSources
+	return o.AudioSources
 }
 
 // GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelIngestSource) GetAudioSourcesOk() (*[]ChannelIngestSourceAudioSources, bool) {
+func (o *ChannelIngestSource) GetAudioSourcesOk() ([]ChannelIngestSourceAudioSourcesInner, bool) {
 	if o == nil || o.AudioSources == nil {
 		return nil, false
 	}
@@ -71,9 +68,9 @@ func (o *ChannelIngestSource) HasAudioSources() bool {
 	return false
 }
 
-// SetAudioSources gets a reference to the given []ChannelIngestSourceAudioSources and assigns it to the AudioSources field.
-func (o *ChannelIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSources) {
-	o.AudioSources = &v
+// SetAudioSources gets a reference to the given []ChannelIngestSourceAudioSourcesInner and assigns it to the AudioSources field.
+func (o *ChannelIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSourcesInner) {
+	o.AudioSources = v
 }
 
 // GetCaptionsSource returns the CaptionsSource field value if set, zero value otherwise.
@@ -186,32 +183,7 @@ func (o ChannelIngestSource) MarshalJSON() ([]byte, error) {
 	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-
 	return json.Marshal(toSerialize)
-}
-
-func (o *ChannelIngestSource) UnmarshalJSON(bytes []byte) (err error) {
-	varChannelIngestSource := _ChannelIngestSource{}
-
-	if err = json.Unmarshal(bytes, &varChannelIngestSource); err == nil {
-		*o = ChannelIngestSource(varChannelIngestSource)
-	}
-
-	additionalProperties := make(map[string]interface{})
-
-	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
-		delete(additionalProperties, "audio_sources")
-		delete(additionalProperties, "captions_source")
-		delete(additionalProperties, "id")
-		delete(additionalProperties, "self")
-		o.AdditionalProperties = additionalProperties
-	}
-
-	return err
 }
 
 type NullableChannelIngestSource struct {

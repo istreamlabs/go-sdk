@@ -15,6 +15,8 @@ import (
 
 // SpliceInsertStartSignal struct for SpliceInsertStartSignal
 type SpliceInsertStartSignal struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// Splice duration (ms).  If no duration or a duration of 0 then the splice is indifinite.
 	Duration *int32 `json:"duration,omitempty"`
 	// Event ID
@@ -22,7 +24,7 @@ type SpliceInsertStartSignal struct {
 	// Slate url
 	SlateUri *string `json:"slate_uri,omitempty"`
 	// UPIDs
-	Upids *[]string `json:"upids,omitempty"`
+	Upids []string `json:"upids,omitempty"`
 }
 
 // NewSpliceInsertStartSignal instantiates a new SpliceInsertStartSignal object
@@ -45,6 +47,38 @@ func NewSpliceInsertStartSignalWithDefaults() *SpliceInsertStartSignal {
 	var duration int32 = 0
 	this.Duration = &duration
 	return &this
+}
+
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *SpliceInsertStartSignal) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SpliceInsertStartSignal) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *SpliceInsertStartSignal) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *SpliceInsertStartSignal) SetSchema(v string) {
+	o.Schema = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -92,7 +126,7 @@ func (o *SpliceInsertStartSignal) GetEventId() int32 {
 // GetEventIdOk returns a tuple with the EventId field value
 // and a boolean to check if the value has been set.
 func (o *SpliceInsertStartSignal) GetEventIdOk() (*int32, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return &o.EventId, true
@@ -141,12 +175,12 @@ func (o *SpliceInsertStartSignal) GetUpids() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Upids
+	return o.Upids
 }
 
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SpliceInsertStartSignal) GetUpidsOk() (*[]string, bool) {
+func (o *SpliceInsertStartSignal) GetUpidsOk() ([]string, bool) {
 	if o == nil || o.Upids == nil {
 		return nil, false
 	}
@@ -164,11 +198,14 @@ func (o *SpliceInsertStartSignal) HasUpids() bool {
 
 // SetUpids gets a reference to the given []string and assigns it to the Upids field.
 func (o *SpliceInsertStartSignal) SetUpids(v []string) {
-	o.Upids = &v
+	o.Upids = v
 }
 
 func (o SpliceInsertStartSignal) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if o.Duration != nil {
 		toSerialize["duration"] = o.Duration
 	}

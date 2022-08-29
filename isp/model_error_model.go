@@ -15,10 +15,12 @@ import (
 
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
+	// An optional URL to a JSON Schema document describing this resource
+	Schema *string `json:"$schema,omitempty"`
 	// A human-readable explanation specific to this occurrence of the problem.
 	Detail *string `json:"detail,omitempty"`
 	// Optional list of individual error details
-	Errors *[]ErrorModelErrors `json:"errors,omitempty"`
+	Errors []ErrorModelErrorsInner `json:"errors,omitempty"`
 	// A URI reference that identifies the specific occurence of the problem.
 	Instance *string `json:"instance,omitempty"`
 	// HTTP status code
@@ -48,6 +50,38 @@ func NewErrorModelWithDefaults() *ErrorModel {
 	var type_ string = "about:blank"
 	this.Type = &type_
 	return &this
+}
+
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *ErrorModel) GetSchema() string {
+	if o == nil || o.Schema == nil {
+		var ret string
+		return ret
+	}
+	return *o.Schema
+}
+
+// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ErrorModel) GetSchemaOk() (*string, bool) {
+	if o == nil || o.Schema == nil {
+		return nil, false
+	}
+	return o.Schema, true
+}
+
+// HasSchema returns a boolean if a field has been set.
+func (o *ErrorModel) HasSchema() bool {
+	if o != nil && o.Schema != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *ErrorModel) SetSchema(v string) {
+	o.Schema = &v
 }
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
@@ -83,17 +117,17 @@ func (o *ErrorModel) SetDetail(v string) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *ErrorModel) GetErrors() []ErrorModelErrors {
+func (o *ErrorModel) GetErrors() []ErrorModelErrorsInner {
 	if o == nil || o.Errors == nil {
-		var ret []ErrorModelErrors
+		var ret []ErrorModelErrorsInner
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorModel) GetErrorsOk() (*[]ErrorModelErrors, bool) {
+func (o *ErrorModel) GetErrorsOk() ([]ErrorModelErrorsInner, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
@@ -109,9 +143,9 @@ func (o *ErrorModel) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []ErrorModelErrors and assigns it to the Errors field.
-func (o *ErrorModel) SetErrors(v []ErrorModelErrors) {
-	o.Errors = &v
+// SetErrors gets a reference to the given []ErrorModelErrorsInner and assigns it to the Errors field.
+func (o *ErrorModel) SetErrors(v []ErrorModelErrorsInner) {
+	o.Errors = v
 }
 
 // GetInstance returns the Instance field value if set, zero value otherwise.
@@ -244,6 +278,9 @@ func (o *ErrorModel) SetType(v string) {
 
 func (o ErrorModel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Schema != nil {
+		toSerialize["$schema"] = o.Schema
+	}
 	if o.Detail != nil {
 		toSerialize["detail"] = o.Detail
 	}
