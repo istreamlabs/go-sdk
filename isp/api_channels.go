@@ -25,85 +25,134 @@ type ChannelsApi interface {
 	/*
 	DeleteChannel Delete channel
 
-	Delete a channel and stop publishing.  This action is idempotent.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
+
+Delete a channel and stop publishing.  This action is idempotent.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiDeleteChannelRequest
+
+	Deprecated
 	*/
 	DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest
 
 	// DeleteChannelExecute executes the request
+	// Deprecated
 	DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error)
 
 	/*
 	GetChannel Get Channel
 
-	Get a channel's configuration
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
+
+Get a channel's configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiGetChannelRequest
+
+	Deprecated
 	*/
 	GetChannel(ctx context.Context, channelId string) ApiGetChannelRequest
 
 	// GetChannelExecute executes the request
 	//  @return Channel
+	// Deprecated
 	GetChannelExecute(r ApiGetChannelRequest) (*Channel, *http.Response, error)
 
 	/*
 	GetPlaybackConfig Get Channel Playback Config
 
-	Get a channel's playback configuration
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
+
+Get a channel's playback configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiGetPlaybackConfigRequest
+
+	Deprecated
 	*/
 	GetPlaybackConfig(ctx context.Context, channelId string) ApiGetPlaybackConfigRequest
 
 	// GetPlaybackConfigExecute executes the request
 	//  @return ChannelPlayback
+	// Deprecated
 	GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error)
 
 	/*
 	ListChannels List channels
 
-	Get a list of your channels.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [list-org-channels](#get-/v2/-org-/channels) instead.</b>
+
+Get a list of your channels.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListChannelsRequest
+
+	Deprecated
 	*/
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
 	// ListChannelsExecute executes the request
 	//  @return []Summary2
+	// Deprecated
 	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
+
+	/*
+	PatchChannel Patch channel
+
+	Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiPatchChannelRequest
+
+	Deprecated
+	*/
+	PatchChannel(ctx context.Context, channelId string) ApiPatchChannelRequest
+
+	// PatchChannelExecute executes the request
+	// Deprecated
+	PatchChannelExecute(r ApiPatchChannelRequest) (*http.Response, error)
 
 	/*
 	PutChannel Create/Update channel
 
-	Create or update an existing channel configuration.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
+
+Create or update an existing channel configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiPutChannelRequest
+
+	Deprecated
 	*/
 	PutChannel(ctx context.Context, channelId string) ApiPutChannelRequest
 
 	// PutChannelExecute executes the request
+	// Deprecated
 	PutChannelExecute(r ApiPutChannelRequest) (*http.Response, error)
 
 	/*
 	PutChannelDesiredState Update Channel DesiredState to ON/OFF
 
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
+
+
+
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiPutChannelDesiredStateRequest
+
+	Deprecated
 	*/
 	PutChannelDesiredState(ctx context.Context, channelId string) ApiPutChannelDesiredStateRequest
 
 	// PutChannelDesiredStateExecute executes the request
+	// Deprecated
 	PutChannelDesiredStateExecute(r ApiPutChannelDesiredStateRequest) (*http.Response, error)
 }
 
@@ -114,10 +163,16 @@ type ApiDeleteChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
+	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiDeleteChannelRequest) IfMatch(ifMatch []string) ApiDeleteChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
@@ -138,12 +193,6 @@ func (r ApiDeleteChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) 
 	return r
 }
 
-// Succeeds if the server&#39;s resource matches one of the passed values.
-func (r ApiDeleteChannelRequest) IfMatch(ifMatch []string) ApiDeleteChannelRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
 func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
 	return r.ApiService.DeleteChannelExecute(r)
 }
@@ -151,11 +200,15 @@ func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
 /*
 DeleteChannel Delete channel
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
+
 Delete a channel and stop publishing.  This action is idempotent.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiDeleteChannelRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) DeleteChannel(ctx context.Context, channelId string) ApiDeleteChannelRequest {
 	return ApiDeleteChannelRequest{
@@ -166,6 +219,7 @@ func (a *ChannelsApiService) DeleteChannel(ctx context.Context, channelId string
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
@@ -205,6 +259,9 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*h
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
@@ -213,9 +270,6 @@ func (a *ChannelsApiService) DeleteChannelExecute(r ApiDeleteChannelRequest) (*h
 	}
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -365,11 +419,15 @@ func (r ApiGetChannelRequest) Execute() (*Channel, *http.Response, error) {
 /*
 GetChannel Get Channel
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
+
 Get a channel's configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiGetChannelRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) GetChannel(ctx context.Context, channelId string) ApiGetChannelRequest {
 	return ApiGetChannelRequest{
@@ -381,6 +439,7 @@ func (a *ChannelsApiService) GetChannel(ctx context.Context, channelId string) A
 
 // Execute executes the request
 //  @return Channel
+// Deprecated
 func (a *ChannelsApiService) GetChannelExecute(r ApiGetChannelRequest) (*Channel, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -564,11 +623,15 @@ func (r ApiGetPlaybackConfigRequest) Execute() (*ChannelPlayback, *http.Response
 /*
 GetPlaybackConfig Get Channel Playback Config
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
+
 Get a channel's playback configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiGetPlaybackConfigRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) GetPlaybackConfig(ctx context.Context, channelId string) ApiGetPlaybackConfigRequest {
 	return ApiGetPlaybackConfigRequest{
@@ -580,6 +643,7 @@ func (a *ChannelsApiService) GetPlaybackConfig(ctx context.Context, channelId st
 
 // Execute executes the request
 //  @return ChannelPlayback
+// Deprecated
 func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -741,22 +805,10 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 type ApiListChannelsRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
-	cursor *string
-	pageSize *int32
 	q *string
 	desiredState *string
-}
-
-// Current page cursor
-func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
-	r.cursor = &cursor
-	return r
-}
-
-// Number of items to return
-func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
-	r.pageSize = &pageSize
-	return r
+	cursor *string
+	pageSize *int32
 }
 
 // Search query to match against for filtering a list of channels. This searches the channel ID, name, labels, and source ID.
@@ -771,6 +823,18 @@ func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannel
 	return r
 }
 
+// Current page cursor
+func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
+	r.cursor = &cursor
+	return r
+}
+
+// Number of items to return
+func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
 func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
 	return r.ApiService.ListChannelsExecute(r)
 }
@@ -778,10 +842,14 @@ func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
 /*
 ListChannels List channels
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [list-org-channels](#get-/v2/-org-/channels) instead.</b>
+
 Get a list of your channels.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListChannelsRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
@@ -792,6 +860,7 @@ func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRe
 
 // Execute executes the request
 //  @return []Summary2
+// Deprecated
 func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -811,17 +880,17 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.cursor != nil {
-		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
-	}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
 	if r.q != nil {
 		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
 	}
 	if r.desiredState != nil {
 		localVarQueryParams.Add("desired_state", parameterToString(*r.desiredState, ""))
+	}
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -948,6 +1017,271 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPatchChannelRequest struct {
+	ctx context.Context
+	ApiService ChannelsApi
+	channelId string
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	patchChannelRequestInner *[]PatchChannelRequestInner
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPatchChannelRequest) IfMatch(ifMatch []string) ApiPatchChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiPatchChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPatchChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiPatchChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPatchChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiPatchChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPatchChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+func (r ApiPatchChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchChannelRequest {
+	r.patchChannelRequestInner = &patchChannelRequestInner
+	return r
+}
+
+func (r ApiPatchChannelRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PatchChannelExecute(r)
+}
+
+/*
+PatchChannel Patch channel
+
+Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiPatchChannelRequest
+
+Deprecated
+*/
+func (a *ChannelsApiService) PatchChannel(ctx context.Context, channelId string) ApiPatchChannelRequest {
+	return ApiPatchChannelRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+// Deprecated
+func (a *ChannelsApiService) PatchChannelExecute(r ApiPatchChannelRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.PatchChannel")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
+	// body params
+	localVarPostBody = r.patchChannelRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiPutChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
@@ -955,8 +1289,8 @@ type ApiPutChannelRequest struct {
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
 	validateOnly *bool
+	ifMatch *[]string
 	putChannelRequest *PutChannelRequest
 }
 
@@ -978,15 +1312,15 @@ func (r ApiPutChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) Api
 	return r
 }
 
-// Succeeds if the server&#39;s resource matches one of the passed values.
-func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
 // Validate request but do not otherwise process it
 func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
 	r.validateOnly = &validateOnly
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
+	r.ifMatch = &ifMatch
 	return r
 }
 
@@ -1002,11 +1336,15 @@ func (r ApiPutChannelRequest) Execute() (*http.Response, error) {
 /*
 PutChannel Create/Update channel
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
+
 Create or update an existing channel configuration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiPutChannelRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) PutChannel(ctx context.Context, channelId string) ApiPutChannelRequest {
 	return ApiPutChannelRequest{
@@ -1017,6 +1355,7 @@ func (a *ChannelsApiService) PutChannel(ctx context.Context, channelId string) A
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
@@ -1214,18 +1553,12 @@ type ApiPutChannelDesiredStateRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
-	endPlaylist *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
+	endPlaylist *bool
 	desiredStateBody *DesiredStateBody
-}
-
-// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
-func (r ApiPutChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutChannelDesiredStateRequest {
-	r.endPlaylist = &endPlaylist
-	return r
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -1252,6 +1585,12 @@ func (r ApiPutChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince ti
 	return r
 }
 
+// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+func (r ApiPutChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutChannelDesiredStateRequest {
+	r.endPlaylist = &endPlaylist
+	return r
+}
+
 func (r ApiPutChannelDesiredStateRequest) DesiredStateBody(desiredStateBody DesiredStateBody) ApiPutChannelDesiredStateRequest {
 	r.desiredStateBody = &desiredStateBody
 	return r
@@ -1264,9 +1603,15 @@ func (r ApiPutChannelDesiredStateRequest) Execute() (*http.Response, error) {
 /*
 PutChannelDesiredState Update Channel DesiredState to ON/OFF
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
+
+
+
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiPutChannelDesiredStateRequest
+
+Deprecated
 */
 func (a *ChannelsApiService) PutChannelDesiredState(ctx context.Context, channelId string) ApiPutChannelDesiredStateRequest {
 	return ApiPutChannelDesiredStateRequest{
@@ -1277,6 +1622,7 @@ func (a *ChannelsApiService) PutChannelDesiredState(ctx context.Context, channel
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelsApiService) PutChannelDesiredStateExecute(r ApiPutChannelDesiredStateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut

@@ -24,16 +24,21 @@ type AuditOperationsApi interface {
 	/*
 	GetChannelTimeline Get Channel Timeline
 
-	Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
+
+Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiGetChannelTimelineRequest
+
+	Deprecated
 	*/
 	GetChannelTimeline(ctx context.Context, channelId string) ApiGetChannelTimelineRequest
 
 	// GetChannelTimelineExecute executes the request
 	//  @return []ChannelTimelineEntry
+	// Deprecated
 	GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error)
 }
 
@@ -74,11 +79,15 @@ func (r ApiGetChannelTimelineRequest) Execute() ([]ChannelTimelineEntry, *http.R
 /*
 GetChannelTimeline Get Channel Timeline
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
+
 Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiGetChannelTimelineRequest
+
+Deprecated
 */
 func (a *AuditOperationsApiService) GetChannelTimeline(ctx context.Context, channelId string) ApiGetChannelTimelineRequest {
 	return ApiGetChannelTimelineRequest{
@@ -90,6 +99,7 @@ func (a *AuditOperationsApiService) GetChannelTimeline(ctx context.Context, chan
 
 // Execute executes the request
 //  @return []ChannelTimelineEntry
+// Deprecated
 func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet

@@ -43,11 +43,11 @@ type ChannelsForOrganizationApi interface {
 	Get a channel's configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiGetOrgChannelRequest
 	*/
-	GetOrgChannel(ctx context.Context, channelId string, org string) ApiGetOrgChannelRequest
+	GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest
 
 	// GetOrgChannelExecute executes the request
 	//  @return Channel
@@ -85,6 +85,21 @@ type ChannelsForOrganizationApi interface {
 	ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error)
 
 	/*
+	PatchOrgChannel Patch org-channel
+
+	Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiPatchOrgChannelRequest
+	*/
+	PatchOrgChannel(ctx context.Context, channelId string, org string) ApiPatchOrgChannelRequest
+
+	// PatchOrgChannelExecute executes the request
+	PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error)
+
+	/*
 	PutOrgChannel Create/Update channel
 
 	Create or update an existing channel configuration.
@@ -98,6 +113,19 @@ type ChannelsForOrganizationApi interface {
 
 	// PutOrgChannelExecute executes the request
 	PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error)
+
+	/*
+	PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiPutOrgChannelDesiredStateRequest
+	*/
+	PutOrgChannelDesiredState(ctx context.Context, channelId string, org string) ApiPutOrgChannelDesiredStateRequest
+
+	// PutOrgChannelDesiredStateExecute executes the request
+	PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error)
 }
 
 // ChannelsForOrganizationApiService ChannelsForOrganizationApi service
@@ -108,22 +136,10 @@ type ApiDeleteOrgChannelRequest struct {
 	ApiService ChannelsForOrganizationApi
 	org string
 	channelId string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
 	ifMatch *[]string
-}
-
-// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
-func (r ApiDeleteOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteOrgChannelRequest {
-	r.ifNoneMatch = &ifNoneMatch
-	return r
-}
-
-// Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiDeleteOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteOrgChannelRequest {
-	r.ifModifiedSince = &ifModifiedSince
-	return r
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
@@ -135,6 +151,18 @@ func (r ApiDeleteOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Tim
 // Succeeds if the server&#39;s resource matches one of the passed values.
 func (r ApiDeleteOrgChannelRequest) IfMatch(ifMatch []string) ApiDeleteOrgChannelRequest {
 	r.ifMatch = &ifMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiDeleteOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteOrgChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiDeleteOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteOrgChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
@@ -202,17 +230,17 @@ func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteO
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifNoneMatch != nil {
-		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
-	}
-	if r.ifModifiedSince != nil {
-		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
-	}
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	if r.ifMatch != nil {
 		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -324,24 +352,12 @@ func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteO
 type ApiGetOrgChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
-	channelId string
 	org string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
+	channelId string
 	ifMatch *[]string
 	ifNoneMatch *[]string
-}
-
-// Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiGetOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetOrgChannelRequest {
-	r.ifModifiedSince = &ifModifiedSince
-	return r
-}
-
-// Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiGetOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetOrgChannelRequest {
-	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -356,6 +372,18 @@ func (r ApiGetOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiGetOrgChan
 	return r
 }
 
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiGetOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetOrgChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiGetOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetOrgChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
 func (r ApiGetOrgChannelRequest) Execute() (*Channel, *http.Response, error) {
 	return r.ApiService.GetOrgChannelExecute(r)
 }
@@ -366,16 +394,16 @@ GetOrgChannel Get Channel
 Get a channel's configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiGetOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) GetOrgChannel(ctx context.Context, channelId string, org string) ApiGetOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest {
 	return ApiGetOrgChannelRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -395,8 +423,8 @@ func (a *ChannelsForOrganizationApiService) GetOrgChannelExecute(r ApiGetOrgChan
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -422,17 +450,17 @@ func (a *ChannelsForOrganizationApiService) GetOrgChannelExecute(r ApiGetOrgChan
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifModifiedSince != nil {
-		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
-	}
-	if r.ifUnmodifiedSince != nil {
-		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
 	if r.ifMatch != nil {
 		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -747,21 +775,21 @@ type ApiListOrgChannelsRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
 	org string
-	pageSize *int32
 	cursor *string
+	pageSize *int32
 	q *string
 	desiredState *string
-}
-
-// Number of items to return
-func (r ApiListOrgChannelsRequest) PageSize(pageSize int32) ApiListOrgChannelsRequest {
-	r.pageSize = &pageSize
-	return r
 }
 
 // Current page cursor
 func (r ApiListOrgChannelsRequest) Cursor(cursor string) ApiListOrgChannelsRequest {
 	r.cursor = &cursor
+	return r
+}
+
+// Number of items to return
+func (r ApiListOrgChannelsRequest) PageSize(pageSize int32) ApiListOrgChannelsRequest {
+	r.pageSize = &pageSize
 	return r
 }
 
@@ -820,11 +848,11 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgC
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
 	}
 	if r.q != nil {
 		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
@@ -957,17 +985,289 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgC
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type ApiPatchOrgChannelRequest struct {
+	ctx context.Context
+	ApiService ChannelsForOrganizationApi
+	channelId string
+	org string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	ifMatch *[]string
+	ifNoneMatch *[]string
+	patchChannelRequestInner *[]PatchChannelRequestInner
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiPatchOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPatchOrgChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPatchOrgChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPatchOrgChannelRequest) IfMatch(ifMatch []string) ApiPatchOrgChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiPatchOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPatchOrgChannelRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+func (r ApiPatchOrgChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchOrgChannelRequest {
+	r.patchChannelRequestInner = &patchChannelRequestInner
+	return r
+}
+
+func (r ApiPatchOrgChannelRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PatchOrgChannelExecute(r)
+}
+
+/*
+PatchOrgChannel Patch org-channel
+
+Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiPatchOrgChannelRequest
+*/
+func (a *ChannelsForOrganizationApiService) PatchOrgChannel(ctx context.Context, channelId string, org string) ApiPatchOrgChannelRequest {
+	return ApiPatchOrgChannelRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPatch
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PatchOrgChannel")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	// body params
+	localVarPostBody = r.patchChannelRequestInner
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 415 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiPutOrgChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
 	channelId string
 	org string
+	validateOnly *bool
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	validateOnly *bool
 	ifMatch *[]string
 	putOrgChannelRequest *PutOrgChannelRequest
+}
+
+// Validate request but do not otherwise process it
+func (r ApiPutOrgChannelRequest) ValidateOnly(validateOnly bool) ApiPutOrgChannelRequest {
+	r.validateOnly = &validateOnly
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
@@ -985,12 +1285,6 @@ func (r ApiPutOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiP
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
 func (r ApiPutOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutOrgChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-// Validate request but do not otherwise process it
-func (r ApiPutOrgChannelRequest) ValidateOnly(validateOnly bool) ApiPutOrgChannelRequest {
-	r.validateOnly = &validateOnly
 	return r
 }
 
@@ -1159,6 +1453,250 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiPutOrgChannelDesiredStateRequest struct {
+	ctx context.Context
+	ApiService ChannelsForOrganizationApi
+	channelId string
+	org string
+	ifNoneMatch *[]string
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	ifMatch *[]string
+	endPlaylist *bool
+	desiredStateBody *DesiredStateBody
+}
+
+// Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
+func (r ApiPutOrgChannelDesiredStateRequest) IfNoneMatch(ifNoneMatch []string) ApiPutOrgChannelDesiredStateRequest {
+	r.ifNoneMatch = &ifNoneMatch
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiPutOrgChannelDesiredStateRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutOrgChannelDesiredStateRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiPutOrgChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutOrgChannelDesiredStateRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutOrgChannelDesiredStateRequest) IfMatch(ifMatch []string) ApiPutOrgChannelDesiredStateRequest {
+	r.ifMatch = &ifMatch
+	return r
+}
+
+// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+func (r ApiPutOrgChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutOrgChannelDesiredStateRequest {
+	r.endPlaylist = &endPlaylist
+	return r
+}
+
+func (r ApiPutOrgChannelDesiredStateRequest) DesiredStateBody(desiredStateBody DesiredStateBody) ApiPutOrgChannelDesiredStateRequest {
+	r.desiredStateBody = &desiredStateBody
+	return r
+}
+
+func (r ApiPutOrgChannelDesiredStateRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutOrgChannelDesiredStateExecute(r)
+}
+
+/*
+PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiPutOrgChannelDesiredStateRequest
+*/
+func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredState(ctx context.Context, channelId string, org string) ApiPutOrgChannelDesiredStateRequest {
+	return ApiPutOrgChannelDesiredStateRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PutOrgChannelDesiredState")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/desired-state"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.endPlaylist != nil {
+		localVarQueryParams.Add("end_playlist", parameterToString(*r.endPlaylist, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ifNoneMatch != nil {
+		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
+	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
+	// body params
+	localVarPostBody = r.desiredStateBody
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

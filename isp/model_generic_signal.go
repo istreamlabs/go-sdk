@@ -15,13 +15,13 @@ import (
 
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
-	// Splice duration (ms).  If no duration or a duration of 0 then the splice is indifinite.
+	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
 	Duration *int32 `json:"duration,omitempty"`
-	// Event ID
+	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
 	EventId int32 `json:"event_id"`
-	// Segment type
+	// The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc.
 	SegmentType string `json:"segment_type"`
-	// Signal type
+	// Whether this signal will start/end/etc a signaling segment
 	SignalType string `json:"signal_type"`
 	// Slate url
 	SlateUri *string `json:"slate_uri,omitempty"`

@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -24,171 +25,380 @@ type ChannelOperationsApi interface {
 	/*
 	ClearDvrWindow Clear DVR Window
 
-	Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+
+Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiClearDvrWindowRequest
+
+	Deprecated
 	*/
 	ClearDvrWindow(ctx context.Context, channelId string) ApiClearDvrWindowRequest
 
 	// ClearDvrWindowExecute executes the request
+	// Deprecated
 	ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*http.Response, error)
+
+	/*
+	GetBetaSignalLogs Signal Logs
+
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+
+Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
+
+Returns the signalling history for a channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiGetBetaSignalLogsRequest
+
+	Deprecated
+	*/
+	GetBetaSignalLogs(ctx context.Context, channelId string) ApiGetBetaSignalLogsRequest
+
+	// GetBetaSignalLogsExecute executes the request
+	//  @return []SignalingLog
+	// Deprecated
+	GetBetaSignalLogsExecute(r ApiGetBetaSignalLogsRequest) ([]SignalingLog, *http.Response, error)
 
 	/*
 	GetSignals Get Signals
 
-	Returns the active signals for a channel.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Returns the active signals for a channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiGetSignalsRequest
+
+	Deprecated
 	*/
 	GetSignals(ctx context.Context, channelId string) ApiGetSignalsRequest
 
 	// GetSignalsExecute executes the request
 	//  @return []Segment
+	// Deprecated
 	GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *http.Response, error)
 
 	/*
 	InsertId3 Insert ID3
 
-	Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+
+Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiInsertId3Request
+
+	Deprecated
 	*/
 	InsertId3(ctx context.Context, channelId string) ApiInsertId3Request
 
 	// InsertId3Execute executes the request
 	//  @return InsertMetadataResult
+	// Deprecated
 	InsertId3Execute(r ApiInsertId3Request) (*InsertMetadataResult, *http.Response, error)
 
 	/*
 	InsertScte35 Insert SCTE-35
 
-	Inserts a SCTE-35 formatted binary payload into the channel.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+
+Inserts a SCTE-35 formatted binary payload into the channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiInsertScte35Request
+
+	Deprecated
 	*/
 	InsertScte35(ctx context.Context, channelId string) ApiInsertScte35Request
 
 	// InsertScte35Execute executes the request
+	// Deprecated
 	InsertScte35Execute(r ApiInsertScte35Request) (*http.Response, error)
 
 	/*
 	PreviewImage Get Preview Image
 
-	Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+
+Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiPreviewImageRequest
+
+	Deprecated
 	*/
 	PreviewImage(ctx context.Context, channelId string) ApiPreviewImageRequest
 
 	// PreviewImageExecute executes the request
+	// Deprecated
 	PreviewImageExecute(r ApiPreviewImageRequest) (*http.Response, error)
+
+	/*
+	PreviewStreams Get Preview Streams
+
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+
+Get a default url that links to a preview of the channel. Additionally, all possible
+video and audio tracks are provided back and can be interchanged in the given url.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@return ApiPreviewStreamsRequest
+
+	Deprecated
+	*/
+	PreviewStreams(ctx context.Context, channelId string) ApiPreviewStreamsRequest
+
+	// PreviewStreamsExecute executes the request
+	//  @return GetPreviewStreamsResponse
+	// Deprecated
+	PreviewStreamsExecute(r ApiPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error)
 
 	/*
 	ProgramEnd Program End
 
-	Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiProgramEndRequest
+
+	Deprecated
 	*/
 	ProgramEnd(ctx context.Context, channelId string) ApiProgramEndRequest
 
 	// ProgramEndExecute executes the request
+	// Deprecated
 	ProgramEndExecute(r ApiProgramEndRequest) (*http.Response, error)
 
 	/*
 	ProgramStart Program Start
 
-	Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiProgramStartRequest
+
+	Deprecated
 	*/
 	ProgramStart(ctx context.Context, channelId string) ApiProgramStartRequest
 
 	// ProgramStartExecute executes the request
+	// Deprecated
 	ProgramStartExecute(r ApiProgramStartRequest) (*http.Response, error)
 
 	/*
 	Signal Generic Signal
 
-	Inserts a SCTE-35 message into the channel.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
+
+The breakaway and resumption signal types are only valid with program segments.
+
+The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+### Program Start
+
+Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "start"
+	}
+]
+```
+
+### Program End
+
+Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "end"
+	}
+]
+```
+
+
+### Slate In
+
+Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "start",
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Slate Out
+
+Removes any active slate and shows the source video content.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "end"
+	}
+]
+```
+
+### Splice Insert Start
+
+Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "start",
+		"duration": 25000,
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Splice Insert End
+
+Removes an active splice signaling segment from the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "end"
+	}
+]
+```
+
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiSignalRequest
+
+	Deprecated
 	*/
 	Signal(ctx context.Context, channelId string) ApiSignalRequest
 
 	// SignalExecute executes the request
+	// Deprecated
 	SignalExecute(r ApiSignalRequest) (*http.Response, error)
 
 	/*
 	SlateIn Slate in
 
-	Replaces the current video source with a slate image or video.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Replaces the current video source with a slate image or video.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiSlateInRequest
+
+	Deprecated
 	*/
 	SlateIn(ctx context.Context, channelId string) ApiSlateInRequest
 
 	// SlateInExecute executes the request
+	// Deprecated
 	SlateInExecute(r ApiSlateInRequest) (*http.Response, error)
 
 	/*
 	SlateOut Slate out
 
-	Removes any active slate and show the source video content.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Removes any active slate and show the source video content.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiSlateOutRequest
+
+	Deprecated
 	*/
 	SlateOut(ctx context.Context, channelId string) ApiSlateOutRequest
 
 	// SlateOutExecute executes the request
+	// Deprecated
 	SlateOutExecute(r ApiSlateOutRequest) (*http.Response, error)
 
 	/*
 	SpliceEnd Splice Insert End
 
-	Inserts a 'splice insert end' SCTE-35 message into the channel.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts a 'splice insert end' SCTE-35 message into the channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiSpliceEndRequest
+
+	Deprecated
 	*/
 	SpliceEnd(ctx context.Context, channelId string) ApiSpliceEndRequest
 
 	// SpliceEndExecute executes the request
+	// Deprecated
 	SpliceEndExecute(r ApiSpliceEndRequest) (*http.Response, error)
 
 	/*
 	SpliceStart Splice Insert Start
 
-	Inserts a 'splice insert start' SCTE-35 message into the channel.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts a 'splice insert start' SCTE-35 message into the channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
 	@return ApiSpliceStartRequest
+
+	Deprecated
 	*/
 	SpliceStart(ctx context.Context, channelId string) ApiSpliceStartRequest
 
 	// SpliceStartExecute executes the request
+	// Deprecated
 	SpliceStartExecute(r ApiSpliceStartRequest) (*http.Response, error)
 }
 
@@ -208,11 +418,15 @@ func (r ApiClearDvrWindowRequest) Execute() (*http.Response, error) {
 /*
 ClearDvrWindow Clear DVR Window
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiClearDvrWindowRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) ClearDvrWindow(ctx context.Context, channelId string) ApiClearDvrWindowRequest {
 	return ApiClearDvrWindowRequest{
@@ -223,6 +437,7 @@ func (a *ChannelOperationsApiService) ClearDvrWindow(ctx context.Context, channe
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
@@ -339,6 +554,220 @@ func (a *ChannelOperationsApiService) ClearDvrWindowExecute(r ApiClearDvrWindowR
 	return localVarHTTPResponse, nil
 }
 
+type ApiGetBetaSignalLogsRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsApi
+	channelId string
+	from *time.Time
+	to *time.Time
+}
+
+// ISO 8601 UTC timestamp for start range of date filtering
+func (r ApiGetBetaSignalLogsRequest) From(from time.Time) ApiGetBetaSignalLogsRequest {
+	r.from = &from
+	return r
+}
+
+// ISO 8601 UTC timestamp for end range of date filtering
+func (r ApiGetBetaSignalLogsRequest) To(to time.Time) ApiGetBetaSignalLogsRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiGetBetaSignalLogsRequest) Execute() ([]SignalingLog, *http.Response, error) {
+	return r.ApiService.GetBetaSignalLogsExecute(r)
+}
+
+/*
+GetBetaSignalLogs Signal Logs
+
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+
+Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
+
+Returns the signalling history for a channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiGetBetaSignalLogsRequest
+
+Deprecated
+*/
+func (a *ChannelOperationsApiService) GetBetaSignalLogs(ctx context.Context, channelId string) ApiGetBetaSignalLogsRequest {
+	return ApiGetBetaSignalLogsRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+//  @return []SignalingLog
+// Deprecated
+func (a *ChannelOperationsApiService) GetBetaSignalLogsExecute(r ApiGetBetaSignalLogsRequest) ([]SignalingLog, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SignalingLog
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.GetBetaSignalLogs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/beta/logs/signaling"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]SignalingLog)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiGetSignalsRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsApi
@@ -352,11 +781,15 @@ func (r ApiGetSignalsRequest) Execute() ([]Segment, *http.Response, error) {
 /*
 GetSignals Get Signals
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Returns the active signals for a channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiGetSignalsRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) GetSignals(ctx context.Context, channelId string) ApiGetSignalsRequest {
 	return ApiGetSignalsRequest{
@@ -368,6 +801,7 @@ func (a *ChannelOperationsApiService) GetSignals(ctx context.Context, channelId 
 
 // Execute executes the request
 //  @return []Segment
+// Deprecated
 func (a *ChannelOperationsApiService) GetSignalsExecute(r ApiGetSignalsRequest) ([]Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -552,11 +986,15 @@ func (r ApiInsertId3Request) Execute() (*InsertMetadataResult, *http.Response, e
 /*
 InsertId3 Insert ID3
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiInsertId3Request
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) InsertId3(ctx context.Context, channelId string) ApiInsertId3Request {
 	return ApiInsertId3Request{
@@ -568,6 +1006,7 @@ func (a *ChannelOperationsApiService) InsertId3(ctx context.Context, channelId s
 
 // Execute executes the request
 //  @return InsertMetadataResult
+// Deprecated
 func (a *ChannelOperationsApiService) InsertId3Execute(r ApiInsertId3Request) (*InsertMetadataResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -770,11 +1209,15 @@ func (r ApiInsertScte35Request) Execute() (*http.Response, error) {
 /*
 InsertScte35 Insert SCTE-35
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+
 Inserts a SCTE-35 formatted binary payload into the channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiInsertScte35Request
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) InsertScte35(ctx context.Context, channelId string) ApiInsertScte35Request {
 	return ApiInsertScte35Request{
@@ -785,6 +1228,7 @@ func (a *ChannelOperationsApiService) InsertScte35(ctx context.Context, channelI
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) InsertScte35Execute(r ApiInsertScte35Request) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -953,11 +1397,15 @@ func (r ApiPreviewImageRequest) Execute() (*http.Response, error) {
 /*
 PreviewImage Get Preview Image
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiPreviewImageRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) PreviewImage(ctx context.Context, channelId string) ApiPreviewImageRequest {
 	return ApiPreviewImageRequest{
@@ -968,6 +1416,7 @@ func (a *ChannelOperationsApiService) PreviewImage(ctx context.Context, channelI
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1117,6 +1566,209 @@ func (a *ChannelOperationsApiService) PreviewImageExecute(r ApiPreviewImageReque
 	return localVarHTTPResponse, nil
 }
 
+type ApiPreviewStreamsRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsApi
+	channelId string
+}
+
+func (r ApiPreviewStreamsRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
+	return r.ApiService.PreviewStreamsExecute(r)
+}
+
+/*
+PreviewStreams Get Preview Streams
+
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+
+Get a default url that links to a preview of the channel. Additionally, all possible
+video and audio tracks are provided back and can be interchanged in the given url.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @return ApiPreviewStreamsRequest
+
+Deprecated
+*/
+func (a *ChannelOperationsApiService) PreviewStreams(ctx context.Context, channelId string) ApiPreviewStreamsRequest {
+	return ApiPreviewStreamsRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+//  @return GetPreviewStreamsResponse
+// Deprecated
+func (a *ChannelOperationsApiService) PreviewStreamsExecute(r ApiPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPreviewStreamsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.PreviewStreams")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/channels/{channel-id}/preview-streams"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*GetPreviewStreamsResponse)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type ApiProgramEndRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsApi
@@ -1136,11 +1788,15 @@ func (r ApiProgramEndRequest) Execute() (*http.Response, error) {
 /*
 ProgramEnd Program End
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiProgramEndRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) ProgramEnd(ctx context.Context, channelId string) ApiProgramEndRequest {
 	return ApiProgramEndRequest{
@@ -1151,6 +1807,7 @@ func (a *ChannelOperationsApiService) ProgramEnd(ctx context.Context, channelId 
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) ProgramEndExecute(r ApiProgramEndRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1328,11 +1985,15 @@ func (r ApiProgramStartRequest) Execute() (*http.Response, error) {
 /*
 ProgramStart Program Start
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiProgramStartRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) ProgramStart(ctx context.Context, channelId string) ApiProgramStartRequest {
 	return ApiProgramStartRequest{
@@ -1343,6 +2004,7 @@ func (a *ChannelOperationsApiService) ProgramStart(ctx context.Context, channelI
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) ProgramStartExecute(r ApiProgramStartRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1520,11 +2182,121 @@ func (r ApiSignalRequest) Execute() (*http.Response, error) {
 /*
 Signal Generic Signal
 
-Inserts a SCTE-35 message into the channel.
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
+Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
+
+The breakaway and resumption signal types are only valid with program segments.
+
+The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+### Program Start
+
+Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "start"
+	}
+]
+```
+
+### Program End
+
+Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "end"
+	}
+]
+```
+
+
+### Slate In
+
+Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "start",
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Slate Out
+
+Removes any active slate and shows the source video content.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "end"
+	}
+]
+```
+
+### Splice Insert Start
+
+Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "start",
+		"duration": 25000,
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Splice Insert End
+
+Removes an active splice signaling segment from the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "end"
+	}
+]
+```
+
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiSignalRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) Signal(ctx context.Context, channelId string) ApiSignalRequest {
 	return ApiSignalRequest{
@@ -1535,6 +2307,7 @@ func (a *ChannelOperationsApiService) Signal(ctx context.Context, channelId stri
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1702,11 +2475,15 @@ func (r ApiSlateInRequest) Execute() (*http.Response, error) {
 /*
 SlateIn Slate in
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Replaces the current video source with a slate image or video.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiSlateInRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) SlateIn(ctx context.Context, channelId string) ApiSlateInRequest {
 	return ApiSlateInRequest{
@@ -1717,6 +2494,7 @@ func (a *ChannelOperationsApiService) SlateIn(ctx context.Context, channelId str
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) SlateInExecute(r ApiSlateInRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -1888,11 +2666,15 @@ func (r ApiSlateOutRequest) Execute() (*http.Response, error) {
 /*
 SlateOut Slate out
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Removes any active slate and show the source video content.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiSlateOutRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) SlateOut(ctx context.Context, channelId string) ApiSlateOutRequest {
 	return ApiSlateOutRequest{
@@ -1903,6 +2685,7 @@ func (a *ChannelOperationsApiService) SlateOut(ctx context.Context, channelId st
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) SlateOutExecute(r ApiSlateOutRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
@@ -2058,11 +2841,15 @@ func (r ApiSpliceEndRequest) Execute() (*http.Response, error) {
 /*
 SpliceEnd Splice Insert End
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Inserts a 'splice insert end' SCTE-35 message into the channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiSpliceEndRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) SpliceEnd(ctx context.Context, channelId string) ApiSpliceEndRequest {
 	return ApiSpliceEndRequest{
@@ -2073,6 +2860,7 @@ func (a *ChannelOperationsApiService) SpliceEnd(ctx context.Context, channelId s
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) SpliceEndExecute(r ApiSpliceEndRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
@@ -2250,11 +3038,15 @@ func (r ApiSpliceStartRequest) Execute() (*http.Response, error) {
 /*
 SpliceStart Splice Insert Start
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+
 Inserts a 'splice insert start' SCTE-35 message into the channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
  @return ApiSpliceStartRequest
+
+Deprecated
 */
 func (a *ChannelOperationsApiService) SpliceStart(ctx context.Context, channelId string) ApiSpliceStartRequest {
 	return ApiSpliceStartRequest{
@@ -2265,6 +3057,7 @@ func (a *ChannelOperationsApiService) SpliceStart(ctx context.Context, channelId
 }
 
 // Execute executes the request
+// Deprecated
 func (a *ChannelOperationsApiService) SpliceStartExecute(r ApiSpliceStartRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost

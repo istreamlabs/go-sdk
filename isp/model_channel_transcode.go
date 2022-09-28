@@ -21,6 +21,8 @@ type ChannelTranscode struct {
 	FeatureFlags []string `json:"feature_flags,omitempty"`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
 	Id3Mode *string `json:"id3_mode,omitempty"`
+	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
+	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty"`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
 	ResizeMode *string `json:"resize_mode,omitempty"`
 	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
@@ -141,6 +143,38 @@ func (o *ChannelTranscode) HasId3Mode() bool {
 // SetId3Mode gets a reference to the given string and assigns it to the Id3Mode field.
 func (o *ChannelTranscode) SetId3Mode(v string) {
 	o.Id3Mode = &v
+}
+
+// GetOverlays returns the Overlays field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetOverlays() []ChannelTranscodeOverlaysInner {
+	if o == nil || o.Overlays == nil {
+		var ret []ChannelTranscodeOverlaysInner
+		return ret
+	}
+	return o.Overlays
+}
+
+// GetOverlaysOk returns a tuple with the Overlays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetOverlaysOk() ([]ChannelTranscodeOverlaysInner, bool) {
+	if o == nil || o.Overlays == nil {
+		return nil, false
+	}
+	return o.Overlays, true
+}
+
+// HasOverlays returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasOverlays() bool {
+	if o != nil && o.Overlays != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOverlays gets a reference to the given []ChannelTranscodeOverlaysInner and assigns it to the Overlays field.
+func (o *ChannelTranscode) SetOverlays(v []ChannelTranscodeOverlaysInner) {
+	o.Overlays = v
 }
 
 // GetResizeMode returns the ResizeMode field value if set, zero value otherwise.
@@ -281,6 +315,9 @@ func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
 	}
 	if o.Id3Mode != nil {
 		toSerialize["id3_mode"] = o.Id3Mode
+	}
+	if o.Overlays != nil {
+		toSerialize["overlays"] = o.Overlays
 	}
 	if o.ResizeMode != nil {
 		toSerialize["resize_mode"] = o.ResizeMode

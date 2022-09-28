@@ -24,30 +24,40 @@ type SourcesApi interface {
 	/*
 	GetSource Get Source
 
-	Get a source's configuration
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+
+Get a source's configuration
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param sourceId Unique source identifier
 	@return ApiGetSourceRequest
+
+	Deprecated
 	*/
 	GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest
 
 	// GetSourceExecute executes the request
 	//  @return Source
+	// Deprecated
 	GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error)
 
 	/*
 	ListSources List Sources
 
-	Get a list of sources that are used to create channels.
+	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+
+Get a list of sources that are used to create channels.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListSourcesRequest
+
+	Deprecated
 	*/
 	ListSources(ctx context.Context) ApiListSourcesRequest
 
 	// ListSourcesExecute executes the request
 	//  @return []Summary
+	// Deprecated
 	ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error)
 }
 
@@ -67,11 +77,15 @@ func (r ApiGetSourceRequest) Execute() (*Source, *http.Response, error) {
 /*
 GetSource Get Source
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+
 Get a source's configuration
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param sourceId Unique source identifier
  @return ApiGetSourceRequest
+
+Deprecated
 */
 func (a *SourcesApiService) GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest {
 	return ApiGetSourceRequest{
@@ -83,6 +97,7 @@ func (a *SourcesApiService) GetSource(ctx context.Context, sourceId string) ApiG
 
 // Execute executes the request
 //  @return Source
+// Deprecated
 func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -254,10 +269,14 @@ func (r ApiListSourcesRequest) Execute() ([]Summary, *http.Response, error) {
 /*
 ListSources List Sources
 
+<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+
 Get a list of sources that are used to create channels.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListSourcesRequest
+
+Deprecated
 */
 func (a *SourcesApiService) ListSources(ctx context.Context) ApiListSourcesRequest {
 	return ApiListSourcesRequest{
@@ -268,6 +287,7 @@ func (a *SourcesApiService) ListSources(ctx context.Context) ApiListSourcesReque
 
 // Execute executes the request
 //  @return []Summary
+// Deprecated
 func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet

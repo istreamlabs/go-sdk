@@ -16,6 +16,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 
@@ -52,6 +53,24 @@ type ChannelOperationsForOrganizationApi interface {
 	GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error)
 
 	/*
+	GetOrgSignalLogs Signal Logs
+
+	Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
+
+Returns the signalling history for a channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiGetOrgSignalLogsRequest
+	*/
+	GetOrgSignalLogs(ctx context.Context, channelId string, org string) ApiGetOrgSignalLogsRequest
+
+	// GetOrgSignalLogsExecute executes the request
+	//  @return []SignalingLog
+	GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error)
+
+	/*
 	GetOrgSignals Get Signals
 
 	Returns the active signals for a channel.
@@ -84,16 +103,154 @@ type ChannelOperationsForOrganizationApi interface {
 	InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error)
 
 	/*
-	PostOrgSignals Generic Signal
+	InsertOrgScte35 Insert SCTE-35
 
-	Inserts a SCTE-35 message into the channel.
+	Inserts a SCTE-35 formatted binary payload into the channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
+	@return ApiInsertOrgScte35Request
+	*/
+	InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request
+
+	// InsertOrgScte35Execute executes the request
+	InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error)
+
+	/*
+	OrgPreviewStreams Get Preview Streams
+
+	Get a default url that links to a preview of the channel. Additionally, all possible
+video and audio tracks are provided back and can be interchanged in the given url.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiOrgPreviewStreamsRequest
+	*/
+	OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest
+
+	// OrgPreviewStreamsExecute executes the request
+	//  @return GetPreviewStreamsResponse
+	OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error)
+
+	/*
+	PostOrgSignals Generic Signal
+
+	Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
+
+The breakaway and resumption signal types are only valid with program segments.
+
+The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+### Program Start
+
+Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "start"
+	}
+]
+```
+
+### Program End
+
+Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "end"
+	}
+]
+```
+
+
+### Slate In
+
+Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "start",
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Slate Out
+
+Removes any active slate and shows the source video content.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "end"
+	}
+]
+```
+
+### Splice Insert Start
+
+Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "start",
+		"duration": 25000,
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Splice Insert End
+
+Removes an active splice signaling segment from the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "end"
+	}
+]
+```
+
+
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
 	@return ApiPostOrgSignalsRequest
 	*/
-	PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest
+	PostOrgSignals(ctx context.Context, channelId string, org string) ApiPostOrgSignalsRequest
 
 	// PostOrgSignalsExecute executes the request
 	PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) (*http.Response, error)
@@ -436,6 +593,219 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+type ApiGetOrgSignalLogsRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
+	from *time.Time
+	to *time.Time
+}
+
+// ISO 8601 UTC timestamp for start range of date filtering
+func (r ApiGetOrgSignalLogsRequest) From(from time.Time) ApiGetOrgSignalLogsRequest {
+	r.from = &from
+	return r
+}
+
+// ISO 8601 UTC timestamp for end range of date filtering
+func (r ApiGetOrgSignalLogsRequest) To(to time.Time) ApiGetOrgSignalLogsRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiGetOrgSignalLogsRequest) Execute() ([]SignalingLog, *http.Response, error) {
+	return r.ApiService.GetOrgSignalLogsExecute(r)
+}
+
+/*
+GetOrgSignalLogs Signal Logs
+
+Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
+
+Returns the signalling history for a channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiGetOrgSignalLogsRequest
+*/
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogs(ctx context.Context, channelId string, org string) ApiGetOrgSignalLogsRequest {
+	return ApiGetOrgSignalLogsRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+//  @return []SignalingLog
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SignalingLog
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgSignalLogs")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/beta/logs/signaling"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]SignalingLog)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiGetOrgSignalsRequest struct {
@@ -858,11 +1228,399 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiIn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPostOrgSignalsRequest struct {
+type ApiInsertOrgScte35Request struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
 	org string
 	channelId string
+	scte35 *Scte35
+}
+
+func (r ApiInsertOrgScte35Request) Scte35(scte35 Scte35) ApiInsertOrgScte35Request {
+	r.scte35 = &scte35
+	return r
+}
+
+func (r ApiInsertOrgScte35Request) Execute() (*http.Response, error) {
+	return r.ApiService.InsertOrgScte35Execute(r)
+}
+
+/*
+InsertOrgScte35 Insert SCTE-35
+
+Inserts a SCTE-35 formatted binary payload into the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiInsertOrgScte35Request
+*/
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request {
+	return ApiInsertOrgScte35Request{
+		ApiService: a,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgScte35")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/scte35"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.scte35
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
+type ApiOrgPreviewStreamsRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	org string
+	channelId string
+}
+
+func (r ApiOrgPreviewStreamsRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
+	return r.ApiService.OrgPreviewStreamsExecute(r)
+}
+
+/*
+OrgPreviewStreams Get Preview Streams
+
+Get a default url that links to a preview of the channel. Additionally, all possible
+video and audio tracks are provided back and can be interchanged in the given url.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiOrgPreviewStreamsRequest
+*/
+func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest {
+	return ApiOrgPreviewStreamsRequest{
+		ApiService: a,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+//  @return GetPreviewStreamsResponse
+func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPreviewStreamsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPreviewStreams")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/preview-streams"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*GetPreviewStreamsResponse)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiPostOrgSignalsRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
 	genericSignal *[]GenericSignal
 }
 
@@ -878,19 +1636,125 @@ func (r ApiPostOrgSignalsRequest) Execute() (*http.Response, error) {
 /*
 PostOrgSignals Generic Signal
 
-Inserts a SCTE-35 message into the channel.
+Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
+
+The breakaway and resumption signal types are only valid with program segments.
+
+The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+### Program Start
+
+Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "start"
+	}
+]
+```
+
+### Program End
+
+Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "end"
+	}
+]
+```
+
+
+### Slate In
+
+Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "start",
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Slate Out
+
+Removes any active slate and shows the source video content.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "end"
+	}
+]
+```
+
+### Splice Insert Start
+
+Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "start",
+		"duration": 25000,
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+
+### Splice Insert End
+
+Removes an active splice signaling segment from the channel.
+
+Example input body:
+
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "end"
+	}
+]
+```
+
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
  @param channelId Unique channel identifier
+ @param org Organization name
  @return ApiPostOrgSignalsRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest {
+func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, channelId string, org string) ApiPostOrgSignalsRequest {
 	return ApiPostOrgSignalsRequest{
 		ApiService: a,
 		ctx: ctx,
-		org: org,
 		channelId: channelId,
+		org: org,
 	}
 }
 
@@ -908,8 +1772,8 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/signals"
-	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

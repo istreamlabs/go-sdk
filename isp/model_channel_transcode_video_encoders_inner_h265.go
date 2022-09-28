@@ -15,8 +15,7 @@ import (
 
 // ChannelTranscodeVideoEncodersInnerH265 Configure the encoder to use the H.265 codec. Only one of ['H264Settings', 'H265Settings'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265 struct {
-	// Configure the HDR settings.
-	Hdr map[string]interface{} `json:"hdr,omitempty"`
+	Hdr *ChannelTranscodeVideoEncodersInnerH265Hdr `json:"hdr,omitempty"`
 	// H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
 	Profile *string `json:"profile,omitempty"`
 }
@@ -39,17 +38,17 @@ func NewChannelTranscodeVideoEncodersInnerH265WithDefaults() *ChannelTranscodeVi
 }
 
 // GetHdr returns the Hdr field value if set, zero value otherwise.
-func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdr() map[string]interface{} {
+func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdr() ChannelTranscodeVideoEncodersInnerH265Hdr {
 	if o == nil || o.Hdr == nil {
-		var ret map[string]interface{}
+		var ret ChannelTranscodeVideoEncodersInnerH265Hdr
 		return ret
 	}
-	return o.Hdr
+	return *o.Hdr
 }
 
 // GetHdrOk returns a tuple with the Hdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdrOk() (map[string]interface{}, bool) {
+func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdrOk() (*ChannelTranscodeVideoEncodersInnerH265Hdr, bool) {
 	if o == nil || o.Hdr == nil {
 		return nil, false
 	}
@@ -65,9 +64,9 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) HasHdr() bool {
 	return false
 }
 
-// SetHdr gets a reference to the given map[string]interface{} and assigns it to the Hdr field.
-func (o *ChannelTranscodeVideoEncodersInnerH265) SetHdr(v map[string]interface{}) {
-	o.Hdr = v
+// SetHdr gets a reference to the given ChannelTranscodeVideoEncodersInnerH265Hdr and assigns it to the Hdr field.
+func (o *ChannelTranscodeVideoEncodersInnerH265) SetHdr(v ChannelTranscodeVideoEncodersInnerH265Hdr) {
+	o.Hdr = &v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
