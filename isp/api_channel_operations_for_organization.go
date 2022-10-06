@@ -60,11 +60,11 @@ type ChannelOperationsForOrganizationApi interface {
 Returns the signalling history for a channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiGetOrgSignalLogsRequest
 	*/
-	GetOrgSignalLogs(ctx context.Context, channelId string, org string) ApiGetOrgSignalLogsRequest
+	GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest
 
 	// GetOrgSignalLogsExecute executes the request
 	//  @return []SignalingLog
@@ -76,11 +76,11 @@ Returns the signalling history for a channel.
 	Returns the active signals for a channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiGetOrgSignalsRequest
 	*/
-	GetOrgSignals(ctx context.Context, channelId string, org string) ApiGetOrgSignalsRequest
+	GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest
 
 	// GetOrgSignalsExecute executes the request
 	//  @return []Segment
@@ -246,11 +246,11 @@ Example input body:
 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiPostOrgSignalsRequest
 	*/
-	PostOrgSignals(ctx context.Context, channelId string, org string) ApiPostOrgSignalsRequest
+	PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest
 
 	// PostOrgSignalsExecute executes the request
 	PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) (*http.Response, error)
@@ -598,8 +598,8 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 type ApiGetOrgSignalLogsRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	from *time.Time
 	to *time.Time
 }
@@ -628,16 +628,16 @@ Warning: This is deprecated beta functionality and is unstable and may change, b
 Returns the signalling history for a channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiGetOrgSignalLogsRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogs(ctx context.Context, channelId string, org string) ApiGetOrgSignalLogsRequest {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest {
 	return ApiGetOrgSignalLogsRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -657,8 +657,8 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r A
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/beta/logs/signaling"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -811,8 +811,8 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r A
 type ApiGetOrgSignalsRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 }
 
 func (r ApiGetOrgSignalsRequest) Execute() ([]Segment, *http.Response, error) {
@@ -825,16 +825,16 @@ GetOrgSignals Get Signals
 Returns the active signals for a channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiGetOrgSignalsRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) GetOrgSignals(ctx context.Context, channelId string, org string) ApiGetOrgSignalsRequest {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest {
 	return ApiGetOrgSignalsRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -854,8 +854,8 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalsExecute(r ApiG
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/signals"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1619,8 +1619,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r 
 type ApiPostOrgSignalsRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	genericSignal *[]GenericSignal
 }
 
@@ -1745,16 +1745,16 @@ Example input body:
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiPostOrgSignalsRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, channelId string, org string) ApiPostOrgSignalsRequest {
+func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest {
 	return ApiPostOrgSignalsRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -1772,8 +1772,8 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/signals"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -73,9 +73,9 @@ model_get_preview_streams_response_default_video_track.go
 model_insert_metadata_request.go
 model_insert_metadata_result.go
 model_org_summary.go
-model_patch_channel_request2.go
-model_patch_channel_request2_ingest.go
-model_patch_channel_request_inner.go
+model_patch_channel_request.go
+model_patch_channel_request2_inner.go
+model_patch_channel_request_ingest.go
 model_patch_org_channel_request.go
 model_program_signal.go
 model_put_channel_request.go

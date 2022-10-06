@@ -27,11 +27,11 @@ type AuditOperationsForOrganizationApi interface {
 	Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiGetOrgChannelTimelineRequest
 	*/
-	GetOrgChannelTimeline(ctx context.Context, channelId string, org string) ApiGetOrgChannelTimelineRequest
+	GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest
 
 	// GetOrgChannelTimelineExecute executes the request
 	//  @return []ChannelTimelineEntry
@@ -44,8 +44,8 @@ type AuditOperationsForOrganizationApiService service
 type ApiGetOrgChannelTimelineRequest struct {
 	ctx context.Context
 	ApiService AuditOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	offset *int32
 	cursor *string
 	pageSize *int32
@@ -79,16 +79,16 @@ GetOrgChannelTimeline Get Channel Timeline
 Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiGetOrgChannelTimelineRequest
 */
-func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx context.Context, channelId string, org string) ApiGetOrgChannelTimelineRequest {
+func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest {
 	return ApiGetOrgChannelTimelineRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -108,8 +108,8 @@ func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimelineExecute(
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/timeline"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

@@ -805,22 +805,10 @@ func (a *ChannelsApiService) GetPlaybackConfigExecute(r ApiGetPlaybackConfigRequ
 type ApiListChannelsRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
-	q *string
-	desiredState *string
 	cursor *string
 	pageSize *int32
-}
-
-// Search query to match against for filtering a list of channels. This searches the channel ID, name, labels, and source ID.
-func (r ApiListChannelsRequest) Q(q string) ApiListChannelsRequest {
-	r.q = &q
-	return r
-}
-
-// List channels that are ON or OFF
-func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannelsRequest {
-	r.desiredState = &desiredState
-	return r
+	q *string
+	desiredState *string
 }
 
 // Current page cursor
@@ -832,6 +820,18 @@ func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
 // Number of items to return
 func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
 	r.pageSize = &pageSize
+	return r
+}
+
+// Search query to match against for filtering a list of channels. This searches the channel ID, name, labels, and source ID.
+func (r ApiListChannelsRequest) Q(q string) ApiListChannelsRequest {
+	r.q = &q
+	return r
+}
+
+// List channels that are ON or OFF
+func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannelsRequest {
+	r.desiredState = &desiredState
 	return r
 }
 
@@ -880,17 +880,17 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.q != nil {
-		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
-	}
-	if r.desiredState != nil {
-		localVarQueryParams.Add("desired_state", parameterToString(*r.desiredState, ""))
-	}
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	if r.q != nil {
+		localVarQueryParams.Add("q", parameterToString(*r.q, ""))
+	}
+	if r.desiredState != nil {
+		localVarQueryParams.Add("desired_state", parameterToString(*r.desiredState, ""))
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -1021,11 +1021,18 @@ type ApiPatchChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
+	validateOnly *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	patchChannelRequestInner *[]PatchChannelRequestInner
+	patchChannelRequest2Inner *[]PatchChannelRequest2Inner
+}
+
+// Validate request but do not otherwise process it
+func (r ApiPatchChannelRequest) ValidateOnly(validateOnly bool) ApiPatchChannelRequest {
+	r.validateOnly = &validateOnly
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -1052,8 +1059,8 @@ func (r ApiPatchChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) A
 	return r
 }
 
-func (r ApiPatchChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchChannelRequest {
-	r.patchChannelRequestInner = &patchChannelRequestInner
+func (r ApiPatchChannelRequest) PatchChannelRequest2Inner(patchChannelRequest2Inner []PatchChannelRequest2Inner) ApiPatchChannelRequest {
+	r.patchChannelRequest2Inner = &patchChannelRequest2Inner
 	return r
 }
 
@@ -1104,6 +1111,9 @@ func (a *ChannelsApiService) PatchChannelExecute(r ApiPatchChannelRequest) (*htt
 		return nil, reportError("channelId must have less than 60 elements")
 	}
 
+	if r.validateOnly != nil {
+		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json"}
 
@@ -1134,7 +1144,7 @@ func (a *ChannelsApiService) PatchChannelExecute(r ApiPatchChannelRequest) (*htt
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchChannelRequestInner
+	localVarPostBody = r.patchChannelRequest2Inner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -1286,12 +1296,24 @@ type ApiPutChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
+	validateOnly *bool
+	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	validateOnly *bool
-	ifMatch *[]string
 	putChannelRequest *PutChannelRequest
+}
+
+// Validate request but do not otherwise process it
+func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
+	r.validateOnly = &validateOnly
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
@@ -1309,18 +1331,6 @@ func (r ApiPutChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutC
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
 func (r ApiPutChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-// Validate request but do not otherwise process it
-func (r ApiPutChannelRequest) ValidateOnly(validateOnly bool) ApiPutChannelRequest {
-	r.validateOnly = &validateOnly
-	return r
-}
-
-// Succeeds if the server&#39;s resource matches one of the passed values.
-func (r ApiPutChannelRequest) IfMatch(ifMatch []string) ApiPutChannelRequest {
-	r.ifMatch = &ifMatch
 	return r
 }
 
@@ -1398,6 +1408,9 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*http.Re
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
@@ -1406,9 +1419,6 @@ func (a *ChannelsApiService) PutChannelExecute(r ApiPutChannelRequest) (*http.Re
 	}
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	// body params
 	localVarPostBody = r.putChannelRequest
@@ -1553,12 +1563,18 @@ type ApiPutChannelDesiredStateRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
 	channelId string
+	endPlaylist *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	endPlaylist *bool
 	desiredStateBody *DesiredStateBody
+}
+
+// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+func (r ApiPutChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutChannelDesiredStateRequest {
+	r.endPlaylist = &endPlaylist
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -1582,12 +1598,6 @@ func (r ApiPutChannelDesiredStateRequest) IfModifiedSince(ifModifiedSince time.T
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
 func (r ApiPutChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutChannelDesiredStateRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
-func (r ApiPutChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutChannelDesiredStateRequest {
-	r.endPlaylist = &endPlaylist
 	return r
 }
 

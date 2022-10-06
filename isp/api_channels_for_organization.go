@@ -90,11 +90,11 @@ type ChannelsForOrganizationApi interface {
 	Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiPatchOrgChannelRequest
 	*/
-	PatchOrgChannel(ctx context.Context, channelId string, org string) ApiPatchOrgChannelRequest
+	PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest
 
 	// PatchOrgChannelExecute executes the request
 	PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error)
@@ -105,11 +105,11 @@ type ChannelsForOrganizationApi interface {
 	Create or update an existing channel configuration.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiPutOrgChannelRequest
 	*/
-	PutOrgChannel(ctx context.Context, channelId string, org string) ApiPutOrgChannelRequest
+	PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest
 
 	// PutOrgChannelExecute executes the request
 	PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error)
@@ -118,11 +118,11 @@ type ChannelsForOrganizationApi interface {
 	PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiPutOrgChannelDesiredStateRequest
 	*/
-	PutOrgChannelDesiredState(ctx context.Context, channelId string, org string) ApiPutOrgChannelDesiredStateRequest
+	PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest
 
 	// PutOrgChannelDesiredStateExecute executes the request
 	PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error)
@@ -136,16 +136,10 @@ type ApiDeleteOrgChannelRequest struct {
 	ApiService ChannelsForOrganizationApi
 	org string
 	channelId string
-	ifUnmodifiedSince *time.Time
 	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
-}
-
-// Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiDeleteOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteOrgChannelRequest {
-	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
+	ifUnmodifiedSince *time.Time
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -163,6 +157,12 @@ func (r ApiDeleteOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteO
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
 func (r ApiDeleteOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteOrgChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiDeleteOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteOrgChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
 	return r
 }
 
@@ -230,9 +230,6 @@ func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteO
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifUnmodifiedSince != nil {
-		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
 	if r.ifMatch != nil {
 		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
@@ -241,6 +238,9 @@ func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteO
 	}
 	if r.ifModifiedSince != nil {
 		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -988,24 +988,19 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgC
 type ApiPatchOrgChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
-	channelId string
 	org string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
+	channelId string
+	validateOnly *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	patchChannelRequestInner *[]PatchChannelRequestInner
+	ifModifiedSince *time.Time
+	ifUnmodifiedSince *time.Time
+	patchChannelRequest2Inner *[]PatchChannelRequest2Inner
 }
 
-// Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiPatchOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPatchOrgChannelRequest {
-	r.ifModifiedSince = &ifModifiedSince
-	return r
-}
-
-// Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPatchOrgChannelRequest {
-	r.ifUnmodifiedSince = &ifUnmodifiedSince
+// Validate request but do not otherwise process it
+func (r ApiPatchOrgChannelRequest) ValidateOnly(validateOnly bool) ApiPatchOrgChannelRequest {
+	r.validateOnly = &validateOnly
 	return r
 }
 
@@ -1021,8 +1016,20 @@ func (r ApiPatchOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPatchOrg
 	return r
 }
 
-func (r ApiPatchOrgChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchOrgChannelRequest {
-	r.patchChannelRequestInner = &patchChannelRequestInner
+// Succeeds if the server&#39;s resource date is more recent than the passed date.
+func (r ApiPatchOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPatchOrgChannelRequest {
+	r.ifModifiedSince = &ifModifiedSince
+	return r
+}
+
+// Succeeds if the server&#39;s resource date is older or the same as the passed date.
+func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPatchOrgChannelRequest {
+	r.ifUnmodifiedSince = &ifUnmodifiedSince
+	return r
+}
+
+func (r ApiPatchOrgChannelRequest) PatchChannelRequest2Inner(patchChannelRequest2Inner []PatchChannelRequest2Inner) ApiPatchOrgChannelRequest {
+	r.patchChannelRequest2Inner = &patchChannelRequest2Inner
 	return r
 }
 
@@ -1036,16 +1043,16 @@ PatchOrgChannel Patch org-channel
 Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiPatchOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) PatchOrgChannel(ctx context.Context, channelId string, org string) ApiPatchOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest {
 	return ApiPatchOrgChannelRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -1063,8 +1070,8 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1073,6 +1080,9 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 		return nil, reportError("channelId must have less than 60 elements")
 	}
 
+	if r.validateOnly != nil {
+		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json"}
 
@@ -1090,20 +1100,20 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ifModifiedSince != nil {
-		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
-	}
-	if r.ifUnmodifiedSince != nil {
-		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
 	if r.ifMatch != nil {
 		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
+	if r.ifModifiedSince != nil {
+		localVarHeaderParams["If-Modified-Since"] = parameterToString(*r.ifModifiedSince, "")
+	}
+	if r.ifUnmodifiedSince != nil {
+		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
+	}
 	// body params
-	localVarPostBody = r.patchChannelRequestInner
+	localVarPostBody = r.patchChannelRequest2Inner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -1254,19 +1264,25 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 type ApiPutOrgChannelRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	validateOnly *bool
+	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
 	putOrgChannelRequest *PutOrgChannelRequest
 }
 
 // Validate request but do not otherwise process it
 func (r ApiPutOrgChannelRequest) ValidateOnly(validateOnly bool) ApiPutOrgChannelRequest {
 	r.validateOnly = &validateOnly
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutOrgChannelRequest) IfMatch(ifMatch []string) ApiPutOrgChannelRequest {
+	r.ifMatch = &ifMatch
 	return r
 }
 
@@ -1288,12 +1304,6 @@ func (r ApiPutOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) 
 	return r
 }
 
-// Succeeds if the server&#39;s resource matches one of the passed values.
-func (r ApiPutOrgChannelRequest) IfMatch(ifMatch []string) ApiPutOrgChannelRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
 func (r ApiPutOrgChannelRequest) PutOrgChannelRequest(putOrgChannelRequest PutOrgChannelRequest) ApiPutOrgChannelRequest {
 	r.putOrgChannelRequest = &putOrgChannelRequest
 	return r
@@ -1309,16 +1319,16 @@ PutOrgChannel Create/Update channel
 Create or update an existing channel configuration.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiPutOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) PutOrgChannel(ctx context.Context, channelId string, org string) ApiPutOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest {
 	return ApiPutOrgChannelRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -1336,8 +1346,8 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1366,6 +1376,9 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
@@ -1374,9 +1387,6 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 	}
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	// body params
 	localVarPostBody = r.putOrgChannelRequest
@@ -1520,14 +1530,26 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 type ApiPutOrgChannelDesiredStateRequest struct {
 	ctx context.Context
 	ApiService ChannelsForOrganizationApi
-	channelId string
 	org string
+	channelId string
+	endPlaylist *bool
+	ifMatch *[]string
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	ifMatch *[]string
-	endPlaylist *bool
 	desiredStateBody *DesiredStateBody
+}
+
+// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+func (r ApiPutOrgChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutOrgChannelDesiredStateRequest {
+	r.endPlaylist = &endPlaylist
+	return r
+}
+
+// Succeeds if the server&#39;s resource matches one of the passed values.
+func (r ApiPutOrgChannelDesiredStateRequest) IfMatch(ifMatch []string) ApiPutOrgChannelDesiredStateRequest {
+	r.ifMatch = &ifMatch
+	return r
 }
 
 // Succeeds if the server&#39;s resource matches none of the passed values. On writes, the special value * may be used to match any existing value.
@@ -1548,18 +1570,6 @@ func (r ApiPutOrgChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince
 	return r
 }
 
-// Succeeds if the server&#39;s resource matches one of the passed values.
-func (r ApiPutOrgChannelDesiredStateRequest) IfMatch(ifMatch []string) ApiPutOrgChannelDesiredStateRequest {
-	r.ifMatch = &ifMatch
-	return r
-}
-
-// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
-func (r ApiPutOrgChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutOrgChannelDesiredStateRequest {
-	r.endPlaylist = &endPlaylist
-	return r
-}
-
 func (r ApiPutOrgChannelDesiredStateRequest) DesiredStateBody(desiredStateBody DesiredStateBody) ApiPutOrgChannelDesiredStateRequest {
 	r.desiredStateBody = &desiredStateBody
 	return r
@@ -1573,16 +1583,16 @@ func (r ApiPutOrgChannelDesiredStateRequest) Execute() (*http.Response, error) {
 PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiPutOrgChannelDesiredStateRequest
 */
-func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredState(ctx context.Context, channelId string, org string) ApiPutOrgChannelDesiredStateRequest {
+func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest {
 	return ApiPutOrgChannelDesiredStateRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -1600,8 +1610,8 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/desired-state"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1630,6 +1640,9 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ifMatch != nil {
+		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
+	}
 	if r.ifNoneMatch != nil {
 		localVarHeaderParams["If-None-Match"] = parameterToString(*r.ifNoneMatch, "csv")
 	}
@@ -1638,9 +1651,6 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	}
 	if r.ifUnmodifiedSince != nil {
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
-	}
-	if r.ifMatch != nil {
-		localVarHeaderParams["If-Match"] = parameterToString(*r.ifMatch, "csv")
 	}
 	// body params
 	localVarPostBody = r.desiredStateBody
