@@ -19,99 +19,99 @@ import (
 )
 
 
-type SourcesApi interface {
+type SourcePreviewsApi interface {
 
 	/*
-	GetSource Get Source
+	GetSourcePreviewStream Get Source Preview Stream
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+	Gets the information required for the Low Latency Preview Player to enable playback.
 
-Get a source's configuration
+'PUT /v2/{org}/sources/{source-id}/preview' SHOULD be called prior to ensure that the necessary Source Preview resources have been created. Otherwise, the Source Preview Stream will not be available and this API route will never succeed.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
 	@param sourceId Unique source identifier
-	@return ApiGetSourceRequest
-
-	Deprecated
+	@return ApiGetSourcePreviewStreamRequest
 	*/
-	GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest
+	GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest
 
-	// GetSourceExecute executes the request
-	//  @return Source
-	// Deprecated
-	GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error)
+	// GetSourcePreviewStreamExecute executes the request
+	//  @return GetPreviewStreamsResponse
+	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error)
 
 	/*
-	ListSources List Sources
+	PutSourcePreview Create Source Preview
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+	Create Source Preview, if one does not already exist. This operation is idempotent and may be called multiple times.
 
-Get a list of sources that are used to create channels.
+A response status code of 201 Created indicates the necessary Source Preview resources have been created. Once created, it may take up to 30 seconds before all resources to be running and available to provide Source Preview Streams information.
+
+A response status code of 204 NoContent indicates the requisite Source Preview resources have already been created.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListSourcesRequest
-
-	Deprecated
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiPutSourcePreviewRequest
 	*/
-	ListSources(ctx context.Context) ApiListSourcesRequest
+	PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest
 
-	// ListSourcesExecute executes the request
-	//  @return []Summary
-	// Deprecated
-	ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error)
+	// PutSourcePreviewExecute executes the request
+	PutSourcePreviewExecute(r ApiPutSourcePreviewRequest) (*http.Response, error)
 }
 
-// SourcesApiService SourcesApi service
-type SourcesApiService service
+// SourcePreviewsApiService SourcePreviewsApi service
+type SourcePreviewsApiService service
 
-type ApiGetSourceRequest struct {
+type ApiGetSourcePreviewStreamRequest struct {
 	ctx context.Context
-	ApiService SourcesApi
+	ApiService SourcePreviewsApi
+	org string
 	sourceId string
 }
 
-func (r ApiGetSourceRequest) Execute() (*Source, *http.Response, error) {
-	return r.ApiService.GetSourceExecute(r)
+func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
+	return r.ApiService.GetSourcePreviewStreamExecute(r)
 }
 
 /*
-GetSource Get Source
+GetSourcePreviewStream Get Source Preview Stream
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+Gets the information required for the Low Latency Preview Player to enable playback.
 
-Get a source's configuration
+'PUT /v2/{org}/sources/{source-id}/preview' SHOULD be called prior to ensure that the necessary Source Preview resources have been created. Otherwise, the Source Preview Stream will not be available and this API route will never succeed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
  @param sourceId Unique source identifier
- @return ApiGetSourceRequest
-
-Deprecated
+ @return ApiGetSourcePreviewStreamRequest
 */
-func (a *SourcesApiService) GetSource(ctx context.Context, sourceId string) ApiGetSourceRequest {
-	return ApiGetSourceRequest{
+func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest {
+	return ApiGetSourcePreviewStreamRequest{
 		ApiService: a,
 		ctx: ctx,
+		org: org,
 		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
-//  @return Source
-// Deprecated
-func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *http.Response, error) {
+//  @return GetPreviewStreamsResponse
+func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Source
+		localVarReturnValue  *GetPreviewStreamsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcesApiService.GetSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewStream")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/sources/{source-id}"
+	localVarPath := localBasePath + "/v2/{org}/sources/{source-id}/preview/stream"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"source-id"+"}", url.PathEscape(parameterToString(r.sourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -177,6 +177,16 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *h
 			newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -198,6 +208,16 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *h
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -235,7 +255,7 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *h
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*Source)
+			localVarReturnValue = items.(*GetPreviewStreamsResponse)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -243,76 +263,62 @@ func (a *SourcesApiService) GetSourceExecute(r ApiGetSourceRequest) (*Source, *h
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiListSourcesRequest struct {
+type ApiPutSourcePreviewRequest struct {
 	ctx context.Context
-	ApiService SourcesApi
-	cursor *string
-	pageSize *int32
+	ApiService SourcePreviewsApi
+	org string
+	sourceId string
 }
 
-// Current page cursor
-func (r ApiListSourcesRequest) Cursor(cursor string) ApiListSourcesRequest {
-	r.cursor = &cursor
-	return r
-}
-
-// Number of items to return
-func (r ApiListSourcesRequest) PageSize(pageSize int32) ApiListSourcesRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-func (r ApiListSourcesRequest) Execute() ([]Summary, *http.Response, error) {
-	return r.ApiService.ListSourcesExecute(r)
+func (r ApiPutSourcePreviewRequest) Execute() (*http.Response, error) {
+	return r.ApiService.PutSourcePreviewExecute(r)
 }
 
 /*
-ListSources List Sources
+PutSourcePreview Create Source Preview
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+Create Source Preview, if one does not already exist. This operation is idempotent and may be called multiple times.
 
-Get a list of sources that are used to create channels.
+A response status code of 201 Created indicates the necessary Source Preview resources have been created. Once created, it may take up to 30 seconds before all resources to be running and available to provide Source Preview Streams information.
+
+A response status code of 204 NoContent indicates the requisite Source Preview resources have already been created.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListSourcesRequest
-
-Deprecated
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiPutSourcePreviewRequest
 */
-func (a *SourcesApiService) ListSources(ctx context.Context) ApiListSourcesRequest {
-	return ApiListSourcesRequest{
+func (a *SourcePreviewsApiService) PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest {
+	return ApiPutSourcePreviewRequest{
 		ApiService: a,
 		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
-//  @return []Summary
-// Deprecated
-func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summary, *http.Response, error) {
+func (a *SourcePreviewsApiService) PutSourcePreviewExecute(r ApiPutSourcePreviewRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Summary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcesApiService.ListSources")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.PutSourcePreview")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/sources"
+	localVarPath := localBasePath + "/v2/{org}/sources/{source-id}/preview"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"source-id"+"}", url.PathEscape(parameterToString(r.sourceId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
-	if r.cursor != nil {
-		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
-	}
-	if r.pageSize != nil {
-		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
-	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -323,7 +329,7 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -332,19 +338,19 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -357,83 +363,102 @@ func (a *SourcesApiService) ListSourcesExecute(r ApiListSourcesRequest) ([]Summa
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 401 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 409 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 412 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
-		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
-			// This response is paginated. Read all the pages and append the items.
-			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
-			if err.Error() != "" {
-				return localVarReturnValue, localVarHTTPResponse, err
-			}
-			localVarReturnValue = items.([]Summary)
-			localVarHTTPResponse = resp
-		}
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }

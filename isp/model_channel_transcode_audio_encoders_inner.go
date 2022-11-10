@@ -23,6 +23,7 @@ type ChannelTranscodeAudioEncodersInner struct {
 	Channels *int32 `json:"channels,omitempty"`
 	// Codec specifies the audio data encoding format.
 	Codec *string `json:"codec,omitempty"`
+	Eac3 *ChannelTranscodeAudioEncodersInnerEac3 `json:"eac3,omitempty"`
 	// Encoder ID. IDs must be unique for all audio encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	Loudness *ChannelTranscodeAudioEncodersInnerLoudness `json:"loudness,omitempty"`
@@ -175,6 +176,38 @@ func (o *ChannelTranscodeAudioEncodersInner) SetCodec(v string) {
 	o.Codec = &v
 }
 
+// GetEac3 returns the Eac3 field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInner) GetEac3() ChannelTranscodeAudioEncodersInnerEac3 {
+	if o == nil || o.Eac3 == nil {
+		var ret ChannelTranscodeAudioEncodersInnerEac3
+		return ret
+	}
+	return *o.Eac3
+}
+
+// GetEac3Ok returns a tuple with the Eac3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInner) GetEac3Ok() (*ChannelTranscodeAudioEncodersInnerEac3, bool) {
+	if o == nil || o.Eac3 == nil {
+		return nil, false
+	}
+	return o.Eac3, true
+}
+
+// HasEac3 returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInner) HasEac3() bool {
+	if o != nil && o.Eac3 != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEac3 gets a reference to the given ChannelTranscodeAudioEncodersInnerEac3 and assigns it to the Eac3 field.
+func (o *ChannelTranscodeAudioEncodersInner) SetEac3(v ChannelTranscodeAudioEncodersInnerEac3) {
+	o.Eac3 = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetId() string {
 	if o == nil || o.Id == nil {
@@ -284,6 +317,9 @@ func (o ChannelTranscodeAudioEncodersInner) MarshalJSON() ([]byte, error) {
 	}
 	if o.Codec != nil {
 		toSerialize["codec"] = o.Codec
+	}
+	if o.Eac3 != nil {
+		toSerialize["eac3"] = o.Eac3
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id

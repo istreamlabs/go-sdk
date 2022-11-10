@@ -25,7 +25,7 @@ type ChannelOperationsApi interface {
 	/*
 	ClearDvrWindow Clear DVR Window
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
 
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
@@ -44,7 +44,7 @@ Clears the DVR window for the channel by removing all video segments in the mani
 	/*
 	GetBetaSignalLogs Signal Logs
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
 
 Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
 
@@ -66,7 +66,7 @@ Returns the signalling history for a channel.
 	/*
 	GetSignals Get Signals
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Returns the active signals for a channel.
 
@@ -86,7 +86,7 @@ Returns the active signals for a channel.
 	/*
 	InsertId3 Insert ID3
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
 
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
@@ -106,7 +106,7 @@ Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX
 	/*
 	InsertScte35 Insert SCTE-35
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
 
 Inserts a SCTE-35 formatted binary payload into the channel.
 
@@ -125,7 +125,7 @@ Inserts a SCTE-35 formatted binary payload into the channel.
 	/*
 	PreviewImage Get Preview Image
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
 
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
@@ -144,7 +144,7 @@ Get a static image of what your channel is outputting.  Valid Accept headers are
 	/*
 	PreviewStreams Get Preview Streams
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
 
 Get a default url that links to a preview of the channel. Additionally, all possible
 video and audio tracks are provided back and can be interchanged in the given url.
@@ -165,7 +165,7 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	/*
 	ProgramEnd Program End
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -184,7 +184,7 @@ Inserts a 'program end' SCTE-35 message into the channel.  This route should onl
 	/*
 	ProgramStart Program Start
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -203,7 +203,7 @@ Inserts a 'program start' SCTE-35 message into the channel.  This route should o
 	/*
 	Signal Generic Signal
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
 
@@ -328,7 +328,7 @@ Example input body:
 	/*
 	SlateIn Slate in
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Replaces the current video source with a slate image or video.
 
@@ -347,7 +347,7 @@ Replaces the current video source with a slate image or video.
 	/*
 	SlateOut Slate out
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Removes any active slate and show the source video content.
 
@@ -366,7 +366,7 @@ Removes any active slate and show the source video content.
 	/*
 	SpliceEnd Splice Insert End
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert end' SCTE-35 message into the channel.
 
@@ -385,7 +385,7 @@ Inserts a 'splice insert end' SCTE-35 message into the channel.
 	/*
 	SpliceStart Splice Insert Start
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert start' SCTE-35 message into the channel.
 
@@ -418,7 +418,7 @@ func (r ApiClearDvrWindowRequest) Execute() (*http.Response, error) {
 /*
 ClearDvrWindow Clear DVR Window
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
 
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
@@ -581,7 +581,7 @@ func (r ApiGetBetaSignalLogsRequest) Execute() ([]SignalingLog, *http.Response, 
 /*
 GetBetaSignalLogs Signal Logs
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
 
 Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
 
@@ -781,7 +781,7 @@ func (r ApiGetSignalsRequest) Execute() ([]Segment, *http.Response, error) {
 /*
 GetSignals Get Signals
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Returns the active signals for a channel.
 
@@ -986,7 +986,7 @@ func (r ApiInsertId3Request) Execute() (*InsertMetadataResult, *http.Response, e
 /*
 InsertId3 Insert ID3
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
 
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
@@ -1209,7 +1209,7 @@ func (r ApiInsertScte35Request) Execute() (*http.Response, error) {
 /*
 InsertScte35 Insert SCTE-35
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
 
 Inserts a SCTE-35 formatted binary payload into the channel.
 
@@ -1397,7 +1397,7 @@ func (r ApiPreviewImageRequest) Execute() (*http.Response, error) {
 /*
 PreviewImage Get Preview Image
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
 
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
@@ -1579,7 +1579,7 @@ func (r ApiPreviewStreamsRequest) Execute() (*GetPreviewStreamsResponse, *http.R
 /*
 PreviewStreams Get Preview Streams
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
 
 Get a default url that links to a preview of the channel. Additionally, all possible
 video and audio tracks are provided back and can be interchanged in the given url.
@@ -1788,7 +1788,7 @@ func (r ApiProgramEndRequest) Execute() (*http.Response, error) {
 /*
 ProgramEnd Program End
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -1985,7 +1985,7 @@ func (r ApiProgramStartRequest) Execute() (*http.Response, error) {
 /*
 ProgramStart Program Start
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -2182,7 +2182,7 @@ func (r ApiSignalRequest) Execute() (*http.Response, error) {
 /*
 Signal Generic Signal
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
 
@@ -2475,7 +2475,7 @@ func (r ApiSlateInRequest) Execute() (*http.Response, error) {
 /*
 SlateIn Slate in
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Replaces the current video source with a slate image or video.
 
@@ -2666,7 +2666,7 @@ func (r ApiSlateOutRequest) Execute() (*http.Response, error) {
 /*
 SlateOut Slate out
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Removes any active slate and show the source video content.
 
@@ -2841,7 +2841,7 @@ func (r ApiSpliceEndRequest) Execute() (*http.Response, error) {
 /*
 SpliceEnd Splice Insert End
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert end' SCTE-35 message into the channel.
 
@@ -3038,7 +3038,7 @@ func (r ApiSpliceStartRequest) Execute() (*http.Response, error) {
 /*
 SpliceStart Splice Insert Start
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert start' SCTE-35 message into the channel.
 

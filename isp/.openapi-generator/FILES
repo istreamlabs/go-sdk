@@ -6,6 +6,7 @@ api_channel_operations_for_organization.go
 api_channels.go
 api_channels_for_organization.go
 api_organizations.go
+api_source_previews.go
 api_sources.go
 client.go
 configuration.go
@@ -49,6 +50,7 @@ model_channel_tags.go
 model_channel_timeline_entry.go
 model_channel_transcode.go
 model_channel_transcode_audio_encoders_inner.go
+model_channel_transcode_audio_encoders_inner_eac3.go
 model_channel_transcode_audio_encoders_inner_loudness.go
 model_channel_transcode_overlays_inner.go
 model_channel_transcode_segmenter.go
