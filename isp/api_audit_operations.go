@@ -24,7 +24,7 @@ type AuditOperationsApi interface {
 	/*
 	GetChannelTimeline Get Channel Timeline
 
-	<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
+	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
 
 Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
@@ -79,7 +79,7 @@ func (r ApiGetChannelTimelineRequest) Execute() ([]ChannelTimelineEntry, *http.R
 /*
 GetChannelTimeline Get Channel Timeline
 
-<b>This route is deprecated and will be removed on `Tue, 03 Jan 2023 00:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
+<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-timeline](#get-/v2/-org-/channels/-channel-id-/timeline) instead.</b>
 
 Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 

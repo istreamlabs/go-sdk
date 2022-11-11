@@ -64,6 +64,8 @@ type APIClient struct {
 
 	OrganizationsApi OrganizationsApi
 
+	SourcePreviewsApi SourcePreviewsApi
+
 	SourcesApi SourcesApi
 }
 
@@ -91,6 +93,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ChannelsApi = (*ChannelsApiService)(&c.common)
 	c.ChannelsForOrganizationApi = (*ChannelsForOrganizationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
+	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
 	c.SourcesApi = (*SourcesApiService)(&c.common)
 
 	return c
