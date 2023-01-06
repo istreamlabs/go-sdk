@@ -21,6 +21,8 @@ type GetPreviewStreamsResponseDefaultVideoTrack struct {
 	FrameRate *float32 `json:"frame_rate,omitempty"`
 	Height *int32 `json:"height,omitempty"`
 	Id *int32 `json:"id,omitempty"`
+	// Friendly name of the VideoTrack.
+	Name *string `json:"name,omitempty"`
 	Width *int32 `json:"width,omitempty"`
 }
 
@@ -201,6 +203,38 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetId(v int32) {
 	o.Id = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetName(v string) {
+	o.Name = &v
+}
+
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetWidth() int32 {
 	if o == nil || o.Width == nil {
@@ -249,6 +283,9 @@ func (o GetPreviewStreamsResponseDefaultVideoTrack) MarshalJSON() ([]byte, error
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.Width != nil {
 		toSerialize["width"] = o.Width

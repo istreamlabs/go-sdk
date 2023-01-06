@@ -62,6 +62,8 @@ type APIClient struct {
 
 	ChannelsForOrganizationApi ChannelsForOrganizationApi
 
+	Live2VODForOrganizationApi Live2VODForOrganizationApi
+
 	OrganizationsApi OrganizationsApi
 
 	SourcePreviewsApi SourcePreviewsApi
@@ -92,6 +94,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ChannelOperationsForOrganizationApi = (*ChannelOperationsForOrganizationApiService)(&c.common)
 	c.ChannelsApi = (*ChannelsApiService)(&c.common)
 	c.ChannelsForOrganizationApi = (*ChannelsForOrganizationApiService)(&c.common)
+	c.Live2VODForOrganizationApi = (*Live2VODForOrganizationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
 	c.SourcesApi = (*SourcesApiService)(&c.common)
