@@ -118,6 +118,39 @@ Returns the signalling history for a channel.
 	InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error)
 
 	/*
+	OrgGetTranscoderStatus Get Transcoder Status
+
+	Get the current status for the live transcoder powering the channel.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgGetTranscoderStatusRequest
+	*/
+	OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest
+
+	// OrgGetTranscoderStatusExecute executes the request
+	//  @return Status
+	OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error)
+
+	/*
+	OrgPinIngest Pin Ingest
+
+	Pin the channel's transcoder to prefer either primary or secondary ingest feeds.
+Note that this will disable some automated ingest failover that is based on the quality of the feeds.
+
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgPinIngestRequest
+	*/
+	OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest
+
+	// OrgPinIngestExecute executes the request
+	OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error)
+
+	/*
 	OrgPreviewStreams Get Preview Streams
 
 	Get a default url that links to a preview of the channel. Additionally, all possible
@@ -133,6 +166,22 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	// OrgPreviewStreamsExecute executes the request
 	//  @return GetPreviewStreamsResponse
 	OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error)
+
+	/*
+	OrgUnpinIngest Unpin Ingest
+
+	Remove the preferrence for primary or secondary ingest feed from the channel's transcoder.
+Automated source failover based on feed quality will be resumed.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgUnpinIngestRequest
+	*/
+	OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest
+
+	// OrgUnpinIngestExecute executes the request
+	OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error)
 
 	/*
 	PostOrgSignals Generic Signal
@@ -1414,6 +1463,405 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r Ap
 	return localVarHTTPResponse, nil
 }
 
+type ApiOrgGetTranscoderStatusRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
+}
+
+func (r ApiOrgGetTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
+	return r.ApiService.OrgGetTranscoderStatusExecute(r)
+}
+
+/*
+OrgGetTranscoderStatus Get Transcoder Status
+
+Get the current status for the live transcoder powering the channel.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgGetTranscoderStatusRequest
+*/
+func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest {
+	return ApiOrgGetTranscoderStatusRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+//  @return Status
+func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Status
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgGetTranscoderStatus")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/transcoder-status"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*Status)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiOrgPinIngestRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
+	pinSourceRequest *PinSourceRequest
+}
+
+func (r ApiOrgPinIngestRequest) PinSourceRequest(pinSourceRequest PinSourceRequest) ApiOrgPinIngestRequest {
+	r.pinSourceRequest = &pinSourceRequest
+	return r
+}
+
+func (r ApiOrgPinIngestRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OrgPinIngestExecute(r)
+}
+
+/*
+OrgPinIngest Pin Ingest
+
+Pin the channel's transcoder to prefer either primary or secondary ingest feeds.
+Note that this will disable some automated ingest failover that is based on the quality of the feeds.
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgPinIngestRequest
+*/
+func (a *ChannelOperationsForOrganizationApiService) OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest {
+	return ApiOrgPinIngestRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelOperationsForOrganizationApiService) OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPinIngest")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/ingest-pin"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.pinSourceRequest
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 type ApiOrgPreviewStreamsRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
@@ -1614,6 +2062,185 @@ func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r 
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiOrgUnpinIngestRequest struct {
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
+}
+
+func (r ApiOrgUnpinIngestRequest) Execute() (*http.Response, error) {
+	return r.ApiService.OrgUnpinIngestExecute(r)
+}
+
+/*
+OrgUnpinIngest Unpin Ingest
+
+Remove the preferrence for primary or secondary ingest feed from the channel's transcoder.
+Automated source failover based on feed quality will be resumed.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgUnpinIngestRequest
+*/
+func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest {
+	return ApiOrgUnpinIngestRequest{
+		ApiService: a,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
+	}
+}
+
+// Execute executes the request
+func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgUnpinIngest")
+	if err != nil {
+		return nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/ingest-pin"
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return nil, reportError("channelId must have less than 60 elements")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 406 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 499 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 type ApiPostOrgSignalsRequest struct {

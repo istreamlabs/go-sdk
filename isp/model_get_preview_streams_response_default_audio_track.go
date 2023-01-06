@@ -19,6 +19,8 @@ type GetPreviewStreamsResponseDefaultAudioTrack struct {
 	// codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this AudioTrackInfo. ex. 'mp4a.40.2' for AAC Low-Complexity.
 	CodecString *string `json:"codec_string,omitempty"`
 	Id *int32 `json:"id,omitempty"`
+	// Friendly name of the AudioTrack.
+	Name *string `json:"name,omitempty"`
 	NumChannels *int32 `json:"num_channels,omitempty"`
 	SampleRate *int32 `json:"sample_rate,omitempty"`
 }
@@ -136,6 +138,38 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetId(v int32) {
 	o.Id = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetName() string {
+	if o == nil || o.Name == nil {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNameOk() (*string, bool) {
+	if o == nil || o.Name == nil {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasName() bool {
+	if o != nil && o.Name != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetName(v string) {
+	o.Name = &v
+}
+
 // GetNumChannels returns the NumChannels field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNumChannels() int32 {
 	if o == nil || o.NumChannels == nil {
@@ -210,6 +244,9 @@ func (o GetPreviewStreamsResponseDefaultAudioTrack) MarshalJSON() ([]byte, error
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+	if o.Name != nil {
+		toSerialize["name"] = o.Name
 	}
 	if o.NumChannels != nil {
 		toSerialize["num_channels"] = o.NumChannels

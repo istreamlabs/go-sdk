@@ -35,6 +35,7 @@ type ChannelPublishingPublicationsInner struct {
 	PublishPoints []ChannelPublishingPublicationsInnerPublishPointsInner `json:"publish_points,omitempty"`
 	// When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication.
 	RedundantPublishing *bool `json:"redundant_publishing,omitempty"`
+	Startover *ChannelPublishingPublicationsInnerStartover `json:"startover,omitempty"`
 	// Optional: Specify what thumbnail_encoders should be in this Publication
 	ThumbnailEncoderIds []string `json:"thumbnail_encoder_ids,omitempty"`
 	// Optional, indicates whether we should pad the bitrate (false) or use what is explicitly provided (true)
@@ -412,6 +413,38 @@ func (o *ChannelPublishingPublicationsInner) SetRedundantPublishing(v bool) {
 	o.RedundantPublishing = &v
 }
 
+// GetStartover returns the Startover field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInner) GetStartover() ChannelPublishingPublicationsInnerStartover {
+	if o == nil || o.Startover == nil {
+		var ret ChannelPublishingPublicationsInnerStartover
+		return ret
+	}
+	return *o.Startover
+}
+
+// GetStartoverOk returns a tuple with the Startover field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInner) GetStartoverOk() (*ChannelPublishingPublicationsInnerStartover, bool) {
+	if o == nil || o.Startover == nil {
+		return nil, false
+	}
+	return o.Startover, true
+}
+
+// HasStartover returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInner) HasStartover() bool {
+	if o != nil && o.Startover != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetStartover gets a reference to the given ChannelPublishingPublicationsInnerStartover and assigns it to the Startover field.
+func (o *ChannelPublishingPublicationsInner) SetStartover(v ChannelPublishingPublicationsInnerStartover) {
+	o.Startover = &v
+}
+
 // GetThumbnailEncoderIds returns the ThumbnailEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetThumbnailEncoderIds() []string {
 	if o == nil || o.ThumbnailEncoderIds == nil {
@@ -542,6 +575,9 @@ func (o ChannelPublishingPublicationsInner) MarshalJSON() ([]byte, error) {
 	}
 	if o.RedundantPublishing != nil {
 		toSerialize["redundant_publishing"] = o.RedundantPublishing
+	}
+	if o.Startover != nil {
+		toSerialize["startover"] = o.Startover
 	}
 	if o.ThumbnailEncoderIds != nil {
 		toSerialize["thumbnail_encoder_ids"] = o.ThumbnailEncoderIds
