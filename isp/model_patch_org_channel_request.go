@@ -24,7 +24,7 @@ type PatchOrgChannelRequest struct {
 	DesiredState *string `json:"desired_state,omitempty"`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty"`
-	Ingest *PatchChannelRequestIngest `json:"ingest,omitempty"`
+	Ingest *PatchChannelRequest2Ingest `json:"ingest,omitempty"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
 	Labels []string `json:"labels,omitempty"`
 	// Date and time the channel was last modified.
@@ -191,9 +191,9 @@ func (o *PatchOrgChannelRequest) SetId(v string) {
 }
 
 // GetIngest returns the Ingest field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetIngest() PatchChannelRequestIngest {
+func (o *PatchOrgChannelRequest) GetIngest() PatchChannelRequest2Ingest {
 	if o == nil || o.Ingest == nil {
-		var ret PatchChannelRequestIngest
+		var ret PatchChannelRequest2Ingest
 		return ret
 	}
 	return *o.Ingest
@@ -201,7 +201,7 @@ func (o *PatchOrgChannelRequest) GetIngest() PatchChannelRequestIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchChannelRequestIngest, bool) {
+func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchChannelRequest2Ingest, bool) {
 	if o == nil || o.Ingest == nil {
 		return nil, false
 	}
@@ -217,8 +217,8 @@ func (o *PatchOrgChannelRequest) HasIngest() bool {
 	return false
 }
 
-// SetIngest gets a reference to the given PatchChannelRequestIngest and assigns it to the Ingest field.
-func (o *PatchOrgChannelRequest) SetIngest(v PatchChannelRequestIngest) {
+// SetIngest gets a reference to the given PatchChannelRequest2Ingest and assigns it to the Ingest field.
+func (o *PatchOrgChannelRequest) SetIngest(v PatchChannelRequest2Ingest) {
 	o.Ingest = &v
 }
 

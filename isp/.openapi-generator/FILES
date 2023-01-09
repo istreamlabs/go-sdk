@@ -82,9 +82,9 @@ model_list_clips_response_channel_clips_inner.go
 model_list_clips_response_channel_clips_inner_clips_inner.go
 model_list_vods_response.go
 model_org_summary.go
-model_patch_channel_request.go
-model_patch_channel_request2_inner.go
-model_patch_channel_request_ingest.go
+model_patch_channel_request2.go
+model_patch_channel_request2_ingest.go
+model_patch_channel_request_inner.go
 model_patch_org_channel_request.go
 model_pin_source_request.go
 model_program_signal.go

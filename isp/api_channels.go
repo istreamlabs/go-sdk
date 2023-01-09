@@ -84,20 +84,15 @@ Get a channel's playback configuration
 	/*
 	ListChannels List channels
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-channels](#get-/v2/-org-/channels) instead.</b>
-
-Get a list of your channels.
+	Get a list of your channels.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListChannelsRequest
-
-	Deprecated
 	*/
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
 	// ListChannelsExecute executes the request
 	//  @return []Summary2
-	// Deprecated
 	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
 
 	/*
@@ -842,14 +837,10 @@ func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
 /*
 ListChannels List channels
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-channels](#get-/v2/-org-/channels) instead.</b>
-
 Get a list of your channels.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListChannelsRequest
-
-Deprecated
 */
 func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
@@ -860,7 +851,6 @@ func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRe
 
 // Execute executes the request
 //  @return []Summary2
-// Deprecated
 func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
@@ -1026,7 +1016,7 @@ type ApiPatchChannelRequest struct {
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	patchChannelRequest2Inner *[]PatchChannelRequest2Inner
+	patchChannelRequestInner *[]PatchChannelRequestInner
 }
 
 // Validate request but do not otherwise process it
@@ -1059,8 +1049,8 @@ func (r ApiPatchChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) A
 	return r
 }
 
-func (r ApiPatchChannelRequest) PatchChannelRequest2Inner(patchChannelRequest2Inner []PatchChannelRequest2Inner) ApiPatchChannelRequest {
-	r.patchChannelRequest2Inner = &patchChannelRequest2Inner
+func (r ApiPatchChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchChannelRequest {
+	r.patchChannelRequestInner = &patchChannelRequestInner
 	return r
 }
 
@@ -1144,7 +1134,7 @@ func (a *ChannelsApiService) PatchChannelExecute(r ApiPatchChannelRequest) (*htt
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchChannelRequest2Inner
+	localVarPostBody = r.patchChannelRequestInner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

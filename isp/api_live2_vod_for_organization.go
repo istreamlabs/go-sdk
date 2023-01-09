@@ -55,24 +55,23 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error)
 
 	/*
-	PutOrgClip Make a clip
+	PostOrgClip Make a clip
 
 	Starts a job to create a clip for all VODs for the channel identified in the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
-	@param clipId ID for a Clip
-	@return ApiPutOrgClipRequest
+	@return ApiPostOrgClipRequest
 	*/
-	PutOrgClip(ctx context.Context, org string, channelId string, clipId string) ApiPutOrgClipRequest
+	PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest
 
-	// PutOrgClipExecute executes the request
+	// PostOrgClipExecute executes the request
 	//  @return PutClipResponse
-	PutOrgClipExecute(r ApiPutOrgClipRequest) (*PutClipResponse, *http.Response, error)
+	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PutClipResponse, *http.Response, error)
 
 	/*
-	PutOrgClipArchive Archive a clip
+	PostOrgClipArchive Archive a clip
 
 	Uses archive settings configured in Live2VOD for the organization and on the channel.
 
@@ -80,13 +79,13 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param org Organization name
 	@param channelId Unique channel identifier
 	@param clipId ID for a Clip
-	@return ApiPutOrgClipArchiveRequest
+	@return ApiPostOrgClipArchiveRequest
 	*/
-	PutOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPutOrgClipArchiveRequest
+	PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest
 
-	// PutOrgClipArchiveExecute executes the request
+	// PostOrgClipArchiveExecute executes the request
 	//  @return PutClipArchiveResponse
-	PutOrgClipArchiveExecute(r ApiPutOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error)
+	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error)
 }
 
 // Live2VODForOrganizationApiService Live2VODForOrganizationApi service
@@ -455,64 +454,60 @@ func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsR
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPutOrgClipRequest struct {
+type ApiPostOrgClipRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
 	org string
 	channelId string
-	clipId string
 	putClipRequest *PutClipRequest
 }
 
-func (r ApiPutOrgClipRequest) PutClipRequest(putClipRequest PutClipRequest) ApiPutOrgClipRequest {
+func (r ApiPostOrgClipRequest) PutClipRequest(putClipRequest PutClipRequest) ApiPostOrgClipRequest {
 	r.putClipRequest = &putClipRequest
 	return r
 }
 
-func (r ApiPutOrgClipRequest) Execute() (*PutClipResponse, *http.Response, error) {
-	return r.ApiService.PutOrgClipExecute(r)
+func (r ApiPostOrgClipRequest) Execute() (*PutClipResponse, *http.Response, error) {
+	return r.ApiService.PostOrgClipExecute(r)
 }
 
 /*
-PutOrgClip Make a clip
+PostOrgClip Make a clip
 
 Starts a job to create a clip for all VODs for the channel identified in the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
  @param channelId Unique channel identifier
- @param clipId ID for a Clip
- @return ApiPutOrgClipRequest
+ @return ApiPostOrgClipRequest
 */
-func (a *Live2VODForOrganizationApiService) PutOrgClip(ctx context.Context, org string, channelId string, clipId string) ApiPutOrgClipRequest {
-	return ApiPutOrgClipRequest{
+func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest {
+	return ApiPostOrgClipRequest{
 		ApiService: a,
 		ctx: ctx,
 		org: org,
 		channelId: channelId,
-		clipId: clipId,
 	}
 }
 
 // Execute executes the request
 //  @return PutClipResponse
-func (a *Live2VODForOrganizationApiService) PutOrgClipExecute(r ApiPutOrgClipRequest) (*PutClipResponse, *http.Response, error) {
+func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PutClipResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *PutClipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PutOrgClip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/clips/{clip-id}"
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/clips"
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
-	localVarPath = strings.Replace(localVarPath, "{"+"clip-id"+"}", url.PathEscape(parameterToString(r.clipId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -668,7 +663,7 @@ func (a *Live2VODForOrganizationApiService) PutOrgClipExecute(r ApiPutOrgClipReq
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type ApiPutOrgClipArchiveRequest struct {
+type ApiPostOrgClipArchiveRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
 	org string
@@ -676,12 +671,12 @@ type ApiPutOrgClipArchiveRequest struct {
 	clipId string
 }
 
-func (r ApiPutOrgClipArchiveRequest) Execute() (*PutClipArchiveResponse, *http.Response, error) {
-	return r.ApiService.PutOrgClipArchiveExecute(r)
+func (r ApiPostOrgClipArchiveRequest) Execute() (*PutClipArchiveResponse, *http.Response, error) {
+	return r.ApiService.PostOrgClipArchiveExecute(r)
 }
 
 /*
-PutOrgClipArchive Archive a clip
+PostOrgClipArchive Archive a clip
 
 Uses archive settings configured in Live2VOD for the organization and on the channel.
 
@@ -689,10 +684,10 @@ Uses archive settings configured in Live2VOD for the organization and on the cha
  @param org Organization name
  @param channelId Unique channel identifier
  @param clipId ID for a Clip
- @return ApiPutOrgClipArchiveRequest
+ @return ApiPostOrgClipArchiveRequest
 */
-func (a *Live2VODForOrganizationApiService) PutOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPutOrgClipArchiveRequest {
-	return ApiPutOrgClipArchiveRequest{
+func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest {
+	return ApiPostOrgClipArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
 		org: org,
@@ -703,15 +698,15 @@ func (a *Live2VODForOrganizationApiService) PutOrgClipArchive(ctx context.Contex
 
 // Execute executes the request
 //  @return PutClipArchiveResponse
-func (a *Live2VODForOrganizationApiService) PutOrgClipArchiveExecute(r ApiPutOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error) {
+func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *PutClipArchiveResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PutOrgClipArchive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClipArchive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

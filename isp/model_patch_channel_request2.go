@@ -31,6 +31,7 @@ type PatchChannelRequest2 struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty"`
+	Organization *string `json:"organization,omitempty"`
 	Packaging *ChannelPackaging `json:"packaging,omitempty"`
 	Publishing *ChannelPublishing `json:"publishing,omitempty"`
 	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
@@ -317,6 +318,38 @@ func (o *PatchChannelRequest2) SetName(v string) {
 	o.Name = &v
 }
 
+// GetOrganization returns the Organization field value if set, zero value otherwise.
+func (o *PatchChannelRequest2) GetOrganization() string {
+	if o == nil || o.Organization == nil {
+		var ret string
+		return ret
+	}
+	return *o.Organization
+}
+
+// GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchChannelRequest2) GetOrganizationOk() (*string, bool) {
+	if o == nil || o.Organization == nil {
+		return nil, false
+	}
+	return o.Organization, true
+}
+
+// HasOrganization returns a boolean if a field has been set.
+func (o *PatchChannelRequest2) HasOrganization() bool {
+	if o != nil && o.Organization != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrganization gets a reference to the given string and assigns it to the Organization field.
+func (o *PatchChannelRequest2) SetOrganization(v string) {
+	o.Organization = &v
+}
+
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
 func (o *PatchChannelRequest2) GetPackaging() ChannelPackaging {
 	if o == nil || o.Packaging == nil {
@@ -598,6 +631,9 @@ func (o PatchChannelRequest2) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Organization != nil {
+		toSerialize["organization"] = o.Organization
 	}
 	if o.Packaging != nil {
 		toSerialize["packaging"] = o.Packaging

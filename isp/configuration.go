@@ -104,8 +104,12 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.istreamplanet.com",
-				Description: "prod",
+				URL: "https://stage.api.istreamplanet.com",
+				Description: "stage",
+			},
+			{
+				URL: "http://localhost:8888",
+				Description: "local",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
