@@ -67,8 +67,8 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest
 
 	// PostOrgClipExecute executes the request
-	//  @return PutClipResponse
-	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PutClipResponse, *http.Response, error)
+	//  @return PostClipResponse
+	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponse, *http.Response, error)
 
 	/*
 	PostOrgClipArchive Archive a clip
@@ -84,8 +84,8 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest
 
 	// PostOrgClipArchiveExecute executes the request
-	//  @return PutClipArchiveResponse
-	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error)
+	//  @return PostClipArchiveResponse
+	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponse, *http.Response, error)
 }
 
 // Live2VODForOrganizationApiService Live2VODForOrganizationApi service
@@ -459,15 +459,15 @@ type ApiPostOrgClipRequest struct {
 	ApiService Live2VODForOrganizationApi
 	org string
 	channelId string
-	putClipRequest *PutClipRequest
+	postClipRequest *PostClipRequest
 }
 
-func (r ApiPostOrgClipRequest) PutClipRequest(putClipRequest PutClipRequest) ApiPostOrgClipRequest {
-	r.putClipRequest = &putClipRequest
+func (r ApiPostOrgClipRequest) PostClipRequest(postClipRequest PostClipRequest) ApiPostOrgClipRequest {
+	r.postClipRequest = &postClipRequest
 	return r
 }
 
-func (r ApiPostOrgClipRequest) Execute() (*PutClipResponse, *http.Response, error) {
+func (r ApiPostOrgClipRequest) Execute() (*PostClipResponse, *http.Response, error) {
 	return r.ApiService.PostOrgClipExecute(r)
 }
 
@@ -491,13 +491,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return PutClipResponse
-func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PutClipResponse, *http.Response, error) {
+//  @return PostClipResponse
+func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PutClipResponse
+		localVarReturnValue  *PostClipResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClip")
@@ -534,7 +534,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.putClipRequest
+	localVarPostBody = r.postClipRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -655,7 +655,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PutClipResponse)
+			localVarReturnValue = items.(*PostClipResponse)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -671,7 +671,7 @@ type ApiPostOrgClipArchiveRequest struct {
 	clipId string
 }
 
-func (r ApiPostOrgClipArchiveRequest) Execute() (*PutClipArchiveResponse, *http.Response, error) {
+func (r ApiPostOrgClipArchiveRequest) Execute() (*PostClipArchiveResponse, *http.Response, error) {
 	return r.ApiService.PostOrgClipArchiveExecute(r)
 }
 
@@ -697,13 +697,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return PutClipArchiveResponse
-func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PutClipArchiveResponse, *http.Response, error) {
+//  @return PostClipArchiveResponse
+func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PutClipArchiveResponse
+		localVarReturnValue  *PostClipArchiveResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClipArchive")
@@ -840,7 +840,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PutClipArchiveResponse)
+			localVarReturnValue = items.(*PostClipArchiveResponse)
 			localVarHTTPResponse = resp
 		}
 	}
