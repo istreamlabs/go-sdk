@@ -1,6 +1,7 @@
 package isp
 
 import (
+	"context"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,7 +11,6 @@ import (
 	"reflect"
 
 	link "github.com/tent/http-link-go"
-	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
 
@@ -172,23 +172,37 @@ func (c *HighLevelClient) Do(req *http.Request) (*http.Response, error) {
 
 // NewWithClientCredentials creates a new authenticated client using the OAuth
 // 2.0 client credentials flow, caching and refreshing the access token as
-// needed whenever requests to the API are made.
+// needed whenever requests to the API are made. Leave the organization blank
+// if using multi-org tokens.
 func NewWithClientCredentials(clientID, clientSecret, organization string) *HighLevelClient {
+	var aud string
+	if organization == "" {
+		aud = "https://api.istreamplanet.com"
+	} else {
+		aud = "https://platform.dtc.istreamplanet.net/" + organization
+	}
+
 	auth := &clientcredentials.Config{
 		ClientID:     clientID,
 		ClientSecret: clientSecret,
 		TokenURL:     "https://istreamplanet.auth0.com/oauth/token",
 		EndpointParams: url.Values{
-			"audience": []string{"https://platform.dtc.istreamplanet.net/" + organization},
+			"audience": []string{aud},
 		},
 	}
 
 	config := NewConfiguration()
-	config.HTTPClient = auth.Client(oauth2.NoContext)
+	config.HTTPClient = auth.Client(context.Background())
 
 	client := NewAPIClient(config)
 	return &HighLevelClient{
 		APIClient: client,
 		Client:    config.HTTPClient,
 	}
+}
+
+// TODO: remove this... for some reason it is missing in the generated output.
+// At some point we need to switch to a less wonky code generator.
+func parameterToString(v interface{}, s string) string {
+	return fmt.Sprintf("%v", v)
 }

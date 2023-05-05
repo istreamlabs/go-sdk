@@ -146,16 +146,4 @@ model_summary2_source.go
 model_task_response.go
 model_task_response_tasks_inner.go
 response.go
-test/api_audit_operations_for_organization_test.go
-test/api_audit_operations_test.go
-test/api_available_sources_test.go
-test/api_channel_operations_for_organization_test.go
-test/api_channel_operations_test.go
-test/api_channels_for_organization_test.go
-test/api_channels_test.go
-test/api_default_test.go
-test/api_live2_vod_for_organization_test.go
-test/api_organizations_test.go
-test/api_source_previews_test.go
-test/api_sources_test.go
 utils.go

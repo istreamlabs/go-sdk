@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PatchChannelRequest2Ingest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchChannelRequest2Ingest{}
+
 // PatchChannelRequest2Ingest Ingest configures inputs for the transcoder.
 type PatchChannelRequest2Ingest struct {
 	Slate *ChannelIngestSlate `json:"slate,omitempty"`
@@ -38,7 +41,7 @@ func NewPatchChannelRequest2IngestWithDefaults() *PatchChannelRequest2Ingest {
 
 // GetSlate returns the Slate field value if set, zero value otherwise.
 func (o *PatchChannelRequest2Ingest) GetSlate() ChannelIngestSlate {
-	if o == nil || o.Slate == nil {
+	if o == nil || IsNil(o.Slate) {
 		var ret ChannelIngestSlate
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *PatchChannelRequest2Ingest) GetSlate() ChannelIngestSlate {
 // GetSlateOk returns a tuple with the Slate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchChannelRequest2Ingest) GetSlateOk() (*ChannelIngestSlate, bool) {
-	if o == nil || o.Slate == nil {
+	if o == nil || IsNil(o.Slate) {
 		return nil, false
 	}
 	return o.Slate, true
@@ -56,7 +59,7 @@ func (o *PatchChannelRequest2Ingest) GetSlateOk() (*ChannelIngestSlate, bool) {
 
 // HasSlate returns a boolean if a field has been set.
 func (o *PatchChannelRequest2Ingest) HasSlate() bool {
-	if o != nil && o.Slate != nil {
+	if o != nil && !IsNil(o.Slate) {
 		return true
 	}
 
@@ -70,7 +73,7 @@ func (o *PatchChannelRequest2Ingest) SetSlate(v ChannelIngestSlate) {
 
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *PatchChannelRequest2Ingest) GetSource() ChannelIngestSource {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		var ret ChannelIngestSource
 		return ret
 	}
@@ -80,7 +83,7 @@ func (o *PatchChannelRequest2Ingest) GetSource() ChannelIngestSource {
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PatchChannelRequest2Ingest) GetSourceOk() (*ChannelIngestSource, bool) {
-	if o == nil || o.Source == nil {
+	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
 	return o.Source, true
@@ -88,7 +91,7 @@ func (o *PatchChannelRequest2Ingest) GetSourceOk() (*ChannelIngestSource, bool) 
 
 // HasSource returns a boolean if a field has been set.
 func (o *PatchChannelRequest2Ingest) HasSource() bool {
-	if o != nil && o.Source != nil {
+	if o != nil && !IsNil(o.Source) {
 		return true
 	}
 
@@ -101,14 +104,22 @@ func (o *PatchChannelRequest2Ingest) SetSource(v ChannelIngestSource) {
 }
 
 func (o PatchChannelRequest2Ingest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Slate != nil {
-		toSerialize["slate"] = o.Slate
-	}
-	if o.Source != nil {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PatchChannelRequest2Ingest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Slate) {
+		toSerialize["slate"] = o.Slate
+	}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
+	}
+	return toSerialize, nil
 }
 
 type NullablePatchChannelRequest2Ingest struct {
