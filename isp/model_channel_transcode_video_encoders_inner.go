@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInner{}
+
 // ChannelTranscodeVideoEncodersInner struct for ChannelTranscodeVideoEncodersInner
 type ChannelTranscodeVideoEncodersInner struct {
 	// Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
@@ -23,7 +26,7 @@ type ChannelTranscodeVideoEncodersInner struct {
 	H265 *ChannelTranscodeVideoEncodersInnerH265 `json:"h265,omitempty"`
 	// Height specifies the video height in pixels. Must be a multiple of two.
 	Height *int32 `json:"height,omitempty"`
-	// Encoder ID. IDs must be unique for all video and thumbnail encoders. This ID is referenced when setting up playlist publishing.
+	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	// Width specifies the video width in pixels. Must be a multiple of two.
 	Width *int32 `json:"width,omitempty"`
@@ -48,7 +51,7 @@ func NewChannelTranscodeVideoEncodersInnerWithDefaults() *ChannelTranscodeVideoE
 
 // GetBitRate returns the BitRate field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetBitRate() int32 {
-	if o == nil || o.BitRate == nil {
+	if o == nil || IsNil(o.BitRate) {
 		var ret int32
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetBitRate() int32 {
 // GetBitRateOk returns a tuple with the BitRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetBitRateOk() (*int32, bool) {
-	if o == nil || o.BitRate == nil {
+	if o == nil || IsNil(o.BitRate) {
 		return nil, false
 	}
 	return o.BitRate, true
@@ -66,7 +69,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetBitRateOk() (*int32, bool) {
 
 // HasBitRate returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasBitRate() bool {
-	if o != nil && o.BitRate != nil {
+	if o != nil && !IsNil(o.BitRate) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetBitRate(v int32) {
 
 // GetFrameRate returns the FrameRate field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetFrameRate() string {
-	if o == nil || o.FrameRate == nil {
+	if o == nil || IsNil(o.FrameRate) {
 		var ret string
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetFrameRate() string {
 // GetFrameRateOk returns a tuple with the FrameRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetFrameRateOk() (*string, bool) {
-	if o == nil || o.FrameRate == nil {
+	if o == nil || IsNil(o.FrameRate) {
 		return nil, false
 	}
 	return o.FrameRate, true
@@ -98,7 +101,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetFrameRateOk() (*string, bool) {
 
 // HasFrameRate returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasFrameRate() bool {
-	if o != nil && o.FrameRate != nil {
+	if o != nil && !IsNil(o.FrameRate) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetFrameRate(v string) {
 
 // GetH264 returns the H264 field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetH264() ChannelTranscodeVideoEncodersInnerH264 {
-	if o == nil || o.H264 == nil {
+	if o == nil || IsNil(o.H264) {
 		var ret ChannelTranscodeVideoEncodersInnerH264
 		return ret
 	}
@@ -122,7 +125,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetH264() ChannelTranscodeVideoEnco
 // GetH264Ok returns a tuple with the H264 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetH264Ok() (*ChannelTranscodeVideoEncodersInnerH264, bool) {
-	if o == nil || o.H264 == nil {
+	if o == nil || IsNil(o.H264) {
 		return nil, false
 	}
 	return o.H264, true
@@ -130,7 +133,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetH264Ok() (*ChannelTranscodeVideo
 
 // HasH264 returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasH264() bool {
-	if o != nil && o.H264 != nil {
+	if o != nil && !IsNil(o.H264) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetH264(v ChannelTranscodeVideoEnco
 
 // GetH265 returns the H265 field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetH265() ChannelTranscodeVideoEncodersInnerH265 {
-	if o == nil || o.H265 == nil {
+	if o == nil || IsNil(o.H265) {
 		var ret ChannelTranscodeVideoEncodersInnerH265
 		return ret
 	}
@@ -154,7 +157,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetH265() ChannelTranscodeVideoEnco
 // GetH265Ok returns a tuple with the H265 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetH265Ok() (*ChannelTranscodeVideoEncodersInnerH265, bool) {
-	if o == nil || o.H265 == nil {
+	if o == nil || IsNil(o.H265) {
 		return nil, false
 	}
 	return o.H265, true
@@ -162,7 +165,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetH265Ok() (*ChannelTranscodeVideo
 
 // HasH265 returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasH265() bool {
-	if o != nil && o.H265 != nil {
+	if o != nil && !IsNil(o.H265) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetH265(v ChannelTranscodeVideoEnco
 
 // GetHeight returns the Height field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetHeight() int32 {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		var ret int32
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetHeight() int32 {
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetHeightOk() (*int32, bool) {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		return nil, false
 	}
 	return o.Height, true
@@ -194,7 +197,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetHeightOk() (*int32, bool) {
 
 // HasHeight returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasHeight() bool {
-	if o != nil && o.Height != nil {
+	if o != nil && !IsNil(o.Height) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetHeight(v int32) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -218,7 +221,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -226,7 +229,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -240,7 +243,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetId(v string) {
 
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetWidth() int32 {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		var ret int32
 		return ret
 	}
@@ -250,7 +253,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetWidth() int32 {
 // GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInner) GetWidthOk() (*int32, bool) {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		return nil, false
 	}
 	return o.Width, true
@@ -258,7 +261,7 @@ func (o *ChannelTranscodeVideoEncodersInner) GetWidthOk() (*int32, bool) {
 
 // HasWidth returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInner) HasWidth() bool {
-	if o != nil && o.Width != nil {
+	if o != nil && !IsNil(o.Width) {
 		return true
 	}
 
@@ -271,29 +274,37 @@ func (o *ChannelTranscodeVideoEncodersInner) SetWidth(v int32) {
 }
 
 func (o ChannelTranscodeVideoEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BitRate != nil {
-		toSerialize["bit_rate"] = o.BitRate
-	}
-	if o.FrameRate != nil {
-		toSerialize["frame_rate"] = o.FrameRate
-	}
-	if o.H264 != nil {
-		toSerialize["h264"] = o.H264
-	}
-	if o.H265 != nil {
-		toSerialize["h265"] = o.H265
-	}
-	if o.Height != nil {
-		toSerialize["height"] = o.Height
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Width != nil {
-		toSerialize["width"] = o.Width
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BitRate) {
+		toSerialize["bit_rate"] = o.BitRate
+	}
+	if !IsNil(o.FrameRate) {
+		toSerialize["frame_rate"] = o.FrameRate
+	}
+	if !IsNil(o.H264) {
+		toSerialize["h264"] = o.H264
+	}
+	if !IsNil(o.H265) {
+		toSerialize["h265"] = o.H265
+	}
+	if !IsNil(o.Height) {
+		toSerialize["height"] = o.Height
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Width) {
+		toSerialize["width"] = o.Width
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInner struct {

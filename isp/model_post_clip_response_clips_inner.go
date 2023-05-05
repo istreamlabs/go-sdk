@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostClipResponseClipsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostClipResponseClipsInner{}
+
 // PostClipResponseClipsInner struct for PostClipResponseClipsInner
 type PostClipResponseClipsInner struct {
 	// Identifier for the clip created from the VOD
@@ -89,14 +92,18 @@ func (o *PostClipResponseClipsInner) SetVodId(v string) {
 }
 
 func (o PostClipResponseClipsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clip_id"] = o.ClipId
-	}
-	if true {
-		toSerialize["vod_id"] = o.VodId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostClipResponseClipsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clip_id"] = o.ClipId
+	toSerialize["vod_id"] = o.VodId
+	return toSerialize, nil
 }
 
 type NullablePostClipResponseClipsInner struct {

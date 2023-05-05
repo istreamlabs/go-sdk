@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPlaybackCmafInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPlaybackCmafInner{}
+
 // ChannelPlaybackCmafInner struct for ChannelPlaybackCmafInner
 type ChannelPlaybackCmafInner struct {
 	ContentProtection *ChannelPlaybackCmafInnerContentProtection `json:"content_protection,omitempty"`
@@ -42,7 +45,7 @@ func NewChannelPlaybackCmafInnerWithDefaults() *ChannelPlaybackCmafInner {
 
 // GetContentProtection returns the ContentProtection field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInner) GetContentProtection() ChannelPlaybackCmafInnerContentProtection {
-	if o == nil || o.ContentProtection == nil {
+	if o == nil || IsNil(o.ContentProtection) {
 		var ret ChannelPlaybackCmafInnerContentProtection
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelPlaybackCmafInner) GetContentProtection() ChannelPlaybackCmafInn
 // GetContentProtectionOk returns a tuple with the ContentProtection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInner) GetContentProtectionOk() (*ChannelPlaybackCmafInnerContentProtection, bool) {
-	if o == nil || o.ContentProtection == nil {
+	if o == nil || IsNil(o.ContentProtection) {
 		return nil, false
 	}
 	return o.ContentProtection, true
@@ -60,7 +63,7 @@ func (o *ChannelPlaybackCmafInner) GetContentProtectionOk() (*ChannelPlaybackCma
 
 // HasContentProtection returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInner) HasContentProtection() bool {
-	if o != nil && o.ContentProtection != nil {
+	if o != nil && !IsNil(o.ContentProtection) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelPlaybackCmafInner) SetContentProtection(v ChannelPlaybackCmafInn
 
 // GetPartialPresentations returns the PartialPresentations field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInner) GetPartialPresentations() []string {
-	if o == nil || o.PartialPresentations == nil {
+	if o == nil || IsNil(o.PartialPresentations) {
 		var ret []string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelPlaybackCmafInner) GetPartialPresentations() []string {
 // GetPartialPresentationsOk returns a tuple with the PartialPresentations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInner) GetPartialPresentationsOk() ([]string, bool) {
-	if o == nil || o.PartialPresentations == nil {
+	if o == nil || IsNil(o.PartialPresentations) {
 		return nil, false
 	}
 	return o.PartialPresentations, true
@@ -92,7 +95,7 @@ func (o *ChannelPlaybackCmafInner) GetPartialPresentationsOk() ([]string, bool) 
 
 // HasPartialPresentations returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInner) HasPartialPresentations() bool {
-	if o != nil && o.PartialPresentations != nil {
+	if o != nil && !IsNil(o.PartialPresentations) {
 		return true
 	}
 
@@ -129,17 +132,23 @@ func (o *ChannelPlaybackCmafInner) SetUrl(v string) {
 }
 
 func (o ChannelPlaybackCmafInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ContentProtection != nil {
-		toSerialize["content_protection"] = o.ContentProtection
-	}
-	if o.PartialPresentations != nil {
-		toSerialize["partial_presentations"] = o.PartialPresentations
-	}
-	if true {
-		toSerialize["url"] = o.Url
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPlaybackCmafInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ContentProtection) {
+		toSerialize["content_protection"] = o.ContentProtection
+	}
+	if !IsNil(o.PartialPresentations) {
+		toSerialize["partial_presentations"] = o.PartialPresentations
+	}
+	toSerialize["url"] = o.Url
+	return toSerialize, nil
 }
 
 type NullableChannelPlaybackCmafInner struct {

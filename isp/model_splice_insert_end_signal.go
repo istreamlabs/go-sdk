@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SpliceInsertEndSignal type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SpliceInsertEndSignal{}
+
 // SpliceInsertEndSignal struct for SpliceInsertEndSignal
 type SpliceInsertEndSignal struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -41,7 +44,7 @@ func NewSpliceInsertEndSignalWithDefaults() *SpliceInsertEndSignal {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *SpliceInsertEndSignal) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *SpliceInsertEndSignal) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SpliceInsertEndSignal) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -59,7 +62,7 @@ func (o *SpliceInsertEndSignal) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *SpliceInsertEndSignal) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *SpliceInsertEndSignal) SetEventId(v int32) {
 }
 
 func (o SpliceInsertEndSignal) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if true {
-		toSerialize["event_id"] = o.EventId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SpliceInsertEndSignal) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	toSerialize["event_id"] = o.EventId
+	return toSerialize, nil
 }
 
 type NullableSpliceInsertEndSignal struct {

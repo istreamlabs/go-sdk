@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetPreviewStreamsResponseDefaultAudioTrack type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetPreviewStreamsResponseDefaultAudioTrack{}
+
 // GetPreviewStreamsResponseDefaultAudioTrack Audio and Video Track info provided so that callers have easy access to track information of default tracks in the above default_url.
 type GetPreviewStreamsResponseDefaultAudioTrack struct {
 	Bitrate *int32 `json:"bitrate,omitempty"`
@@ -44,7 +47,7 @@ func NewGetPreviewStreamsResponseDefaultAudioTrackWithDefaults() *GetPreviewStre
 
 // GetBitrate returns the Bitrate field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetBitrate() int32 {
-	if o == nil || o.Bitrate == nil {
+	if o == nil || IsNil(o.Bitrate) {
 		var ret int32
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetBitrate() int32 {
 // GetBitrateOk returns a tuple with the Bitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetBitrateOk() (*int32, bool) {
-	if o == nil || o.Bitrate == nil {
+	if o == nil || IsNil(o.Bitrate) {
 		return nil, false
 	}
 	return o.Bitrate, true
@@ -62,7 +65,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetBitrateOk() (*int32, boo
 
 // HasBitrate returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasBitrate() bool {
-	if o != nil && o.Bitrate != nil {
+	if o != nil && !IsNil(o.Bitrate) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetBitrate(v int32) {
 
 // GetCodecString returns the CodecString field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetCodecString() string {
-	if o == nil || o.CodecString == nil {
+	if o == nil || IsNil(o.CodecString) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetCodecString() string {
 // GetCodecStringOk returns a tuple with the CodecString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetCodecStringOk() (*string, bool) {
-	if o == nil || o.CodecString == nil {
+	if o == nil || IsNil(o.CodecString) {
 		return nil, false
 	}
 	return o.CodecString, true
@@ -94,7 +97,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetCodecStringOk() (*string
 
 // HasCodecString returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasCodecString() bool {
-	if o != nil && o.CodecString != nil {
+	if o != nil && !IsNil(o.CodecString) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetCodecString(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -126,7 +129,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetIdOk() (*int32, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetId(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -158,7 +161,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNameOk() (*string, bool)
 
 // HasName returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetName(v string) {
 
 // GetNumChannels returns the NumChannels field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNumChannels() int32 {
-	if o == nil || o.NumChannels == nil {
+	if o == nil || IsNil(o.NumChannels) {
 		var ret int32
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNumChannels() int32 {
 // GetNumChannelsOk returns a tuple with the NumChannels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNumChannelsOk() (*int32, bool) {
-	if o == nil || o.NumChannels == nil {
+	if o == nil || IsNil(o.NumChannels) {
 		return nil, false
 	}
 	return o.NumChannels, true
@@ -190,7 +193,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetNumChannelsOk() (*int32,
 
 // HasNumChannels returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasNumChannels() bool {
-	if o != nil && o.NumChannels != nil {
+	if o != nil && !IsNil(o.NumChannels) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetNumChannels(v int32) {
 
 // GetSampleRate returns the SampleRate field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetSampleRate() int32 {
-	if o == nil || o.SampleRate == nil {
+	if o == nil || IsNil(o.SampleRate) {
 		var ret int32
 		return ret
 	}
@@ -214,7 +217,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetSampleRate() int32 {
 // GetSampleRateOk returns a tuple with the SampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetSampleRateOk() (*int32, bool) {
-	if o == nil || o.SampleRate == nil {
+	if o == nil || IsNil(o.SampleRate) {
 		return nil, false
 	}
 	return o.SampleRate, true
@@ -222,7 +225,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) GetSampleRateOk() (*int32, 
 
 // HasSampleRate returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultAudioTrack) HasSampleRate() bool {
-	if o != nil && o.SampleRate != nil {
+	if o != nil && !IsNil(o.SampleRate) {
 		return true
 	}
 
@@ -235,26 +238,34 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetSampleRate(v int32) {
 }
 
 func (o GetPreviewStreamsResponseDefaultAudioTrack) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Bitrate != nil {
-		toSerialize["bitrate"] = o.Bitrate
-	}
-	if o.CodecString != nil {
-		toSerialize["codec_string"] = o.CodecString
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.NumChannels != nil {
-		toSerialize["num_channels"] = o.NumChannels
-	}
-	if o.SampleRate != nil {
-		toSerialize["sample_rate"] = o.SampleRate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetPreviewStreamsResponseDefaultAudioTrack) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Bitrate) {
+		toSerialize["bitrate"] = o.Bitrate
+	}
+	if !IsNil(o.CodecString) {
+		toSerialize["codec_string"] = o.CodecString
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.NumChannels) {
+		toSerialize["num_channels"] = o.NumChannels
+	}
+	if !IsNil(o.SampleRate) {
+		toSerialize["sample_rate"] = o.SampleRate
+	}
+	return toSerialize, nil
 }
 
 type NullableGetPreviewStreamsResponseDefaultAudioTrack struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH265HdrHdr10 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrHdr10{}
+
 // ChannelTranscodeVideoEncodersInnerH265HdrHdr10 Only one of ['hlg', 'hdr10', 'dolby_vision'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrHdr10 struct {
 	Clli *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
@@ -38,7 +41,7 @@ func NewChannelTranscodeVideoEncodersInnerH265HdrHdr10WithDefaults() *ChannelTra
 
 // GetClli returns the Clli field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetClli() ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli {
-	if o == nil || o.Clli == nil {
+	if o == nil || IsNil(o.Clli) {
 		var ret ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetClli() ChannelTransc
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetClliOk() (*ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli, bool) {
-	if o == nil || o.Clli == nil {
+	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
 	return o.Clli, true
@@ -56,7 +59,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetClliOk() (*ChannelTr
 
 // HasClli returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) HasClli() bool {
-	if o != nil && o.Clli != nil {
+	if o != nil && !IsNil(o.Clli) {
 		return true
 	}
 
@@ -70,7 +73,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) SetClli(v ChannelTransc
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetMdcv() ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv {
-	if o == nil || o.Mdcv == nil {
+	if o == nil || IsNil(o.Mdcv) {
 		var ret ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv
 		return ret
 	}
@@ -80,7 +83,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetMdcv() ChannelTransc
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetMdcvOk() (*ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv, bool) {
-	if o == nil || o.Mdcv == nil {
+	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
 	return o.Mdcv, true
@@ -88,7 +91,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) GetMdcvOk() (*ChannelTr
 
 // HasMdcv returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) HasMdcv() bool {
-	if o != nil && o.Mdcv != nil {
+	if o != nil && !IsNil(o.Mdcv) {
 		return true
 	}
 
@@ -101,14 +104,22 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrHdr10) SetMdcv(v ChannelTransc
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrHdr10) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Clli != nil {
-		toSerialize["clli"] = o.Clli
-	}
-	if o.Mdcv != nil {
-		toSerialize["mdcv"] = o.Mdcv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH265HdrHdr10) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Clli) {
+		toSerialize["clli"] = o.Clli
+	}
+	if !IsNil(o.Mdcv) {
+		toSerialize["mdcv"] = o.Mdcv
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH265HdrHdr10 struct {

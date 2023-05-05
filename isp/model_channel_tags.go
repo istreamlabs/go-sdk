@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTags type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTags{}
+
 // ChannelTags Use ChannelMetadata when possible instead of tags.
 type ChannelTags struct {
 	// Indicates whether this channel is monitored by automation.
@@ -38,7 +41,7 @@ func NewChannelTagsWithDefaults() *ChannelTags {
 
 // GetMonitored returns the Monitored field value if set, zero value otherwise.
 func (o *ChannelTags) GetMonitored() bool {
-	if o == nil || o.Monitored == nil {
+	if o == nil || IsNil(o.Monitored) {
 		var ret bool
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelTags) GetMonitored() bool {
 // GetMonitoredOk returns a tuple with the Monitored field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTags) GetMonitoredOk() (*bool, bool) {
-	if o == nil || o.Monitored == nil {
+	if o == nil || IsNil(o.Monitored) {
 		return nil, false
 	}
 	return o.Monitored, true
@@ -56,7 +59,7 @@ func (o *ChannelTags) GetMonitoredOk() (*bool, bool) {
 
 // HasMonitored returns a boolean if a field has been set.
 func (o *ChannelTags) HasMonitored() bool {
-	if o != nil && o.Monitored != nil {
+	if o != nil && !IsNil(o.Monitored) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelTags) SetMonitored(v bool) {
 }
 
 func (o ChannelTags) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Monitored != nil {
-		toSerialize["monitored"] = o.Monitored
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTags) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Monitored) {
+		toSerialize["monitored"] = o.Monitored
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTags struct {

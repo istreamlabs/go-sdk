@@ -13,11 +13,14 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeThumbnailEncodersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeThumbnailEncodersInner{}
+
 // ChannelTranscodeThumbnailEncodersInner struct for ChannelTranscodeThumbnailEncodersInner
 type ChannelTranscodeThumbnailEncodersInner struct {
 	// Height specifies the thumbnail image height in pixels.
 	Height *int32 `json:"height,omitempty"`
-	// Encoder ID. IDs must be unique for all video and thumbnail encoders. This ID is referenced when setting up playlist publishing.
+	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	// Width specifies the thumbnail image width in pixels.
 	Width *int32 `json:"width,omitempty"`
@@ -42,7 +45,7 @@ func NewChannelTranscodeThumbnailEncodersInnerWithDefaults() *ChannelTranscodeTh
 
 // GetHeight returns the Height field value if set, zero value otherwise.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetHeight() int32 {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		var ret int32
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetHeight() int32 {
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetHeightOk() (*int32, bool) {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		return nil, false
 	}
 	return o.Height, true
@@ -60,7 +63,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetHeightOk() (*int32, bool) {
 
 // HasHeight returns a boolean if a field has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) HasHeight() bool {
-	if o != nil && o.Height != nil {
+	if o != nil && !IsNil(o.Height) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) SetHeight(v int32) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -92,7 +95,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) SetId(v string) {
 
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetWidth() int32 {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		var ret int32
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetWidth() int32 {
 // GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) GetWidthOk() (*int32, bool) {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		return nil, false
 	}
 	return o.Width, true
@@ -124,7 +127,7 @@ func (o *ChannelTranscodeThumbnailEncodersInner) GetWidthOk() (*int32, bool) {
 
 // HasWidth returns a boolean if a field has been set.
 func (o *ChannelTranscodeThumbnailEncodersInner) HasWidth() bool {
-	if o != nil && o.Width != nil {
+	if o != nil && !IsNil(o.Width) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ChannelTranscodeThumbnailEncodersInner) SetWidth(v int32) {
 }
 
 func (o ChannelTranscodeThumbnailEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Height != nil {
-		toSerialize["height"] = o.Height
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Width != nil {
-		toSerialize["width"] = o.Width
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeThumbnailEncodersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Height) {
+		toSerialize["height"] = o.Height
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Width) {
+		toSerialize["width"] = o.Width
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeThumbnailEncodersInner struct {

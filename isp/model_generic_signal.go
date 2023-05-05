@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GenericSignal type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GenericSignal{}
+
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
 	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
@@ -57,7 +60,7 @@ func NewGenericSignalWithDefaults() *GenericSignal {
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *GenericSignal) GetDuration() int32 {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -67,7 +70,7 @@ func (o *GenericSignal) GetDuration() int32 {
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetDurationOk() (*int32, bool) {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
 	return o.Duration, true
@@ -75,7 +78,7 @@ func (o *GenericSignal) GetDurationOk() (*int32, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *GenericSignal) HasDuration() bool {
-	if o != nil && o.Duration != nil {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -161,7 +164,7 @@ func (o *GenericSignal) SetSignalType(v string) {
 
 // GetSlateUri returns the SlateUri field value if set, zero value otherwise.
 func (o *GenericSignal) GetSlateUri() string {
-	if o == nil || o.SlateUri == nil {
+	if o == nil || IsNil(o.SlateUri) {
 		var ret string
 		return ret
 	}
@@ -171,7 +174,7 @@ func (o *GenericSignal) GetSlateUri() string {
 // GetSlateUriOk returns a tuple with the SlateUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetSlateUriOk() (*string, bool) {
-	if o == nil || o.SlateUri == nil {
+	if o == nil || IsNil(o.SlateUri) {
 		return nil, false
 	}
 	return o.SlateUri, true
@@ -179,7 +182,7 @@ func (o *GenericSignal) GetSlateUriOk() (*string, bool) {
 
 // HasSlateUri returns a boolean if a field has been set.
 func (o *GenericSignal) HasSlateUri() bool {
-	if o != nil && o.SlateUri != nil {
+	if o != nil && !IsNil(o.SlateUri) {
 		return true
 	}
 
@@ -193,7 +196,7 @@ func (o *GenericSignal) SetSlateUri(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GenericSignal) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -203,7 +206,7 @@ func (o *GenericSignal) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -211,7 +214,7 @@ func (o *GenericSignal) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *GenericSignal) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -225,7 +228,7 @@ func (o *GenericSignal) SetType(v string) {
 
 // GetUpids returns the Upids field value if set, zero value otherwise.
 func (o *GenericSignal) GetUpids() []string {
-	if o == nil || o.Upids == nil {
+	if o == nil || IsNil(o.Upids) {
 		var ret []string
 		return ret
 	}
@@ -235,7 +238,7 @@ func (o *GenericSignal) GetUpids() []string {
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
-	if o == nil || o.Upids == nil {
+	if o == nil || IsNil(o.Upids) {
 		return nil, false
 	}
 	return o.Upids, true
@@ -243,7 +246,7 @@ func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
 
 // HasUpids returns a boolean if a field has been set.
 func (o *GenericSignal) HasUpids() bool {
-	if o != nil && o.Upids != nil {
+	if o != nil && !IsNil(o.Upids) {
 		return true
 	}
 
@@ -256,29 +259,31 @@ func (o *GenericSignal) SetUpids(v []string) {
 }
 
 func (o GenericSignal) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Duration != nil {
-		toSerialize["duration"] = o.Duration
-	}
-	if true {
-		toSerialize["event_id"] = o.EventId
-	}
-	if true {
-		toSerialize["segment_type"] = o.SegmentType
-	}
-	if true {
-		toSerialize["signal_type"] = o.SignalType
-	}
-	if o.SlateUri != nil {
-		toSerialize["slate_uri"] = o.SlateUri
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Upids != nil {
-		toSerialize["upids"] = o.Upids
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GenericSignal) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	toSerialize["event_id"] = o.EventId
+	toSerialize["segment_type"] = o.SegmentType
+	toSerialize["signal_type"] = o.SignalType
+	if !IsNil(o.SlateUri) {
+		toSerialize["slate_uri"] = o.SlateUri
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Upids) {
+		toSerialize["upids"] = o.Upids
+	}
+	return toSerialize, nil
 }
 
 type NullableGenericSignal struct {

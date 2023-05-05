@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the ChannelTimelineEntry type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTimelineEntry{}
+
 // ChannelTimelineEntry struct for ChannelTimelineEntry
 type ChannelTimelineEntry struct {
 	// Shortcode indicating what action was taken
@@ -104,7 +107,7 @@ func (o *ChannelTimelineEntry) SetAgent(v string) {
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *ChannelTimelineEntry) GetQuery() string {
-	if o == nil || o.Query == nil {
+	if o == nil || IsNil(o.Query) {
 		var ret string
 		return ret
 	}
@@ -114,7 +117,7 @@ func (o *ChannelTimelineEntry) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTimelineEntry) GetQueryOk() (*string, bool) {
-	if o == nil || o.Query == nil {
+	if o == nil || IsNil(o.Query) {
 		return nil, false
 	}
 	return o.Query, true
@@ -122,7 +125,7 @@ func (o *ChannelTimelineEntry) GetQueryOk() (*string, bool) {
 
 // HasQuery returns a boolean if a field has been set.
 func (o *ChannelTimelineEntry) HasQuery() bool {
-	if o != nil && o.Query != nil {
+	if o != nil && !IsNil(o.Query) {
 		return true
 	}
 
@@ -231,29 +234,25 @@ func (o *ChannelTimelineEntry) SetTraceId(v string) {
 }
 
 func (o ChannelTimelineEntry) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["action"] = o.Action
-	}
-	if true {
-		toSerialize["agent"] = o.Agent
-	}
-	if o.Query != nil {
-		toSerialize["query"] = o.Query
-	}
-	if true {
-		toSerialize["request_body"] = o.RequestBody
-	}
-	if true {
-		toSerialize["status_code"] = o.StatusCode
-	}
-	if true {
-		toSerialize["timestamp"] = o.Timestamp
-	}
-	if true {
-		toSerialize["trace_id"] = o.TraceId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTimelineEntry) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["action"] = o.Action
+	toSerialize["agent"] = o.Agent
+	if !IsNil(o.Query) {
+		toSerialize["query"] = o.Query
+	}
+	toSerialize["request_body"] = o.RequestBody
+	toSerialize["status_code"] = o.StatusCode
+	toSerialize["timestamp"] = o.Timestamp
+	toSerialize["trace_id"] = o.TraceId
+	return toSerialize, nil
 }
 
 type NullableChannelTimelineEntry struct {

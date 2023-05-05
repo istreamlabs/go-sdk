@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelIngestSourceAudioSourcesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelIngestSourceAudioSourcesInner{}
+
 // ChannelIngestSourceAudioSourcesInner struct for ChannelIngestSourceAudioSourcesInner
 type ChannelIngestSourceAudioSourcesInner struct {
 	Id *string `json:"id,omitempty"`
@@ -43,7 +46,7 @@ func NewChannelIngestSourceAudioSourcesInnerWithDefaults() *ChannelIngestSourceA
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelIngestSourceAudioSourcesInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -61,7 +64,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) SetId(v string) {
 
 // GetLanguage returns the Language field value if set, zero value otherwise.
 func (o *ChannelIngestSourceAudioSourcesInner) GetLanguage() string {
-	if o == nil || o.Language == nil {
+	if o == nil || IsNil(o.Language) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetLanguage() string {
 // GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) GetLanguageOk() (*string, bool) {
-	if o == nil || o.Language == nil {
+	if o == nil || IsNil(o.Language) {
 		return nil, false
 	}
 	return o.Language, true
@@ -93,7 +96,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetLanguageOk() (*string, bool) {
 
 // HasLanguage returns a boolean if a field has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) HasLanguage() bool {
-	if o != nil && o.Language != nil {
+	if o != nil && !IsNil(o.Language) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) SetLanguage(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ChannelIngestSourceAudioSourcesInner) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -125,7 +128,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) SetName(v string) {
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
 func (o *ChannelIngestSourceAudioSourcesInner) GetSelector() string {
-	if o == nil || o.Selector == nil {
+	if o == nil || IsNil(o.Selector) {
 		var ret string
 		return ret
 	}
@@ -149,7 +152,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetSelector() string {
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) GetSelectorOk() (*string, bool) {
-	if o == nil || o.Selector == nil {
+	if o == nil || IsNil(o.Selector) {
 		return nil, false
 	}
 	return o.Selector, true
@@ -157,7 +160,7 @@ func (o *ChannelIngestSourceAudioSourcesInner) GetSelectorOk() (*string, bool) {
 
 // HasSelector returns a boolean if a field has been set.
 func (o *ChannelIngestSourceAudioSourcesInner) HasSelector() bool {
-	if o != nil && o.Selector != nil {
+	if o != nil && !IsNil(o.Selector) {
 		return true
 	}
 
@@ -170,20 +173,28 @@ func (o *ChannelIngestSourceAudioSourcesInner) SetSelector(v string) {
 }
 
 func (o ChannelIngestSourceAudioSourcesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Language != nil {
-		toSerialize["language"] = o.Language
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Selector != nil {
-		toSerialize["selector"] = o.Selector
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelIngestSourceAudioSourcesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Selector) {
+		toSerialize["selector"] = o.Selector
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelIngestSourceAudioSourcesInner struct {

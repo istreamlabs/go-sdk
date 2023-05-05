@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the SignalingLogLog type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SignalingLogLog{}
+
 // SignalingLogLog struct for SignalingLogLog
 type SignalingLogLog struct {
 	Base64 string `json:"base64"`
@@ -113,17 +116,19 @@ func (o *SignalingLogLog) SetPretty(v string) {
 }
 
 func (o SignalingLogLog) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["base64"] = o.Base64
-	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if true {
-		toSerialize["pretty"] = o.Pretty
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SignalingLogLog) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["base64"] = o.Base64
+	toSerialize["message"] = o.Message
+	toSerialize["pretty"] = o.Pretty
+	return toSerialize, nil
 }
 
 type NullableSignalingLogLog struct {

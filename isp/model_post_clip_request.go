@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PostClipRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PostClipRequest{}
+
 // PostClipRequest struct for PostClipRequest
 type PostClipRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -48,7 +51,7 @@ func NewPostClipRequestWithDefaults() *PostClipRequest {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *PostClipRequest) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *PostClipRequest) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostClipRequest) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -66,7 +69,7 @@ func (o *PostClipRequest) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PostClipRequest) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *PostClipRequest) SetSchema(v string) {
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PostClipRequest) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *PostClipRequest) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostClipRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return o.Description, true
@@ -98,7 +101,7 @@ func (o *PostClipRequest) GetDescriptionOk() (*string, bool) {
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PostClipRequest) HasDescription() bool {
-	if o != nil && o.Description != nil {
+	if o != nil && !IsNil(o.Description) {
 		return true
 	}
 
@@ -136,7 +139,7 @@ func (o *PostClipRequest) SetEnd(v string) {
 
 // GetOverwrite returns the Overwrite field value if set, zero value otherwise.
 func (o *PostClipRequest) GetOverwrite() bool {
-	if o == nil || o.Overwrite == nil {
+	if o == nil || IsNil(o.Overwrite) {
 		var ret bool
 		return ret
 	}
@@ -146,7 +149,7 @@ func (o *PostClipRequest) GetOverwrite() bool {
 // GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PostClipRequest) GetOverwriteOk() (*bool, bool) {
-	if o == nil || o.Overwrite == nil {
+	if o == nil || IsNil(o.Overwrite) {
 		return nil, false
 	}
 	return o.Overwrite, true
@@ -154,7 +157,7 @@ func (o *PostClipRequest) GetOverwriteOk() (*bool, bool) {
 
 // HasOverwrite returns a boolean if a field has been set.
 func (o *PostClipRequest) HasOverwrite() bool {
-	if o != nil && o.Overwrite != nil {
+	if o != nil && !IsNil(o.Overwrite) {
 		return true
 	}
 
@@ -191,23 +194,27 @@ func (o *PostClipRequest) SetStart(v string) {
 }
 
 func (o PostClipRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["end"] = o.End
-	}
-	if o.Overwrite != nil {
-		toSerialize["overwrite"] = o.Overwrite
-	}
-	if true {
-		toSerialize["start"] = o.Start
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PostClipRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	toSerialize["end"] = o.End
+	if !IsNil(o.Overwrite) {
+		toSerialize["overwrite"] = o.Overwrite
+	}
+	toSerialize["start"] = o.Start
+	return toSerialize, nil
 }
 
 type NullablePostClipRequest struct {

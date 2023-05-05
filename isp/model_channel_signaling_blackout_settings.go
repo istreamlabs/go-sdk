@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelSignalingBlackoutSettings type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelSignalingBlackoutSettings{}
+
 // ChannelSignalingBlackoutSettings Configure blackout: replacing content with custom slates based on program signaling.
 type ChannelSignalingBlackoutSettings struct {
 	// Default slate URL to use for blackouts. Can be overridden by the 'slates' field.
@@ -44,7 +47,7 @@ func NewChannelSignalingBlackoutSettingsWithDefaults() *ChannelSignalingBlackout
 
 // GetDefaultBlackoutSlateUrl returns the DefaultBlackoutSlateUrl field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettings) GetDefaultBlackoutSlateUrl() string {
-	if o == nil || o.DefaultBlackoutSlateUrl == nil {
+	if o == nil || IsNil(o.DefaultBlackoutSlateUrl) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelSignalingBlackoutSettings) GetDefaultBlackoutSlateUrl() string {
 // GetDefaultBlackoutSlateUrlOk returns a tuple with the DefaultBlackoutSlateUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettings) GetDefaultBlackoutSlateUrlOk() (*string, bool) {
-	if o == nil || o.DefaultBlackoutSlateUrl == nil {
+	if o == nil || IsNil(o.DefaultBlackoutSlateUrl) {
 		return nil, false
 	}
 	return o.DefaultBlackoutSlateUrl, true
@@ -62,7 +65,7 @@ func (o *ChannelSignalingBlackoutSettings) GetDefaultBlackoutSlateUrlOk() (*stri
 
 // HasDefaultBlackoutSlateUrl returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettings) HasDefaultBlackoutSlateUrl() bool {
-	if o != nil && o.DefaultBlackoutSlateUrl != nil {
+	if o != nil && !IsNil(o.DefaultBlackoutSlateUrl) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelSignalingBlackoutSettings) SetDefaultBlackoutSlateUrl(v string) 
 
 // GetForceBlackoutSegments returns the ForceBlackoutSegments field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegments() []string {
-	if o == nil || o.ForceBlackoutSegments == nil {
+	if o == nil || IsNil(o.ForceBlackoutSegments) {
 		var ret []string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegments() []string {
 // GetForceBlackoutSegmentsOk returns a tuple with the ForceBlackoutSegments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegmentsOk() ([]string, bool) {
-	if o == nil || o.ForceBlackoutSegments == nil {
+	if o == nil || IsNil(o.ForceBlackoutSegments) {
 		return nil, false
 	}
 	return o.ForceBlackoutSegments, true
@@ -94,7 +97,7 @@ func (o *ChannelSignalingBlackoutSettings) GetForceBlackoutSegmentsOk() ([]strin
 
 // HasForceBlackoutSegments returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettings) HasForceBlackoutSegments() bool {
-	if o != nil && o.ForceBlackoutSegments != nil {
+	if o != nil && !IsNil(o.ForceBlackoutSegments) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelSignalingBlackoutSettings) SetForceBlackoutSegments(v []string) 
 
 // GetHonorWebDeliveryRestriction returns the HonorWebDeliveryRestriction field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettings) GetHonorWebDeliveryRestriction() bool {
-	if o == nil || o.HonorWebDeliveryRestriction == nil {
+	if o == nil || IsNil(o.HonorWebDeliveryRestriction) {
 		var ret bool
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelSignalingBlackoutSettings) GetHonorWebDeliveryRestriction() bool
 // GetHonorWebDeliveryRestrictionOk returns a tuple with the HonorWebDeliveryRestriction field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettings) GetHonorWebDeliveryRestrictionOk() (*bool, bool) {
-	if o == nil || o.HonorWebDeliveryRestriction == nil {
+	if o == nil || IsNil(o.HonorWebDeliveryRestriction) {
 		return nil, false
 	}
 	return o.HonorWebDeliveryRestriction, true
@@ -126,7 +129,7 @@ func (o *ChannelSignalingBlackoutSettings) GetHonorWebDeliveryRestrictionOk() (*
 
 // HasHonorWebDeliveryRestriction returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettings) HasHonorWebDeliveryRestriction() bool {
-	if o != nil && o.HonorWebDeliveryRestriction != nil {
+	if o != nil && !IsNil(o.HonorWebDeliveryRestriction) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelSignalingBlackoutSettings) SetHonorWebDeliveryRestriction(v bool
 
 // GetSlates returns the Slates field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettings) GetSlates() []ChannelSignalingBlackoutSettingsSlatesInner {
-	if o == nil || o.Slates == nil {
+	if o == nil || IsNil(o.Slates) {
 		var ret []ChannelSignalingBlackoutSettingsSlatesInner
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelSignalingBlackoutSettings) GetSlates() []ChannelSignalingBlackou
 // GetSlatesOk returns a tuple with the Slates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettings) GetSlatesOk() ([]ChannelSignalingBlackoutSettingsSlatesInner, bool) {
-	if o == nil || o.Slates == nil {
+	if o == nil || IsNil(o.Slates) {
 		return nil, false
 	}
 	return o.Slates, true
@@ -158,7 +161,7 @@ func (o *ChannelSignalingBlackoutSettings) GetSlatesOk() ([]ChannelSignalingBlac
 
 // HasSlates returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettings) HasSlates() bool {
-	if o != nil && o.Slates != nil {
+	if o != nil && !IsNil(o.Slates) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelSignalingBlackoutSettings) SetSlates(v []ChannelSignalingBlackou
 }
 
 func (o ChannelSignalingBlackoutSettings) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DefaultBlackoutSlateUrl != nil {
-		toSerialize["default_blackout_slate_url"] = o.DefaultBlackoutSlateUrl
-	}
-	if o.ForceBlackoutSegments != nil {
-		toSerialize["force_blackout_segments"] = o.ForceBlackoutSegments
-	}
-	if o.HonorWebDeliveryRestriction != nil {
-		toSerialize["honor_web_delivery_restriction"] = o.HonorWebDeliveryRestriction
-	}
-	if o.Slates != nil {
-		toSerialize["slates"] = o.Slates
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelSignalingBlackoutSettings) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultBlackoutSlateUrl) {
+		toSerialize["default_blackout_slate_url"] = o.DefaultBlackoutSlateUrl
+	}
+	if !IsNil(o.ForceBlackoutSegments) {
+		toSerialize["force_blackout_segments"] = o.ForceBlackoutSegments
+	}
+	if !IsNil(o.HonorWebDeliveryRestriction) {
+		toSerialize["honor_web_delivery_restriction"] = o.HonorWebDeliveryRestriction
+	}
+	if !IsNil(o.Slates) {
+		toSerialize["slates"] = o.Slates
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelSignalingBlackoutSettings struct {

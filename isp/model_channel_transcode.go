@@ -13,10 +13,15 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscode type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscode{}
+
 // ChannelTranscode Transcode configures audio/video conversion settings.
 type ChannelTranscode struct {
 	// Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc.
 	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty"`
+	// Debug_overlay overlays debugging information from the transcoder into the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay.
+	DebugOverlay *bool `json:"debug_overlay,omitempty"`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper.
 	FeatureFlags []string `json:"feature_flags,omitempty"`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
@@ -52,7 +57,7 @@ func NewChannelTranscodeWithDefaults() *ChannelTranscode {
 
 // GetAudioEncoders returns the AudioEncoders field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetAudioEncoders() []ChannelTranscodeAudioEncodersInner {
-	if o == nil || o.AudioEncoders == nil {
+	if o == nil || IsNil(o.AudioEncoders) {
 		var ret []ChannelTranscodeAudioEncodersInner
 		return ret
 	}
@@ -62,7 +67,7 @@ func (o *ChannelTranscode) GetAudioEncoders() []ChannelTranscodeAudioEncodersInn
 // GetAudioEncodersOk returns a tuple with the AudioEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetAudioEncodersOk() ([]ChannelTranscodeAudioEncodersInner, bool) {
-	if o == nil || o.AudioEncoders == nil {
+	if o == nil || IsNil(o.AudioEncoders) {
 		return nil, false
 	}
 	return o.AudioEncoders, true
@@ -70,7 +75,7 @@ func (o *ChannelTranscode) GetAudioEncodersOk() ([]ChannelTranscodeAudioEncoders
 
 // HasAudioEncoders returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasAudioEncoders() bool {
-	if o != nil && o.AudioEncoders != nil {
+	if o != nil && !IsNil(o.AudioEncoders) {
 		return true
 	}
 
@@ -82,9 +87,41 @@ func (o *ChannelTranscode) SetAudioEncoders(v []ChannelTranscodeAudioEncodersInn
 	o.AudioEncoders = v
 }
 
+// GetDebugOverlay returns the DebugOverlay field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetDebugOverlay() bool {
+	if o == nil || IsNil(o.DebugOverlay) {
+		var ret bool
+		return ret
+	}
+	return *o.DebugOverlay
+}
+
+// GetDebugOverlayOk returns a tuple with the DebugOverlay field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetDebugOverlayOk() (*bool, bool) {
+	if o == nil || IsNil(o.DebugOverlay) {
+		return nil, false
+	}
+	return o.DebugOverlay, true
+}
+
+// HasDebugOverlay returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasDebugOverlay() bool {
+	if o != nil && !IsNil(o.DebugOverlay) {
+		return true
+	}
+
+	return false
+}
+
+// SetDebugOverlay gets a reference to the given bool and assigns it to the DebugOverlay field.
+func (o *ChannelTranscode) SetDebugOverlay(v bool) {
+	o.DebugOverlay = &v
+}
+
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetFeatureFlags() []string {
-	if o == nil || o.FeatureFlags == nil {
+	if o == nil || IsNil(o.FeatureFlags) {
 		var ret []string
 		return ret
 	}
@@ -94,7 +131,7 @@ func (o *ChannelTranscode) GetFeatureFlags() []string {
 // GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetFeatureFlagsOk() ([]string, bool) {
-	if o == nil || o.FeatureFlags == nil {
+	if o == nil || IsNil(o.FeatureFlags) {
 		return nil, false
 	}
 	return o.FeatureFlags, true
@@ -102,7 +139,7 @@ func (o *ChannelTranscode) GetFeatureFlagsOk() ([]string, bool) {
 
 // HasFeatureFlags returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasFeatureFlags() bool {
-	if o != nil && o.FeatureFlags != nil {
+	if o != nil && !IsNil(o.FeatureFlags) {
 		return true
 	}
 
@@ -116,7 +153,7 @@ func (o *ChannelTranscode) SetFeatureFlags(v []string) {
 
 // GetId3Mode returns the Id3Mode field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetId3Mode() string {
-	if o == nil || o.Id3Mode == nil {
+	if o == nil || IsNil(o.Id3Mode) {
 		var ret string
 		return ret
 	}
@@ -126,7 +163,7 @@ func (o *ChannelTranscode) GetId3Mode() string {
 // GetId3ModeOk returns a tuple with the Id3Mode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetId3ModeOk() (*string, bool) {
-	if o == nil || o.Id3Mode == nil {
+	if o == nil || IsNil(o.Id3Mode) {
 		return nil, false
 	}
 	return o.Id3Mode, true
@@ -134,7 +171,7 @@ func (o *ChannelTranscode) GetId3ModeOk() (*string, bool) {
 
 // HasId3Mode returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasId3Mode() bool {
-	if o != nil && o.Id3Mode != nil {
+	if o != nil && !IsNil(o.Id3Mode) {
 		return true
 	}
 
@@ -148,7 +185,7 @@ func (o *ChannelTranscode) SetId3Mode(v string) {
 
 // GetNielsen returns the Nielsen field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetNielsen() map[string]interface{} {
-	if o == nil || o.Nielsen == nil {
+	if o == nil || IsNil(o.Nielsen) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -158,15 +195,15 @@ func (o *ChannelTranscode) GetNielsen() map[string]interface{} {
 // GetNielsenOk returns a tuple with the Nielsen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetNielsenOk() (map[string]interface{}, bool) {
-	if o == nil || o.Nielsen == nil {
-		return nil, false
+	if o == nil || IsNil(o.Nielsen) {
+		return map[string]interface{}{}, false
 	}
 	return o.Nielsen, true
 }
 
 // HasNielsen returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasNielsen() bool {
-	if o != nil && o.Nielsen != nil {
+	if o != nil && !IsNil(o.Nielsen) {
 		return true
 	}
 
@@ -180,7 +217,7 @@ func (o *ChannelTranscode) SetNielsen(v map[string]interface{}) {
 
 // GetOverlays returns the Overlays field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetOverlays() []ChannelTranscodeOverlaysInner {
-	if o == nil || o.Overlays == nil {
+	if o == nil || IsNil(o.Overlays) {
 		var ret []ChannelTranscodeOverlaysInner
 		return ret
 	}
@@ -190,7 +227,7 @@ func (o *ChannelTranscode) GetOverlays() []ChannelTranscodeOverlaysInner {
 // GetOverlaysOk returns a tuple with the Overlays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetOverlaysOk() ([]ChannelTranscodeOverlaysInner, bool) {
-	if o == nil || o.Overlays == nil {
+	if o == nil || IsNil(o.Overlays) {
 		return nil, false
 	}
 	return o.Overlays, true
@@ -198,7 +235,7 @@ func (o *ChannelTranscode) GetOverlaysOk() ([]ChannelTranscodeOverlaysInner, boo
 
 // HasOverlays returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasOverlays() bool {
-	if o != nil && o.Overlays != nil {
+	if o != nil && !IsNil(o.Overlays) {
 		return true
 	}
 
@@ -212,7 +249,7 @@ func (o *ChannelTranscode) SetOverlays(v []ChannelTranscodeOverlaysInner) {
 
 // GetResizeMode returns the ResizeMode field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetResizeMode() string {
-	if o == nil || o.ResizeMode == nil {
+	if o == nil || IsNil(o.ResizeMode) {
 		var ret string
 		return ret
 	}
@@ -222,7 +259,7 @@ func (o *ChannelTranscode) GetResizeMode() string {
 // GetResizeModeOk returns a tuple with the ResizeMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetResizeModeOk() (*string, bool) {
-	if o == nil || o.ResizeMode == nil {
+	if o == nil || IsNil(o.ResizeMode) {
 		return nil, false
 	}
 	return o.ResizeMode, true
@@ -230,7 +267,7 @@ func (o *ChannelTranscode) GetResizeModeOk() (*string, bool) {
 
 // HasResizeMode returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasResizeMode() bool {
-	if o != nil && o.ResizeMode != nil {
+	if o != nil && !IsNil(o.ResizeMode) {
 		return true
 	}
 
@@ -244,7 +281,7 @@ func (o *ChannelTranscode) SetResizeMode(v string) {
 
 // GetSegmenter returns the Segmenter field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetSegmenter() ChannelTranscodeSegmenter {
-	if o == nil || o.Segmenter == nil {
+	if o == nil || IsNil(o.Segmenter) {
 		var ret ChannelTranscodeSegmenter
 		return ret
 	}
@@ -254,7 +291,7 @@ func (o *ChannelTranscode) GetSegmenter() ChannelTranscodeSegmenter {
 // GetSegmenterOk returns a tuple with the Segmenter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetSegmenterOk() (*ChannelTranscodeSegmenter, bool) {
-	if o == nil || o.Segmenter == nil {
+	if o == nil || IsNil(o.Segmenter) {
 		return nil, false
 	}
 	return o.Segmenter, true
@@ -262,7 +299,7 @@ func (o *ChannelTranscode) GetSegmenterOk() (*ChannelTranscodeSegmenter, bool) {
 
 // HasSegmenter returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasSegmenter() bool {
-	if o != nil && o.Segmenter != nil {
+	if o != nil && !IsNil(o.Segmenter) {
 		return true
 	}
 
@@ -276,7 +313,7 @@ func (o *ChannelTranscode) SetSegmenter(v ChannelTranscodeSegmenter) {
 
 // GetThumbnailEncoders returns the ThumbnailEncoders field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetThumbnailEncoders() []ChannelTranscodeThumbnailEncodersInner {
-	if o == nil || o.ThumbnailEncoders == nil {
+	if o == nil || IsNil(o.ThumbnailEncoders) {
 		var ret []ChannelTranscodeThumbnailEncodersInner
 		return ret
 	}
@@ -286,7 +323,7 @@ func (o *ChannelTranscode) GetThumbnailEncoders() []ChannelTranscodeThumbnailEnc
 // GetThumbnailEncodersOk returns a tuple with the ThumbnailEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetThumbnailEncodersOk() ([]ChannelTranscodeThumbnailEncodersInner, bool) {
-	if o == nil || o.ThumbnailEncoders == nil {
+	if o == nil || IsNil(o.ThumbnailEncoders) {
 		return nil, false
 	}
 	return o.ThumbnailEncoders, true
@@ -294,7 +331,7 @@ func (o *ChannelTranscode) GetThumbnailEncodersOk() ([]ChannelTranscodeThumbnail
 
 // HasThumbnailEncoders returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasThumbnailEncoders() bool {
-	if o != nil && o.ThumbnailEncoders != nil {
+	if o != nil && !IsNil(o.ThumbnailEncoders) {
 		return true
 	}
 
@@ -308,7 +345,7 @@ func (o *ChannelTranscode) SetThumbnailEncoders(v []ChannelTranscodeThumbnailEnc
 
 // GetVideoEncoders returns the VideoEncoders field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetVideoEncoders() []ChannelTranscodeVideoEncodersInner {
-	if o == nil || o.VideoEncoders == nil {
+	if o == nil || IsNil(o.VideoEncoders) {
 		var ret []ChannelTranscodeVideoEncodersInner
 		return ret
 	}
@@ -318,7 +355,7 @@ func (o *ChannelTranscode) GetVideoEncoders() []ChannelTranscodeVideoEncodersInn
 // GetVideoEncodersOk returns a tuple with the VideoEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscode) GetVideoEncodersOk() ([]ChannelTranscodeVideoEncodersInner, bool) {
-	if o == nil || o.VideoEncoders == nil {
+	if o == nil || IsNil(o.VideoEncoders) {
 		return nil, false
 	}
 	return o.VideoEncoders, true
@@ -326,7 +363,7 @@ func (o *ChannelTranscode) GetVideoEncodersOk() ([]ChannelTranscodeVideoEncoders
 
 // HasVideoEncoders returns a boolean if a field has been set.
 func (o *ChannelTranscode) HasVideoEncoders() bool {
-	if o != nil && o.VideoEncoders != nil {
+	if o != nil && !IsNil(o.VideoEncoders) {
 		return true
 	}
 
@@ -339,35 +376,46 @@ func (o *ChannelTranscode) SetVideoEncoders(v []ChannelTranscodeVideoEncodersInn
 }
 
 func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AudioEncoders != nil {
-		toSerialize["audio_encoders"] = o.AudioEncoders
-	}
-	if o.FeatureFlags != nil {
-		toSerialize["feature_flags"] = o.FeatureFlags
-	}
-	if o.Id3Mode != nil {
-		toSerialize["id3_mode"] = o.Id3Mode
-	}
-	if o.Nielsen != nil {
-		toSerialize["nielsen"] = o.Nielsen
-	}
-	if o.Overlays != nil {
-		toSerialize["overlays"] = o.Overlays
-	}
-	if o.ResizeMode != nil {
-		toSerialize["resize_mode"] = o.ResizeMode
-	}
-	if o.Segmenter != nil {
-		toSerialize["segmenter"] = o.Segmenter
-	}
-	if o.ThumbnailEncoders != nil {
-		toSerialize["thumbnail_encoders"] = o.ThumbnailEncoders
-	}
-	if o.VideoEncoders != nil {
-		toSerialize["video_encoders"] = o.VideoEncoders
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscode) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AudioEncoders) {
+		toSerialize["audio_encoders"] = o.AudioEncoders
+	}
+	if !IsNil(o.DebugOverlay) {
+		toSerialize["debug_overlay"] = o.DebugOverlay
+	}
+	if !IsNil(o.FeatureFlags) {
+		toSerialize["feature_flags"] = o.FeatureFlags
+	}
+	if !IsNil(o.Id3Mode) {
+		toSerialize["id3_mode"] = o.Id3Mode
+	}
+	if !IsNil(o.Nielsen) {
+		toSerialize["nielsen"] = o.Nielsen
+	}
+	if !IsNil(o.Overlays) {
+		toSerialize["overlays"] = o.Overlays
+	}
+	if !IsNil(o.ResizeMode) {
+		toSerialize["resize_mode"] = o.ResizeMode
+	}
+	if !IsNil(o.Segmenter) {
+		toSerialize["segmenter"] = o.Segmenter
+	}
+	if !IsNil(o.ThumbnailEncoders) {
+		toSerialize["thumbnail_encoders"] = o.ThumbnailEncoders
+	}
+	if !IsNil(o.VideoEncoders) {
+		toSerialize["video_encoders"] = o.VideoEncoders
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscode struct {

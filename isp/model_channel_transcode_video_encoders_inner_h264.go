@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH264 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH264{}
+
 // ChannelTranscodeVideoEncodersInnerH264 Configure the encoder to use the H.264 codec. Only one of ['H264Settings', 'H265Settings'] may be set.
 type ChannelTranscodeVideoEncodersInnerH264 struct {
 	// H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
@@ -38,7 +41,7 @@ func NewChannelTranscodeVideoEncodersInnerH264WithDefaults() *ChannelTranscodeVi
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH264) GetProfile() string {
-	if o == nil || o.Profile == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH264) GetProfile() string {
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH264) GetProfileOk() (*string, bool) {
-	if o == nil || o.Profile == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
 	return o.Profile, true
@@ -56,7 +59,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH264) GetProfileOk() (*string, bool) 
 
 // HasProfile returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH264) HasProfile() bool {
-	if o != nil && o.Profile != nil {
+	if o != nil && !IsNil(o.Profile) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelTranscodeVideoEncodersInnerH264) SetProfile(v string) {
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH264) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Profile != nil {
-		toSerialize["profile"] = o.Profile
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH264) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH264 struct {

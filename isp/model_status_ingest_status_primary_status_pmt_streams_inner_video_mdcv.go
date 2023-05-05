@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct {
 	Blue *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"blue,omitempty"`
@@ -42,7 +45,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvWithDefaults() *S
 
 // GetBlue returns the Blue field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetBlue() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue {
-	if o == nil || o.Blue == nil {
+	if o == nil || IsNil(o.Blue) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetBlue() Stat
 // GetBlueOk returns a tuple with the Blue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetBlueOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue, bool) {
-	if o == nil || o.Blue == nil {
+	if o == nil || IsNil(o.Blue) {
 		return nil, false
 	}
 	return o.Blue, true
@@ -60,7 +63,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetBlueOk() (*
 
 // HasBlue returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasBlue() bool {
-	if o != nil && o.Blue != nil {
+	if o != nil && !IsNil(o.Blue) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetBlue(v Stat
 
 // GetGreen returns the Green field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetGreen() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue {
-	if o == nil || o.Green == nil {
+	if o == nil || IsNil(o.Green) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetGreen() Sta
 // GetGreenOk returns a tuple with the Green field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetGreenOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue, bool) {
-	if o == nil || o.Green == nil {
+	if o == nil || IsNil(o.Green) {
 		return nil, false
 	}
 	return o.Green, true
@@ -92,7 +95,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetGreenOk() (
 
 // HasGreen returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasGreen() bool {
-	if o != nil && o.Green != nil {
+	if o != nil && !IsNil(o.Green) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetGreen(v Sta
 
 // GetMaxDisplayMasteringLuminance returns the MaxDisplayMasteringLuminance field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMaxDisplayMasteringLuminance() float64 {
-	if o == nil || o.MaxDisplayMasteringLuminance == nil {
+	if o == nil || IsNil(o.MaxDisplayMasteringLuminance) {
 		var ret float64
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMaxDisplayM
 // GetMaxDisplayMasteringLuminanceOk returns a tuple with the MaxDisplayMasteringLuminance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMaxDisplayMasteringLuminanceOk() (*float64, bool) {
-	if o == nil || o.MaxDisplayMasteringLuminance == nil {
+	if o == nil || IsNil(o.MaxDisplayMasteringLuminance) {
 		return nil, false
 	}
 	return o.MaxDisplayMasteringLuminance, true
@@ -124,7 +127,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMaxDisplayM
 
 // HasMaxDisplayMasteringLuminance returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasMaxDisplayMasteringLuminance() bool {
-	if o != nil && o.MaxDisplayMasteringLuminance != nil {
+	if o != nil && !IsNil(o.MaxDisplayMasteringLuminance) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetMaxDisplayM
 
 // GetMinDisplayMasteringLuminance returns the MinDisplayMasteringLuminance field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMinDisplayMasteringLuminance() float64 {
-	if o == nil || o.MinDisplayMasteringLuminance == nil {
+	if o == nil || IsNil(o.MinDisplayMasteringLuminance) {
 		var ret float64
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMinDisplayM
 // GetMinDisplayMasteringLuminanceOk returns a tuple with the MinDisplayMasteringLuminance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMinDisplayMasteringLuminanceOk() (*float64, bool) {
-	if o == nil || o.MinDisplayMasteringLuminance == nil {
+	if o == nil || IsNil(o.MinDisplayMasteringLuminance) {
 		return nil, false
 	}
 	return o.MinDisplayMasteringLuminance, true
@@ -156,7 +159,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetMinDisplayM
 
 // HasMinDisplayMasteringLuminance returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasMinDisplayMasteringLuminance() bool {
-	if o != nil && o.MinDisplayMasteringLuminance != nil {
+	if o != nil && !IsNil(o.MinDisplayMasteringLuminance) {
 		return true
 	}
 
@@ -170,7 +173,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetMinDisplayM
 
 // GetRed returns the Red field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetRed() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue {
-	if o == nil || o.Red == nil {
+	if o == nil || IsNil(o.Red) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 		return ret
 	}
@@ -180,7 +183,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetRed() Statu
 // GetRedOk returns a tuple with the Red field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetRedOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue, bool) {
-	if o == nil || o.Red == nil {
+	if o == nil || IsNil(o.Red) {
 		return nil, false
 	}
 	return o.Red, true
@@ -188,7 +191,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetRedOk() (*S
 
 // HasRed returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasRed() bool {
-	if o != nil && o.Red != nil {
+	if o != nil && !IsNil(o.Red) {
 		return true
 	}
 
@@ -202,7 +205,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetRed(v Statu
 
 // GetWhitePoint returns the WhitePoint field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetWhitePoint() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue {
-	if o == nil || o.WhitePoint == nil {
+	if o == nil || IsNil(o.WhitePoint) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 		return ret
 	}
@@ -212,7 +215,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetWhitePoint(
 // GetWhitePointOk returns a tuple with the WhitePoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetWhitePointOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue, bool) {
-	if o == nil || o.WhitePoint == nil {
+	if o == nil || IsNil(o.WhitePoint) {
 		return nil, false
 	}
 	return o.WhitePoint, true
@@ -220,7 +223,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) GetWhitePointO
 
 // HasWhitePoint returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) HasWhitePoint() bool {
-	if o != nil && o.WhitePoint != nil {
+	if o != nil && !IsNil(o.WhitePoint) {
 		return true
 	}
 
@@ -233,26 +236,34 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetWhitePoint(
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Blue != nil {
-		toSerialize["blue"] = o.Blue
-	}
-	if o.Green != nil {
-		toSerialize["green"] = o.Green
-	}
-	if o.MaxDisplayMasteringLuminance != nil {
-		toSerialize["max_display_mastering_luminance"] = o.MaxDisplayMasteringLuminance
-	}
-	if o.MinDisplayMasteringLuminance != nil {
-		toSerialize["min_display_mastering_luminance"] = o.MinDisplayMasteringLuminance
-	}
-	if o.Red != nil {
-		toSerialize["red"] = o.Red
-	}
-	if o.WhitePoint != nil {
-		toSerialize["white_point"] = o.WhitePoint
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Blue) {
+		toSerialize["blue"] = o.Blue
+	}
+	if !IsNil(o.Green) {
+		toSerialize["green"] = o.Green
+	}
+	if !IsNil(o.MaxDisplayMasteringLuminance) {
+		toSerialize["max_display_mastering_luminance"] = o.MaxDisplayMasteringLuminance
+	}
+	if !IsNil(o.MinDisplayMasteringLuminance) {
+		toSerialize["min_display_mastering_luminance"] = o.MinDisplayMasteringLuminance
+	}
+	if !IsNil(o.Red) {
+		toSerialize["red"] = o.Red
+	}
+	if !IsNil(o.WhitePoint) {
+		toSerialize["white_point"] = o.WhitePoint
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct {

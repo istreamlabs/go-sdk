@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH265 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265{}
+
 // ChannelTranscodeVideoEncodersInnerH265 Configure the encoder to use the H.265 codec. Only one of ['H264Settings', 'H265Settings'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265 struct {
 	Hdr *ChannelTranscodeVideoEncodersInnerH265Hdr `json:"hdr,omitempty"`
@@ -39,7 +42,7 @@ func NewChannelTranscodeVideoEncodersInnerH265WithDefaults() *ChannelTranscodeVi
 
 // GetHdr returns the Hdr field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdr() ChannelTranscodeVideoEncodersInnerH265Hdr {
-	if o == nil || o.Hdr == nil {
+	if o == nil || IsNil(o.Hdr) {
 		var ret ChannelTranscodeVideoEncodersInnerH265Hdr
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdr() ChannelTranscodeVideoE
 // GetHdrOk returns a tuple with the Hdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdrOk() (*ChannelTranscodeVideoEncodersInnerH265Hdr, bool) {
-	if o == nil || o.Hdr == nil {
+	if o == nil || IsNil(o.Hdr) {
 		return nil, false
 	}
 	return o.Hdr, true
@@ -57,7 +60,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) GetHdrOk() (*ChannelTranscodeVi
 
 // HasHdr returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265) HasHdr() bool {
-	if o != nil && o.Hdr != nil {
+	if o != nil && !IsNil(o.Hdr) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) SetHdr(v ChannelTranscodeVideoE
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265) GetProfile() string {
-	if o == nil || o.Profile == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) GetProfile() string {
 // GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265) GetProfileOk() (*string, bool) {
-	if o == nil || o.Profile == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
 	return o.Profile, true
@@ -89,7 +92,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) GetProfileOk() (*string, bool) 
 
 // HasProfile returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265) HasProfile() bool {
-	if o != nil && o.Profile != nil {
+	if o != nil && !IsNil(o.Profile) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *ChannelTranscodeVideoEncodersInnerH265) SetProfile(v string) {
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Hdr != nil {
-		toSerialize["hdr"] = o.Hdr
-	}
-	if o.Profile != nil {
-		toSerialize["profile"] = o.Profile
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH265) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Hdr) {
+		toSerialize["hdr"] = o.Hdr
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH265 struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionCpix type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionCpix{}
+
 // ChannelPackagingPackagersValueContentProtectionCpix Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionCpix struct {
 	// Unique ID used for certificate settings, unique per distributor.
@@ -50,7 +53,7 @@ func NewChannelPackagingPackagersValueContentProtectionCpixWithDefaults() *Chann
 
 // GetCertificatesId returns the CertificatesId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCertificatesId() string {
-	if o == nil || o.CertificatesId == nil {
+	if o == nil || IsNil(o.CertificatesId) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCertificatesId(
 // GetCertificatesIdOk returns a tuple with the CertificatesId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCertificatesIdOk() (*string, bool) {
-	if o == nil || o.CertificatesId == nil {
+	if o == nil || IsNil(o.CertificatesId) {
 		return nil, false
 	}
 	return o.CertificatesId, true
@@ -68,7 +71,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCertificatesIdO
 
 // HasCertificatesId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasCertificatesId() bool {
-	if o != nil && o.CertificatesId != nil {
+	if o != nil && !IsNil(o.CertificatesId) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetCertificatesId(
 
 // GetContentId returns the ContentId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetContentId() string {
-	if o == nil || o.ContentId == nil {
+	if o == nil || IsNil(o.ContentId) {
 		var ret string
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetContentId() str
 // GetContentIdOk returns a tuple with the ContentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetContentIdOk() (*string, bool) {
-	if o == nil || o.ContentId == nil {
+	if o == nil || IsNil(o.ContentId) {
 		return nil, false
 	}
 	return o.ContentId, true
@@ -100,7 +103,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetContentIdOk() (
 
 // HasContentId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasContentId() bool {
-	if o != nil && o.ContentId != nil {
+	if o != nil && !IsNil(o.ContentId) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetContentId(v str
 
 // GetCredentialsId returns the CredentialsId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCredentialsId() string {
-	if o == nil || o.CredentialsId == nil {
+	if o == nil || IsNil(o.CredentialsId) {
 		var ret string
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCredentialsId()
 // GetCredentialsIdOk returns a tuple with the CredentialsId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCredentialsIdOk() (*string, bool) {
-	if o == nil || o.CredentialsId == nil {
+	if o == nil || IsNil(o.CredentialsId) {
 		return nil, false
 	}
 	return o.CredentialsId, true
@@ -132,7 +135,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetCredentialsIdOk
 
 // HasCredentialsId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasCredentialsId() bool {
-	if o != nil && o.CredentialsId != nil {
+	if o != nil && !IsNil(o.CredentialsId) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetCredentialsId(v
 
 // GetDecryptionKeyId returns the DecryptionKeyId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDecryptionKeyId() string {
-	if o == nil || o.DecryptionKeyId == nil {
+	if o == nil || IsNil(o.DecryptionKeyId) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDecryptionKeyId
 // GetDecryptionKeyIdOk returns a tuple with the DecryptionKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDecryptionKeyIdOk() (*string, bool) {
-	if o == nil || o.DecryptionKeyId == nil {
+	if o == nil || IsNil(o.DecryptionKeyId) {
 		return nil, false
 	}
 	return o.DecryptionKeyId, true
@@ -164,7 +167,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDecryptionKeyId
 
 // HasDecryptionKeyId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasDecryptionKeyId() bool {
-	if o != nil && o.DecryptionKeyId != nil {
+	if o != nil && !IsNil(o.DecryptionKeyId) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetDecryptionKeyId
 
 // GetDrms returns the Drms field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDrms() []string {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		var ret []string
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDrms() []string
 // GetDrmsOk returns a tuple with the Drms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDrmsOk() ([]string, bool) {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		return nil, false
 	}
 	return o.Drms, true
@@ -196,7 +199,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetDrmsOk() ([]str
 
 // HasDrms returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasDrms() bool {
-	if o != nil && o.Drms != nil {
+	if o != nil && !IsNil(o.Drms) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetDrms(v []string
 
 // GetHeadersId returns the HeadersId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetHeadersId() string {
-	if o == nil || o.HeadersId == nil {
+	if o == nil || IsNil(o.HeadersId) {
 		var ret string
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetHeadersId() str
 // GetHeadersIdOk returns a tuple with the HeadersId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetHeadersIdOk() (*string, bool) {
-	if o == nil || o.HeadersId == nil {
+	if o == nil || IsNil(o.HeadersId) {
 		return nil, false
 	}
 	return o.HeadersId, true
@@ -228,7 +231,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetHeadersIdOk() (
 
 // HasHeadersId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasHeadersId() bool {
-	if o != nil && o.HeadersId != nil {
+	if o != nil && !IsNil(o.HeadersId) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetHeadersId(v str
 
 // GetUri returns the Uri field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetUri() string {
-	if o == nil || o.Uri == nil {
+	if o == nil || IsNil(o.Uri) {
 		var ret string
 		return ret
 	}
@@ -252,7 +255,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetUri() string {
 // GetUriOk returns a tuple with the Uri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetUriOk() (*string, bool) {
-	if o == nil || o.Uri == nil {
+	if o == nil || IsNil(o.Uri) {
 		return nil, false
 	}
 	return o.Uri, true
@@ -260,7 +263,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) GetUriOk() (*strin
 
 // HasUri returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCpix) HasUri() bool {
-	if o != nil && o.Uri != nil {
+	if o != nil && !IsNil(o.Uri) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetUri(v string) {
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionCpix) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CertificatesId != nil {
-		toSerialize["certificates_id"] = o.CertificatesId
-	}
-	if o.ContentId != nil {
-		toSerialize["content_id"] = o.ContentId
-	}
-	if o.CredentialsId != nil {
-		toSerialize["credentials_id"] = o.CredentialsId
-	}
-	if o.DecryptionKeyId != nil {
-		toSerialize["decryption_key_id"] = o.DecryptionKeyId
-	}
-	if o.Drms != nil {
-		toSerialize["drms"] = o.Drms
-	}
-	if o.HeadersId != nil {
-		toSerialize["headers_id"] = o.HeadersId
-	}
-	if o.Uri != nil {
-		toSerialize["uri"] = o.Uri
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionCpix) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CertificatesId) {
+		toSerialize["certificates_id"] = o.CertificatesId
+	}
+	if !IsNil(o.ContentId) {
+		toSerialize["content_id"] = o.ContentId
+	}
+	if !IsNil(o.CredentialsId) {
+		toSerialize["credentials_id"] = o.CredentialsId
+	}
+	if !IsNil(o.DecryptionKeyId) {
+		toSerialize["decryption_key_id"] = o.DecryptionKeyId
+	}
+	if !IsNil(o.Drms) {
+		toSerialize["drms"] = o.Drms
+	}
+	if !IsNil(o.HeadersId) {
+		toSerialize["headers_id"] = o.HeadersId
+	}
+	if !IsNil(o.Uri) {
+		toSerialize["uri"] = o.Uri
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionCpix struct {

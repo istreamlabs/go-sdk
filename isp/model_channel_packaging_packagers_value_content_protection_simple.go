@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionSimple type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimple{}
+
 // ChannelPackagingPackagersValueContentProtectionSimple Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionSimple struct {
 	// Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
@@ -40,7 +43,7 @@ func NewChannelPackagingPackagersValueContentProtectionSimpleWithDefaults() *Cha
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetPublishPoints() []ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner {
-	if o == nil || o.PublishPoints == nil {
+	if o == nil || IsNil(o.PublishPoints) {
 		var ret []ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetPublishPoints
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetPublishPointsOk() ([]ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner, bool) {
-	if o == nil || o.PublishPoints == nil {
+	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
 	return o.PublishPoints, true
@@ -58,7 +61,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetPublishPoints
 
 // HasPublishPoints returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) HasPublishPoints() bool {
-	if o != nil && o.PublishPoints != nil {
+	if o != nil && !IsNil(o.PublishPoints) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) SetPublishPoints
 
 // GetRequirePublish returns the RequirePublish field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetRequirePublish() string {
-	if o == nil || o.RequirePublish == nil {
+	if o == nil || IsNil(o.RequirePublish) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetRequirePublis
 // GetRequirePublishOk returns a tuple with the RequirePublish field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetRequirePublishOk() (*string, bool) {
-	if o == nil || o.RequirePublish == nil {
+	if o == nil || IsNil(o.RequirePublish) {
 		return nil, false
 	}
 	return o.RequirePublish, true
@@ -90,7 +93,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) GetRequirePublis
 
 // HasRequirePublish returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimple) HasRequirePublish() bool {
-	if o != nil && o.RequirePublish != nil {
+	if o != nil && !IsNil(o.RequirePublish) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimple) SetRequirePublis
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionSimple) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PublishPoints != nil {
-		toSerialize["publish_points"] = o.PublishPoints
-	}
-	if o.RequirePublish != nil {
-		toSerialize["require_publish"] = o.RequirePublish
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionSimple) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PublishPoints) {
+		toSerialize["publish_points"] = o.PublishPoints
+	}
+	if !IsNil(o.RequirePublish) {
+		toSerialize["require_publish"] = o.RequirePublish
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionSimple struct {

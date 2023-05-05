@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli{}
+
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli struct for ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli struct {
 	// Maximum Content Light Level (nits).
@@ -40,7 +43,7 @@ func NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81ClliWithDef
 
 // GetMaxCll returns the MaxCll field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetMaxCll() float64 {
-	if o == nil || o.MaxCll == nil {
+	if o == nil || IsNil(o.MaxCll) {
 		var ret float64
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetM
 // GetMaxCllOk returns a tuple with the MaxCll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetMaxCllOk() (*float64, bool) {
-	if o == nil || o.MaxCll == nil {
+	if o == nil || IsNil(o.MaxCll) {
 		return nil, false
 	}
 	return o.MaxCll, true
@@ -58,7 +61,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetM
 
 // HasMaxCll returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) HasMaxCll() bool {
-	if o != nil && o.MaxCll != nil {
+	if o != nil && !IsNil(o.MaxCll) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) SetM
 
 // GetMaxFall returns the MaxFall field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetMaxFall() float64 {
-	if o == nil || o.MaxFall == nil {
+	if o == nil || IsNil(o.MaxFall) {
 		var ret float64
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetM
 // GetMaxFallOk returns a tuple with the MaxFall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetMaxFallOk() (*float64, bool) {
-	if o == nil || o.MaxFall == nil {
+	if o == nil || IsNil(o.MaxFall) {
 		return nil, false
 	}
 	return o.MaxFall, true
@@ -90,7 +93,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) GetM
 
 // HasMaxFall returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) HasMaxFall() bool {
-	if o != nil && o.MaxFall != nil {
+	if o != nil && !IsNil(o.MaxFall) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) SetM
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MaxCll != nil {
-		toSerialize["max_cll"] = o.MaxCll
-	}
-	if o.MaxFall != nil {
-		toSerialize["max_fall"] = o.MaxFall
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxCll) {
+		toSerialize["max_cll"] = o.MaxCll
+	}
+	if !IsNil(o.MaxFall) {
+		toSerialize["max_fall"] = o.MaxFall
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli struct {

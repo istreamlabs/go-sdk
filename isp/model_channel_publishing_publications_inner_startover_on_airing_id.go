@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerStartoverOnAiringId type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerStartoverOnAiringId{}
+
 // ChannelPublishingPublicationsInnerStartoverOnAiringId Use the Airing Id of a Program Start to trigger a Startover on the first match. Only one of ['first_program_start', 'on_airing_id'] may be set.
 type ChannelPublishingPublicationsInnerStartoverOnAiringId struct {
 	// Airing Id is a SCTE-35 Segmentation Unique Program ID (UPID) of type 0x08 used to specify the unique airing of a program. Is a 8 byte hex encoded string that is prepended with '0x'.
@@ -38,7 +41,7 @@ func NewChannelPublishingPublicationsInnerStartoverOnAiringIdWithDefaults() *Cha
 
 // GetAiringId returns the AiringId field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) GetAiringId() string {
-	if o == nil || o.AiringId == nil {
+	if o == nil || IsNil(o.AiringId) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) GetAiringId() st
 // GetAiringIdOk returns a tuple with the AiringId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) GetAiringIdOk() (*string, bool) {
-	if o == nil || o.AiringId == nil {
+	if o == nil || IsNil(o.AiringId) {
 		return nil, false
 	}
 	return o.AiringId, true
@@ -56,7 +59,7 @@ func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) GetAiringIdOk() 
 
 // HasAiringId returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) HasAiringId() bool {
-	if o != nil && o.AiringId != nil {
+	if o != nil && !IsNil(o.AiringId) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) SetAiringId(v st
 }
 
 func (o ChannelPublishingPublicationsInnerStartoverOnAiringId) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AiringId != nil {
-		toSerialize["airing_id"] = o.AiringId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerStartoverOnAiringId) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AiringId) {
+		toSerialize["airing_id"] = o.AiringId
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerStartoverOnAiringId struct {

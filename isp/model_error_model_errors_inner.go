@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorModelErrorsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorModelErrorsInner{}
+
 // ErrorModelErrorsInner struct for ErrorModelErrorsInner
 type ErrorModelErrorsInner struct {
 	// Where the error occured, e.g. 'body.items[3].tags' or 'path.thing-id'
@@ -42,7 +45,7 @@ func NewErrorModelErrorsInnerWithDefaults() *ErrorModelErrorsInner {
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *ErrorModelErrorsInner) GetLocation() string {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ErrorModelErrorsInner) GetLocation() string {
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModelErrorsInner) GetLocationOk() (*string, bool) {
-	if o == nil || o.Location == nil {
+	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
 	return o.Location, true
@@ -60,7 +63,7 @@ func (o *ErrorModelErrorsInner) GetLocationOk() (*string, bool) {
 
 // HasLocation returns a boolean if a field has been set.
 func (o *ErrorModelErrorsInner) HasLocation() bool {
-	if o != nil && o.Location != nil {
+	if o != nil && !IsNil(o.Location) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ErrorModelErrorsInner) SetLocation(v string) {
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ErrorModelErrorsInner) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ErrorModelErrorsInner) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModelErrorsInner) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
 	return o.Message, true
@@ -92,7 +95,7 @@ func (o *ErrorModelErrorsInner) GetMessageOk() (*string, bool) {
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorModelErrorsInner) HasMessage() bool {
-	if o != nil && o.Message != nil {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *ErrorModelErrorsInner) GetValue() interface{} {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ErrorModelErrorsInner) GetValueOk() (*interface{}, bool) {
-	if o == nil || o.Value == nil {
+	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
 	return &o.Value, true
@@ -125,7 +128,7 @@ func (o *ErrorModelErrorsInner) GetValueOk() (*interface{}, bool) {
 
 // HasValue returns a boolean if a field has been set.
 func (o *ErrorModelErrorsInner) HasValue() bool {
-	if o != nil && o.Value != nil {
+	if o != nil && IsNil(o.Value) {
 		return true
 	}
 
@@ -138,17 +141,25 @@ func (o *ErrorModelErrorsInner) SetValue(v interface{}) {
 }
 
 func (o ErrorModelErrorsInner) MarshalJSON() ([]byte, error) {
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
+	}
+	return json.Marshal(toSerialize)
+}
+
+func (o ErrorModelErrorsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Location != nil {
+	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
 	}
-	if o.Message != nil {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
 	}
-	return json.Marshal(toSerialize)
+	return toSerialize, nil
 }
 
 type NullableErrorModelErrorsInner struct {

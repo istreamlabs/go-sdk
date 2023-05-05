@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Scte35 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Scte35{}
+
 // Scte35 struct for Scte35
 type Scte35 struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -41,7 +44,7 @@ func NewScte35WithDefaults() *Scte35 {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *Scte35) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *Scte35) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Scte35) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -59,7 +62,7 @@ func (o *Scte35) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Scte35) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *Scte35) SetPayload(v string) {
 }
 
 func (o Scte35) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if true {
-		toSerialize["payload"] = o.Payload
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Scte35) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	toSerialize["payload"] = o.Payload
+	return toSerialize, nil
 }
 
 type NullableScte35 struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerPublishPointsInnerHttp type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerPublishPointsInnerHttp{}
+
 // ChannelPublishingPublicationsInnerPublishPointsInnerHttp HTTP destination where media segments and playlists will be published.
 type ChannelPublishingPublicationsInnerPublishPointsInnerHttp struct {
 	BasicAuth *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth `json:"basic_auth,omitempty"`
@@ -53,7 +56,7 @@ func NewChannelPublishingPublicationsInnerPublishPointsInnerHttpWithDefaults() *
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetBasicAuth() ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth {
-	if o == nil || o.BasicAuth == nil {
+	if o == nil || IsNil(o.BasicAuth) {
 		var ret ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth
 		return ret
 	}
@@ -63,7 +66,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetBasicAuth(
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetBasicAuthOk() (*ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth, bool) {
-	if o == nil || o.BasicAuth == nil {
+	if o == nil || IsNil(o.BasicAuth) {
 		return nil, false
 	}
 	return o.BasicAuth, true
@@ -71,7 +74,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetBasicAuthO
 
 // HasBasicAuth returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasBasicAuth() bool {
-	if o != nil && o.BasicAuth != nil {
+	if o != nil && !IsNil(o.BasicAuth) {
 		return true
 	}
 
@@ -85,7 +88,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetBasicAuth(
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCompression() string {
-	if o == nil || o.Compression == nil {
+	if o == nil || IsNil(o.Compression) {
 		var ret string
 		return ret
 	}
@@ -95,7 +98,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCompressio
 // GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCompressionOk() (*string, bool) {
-	if o == nil || o.Compression == nil {
+	if o == nil || IsNil(o.Compression) {
 		return nil, false
 	}
 	return o.Compression, true
@@ -103,7 +106,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCompressio
 
 // HasCompression returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasCompression() bool {
-	if o != nil && o.Compression != nil {
+	if o != nil && !IsNil(o.Compression) {
 		return true
 	}
 
@@ -117,7 +120,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetCompressio
 
 // GetCrossPlaybackPaths returns the CrossPlaybackPaths field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCrossPlaybackPaths() []string {
-	if o == nil || o.CrossPlaybackPaths == nil {
+	if o == nil || IsNil(o.CrossPlaybackPaths) {
 		var ret []string
 		return ret
 	}
@@ -127,7 +130,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCrossPlayb
 // GetCrossPlaybackPathsOk returns a tuple with the CrossPlaybackPaths field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCrossPlaybackPathsOk() ([]string, bool) {
-	if o == nil || o.CrossPlaybackPaths == nil {
+	if o == nil || IsNil(o.CrossPlaybackPaths) {
 		return nil, false
 	}
 	return o.CrossPlaybackPaths, true
@@ -135,7 +138,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetCrossPlayb
 
 // HasCrossPlaybackPaths returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasCrossPlaybackPaths() bool {
-	if o != nil && o.CrossPlaybackPaths != nil {
+	if o != nil && !IsNil(o.CrossPlaybackPaths) {
 		return true
 	}
 
@@ -149,7 +152,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetCrossPlayb
 
 // GetDoNotMonitor returns the DoNotMonitor field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetDoNotMonitor() bool {
-	if o == nil || o.DoNotMonitor == nil {
+	if o == nil || IsNil(o.DoNotMonitor) {
 		var ret bool
 		return ret
 	}
@@ -159,7 +162,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetDoNotMonit
 // GetDoNotMonitorOk returns a tuple with the DoNotMonitor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetDoNotMonitorOk() (*bool, bool) {
-	if o == nil || o.DoNotMonitor == nil {
+	if o == nil || IsNil(o.DoNotMonitor) {
 		return nil, false
 	}
 	return o.DoNotMonitor, true
@@ -167,7 +170,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetDoNotMonit
 
 // HasDoNotMonitor returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasDoNotMonitor() bool {
-	if o != nil && o.DoNotMonitor != nil {
+	if o != nil && !IsNil(o.DoNotMonitor) {
 		return true
 	}
 
@@ -181,7 +184,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetDoNotMonit
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetHeaders() map[string]string {
-	if o == nil || o.Headers == nil {
+	if o == nil || IsNil(o.Headers) {
 		var ret map[string]string
 		return ret
 	}
@@ -191,7 +194,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetHeaders() 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetHeadersOk() (*map[string]string, bool) {
-	if o == nil || o.Headers == nil {
+	if o == nil || IsNil(o.Headers) {
 		return nil, false
 	}
 	return o.Headers, true
@@ -199,7 +202,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetHeadersOk(
 
 // HasHeaders returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasHeaders() bool {
-	if o != nil && o.Headers != nil {
+	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
 
@@ -213,7 +216,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetHeaders(v 
 
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetMethod() string {
-	if o == nil || o.Method == nil {
+	if o == nil || IsNil(o.Method) {
 		var ret string
 		return ret
 	}
@@ -223,7 +226,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetMethod() s
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetMethodOk() (*string, bool) {
-	if o == nil || o.Method == nil {
+	if o == nil || IsNil(o.Method) {
 		return nil, false
 	}
 	return o.Method, true
@@ -231,7 +234,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetMethodOk()
 
 // HasMethod returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasMethod() bool {
-	if o != nil && o.Method != nil {
+	if o != nil && !IsNil(o.Method) {
 		return true
 	}
 
@@ -245,7 +248,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetMethod(v s
 
 // GetPlaybackBaseUrl returns the PlaybackBaseUrl field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackBaseUrl() string {
-	if o == nil || o.PlaybackBaseUrl == nil {
+	if o == nil || IsNil(o.PlaybackBaseUrl) {
 		var ret string
 		return ret
 	}
@@ -255,7 +258,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackBa
 // GetPlaybackBaseUrlOk returns a tuple with the PlaybackBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackBaseUrlOk() (*string, bool) {
-	if o == nil || o.PlaybackBaseUrl == nil {
+	if o == nil || IsNil(o.PlaybackBaseUrl) {
 		return nil, false
 	}
 	return o.PlaybackBaseUrl, true
@@ -263,7 +266,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackBa
 
 // HasPlaybackBaseUrl returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasPlaybackBaseUrl() bool {
-	if o != nil && o.PlaybackBaseUrl != nil {
+	if o != nil && !IsNil(o.PlaybackBaseUrl) {
 		return true
 	}
 
@@ -277,7 +280,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetPlaybackBa
 
 // GetPlaybackQueryParams returns the PlaybackQueryParams field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackQueryParams() string {
-	if o == nil || o.PlaybackQueryParams == nil {
+	if o == nil || IsNil(o.PlaybackQueryParams) {
 		var ret string
 		return ret
 	}
@@ -287,7 +290,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackQu
 // GetPlaybackQueryParamsOk returns a tuple with the PlaybackQueryParams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackQueryParamsOk() (*string, bool) {
-	if o == nil || o.PlaybackQueryParams == nil {
+	if o == nil || IsNil(o.PlaybackQueryParams) {
 		return nil, false
 	}
 	return o.PlaybackQueryParams, true
@@ -295,7 +298,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPlaybackQu
 
 // HasPlaybackQueryParams returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasPlaybackQueryParams() bool {
-	if o != nil && o.PlaybackQueryParams != nil {
+	if o != nil && !IsNil(o.PlaybackQueryParams) {
 		return true
 	}
 
@@ -309,7 +312,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetPlaybackQu
 
 // GetPublishBaseUrl returns the PublishBaseUrl field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPublishBaseUrl() string {
-	if o == nil || o.PublishBaseUrl == nil {
+	if o == nil || IsNil(o.PublishBaseUrl) {
 		var ret string
 		return ret
 	}
@@ -319,7 +322,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPublishBas
 // GetPublishBaseUrlOk returns a tuple with the PublishBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPublishBaseUrlOk() (*string, bool) {
-	if o == nil || o.PublishBaseUrl == nil {
+	if o == nil || IsNil(o.PublishBaseUrl) {
 		return nil, false
 	}
 	return o.PublishBaseUrl, true
@@ -327,7 +330,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) GetPublishBas
 
 // HasPublishBaseUrl returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) HasPublishBaseUrl() bool {
-	if o != nil && o.PublishBaseUrl != nil {
+	if o != nil && !IsNil(o.PublishBaseUrl) {
 		return true
 	}
 
@@ -340,35 +343,43 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInnerHttp) SetPublishBas
 }
 
 func (o ChannelPublishingPublicationsInnerPublishPointsInnerHttp) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BasicAuth != nil {
-		toSerialize["basic_auth"] = o.BasicAuth
-	}
-	if o.Compression != nil {
-		toSerialize["compression"] = o.Compression
-	}
-	if o.CrossPlaybackPaths != nil {
-		toSerialize["cross_playback_paths"] = o.CrossPlaybackPaths
-	}
-	if o.DoNotMonitor != nil {
-		toSerialize["do_not_monitor"] = o.DoNotMonitor
-	}
-	if o.Headers != nil {
-		toSerialize["headers"] = o.Headers
-	}
-	if o.Method != nil {
-		toSerialize["method"] = o.Method
-	}
-	if o.PlaybackBaseUrl != nil {
-		toSerialize["playback_base_url"] = o.PlaybackBaseUrl
-	}
-	if o.PlaybackQueryParams != nil {
-		toSerialize["playback_query_params"] = o.PlaybackQueryParams
-	}
-	if o.PublishBaseUrl != nil {
-		toSerialize["publish_base_url"] = o.PublishBaseUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerPublishPointsInnerHttp) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BasicAuth) {
+		toSerialize["basic_auth"] = o.BasicAuth
+	}
+	if !IsNil(o.Compression) {
+		toSerialize["compression"] = o.Compression
+	}
+	if !IsNil(o.CrossPlaybackPaths) {
+		toSerialize["cross_playback_paths"] = o.CrossPlaybackPaths
+	}
+	if !IsNil(o.DoNotMonitor) {
+		toSerialize["do_not_monitor"] = o.DoNotMonitor
+	}
+	if !IsNil(o.Headers) {
+		toSerialize["headers"] = o.Headers
+	}
+	if !IsNil(o.Method) {
+		toSerialize["method"] = o.Method
+	}
+	if !IsNil(o.PlaybackBaseUrl) {
+		toSerialize["playback_base_url"] = o.PlaybackBaseUrl
+	}
+	if !IsNil(o.PlaybackQueryParams) {
+		toSerialize["playback_query_params"] = o.PlaybackQueryParams
+	}
+	if !IsNil(o.PublishBaseUrl) {
+		toSerialize["publish_base_url"] = o.PublishBaseUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerPublishPointsInnerHttp struct {

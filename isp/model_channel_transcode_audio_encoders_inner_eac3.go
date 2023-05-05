@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeAudioEncodersInnerEac3 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeAudioEncodersInnerEac3{}
+
 // ChannelTranscodeAudioEncodersInnerEac3 Only one of ['eac3'] may be set.
 type ChannelTranscodeAudioEncodersInnerEac3 struct {
 	// Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence.
@@ -38,7 +41,7 @@ func NewChannelTranscodeAudioEncodersInnerEac3WithDefaults() *ChannelTranscodeAu
 
 // GetDdpJocPassthrough returns the DdpJocPassthrough field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocPassthrough() bool {
-	if o == nil || o.DdpJocPassthrough == nil {
+	if o == nil || IsNil(o.DdpJocPassthrough) {
 		var ret bool
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocPassthrough() bool {
 // GetDdpJocPassthroughOk returns a tuple with the DdpJocPassthrough field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocPassthroughOk() (*bool, bool) {
-	if o == nil || o.DdpJocPassthrough == nil {
+	if o == nil || IsNil(o.DdpJocPassthrough) {
 		return nil, false
 	}
 	return o.DdpJocPassthrough, true
@@ -56,7 +59,7 @@ func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocPassthroughOk() (*bool
 
 // HasDdpJocPassthrough returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInnerEac3) HasDdpJocPassthrough() bool {
-	if o != nil && o.DdpJocPassthrough != nil {
+	if o != nil && !IsNil(o.DdpJocPassthrough) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelTranscodeAudioEncodersInnerEac3) SetDdpJocPassthrough(v bool) {
 }
 
 func (o ChannelTranscodeAudioEncodersInnerEac3) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DdpJocPassthrough != nil {
-		toSerialize["ddp_joc_passthrough"] = o.DdpJocPassthrough
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeAudioEncodersInnerEac3) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DdpJocPassthrough) {
+		toSerialize["ddp_joc_passthrough"] = o.DdpJocPassthrough
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeAudioEncodersInnerEac3 struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionBulkFile type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionBulkFile{}
+
 // ChannelPackagingPackagersValueContentProtectionBulkFile Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
 type ChannelPackagingPackagersValueContentProtectionBulkFile struct {
 	// How often the IV should be rotated and how it should be created
@@ -38,7 +41,7 @@ func NewChannelPackagingPackagersValueContentProtectionBulkFileWithDefaults() *C
 
 // GetIvRotation returns the IvRotation field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) GetIvRotation() string {
-	if o == nil || o.IvRotation == nil {
+	if o == nil || IsNil(o.IvRotation) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) GetIvRotation(
 // GetIvRotationOk returns a tuple with the IvRotation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) GetIvRotationOk() (*string, bool) {
-	if o == nil || o.IvRotation == nil {
+	if o == nil || IsNil(o.IvRotation) {
 		return nil, false
 	}
 	return o.IvRotation, true
@@ -56,7 +59,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) GetIvRotationO
 
 // HasIvRotation returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) HasIvRotation() bool {
-	if o != nil && o.IvRotation != nil {
+	if o != nil && !IsNil(o.IvRotation) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelPackagingPackagersValueContentProtectionBulkFile) SetIvRotation(
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionBulkFile) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IvRotation != nil {
-		toSerialize["iv_rotation"] = o.IvRotation
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionBulkFile) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IvRotation) {
+		toSerialize["iv_rotation"] = o.IvRotation
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionBulkFile struct {

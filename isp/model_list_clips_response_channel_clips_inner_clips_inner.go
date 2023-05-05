@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the ListClipsResponseChannelClipsInnerClipsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListClipsResponseChannelClipsInnerClipsInner{}
+
 // ListClipsResponseChannelClipsInnerClipsInner struct for ListClipsResponseChannelClipsInnerClipsInner
 type ListClipsResponseChannelClipsInnerClipsInner struct {
 	// Primary ID for the clip
@@ -225,29 +228,23 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) SetStart(v time.Time) {
 }
 
 func (o ListClipsResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clip_id"] = o.ClipId
-	}
-	if true {
-		toSerialize["created"] = o.Created
-	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["duration"] = o.Duration
-	}
-	if true {
-		toSerialize["end"] = o.End
-	}
-	if true {
-		toSerialize["mp4path"] = o.Mp4path
-	}
-	if true {
-		toSerialize["start"] = o.Start
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListClipsResponseChannelClipsInnerClipsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clip_id"] = o.ClipId
+	toSerialize["created"] = o.Created
+	toSerialize["description"] = o.Description
+	toSerialize["duration"] = o.Duration
+	toSerialize["end"] = o.End
+	toSerialize["mp4path"] = o.Mp4path
+	toSerialize["start"] = o.Start
+	return toSerialize, nil
 }
 
 type NullableListClipsResponseChannelClipsInnerClipsInner struct {

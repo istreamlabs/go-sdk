@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingLive2vod type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingLive2vod{}
+
 // ChannelPublishingLive2vod Live2VOD configuration used to archive the channel data, this allows clip creation after the content is no longer live.
 type ChannelPublishingLive2vod struct {
 	// BETA - (Optional) Indicates whether the system should send the unpackaged segments produced from the transcoder to the L2V system for purposes of creating mp4s and/or repackaging.
@@ -42,7 +45,7 @@ func NewChannelPublishingLive2vodWithDefaults() *ChannelPublishingLive2vod {
 
 // GetClearCapture returns the ClearCapture field value if set, zero value otherwise.
 func (o *ChannelPublishingLive2vod) GetClearCapture() bool {
-	if o == nil || o.ClearCapture == nil {
+	if o == nil || IsNil(o.ClearCapture) {
 		var ret bool
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelPublishingLive2vod) GetClearCapture() bool {
 // GetClearCaptureOk returns a tuple with the ClearCapture field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingLive2vod) GetClearCaptureOk() (*bool, bool) {
-	if o == nil || o.ClearCapture == nil {
+	if o == nil || IsNil(o.ClearCapture) {
 		return nil, false
 	}
 	return o.ClearCapture, true
@@ -60,7 +63,7 @@ func (o *ChannelPublishingLive2vod) GetClearCaptureOk() (*bool, bool) {
 
 // HasClearCapture returns a boolean if a field has been set.
 func (o *ChannelPublishingLive2vod) HasClearCapture() bool {
-	if o != nil && o.ClearCapture != nil {
+	if o != nil && !IsNil(o.ClearCapture) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelPublishingLive2vod) SetClearCapture(v bool) {
 
 // GetProductId returns the ProductId field value if set, zero value otherwise.
 func (o *ChannelPublishingLive2vod) GetProductId() string {
-	if o == nil || o.ProductId == nil {
+	if o == nil || IsNil(o.ProductId) {
 		var ret string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelPublishingLive2vod) GetProductId() string {
 // GetProductIdOk returns a tuple with the ProductId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingLive2vod) GetProductIdOk() (*string, bool) {
-	if o == nil || o.ProductId == nil {
+	if o == nil || IsNil(o.ProductId) {
 		return nil, false
 	}
 	return o.ProductId, true
@@ -92,7 +95,7 @@ func (o *ChannelPublishingLive2vod) GetProductIdOk() (*string, bool) {
 
 // HasProductId returns a boolean if a field has been set.
 func (o *ChannelPublishingLive2vod) HasProductId() bool {
-	if o != nil && o.ProductId != nil {
+	if o != nil && !IsNil(o.ProductId) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ChannelPublishingLive2vod) SetProductId(v string) {
 
 // GetRetentionDays returns the RetentionDays field value if set, zero value otherwise.
 func (o *ChannelPublishingLive2vod) GetRetentionDays() int32 {
-	if o == nil || o.RetentionDays == nil {
+	if o == nil || IsNil(o.RetentionDays) {
 		var ret int32
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ChannelPublishingLive2vod) GetRetentionDays() int32 {
 // GetRetentionDaysOk returns a tuple with the RetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingLive2vod) GetRetentionDaysOk() (*int32, bool) {
-	if o == nil || o.RetentionDays == nil {
+	if o == nil || IsNil(o.RetentionDays) {
 		return nil, false
 	}
 	return o.RetentionDays, true
@@ -124,7 +127,7 @@ func (o *ChannelPublishingLive2vod) GetRetentionDaysOk() (*int32, bool) {
 
 // HasRetentionDays returns a boolean if a field has been set.
 func (o *ChannelPublishingLive2vod) HasRetentionDays() bool {
-	if o != nil && o.RetentionDays != nil {
+	if o != nil && !IsNil(o.RetentionDays) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ChannelPublishingLive2vod) SetRetentionDays(v int32) {
 }
 
 func (o ChannelPublishingLive2vod) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClearCapture != nil {
-		toSerialize["clear_capture"] = o.ClearCapture
-	}
-	if o.ProductId != nil {
-		toSerialize["product_id"] = o.ProductId
-	}
-	if o.RetentionDays != nil {
-		toSerialize["retention_days"] = o.RetentionDays
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingLive2vod) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClearCapture) {
+		toSerialize["clear_capture"] = o.ClearCapture
+	}
+	if !IsNil(o.ProductId) {
+		toSerialize["product_id"] = o.ProductId
+	}
+	if !IsNil(o.RetentionDays) {
+		toSerialize["retention_days"] = o.RetentionDays
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingLive2vod struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the PinSourceRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PinSourceRequest{}
+
 // PinSourceRequest struct for PinSourceRequest
 type PinSourceRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -40,7 +43,7 @@ func NewPinSourceRequestWithDefaults() *PinSourceRequest {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *PinSourceRequest) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *PinSourceRequest) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PinSourceRequest) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -58,7 +61,7 @@ func (o *PinSourceRequest) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PinSourceRequest) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *PinSourceRequest) SetSchema(v string) {
 
 // GetIngestOrigin returns the IngestOrigin field value if set, zero value otherwise.
 func (o *PinSourceRequest) GetIngestOrigin() string {
-	if o == nil || o.IngestOrigin == nil {
+	if o == nil || IsNil(o.IngestOrigin) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *PinSourceRequest) GetIngestOrigin() string {
 // GetIngestOriginOk returns a tuple with the IngestOrigin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *PinSourceRequest) GetIngestOriginOk() (*string, bool) {
-	if o == nil || o.IngestOrigin == nil {
+	if o == nil || IsNil(o.IngestOrigin) {
 		return nil, false
 	}
 	return o.IngestOrigin, true
@@ -90,7 +93,7 @@ func (o *PinSourceRequest) GetIngestOriginOk() (*string, bool) {
 
 // HasIngestOrigin returns a boolean if a field has been set.
 func (o *PinSourceRequest) HasIngestOrigin() bool {
-	if o != nil && o.IngestOrigin != nil {
+	if o != nil && !IsNil(o.IngestOrigin) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *PinSourceRequest) SetIngestOrigin(v string) {
 }
 
 func (o PinSourceRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.IngestOrigin != nil {
-		toSerialize["ingest_origin"] = o.IngestOrigin
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o PinSourceRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.IngestOrigin) {
+		toSerialize["ingest_origin"] = o.IngestOrigin
+	}
+	return toSerialize, nil
 }
 
 type NullablePinSourceRequest struct {

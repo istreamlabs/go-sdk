@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInner{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInner struct for StatusIngestStatusPrimaryStatusPmtStreamsInner
 type StatusIngestStatusPrimaryStatusPmtStreamsInner struct {
 	// Indicates whether the stream is being used by the transcoder. The remaining fields are only valid if 'mapped' is true.
@@ -44,7 +47,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerWithDefaults() *StatusInge
 
 // GetMapped returns the Mapped field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetMapped() bool {
-	if o == nil || o.Mapped == nil {
+	if o == nil || IsNil(o.Mapped) {
 		var ret bool
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetMapped() bool {
 // GetMappedOk returns a tuple with the Mapped field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetMappedOk() (*bool, bool) {
-	if o == nil || o.Mapped == nil {
+	if o == nil || IsNil(o.Mapped) {
 		return nil, false
 	}
 	return o.Mapped, true
@@ -62,7 +65,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetMappedOk() (*bool, b
 
 // HasMapped returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) HasMapped() bool {
-	if o != nil && o.Mapped != nil {
+	if o != nil && !IsNil(o.Mapped) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetMapped(v bool) {
 
 // GetPid returns the Pid field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetPid() int32 {
-	if o == nil || o.Pid == nil {
+	if o == nil || IsNil(o.Pid) {
 		var ret int32
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetPid() int32 {
 // GetPidOk returns a tuple with the Pid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetPidOk() (*int32, bool) {
-	if o == nil || o.Pid == nil {
+	if o == nil || IsNil(o.Pid) {
 		return nil, false
 	}
 	return o.Pid, true
@@ -94,7 +97,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetPidOk() (*int32, boo
 
 // HasPid returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) HasPid() bool {
-	if o != nil && o.Pid != nil {
+	if o != nil && !IsNil(o.Pid) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetPid(v int32) {
 
 // GetRawType returns the RawType field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetRawType() string {
-	if o == nil || o.RawType == nil {
+	if o == nil || IsNil(o.RawType) {
 		var ret string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetRawType() string {
 // GetRawTypeOk returns a tuple with the RawType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetRawTypeOk() (*string, bool) {
-	if o == nil || o.RawType == nil {
+	if o == nil || IsNil(o.RawType) {
 		return nil, false
 	}
 	return o.RawType, true
@@ -126,7 +129,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetRawTypeOk() (*string
 
 // HasRawType returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) HasRawType() bool {
-	if o != nil && o.RawType != nil {
+	if o != nil && !IsNil(o.RawType) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetRawType(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -158,7 +161,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetTypeOk() (*string, b
 
 // HasType returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetType(v string) {
 
 // GetVideo returns the Video field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetVideo() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo {
-	if o == nil || o.Video == nil {
+	if o == nil || IsNil(o.Video) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetVideo() StatusIngest
 // GetVideoOk returns a tuple with the Video field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetVideoOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo, bool) {
-	if o == nil || o.Video == nil {
+	if o == nil || IsNil(o.Video) {
 		return nil, false
 	}
 	return o.Video, true
@@ -190,7 +193,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) GetVideoOk() (*StatusIn
 
 // HasVideo returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) HasVideo() bool {
-	if o != nil && o.Video != nil {
+	if o != nil && !IsNil(o.Video) {
 		return true
 	}
 
@@ -203,23 +206,31 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetVideo(v StatusIngest
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Mapped != nil {
-		toSerialize["mapped"] = o.Mapped
-	}
-	if o.Pid != nil {
-		toSerialize["pid"] = o.Pid
-	}
-	if o.RawType != nil {
-		toSerialize["raw_type"] = o.RawType
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
-	if o.Video != nil {
-		toSerialize["video"] = o.Video
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Mapped) {
+		toSerialize["mapped"] = o.Mapped
+	}
+	if !IsNil(o.Pid) {
+		toSerialize["pid"] = o.Pid
+	}
+	if !IsNil(o.RawType) {
+		toSerialize["raw_type"] = o.RawType
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.Video) {
+		toSerialize["video"] = o.Video
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInner struct {

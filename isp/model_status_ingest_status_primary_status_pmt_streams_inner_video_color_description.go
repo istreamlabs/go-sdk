@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription struct {
 	ColorPrimaries *string `json:"color_primaries,omitempty"`
@@ -39,7 +42,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescriptionWithD
 
 // GetColorPrimaries returns the ColorPrimaries field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetColorPrimaries() string {
-	if o == nil || o.ColorPrimaries == nil {
+	if o == nil || IsNil(o.ColorPrimaries) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 // GetColorPrimariesOk returns a tuple with the ColorPrimaries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetColorPrimariesOk() (*string, bool) {
-	if o == nil || o.ColorPrimaries == nil {
+	if o == nil || IsNil(o.ColorPrimaries) {
 		return nil, false
 	}
 	return o.ColorPrimaries, true
@@ -57,7 +60,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 
 // HasColorPrimaries returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) HasColorPrimaries() bool {
-	if o != nil && o.ColorPrimaries != nil {
+	if o != nil && !IsNil(o.ColorPrimaries) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Se
 
 // GetMatrixCoeffs returns the MatrixCoeffs field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetMatrixCoeffs() string {
-	if o == nil || o.MatrixCoeffs == nil {
+	if o == nil || IsNil(o.MatrixCoeffs) {
 		var ret string
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 // GetMatrixCoeffsOk returns a tuple with the MatrixCoeffs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetMatrixCoeffsOk() (*string, bool) {
-	if o == nil || o.MatrixCoeffs == nil {
+	if o == nil || IsNil(o.MatrixCoeffs) {
 		return nil, false
 	}
 	return o.MatrixCoeffs, true
@@ -89,7 +92,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 
 // HasMatrixCoeffs returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) HasMatrixCoeffs() bool {
-	if o != nil && o.MatrixCoeffs != nil {
+	if o != nil && !IsNil(o.MatrixCoeffs) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Se
 
 // GetTransferCharacteristics returns the TransferCharacteristics field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetTransferCharacteristics() string {
-	if o == nil || o.TransferCharacteristics == nil {
+	if o == nil || IsNil(o.TransferCharacteristics) {
 		var ret string
 		return ret
 	}
@@ -113,7 +116,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 // GetTransferCharacteristicsOk returns a tuple with the TransferCharacteristics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) GetTransferCharacteristicsOk() (*string, bool) {
-	if o == nil || o.TransferCharacteristics == nil {
+	if o == nil || IsNil(o.TransferCharacteristics) {
 		return nil, false
 	}
 	return o.TransferCharacteristics, true
@@ -121,7 +124,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Ge
 
 // HasTransferCharacteristics returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) HasTransferCharacteristics() bool {
-	if o != nil && o.TransferCharacteristics != nil {
+	if o != nil && !IsNil(o.TransferCharacteristics) {
 		return true
 	}
 
@@ -134,17 +137,25 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Se
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ColorPrimaries != nil {
-		toSerialize["color_primaries"] = o.ColorPrimaries
-	}
-	if o.MatrixCoeffs != nil {
-		toSerialize["matrix_coeffs"] = o.MatrixCoeffs
-	}
-	if o.TransferCharacteristics != nil {
-		toSerialize["transfer_characteristics"] = o.TransferCharacteristics
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ColorPrimaries) {
+		toSerialize["color_primaries"] = o.ColorPrimaries
+	}
+	if !IsNil(o.MatrixCoeffs) {
+		toSerialize["matrix_coeffs"] = o.MatrixCoeffs
+	}
+	if !IsNil(o.TransferCharacteristics) {
+		toSerialize["transfer_characteristics"] = o.TransferCharacteristics
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription struct {

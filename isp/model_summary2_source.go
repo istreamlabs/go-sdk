@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Summary2Source type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Summary2Source{}
+
 // Summary2Source Channel source
 type Summary2Source struct {
 	// Station source ID
@@ -67,7 +70,7 @@ func (o *Summary2Source) SetId(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Summary2Source) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -77,7 +80,7 @@ func (o *Summary2Source) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Summary2Source) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -85,7 +88,7 @@ func (o *Summary2Source) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Summary2Source) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -99,7 +102,7 @@ func (o *Summary2Source) SetName(v string) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *Summary2Source) GetSelf() string {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
 	}
@@ -109,7 +112,7 @@ func (o *Summary2Source) GetSelf() string {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Summary2Source) GetSelfOk() (*string, bool) {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -117,7 +120,7 @@ func (o *Summary2Source) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Summary2Source) HasSelf() bool {
-	if o != nil && o.Self != nil {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -130,17 +133,21 @@ func (o *Summary2Source) SetSelf(v string) {
 }
 
 func (o Summary2Source) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Self != nil {
-		toSerialize["self"] = o.Self
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Summary2Source) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	// skip: self is readOnly
+	return toSerialize, nil
 }
 
 type NullableSummary2Source struct {

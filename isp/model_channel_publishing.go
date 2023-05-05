@@ -13,15 +13,22 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishing type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishing{}
+
 // ChannelPublishing Publishing configures playlist formats and where to send video and playlist data.
 type ChannelPublishing struct {
-	// Configures how captioning information is published.
+	// Configures how captioning information, which references CEA-608 captions embedded in video segments, is published.
 	ClosedCaptionStreams []ChannelPublishingClosedCaptionStreamsInner `json:"closed_caption_streams,omitempty"`
 	// Set of string identifiers corresponding to features that this Channel is opting in.
 	FeatureFlags []string `json:"feature_flags,omitempty"`
 	Live2vod *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
 	// A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists.
 	Publications []ChannelPublishingPublicationsInner `json:"publications,omitempty"`
+	// A set of configurations for delivering RTMP streams
+	RtmpPublications []ChannelPublishingRtmpPublicationsInner `json:"rtmp_publications,omitempty"`
+	// A set of configurations for delivering SRT streams
+	SrtPublications []ChannelPublishingSrtPublicationsInner `json:"srt_publications,omitempty"`
 }
 
 // NewChannelPublishing instantiates a new ChannelPublishing object
@@ -43,7 +50,7 @@ func NewChannelPublishingWithDefaults() *ChannelPublishing {
 
 // GetClosedCaptionStreams returns the ClosedCaptionStreams field value if set, zero value otherwise.
 func (o *ChannelPublishing) GetClosedCaptionStreams() []ChannelPublishingClosedCaptionStreamsInner {
-	if o == nil || o.ClosedCaptionStreams == nil {
+	if o == nil || IsNil(o.ClosedCaptionStreams) {
 		var ret []ChannelPublishingClosedCaptionStreamsInner
 		return ret
 	}
@@ -53,7 +60,7 @@ func (o *ChannelPublishing) GetClosedCaptionStreams() []ChannelPublishingClosedC
 // GetClosedCaptionStreamsOk returns a tuple with the ClosedCaptionStreams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishing) GetClosedCaptionStreamsOk() ([]ChannelPublishingClosedCaptionStreamsInner, bool) {
-	if o == nil || o.ClosedCaptionStreams == nil {
+	if o == nil || IsNil(o.ClosedCaptionStreams) {
 		return nil, false
 	}
 	return o.ClosedCaptionStreams, true
@@ -61,7 +68,7 @@ func (o *ChannelPublishing) GetClosedCaptionStreamsOk() ([]ChannelPublishingClos
 
 // HasClosedCaptionStreams returns a boolean if a field has been set.
 func (o *ChannelPublishing) HasClosedCaptionStreams() bool {
-	if o != nil && o.ClosedCaptionStreams != nil {
+	if o != nil && !IsNil(o.ClosedCaptionStreams) {
 		return true
 	}
 
@@ -75,7 +82,7 @@ func (o *ChannelPublishing) SetClosedCaptionStreams(v []ChannelPublishingClosedC
 
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
 func (o *ChannelPublishing) GetFeatureFlags() []string {
-	if o == nil || o.FeatureFlags == nil {
+	if o == nil || IsNil(o.FeatureFlags) {
 		var ret []string
 		return ret
 	}
@@ -85,7 +92,7 @@ func (o *ChannelPublishing) GetFeatureFlags() []string {
 // GetFeatureFlagsOk returns a tuple with the FeatureFlags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishing) GetFeatureFlagsOk() ([]string, bool) {
-	if o == nil || o.FeatureFlags == nil {
+	if o == nil || IsNil(o.FeatureFlags) {
 		return nil, false
 	}
 	return o.FeatureFlags, true
@@ -93,7 +100,7 @@ func (o *ChannelPublishing) GetFeatureFlagsOk() ([]string, bool) {
 
 // HasFeatureFlags returns a boolean if a field has been set.
 func (o *ChannelPublishing) HasFeatureFlags() bool {
-	if o != nil && o.FeatureFlags != nil {
+	if o != nil && !IsNil(o.FeatureFlags) {
 		return true
 	}
 
@@ -107,7 +114,7 @@ func (o *ChannelPublishing) SetFeatureFlags(v []string) {
 
 // GetLive2vod returns the Live2vod field value if set, zero value otherwise.
 func (o *ChannelPublishing) GetLive2vod() ChannelPublishingLive2vod {
-	if o == nil || o.Live2vod == nil {
+	if o == nil || IsNil(o.Live2vod) {
 		var ret ChannelPublishingLive2vod
 		return ret
 	}
@@ -117,7 +124,7 @@ func (o *ChannelPublishing) GetLive2vod() ChannelPublishingLive2vod {
 // GetLive2vodOk returns a tuple with the Live2vod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishing) GetLive2vodOk() (*ChannelPublishingLive2vod, bool) {
-	if o == nil || o.Live2vod == nil {
+	if o == nil || IsNil(o.Live2vod) {
 		return nil, false
 	}
 	return o.Live2vod, true
@@ -125,7 +132,7 @@ func (o *ChannelPublishing) GetLive2vodOk() (*ChannelPublishingLive2vod, bool) {
 
 // HasLive2vod returns a boolean if a field has been set.
 func (o *ChannelPublishing) HasLive2vod() bool {
-	if o != nil && o.Live2vod != nil {
+	if o != nil && !IsNil(o.Live2vod) {
 		return true
 	}
 
@@ -139,7 +146,7 @@ func (o *ChannelPublishing) SetLive2vod(v ChannelPublishingLive2vod) {
 
 // GetPublications returns the Publications field value if set, zero value otherwise.
 func (o *ChannelPublishing) GetPublications() []ChannelPublishingPublicationsInner {
-	if o == nil || o.Publications == nil {
+	if o == nil || IsNil(o.Publications) {
 		var ret []ChannelPublishingPublicationsInner
 		return ret
 	}
@@ -149,7 +156,7 @@ func (o *ChannelPublishing) GetPublications() []ChannelPublishingPublicationsInn
 // GetPublicationsOk returns a tuple with the Publications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishing) GetPublicationsOk() ([]ChannelPublishingPublicationsInner, bool) {
-	if o == nil || o.Publications == nil {
+	if o == nil || IsNil(o.Publications) {
 		return nil, false
 	}
 	return o.Publications, true
@@ -157,7 +164,7 @@ func (o *ChannelPublishing) GetPublicationsOk() ([]ChannelPublishingPublications
 
 // HasPublications returns a boolean if a field has been set.
 func (o *ChannelPublishing) HasPublications() bool {
-	if o != nil && o.Publications != nil {
+	if o != nil && !IsNil(o.Publications) {
 		return true
 	}
 
@@ -169,21 +176,99 @@ func (o *ChannelPublishing) SetPublications(v []ChannelPublishingPublicationsInn
 	o.Publications = v
 }
 
+// GetRtmpPublications returns the RtmpPublications field value if set, zero value otherwise.
+func (o *ChannelPublishing) GetRtmpPublications() []ChannelPublishingRtmpPublicationsInner {
+	if o == nil || IsNil(o.RtmpPublications) {
+		var ret []ChannelPublishingRtmpPublicationsInner
+		return ret
+	}
+	return o.RtmpPublications
+}
+
+// GetRtmpPublicationsOk returns a tuple with the RtmpPublications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishing) GetRtmpPublicationsOk() ([]ChannelPublishingRtmpPublicationsInner, bool) {
+	if o == nil || IsNil(o.RtmpPublications) {
+		return nil, false
+	}
+	return o.RtmpPublications, true
+}
+
+// HasRtmpPublications returns a boolean if a field has been set.
+func (o *ChannelPublishing) HasRtmpPublications() bool {
+	if o != nil && !IsNil(o.RtmpPublications) {
+		return true
+	}
+
+	return false
+}
+
+// SetRtmpPublications gets a reference to the given []ChannelPublishingRtmpPublicationsInner and assigns it to the RtmpPublications field.
+func (o *ChannelPublishing) SetRtmpPublications(v []ChannelPublishingRtmpPublicationsInner) {
+	o.RtmpPublications = v
+}
+
+// GetSrtPublications returns the SrtPublications field value if set, zero value otherwise.
+func (o *ChannelPublishing) GetSrtPublications() []ChannelPublishingSrtPublicationsInner {
+	if o == nil || IsNil(o.SrtPublications) {
+		var ret []ChannelPublishingSrtPublicationsInner
+		return ret
+	}
+	return o.SrtPublications
+}
+
+// GetSrtPublicationsOk returns a tuple with the SrtPublications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishing) GetSrtPublicationsOk() ([]ChannelPublishingSrtPublicationsInner, bool) {
+	if o == nil || IsNil(o.SrtPublications) {
+		return nil, false
+	}
+	return o.SrtPublications, true
+}
+
+// HasSrtPublications returns a boolean if a field has been set.
+func (o *ChannelPublishing) HasSrtPublications() bool {
+	if o != nil && !IsNil(o.SrtPublications) {
+		return true
+	}
+
+	return false
+}
+
+// SetSrtPublications gets a reference to the given []ChannelPublishingSrtPublicationsInner and assigns it to the SrtPublications field.
+func (o *ChannelPublishing) SetSrtPublications(v []ChannelPublishingSrtPublicationsInner) {
+	o.SrtPublications = v
+}
+
 func (o ChannelPublishing) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ClosedCaptionStreams != nil {
-		toSerialize["closed_caption_streams"] = o.ClosedCaptionStreams
-	}
-	if o.FeatureFlags != nil {
-		toSerialize["feature_flags"] = o.FeatureFlags
-	}
-	if o.Live2vod != nil {
-		toSerialize["live2vod"] = o.Live2vod
-	}
-	if o.Publications != nil {
-		toSerialize["publications"] = o.Publications
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishing) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ClosedCaptionStreams) {
+		toSerialize["closed_caption_streams"] = o.ClosedCaptionStreams
+	}
+	if !IsNil(o.FeatureFlags) {
+		toSerialize["feature_flags"] = o.FeatureFlags
+	}
+	if !IsNil(o.Live2vod) {
+		toSerialize["live2vod"] = o.Live2vod
+	}
+	if !IsNil(o.Publications) {
+		toSerialize["publications"] = o.Publications
+	}
+	if !IsNil(o.RtmpPublications) {
+		toSerialize["rtmp_publications"] = o.RtmpPublications
+	}
+	if !IsNil(o.SrtPublications) {
+		toSerialize["srt_publications"] = o.SrtPublications
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishing struct {

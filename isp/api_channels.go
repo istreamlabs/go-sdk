@@ -25,7 +25,7 @@ type ChannelsApi interface {
 	/*
 	DeleteChannel Delete channel
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Delete a channel and stop publishing.  This action is idempotent.
 
@@ -44,7 +44,7 @@ Delete a channel and stop publishing.  This action is idempotent.
 	/*
 	GetChannel Get Channel
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Get a channel's configuration
 
@@ -64,7 +64,7 @@ Get a channel's configuration
 	/*
 	GetPlaybackConfig Get Channel Playback Config
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
 
 Get a channel's playback configuration
 
@@ -115,7 +115,7 @@ Get a channel's playback configuration
 	/*
 	PutChannel Create/Update channel
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Create or update an existing channel configuration.
 
@@ -134,7 +134,7 @@ Create or update an existing channel configuration.
 	/*
 	PutChannelDesiredState Update Channel DesiredState to ON/OFF
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
 
 
 
@@ -195,7 +195,7 @@ func (r ApiDeleteChannelRequest) Execute() (*http.Response, error) {
 /*
 DeleteChannel Delete channel
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Delete a channel and stop publishing.  This action is idempotent.
 
@@ -414,7 +414,7 @@ func (r ApiGetChannelRequest) Execute() (*Channel, *http.Response, error) {
 /*
 GetChannel Get Channel
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel](#get-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Get a channel's configuration
 
@@ -618,7 +618,7 @@ func (r ApiGetPlaybackConfigRequest) Execute() (*ChannelPlayback, *http.Response
 /*
 GetPlaybackConfig Get Channel Playback Config
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-playbacks](#get-/v2/channels/-channel-id-/playback) instead.</b>
 
 Get a channel's playback configuration
 
@@ -1336,7 +1336,7 @@ func (r ApiPutChannelRequest) Execute() (*http.Response, error) {
 /*
 PutChannel Create/Update channel
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [put-org-channel](#put-/v2/-org-/channels/-channel-id-) instead.</b>
 
 Create or update an existing channel configuration.
 
@@ -1603,7 +1603,7 @@ func (r ApiPutChannelDesiredStateRequest) Execute() (*http.Response, error) {
 /*
 PutChannelDesiredState Update Channel DesiredState to ON/OFF
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) instead.</b>
 
 
 

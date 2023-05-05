@@ -224,10 +224,80 @@ Example input body:
 ]
 ```
 
-
 ### Slate In
 
-Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
 
 Example input body:
 
@@ -241,7 +311,7 @@ Example input body:
 	}
 ]
 ```
-
+	
 ### Slate Out
 
 Removes any active slate and shows the source video content.
@@ -302,7 +372,8 @@ Example input body:
 	PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest
 
 	// PostOrgSignalsExecute executes the request
-	PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) (*http.Response, error)
+	//  @return []GenericSignalResult
+	PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error)
 }
 
 // ChannelOperationsForOrganizationApiService ChannelOperationsForOrganizationApi service
@@ -2256,7 +2327,7 @@ func (r ApiPostOrgSignalsRequest) GenericSignal(genericSignal []GenericSignal) A
 	return r
 }
 
-func (r ApiPostOrgSignalsRequest) Execute() (*http.Response, error) {
+func (r ApiPostOrgSignalsRequest) Execute() ([]GenericSignalResult, *http.Response, error) {
 	return r.ApiService.PostOrgSignalsExecute(r)
 }
 
@@ -2301,10 +2372,80 @@ Example input body:
 ]
 ```
 
-
 ### Slate In
 
-Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
 
 Example input body:
 
@@ -2318,7 +2459,7 @@ Example input body:
 	}
 ]
 ```
-
+	
 ### Slate Out
 
 Removes any active slate and shows the source video content.
@@ -2386,16 +2527,18 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) (*http.Response, error) {
+//  @return []GenericSignalResult
+func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  []GenericSignalResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.PostOrgSignals")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/signals"
@@ -2406,7 +2549,7 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		return nil, reportError("channelId must have less than 60 elements")
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -2419,7 +2562,7 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2430,19 +2573,19 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	localVarPostBody = r.genericSignal
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2455,82 +2598,103 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 408 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]GenericSignalResult)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
