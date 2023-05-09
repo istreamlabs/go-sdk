@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelSignalingSegmentSettingsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelSignalingSegmentSettingsInner{}
+
 // ChannelSignalingSegmentSettingsInner struct for ChannelSignalingSegmentSettingsInner
 type ChannelSignalingSegmentSettingsInner struct {
 	// Specifies the duration of a segment when the in-band SCTE-35 that initiates it (e.g. Distributor Placement Opportunity Start) is missing an explicit duration. N.B. for program and ad types, this also affects 'Simple Program' and 'Simple Ad' markers, respectively.
@@ -47,7 +50,7 @@ func NewChannelSignalingSegmentSettingsInnerWithDefaults() *ChannelSignalingSegm
 
 // GetDefaultDurationSecs returns the DefaultDurationSecs field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetDefaultDurationSecs() int32 {
-	if o == nil || o.DefaultDurationSecs == nil {
+	if o == nil || IsNil(o.DefaultDurationSecs) {
 		var ret int32
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetDefaultDurationSecs() int32 {
 // GetDefaultDurationSecsOk returns a tuple with the DefaultDurationSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetDefaultDurationSecsOk() (*int32, bool) {
-	if o == nil || o.DefaultDurationSecs == nil {
+	if o == nil || IsNil(o.DefaultDurationSecs) {
 		return nil, false
 	}
 	return o.DefaultDurationSecs, true
@@ -65,7 +68,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetDefaultDurationSecsOk() (*int3
 
 // HasDefaultDurationSecs returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasDefaultDurationSecs() bool {
-	if o != nil && o.DefaultDurationSecs != nil {
+	if o != nil && !IsNil(o.DefaultDurationSecs) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *ChannelSignalingSegmentSettingsInner) SetDefaultDurationSecs(v int32) {
 
 // GetEmitDefaultDuration returns the EmitDefaultDuration field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetEmitDefaultDuration() bool {
-	if o == nil || o.EmitDefaultDuration == nil {
+	if o == nil || IsNil(o.EmitDefaultDuration) {
 		var ret bool
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetEmitDefaultDuration() bool {
 // GetEmitDefaultDurationOk returns a tuple with the EmitDefaultDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetEmitDefaultDurationOk() (*bool, bool) {
-	if o == nil || o.EmitDefaultDuration == nil {
+	if o == nil || IsNil(o.EmitDefaultDuration) {
 		return nil, false
 	}
 	return o.EmitDefaultDuration, true
@@ -97,7 +100,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetEmitDefaultDurationOk() (*bool
 
 // HasEmitDefaultDuration returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasEmitDefaultDuration() bool {
-	if o != nil && o.EmitDefaultDuration != nil {
+	if o != nil && !IsNil(o.EmitDefaultDuration) {
 		return true
 	}
 
@@ -111,7 +114,7 @@ func (o *ChannelSignalingSegmentSettingsInner) SetEmitDefaultDuration(v bool) {
 
 // GetOffsetMillis returns the OffsetMillis field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetOffsetMillis() int32 {
-	if o == nil || o.OffsetMillis == nil {
+	if o == nil || IsNil(o.OffsetMillis) {
 		var ret int32
 		return ret
 	}
@@ -121,7 +124,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetOffsetMillis() int32 {
 // GetOffsetMillisOk returns a tuple with the OffsetMillis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetOffsetMillisOk() (*int32, bool) {
-	if o == nil || o.OffsetMillis == nil {
+	if o == nil || IsNil(o.OffsetMillis) {
 		return nil, false
 	}
 	return o.OffsetMillis, true
@@ -129,7 +132,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetOffsetMillisOk() (*int32, bool
 
 // HasOffsetMillis returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasOffsetMillis() bool {
-	if o != nil && o.OffsetMillis != nil {
+	if o != nil && !IsNil(o.OffsetMillis) {
 		return true
 	}
 
@@ -143,7 +146,7 @@ func (o *ChannelSignalingSegmentSettingsInner) SetOffsetMillis(v int32) {
 
 // GetSegmentEndMode returns the SegmentEndMode field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetSegmentEndMode() string {
-	if o == nil || o.SegmentEndMode == nil {
+	if o == nil || IsNil(o.SegmentEndMode) {
 		var ret string
 		return ret
 	}
@@ -153,7 +156,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetSegmentEndMode() string {
 // GetSegmentEndModeOk returns a tuple with the SegmentEndMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetSegmentEndModeOk() (*string, bool) {
-	if o == nil || o.SegmentEndMode == nil {
+	if o == nil || IsNil(o.SegmentEndMode) {
 		return nil, false
 	}
 	return o.SegmentEndMode, true
@@ -161,7 +164,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetSegmentEndModeOk() (*string, b
 
 // HasSegmentEndMode returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasSegmentEndMode() bool {
-	if o != nil && o.SegmentEndMode != nil {
+	if o != nil && !IsNil(o.SegmentEndMode) {
 		return true
 	}
 
@@ -175,7 +178,7 @@ func (o *ChannelSignalingSegmentSettingsInner) SetSegmentEndMode(v string) {
 
 // GetSegments returns the Segments field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetSegments() []string {
-	if o == nil || o.Segments == nil {
+	if o == nil || IsNil(o.Segments) {
 		var ret []string
 		return ret
 	}
@@ -185,7 +188,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetSegments() []string {
 // GetSegmentsOk returns a tuple with the Segments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetSegmentsOk() ([]string, bool) {
-	if o == nil || o.Segments == nil {
+	if o == nil || IsNil(o.Segments) {
 		return nil, false
 	}
 	return o.Segments, true
@@ -193,7 +196,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetSegmentsOk() ([]string, bool) 
 
 // HasSegments returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasSegments() bool {
-	if o != nil && o.Segments != nil {
+	if o != nil && !IsNil(o.Segments) {
 		return true
 	}
 
@@ -207,7 +210,7 @@ func (o *ChannelSignalingSegmentSettingsInner) SetSegments(v []string) {
 
 // GetTierFilter returns the TierFilter field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInner) GetTierFilter() ChannelSignalingSegmentSettingsInnerTierFilter {
-	if o == nil || o.TierFilter == nil {
+	if o == nil || IsNil(o.TierFilter) {
 		var ret ChannelSignalingSegmentSettingsInnerTierFilter
 		return ret
 	}
@@ -217,7 +220,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetTierFilter() ChannelSignalingS
 // GetTierFilterOk returns a tuple with the TierFilter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInner) GetTierFilterOk() (*ChannelSignalingSegmentSettingsInnerTierFilter, bool) {
-	if o == nil || o.TierFilter == nil {
+	if o == nil || IsNil(o.TierFilter) {
 		return nil, false
 	}
 	return o.TierFilter, true
@@ -225,7 +228,7 @@ func (o *ChannelSignalingSegmentSettingsInner) GetTierFilterOk() (*ChannelSignal
 
 // HasTierFilter returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInner) HasTierFilter() bool {
-	if o != nil && o.TierFilter != nil {
+	if o != nil && !IsNil(o.TierFilter) {
 		return true
 	}
 
@@ -238,26 +241,34 @@ func (o *ChannelSignalingSegmentSettingsInner) SetTierFilter(v ChannelSignalingS
 }
 
 func (o ChannelSignalingSegmentSettingsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DefaultDurationSecs != nil {
-		toSerialize["default_duration_secs"] = o.DefaultDurationSecs
-	}
-	if o.EmitDefaultDuration != nil {
-		toSerialize["emit_default_duration"] = o.EmitDefaultDuration
-	}
-	if o.OffsetMillis != nil {
-		toSerialize["offset_millis"] = o.OffsetMillis
-	}
-	if o.SegmentEndMode != nil {
-		toSerialize["segment_end_mode"] = o.SegmentEndMode
-	}
-	if o.Segments != nil {
-		toSerialize["segments"] = o.Segments
-	}
-	if o.TierFilter != nil {
-		toSerialize["tier_filter"] = o.TierFilter
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelSignalingSegmentSettingsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DefaultDurationSecs) {
+		toSerialize["default_duration_secs"] = o.DefaultDurationSecs
+	}
+	if !IsNil(o.EmitDefaultDuration) {
+		toSerialize["emit_default_duration"] = o.EmitDefaultDuration
+	}
+	if !IsNil(o.OffsetMillis) {
+		toSerialize["offset_millis"] = o.OffsetMillis
+	}
+	if !IsNil(o.SegmentEndMode) {
+		toSerialize["segment_end_mode"] = o.SegmentEndMode
+	}
+	if !IsNil(o.Segments) {
+		toSerialize["segments"] = o.Segments
+	}
+	if !IsNil(o.TierFilter) {
+		toSerialize["tier_filter"] = o.TierFilter
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelSignalingSegmentSettingsInner struct {

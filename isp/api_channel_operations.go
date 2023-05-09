@@ -25,7 +25,7 @@ type ChannelOperationsApi interface {
 	/*
 	ClearDvrWindow Clear DVR Window
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
 
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
@@ -44,7 +44,7 @@ Clears the DVR window for the channel by removing all video segments in the mani
 	/*
 	GetBetaSignalLogs Signal Logs
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
 
 Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
 
@@ -66,7 +66,7 @@ Returns the signalling history for a channel.
 	/*
 	GetSignals Get Signals
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Returns the active signals for a channel.
 
@@ -86,7 +86,7 @@ Returns the active signals for a channel.
 	/*
 	InsertId3 Insert ID3
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
 
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
@@ -106,7 +106,7 @@ Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX
 	/*
 	InsertScte35 Insert SCTE-35
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
 
 Inserts a SCTE-35 formatted binary payload into the channel.
 
@@ -125,7 +125,7 @@ Inserts a SCTE-35 formatted binary payload into the channel.
 	/*
 	PreviewImage Get Preview Image
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
 
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
@@ -144,7 +144,7 @@ Get a static image of what your channel is outputting.  Valid Accept headers are
 	/*
 	PreviewStreams Get Preview Streams
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
 
 Get a default url that links to a preview of the channel. Additionally, all possible
 video and audio tracks are provided back and can be interchanged in the given url.
@@ -165,7 +165,7 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	/*
 	ProgramEnd Program End
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -184,7 +184,7 @@ Inserts a 'program end' SCTE-35 message into the channel.  This route should onl
 	/*
 	ProgramStart Program Start
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -203,7 +203,7 @@ Inserts a 'program start' SCTE-35 message into the channel.  This route should o
 	/*
 	Signal Generic Signal
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
 
@@ -243,10 +243,80 @@ Example input body:
 ]
 ```
 
-
 ### Slate In
 
-Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
 
 Example input body:
 
@@ -260,7 +330,7 @@ Example input body:
 	}
 ]
 ```
-
+	
 ### Slate Out
 
 Removes any active slate and shows the source video content.
@@ -322,15 +392,88 @@ Example input body:
 	Signal(ctx context.Context, channelId string) ApiSignalRequest
 
 	// SignalExecute executes the request
+	//  @return []GenericSignalResult
 	// Deprecated
-	SignalExecute(r ApiSignalRequest) (*http.Response, error)
+	SignalExecute(r ApiSignalRequest) ([]GenericSignalResult, *http.Response, error)
 
 	/*
 	SlateIn Slate in
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
-Replaces the current video source with a slate image or video.
+Replaces the current video source with a video slate.
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
+
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
@@ -347,7 +490,7 @@ Replaces the current video source with a slate image or video.
 	/*
 	SlateOut Slate out
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Removes any active slate and show the source video content.
 
@@ -366,7 +509,7 @@ Removes any active slate and show the source video content.
 	/*
 	SpliceEnd Splice Insert End
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert end' SCTE-35 message into the channel.
 
@@ -385,7 +528,7 @@ Inserts a 'splice insert end' SCTE-35 message into the channel.
 	/*
 	SpliceStart Splice Insert Start
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert start' SCTE-35 message into the channel.
 
@@ -418,7 +561,7 @@ func (r ApiClearDvrWindowRequest) Execute() (*http.Response, error) {
 /*
 ClearDvrWindow Clear DVR Window
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-dvr-window](#delete-/v2/-org-/channels/-channel-id-/dvr-window) instead.</b>
 
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
@@ -581,7 +724,7 @@ func (r ApiGetBetaSignalLogsRequest) Execute() ([]SignalingLog, *http.Response, 
 /*
 GetBetaSignalLogs Signal Logs
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-beta-logs-signaling](#get-/v2/-org-/channels/-channel-id-/beta/logs/signaling) instead.</b>
 
 Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
 
@@ -781,7 +924,7 @@ func (r ApiGetSignalsRequest) Execute() ([]Segment, *http.Response, error) {
 /*
 GetSignals Get Signals
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-signals](#get-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Returns the active signals for a channel.
 
@@ -986,7 +1129,7 @@ func (r ApiInsertId3Request) Execute() (*InsertMetadataResult, *http.Response, e
 /*
 InsertId3 Insert ID3
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-id3](#post-/v2/-org-/channels/-channel-id-/id3) instead.</b>
 
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
@@ -1209,7 +1352,7 @@ func (r ApiInsertScte35Request) Execute() (*http.Response, error) {
 /*
 InsertScte35 Insert SCTE-35
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-scte35](#post-/v2/-org-/channels/-channel-id-/scte35) instead.</b>
 
 Inserts a SCTE-35 formatted binary payload into the channel.
 
@@ -1397,7 +1540,7 @@ func (r ApiPreviewImageRequest) Execute() (*http.Response, error) {
 /*
 PreviewImage Get Preview Image
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-preview-image](#get-/v2/-org-/channels/-channel-id-/preview-image) instead.</b>
 
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
@@ -1579,7 +1722,7 @@ func (r ApiPreviewStreamsRequest) Execute() (*GetPreviewStreamsResponse, *http.R
 /*
 PreviewStreams Get Preview Streams
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-channel-preview-streams](#get-/v2/-org-/channels/-channel-id-/preview-streams) instead.</b>
 
 Get a default url that links to a preview of the channel. Additionally, all possible
 video and audio tracks are provided back and can be interchanged in the given url.
@@ -1788,7 +1931,7 @@ func (r ApiProgramEndRequest) Execute() (*http.Response, error) {
 /*
 ProgramEnd Program End
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program end' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -1985,7 +2128,7 @@ func (r ApiProgramStartRequest) Execute() (*http.Response, error) {
 /*
 ProgramStart Program Start
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'program start' SCTE-35 message into the channel.  This route should only be used for non-overlapping program markers.  If you want overlapping program makers please use Generic Signal instead.
 
@@ -2175,14 +2318,14 @@ func (r ApiSignalRequest) GenericSignal(genericSignal []GenericSignal) ApiSignal
 	return r
 }
 
-func (r ApiSignalRequest) Execute() (*http.Response, error) {
+func (r ApiSignalRequest) Execute() ([]GenericSignalResult, *http.Response, error) {
 	return r.ApiService.SignalExecute(r)
 }
 
 /*
 Signal Generic Signal
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
 
@@ -2222,10 +2365,80 @@ Example input body:
 ]
 ```
 
-
 ### Slate In
 
-Replaces the current video source with a slate image or video. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
 
 Example input body:
 
@@ -2239,7 +2452,7 @@ Example input body:
 	}
 ]
 ```
-
+	
 ### Slate Out
 
 Removes any active slate and shows the source video content.
@@ -2307,17 +2520,19 @@ func (a *ChannelOperationsApiService) Signal(ctx context.Context, channelId stri
 }
 
 // Execute executes the request
+//  @return []GenericSignalResult
 // Deprecated
-func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.Response, error) {
+func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) ([]GenericSignalResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  []GenericSignalResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsApiService.Signal")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/channels/{channel-id}/signal"
@@ -2327,7 +2542,7 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.R
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		return nil, reportError("channelId must have less than 60 elements")
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -2340,7 +2555,7 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.R
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2351,19 +2566,19 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.R
 	localVarPostBody = r.genericSignal
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -2376,84 +2591,105 @@ func (a *ChannelOperationsApiService) SignalExecute(r ApiSignalRequest) (*http.R
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 408 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]GenericSignalResult)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiSlateInRequest struct {
@@ -2475,9 +2711,81 @@ func (r ApiSlateInRequest) Execute() (*http.Response, error) {
 /*
 SlateIn Slate in
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
-Replaces the current video source with a slate image or video.
+Replaces the current video source with a video slate.
+
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
+
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
+
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
@@ -2666,7 +2974,7 @@ func (r ApiSlateOutRequest) Execute() (*http.Response, error) {
 /*
 SlateOut Slate out
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Removes any active slate and show the source video content.
 
@@ -2841,7 +3149,7 @@ func (r ApiSpliceEndRequest) Execute() (*http.Response, error) {
 /*
 SpliceEnd Splice Insert End
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert end' SCTE-35 message into the channel.
 
@@ -3038,7 +3346,7 @@ func (r ApiSpliceStartRequest) Execute() (*http.Response, error) {
 /*
 SpliceStart Splice Insert Start
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-channel-signals](#post-/v2/-org-/channels/-channel-id-/signals) instead.</b>
 
 Inserts a 'splice insert start' SCTE-35 message into the channel.
 

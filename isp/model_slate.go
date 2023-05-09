@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Slate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Slate{}
+
 // Slate struct for Slate
 type Slate struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -47,7 +50,7 @@ func NewSlateWithDefaults() *Slate {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *Slate) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -57,7 +60,7 @@ func (o *Slate) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Slate) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -65,7 +68,7 @@ func (o *Slate) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Slate) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -79,7 +82,7 @@ func (o *Slate) SetSchema(v string) {
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *Slate) GetDuration() int32 {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		var ret int32
 		return ret
 	}
@@ -89,7 +92,7 @@ func (o *Slate) GetDuration() int32 {
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Slate) GetDurationOk() (*int32, bool) {
-	if o == nil || o.Duration == nil {
+	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
 	return o.Duration, true
@@ -97,7 +100,7 @@ func (o *Slate) GetDurationOk() (*int32, bool) {
 
 // HasDuration returns a boolean if a field has been set.
 func (o *Slate) HasDuration() bool {
-	if o != nil && o.Duration != nil {
+	if o != nil && !IsNil(o.Duration) {
 		return true
 	}
 
@@ -134,17 +137,23 @@ func (o *Slate) SetUri(v string) {
 }
 
 func (o Slate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.Duration != nil {
-		toSerialize["duration"] = o.Duration
-	}
-	if true {
-		toSerialize["uri"] = o.Uri
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Slate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
+	}
+	toSerialize["uri"] = o.Uri
+	return toSerialize, nil
 }
 
 type NullableSlate struct {

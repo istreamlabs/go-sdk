@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmt type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmt{}
+
 // StatusIngestStatusPrimaryStatusPmt The PMT for this source.
 type StatusIngestStatusPrimaryStatusPmt struct {
 	// The time that the PMT was updated.
@@ -44,7 +47,7 @@ func NewStatusIngestStatusPrimaryStatusPmtWithDefaults() *StatusIngestStatusPrim
 
 // GetLastUpdate returns the LastUpdate field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetLastUpdate() time.Time {
-	if o == nil || o.LastUpdate == nil {
+	if o == nil || IsNil(o.LastUpdate) {
 		var ret time.Time
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetLastUpdate() time.Time {
 // GetLastUpdateOk returns a tuple with the LastUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetLastUpdateOk() (*time.Time, bool) {
-	if o == nil || o.LastUpdate == nil {
+	if o == nil || IsNil(o.LastUpdate) {
 		return nil, false
 	}
 	return o.LastUpdate, true
@@ -62,7 +65,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetLastUpdateOk() (*time.Time, bool
 
 // HasLastUpdate returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) HasLastUpdate() bool {
-	if o != nil && o.LastUpdate != nil {
+	if o != nil && !IsNil(o.LastUpdate) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) SetLastUpdate(v time.Time) {
 
 // GetPcrPid returns the PcrPid field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetPcrPid() int32 {
-	if o == nil || o.PcrPid == nil {
+	if o == nil || IsNil(o.PcrPid) {
 		var ret int32
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetPcrPid() int32 {
 // GetPcrPidOk returns a tuple with the PcrPid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetPcrPidOk() (*int32, bool) {
-	if o == nil || o.PcrPid == nil {
+	if o == nil || IsNil(o.PcrPid) {
 		return nil, false
 	}
 	return o.PcrPid, true
@@ -94,7 +97,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetPcrPidOk() (*int32, bool) {
 
 // HasPcrPid returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) HasPcrPid() bool {
-	if o != nil && o.PcrPid != nil {
+	if o != nil && !IsNil(o.PcrPid) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) SetPcrPid(v int32) {
 
 // GetPid returns the Pid field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetPid() int32 {
-	if o == nil || o.Pid == nil {
+	if o == nil || IsNil(o.Pid) {
 		var ret int32
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetPid() int32 {
 // GetPidOk returns a tuple with the Pid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetPidOk() (*int32, bool) {
-	if o == nil || o.Pid == nil {
+	if o == nil || IsNil(o.Pid) {
 		return nil, false
 	}
 	return o.Pid, true
@@ -126,7 +129,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetPidOk() (*int32, bool) {
 
 // HasPid returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) HasPid() bool {
-	if o != nil && o.Pid != nil {
+	if o != nil && !IsNil(o.Pid) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) SetPid(v int32) {
 
 // GetProgramNumber returns the ProgramNumber field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetProgramNumber() int32 {
-	if o == nil || o.ProgramNumber == nil {
+	if o == nil || IsNil(o.ProgramNumber) {
 		var ret int32
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetProgramNumber() int32 {
 // GetProgramNumberOk returns a tuple with the ProgramNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetProgramNumberOk() (*int32, bool) {
-	if o == nil || o.ProgramNumber == nil {
+	if o == nil || IsNil(o.ProgramNumber) {
 		return nil, false
 	}
 	return o.ProgramNumber, true
@@ -158,7 +161,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetProgramNumberOk() (*int32, bool)
 
 // HasProgramNumber returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) HasProgramNumber() bool {
-	if o != nil && o.ProgramNumber != nil {
+	if o != nil && !IsNil(o.ProgramNumber) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) SetProgramNumber(v int32) {
 
 // GetStreams returns the Streams field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetStreams() []StatusIngestStatusPrimaryStatusPmtStreamsInner {
-	if o == nil || o.Streams == nil {
+	if o == nil || IsNil(o.Streams) {
 		var ret []StatusIngestStatusPrimaryStatusPmtStreamsInner
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetStreams() []StatusIngestStatusPr
 // GetStreamsOk returns a tuple with the Streams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) GetStreamsOk() ([]StatusIngestStatusPrimaryStatusPmtStreamsInner, bool) {
-	if o == nil || o.Streams == nil {
+	if o == nil || IsNil(o.Streams) {
 		return nil, false
 	}
 	return o.Streams, true
@@ -190,7 +193,7 @@ func (o *StatusIngestStatusPrimaryStatusPmt) GetStreamsOk() ([]StatusIngestStatu
 
 // HasStreams returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmt) HasStreams() bool {
-	if o != nil && o.Streams != nil {
+	if o != nil && !IsNil(o.Streams) {
 		return true
 	}
 
@@ -203,23 +206,31 @@ func (o *StatusIngestStatusPrimaryStatusPmt) SetStreams(v []StatusIngestStatusPr
 }
 
 func (o StatusIngestStatusPrimaryStatusPmt) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.LastUpdate != nil {
-		toSerialize["last_update"] = o.LastUpdate
-	}
-	if o.PcrPid != nil {
-		toSerialize["pcr_pid"] = o.PcrPid
-	}
-	if o.Pid != nil {
-		toSerialize["pid"] = o.Pid
-	}
-	if o.ProgramNumber != nil {
-		toSerialize["program_number"] = o.ProgramNumber
-	}
-	if o.Streams != nil {
-		toSerialize["streams"] = o.Streams
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmt) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.LastUpdate) {
+		toSerialize["last_update"] = o.LastUpdate
+	}
+	if !IsNil(o.PcrPid) {
+		toSerialize["pcr_pid"] = o.PcrPid
+	}
+	if !IsNil(o.Pid) {
+		toSerialize["pid"] = o.Pid
+	}
+	if !IsNil(o.ProgramNumber) {
+		toSerialize["program_number"] = o.ProgramNumber
+	}
+	if !IsNil(o.Streams) {
+		toSerialize["streams"] = o.Streams
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmt struct {

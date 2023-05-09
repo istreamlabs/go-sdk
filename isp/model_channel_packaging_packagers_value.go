@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValue type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValue{}
+
 // ChannelPackagingPackagersValue struct for ChannelPackagingPackagersValue
 type ChannelPackagingPackagersValue struct {
 	ContentProtection *ChannelPackagingPackagersValueContentProtection `json:"content_protection,omitempty"`
@@ -39,7 +42,7 @@ func NewChannelPackagingPackagersValueWithDefaults() *ChannelPackagingPackagersV
 
 // GetContentProtection returns the ContentProtection field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValue) GetContentProtection() ChannelPackagingPackagersValueContentProtection {
-	if o == nil || o.ContentProtection == nil {
+	if o == nil || IsNil(o.ContentProtection) {
 		var ret ChannelPackagingPackagersValueContentProtection
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ChannelPackagingPackagersValue) GetContentProtection() ChannelPackaging
 // GetContentProtectionOk returns a tuple with the ContentProtection field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValue) GetContentProtectionOk() (*ChannelPackagingPackagersValueContentProtection, bool) {
-	if o == nil || o.ContentProtection == nil {
+	if o == nil || IsNil(o.ContentProtection) {
 		return nil, false
 	}
 	return o.ContentProtection, true
@@ -57,7 +60,7 @@ func (o *ChannelPackagingPackagersValue) GetContentProtectionOk() (*ChannelPacka
 
 // HasContentProtection returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValue) HasContentProtection() bool {
-	if o != nil && o.ContentProtection != nil {
+	if o != nil && !IsNil(o.ContentProtection) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ChannelPackagingPackagersValue) SetContentProtection(v ChannelPackaging
 
 // GetMp2t returns the Mp2t field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValue) GetMp2t() ChannelPackagingPackagersValueMp2t {
-	if o == nil || o.Mp2t == nil {
+	if o == nil || IsNil(o.Mp2t) {
 		var ret ChannelPackagingPackagersValueMp2t
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *ChannelPackagingPackagersValue) GetMp2t() ChannelPackagingPackagersValu
 // GetMp2tOk returns a tuple with the Mp2t field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValue) GetMp2tOk() (*ChannelPackagingPackagersValueMp2t, bool) {
-	if o == nil || o.Mp2t == nil {
+	if o == nil || IsNil(o.Mp2t) {
 		return nil, false
 	}
 	return o.Mp2t, true
@@ -89,7 +92,7 @@ func (o *ChannelPackagingPackagersValue) GetMp2tOk() (*ChannelPackagingPackagers
 
 // HasMp2t returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValue) HasMp2t() bool {
-	if o != nil && o.Mp2t != nil {
+	if o != nil && !IsNil(o.Mp2t) {
 		return true
 	}
 
@@ -103,7 +106,7 @@ func (o *ChannelPackagingPackagersValue) SetMp2t(v ChannelPackagingPackagersValu
 
 // GetMp4 returns the Mp4 field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValue) GetMp4() ChannelPackagingPackagersValueMp4 {
-	if o == nil || o.Mp4 == nil {
+	if o == nil || IsNil(o.Mp4) {
 		var ret ChannelPackagingPackagersValueMp4
 		return ret
 	}
@@ -113,7 +116,7 @@ func (o *ChannelPackagingPackagersValue) GetMp4() ChannelPackagingPackagersValue
 // GetMp4Ok returns a tuple with the Mp4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValue) GetMp4Ok() (*ChannelPackagingPackagersValueMp4, bool) {
-	if o == nil || o.Mp4 == nil {
+	if o == nil || IsNil(o.Mp4) {
 		return nil, false
 	}
 	return o.Mp4, true
@@ -121,7 +124,7 @@ func (o *ChannelPackagingPackagersValue) GetMp4Ok() (*ChannelPackagingPackagersV
 
 // HasMp4 returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValue) HasMp4() bool {
-	if o != nil && o.Mp4 != nil {
+	if o != nil && !IsNil(o.Mp4) {
 		return true
 	}
 
@@ -134,17 +137,25 @@ func (o *ChannelPackagingPackagersValue) SetMp4(v ChannelPackagingPackagersValue
 }
 
 func (o ChannelPackagingPackagersValue) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ContentProtection != nil {
-		toSerialize["content_protection"] = o.ContentProtection
-	}
-	if o.Mp2t != nil {
-		toSerialize["mp2t"] = o.Mp2t
-	}
-	if o.Mp4 != nil {
-		toSerialize["mp4"] = o.Mp4
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValue) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ContentProtection) {
+		toSerialize["content_protection"] = o.ContentProtection
+	}
+	if !IsNil(o.Mp2t) {
+		toSerialize["mp2t"] = o.Mp2t
+	}
+	if !IsNil(o.Mp4) {
+		toSerialize["mp4"] = o.Mp4
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValue struct {

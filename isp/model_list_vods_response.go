@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the ListVODsResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListVODsResponse{}
+
 // ListVODsResponse struct for ListVODsResponse
 type ListVODsResponse struct {
 	Description string `json:"description"`
@@ -125,7 +128,7 @@ func (o *ListVODsResponse) SetId(v string) {
 
 // GetLastPublished returns the LastPublished field value if set, zero value otherwise.
 func (o *ListVODsResponse) GetLastPublished() time.Time {
-	if o == nil || o.LastPublished == nil {
+	if o == nil || IsNil(o.LastPublished) {
 		var ret time.Time
 		return ret
 	}
@@ -135,7 +138,7 @@ func (o *ListVODsResponse) GetLastPublished() time.Time {
 // GetLastPublishedOk returns a tuple with the LastPublished field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListVODsResponse) GetLastPublishedOk() (*time.Time, bool) {
-	if o == nil || o.LastPublished == nil {
+	if o == nil || IsNil(o.LastPublished) {
 		return nil, false
 	}
 	return o.LastPublished, true
@@ -143,7 +146,7 @@ func (o *ListVODsResponse) GetLastPublishedOk() (*time.Time, bool) {
 
 // HasLastPublished returns a boolean if a field has been set.
 func (o *ListVODsResponse) HasLastPublished() bool {
-	if o != nil && o.LastPublished != nil {
+	if o != nil && !IsNil(o.LastPublished) {
 		return true
 	}
 
@@ -157,7 +160,7 @@ func (o *ListVODsResponse) SetLastPublished(v time.Time) {
 
 // GetPackagingFormat returns the PackagingFormat field value if set, zero value otherwise.
 func (o *ListVODsResponse) GetPackagingFormat() string {
-	if o == nil || o.PackagingFormat == nil {
+	if o == nil || IsNil(o.PackagingFormat) {
 		var ret string
 		return ret
 	}
@@ -167,7 +170,7 @@ func (o *ListVODsResponse) GetPackagingFormat() string {
 // GetPackagingFormatOk returns a tuple with the PackagingFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListVODsResponse) GetPackagingFormatOk() (*string, bool) {
-	if o == nil || o.PackagingFormat == nil {
+	if o == nil || IsNil(o.PackagingFormat) {
 		return nil, false
 	}
 	return o.PackagingFormat, true
@@ -175,7 +178,7 @@ func (o *ListVODsResponse) GetPackagingFormatOk() (*string, bool) {
 
 // HasPackagingFormat returns a boolean if a field has been set.
 func (o *ListVODsResponse) HasPackagingFormat() bool {
-	if o != nil && o.PackagingFormat != nil {
+	if o != nil && !IsNil(o.PackagingFormat) {
 		return true
 	}
 
@@ -284,35 +287,29 @@ func (o *ListVODsResponse) SetVersion(v string) {
 }
 
 func (o ListVODsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["description"] = o.Description
-	}
-	if true {
-		toSerialize["file_count"] = o.FileCount
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.LastPublished != nil {
-		toSerialize["last_published"] = o.LastPublished
-	}
-	if o.PackagingFormat != nil {
-		toSerialize["packaging_format"] = o.PackagingFormat
-	}
-	if true {
-		toSerialize["store"] = o.Store
-	}
-	if true {
-		toSerialize["store_prefix"] = o.StorePrefix
-	}
-	if true {
-		toSerialize["total_bytes"] = o.TotalBytes
-	}
-	if true {
-		toSerialize["version"] = o.Version
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListVODsResponse) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["description"] = o.Description
+	toSerialize["file_count"] = o.FileCount
+	toSerialize["id"] = o.Id
+	if !IsNil(o.LastPublished) {
+		toSerialize["last_published"] = o.LastPublished
+	}
+	if !IsNil(o.PackagingFormat) {
+		toSerialize["packaging_format"] = o.PackagingFormat
+	}
+	toSerialize["store"] = o.Store
+	toSerialize["store_prefix"] = o.StorePrefix
+	toSerialize["total_bytes"] = o.TotalBytes
+	toSerialize["version"] = o.Version
+	return toSerialize, nil
 }
 
 type NullableListVODsResponse struct {

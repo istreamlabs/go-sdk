@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the OrgSummary type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &OrgSummary{}
+
 // OrgSummary struct for OrgSummary
 type OrgSummary struct {
 	// ID of the organization
@@ -65,7 +68,7 @@ func (o *OrgSummary) SetId(v string) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *OrgSummary) GetSelf() string {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
 	}
@@ -75,7 +78,7 @@ func (o *OrgSummary) GetSelf() string {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OrgSummary) GetSelfOk() (*string, bool) {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -83,7 +86,7 @@ func (o *OrgSummary) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *OrgSummary) HasSelf() bool {
-	if o != nil && o.Self != nil {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -96,14 +99,18 @@ func (o *OrgSummary) SetSelf(v string) {
 }
 
 func (o OrgSummary) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Self != nil {
-		toSerialize["self"] = o.Self
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o OrgSummary) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["id"] = o.Id
+	// skip: self is readOnly
+	return toSerialize, nil
 }
 
 type NullableOrgSummary struct {

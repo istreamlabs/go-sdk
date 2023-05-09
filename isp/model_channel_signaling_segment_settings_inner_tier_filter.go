@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelSignalingSegmentSettingsInnerTierFilter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelSignalingSegmentSettingsInnerTierFilter{}
+
 // ChannelSignalingSegmentSettingsInnerTierFilter Specifies how to filter the provided segments, when received through in-band SCTE-35, based on the SCTE-35 SpliceInfoSection Tier.
 type ChannelSignalingSegmentSettingsInnerTierFilter struct {
 	ExplicitTier *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier `json:"explicit_tier,omitempty"`
@@ -37,7 +40,7 @@ func NewChannelSignalingSegmentSettingsInnerTierFilterWithDefaults() *ChannelSig
 
 // GetExplicitTier returns the ExplicitTier field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilter) GetExplicitTier() ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier {
-	if o == nil || o.ExplicitTier == nil {
+	if o == nil || IsNil(o.ExplicitTier) {
 		var ret ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier
 		return ret
 	}
@@ -47,7 +50,7 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilter) GetExplicitTier() Chann
 // GetExplicitTierOk returns a tuple with the ExplicitTier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilter) GetExplicitTierOk() (*ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier, bool) {
-	if o == nil || o.ExplicitTier == nil {
+	if o == nil || IsNil(o.ExplicitTier) {
 		return nil, false
 	}
 	return o.ExplicitTier, true
@@ -55,7 +58,7 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilter) GetExplicitTierOk() (*C
 
 // HasExplicitTier returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilter) HasExplicitTier() bool {
-	if o != nil && o.ExplicitTier != nil {
+	if o != nil && !IsNil(o.ExplicitTier) {
 		return true
 	}
 
@@ -68,11 +71,19 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilter) SetExplicitTier(v Chann
 }
 
 func (o ChannelSignalingSegmentSettingsInnerTierFilter) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ExplicitTier != nil {
-		toSerialize["explicit_tier"] = o.ExplicitTier
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelSignalingSegmentSettingsInnerTierFilter) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ExplicitTier) {
+		toSerialize["explicit_tier"] = o.ExplicitTier
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelSignalingSegmentSettingsInnerTierFilter struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPlaybackCmafInnerContentProtection type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPlaybackCmafInnerContentProtection{}
+
 // ChannelPlaybackCmafInnerContentProtection Content Protection settings
 type ChannelPlaybackCmafInnerContentProtection struct {
 	Atlas *ChannelPackagingPackagersValueContentProtectionAtlas `json:"atlas,omitempty"`
@@ -44,7 +47,7 @@ func NewChannelPlaybackCmafInnerContentProtectionWithDefaults() *ChannelPlayback
 
 // GetAtlas returns the Atlas field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetAtlas() ChannelPackagingPackagersValueContentProtectionAtlas {
-	if o == nil || o.Atlas == nil {
+	if o == nil || IsNil(o.Atlas) {
 		var ret ChannelPackagingPackagersValueContentProtectionAtlas
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetAtlas() ChannelPackagingP
 // GetAtlasOk returns a tuple with the Atlas field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetAtlasOk() (*ChannelPackagingPackagersValueContentProtectionAtlas, bool) {
-	if o == nil || o.Atlas == nil {
+	if o == nil || IsNil(o.Atlas) {
 		return nil, false
 	}
 	return o.Atlas, true
@@ -62,7 +65,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetAtlasOk() (*ChannelPackag
 
 // HasAtlas returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasAtlas() bool {
-	if o != nil && o.Atlas != nil {
+	if o != nil && !IsNil(o.Atlas) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetAtlas(v ChannelPackagingP
 
 // GetBulkFile returns the BulkFile field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetBulkFile() ChannelPackagingPackagersValueContentProtectionBulkFile {
-	if o == nil || o.BulkFile == nil {
+	if o == nil || IsNil(o.BulkFile) {
 		var ret ChannelPackagingPackagersValueContentProtectionBulkFile
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetBulkFile() ChannelPackagi
 // GetBulkFileOk returns a tuple with the BulkFile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetBulkFileOk() (*ChannelPackagingPackagersValueContentProtectionBulkFile, bool) {
-	if o == nil || o.BulkFile == nil {
+	if o == nil || IsNil(o.BulkFile) {
 		return nil, false
 	}
 	return o.BulkFile, true
@@ -94,7 +97,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetBulkFileOk() (*ChannelPac
 
 // HasBulkFile returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasBulkFile() bool {
-	if o != nil && o.BulkFile != nil {
+	if o != nil && !IsNil(o.BulkFile) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetBulkFile(v ChannelPackagi
 
 // GetCommon returns the Common field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetCommon() ChannelPackagingPackagersValueContentProtectionCommon {
-	if o == nil || o.Common == nil {
+	if o == nil || IsNil(o.Common) {
 		var ret ChannelPackagingPackagersValueContentProtectionCommon
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetCommon() ChannelPackaging
 // GetCommonOk returns a tuple with the Common field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetCommonOk() (*ChannelPackagingPackagersValueContentProtectionCommon, bool) {
-	if o == nil || o.Common == nil {
+	if o == nil || IsNil(o.Common) {
 		return nil, false
 	}
 	return o.Common, true
@@ -126,7 +129,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetCommonOk() (*ChannelPacka
 
 // HasCommon returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasCommon() bool {
-	if o != nil && o.Common != nil {
+	if o != nil && !IsNil(o.Common) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetCommon(v ChannelPackaging
 
 // GetCpix returns the Cpix field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetCpix() ChannelPackagingPackagersValueContentProtectionCpix {
-	if o == nil || o.Cpix == nil {
+	if o == nil || IsNil(o.Cpix) {
 		var ret ChannelPackagingPackagersValueContentProtectionCpix
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetCpix() ChannelPackagingPa
 // GetCpixOk returns a tuple with the Cpix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetCpixOk() (*ChannelPackagingPackagersValueContentProtectionCpix, bool) {
-	if o == nil || o.Cpix == nil {
+	if o == nil || IsNil(o.Cpix) {
 		return nil, false
 	}
 	return o.Cpix, true
@@ -158,7 +161,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetCpixOk() (*ChannelPackagi
 
 // HasCpix returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasCpix() bool {
-	if o != nil && o.Cpix != nil {
+	if o != nil && !IsNil(o.Cpix) {
 		return true
 	}
 
@@ -172,7 +175,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetCpix(v ChannelPackagingPa
 
 // GetKeyRotation returns the KeyRotation field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetKeyRotation() ChannelPackagingPackagersValueContentProtectionKeyRotation {
-	if o == nil || o.KeyRotation == nil {
+	if o == nil || IsNil(o.KeyRotation) {
 		var ret ChannelPackagingPackagersValueContentProtectionKeyRotation
 		return ret
 	}
@@ -182,7 +185,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetKeyRotation() ChannelPack
 // GetKeyRotationOk returns a tuple with the KeyRotation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetKeyRotationOk() (*ChannelPackagingPackagersValueContentProtectionKeyRotation, bool) {
-	if o == nil || o.KeyRotation == nil {
+	if o == nil || IsNil(o.KeyRotation) {
 		return nil, false
 	}
 	return o.KeyRotation, true
@@ -190,7 +193,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetKeyRotationOk() (*Channel
 
 // HasKeyRotation returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasKeyRotation() bool {
-	if o != nil && o.KeyRotation != nil {
+	if o != nil && !IsNil(o.KeyRotation) {
 		return true
 	}
 
@@ -204,7 +207,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetKeyRotation(v ChannelPack
 
 // GetSampleAes returns the SampleAes field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetSampleAes() map[string]interface{} {
-	if o == nil || o.SampleAes == nil {
+	if o == nil || IsNil(o.SampleAes) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -214,15 +217,15 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetSampleAes() map[string]in
 // GetSampleAesOk returns a tuple with the SampleAes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetSampleAesOk() (map[string]interface{}, bool) {
-	if o == nil || o.SampleAes == nil {
-		return nil, false
+	if o == nil || IsNil(o.SampleAes) {
+		return map[string]interface{}{}, false
 	}
 	return o.SampleAes, true
 }
 
 // HasSampleAes returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasSampleAes() bool {
-	if o != nil && o.SampleAes != nil {
+	if o != nil && !IsNil(o.SampleAes) {
 		return true
 	}
 
@@ -236,7 +239,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetSampleAes(v map[string]in
 
 // GetSimple returns the Simple field value if set, zero value otherwise.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetSimple() ChannelPackagingPackagersValueContentProtectionSimple {
-	if o == nil || o.Simple == nil {
+	if o == nil || IsNil(o.Simple) {
 		var ret ChannelPackagingPackagersValueContentProtectionSimple
 		return ret
 	}
@@ -246,7 +249,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetSimple() ChannelPackaging
 // GetSimpleOk returns a tuple with the Simple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) GetSimpleOk() (*ChannelPackagingPackagersValueContentProtectionSimple, bool) {
-	if o == nil || o.Simple == nil {
+	if o == nil || IsNil(o.Simple) {
 		return nil, false
 	}
 	return o.Simple, true
@@ -254,7 +257,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) GetSimpleOk() (*ChannelPacka
 
 // HasSimple returns a boolean if a field has been set.
 func (o *ChannelPlaybackCmafInnerContentProtection) HasSimple() bool {
-	if o != nil && o.Simple != nil {
+	if o != nil && !IsNil(o.Simple) {
 		return true
 	}
 
@@ -267,29 +270,37 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetSimple(v ChannelPackaging
 }
 
 func (o ChannelPlaybackCmafInnerContentProtection) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Atlas != nil {
-		toSerialize["atlas"] = o.Atlas
-	}
-	if o.BulkFile != nil {
-		toSerialize["bulk_file"] = o.BulkFile
-	}
-	if o.Common != nil {
-		toSerialize["common"] = o.Common
-	}
-	if o.Cpix != nil {
-		toSerialize["cpix"] = o.Cpix
-	}
-	if o.KeyRotation != nil {
-		toSerialize["key_rotation"] = o.KeyRotation
-	}
-	if o.SampleAes != nil {
-		toSerialize["sample_aes"] = o.SampleAes
-	}
-	if o.Simple != nil {
-		toSerialize["simple"] = o.Simple
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPlaybackCmafInnerContentProtection) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Atlas) {
+		toSerialize["atlas"] = o.Atlas
+	}
+	if !IsNil(o.BulkFile) {
+		toSerialize["bulk_file"] = o.BulkFile
+	}
+	if !IsNil(o.Common) {
+		toSerialize["common"] = o.Common
+	}
+	if !IsNil(o.Cpix) {
+		toSerialize["cpix"] = o.Cpix
+	}
+	if !IsNil(o.KeyRotation) {
+		toSerialize["key_rotation"] = o.KeyRotation
+	}
+	if !IsNil(o.SampleAes) {
+		toSerialize["sample_aes"] = o.SampleAes
+	}
+	if !IsNil(o.Simple) {
+		toSerialize["simple"] = o.Simple
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPlaybackCmafInnerContentProtection struct {

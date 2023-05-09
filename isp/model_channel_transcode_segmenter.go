@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeSegmenter type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeSegmenter{}
+
 // ChannelTranscodeSegmenter Segmenter configures how video GOPs and segments get generated.
 type ChannelTranscodeSegmenter struct {
 	// GOP (group of pictures) duration specifies the amount of time between I-frames. Shorter durations can lower quality slightly as each I-frame uses more bits than P- & B-frames but can provide a better seeking experience when enabling thumbnail encoders and/or I-Frame Only playlists.
@@ -44,7 +47,7 @@ func NewChannelTranscodeSegmenterWithDefaults() *ChannelTranscodeSegmenter {
 
 // GetGopDurationSecs returns the GopDurationSecs field value if set, zero value otherwise.
 func (o *ChannelTranscodeSegmenter) GetGopDurationSecs() float64 {
-	if o == nil || o.GopDurationSecs == nil {
+	if o == nil || IsNil(o.GopDurationSecs) {
 		var ret float64
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelTranscodeSegmenter) GetGopDurationSecs() float64 {
 // GetGopDurationSecsOk returns a tuple with the GopDurationSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeSegmenter) GetGopDurationSecsOk() (*float64, bool) {
-	if o == nil || o.GopDurationSecs == nil {
+	if o == nil || IsNil(o.GopDurationSecs) {
 		return nil, false
 	}
 	return o.GopDurationSecs, true
@@ -62,7 +65,7 @@ func (o *ChannelTranscodeSegmenter) GetGopDurationSecsOk() (*float64, bool) {
 
 // HasGopDurationSecs returns a boolean if a field has been set.
 func (o *ChannelTranscodeSegmenter) HasGopDurationSecs() bool {
-	if o != nil && o.GopDurationSecs != nil {
+	if o != nil && !IsNil(o.GopDurationSecs) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelTranscodeSegmenter) SetGopDurationSecs(v float64) {
 
 // GetPartialsMode returns the PartialsMode field value if set, zero value otherwise.
 func (o *ChannelTranscodeSegmenter) GetPartialsMode() string {
-	if o == nil || o.PartialsMode == nil {
+	if o == nil || IsNil(o.PartialsMode) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelTranscodeSegmenter) GetPartialsMode() string {
 // GetPartialsModeOk returns a tuple with the PartialsMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeSegmenter) GetPartialsModeOk() (*string, bool) {
-	if o == nil || o.PartialsMode == nil {
+	if o == nil || IsNil(o.PartialsMode) {
 		return nil, false
 	}
 	return o.PartialsMode, true
@@ -94,7 +97,7 @@ func (o *ChannelTranscodeSegmenter) GetPartialsModeOk() (*string, bool) {
 
 // HasPartialsMode returns a boolean if a field has been set.
 func (o *ChannelTranscodeSegmenter) HasPartialsMode() bool {
-	if o != nil && o.PartialsMode != nil {
+	if o != nil && !IsNil(o.PartialsMode) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelTranscodeSegmenter) SetPartialsMode(v string) {
 
 // GetSegmentDurationSecs returns the SegmentDurationSecs field value if set, zero value otherwise.
 func (o *ChannelTranscodeSegmenter) GetSegmentDurationSecs() float64 {
-	if o == nil || o.SegmentDurationSecs == nil {
+	if o == nil || IsNil(o.SegmentDurationSecs) {
 		var ret float64
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelTranscodeSegmenter) GetSegmentDurationSecs() float64 {
 // GetSegmentDurationSecsOk returns a tuple with the SegmentDurationSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeSegmenter) GetSegmentDurationSecsOk() (*float64, bool) {
-	if o == nil || o.SegmentDurationSecs == nil {
+	if o == nil || IsNil(o.SegmentDurationSecs) {
 		return nil, false
 	}
 	return o.SegmentDurationSecs, true
@@ -126,7 +129,7 @@ func (o *ChannelTranscodeSegmenter) GetSegmentDurationSecsOk() (*float64, bool) 
 
 // HasSegmentDurationSecs returns a boolean if a field has been set.
 func (o *ChannelTranscodeSegmenter) HasSegmentDurationSecs() bool {
-	if o != nil && o.SegmentDurationSecs != nil {
+	if o != nil && !IsNil(o.SegmentDurationSecs) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelTranscodeSegmenter) SetSegmentDurationSecs(v float64) {
 
 // GetTemi returns the Temi field value if set, zero value otherwise.
 func (o *ChannelTranscodeSegmenter) GetTemi() bool {
-	if o == nil || o.Temi == nil {
+	if o == nil || IsNil(o.Temi) {
 		var ret bool
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelTranscodeSegmenter) GetTemi() bool {
 // GetTemiOk returns a tuple with the Temi field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeSegmenter) GetTemiOk() (*bool, bool) {
-	if o == nil || o.Temi == nil {
+	if o == nil || IsNil(o.Temi) {
 		return nil, false
 	}
 	return o.Temi, true
@@ -158,7 +161,7 @@ func (o *ChannelTranscodeSegmenter) GetTemiOk() (*bool, bool) {
 
 // HasTemi returns a boolean if a field has been set.
 func (o *ChannelTranscodeSegmenter) HasTemi() bool {
-	if o != nil && o.Temi != nil {
+	if o != nil && !IsNil(o.Temi) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelTranscodeSegmenter) SetTemi(v bool) {
 }
 
 func (o ChannelTranscodeSegmenter) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.GopDurationSecs != nil {
-		toSerialize["gop_duration_secs"] = o.GopDurationSecs
-	}
-	if o.PartialsMode != nil {
-		toSerialize["partials_mode"] = o.PartialsMode
-	}
-	if o.SegmentDurationSecs != nil {
-		toSerialize["segment_duration_secs"] = o.SegmentDurationSecs
-	}
-	if o.Temi != nil {
-		toSerialize["temi"] = o.Temi
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeSegmenter) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.GopDurationSecs) {
+		toSerialize["gop_duration_secs"] = o.GopDurationSecs
+	}
+	if !IsNil(o.PartialsMode) {
+		toSerialize["partials_mode"] = o.PartialsMode
+	}
+	if !IsNil(o.SegmentDurationSecs) {
+		toSerialize["segment_duration_secs"] = o.SegmentDurationSecs
+	}
+	if !IsNil(o.Temi) {
+		toSerialize["temi"] = o.Temi
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeSegmenter struct {

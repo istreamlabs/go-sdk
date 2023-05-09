@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv{}
+
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct for ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct {
 	// Identifies color primaries and white point.
@@ -42,7 +45,7 @@ func NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81MdcvWithDef
 
 // GetColorProfile returns the ColorProfile field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetColorProfile() string {
-	if o == nil || o.ColorProfile == nil {
+	if o == nil || IsNil(o.ColorProfile) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetC
 // GetColorProfileOk returns a tuple with the ColorProfile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetColorProfileOk() (*string, bool) {
-	if o == nil || o.ColorProfile == nil {
+	if o == nil || IsNil(o.ColorProfile) {
 		return nil, false
 	}
 	return o.ColorProfile, true
@@ -60,7 +63,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetC
 
 // HasColorProfile returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) HasColorProfile() bool {
-	if o != nil && o.ColorProfile != nil {
+	if o != nil && !IsNil(o.ColorProfile) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) SetC
 
 // GetMaxDml returns the MaxDml field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetMaxDml() float64 {
-	if o == nil || o.MaxDml == nil {
+	if o == nil || IsNil(o.MaxDml) {
 		var ret float64
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetM
 // GetMaxDmlOk returns a tuple with the MaxDml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetMaxDmlOk() (*float64, bool) {
-	if o == nil || o.MaxDml == nil {
+	if o == nil || IsNil(o.MaxDml) {
 		return nil, false
 	}
 	return o.MaxDml, true
@@ -92,7 +95,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetM
 
 // HasMaxDml returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) HasMaxDml() bool {
-	if o != nil && o.MaxDml != nil {
+	if o != nil && !IsNil(o.MaxDml) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) SetM
 
 // GetMinDml returns the MinDml field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetMinDml() float64 {
-	if o == nil || o.MinDml == nil {
+	if o == nil || IsNil(o.MinDml) {
 		var ret float64
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetM
 // GetMinDmlOk returns a tuple with the MinDml field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetMinDmlOk() (*float64, bool) {
-	if o == nil || o.MinDml == nil {
+	if o == nil || IsNil(o.MinDml) {
 		return nil, false
 	}
 	return o.MinDml, true
@@ -124,7 +127,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) GetM
 
 // HasMinDml returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) HasMinDml() bool {
-	if o != nil && o.MinDml != nil {
+	if o != nil && !IsNil(o.MinDml) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) SetM
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ColorProfile != nil {
-		toSerialize["color_profile"] = o.ColorProfile
-	}
-	if o.MaxDml != nil {
-		toSerialize["max_dml"] = o.MaxDml
-	}
-	if o.MinDml != nil {
-		toSerialize["min_dml"] = o.MinDml
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ColorProfile) {
+		toSerialize["color_profile"] = o.ColorProfile
+	}
+	if !IsNil(o.MaxDml) {
+		toSerialize["max_dml"] = o.MaxDml
+	}
+	if !IsNil(o.MinDml) {
+		toSerialize["min_dml"] = o.MinDml
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct {

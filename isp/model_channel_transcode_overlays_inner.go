@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeOverlaysInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeOverlaysInner{}
+
 // ChannelTranscodeOverlaysInner struct for ChannelTranscodeOverlaysInner
 type ChannelTranscodeOverlaysInner struct {
 	// The URL of the image overlay. Only PNG is supported at the moment. The image's dimensions should match those of source for perfect pixel placement.
@@ -38,7 +41,7 @@ func NewChannelTranscodeOverlaysInnerWithDefaults() *ChannelTranscodeOverlaysInn
 
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
 func (o *ChannelTranscodeOverlaysInner) GetImageUrl() string {
-	if o == nil || o.ImageUrl == nil {
+	if o == nil || IsNil(o.ImageUrl) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelTranscodeOverlaysInner) GetImageUrl() string {
 // GetImageUrlOk returns a tuple with the ImageUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeOverlaysInner) GetImageUrlOk() (*string, bool) {
-	if o == nil || o.ImageUrl == nil {
+	if o == nil || IsNil(o.ImageUrl) {
 		return nil, false
 	}
 	return o.ImageUrl, true
@@ -56,7 +59,7 @@ func (o *ChannelTranscodeOverlaysInner) GetImageUrlOk() (*string, bool) {
 
 // HasImageUrl returns a boolean if a field has been set.
 func (o *ChannelTranscodeOverlaysInner) HasImageUrl() bool {
-	if o != nil && o.ImageUrl != nil {
+	if o != nil && !IsNil(o.ImageUrl) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelTranscodeOverlaysInner) SetImageUrl(v string) {
 }
 
 func (o ChannelTranscodeOverlaysInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ImageUrl != nil {
-		toSerialize["image_url"] = o.ImageUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeOverlaysInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ImageUrl) {
+		toSerialize["image_url"] = o.ImageUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeOverlaysInner struct {

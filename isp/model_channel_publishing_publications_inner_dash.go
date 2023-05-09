@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerDash type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerDash{}
+
 // ChannelPublishingPublicationsInnerDash DASH configures publication settings. Only one of HLS or DASH can be set.
 type ChannelPublishingPublicationsInnerDash struct {
 	// Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
@@ -44,7 +47,7 @@ func NewChannelPublishingPublicationsInnerDashWithDefaults() *ChannelPublishingP
 
 // GetMinimumUpdatePeriodSecs returns the MinimumUpdatePeriodSecs field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecs() int32 {
-	if o == nil || o.MinimumUpdatePeriodSecs == nil {
+	if o == nil || IsNil(o.MinimumUpdatePeriodSecs) {
 		var ret int32
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecs() in
 // GetMinimumUpdatePeriodSecsOk returns a tuple with the MinimumUpdatePeriodSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecsOk() (*int32, bool) {
-	if o == nil || o.MinimumUpdatePeriodSecs == nil {
+	if o == nil || IsNil(o.MinimumUpdatePeriodSecs) {
 		return nil, false
 	}
 	return o.MinimumUpdatePeriodSecs, true
@@ -62,7 +65,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecsOk() 
 
 // HasMinimumUpdatePeriodSecs returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerDash) HasMinimumUpdatePeriodSecs() bool {
-	if o != nil && o.MinimumUpdatePeriodSecs != nil {
+	if o != nil && !IsNil(o.MinimumUpdatePeriodSecs) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelPublishingPublicationsInnerDash) SetMinimumUpdatePeriodSecs(v in
 
 // GetSignalingFormats returns the SignalingFormats field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerDash) GetSignalingFormats() []string {
-	if o == nil || o.SignalingFormats == nil {
+	if o == nil || IsNil(o.SignalingFormats) {
 		var ret []string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetSignalingFormats() []string 
 // GetSignalingFormatsOk returns a tuple with the SignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerDash) GetSignalingFormatsOk() ([]string, bool) {
-	if o == nil || o.SignalingFormats == nil {
+	if o == nil || IsNil(o.SignalingFormats) {
 		return nil, false
 	}
 	return o.SignalingFormats, true
@@ -94,7 +97,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetSignalingFormatsOk() ([]stri
 
 // HasSignalingFormats returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerDash) HasSignalingFormats() bool {
-	if o != nil && o.SignalingFormats != nil {
+	if o != nil && !IsNil(o.SignalingFormats) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelPublishingPublicationsInnerDash) SetSignalingFormats(v []string)
 
 // GetSuggestedPresentationDelaySecs returns the SuggestedPresentationDelaySecs field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerDash) GetSuggestedPresentationDelaySecs() int32 {
-	if o == nil || o.SuggestedPresentationDelaySecs == nil {
+	if o == nil || IsNil(o.SuggestedPresentationDelaySecs) {
 		var ret int32
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetSuggestedPresentationDelaySe
 // GetSuggestedPresentationDelaySecsOk returns a tuple with the SuggestedPresentationDelaySecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerDash) GetSuggestedPresentationDelaySecsOk() (*int32, bool) {
-	if o == nil || o.SuggestedPresentationDelaySecs == nil {
+	if o == nil || IsNil(o.SuggestedPresentationDelaySecs) {
 		return nil, false
 	}
 	return o.SuggestedPresentationDelaySecs, true
@@ -126,7 +129,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetSuggestedPresentationDelaySe
 
 // HasSuggestedPresentationDelaySecs returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerDash) HasSuggestedPresentationDelaySecs() bool {
-	if o != nil && o.SuggestedPresentationDelaySecs != nil {
+	if o != nil && !IsNil(o.SuggestedPresentationDelaySecs) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelPublishingPublicationsInnerDash) SetSuggestedPresentationDelaySe
 
 // GetUrlType returns the UrlType field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerDash) GetUrlType() string {
-	if o == nil || o.UrlType == nil {
+	if o == nil || IsNil(o.UrlType) {
 		var ret string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetUrlType() string {
 // GetUrlTypeOk returns a tuple with the UrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerDash) GetUrlTypeOk() (*string, bool) {
-	if o == nil || o.UrlType == nil {
+	if o == nil || IsNil(o.UrlType) {
 		return nil, false
 	}
 	return o.UrlType, true
@@ -158,7 +161,7 @@ func (o *ChannelPublishingPublicationsInnerDash) GetUrlTypeOk() (*string, bool) 
 
 // HasUrlType returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerDash) HasUrlType() bool {
-	if o != nil && o.UrlType != nil {
+	if o != nil && !IsNil(o.UrlType) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelPublishingPublicationsInnerDash) SetUrlType(v string) {
 }
 
 func (o ChannelPublishingPublicationsInnerDash) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MinimumUpdatePeriodSecs != nil {
-		toSerialize["minimum_update_period_secs"] = o.MinimumUpdatePeriodSecs
-	}
-	if o.SignalingFormats != nil {
-		toSerialize["signaling_formats"] = o.SignalingFormats
-	}
-	if o.SuggestedPresentationDelaySecs != nil {
-		toSerialize["suggested_presentation_delay_secs"] = o.SuggestedPresentationDelaySecs
-	}
-	if o.UrlType != nil {
-		toSerialize["url_type"] = o.UrlType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerDash) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MinimumUpdatePeriodSecs) {
+		toSerialize["minimum_update_period_secs"] = o.MinimumUpdatePeriodSecs
+	}
+	if !IsNil(o.SignalingFormats) {
+		toSerialize["signaling_formats"] = o.SignalingFormats
+	}
+	if !IsNil(o.SuggestedPresentationDelaySecs) {
+		toSerialize["suggested_presentation_delay_secs"] = o.SuggestedPresentationDelaySecs
+	}
+	if !IsNil(o.UrlType) {
+		toSerialize["url_type"] = o.UrlType
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerDash struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionCommon type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionCommon{}
+
 // ChannelPackagingPackagersValueContentProtectionCommon Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
 type ChannelPackagingPackagersValueContentProtectionCommon struct {
 	// Defines the scheme that can be used with Common Encryption
@@ -38,7 +41,7 @@ func NewChannelPackagingPackagersValueContentProtectionCommonWithDefaults() *Cha
 
 // GetSchemeType returns the SchemeType field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionCommon) GetSchemeType() string {
-	if o == nil || o.SchemeType == nil {
+	if o == nil || IsNil(o.SchemeType) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCommon) GetSchemeType() 
 // GetSchemeTypeOk returns a tuple with the SchemeType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCommon) GetSchemeTypeOk() (*string, bool) {
-	if o == nil || o.SchemeType == nil {
+	if o == nil || IsNil(o.SchemeType) {
 		return nil, false
 	}
 	return o.SchemeType, true
@@ -56,7 +59,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCommon) GetSchemeTypeOk(
 
 // HasSchemeType returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionCommon) HasSchemeType() bool {
-	if o != nil && o.SchemeType != nil {
+	if o != nil && !IsNil(o.SchemeType) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelPackagingPackagersValueContentProtectionCommon) SetSchemeType(v 
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionCommon) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.SchemeType != nil {
-		toSerialize["scheme_type"] = o.SchemeType
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionCommon) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SchemeType) {
+		toSerialize["scheme_type"] = o.SchemeType
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionCommon struct {

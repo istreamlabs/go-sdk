@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeAudioEncodersInnerLoudness type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeAudioEncodersInnerLoudness{}
+
 // ChannelTranscodeAudioEncodersInnerLoudness Loudness normalization settings.
 type ChannelTranscodeAudioEncodersInnerLoudness struct {
 	// Enable Dialog Intelligence. Only supported for (E)AC-3 encoders.
@@ -44,7 +47,7 @@ func NewChannelTranscodeAudioEncodersInnerLoudnessWithDefaults() *ChannelTransco
 
 // GetDialogIntel returns the DialogIntel field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetDialogIntel() bool {
-	if o == nil || o.DialogIntel == nil {
+	if o == nil || IsNil(o.DialogIntel) {
 		var ret bool
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetDialogIntel() bool {
 // GetDialogIntelOk returns a tuple with the DialogIntel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetDialogIntelOk() (*bool, bool) {
-	if o == nil || o.DialogIntel == nil {
+	if o == nil || IsNil(o.DialogIntel) {
 		return nil, false
 	}
 	return o.DialogIntel, true
@@ -62,7 +65,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetDialogIntelOk() (*bool, 
 
 // HasDialogIntel returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) HasDialogIntel() bool {
-	if o != nil && o.DialogIntel != nil {
+	if o != nil && !IsNil(o.DialogIntel) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) SetDialogIntel(v bool) {
 
 // GetLkfs returns the Lkfs field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLkfs() int32 {
-	if o == nil || o.Lkfs == nil {
+	if o == nil || IsNil(o.Lkfs) {
 		var ret int32
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLkfs() int32 {
 // GetLkfsOk returns a tuple with the Lkfs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLkfsOk() (*int32, bool) {
-	if o == nil || o.Lkfs == nil {
+	if o == nil || IsNil(o.Lkfs) {
 		return nil, false
 	}
 	return o.Lkfs, true
@@ -94,7 +97,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLkfsOk() (*int32, bool) 
 
 // HasLkfs returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) HasLkfs() bool {
-	if o != nil && o.Lkfs != nil {
+	if o != nil && !IsNil(o.Lkfs) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) SetLkfs(v int32) {
 
 // GetLra returns the Lra field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLra() float32 {
-	if o == nil || o.Lra == nil {
+	if o == nil || IsNil(o.Lra) {
 		var ret float32
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLra() float32 {
 // GetLraOk returns a tuple with the Lra field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLraOk() (*float32, bool) {
-	if o == nil || o.Lra == nil {
+	if o == nil || IsNil(o.Lra) {
 		return nil, false
 	}
 	return o.Lra, true
@@ -126,7 +129,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetLraOk() (*float32, bool)
 
 // HasLra returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) HasLra() bool {
-	if o != nil && o.Lra != nil {
+	if o != nil && !IsNil(o.Lra) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) SetLra(v float32) {
 
 // GetPeakLimit returns the PeakLimit field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetPeakLimit() float32 {
-	if o == nil || o.PeakLimit == nil {
+	if o == nil || IsNil(o.PeakLimit) {
 		var ret float32
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetPeakLimit() float32 {
 // GetPeakLimitOk returns a tuple with the PeakLimit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetPeakLimitOk() (*float32, bool) {
-	if o == nil || o.PeakLimit == nil {
+	if o == nil || IsNil(o.PeakLimit) {
 		return nil, false
 	}
 	return o.PeakLimit, true
@@ -158,7 +161,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) GetPeakLimitOk() (*float32,
 
 // HasPeakLimit returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInnerLoudness) HasPeakLimit() bool {
-	if o != nil && o.PeakLimit != nil {
+	if o != nil && !IsNil(o.PeakLimit) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) SetPeakLimit(v float32) {
 }
 
 func (o ChannelTranscodeAudioEncodersInnerLoudness) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.DialogIntel != nil {
-		toSerialize["dialog_intel"] = o.DialogIntel
-	}
-	if o.Lkfs != nil {
-		toSerialize["lkfs"] = o.Lkfs
-	}
-	if o.Lra != nil {
-		toSerialize["lra"] = o.Lra
-	}
-	if o.PeakLimit != nil {
-		toSerialize["peak_limit"] = o.PeakLimit
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeAudioEncodersInnerLoudness) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DialogIntel) {
+		toSerialize["dialog_intel"] = o.DialogIntel
+	}
+	if !IsNil(o.Lkfs) {
+		toSerialize["lkfs"] = o.Lkfs
+	}
+	if !IsNil(o.Lra) {
+		toSerialize["lra"] = o.Lra
+	}
+	if !IsNil(o.PeakLimit) {
+		toSerialize["peak_limit"] = o.PeakLimit
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeAudioEncodersInnerLoudness struct {

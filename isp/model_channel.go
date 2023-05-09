@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the Channel type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Channel{}
+
 // Channel struct for Channel
 type Channel struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -66,7 +69,7 @@ func NewChannelWithDefaults() *Channel {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *Channel) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -76,7 +79,7 @@ func (o *Channel) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -84,7 +87,7 @@ func (o *Channel) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Channel) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -98,7 +101,7 @@ func (o *Channel) SetSchema(v string) {
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *Channel) GetCreated() time.Time {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
 	}
@@ -108,7 +111,7 @@ func (o *Channel) GetCreated() time.Time {
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetCreatedOk() (*time.Time, bool) {
-	if o == nil || o.Created == nil {
+	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
 	return o.Created, true
@@ -116,7 +119,7 @@ func (o *Channel) GetCreatedOk() (*time.Time, bool) {
 
 // HasCreated returns a boolean if a field has been set.
 func (o *Channel) HasCreated() bool {
-	if o != nil && o.Created != nil {
+	if o != nil && !IsNil(o.Created) {
 		return true
 	}
 
@@ -130,7 +133,7 @@ func (o *Channel) SetCreated(v time.Time) {
 
 // GetDesiredState returns the DesiredState field value if set, zero value otherwise.
 func (o *Channel) GetDesiredState() string {
-	if o == nil || o.DesiredState == nil {
+	if o == nil || IsNil(o.DesiredState) {
 		var ret string
 		return ret
 	}
@@ -140,7 +143,7 @@ func (o *Channel) GetDesiredState() string {
 // GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetDesiredStateOk() (*string, bool) {
-	if o == nil || o.DesiredState == nil {
+	if o == nil || IsNil(o.DesiredState) {
 		return nil, false
 	}
 	return o.DesiredState, true
@@ -148,7 +151,7 @@ func (o *Channel) GetDesiredStateOk() (*string, bool) {
 
 // HasDesiredState returns a boolean if a field has been set.
 func (o *Channel) HasDesiredState() bool {
-	if o != nil && o.DesiredState != nil {
+	if o != nil && !IsNil(o.DesiredState) {
 		return true
 	}
 
@@ -162,7 +165,7 @@ func (o *Channel) SetDesiredState(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Channel) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -172,7 +175,7 @@ func (o *Channel) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -180,7 +183,7 @@ func (o *Channel) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *Channel) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -218,7 +221,7 @@ func (o *Channel) SetIngest(v ChannelIngest) {
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *Channel) GetLabels() []string {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		var ret []string
 		return ret
 	}
@@ -228,7 +231,7 @@ func (o *Channel) GetLabels() []string {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetLabelsOk() ([]string, bool) {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
 	return o.Labels, true
@@ -236,7 +239,7 @@ func (o *Channel) GetLabelsOk() ([]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Channel) HasLabels() bool {
-	if o != nil && o.Labels != nil {
+	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -250,7 +253,7 @@ func (o *Channel) SetLabels(v []string) {
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *Channel) GetModified() time.Time {
-	if o == nil || o.Modified == nil {
+	if o == nil || IsNil(o.Modified) {
 		var ret time.Time
 		return ret
 	}
@@ -260,7 +263,7 @@ func (o *Channel) GetModified() time.Time {
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetModifiedOk() (*time.Time, bool) {
-	if o == nil || o.Modified == nil {
+	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
 	return o.Modified, true
@@ -268,7 +271,7 @@ func (o *Channel) GetModifiedOk() (*time.Time, bool) {
 
 // HasModified returns a boolean if a field has been set.
 func (o *Channel) HasModified() bool {
-	if o != nil && o.Modified != nil {
+	if o != nil && !IsNil(o.Modified) {
 		return true
 	}
 
@@ -282,7 +285,7 @@ func (o *Channel) SetModified(v time.Time) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Channel) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -292,7 +295,7 @@ func (o *Channel) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -300,7 +303,7 @@ func (o *Channel) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Channel) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -314,7 +317,7 @@ func (o *Channel) SetName(v string) {
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *Channel) GetOrganization() string {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		var ret string
 		return ret
 	}
@@ -324,7 +327,7 @@ func (o *Channel) GetOrganization() string {
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetOrganizationOk() (*string, bool) {
-	if o == nil || o.Organization == nil {
+	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
 	return o.Organization, true
@@ -332,7 +335,7 @@ func (o *Channel) GetOrganizationOk() (*string, bool) {
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *Channel) HasOrganization() bool {
-	if o != nil && o.Organization != nil {
+	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
 
@@ -346,7 +349,7 @@ func (o *Channel) SetOrganization(v string) {
 
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
 func (o *Channel) GetPackaging() ChannelPackaging {
-	if o == nil || o.Packaging == nil {
+	if o == nil || IsNil(o.Packaging) {
 		var ret ChannelPackaging
 		return ret
 	}
@@ -356,7 +359,7 @@ func (o *Channel) GetPackaging() ChannelPackaging {
 // GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetPackagingOk() (*ChannelPackaging, bool) {
-	if o == nil || o.Packaging == nil {
+	if o == nil || IsNil(o.Packaging) {
 		return nil, false
 	}
 	return o.Packaging, true
@@ -364,7 +367,7 @@ func (o *Channel) GetPackagingOk() (*ChannelPackaging, bool) {
 
 // HasPackaging returns a boolean if a field has been set.
 func (o *Channel) HasPackaging() bool {
-	if o != nil && o.Packaging != nil {
+	if o != nil && !IsNil(o.Packaging) {
 		return true
 	}
 
@@ -378,7 +381,7 @@ func (o *Channel) SetPackaging(v ChannelPackaging) {
 
 // GetPublishing returns the Publishing field value if set, zero value otherwise.
 func (o *Channel) GetPublishing() ChannelPublishing {
-	if o == nil || o.Publishing == nil {
+	if o == nil || IsNil(o.Publishing) {
 		var ret ChannelPublishing
 		return ret
 	}
@@ -388,7 +391,7 @@ func (o *Channel) GetPublishing() ChannelPublishing {
 // GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetPublishingOk() (*ChannelPublishing, bool) {
-	if o == nil || o.Publishing == nil {
+	if o == nil || IsNil(o.Publishing) {
 		return nil, false
 	}
 	return o.Publishing, true
@@ -396,7 +399,7 @@ func (o *Channel) GetPublishingOk() (*ChannelPublishing, bool) {
 
 // HasPublishing returns a boolean if a field has been set.
 func (o *Channel) HasPublishing() bool {
-	if o != nil && o.Publishing != nil {
+	if o != nil && !IsNil(o.Publishing) {
 		return true
 	}
 
@@ -410,7 +413,7 @@ func (o *Channel) SetPublishing(v ChannelPublishing) {
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *Channel) GetRegion() string {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
@@ -420,7 +423,7 @@ func (o *Channel) GetRegion() string {
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetRegionOk() (*string, bool) {
-	if o == nil || o.Region == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
 	return o.Region, true
@@ -428,7 +431,7 @@ func (o *Channel) GetRegionOk() (*string, bool) {
 
 // HasRegion returns a boolean if a field has been set.
 func (o *Channel) HasRegion() bool {
-	if o != nil && o.Region != nil {
+	if o != nil && !IsNil(o.Region) {
 		return true
 	}
 
@@ -442,7 +445,7 @@ func (o *Channel) SetRegion(v string) {
 
 // GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
 func (o *Channel) GetResourceClass() string {
-	if o == nil || o.ResourceClass == nil {
+	if o == nil || IsNil(o.ResourceClass) {
 		var ret string
 		return ret
 	}
@@ -452,7 +455,7 @@ func (o *Channel) GetResourceClass() string {
 // GetResourceClassOk returns a tuple with the ResourceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetResourceClassOk() (*string, bool) {
-	if o == nil || o.ResourceClass == nil {
+	if o == nil || IsNil(o.ResourceClass) {
 		return nil, false
 	}
 	return o.ResourceClass, true
@@ -460,7 +463,7 @@ func (o *Channel) GetResourceClassOk() (*string, bool) {
 
 // HasResourceClass returns a boolean if a field has been set.
 func (o *Channel) HasResourceClass() bool {
-	if o != nil && o.ResourceClass != nil {
+	if o != nil && !IsNil(o.ResourceClass) {
 		return true
 	}
 
@@ -474,7 +477,7 @@ func (o *Channel) SetResourceClass(v string) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *Channel) GetSelf() string {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
 	}
@@ -484,7 +487,7 @@ func (o *Channel) GetSelf() string {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetSelfOk() (*string, bool) {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -492,7 +495,7 @@ func (o *Channel) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Channel) HasSelf() bool {
-	if o != nil && o.Self != nil {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -506,7 +509,7 @@ func (o *Channel) SetSelf(v string) {
 
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
 func (o *Channel) GetSignaling() ChannelSignaling {
-	if o == nil || o.Signaling == nil {
+	if o == nil || IsNil(o.Signaling) {
 		var ret ChannelSignaling
 		return ret
 	}
@@ -516,7 +519,7 @@ func (o *Channel) GetSignaling() ChannelSignaling {
 // GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetSignalingOk() (*ChannelSignaling, bool) {
-	if o == nil || o.Signaling == nil {
+	if o == nil || IsNil(o.Signaling) {
 		return nil, false
 	}
 	return o.Signaling, true
@@ -524,7 +527,7 @@ func (o *Channel) GetSignalingOk() (*ChannelSignaling, bool) {
 
 // HasSignaling returns a boolean if a field has been set.
 func (o *Channel) HasSignaling() bool {
-	if o != nil && o.Signaling != nil {
+	if o != nil && !IsNil(o.Signaling) {
 		return true
 	}
 
@@ -538,7 +541,7 @@ func (o *Channel) SetSignaling(v ChannelSignaling) {
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Channel) GetTags() ChannelTags {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		var ret ChannelTags
 		return ret
 	}
@@ -548,7 +551,7 @@ func (o *Channel) GetTags() ChannelTags {
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Channel) GetTagsOk() (*ChannelTags, bool) {
-	if o == nil || o.Tags == nil {
+	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
 	return o.Tags, true
@@ -556,7 +559,7 @@ func (o *Channel) GetTagsOk() (*ChannelTags, bool) {
 
 // HasTags returns a boolean if a field has been set.
 func (o *Channel) HasTags() bool {
-	if o != nil && o.Tags != nil {
+	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
 
@@ -593,59 +596,55 @@ func (o *Channel) SetTranscode(v ChannelTranscode) {
 }
 
 func (o Channel) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.Created != nil {
-		toSerialize["created"] = o.Created
-	}
-	if o.DesiredState != nil {
-		toSerialize["desired_state"] = o.DesiredState
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["ingest"] = o.Ingest
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Organization != nil {
-		toSerialize["organization"] = o.Organization
-	}
-	if o.Packaging != nil {
-		toSerialize["packaging"] = o.Packaging
-	}
-	if o.Publishing != nil {
-		toSerialize["publishing"] = o.Publishing
-	}
-	if o.Region != nil {
-		toSerialize["region"] = o.Region
-	}
-	if o.ResourceClass != nil {
-		toSerialize["resource_class"] = o.ResourceClass
-	}
-	if o.Self != nil {
-		toSerialize["self"] = o.Self
-	}
-	if o.Signaling != nil {
-		toSerialize["signaling"] = o.Signaling
-	}
-	if o.Tags != nil {
-		toSerialize["tags"] = o.Tags
-	}
-	if true {
-		toSerialize["transcode"] = o.Transcode
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Channel) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	// skip: created is readOnly
+	if !IsNil(o.DesiredState) {
+		toSerialize["desired_state"] = o.DesiredState
+	}
+	// skip: id is readOnly
+	toSerialize["ingest"] = o.Ingest
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	// skip: modified is readOnly
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Organization) {
+		toSerialize["organization"] = o.Organization
+	}
+	if !IsNil(o.Packaging) {
+		toSerialize["packaging"] = o.Packaging
+	}
+	if !IsNil(o.Publishing) {
+		toSerialize["publishing"] = o.Publishing
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.ResourceClass) {
+		toSerialize["resource_class"] = o.ResourceClass
+	}
+	// skip: self is readOnly
+	if !IsNil(o.Signaling) {
+		toSerialize["signaling"] = o.Signaling
+	}
+	if !IsNil(o.Tags) {
+		toSerialize["tags"] = o.Tags
+	}
+	toSerialize["transcode"] = o.Transcode
+	return toSerialize, nil
 }
 
 type NullableChannel struct {

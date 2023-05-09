@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeAudioEncodersInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeAudioEncodersInner{}
+
 // ChannelTranscodeAudioEncodersInner struct for ChannelTranscodeAudioEncodersInner
 type ChannelTranscodeAudioEncodersInner struct {
 	// Audio source ID specifies which stream within the audio source to use.
@@ -24,7 +27,7 @@ type ChannelTranscodeAudioEncodersInner struct {
 	// Codec specifies the audio data encoding format.
 	Codec *string `json:"codec,omitempty"`
 	Eac3 *ChannelTranscodeAudioEncodersInnerEac3 `json:"eac3,omitempty"`
-	// Encoder ID. IDs must be unique for all audio encoders. This ID is referenced when setting up playlist publishing.
+	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	Loudness *ChannelTranscodeAudioEncodersInnerLoudness `json:"loudness,omitempty"`
 	// Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. AC3/EAC3 support only 48000.
@@ -50,7 +53,7 @@ func NewChannelTranscodeAudioEncodersInnerWithDefaults() *ChannelTranscodeAudioE
 
 // GetAudioSourceId returns the AudioSourceId field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetAudioSourceId() string {
-	if o == nil || o.AudioSourceId == nil {
+	if o == nil || IsNil(o.AudioSourceId) {
 		var ret string
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetAudioSourceId() string {
 // GetAudioSourceIdOk returns a tuple with the AudioSourceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetAudioSourceIdOk() (*string, bool) {
-	if o == nil || o.AudioSourceId == nil {
+	if o == nil || IsNil(o.AudioSourceId) {
 		return nil, false
 	}
 	return o.AudioSourceId, true
@@ -68,7 +71,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetAudioSourceIdOk() (*string, bool
 
 // HasAudioSourceId returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasAudioSourceId() bool {
-	if o != nil && o.AudioSourceId != nil {
+	if o != nil && !IsNil(o.AudioSourceId) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetAudioSourceId(v string) {
 
 // GetBitRate returns the BitRate field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetBitRate() int32 {
-	if o == nil || o.BitRate == nil {
+	if o == nil || IsNil(o.BitRate) {
 		var ret int32
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetBitRate() int32 {
 // GetBitRateOk returns a tuple with the BitRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetBitRateOk() (*int32, bool) {
-	if o == nil || o.BitRate == nil {
+	if o == nil || IsNil(o.BitRate) {
 		return nil, false
 	}
 	return o.BitRate, true
@@ -100,7 +103,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetBitRateOk() (*int32, bool) {
 
 // HasBitRate returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasBitRate() bool {
-	if o != nil && o.BitRate != nil {
+	if o != nil && !IsNil(o.BitRate) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetBitRate(v int32) {
 
 // GetChannels returns the Channels field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetChannels() int32 {
-	if o == nil || o.Channels == nil {
+	if o == nil || IsNil(o.Channels) {
 		var ret int32
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetChannels() int32 {
 // GetChannelsOk returns a tuple with the Channels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetChannelsOk() (*int32, bool) {
-	if o == nil || o.Channels == nil {
+	if o == nil || IsNil(o.Channels) {
 		return nil, false
 	}
 	return o.Channels, true
@@ -132,7 +135,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetChannelsOk() (*int32, bool) {
 
 // HasChannels returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasChannels() bool {
-	if o != nil && o.Channels != nil {
+	if o != nil && !IsNil(o.Channels) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetChannels(v int32) {
 
 // GetCodec returns the Codec field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetCodec() string {
-	if o == nil || o.Codec == nil {
+	if o == nil || IsNil(o.Codec) {
 		var ret string
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetCodec() string {
 // GetCodecOk returns a tuple with the Codec field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetCodecOk() (*string, bool) {
-	if o == nil || o.Codec == nil {
+	if o == nil || IsNil(o.Codec) {
 		return nil, false
 	}
 	return o.Codec, true
@@ -164,7 +167,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetCodecOk() (*string, bool) {
 
 // HasCodec returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasCodec() bool {
-	if o != nil && o.Codec != nil {
+	if o != nil && !IsNil(o.Codec) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetCodec(v string) {
 
 // GetEac3 returns the Eac3 field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetEac3() ChannelTranscodeAudioEncodersInnerEac3 {
-	if o == nil || o.Eac3 == nil {
+	if o == nil || IsNil(o.Eac3) {
 		var ret ChannelTranscodeAudioEncodersInnerEac3
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetEac3() ChannelTranscodeAudioEnco
 // GetEac3Ok returns a tuple with the Eac3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetEac3Ok() (*ChannelTranscodeAudioEncodersInnerEac3, bool) {
-	if o == nil || o.Eac3 == nil {
+	if o == nil || IsNil(o.Eac3) {
 		return nil, false
 	}
 	return o.Eac3, true
@@ -196,7 +199,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetEac3Ok() (*ChannelTranscodeAudio
 
 // HasEac3 returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasEac3() bool {
-	if o != nil && o.Eac3 != nil {
+	if o != nil && !IsNil(o.Eac3) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetEac3(v ChannelTranscodeAudioEnco
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -228,7 +231,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetId(v string) {
 
 // GetLoudness returns the Loudness field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetLoudness() ChannelTranscodeAudioEncodersInnerLoudness {
-	if o == nil || o.Loudness == nil {
+	if o == nil || IsNil(o.Loudness) {
 		var ret ChannelTranscodeAudioEncodersInnerLoudness
 		return ret
 	}
@@ -252,7 +255,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetLoudness() ChannelTranscodeAudio
 // GetLoudnessOk returns a tuple with the Loudness field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetLoudnessOk() (*ChannelTranscodeAudioEncodersInnerLoudness, bool) {
-	if o == nil || o.Loudness == nil {
+	if o == nil || IsNil(o.Loudness) {
 		return nil, false
 	}
 	return o.Loudness, true
@@ -260,7 +263,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetLoudnessOk() (*ChannelTranscodeA
 
 // HasLoudness returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasLoudness() bool {
-	if o != nil && o.Loudness != nil {
+	if o != nil && !IsNil(o.Loudness) {
 		return true
 	}
 
@@ -274,7 +277,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetLoudness(v ChannelTranscodeAudio
 
 // GetSampleRate returns the SampleRate field value if set, zero value otherwise.
 func (o *ChannelTranscodeAudioEncodersInner) GetSampleRate() int32 {
-	if o == nil || o.SampleRate == nil {
+	if o == nil || IsNil(o.SampleRate) {
 		var ret int32
 		return ret
 	}
@@ -284,7 +287,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetSampleRate() int32 {
 // GetSampleRateOk returns a tuple with the SampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeAudioEncodersInner) GetSampleRateOk() (*int32, bool) {
-	if o == nil || o.SampleRate == nil {
+	if o == nil || IsNil(o.SampleRate) {
 		return nil, false
 	}
 	return o.SampleRate, true
@@ -292,7 +295,7 @@ func (o *ChannelTranscodeAudioEncodersInner) GetSampleRateOk() (*int32, bool) {
 
 // HasSampleRate returns a boolean if a field has been set.
 func (o *ChannelTranscodeAudioEncodersInner) HasSampleRate() bool {
-	if o != nil && o.SampleRate != nil {
+	if o != nil && !IsNil(o.SampleRate) {
 		return true
 	}
 
@@ -305,32 +308,40 @@ func (o *ChannelTranscodeAudioEncodersInner) SetSampleRate(v int32) {
 }
 
 func (o ChannelTranscodeAudioEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AudioSourceId != nil {
-		toSerialize["audio_source_id"] = o.AudioSourceId
-	}
-	if o.BitRate != nil {
-		toSerialize["bit_rate"] = o.BitRate
-	}
-	if o.Channels != nil {
-		toSerialize["channels"] = o.Channels
-	}
-	if o.Codec != nil {
-		toSerialize["codec"] = o.Codec
-	}
-	if o.Eac3 != nil {
-		toSerialize["eac3"] = o.Eac3
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Loudness != nil {
-		toSerialize["loudness"] = o.Loudness
-	}
-	if o.SampleRate != nil {
-		toSerialize["sample_rate"] = o.SampleRate
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeAudioEncodersInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AudioSourceId) {
+		toSerialize["audio_source_id"] = o.AudioSourceId
+	}
+	if !IsNil(o.BitRate) {
+		toSerialize["bit_rate"] = o.BitRate
+	}
+	if !IsNil(o.Channels) {
+		toSerialize["channels"] = o.Channels
+	}
+	if !IsNil(o.Codec) {
+		toSerialize["codec"] = o.Codec
+	}
+	if !IsNil(o.Eac3) {
+		toSerialize["eac3"] = o.Eac3
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Loudness) {
+		toSerialize["loudness"] = o.Loudness
+	}
+	if !IsNil(o.SampleRate) {
+		toSerialize["sample_rate"] = o.SampleRate
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeAudioEncodersInner struct {

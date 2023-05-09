@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the SignalingLog type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &SignalingLog{}
+
 // SignalingLog struct for SignalingLog
 type SignalingLog struct {
 	Log SignalingLogLog `json:"log"`
@@ -114,17 +117,19 @@ func (o *SignalingLog) SetTimestamp(v time.Time) {
 }
 
 func (o SignalingLog) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["log"] = o.Log
-	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["timestamp"] = o.Timestamp
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o SignalingLog) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["log"] = o.Log
+	toSerialize["status"] = o.Status
+	toSerialize["timestamp"] = o.Timestamp
+	return toSerialize, nil
 }
 
 type NullableSignalingLog struct {

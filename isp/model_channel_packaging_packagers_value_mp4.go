@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueMp4 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueMp4{}
+
 // ChannelPackagingPackagersValueMp4 Uses MP4 format for each segments. Only one of ['mp2t', 'mp4'] may be set.
 type ChannelPackagingPackagersValueMp4 struct {
 	// CaptionPlacement defines where caption messages should be placed in the output MP4.
@@ -40,7 +43,7 @@ func NewChannelPackagingPackagersValueMp4WithDefaults() *ChannelPackagingPackage
 
 // GetCaptionPlacement returns the CaptionPlacement field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueMp4) GetCaptionPlacement() string {
-	if o == nil || o.CaptionPlacement == nil {
+	if o == nil || IsNil(o.CaptionPlacement) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ChannelPackagingPackagersValueMp4) GetCaptionPlacement() string {
 // GetCaptionPlacementOk returns a tuple with the CaptionPlacement field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueMp4) GetCaptionPlacementOk() (*string, bool) {
-	if o == nil || o.CaptionPlacement == nil {
+	if o == nil || IsNil(o.CaptionPlacement) {
 		return nil, false
 	}
 	return o.CaptionPlacement, true
@@ -58,7 +61,7 @@ func (o *ChannelPackagingPackagersValueMp4) GetCaptionPlacementOk() (*string, bo
 
 // HasCaptionPlacement returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueMp4) HasCaptionPlacement() bool {
-	if o != nil && o.CaptionPlacement != nil {
+	if o != nil && !IsNil(o.CaptionPlacement) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ChannelPackagingPackagersValueMp4) SetCaptionPlacement(v string) {
 
 // GetInsertPsshBox returns the InsertPsshBox field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueMp4) GetInsertPsshBox() bool {
-	if o == nil || o.InsertPsshBox == nil {
+	if o == nil || IsNil(o.InsertPsshBox) {
 		var ret bool
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ChannelPackagingPackagersValueMp4) GetInsertPsshBox() bool {
 // GetInsertPsshBoxOk returns a tuple with the InsertPsshBox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueMp4) GetInsertPsshBoxOk() (*bool, bool) {
-	if o == nil || o.InsertPsshBox == nil {
+	if o == nil || IsNil(o.InsertPsshBox) {
 		return nil, false
 	}
 	return o.InsertPsshBox, true
@@ -90,7 +93,7 @@ func (o *ChannelPackagingPackagersValueMp4) GetInsertPsshBoxOk() (*bool, bool) {
 
 // HasInsertPsshBox returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueMp4) HasInsertPsshBox() bool {
-	if o != nil && o.InsertPsshBox != nil {
+	if o != nil && !IsNil(o.InsertPsshBox) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ChannelPackagingPackagersValueMp4) SetInsertPsshBox(v bool) {
 }
 
 func (o ChannelPackagingPackagersValueMp4) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.CaptionPlacement != nil {
-		toSerialize["caption_placement"] = o.CaptionPlacement
-	}
-	if o.InsertPsshBox != nil {
-		toSerialize["insert_pssh_box"] = o.InsertPsshBox
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueMp4) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CaptionPlacement) {
+		toSerialize["caption_placement"] = o.CaptionPlacement
+	}
+	if !IsNil(o.InsertPsshBox) {
+		toSerialize["insert_pssh_box"] = o.InsertPsshBox
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueMp4 struct {

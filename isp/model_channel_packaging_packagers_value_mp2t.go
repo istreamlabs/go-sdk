@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueMp2t type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueMp2t{}
+
 // ChannelPackagingPackagersValueMp2t Uses MP2T format for each segments. Only one of ['mp2t', 'mp4'] may be set.
 type ChannelPackagingPackagersValueMp2t struct {
 	// Forces the Video and Audio Encodings to be unmuxed when there is one audio encodings. This setting will have to be uniformed across MP2T packagers within a config. When there are two or more audio encodings, unmuxed will be used automatically.
@@ -40,7 +43,7 @@ func NewChannelPackagingPackagersValueMp2tWithDefaults() *ChannelPackagingPackag
 
 // GetForceUnmuxedAudio returns the ForceUnmuxedAudio field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueMp2t) GetForceUnmuxedAudio() bool {
-	if o == nil || o.ForceUnmuxedAudio == nil {
+	if o == nil || IsNil(o.ForceUnmuxedAudio) {
 		var ret bool
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ChannelPackagingPackagersValueMp2t) GetForceUnmuxedAudio() bool {
 // GetForceUnmuxedAudioOk returns a tuple with the ForceUnmuxedAudio field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueMp2t) GetForceUnmuxedAudioOk() (*bool, bool) {
-	if o == nil || o.ForceUnmuxedAudio == nil {
+	if o == nil || IsNil(o.ForceUnmuxedAudio) {
 		return nil, false
 	}
 	return o.ForceUnmuxedAudio, true
@@ -58,7 +61,7 @@ func (o *ChannelPackagingPackagersValueMp2t) GetForceUnmuxedAudioOk() (*bool, bo
 
 // HasForceUnmuxedAudio returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueMp2t) HasForceUnmuxedAudio() bool {
-	if o != nil && o.ForceUnmuxedAudio != nil {
+	if o != nil && !IsNil(o.ForceUnmuxedAudio) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ChannelPackagingPackagersValueMp2t) SetForceUnmuxedAudio(v bool) {
 
 // GetInsertId3UtcTime returns the InsertId3UtcTime field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueMp2t) GetInsertId3UtcTime() bool {
-	if o == nil || o.InsertId3UtcTime == nil {
+	if o == nil || IsNil(o.InsertId3UtcTime) {
 		var ret bool
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ChannelPackagingPackagersValueMp2t) GetInsertId3UtcTime() bool {
 // GetInsertId3UtcTimeOk returns a tuple with the InsertId3UtcTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueMp2t) GetInsertId3UtcTimeOk() (*bool, bool) {
-	if o == nil || o.InsertId3UtcTime == nil {
+	if o == nil || IsNil(o.InsertId3UtcTime) {
 		return nil, false
 	}
 	return o.InsertId3UtcTime, true
@@ -90,7 +93,7 @@ func (o *ChannelPackagingPackagersValueMp2t) GetInsertId3UtcTimeOk() (*bool, boo
 
 // HasInsertId3UtcTime returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueMp2t) HasInsertId3UtcTime() bool {
-	if o != nil && o.InsertId3UtcTime != nil {
+	if o != nil && !IsNil(o.InsertId3UtcTime) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ChannelPackagingPackagersValueMp2t) SetInsertId3UtcTime(v bool) {
 }
 
 func (o ChannelPackagingPackagersValueMp2t) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.ForceUnmuxedAudio != nil {
-		toSerialize["force_unmuxed_audio"] = o.ForceUnmuxedAudio
-	}
-	if o.InsertId3UtcTime != nil {
-		toSerialize["insert_id3_utc_time"] = o.InsertId3UtcTime
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueMp2t) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ForceUnmuxedAudio) {
+		toSerialize["force_unmuxed_audio"] = o.ForceUnmuxedAudio
+	}
+	if !IsNil(o.InsertId3UtcTime) {
+		toSerialize["insert_id3_utc_time"] = o.InsertId3UtcTime
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueMp2t struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli struct {
 	// Max content light level in nits.
@@ -40,7 +43,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClliWithDefaults() *S
 
 // GetMaxCll returns the MaxCll field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxCll() float64 {
-	if o == nil || o.MaxCll == nil {
+	if o == nil || IsNil(o.MaxCll) {
 		var ret float64
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxCll() fl
 // GetMaxCllOk returns a tuple with the MaxCll field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxCllOk() (*float64, bool) {
-	if o == nil || o.MaxCll == nil {
+	if o == nil || IsNil(o.MaxCll) {
 		return nil, false
 	}
 	return o.MaxCll, true
@@ -58,7 +61,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxCllOk() 
 
 // HasMaxCll returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) HasMaxCll() bool {
-	if o != nil && o.MaxCll != nil {
+	if o != nil && !IsNil(o.MaxCll) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) SetMaxCll(v fl
 
 // GetMaxFall returns the MaxFall field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxFall() float64 {
-	if o == nil || o.MaxFall == nil {
+	if o == nil || IsNil(o.MaxFall) {
 		var ret float64
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxFall() f
 // GetMaxFallOk returns a tuple with the MaxFall field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxFallOk() (*float64, bool) {
-	if o == nil || o.MaxFall == nil {
+	if o == nil || IsNil(o.MaxFall) {
 		return nil, false
 	}
 	return o.MaxFall, true
@@ -90,7 +93,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) GetMaxFallOk()
 
 // HasMaxFall returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) HasMaxFall() bool {
-	if o != nil && o.MaxFall != nil {
+	if o != nil && !IsNil(o.MaxFall) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) SetMaxFall(v f
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.MaxCll != nil {
-		toSerialize["max_cll"] = o.MaxCll
-	}
-	if o.MaxFall != nil {
-		toSerialize["max_fall"] = o.MaxFall
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.MaxCll) {
+		toSerialize["max_cll"] = o.MaxCll
+	}
+	if !IsNil(o.MaxFall) {
+		toSerialize["max_fall"] = o.MaxFall
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli struct {

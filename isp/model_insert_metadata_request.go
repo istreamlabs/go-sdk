@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the InsertMetadataRequest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InsertMetadataRequest{}
+
 // InsertMetadataRequest struct for InsertMetadataRequest
 type InsertMetadataRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -41,7 +44,7 @@ func NewInsertMetadataRequestWithDefaults() *InsertMetadataRequest {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *InsertMetadataRequest) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *InsertMetadataRequest) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InsertMetadataRequest) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -59,7 +62,7 @@ func (o *InsertMetadataRequest) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *InsertMetadataRequest) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -96,14 +99,20 @@ func (o *InsertMetadataRequest) SetPayload(v string) {
 }
 
 func (o InsertMetadataRequest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if true {
-		toSerialize["payload"] = o.Payload
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o InsertMetadataRequest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	toSerialize["payload"] = o.Payload
+	return toSerialize, nil
 }
 
 type NullableInsertMetadataRequest struct {

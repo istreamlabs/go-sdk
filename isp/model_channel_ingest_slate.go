@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelIngestSlate type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelIngestSlate{}
+
 // ChannelIngestSlate Slate configures default slating behavior.
 type ChannelIngestSlate struct {
 	// Source loss URL defines the location of the TS file to play when no source is available. It must have one audio and one video stream. Either MPEG2 or H.264 can be used.
@@ -38,7 +41,7 @@ func NewChannelIngestSlateWithDefaults() *ChannelIngestSlate {
 
 // GetSourceLossUrl returns the SourceLossUrl field value if set, zero value otherwise.
 func (o *ChannelIngestSlate) GetSourceLossUrl() string {
-	if o == nil || o.SourceLossUrl == nil {
+	if o == nil || IsNil(o.SourceLossUrl) {
 		var ret string
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelIngestSlate) GetSourceLossUrl() string {
 // GetSourceLossUrlOk returns a tuple with the SourceLossUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSlate) GetSourceLossUrlOk() (*string, bool) {
-	if o == nil || o.SourceLossUrl == nil {
+	if o == nil || IsNil(o.SourceLossUrl) {
 		return nil, false
 	}
 	return o.SourceLossUrl, true
@@ -56,7 +59,7 @@ func (o *ChannelIngestSlate) GetSourceLossUrlOk() (*string, bool) {
 
 // HasSourceLossUrl returns a boolean if a field has been set.
 func (o *ChannelIngestSlate) HasSourceLossUrl() bool {
-	if o != nil && o.SourceLossUrl != nil {
+	if o != nil && !IsNil(o.SourceLossUrl) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelIngestSlate) SetSourceLossUrl(v string) {
 }
 
 func (o ChannelIngestSlate) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.SourceLossUrl != nil {
-		toSerialize["source_loss_url"] = o.SourceLossUrl
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelIngestSlate) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.SourceLossUrl) {
+		toSerialize["source_loss_url"] = o.SourceLossUrl
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelIngestSlate struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelIngest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelIngest{}
+
 // ChannelIngest Ingest configures inputs for the transcoder.
 type ChannelIngest struct {
 	Slate *ChannelIngestSlate `json:"slate,omitempty"`
@@ -39,7 +42,7 @@ func NewChannelIngestWithDefaults() *ChannelIngest {
 
 // GetSlate returns the Slate field value if set, zero value otherwise.
 func (o *ChannelIngest) GetSlate() ChannelIngestSlate {
-	if o == nil || o.Slate == nil {
+	if o == nil || IsNil(o.Slate) {
 		var ret ChannelIngestSlate
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *ChannelIngest) GetSlate() ChannelIngestSlate {
 // GetSlateOk returns a tuple with the Slate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
-	if o == nil || o.Slate == nil {
+	if o == nil || IsNil(o.Slate) {
 		return nil, false
 	}
 	return o.Slate, true
@@ -57,7 +60,7 @@ func (o *ChannelIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
 
 // HasSlate returns a boolean if a field has been set.
 func (o *ChannelIngest) HasSlate() bool {
-	if o != nil && o.Slate != nil {
+	if o != nil && !IsNil(o.Slate) {
 		return true
 	}
 
@@ -94,14 +97,20 @@ func (o *ChannelIngest) SetSource(v ChannelIngestSource) {
 }
 
 func (o ChannelIngest) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Slate != nil {
-		toSerialize["slate"] = o.Slate
-	}
-	if true {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelIngest) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Slate) {
+		toSerialize["slate"] = o.Slate
+	}
+	toSerialize["source"] = o.Source
+	return toSerialize, nil
 }
 
 type NullableChannelIngest struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier{}
+
 // ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier Only one of ['explicit_tier'] may be set.
 type ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier struct {
 	Values []int32 `json:"values,omitempty"`
@@ -37,7 +40,7 @@ func NewChannelSignalingSegmentSettingsInnerTierFilterExplicitTierWithDefaults()
 
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) GetValues() []int32 {
-	if o == nil || o.Values == nil {
+	if o == nil || IsNil(o.Values) {
 		var ret []int32
 		return ret
 	}
@@ -47,7 +50,7 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) GetValues()
 // GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) GetValuesOk() ([]int32, bool) {
-	if o == nil || o.Values == nil {
+	if o == nil || IsNil(o.Values) {
 		return nil, false
 	}
 	return o.Values, true
@@ -55,7 +58,7 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) GetValuesOk
 
 // HasValues returns a boolean if a field has been set.
 func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) HasValues() bool {
-	if o != nil && o.Values != nil {
+	if o != nil && !IsNil(o.Values) {
 		return true
 	}
 
@@ -68,11 +71,19 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) SetValues(v
 }
 
 func (o ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Values != nil {
-		toSerialize["values"] = o.Values
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Values) {
+		toSerialize["values"] = o.Values
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelSignalingSegmentSettingsInnerTierFilterExplicitTier struct {

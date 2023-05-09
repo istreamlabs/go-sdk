@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the InsertMetadataResult type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &InsertMetadataResult{}
+
 // InsertMetadataResult struct for InsertMetadataResult
 type InsertMetadataResult struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -42,7 +45,7 @@ func NewInsertMetadataResultWithDefaults() *InsertMetadataResult {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *InsertMetadataResult) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *InsertMetadataResult) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *InsertMetadataResult) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -60,7 +63,7 @@ func (o *InsertMetadataResult) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *InsertMetadataResult) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -97,14 +100,20 @@ func (o *InsertMetadataResult) SetPresentationTime(v time.Time) {
 }
 
 func (o InsertMetadataResult) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if true {
-		toSerialize["presentation_time"] = o.PresentationTime
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o InsertMetadataResult) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	toSerialize["presentation_time"] = o.PresentationTime
+	return toSerialize, nil
 }
 
 type NullableInsertMetadataResult struct {

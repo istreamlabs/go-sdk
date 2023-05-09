@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the Segment type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Segment{}
+
 // Segment struct for Segment
 type Segment struct {
 	// The program time when the segment ends (or ended).
@@ -48,7 +51,7 @@ func NewSegmentWithDefaults() *Segment {
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *Segment) GetEnd() time.Time {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		var ret time.Time
 		return ret
 	}
@@ -58,7 +61,7 @@ func (o *Segment) GetEnd() time.Time {
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetEndOk() (*time.Time, bool) {
-	if o == nil || o.End == nil {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
 	return o.End, true
@@ -66,7 +69,7 @@ func (o *Segment) GetEndOk() (*time.Time, bool) {
 
 // HasEnd returns a boolean if a field has been set.
 func (o *Segment) HasEnd() bool {
-	if o != nil && o.End != nil {
+	if o != nil && !IsNil(o.End) {
 		return true
 	}
 
@@ -80,7 +83,7 @@ func (o *Segment) SetEnd(v time.Time) {
 
 // GetEventId returns the EventId field value if set, zero value otherwise.
 func (o *Segment) GetEventId() int32 {
-	if o == nil || o.EventId == nil {
+	if o == nil || IsNil(o.EventId) {
 		var ret int32
 		return ret
 	}
@@ -90,7 +93,7 @@ func (o *Segment) GetEventId() int32 {
 // GetEventIdOk returns a tuple with the EventId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetEventIdOk() (*int32, bool) {
-	if o == nil || o.EventId == nil {
+	if o == nil || IsNil(o.EventId) {
 		return nil, false
 	}
 	return o.EventId, true
@@ -98,7 +101,7 @@ func (o *Segment) GetEventIdOk() (*int32, bool) {
 
 // HasEventId returns a boolean if a field has been set.
 func (o *Segment) HasEventId() bool {
-	if o != nil && o.EventId != nil {
+	if o != nil && !IsNil(o.EventId) {
 		return true
 	}
 
@@ -112,7 +115,7 @@ func (o *Segment) SetEventId(v int32) {
 
 // GetSegmentId returns the SegmentId field value if set, zero value otherwise.
 func (o *Segment) GetSegmentId() int64 {
-	if o == nil || o.SegmentId == nil {
+	if o == nil || IsNil(o.SegmentId) {
 		var ret int64
 		return ret
 	}
@@ -122,7 +125,7 @@ func (o *Segment) GetSegmentId() int64 {
 // GetSegmentIdOk returns a tuple with the SegmentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetSegmentIdOk() (*int64, bool) {
-	if o == nil || o.SegmentId == nil {
+	if o == nil || IsNil(o.SegmentId) {
 		return nil, false
 	}
 	return o.SegmentId, true
@@ -130,7 +133,7 @@ func (o *Segment) GetSegmentIdOk() (*int64, bool) {
 
 // HasSegmentId returns a boolean if a field has been set.
 func (o *Segment) HasSegmentId() bool {
-	if o != nil && o.SegmentId != nil {
+	if o != nil && !IsNil(o.SegmentId) {
 		return true
 	}
 
@@ -144,7 +147,7 @@ func (o *Segment) SetSegmentId(v int64) {
 
 // GetSlateUrl returns the SlateUrl field value if set, zero value otherwise.
 func (o *Segment) GetSlateUrl() string {
-	if o == nil || o.SlateUrl == nil {
+	if o == nil || IsNil(o.SlateUrl) {
 		var ret string
 		return ret
 	}
@@ -154,7 +157,7 @@ func (o *Segment) GetSlateUrl() string {
 // GetSlateUrlOk returns a tuple with the SlateUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetSlateUrlOk() (*string, bool) {
-	if o == nil || o.SlateUrl == nil {
+	if o == nil || IsNil(o.SlateUrl) {
 		return nil, false
 	}
 	return o.SlateUrl, true
@@ -162,7 +165,7 @@ func (o *Segment) GetSlateUrlOk() (*string, bool) {
 
 // HasSlateUrl returns a boolean if a field has been set.
 func (o *Segment) HasSlateUrl() bool {
-	if o != nil && o.SlateUrl != nil {
+	if o != nil && !IsNil(o.SlateUrl) {
 		return true
 	}
 
@@ -176,7 +179,7 @@ func (o *Segment) SetSlateUrl(v string) {
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *Segment) GetStart() time.Time {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		var ret time.Time
 		return ret
 	}
@@ -186,7 +189,7 @@ func (o *Segment) GetStart() time.Time {
 // GetStartOk returns a tuple with the Start field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetStartOk() (*time.Time, bool) {
-	if o == nil || o.Start == nil {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
 	return o.Start, true
@@ -194,7 +197,7 @@ func (o *Segment) GetStartOk() (*time.Time, bool) {
 
 // HasStart returns a boolean if a field has been set.
 func (o *Segment) HasStart() bool {
-	if o != nil && o.Start != nil {
+	if o != nil && !IsNil(o.Start) {
 		return true
 	}
 
@@ -208,7 +211,7 @@ func (o *Segment) SetStart(v time.Time) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Segment) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -218,7 +221,7 @@ func (o *Segment) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Segment) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -226,7 +229,7 @@ func (o *Segment) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *Segment) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -239,26 +242,34 @@ func (o *Segment) SetType(v string) {
 }
 
 func (o Segment) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.End != nil {
-		toSerialize["end"] = o.End
-	}
-	if o.EventId != nil {
-		toSerialize["event_id"] = o.EventId
-	}
-	if o.SegmentId != nil {
-		toSerialize["segment_id"] = o.SegmentId
-	}
-	if o.SlateUrl != nil {
-		toSerialize["slate_url"] = o.SlateUrl
-	}
-	if o.Start != nil {
-		toSerialize["start"] = o.Start
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Segment) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.End) {
+		toSerialize["end"] = o.End
+	}
+	if !IsNil(o.EventId) {
+		toSerialize["event_id"] = o.EventId
+	}
+	if !IsNil(o.SegmentId) {
+		toSerialize["segment_id"] = o.SegmentId
+	}
+	if !IsNil(o.SlateUrl) {
+		toSerialize["slate_url"] = o.SlateUrl
+	}
+	if !IsNil(o.Start) {
+		toSerialize["start"] = o.Start
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableSegment struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackaging type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackaging{}
+
 // ChannelPackaging Packaging configures media format and content protection settings.
 type ChannelPackaging struct {
 	// Defines the list of packagers available for Publications.
@@ -38,7 +41,7 @@ func NewChannelPackagingWithDefaults() *ChannelPackaging {
 
 // GetPackagers returns the Packagers field value if set, zero value otherwise.
 func (o *ChannelPackaging) GetPackagers() map[string]ChannelPackagingPackagersValue {
-	if o == nil || o.Packagers == nil {
+	if o == nil || IsNil(o.Packagers) {
 		var ret map[string]ChannelPackagingPackagersValue
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *ChannelPackaging) GetPackagers() map[string]ChannelPackagingPackagersVa
 // GetPackagersOk returns a tuple with the Packagers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackaging) GetPackagersOk() (*map[string]ChannelPackagingPackagersValue, bool) {
-	if o == nil || o.Packagers == nil {
+	if o == nil || IsNil(o.Packagers) {
 		return nil, false
 	}
 	return o.Packagers, true
@@ -56,7 +59,7 @@ func (o *ChannelPackaging) GetPackagersOk() (*map[string]ChannelPackagingPackage
 
 // HasPackagers returns a boolean if a field has been set.
 func (o *ChannelPackaging) HasPackagers() bool {
-	if o != nil && o.Packagers != nil {
+	if o != nil && !IsNil(o.Packagers) {
 		return true
 	}
 
@@ -69,11 +72,19 @@ func (o *ChannelPackaging) SetPackagers(v map[string]ChannelPackagingPackagersVa
 }
 
 func (o ChannelPackaging) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Packagers != nil {
-		toSerialize["packagers"] = o.Packagers
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackaging) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Packagers) {
+		toSerialize["packagers"] = o.Packagers
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackaging struct {

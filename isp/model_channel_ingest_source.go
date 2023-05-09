@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelIngestSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelIngestSource{}
+
 // ChannelIngestSource Source provides a reference to the input media stream for this channel.
 type ChannelIngestSource struct {
 	AudioSources []ChannelIngestSourceAudioSourcesInner `json:"audio_sources,omitempty"`
@@ -43,7 +46,7 @@ func NewChannelIngestSourceWithDefaults() *ChannelIngestSource {
 
 // GetAudioSources returns the AudioSources field value if set, zero value otherwise.
 func (o *ChannelIngestSource) GetAudioSources() []ChannelIngestSourceAudioSourcesInner {
-	if o == nil || o.AudioSources == nil {
+	if o == nil || IsNil(o.AudioSources) {
 		var ret []ChannelIngestSourceAudioSourcesInner
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *ChannelIngestSource) GetAudioSources() []ChannelIngestSourceAudioSource
 // GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSource) GetAudioSourcesOk() ([]ChannelIngestSourceAudioSourcesInner, bool) {
-	if o == nil || o.AudioSources == nil {
+	if o == nil || IsNil(o.AudioSources) {
 		return nil, false
 	}
 	return o.AudioSources, true
@@ -61,7 +64,7 @@ func (o *ChannelIngestSource) GetAudioSourcesOk() ([]ChannelIngestSourceAudioSou
 
 // HasAudioSources returns a boolean if a field has been set.
 func (o *ChannelIngestSource) HasAudioSources() bool {
-	if o != nil && o.AudioSources != nil {
+	if o != nil && !IsNil(o.AudioSources) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *ChannelIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSource
 
 // GetCaptionsSource returns the CaptionsSource field value if set, zero value otherwise.
 func (o *ChannelIngestSource) GetCaptionsSource() string {
-	if o == nil || o.CaptionsSource == nil {
+	if o == nil || IsNil(o.CaptionsSource) {
 		var ret string
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *ChannelIngestSource) GetCaptionsSource() string {
 // GetCaptionsSourceOk returns a tuple with the CaptionsSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSource) GetCaptionsSourceOk() (*string, bool) {
-	if o == nil || o.CaptionsSource == nil {
+	if o == nil || IsNil(o.CaptionsSource) {
 		return nil, false
 	}
 	return o.CaptionsSource, true
@@ -93,7 +96,7 @@ func (o *ChannelIngestSource) GetCaptionsSourceOk() (*string, bool) {
 
 // HasCaptionsSource returns a boolean if a field has been set.
 func (o *ChannelIngestSource) HasCaptionsSource() bool {
-	if o != nil && o.CaptionsSource != nil {
+	if o != nil && !IsNil(o.CaptionsSource) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *ChannelIngestSource) SetCaptionsSource(v string) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelIngestSource) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *ChannelIngestSource) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSource) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -125,7 +128,7 @@ func (o *ChannelIngestSource) GetIdOk() (*string, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelIngestSource) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *ChannelIngestSource) SetId(v string) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *ChannelIngestSource) GetSelf() string {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
 	}
@@ -149,7 +152,7 @@ func (o *ChannelIngestSource) GetSelf() string {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelIngestSource) GetSelfOk() (*string, bool) {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -157,7 +160,7 @@ func (o *ChannelIngestSource) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *ChannelIngestSource) HasSelf() bool {
-	if o != nil && o.Self != nil {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -170,20 +173,26 @@ func (o *ChannelIngestSource) SetSelf(v string) {
 }
 
 func (o ChannelIngestSource) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AudioSources != nil {
-		toSerialize["audio_sources"] = o.AudioSources
-	}
-	if o.CaptionsSource != nil {
-		toSerialize["captions_source"] = o.CaptionsSource
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Self != nil {
-		toSerialize["self"] = o.Self
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelIngestSource) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AudioSources) {
+		toSerialize["audio_sources"] = o.AudioSources
+	}
+	if !IsNil(o.CaptionsSource) {
+		toSerialize["captions_source"] = o.CaptionsSource
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	// skip: self is readOnly
+	return toSerialize, nil
 }
 
 type NullableChannelIngestSource struct {

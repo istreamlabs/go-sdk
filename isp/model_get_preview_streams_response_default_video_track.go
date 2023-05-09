@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the GetPreviewStreamsResponseDefaultVideoTrack type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetPreviewStreamsResponseDefaultVideoTrack{}
+
 // GetPreviewStreamsResponseDefaultVideoTrack struct for GetPreviewStreamsResponseDefaultVideoTrack
 type GetPreviewStreamsResponseDefaultVideoTrack struct {
 	Bitrate *int32 `json:"bitrate,omitempty"`
@@ -45,7 +48,7 @@ func NewGetPreviewStreamsResponseDefaultVideoTrackWithDefaults() *GetPreviewStre
 
 // GetBitrate returns the Bitrate field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetBitrate() int32 {
-	if o == nil || o.Bitrate == nil {
+	if o == nil || IsNil(o.Bitrate) {
 		var ret int32
 		return ret
 	}
@@ -55,7 +58,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetBitrate() int32 {
 // GetBitrateOk returns a tuple with the Bitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetBitrateOk() (*int32, bool) {
-	if o == nil || o.Bitrate == nil {
+	if o == nil || IsNil(o.Bitrate) {
 		return nil, false
 	}
 	return o.Bitrate, true
@@ -63,7 +66,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetBitrateOk() (*int32, boo
 
 // HasBitrate returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasBitrate() bool {
-	if o != nil && o.Bitrate != nil {
+	if o != nil && !IsNil(o.Bitrate) {
 		return true
 	}
 
@@ -77,7 +80,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetBitrate(v int32) {
 
 // GetCodecString returns the CodecString field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetCodecString() string {
-	if o == nil || o.CodecString == nil {
+	if o == nil || IsNil(o.CodecString) {
 		var ret string
 		return ret
 	}
@@ -87,7 +90,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetCodecString() string {
 // GetCodecStringOk returns a tuple with the CodecString field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetCodecStringOk() (*string, bool) {
-	if o == nil || o.CodecString == nil {
+	if o == nil || IsNil(o.CodecString) {
 		return nil, false
 	}
 	return o.CodecString, true
@@ -95,7 +98,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetCodecStringOk() (*string
 
 // HasCodecString returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasCodecString() bool {
-	if o != nil && o.CodecString != nil {
+	if o != nil && !IsNil(o.CodecString) {
 		return true
 	}
 
@@ -109,7 +112,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetCodecString(v string) {
 
 // GetFrameRate returns the FrameRate field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetFrameRate() float32 {
-	if o == nil || o.FrameRate == nil {
+	if o == nil || IsNil(o.FrameRate) {
 		var ret float32
 		return ret
 	}
@@ -119,7 +122,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetFrameRate() float32 {
 // GetFrameRateOk returns a tuple with the FrameRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetFrameRateOk() (*float32, bool) {
-	if o == nil || o.FrameRate == nil {
+	if o == nil || IsNil(o.FrameRate) {
 		return nil, false
 	}
 	return o.FrameRate, true
@@ -127,7 +130,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetFrameRateOk() (*float32,
 
 // HasFrameRate returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasFrameRate() bool {
-	if o != nil && o.FrameRate != nil {
+	if o != nil && !IsNil(o.FrameRate) {
 		return true
 	}
 
@@ -141,7 +144,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetFrameRate(v float32) {
 
 // GetHeight returns the Height field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetHeight() int32 {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		var ret int32
 		return ret
 	}
@@ -151,7 +154,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetHeight() int32 {
 // GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetHeightOk() (*int32, bool) {
-	if o == nil || o.Height == nil {
+	if o == nil || IsNil(o.Height) {
 		return nil, false
 	}
 	return o.Height, true
@@ -159,7 +162,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetHeightOk() (*int32, bool
 
 // HasHeight returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasHeight() bool {
-	if o != nil && o.Height != nil {
+	if o != nil && !IsNil(o.Height) {
 		return true
 	}
 
@@ -173,7 +176,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetHeight(v int32) {
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetId() int32 {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
@@ -183,7 +186,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetIdOk() (*int32, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -191,7 +194,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetIdOk() (*int32, bool) {
 
 // HasId returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -205,7 +208,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetId(v int32) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -215,7 +218,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -223,7 +226,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetNameOk() (*string, bool)
 
 // HasName returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -237,7 +240,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetName(v string) {
 
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetWidth() int32 {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		var ret int32
 		return ret
 	}
@@ -247,7 +250,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetWidth() int32 {
 // GetWidthOk returns a tuple with the Width field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetWidthOk() (*int32, bool) {
-	if o == nil || o.Width == nil {
+	if o == nil || IsNil(o.Width) {
 		return nil, false
 	}
 	return o.Width, true
@@ -255,7 +258,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) GetWidthOk() (*int32, bool)
 
 // HasWidth returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponseDefaultVideoTrack) HasWidth() bool {
-	if o != nil && o.Width != nil {
+	if o != nil && !IsNil(o.Width) {
 		return true
 	}
 
@@ -268,29 +271,37 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetWidth(v int32) {
 }
 
 func (o GetPreviewStreamsResponseDefaultVideoTrack) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Bitrate != nil {
-		toSerialize["bitrate"] = o.Bitrate
-	}
-	if o.CodecString != nil {
-		toSerialize["codec_string"] = o.CodecString
-	}
-	if o.FrameRate != nil {
-		toSerialize["frame_rate"] = o.FrameRate
-	}
-	if o.Height != nil {
-		toSerialize["height"] = o.Height
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Width != nil {
-		toSerialize["width"] = o.Width
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o GetPreviewStreamsResponseDefaultVideoTrack) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Bitrate) {
+		toSerialize["bitrate"] = o.Bitrate
+	}
+	if !IsNil(o.CodecString) {
+		toSerialize["codec_string"] = o.CodecString
+	}
+	if !IsNil(o.FrameRate) {
+		toSerialize["frame_rate"] = o.FrameRate
+	}
+	if !IsNil(o.Height) {
+		toSerialize["height"] = o.Height
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Width) {
+		toSerialize["width"] = o.Width
+	}
+	return toSerialize, nil
 }
 
 type NullableGetPreviewStreamsResponseDefaultVideoTrack struct {

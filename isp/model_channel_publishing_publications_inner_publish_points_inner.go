@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerPublishPointsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerPublishPointsInner{}
+
 // ChannelPublishingPublicationsInnerPublishPointsInner struct for ChannelPublishingPublicationsInnerPublishPointsInner
 type ChannelPublishingPublicationsInnerPublishPointsInner struct {
 	Http *ChannelPublishingPublicationsInnerPublishPointsInnerHttp `json:"http,omitempty"`
@@ -41,7 +44,7 @@ func NewChannelPublishingPublicationsInnerPublishPointsInnerWithDefaults() *Chan
 
 // GetHttp returns the Http field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetHttp() ChannelPublishingPublicationsInnerPublishPointsInnerHttp {
-	if o == nil || o.Http == nil {
+	if o == nil || IsNil(o.Http) {
 		var ret ChannelPublishingPublicationsInnerPublishPointsInnerHttp
 		return ret
 	}
@@ -51,7 +54,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetHttp() Channel
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetHttpOk() (*ChannelPublishingPublicationsInnerPublishPointsInnerHttp, bool) {
-	if o == nil || o.Http == nil {
+	if o == nil || IsNil(o.Http) {
 		return nil, false
 	}
 	return o.Http, true
@@ -59,7 +62,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetHttpOk() (*Cha
 
 // HasHttp returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) HasHttp() bool {
-	if o != nil && o.Http != nil {
+	if o != nil && !IsNil(o.Http) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) SetHttp(v Channel
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetId() string {
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return o.Id, true
@@ -91,7 +94,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetIdOk() (*strin
 
 // HasId returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) HasId() bool {
-	if o != nil && o.Id != nil {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) SetId(v string) {
 
 // GetPlaylistOnlyFor returns the PlaylistOnlyFor field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetPlaylistOnlyFor() string {
-	if o == nil || o.PlaylistOnlyFor == nil {
+	if o == nil || IsNil(o.PlaylistOnlyFor) {
 		var ret string
 		return ret
 	}
@@ -115,7 +118,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetPlaylistOnlyFo
 // GetPlaylistOnlyForOk returns a tuple with the PlaylistOnlyFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetPlaylistOnlyForOk() (*string, bool) {
-	if o == nil || o.PlaylistOnlyFor == nil {
+	if o == nil || IsNil(o.PlaylistOnlyFor) {
 		return nil, false
 	}
 	return o.PlaylistOnlyFor, true
@@ -123,7 +126,7 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) GetPlaylistOnlyFo
 
 // HasPlaylistOnlyFor returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerPublishPointsInner) HasPlaylistOnlyFor() bool {
-	if o != nil && o.PlaylistOnlyFor != nil {
+	if o != nil && !IsNil(o.PlaylistOnlyFor) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *ChannelPublishingPublicationsInnerPublishPointsInner) SetPlaylistOnlyFo
 }
 
 func (o ChannelPublishingPublicationsInnerPublishPointsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Http != nil {
-		toSerialize["http"] = o.Http
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.PlaylistOnlyFor != nil {
-		toSerialize["playlist_only_for"] = o.PlaylistOnlyFor
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerPublishPointsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Http) {
+		toSerialize["http"] = o.Http
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.PlaylistOnlyFor) {
+		toSerialize["playlist_only_for"] = o.PlaylistOnlyFor
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerPublishPointsInner struct {

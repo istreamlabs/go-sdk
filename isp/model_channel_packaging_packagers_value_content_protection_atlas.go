@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionAtlas type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionAtlas{}
+
 // ChannelPackagingPackagersValueContentProtectionAtlas Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionAtlas struct {
 	// The Asset Identifier which was taken from the token entitlement service request.
@@ -44,7 +47,7 @@ func NewChannelPackagingPackagersValueContentProtectionAtlasWithDefaults() *Chan
 
 // GetAssetId returns the AssetId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetAssetId() string {
-	if o == nil || o.AssetId == nil {
+	if o == nil || IsNil(o.AssetId) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetAssetId() stri
 // GetAssetIdOk returns a tuple with the AssetId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetAssetIdOk() (*string, bool) {
-	if o == nil || o.AssetId == nil {
+	if o == nil || IsNil(o.AssetId) {
 		return nil, false
 	}
 	return o.AssetId, true
@@ -62,7 +65,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetAssetIdOk() (*
 
 // HasAssetId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) HasAssetId() bool {
-	if o != nil && o.AssetId != nil {
+	if o != nil && !IsNil(o.AssetId) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) SetAssetId(v stri
 
 // GetCompanyId returns the CompanyId field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetCompanyId() string {
-	if o == nil || o.CompanyId == nil {
+	if o == nil || IsNil(o.CompanyId) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetCompanyId() st
 // GetCompanyIdOk returns a tuple with the CompanyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetCompanyIdOk() (*string, bool) {
-	if o == nil || o.CompanyId == nil {
+	if o == nil || IsNil(o.CompanyId) {
 		return nil, false
 	}
 	return o.CompanyId, true
@@ -94,7 +97,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetCompanyIdOk() 
 
 // HasCompanyId returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) HasCompanyId() bool {
-	if o != nil && o.CompanyId != nil {
+	if o != nil && !IsNil(o.CompanyId) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) SetCompanyId(v st
 
 // GetDrms returns the Drms field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetDrms() []string {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		var ret []string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetDrms() []strin
 // GetDrmsOk returns a tuple with the Drms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetDrmsOk() ([]string, bool) {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		return nil, false
 	}
 	return o.Drms, true
@@ -126,7 +129,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetDrmsOk() ([]st
 
 // HasDrms returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) HasDrms() bool {
-	if o != nil && o.Drms != nil {
+	if o != nil && !IsNil(o.Drms) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) SetDrms(v []strin
 
 // GetWidevineV0PsshBox returns the WidevineV0PsshBox field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetWidevineV0PsshBox() bool {
-	if o == nil || o.WidevineV0PsshBox == nil {
+	if o == nil || IsNil(o.WidevineV0PsshBox) {
 		var ret bool
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetWidevineV0Pssh
 // GetWidevineV0PsshBoxOk returns a tuple with the WidevineV0PsshBox field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetWidevineV0PsshBoxOk() (*bool, bool) {
-	if o == nil || o.WidevineV0PsshBox == nil {
+	if o == nil || IsNil(o.WidevineV0PsshBox) {
 		return nil, false
 	}
 	return o.WidevineV0PsshBox, true
@@ -158,7 +161,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) GetWidevineV0Pssh
 
 // HasWidevineV0PsshBox returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionAtlas) HasWidevineV0PsshBox() bool {
-	if o != nil && o.WidevineV0PsshBox != nil {
+	if o != nil && !IsNil(o.WidevineV0PsshBox) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) SetWidevineV0Pssh
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionAtlas) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AssetId != nil {
-		toSerialize["asset_id"] = o.AssetId
-	}
-	if o.CompanyId != nil {
-		toSerialize["company_id"] = o.CompanyId
-	}
-	if o.Drms != nil {
-		toSerialize["drms"] = o.Drms
-	}
-	if o.WidevineV0PsshBox != nil {
-		toSerialize["widevine_v0_pssh_box"] = o.WidevineV0PsshBox
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionAtlas) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AssetId) {
+		toSerialize["asset_id"] = o.AssetId
+	}
+	if !IsNil(o.CompanyId) {
+		toSerialize["company_id"] = o.CompanyId
+	}
+	if !IsNil(o.Drms) {
+		toSerialize["drms"] = o.Drms
+	}
+	if !IsNil(o.WidevineV0PsshBox) {
+		toSerialize["widevine_v0_pssh_box"] = o.WidevineV0PsshBox
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionAtlas struct {

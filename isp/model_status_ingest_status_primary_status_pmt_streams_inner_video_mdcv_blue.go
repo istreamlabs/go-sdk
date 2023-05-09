@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue struct {
 	X *float64 `json:"x,omitempty"`
@@ -38,7 +41,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlueWithDefaults(
 
 // GetX returns the X field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetX() float64 {
-	if o == nil || o.X == nil {
+	if o == nil || IsNil(o.X) {
 		var ret float64
 		return ret
 	}
@@ -48,7 +51,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetX() flo
 // GetXOk returns a tuple with the X field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetXOk() (*float64, bool) {
-	if o == nil || o.X == nil {
+	if o == nil || IsNil(o.X) {
 		return nil, false
 	}
 	return o.X, true
@@ -56,7 +59,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetXOk() (
 
 // HasX returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) HasX() bool {
-	if o != nil && o.X != nil {
+	if o != nil && !IsNil(o.X) {
 		return true
 	}
 
@@ -70,7 +73,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) SetX(v flo
 
 // GetY returns the Y field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetY() float64 {
-	if o == nil || o.Y == nil {
+	if o == nil || IsNil(o.Y) {
 		var ret float64
 		return ret
 	}
@@ -80,7 +83,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetY() flo
 // GetYOk returns a tuple with the Y field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetYOk() (*float64, bool) {
-	if o == nil || o.Y == nil {
+	if o == nil || IsNil(o.Y) {
 		return nil, false
 	}
 	return o.Y, true
@@ -88,7 +91,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) GetYOk() (
 
 // HasY returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) HasY() bool {
-	if o != nil && o.Y != nil {
+	if o != nil && !IsNil(o.Y) {
 		return true
 	}
 
@@ -101,14 +104,22 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) SetY(v flo
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.X != nil {
-		toSerialize["x"] = o.X
-	}
-	if o.Y != nil {
-		toSerialize["y"] = o.Y
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.X) {
+		toSerialize["x"] = o.X
+	}
+	if !IsNil(o.Y) {
+		toSerialize["y"] = o.Y
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue struct {

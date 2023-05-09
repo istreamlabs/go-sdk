@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Status type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Status{}
+
 // Status struct for Status
 type Status struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -39,7 +42,7 @@ func NewStatusWithDefaults() *Status {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *Status) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -49,7 +52,7 @@ func (o *Status) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Status) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -57,7 +60,7 @@ func (o *Status) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Status) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *Status) SetSchema(v string) {
 
 // GetIngestStatus returns the IngestStatus field value if set, zero value otherwise.
 func (o *Status) GetIngestStatus() StatusIngestStatus {
-	if o == nil || o.IngestStatus == nil {
+	if o == nil || IsNil(o.IngestStatus) {
 		var ret StatusIngestStatus
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *Status) GetIngestStatus() StatusIngestStatus {
 // GetIngestStatusOk returns a tuple with the IngestStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Status) GetIngestStatusOk() (*StatusIngestStatus, bool) {
-	if o == nil || o.IngestStatus == nil {
+	if o == nil || IsNil(o.IngestStatus) {
 		return nil, false
 	}
 	return o.IngestStatus, true
@@ -89,7 +92,7 @@ func (o *Status) GetIngestStatusOk() (*StatusIngestStatus, bool) {
 
 // HasIngestStatus returns a boolean if a field has been set.
 func (o *Status) HasIngestStatus() bool {
-	if o != nil && o.IngestStatus != nil {
+	if o != nil && !IsNil(o.IngestStatus) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *Status) SetIngestStatus(v StatusIngestStatus) {
 }
 
 func (o Status) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.IngestStatus != nil {
-		toSerialize["ingest_status"] = o.IngestStatus
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Status) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.IngestStatus) {
+		toSerialize["ingest_status"] = o.IngestStatus
+	}
+	return toSerialize, nil
 }
 
 type NullableStatus struct {

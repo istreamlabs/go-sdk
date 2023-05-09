@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision{}
+
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision Only one of ['hlg', 'hdr10', 'dolby_vision'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision struct {
 	// Only one of ['profile5', 'profile81', 'profile84'] may be set.
@@ -41,7 +44,7 @@ func NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionWithDefaults() *Chan
 
 // GetProfile5 returns the Profile5 field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile5() map[string]interface{} {
-	if o == nil || o.Profile5 == nil {
+	if o == nil || IsNil(o.Profile5) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -51,15 +54,15 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile5() map
 // GetProfile5Ok returns a tuple with the Profile5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile5Ok() (map[string]interface{}, bool) {
-	if o == nil || o.Profile5 == nil {
-		return nil, false
+	if o == nil || IsNil(o.Profile5) {
+		return map[string]interface{}{}, false
 	}
 	return o.Profile5, true
 }
 
 // HasProfile5 returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) HasProfile5() bool {
-	if o != nil && o.Profile5 != nil {
+	if o != nil && !IsNil(o.Profile5) {
 		return true
 	}
 
@@ -73,7 +76,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) SetProfile5(v map
 
 // GetProfile81 returns the Profile81 field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile81() ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 {
-	if o == nil || o.Profile81 == nil {
+	if o == nil || IsNil(o.Profile81) {
 		var ret ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81
 		return ret
 	}
@@ -83,7 +86,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile81() Ch
 // GetProfile81Ok returns a tuple with the Profile81 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile81Ok() (*ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81, bool) {
-	if o == nil || o.Profile81 == nil {
+	if o == nil || IsNil(o.Profile81) {
 		return nil, false
 	}
 	return o.Profile81, true
@@ -91,7 +94,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile81Ok() 
 
 // HasProfile81 returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) HasProfile81() bool {
-	if o != nil && o.Profile81 != nil {
+	if o != nil && !IsNil(o.Profile81) {
 		return true
 	}
 
@@ -105,7 +108,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) SetProfile81(v Ch
 
 // GetProfile84 returns the Profile84 field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile84() map[string]interface{} {
-	if o == nil || o.Profile84 == nil {
+	if o == nil || IsNil(o.Profile84) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -115,15 +118,15 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile84() ma
 // GetProfile84Ok returns a tuple with the Profile84 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile84Ok() (map[string]interface{}, bool) {
-	if o == nil || o.Profile84 == nil {
-		return nil, false
+	if o == nil || IsNil(o.Profile84) {
+		return map[string]interface{}{}, false
 	}
 	return o.Profile84, true
 }
 
 // HasProfile84 returns a boolean if a field has been set.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) HasProfile84() bool {
-	if o != nil && o.Profile84 != nil {
+	if o != nil && !IsNil(o.Profile84) {
 		return true
 	}
 
@@ -136,17 +139,25 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) SetProfile84(v ma
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Profile5 != nil {
-		toSerialize["profile5"] = o.Profile5
-	}
-	if o.Profile81 != nil {
-		toSerialize["profile81"] = o.Profile81
-	}
-	if o.Profile84 != nil {
-		toSerialize["profile84"] = o.Profile84
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Profile5) {
+		toSerialize["profile5"] = o.Profile5
+	}
+	if !IsNil(o.Profile81) {
+		toSerialize["profile81"] = o.Profile81
+	}
+	if !IsNil(o.Profile84) {
+		toSerialize["profile84"] = o.Profile84
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelTranscodeVideoEncodersInnerH265HdrDolbyVision struct {

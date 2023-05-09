@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the Summary2 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &Summary2{}
+
 // Summary2 struct for Summary2
 type Summary2 struct {
 	// Desired state of channel
@@ -128,7 +131,7 @@ func (o *Summary2) SetId(v string) {
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
 func (o *Summary2) GetLabels() []string {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		var ret []string
 		return ret
 	}
@@ -138,7 +141,7 @@ func (o *Summary2) GetLabels() []string {
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetLabelsOk() ([]string, bool) {
-	if o == nil || o.Labels == nil {
+	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
 	return o.Labels, true
@@ -146,7 +149,7 @@ func (o *Summary2) GetLabelsOk() ([]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Summary2) HasLabels() bool {
-	if o != nil && o.Labels != nil {
+	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
 
@@ -160,7 +163,7 @@ func (o *Summary2) SetLabels(v []string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Summary2) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -170,7 +173,7 @@ func (o *Summary2) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -178,7 +181,7 @@ func (o *Summary2) GetNameOk() (*string, bool) {
 
 // HasName returns a boolean if a field has been set.
 func (o *Summary2) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -216,7 +219,7 @@ func (o *Summary2) SetOrg(v string) {
 
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *Summary2) GetSelf() string {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
 	}
@@ -226,7 +229,7 @@ func (o *Summary2) GetSelf() string {
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Summary2) GetSelfOk() (*string, bool) {
-	if o == nil || o.Self == nil {
+	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
 	return o.Self, true
@@ -234,7 +237,7 @@ func (o *Summary2) GetSelfOk() (*string, bool) {
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Summary2) HasSelf() bool {
-	if o != nil && o.Self != nil {
+	if o != nil && !IsNil(o.Self) {
 		return true
 	}
 
@@ -271,32 +274,28 @@ func (o *Summary2) SetSource(v Summary2Source) {
 }
 
 func (o Summary2) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["desired_state"] = o.DesiredState
-	}
-	if true {
-		toSerialize["etag"] = o.Etag
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if o.Labels != nil {
-		toSerialize["labels"] = o.Labels
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["org"] = o.Org
-	}
-	if o.Self != nil {
-		toSerialize["self"] = o.Self
-	}
-	if true {
-		toSerialize["source"] = o.Source
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o Summary2) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["desired_state"] = o.DesiredState
+	toSerialize["etag"] = o.Etag
+	toSerialize["id"] = o.Id
+	if !IsNil(o.Labels) {
+		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	toSerialize["org"] = o.Org
+	// skip: self is readOnly
+	toSerialize["source"] = o.Source
+	return toSerialize, nil
 }
 
 type NullableSummary2 struct {

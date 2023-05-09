@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo{}
+
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo Only one of ['video'] may be set.
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo struct {
 	BitDepth *int32 `json:"bit_depth,omitempty"`
@@ -42,7 +45,7 @@ func NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoWithDefaults() *Statu
 
 // GetBitDepth returns the BitDepth field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetBitDepth() int32 {
-	if o == nil || o.BitDepth == nil {
+	if o == nil || IsNil(o.BitDepth) {
 		var ret int32
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetBitDepth() int3
 // GetBitDepthOk returns a tuple with the BitDepth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetBitDepthOk() (*int32, bool) {
-	if o == nil || o.BitDepth == nil {
+	if o == nil || IsNil(o.BitDepth) {
 		return nil, false
 	}
 	return o.BitDepth, true
@@ -60,7 +63,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetBitDepthOk() (*
 
 // HasBitDepth returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasBitDepth() bool {
-	if o != nil && o.BitDepth != nil {
+	if o != nil && !IsNil(o.BitDepth) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetBitDepth(v int3
 
 // GetClli returns the Clli field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetClli() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli {
-	if o == nil || o.Clli == nil {
+	if o == nil || IsNil(o.Clli) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetClli() StatusIn
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetClliOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli, bool) {
-	if o == nil || o.Clli == nil {
+	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
 	return o.Clli, true
@@ -92,7 +95,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetClliOk() (*Stat
 
 // HasClli returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasClli() bool {
-	if o != nil && o.Clli != nil {
+	if o != nil && !IsNil(o.Clli) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetClli(v StatusIn
 
 // GetColorDescription returns the ColorDescription field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetColorDescription() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription {
-	if o == nil || o.ColorDescription == nil {
+	if o == nil || IsNil(o.ColorDescription) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetColorDescriptio
 // GetColorDescriptionOk returns a tuple with the ColorDescription field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetColorDescriptionOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription, bool) {
-	if o == nil || o.ColorDescription == nil {
+	if o == nil || IsNil(o.ColorDescription) {
 		return nil, false
 	}
 	return o.ColorDescription, true
@@ -124,7 +127,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetColorDescriptio
 
 // HasColorDescription returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasColorDescription() bool {
-	if o != nil && o.ColorDescription != nil {
+	if o != nil && !IsNil(o.ColorDescription) {
 		return true
 	}
 
@@ -138,7 +141,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetColorDescriptio
 
 // GetFrameHeight returns the FrameHeight field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameHeight() int32 {
-	if o == nil || o.FrameHeight == nil {
+	if o == nil || IsNil(o.FrameHeight) {
 		var ret int32
 		return ret
 	}
@@ -148,7 +151,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameHeight() i
 // GetFrameHeightOk returns a tuple with the FrameHeight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameHeightOk() (*int32, bool) {
-	if o == nil || o.FrameHeight == nil {
+	if o == nil || IsNil(o.FrameHeight) {
 		return nil, false
 	}
 	return o.FrameHeight, true
@@ -156,7 +159,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameHeightOk()
 
 // HasFrameHeight returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasFrameHeight() bool {
-	if o != nil && o.FrameHeight != nil {
+	if o != nil && !IsNil(o.FrameHeight) {
 		return true
 	}
 
@@ -170,7 +173,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetFrameHeight(v i
 
 // GetFrameWidth returns the FrameWidth field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameWidth() int32 {
-	if o == nil || o.FrameWidth == nil {
+	if o == nil || IsNil(o.FrameWidth) {
 		var ret int32
 		return ret
 	}
@@ -180,7 +183,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameWidth() in
 // GetFrameWidthOk returns a tuple with the FrameWidth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameWidthOk() (*int32, bool) {
-	if o == nil || o.FrameWidth == nil {
+	if o == nil || IsNil(o.FrameWidth) {
 		return nil, false
 	}
 	return o.FrameWidth, true
@@ -188,7 +191,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetFrameWidthOk() 
 
 // HasFrameWidth returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasFrameWidth() bool {
-	if o != nil && o.FrameWidth != nil {
+	if o != nil && !IsNil(o.FrameWidth) {
 		return true
 	}
 
@@ -202,7 +205,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetFrameWidth(v in
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetMdcv() StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv {
-	if o == nil || o.Mdcv == nil {
+	if o == nil || IsNil(o.Mdcv) {
 		var ret StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv
 		return ret
 	}
@@ -212,7 +215,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetMdcv() StatusIn
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetMdcvOk() (*StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv, bool) {
-	if o == nil || o.Mdcv == nil {
+	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
 	return o.Mdcv, true
@@ -220,7 +223,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) GetMdcvOk() (*Stat
 
 // HasMdcv returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) HasMdcv() bool {
-	if o != nil && o.Mdcv != nil {
+	if o != nil && !IsNil(o.Mdcv) {
 		return true
 	}
 
@@ -233,26 +236,34 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetMdcv(v StatusIn
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BitDepth != nil {
-		toSerialize["bit_depth"] = o.BitDepth
-	}
-	if o.Clli != nil {
-		toSerialize["clli"] = o.Clli
-	}
-	if o.ColorDescription != nil {
-		toSerialize["color_description"] = o.ColorDescription
-	}
-	if o.FrameHeight != nil {
-		toSerialize["frame_height"] = o.FrameHeight
-	}
-	if o.FrameWidth != nil {
-		toSerialize["frame_width"] = o.FrameWidth
-	}
-	if o.Mdcv != nil {
-		toSerialize["mdcv"] = o.Mdcv
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BitDepth) {
+		toSerialize["bit_depth"] = o.BitDepth
+	}
+	if !IsNil(o.Clli) {
+		toSerialize["clli"] = o.Clli
+	}
+	if !IsNil(o.ColorDescription) {
+		toSerialize["color_description"] = o.ColorDescription
+	}
+	if !IsNil(o.FrameHeight) {
+		toSerialize["frame_height"] = o.FrameHeight
+	}
+	if !IsNil(o.FrameWidth) {
+		toSerialize["frame_width"] = o.FrameWidth
+	}
+	if !IsNil(o.Mdcv) {
+		toSerialize["mdcv"] = o.Mdcv
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideo struct {

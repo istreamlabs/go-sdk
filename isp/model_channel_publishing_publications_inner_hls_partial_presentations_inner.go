@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerHlsPartialPresentationsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerHlsPartialPresentationsInner{}
+
 // ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct for ChannelPublishingPublicationsInnerHlsPartialPresentationsInner
 type ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct {
 	// Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used.
@@ -46,7 +49,7 @@ func NewChannelPublishingPublicationsInnerHlsPartialPresentationsInnerWithDefaul
 
 // GetAudioEncoderIds returns the AudioEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetAudioEncoderIds() []string {
-	if o == nil || o.AudioEncoderIds == nil {
+	if o == nil || IsNil(o.AudioEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -56,7 +59,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetAudi
 // GetAudioEncoderIdsOk returns a tuple with the AudioEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.AudioEncoderIds == nil {
+	if o == nil || IsNil(o.AudioEncoderIds) {
 		return nil, false
 	}
 	return o.AudioEncoderIds, true
@@ -64,7 +67,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetAudi
 
 // HasAudioEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasAudioEncoderIds() bool {
-	if o != nil && o.AudioEncoderIds != nil {
+	if o != nil && !IsNil(o.AudioEncoderIds) {
 		return true
 	}
 
@@ -78,7 +81,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetAudi
 
 // GetIframeOnlyEncoderIds returns the IframeOnlyEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetIframeOnlyEncoderIds() []string {
-	if o == nil || o.IframeOnlyEncoderIds == nil {
+	if o == nil || IsNil(o.IframeOnlyEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -88,7 +91,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetIfra
 // GetIframeOnlyEncoderIdsOk returns a tuple with the IframeOnlyEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetIframeOnlyEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.IframeOnlyEncoderIds == nil {
+	if o == nil || IsNil(o.IframeOnlyEncoderIds) {
 		return nil, false
 	}
 	return o.IframeOnlyEncoderIds, true
@@ -96,7 +99,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetIfra
 
 // HasIframeOnlyEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasIframeOnlyEncoderIds() bool {
-	if o != nil && o.IframeOnlyEncoderIds != nil {
+	if o != nil && !IsNil(o.IframeOnlyEncoderIds) {
 		return true
 	}
 
@@ -110,7 +113,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetIfra
 
 // GetPlaylistPath returns the PlaylistPath field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetPlaylistPath() string {
-	if o == nil || o.PlaylistPath == nil {
+	if o == nil || IsNil(o.PlaylistPath) {
 		var ret string
 		return ret
 	}
@@ -120,7 +123,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetPlay
 // GetPlaylistPathOk returns a tuple with the PlaylistPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetPlaylistPathOk() (*string, bool) {
-	if o == nil || o.PlaylistPath == nil {
+	if o == nil || IsNil(o.PlaylistPath) {
 		return nil, false
 	}
 	return o.PlaylistPath, true
@@ -128,7 +131,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetPlay
 
 // HasPlaylistPath returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasPlaylistPath() bool {
-	if o != nil && o.PlaylistPath != nil {
+	if o != nil && !IsNil(o.PlaylistPath) {
 		return true
 	}
 
@@ -142,7 +145,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetPlay
 
 // GetThumbnailEncoderIds returns the ThumbnailEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetThumbnailEncoderIds() []string {
-	if o == nil || o.ThumbnailEncoderIds == nil {
+	if o == nil || IsNil(o.ThumbnailEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -152,7 +155,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetThum
 // GetThumbnailEncoderIdsOk returns a tuple with the ThumbnailEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetThumbnailEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.ThumbnailEncoderIds == nil {
+	if o == nil || IsNil(o.ThumbnailEncoderIds) {
 		return nil, false
 	}
 	return o.ThumbnailEncoderIds, true
@@ -160,7 +163,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetThum
 
 // HasThumbnailEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasThumbnailEncoderIds() bool {
-	if o != nil && o.ThumbnailEncoderIds != nil {
+	if o != nil && !IsNil(o.ThumbnailEncoderIds) {
 		return true
 	}
 
@@ -174,7 +177,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetThum
 
 // GetVideoEncoderIds returns the VideoEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetVideoEncoderIds() []string {
-	if o == nil || o.VideoEncoderIds == nil {
+	if o == nil || IsNil(o.VideoEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -184,7 +187,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetVide
 // GetVideoEncoderIdsOk returns a tuple with the VideoEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.VideoEncoderIds == nil {
+	if o == nil || IsNil(o.VideoEncoderIds) {
 		return nil, false
 	}
 	return o.VideoEncoderIds, true
@@ -192,7 +195,7 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetVide
 
 // HasVideoEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasVideoEncoderIds() bool {
-	if o != nil && o.VideoEncoderIds != nil {
+	if o != nil && !IsNil(o.VideoEncoderIds) {
 		return true
 	}
 
@@ -205,23 +208,31 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetVide
 }
 
 func (o ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AudioEncoderIds != nil {
-		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
-	}
-	if o.IframeOnlyEncoderIds != nil {
-		toSerialize["iframe_only_encoder_ids"] = o.IframeOnlyEncoderIds
-	}
-	if o.PlaylistPath != nil {
-		toSerialize["playlist_path"] = o.PlaylistPath
-	}
-	if o.ThumbnailEncoderIds != nil {
-		toSerialize["thumbnail_encoder_ids"] = o.ThumbnailEncoderIds
-	}
-	if o.VideoEncoderIds != nil {
-		toSerialize["video_encoder_ids"] = o.VideoEncoderIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AudioEncoderIds) {
+		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
+	}
+	if !IsNil(o.IframeOnlyEncoderIds) {
+		toSerialize["iframe_only_encoder_ids"] = o.IframeOnlyEncoderIds
+	}
+	if !IsNil(o.PlaylistPath) {
+		toSerialize["playlist_path"] = o.PlaylistPath
+	}
+	if !IsNil(o.ThumbnailEncoderIds) {
+		toSerialize["thumbnail_encoder_ids"] = o.ThumbnailEncoderIds
+	}
+	if !IsNil(o.VideoEncoderIds) {
+		toSerialize["video_encoder_ids"] = o.VideoEncoderIds
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct {

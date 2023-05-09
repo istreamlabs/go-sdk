@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInner{}
+
 // ChannelPublishingPublicationsInner struct for ChannelPublishingPublicationsInner
 type ChannelPublishingPublicationsInner struct {
 	// Optionally specify which audio encoders should be used for this publication. If none are specified, all audio encoders configured for the transcoder will be used.
@@ -63,7 +66,7 @@ func NewChannelPublishingPublicationsInnerWithDefaults() *ChannelPublishingPubli
 
 // GetAudioEncoderIds returns the AudioEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetAudioEncoderIds() []string {
-	if o == nil || o.AudioEncoderIds == nil {
+	if o == nil || IsNil(o.AudioEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -73,7 +76,7 @@ func (o *ChannelPublishingPublicationsInner) GetAudioEncoderIds() []string {
 // GetAudioEncoderIdsOk returns a tuple with the AudioEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.AudioEncoderIds == nil {
+	if o == nil || IsNil(o.AudioEncoderIds) {
 		return nil, false
 	}
 	return o.AudioEncoderIds, true
@@ -81,7 +84,7 @@ func (o *ChannelPublishingPublicationsInner) GetAudioEncoderIdsOk() ([]string, b
 
 // HasAudioEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasAudioEncoderIds() bool {
-	if o != nil && o.AudioEncoderIds != nil {
+	if o != nil && !IsNil(o.AudioEncoderIds) {
 		return true
 	}
 
@@ -95,7 +98,7 @@ func (o *ChannelPublishingPublicationsInner) SetAudioEncoderIds(v []string) {
 
 // GetCreateVods returns the CreateVods field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetCreateVods() bool {
-	if o == nil || o.CreateVods == nil {
+	if o == nil || IsNil(o.CreateVods) {
 		var ret bool
 		return ret
 	}
@@ -105,7 +108,7 @@ func (o *ChannelPublishingPublicationsInner) GetCreateVods() bool {
 // GetCreateVodsOk returns a tuple with the CreateVods field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetCreateVodsOk() (*bool, bool) {
-	if o == nil || o.CreateVods == nil {
+	if o == nil || IsNil(o.CreateVods) {
 		return nil, false
 	}
 	return o.CreateVods, true
@@ -113,7 +116,7 @@ func (o *ChannelPublishingPublicationsInner) GetCreateVodsOk() (*bool, bool) {
 
 // HasCreateVods returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasCreateVods() bool {
-	if o != nil && o.CreateVods != nil {
+	if o != nil && !IsNil(o.CreateVods) {
 		return true
 	}
 
@@ -127,7 +130,7 @@ func (o *ChannelPublishingPublicationsInner) SetCreateVods(v bool) {
 
 // GetDash returns the Dash field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetDash() ChannelPublishingPublicationsInnerDash {
-	if o == nil || o.Dash == nil {
+	if o == nil || IsNil(o.Dash) {
 		var ret ChannelPublishingPublicationsInnerDash
 		return ret
 	}
@@ -137,7 +140,7 @@ func (o *ChannelPublishingPublicationsInner) GetDash() ChannelPublishingPublicat
 // GetDashOk returns a tuple with the Dash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetDashOk() (*ChannelPublishingPublicationsInnerDash, bool) {
-	if o == nil || o.Dash == nil {
+	if o == nil || IsNil(o.Dash) {
 		return nil, false
 	}
 	return o.Dash, true
@@ -145,7 +148,7 @@ func (o *ChannelPublishingPublicationsInner) GetDashOk() (*ChannelPublishingPubl
 
 // HasDash returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasDash() bool {
-	if o != nil && o.Dash != nil {
+	if o != nil && !IsNil(o.Dash) {
 		return true
 	}
 
@@ -159,7 +162,7 @@ func (o *ChannelPublishingPublicationsInner) SetDash(v ChannelPublishingPublicat
 
 // GetDrms returns the Drms field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetDrms() []string {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		var ret []string
 		return ret
 	}
@@ -169,7 +172,7 @@ func (o *ChannelPublishingPublicationsInner) GetDrms() []string {
 // GetDrmsOk returns a tuple with the Drms field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetDrmsOk() ([]string, bool) {
-	if o == nil || o.Drms == nil {
+	if o == nil || IsNil(o.Drms) {
 		return nil, false
 	}
 	return o.Drms, true
@@ -177,7 +180,7 @@ func (o *ChannelPublishingPublicationsInner) GetDrmsOk() ([]string, bool) {
 
 // HasDrms returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasDrms() bool {
-	if o != nil && o.Drms != nil {
+	if o != nil && !IsNil(o.Drms) {
 		return true
 	}
 
@@ -191,7 +194,7 @@ func (o *ChannelPublishingPublicationsInner) SetDrms(v []string) {
 
 // GetDvrWindowSecs returns the DvrWindowSecs field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetDvrWindowSecs() int32 {
-	if o == nil || o.DvrWindowSecs == nil {
+	if o == nil || IsNil(o.DvrWindowSecs) {
 		var ret int32
 		return ret
 	}
@@ -201,7 +204,7 @@ func (o *ChannelPublishingPublicationsInner) GetDvrWindowSecs() int32 {
 // GetDvrWindowSecsOk returns a tuple with the DvrWindowSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetDvrWindowSecsOk() (*int32, bool) {
-	if o == nil || o.DvrWindowSecs == nil {
+	if o == nil || IsNil(o.DvrWindowSecs) {
 		return nil, false
 	}
 	return o.DvrWindowSecs, true
@@ -209,7 +212,7 @@ func (o *ChannelPublishingPublicationsInner) GetDvrWindowSecsOk() (*int32, bool)
 
 // HasDvrWindowSecs returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasDvrWindowSecs() bool {
-	if o != nil && o.DvrWindowSecs != nil {
+	if o != nil && !IsNil(o.DvrWindowSecs) {
 		return true
 	}
 
@@ -223,7 +226,7 @@ func (o *ChannelPublishingPublicationsInner) SetDvrWindowSecs(v int32) {
 
 // GetHls returns the Hls field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetHls() ChannelPublishingPublicationsInnerHls {
-	if o == nil || o.Hls == nil {
+	if o == nil || IsNil(o.Hls) {
 		var ret ChannelPublishingPublicationsInnerHls
 		return ret
 	}
@@ -233,7 +236,7 @@ func (o *ChannelPublishingPublicationsInner) GetHls() ChannelPublishingPublicati
 // GetHlsOk returns a tuple with the Hls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetHlsOk() (*ChannelPublishingPublicationsInnerHls, bool) {
-	if o == nil || o.Hls == nil {
+	if o == nil || IsNil(o.Hls) {
 		return nil, false
 	}
 	return o.Hls, true
@@ -241,7 +244,7 @@ func (o *ChannelPublishingPublicationsInner) GetHlsOk() (*ChannelPublishingPubli
 
 // HasHls returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasHls() bool {
-	if o != nil && o.Hls != nil {
+	if o != nil && !IsNil(o.Hls) {
 		return true
 	}
 
@@ -255,7 +258,7 @@ func (o *ChannelPublishingPublicationsInner) SetHls(v ChannelPublishingPublicati
 
 // GetIframeOnlyEncoderIds returns the IframeOnlyEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetIframeOnlyEncoderIds() []string {
-	if o == nil || o.IframeOnlyEncoderIds == nil {
+	if o == nil || IsNil(o.IframeOnlyEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -265,7 +268,7 @@ func (o *ChannelPublishingPublicationsInner) GetIframeOnlyEncoderIds() []string 
 // GetIframeOnlyEncoderIdsOk returns a tuple with the IframeOnlyEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetIframeOnlyEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.IframeOnlyEncoderIds == nil {
+	if o == nil || IsNil(o.IframeOnlyEncoderIds) {
 		return nil, false
 	}
 	return o.IframeOnlyEncoderIds, true
@@ -273,7 +276,7 @@ func (o *ChannelPublishingPublicationsInner) GetIframeOnlyEncoderIdsOk() ([]stri
 
 // HasIframeOnlyEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasIframeOnlyEncoderIds() bool {
-	if o != nil && o.IframeOnlyEncoderIds != nil {
+	if o != nil && !IsNil(o.IframeOnlyEncoderIds) {
 		return true
 	}
 
@@ -287,7 +290,7 @@ func (o *ChannelPublishingPublicationsInner) SetIframeOnlyEncoderIds(v []string)
 
 // GetMasterPlaylistName returns the MasterPlaylistName field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetMasterPlaylistName() string {
-	if o == nil || o.MasterPlaylistName == nil {
+	if o == nil || IsNil(o.MasterPlaylistName) {
 		var ret string
 		return ret
 	}
@@ -297,7 +300,7 @@ func (o *ChannelPublishingPublicationsInner) GetMasterPlaylistName() string {
 // GetMasterPlaylistNameOk returns a tuple with the MasterPlaylistName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetMasterPlaylistNameOk() (*string, bool) {
-	if o == nil || o.MasterPlaylistName == nil {
+	if o == nil || IsNil(o.MasterPlaylistName) {
 		return nil, false
 	}
 	return o.MasterPlaylistName, true
@@ -305,7 +308,7 @@ func (o *ChannelPublishingPublicationsInner) GetMasterPlaylistNameOk() (*string,
 
 // HasMasterPlaylistName returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasMasterPlaylistName() bool {
-	if o != nil && o.MasterPlaylistName != nil {
+	if o != nil && !IsNil(o.MasterPlaylistName) {
 		return true
 	}
 
@@ -319,7 +322,7 @@ func (o *ChannelPublishingPublicationsInner) SetMasterPlaylistName(v string) {
 
 // GetPackagerId returns the PackagerId field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetPackagerId() string {
-	if o == nil || o.PackagerId == nil {
+	if o == nil || IsNil(o.PackagerId) {
 		var ret string
 		return ret
 	}
@@ -329,7 +332,7 @@ func (o *ChannelPublishingPublicationsInner) GetPackagerId() string {
 // GetPackagerIdOk returns a tuple with the PackagerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetPackagerIdOk() (*string, bool) {
-	if o == nil || o.PackagerId == nil {
+	if o == nil || IsNil(o.PackagerId) {
 		return nil, false
 	}
 	return o.PackagerId, true
@@ -337,7 +340,7 @@ func (o *ChannelPublishingPublicationsInner) GetPackagerIdOk() (*string, bool) {
 
 // HasPackagerId returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasPackagerId() bool {
-	if o != nil && o.PackagerId != nil {
+	if o != nil && !IsNil(o.PackagerId) {
 		return true
 	}
 
@@ -351,7 +354,7 @@ func (o *ChannelPublishingPublicationsInner) SetPackagerId(v string) {
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetPublishPoints() []ChannelPublishingPublicationsInnerPublishPointsInner {
-	if o == nil || o.PublishPoints == nil {
+	if o == nil || IsNil(o.PublishPoints) {
 		var ret []ChannelPublishingPublicationsInnerPublishPointsInner
 		return ret
 	}
@@ -361,7 +364,7 @@ func (o *ChannelPublishingPublicationsInner) GetPublishPoints() []ChannelPublish
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetPublishPointsOk() ([]ChannelPublishingPublicationsInnerPublishPointsInner, bool) {
-	if o == nil || o.PublishPoints == nil {
+	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
 	return o.PublishPoints, true
@@ -369,7 +372,7 @@ func (o *ChannelPublishingPublicationsInner) GetPublishPointsOk() ([]ChannelPubl
 
 // HasPublishPoints returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasPublishPoints() bool {
-	if o != nil && o.PublishPoints != nil {
+	if o != nil && !IsNil(o.PublishPoints) {
 		return true
 	}
 
@@ -383,7 +386,7 @@ func (o *ChannelPublishingPublicationsInner) SetPublishPoints(v []ChannelPublish
 
 // GetRedundantPublishing returns the RedundantPublishing field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetRedundantPublishing() bool {
-	if o == nil || o.RedundantPublishing == nil {
+	if o == nil || IsNil(o.RedundantPublishing) {
 		var ret bool
 		return ret
 	}
@@ -393,7 +396,7 @@ func (o *ChannelPublishingPublicationsInner) GetRedundantPublishing() bool {
 // GetRedundantPublishingOk returns a tuple with the RedundantPublishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetRedundantPublishingOk() (*bool, bool) {
-	if o == nil || o.RedundantPublishing == nil {
+	if o == nil || IsNil(o.RedundantPublishing) {
 		return nil, false
 	}
 	return o.RedundantPublishing, true
@@ -401,7 +404,7 @@ func (o *ChannelPublishingPublicationsInner) GetRedundantPublishingOk() (*bool, 
 
 // HasRedundantPublishing returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasRedundantPublishing() bool {
-	if o != nil && o.RedundantPublishing != nil {
+	if o != nil && !IsNil(o.RedundantPublishing) {
 		return true
 	}
 
@@ -415,7 +418,7 @@ func (o *ChannelPublishingPublicationsInner) SetRedundantPublishing(v bool) {
 
 // GetStartover returns the Startover field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetStartover() ChannelPublishingPublicationsInnerStartover {
-	if o == nil || o.Startover == nil {
+	if o == nil || IsNil(o.Startover) {
 		var ret ChannelPublishingPublicationsInnerStartover
 		return ret
 	}
@@ -425,7 +428,7 @@ func (o *ChannelPublishingPublicationsInner) GetStartover() ChannelPublishingPub
 // GetStartoverOk returns a tuple with the Startover field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetStartoverOk() (*ChannelPublishingPublicationsInnerStartover, bool) {
-	if o == nil || o.Startover == nil {
+	if o == nil || IsNil(o.Startover) {
 		return nil, false
 	}
 	return o.Startover, true
@@ -433,7 +436,7 @@ func (o *ChannelPublishingPublicationsInner) GetStartoverOk() (*ChannelPublishin
 
 // HasStartover returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasStartover() bool {
-	if o != nil && o.Startover != nil {
+	if o != nil && !IsNil(o.Startover) {
 		return true
 	}
 
@@ -447,7 +450,7 @@ func (o *ChannelPublishingPublicationsInner) SetStartover(v ChannelPublishingPub
 
 // GetThumbnailEncoderIds returns the ThumbnailEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetThumbnailEncoderIds() []string {
-	if o == nil || o.ThumbnailEncoderIds == nil {
+	if o == nil || IsNil(o.ThumbnailEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -457,7 +460,7 @@ func (o *ChannelPublishingPublicationsInner) GetThumbnailEncoderIds() []string {
 // GetThumbnailEncoderIdsOk returns a tuple with the ThumbnailEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetThumbnailEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.ThumbnailEncoderIds == nil {
+	if o == nil || IsNil(o.ThumbnailEncoderIds) {
 		return nil, false
 	}
 	return o.ThumbnailEncoderIds, true
@@ -465,7 +468,7 @@ func (o *ChannelPublishingPublicationsInner) GetThumbnailEncoderIdsOk() ([]strin
 
 // HasThumbnailEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasThumbnailEncoderIds() bool {
-	if o != nil && o.ThumbnailEncoderIds != nil {
+	if o != nil && !IsNil(o.ThumbnailEncoderIds) {
 		return true
 	}
 
@@ -479,7 +482,7 @@ func (o *ChannelPublishingPublicationsInner) SetThumbnailEncoderIds(v []string) 
 
 // GetUseStrictBitrate returns the UseStrictBitrate field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetUseStrictBitrate() bool {
-	if o == nil || o.UseStrictBitrate == nil {
+	if o == nil || IsNil(o.UseStrictBitrate) {
 		var ret bool
 		return ret
 	}
@@ -489,7 +492,7 @@ func (o *ChannelPublishingPublicationsInner) GetUseStrictBitrate() bool {
 // GetUseStrictBitrateOk returns a tuple with the UseStrictBitrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetUseStrictBitrateOk() (*bool, bool) {
-	if o == nil || o.UseStrictBitrate == nil {
+	if o == nil || IsNil(o.UseStrictBitrate) {
 		return nil, false
 	}
 	return o.UseStrictBitrate, true
@@ -497,7 +500,7 @@ func (o *ChannelPublishingPublicationsInner) GetUseStrictBitrateOk() (*bool, boo
 
 // HasUseStrictBitrate returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasUseStrictBitrate() bool {
-	if o != nil && o.UseStrictBitrate != nil {
+	if o != nil && !IsNil(o.UseStrictBitrate) {
 		return true
 	}
 
@@ -511,7 +514,7 @@ func (o *ChannelPublishingPublicationsInner) SetUseStrictBitrate(v bool) {
 
 // GetVideoEncoderIds returns the VideoEncoderIds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetVideoEncoderIds() []string {
-	if o == nil || o.VideoEncoderIds == nil {
+	if o == nil || IsNil(o.VideoEncoderIds) {
 		var ret []string
 		return ret
 	}
@@ -521,7 +524,7 @@ func (o *ChannelPublishingPublicationsInner) GetVideoEncoderIds() []string {
 // GetVideoEncoderIdsOk returns a tuple with the VideoEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
-	if o == nil || o.VideoEncoderIds == nil {
+	if o == nil || IsNil(o.VideoEncoderIds) {
 		return nil, false
 	}
 	return o.VideoEncoderIds, true
@@ -529,7 +532,7 @@ func (o *ChannelPublishingPublicationsInner) GetVideoEncoderIdsOk() ([]string, b
 
 // HasVideoEncoderIds returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInner) HasVideoEncoderIds() bool {
-	if o != nil && o.VideoEncoderIds != nil {
+	if o != nil && !IsNil(o.VideoEncoderIds) {
 		return true
 	}
 
@@ -542,53 +545,61 @@ func (o *ChannelPublishingPublicationsInner) SetVideoEncoderIds(v []string) {
 }
 
 func (o ChannelPublishingPublicationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AudioEncoderIds != nil {
-		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
-	}
-	if o.CreateVods != nil {
-		toSerialize["create_vods"] = o.CreateVods
-	}
-	if o.Dash != nil {
-		toSerialize["dash"] = o.Dash
-	}
-	if o.Drms != nil {
-		toSerialize["drms"] = o.Drms
-	}
-	if o.DvrWindowSecs != nil {
-		toSerialize["dvr_window_secs"] = o.DvrWindowSecs
-	}
-	if o.Hls != nil {
-		toSerialize["hls"] = o.Hls
-	}
-	if o.IframeOnlyEncoderIds != nil {
-		toSerialize["iframe_only_encoder_ids"] = o.IframeOnlyEncoderIds
-	}
-	if o.MasterPlaylistName != nil {
-		toSerialize["master_playlist_name"] = o.MasterPlaylistName
-	}
-	if o.PackagerId != nil {
-		toSerialize["packager_id"] = o.PackagerId
-	}
-	if o.PublishPoints != nil {
-		toSerialize["publish_points"] = o.PublishPoints
-	}
-	if o.RedundantPublishing != nil {
-		toSerialize["redundant_publishing"] = o.RedundantPublishing
-	}
-	if o.Startover != nil {
-		toSerialize["startover"] = o.Startover
-	}
-	if o.ThumbnailEncoderIds != nil {
-		toSerialize["thumbnail_encoder_ids"] = o.ThumbnailEncoderIds
-	}
-	if o.UseStrictBitrate != nil {
-		toSerialize["use_strict_bitrate"] = o.UseStrictBitrate
-	}
-	if o.VideoEncoderIds != nil {
-		toSerialize["video_encoder_ids"] = o.VideoEncoderIds
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AudioEncoderIds) {
+		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
+	}
+	if !IsNil(o.CreateVods) {
+		toSerialize["create_vods"] = o.CreateVods
+	}
+	if !IsNil(o.Dash) {
+		toSerialize["dash"] = o.Dash
+	}
+	if !IsNil(o.Drms) {
+		toSerialize["drms"] = o.Drms
+	}
+	if !IsNil(o.DvrWindowSecs) {
+		toSerialize["dvr_window_secs"] = o.DvrWindowSecs
+	}
+	if !IsNil(o.Hls) {
+		toSerialize["hls"] = o.Hls
+	}
+	if !IsNil(o.IframeOnlyEncoderIds) {
+		toSerialize["iframe_only_encoder_ids"] = o.IframeOnlyEncoderIds
+	}
+	if !IsNil(o.MasterPlaylistName) {
+		toSerialize["master_playlist_name"] = o.MasterPlaylistName
+	}
+	if !IsNil(o.PackagerId) {
+		toSerialize["packager_id"] = o.PackagerId
+	}
+	if !IsNil(o.PublishPoints) {
+		toSerialize["publish_points"] = o.PublishPoints
+	}
+	if !IsNil(o.RedundantPublishing) {
+		toSerialize["redundant_publishing"] = o.RedundantPublishing
+	}
+	if !IsNil(o.Startover) {
+		toSerialize["startover"] = o.Startover
+	}
+	if !IsNil(o.ThumbnailEncoderIds) {
+		toSerialize["thumbnail_encoder_ids"] = o.ThumbnailEncoderIds
+	}
+	if !IsNil(o.UseStrictBitrate) {
+		toSerialize["use_strict_bitrate"] = o.UseStrictBitrate
+	}
+	if !IsNil(o.VideoEncoderIds) {
+		toSerialize["video_encoder_ids"] = o.VideoEncoderIds
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInner struct {

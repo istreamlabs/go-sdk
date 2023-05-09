@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingClosedCaptionStreamsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingClosedCaptionStreamsInner{}
+
 // ChannelPublishingClosedCaptionStreamsInner struct for ChannelPublishingClosedCaptionStreamsInner
 type ChannelPublishingClosedCaptionStreamsInner struct {
 	// Indicates that the client should play the captioning media selection group if the user has not indicated a user preference. If both auto_select and default are not set, the first captioning media selection group will be used.
@@ -44,7 +47,7 @@ func NewChannelPublishingClosedCaptionStreamsInnerWithDefaults() *ChannelPublish
 
 // GetAutoSelect returns the AutoSelect field value if set, zero value otherwise.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetAutoSelect() string {
-	if o == nil || o.AutoSelect == nil {
+	if o == nil || IsNil(o.AutoSelect) {
 		var ret string
 		return ret
 	}
@@ -54,7 +57,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetAutoSelect() string {
 // GetAutoSelectOk returns a tuple with the AutoSelect field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetAutoSelectOk() (*string, bool) {
-	if o == nil || o.AutoSelect == nil {
+	if o == nil || IsNil(o.AutoSelect) {
 		return nil, false
 	}
 	return o.AutoSelect, true
@@ -62,7 +65,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetAutoSelectOk() (*string,
 
 // HasAutoSelect returns a boolean if a field has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) HasAutoSelect() bool {
-	if o != nil && o.AutoSelect != nil {
+	if o != nil && !IsNil(o.AutoSelect) {
 		return true
 	}
 
@@ -76,7 +79,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) SetAutoSelect(v string) {
 
 // GetDefault returns the Default field value if set, zero value otherwise.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetDefault() string {
-	if o == nil || o.Default == nil {
+	if o == nil || IsNil(o.Default) {
 		var ret string
 		return ret
 	}
@@ -86,7 +89,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetDefault() string {
 // GetDefaultOk returns a tuple with the Default field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetDefaultOk() (*string, bool) {
-	if o == nil || o.Default == nil {
+	if o == nil || IsNil(o.Default) {
 		return nil, false
 	}
 	return o.Default, true
@@ -94,7 +97,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetDefaultOk() (*string, bo
 
 // HasDefault returns a boolean if a field has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) HasDefault() bool {
-	if o != nil && o.Default != nil {
+	if o != nil && !IsNil(o.Default) {
 		return true
 	}
 
@@ -108,7 +111,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) SetDefault(v string) {
 
 // GetLanguage returns the Language field value if set, zero value otherwise.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetLanguage() string {
-	if o == nil || o.Language == nil {
+	if o == nil || IsNil(o.Language) {
 		var ret string
 		return ret
 	}
@@ -118,7 +121,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetLanguage() string {
 // GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetLanguageOk() (*string, bool) {
-	if o == nil || o.Language == nil {
+	if o == nil || IsNil(o.Language) {
 		return nil, false
 	}
 	return o.Language, true
@@ -126,7 +129,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetLanguageOk() (*string, b
 
 // HasLanguage returns a boolean if a field has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) HasLanguage() bool {
-	if o != nil && o.Language != nil {
+	if o != nil && !IsNil(o.Language) {
 		return true
 	}
 
@@ -140,7 +143,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) SetLanguage(v string) {
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
@@ -150,7 +153,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetName() string {
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
 	return o.Name, true
@@ -158,7 +161,7 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) GetNameOk() (*string, bool)
 
 // HasName returns a boolean if a field has been set.
 func (o *ChannelPublishingClosedCaptionStreamsInner) HasName() bool {
-	if o != nil && o.Name != nil {
+	if o != nil && !IsNil(o.Name) {
 		return true
 	}
 
@@ -171,20 +174,28 @@ func (o *ChannelPublishingClosedCaptionStreamsInner) SetName(v string) {
 }
 
 func (o ChannelPublishingClosedCaptionStreamsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.AutoSelect != nil {
-		toSerialize["auto_select"] = o.AutoSelect
-	}
-	if o.Default != nil {
-		toSerialize["default"] = o.Default
-	}
-	if o.Language != nil {
-		toSerialize["language"] = o.Language
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingClosedCaptionStreamsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AutoSelect) {
+		toSerialize["auto_select"] = o.AutoSelect
+	}
+	if !IsNil(o.Default) {
+		toSerialize["default"] = o.Default
+	}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingClosedCaptionStreamsInner struct {

@@ -23,7 +23,7 @@ func main() {
 
 	fmt.Println("Listing sources:")
 	sourceSummaries, _, err := client.SourcesApi.ListSources(ctx).Execute()
-	if err.Error() != "" {
+	if err != nil {
 		panic(err)
 	}
 
@@ -38,7 +38,7 @@ func main() {
 	// List channels with a custom optional argument (page size).
 	reqChannels := client.ChannelsApi.ListChannels(ctx).PageSize(2)
 	chanSummaries, _, err := reqChannels.Execute()
-	if err.Error() != "" {
+	if err != nil {
 		panic(err)
 	}
 

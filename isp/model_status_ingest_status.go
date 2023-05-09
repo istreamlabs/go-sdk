@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the StatusIngestStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatus{}
+
 // StatusIngestStatus Ingest components's status.
 type StatusIngestStatus struct {
 	PrimaryStatus *StatusIngestStatusPrimaryStatus `json:"primary_status,omitempty"`
@@ -43,7 +46,7 @@ func NewStatusIngestStatusWithDefaults() *StatusIngestStatus {
 
 // GetPrimaryStatus returns the PrimaryStatus field value if set, zero value otherwise.
 func (o *StatusIngestStatus) GetPrimaryStatus() StatusIngestStatusPrimaryStatus {
-	if o == nil || o.PrimaryStatus == nil {
+	if o == nil || IsNil(o.PrimaryStatus) {
 		var ret StatusIngestStatusPrimaryStatus
 		return ret
 	}
@@ -53,7 +56,7 @@ func (o *StatusIngestStatus) GetPrimaryStatus() StatusIngestStatusPrimaryStatus 
 // GetPrimaryStatusOk returns a tuple with the PrimaryStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatus) GetPrimaryStatusOk() (*StatusIngestStatusPrimaryStatus, bool) {
-	if o == nil || o.PrimaryStatus == nil {
+	if o == nil || IsNil(o.PrimaryStatus) {
 		return nil, false
 	}
 	return o.PrimaryStatus, true
@@ -61,7 +64,7 @@ func (o *StatusIngestStatus) GetPrimaryStatusOk() (*StatusIngestStatusPrimarySta
 
 // HasPrimaryStatus returns a boolean if a field has been set.
 func (o *StatusIngestStatus) HasPrimaryStatus() bool {
-	if o != nil && o.PrimaryStatus != nil {
+	if o != nil && !IsNil(o.PrimaryStatus) {
 		return true
 	}
 
@@ -75,7 +78,7 @@ func (o *StatusIngestStatus) SetPrimaryStatus(v StatusIngestStatusPrimaryStatus)
 
 // GetSecondaryStatus returns the SecondaryStatus field value if set, zero value otherwise.
 func (o *StatusIngestStatus) GetSecondaryStatus() StatusIngestStatusSecondaryStatus {
-	if o == nil || o.SecondaryStatus == nil {
+	if o == nil || IsNil(o.SecondaryStatus) {
 		var ret StatusIngestStatusSecondaryStatus
 		return ret
 	}
@@ -85,7 +88,7 @@ func (o *StatusIngestStatus) GetSecondaryStatus() StatusIngestStatusSecondarySta
 // GetSecondaryStatusOk returns a tuple with the SecondaryStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatus) GetSecondaryStatusOk() (*StatusIngestStatusSecondaryStatus, bool) {
-	if o == nil || o.SecondaryStatus == nil {
+	if o == nil || IsNil(o.SecondaryStatus) {
 		return nil, false
 	}
 	return o.SecondaryStatus, true
@@ -93,7 +96,7 @@ func (o *StatusIngestStatus) GetSecondaryStatusOk() (*StatusIngestStatusSecondar
 
 // HasSecondaryStatus returns a boolean if a field has been set.
 func (o *StatusIngestStatus) HasSecondaryStatus() bool {
-	if o != nil && o.SecondaryStatus != nil {
+	if o != nil && !IsNil(o.SecondaryStatus) {
 		return true
 	}
 
@@ -107,7 +110,7 @@ func (o *StatusIngestStatus) SetSecondaryStatus(v StatusIngestStatusSecondarySta
 
 // GetSourceLossSlateStatus returns the SourceLossSlateStatus field value if set, zero value otherwise.
 func (o *StatusIngestStatus) GetSourceLossSlateStatus() StatusIngestStatusSourceLossSlateStatus {
-	if o == nil || o.SourceLossSlateStatus == nil {
+	if o == nil || IsNil(o.SourceLossSlateStatus) {
 		var ret StatusIngestStatusSourceLossSlateStatus
 		return ret
 	}
@@ -117,7 +120,7 @@ func (o *StatusIngestStatus) GetSourceLossSlateStatus() StatusIngestStatusSource
 // GetSourceLossSlateStatusOk returns a tuple with the SourceLossSlateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatus) GetSourceLossSlateStatusOk() (*StatusIngestStatusSourceLossSlateStatus, bool) {
-	if o == nil || o.SourceLossSlateStatus == nil {
+	if o == nil || IsNil(o.SourceLossSlateStatus) {
 		return nil, false
 	}
 	return o.SourceLossSlateStatus, true
@@ -125,7 +128,7 @@ func (o *StatusIngestStatus) GetSourceLossSlateStatusOk() (*StatusIngestStatusSo
 
 // HasSourceLossSlateStatus returns a boolean if a field has been set.
 func (o *StatusIngestStatus) HasSourceLossSlateStatus() bool {
-	if o != nil && o.SourceLossSlateStatus != nil {
+	if o != nil && !IsNil(o.SourceLossSlateStatus) {
 		return true
 	}
 
@@ -139,7 +142,7 @@ func (o *StatusIngestStatus) SetSourceLossSlateStatus(v StatusIngestStatusSource
 
 // GetSourceMergingActive returns the SourceMergingActive field value if set, zero value otherwise.
 func (o *StatusIngestStatus) GetSourceMergingActive() bool {
-	if o == nil || o.SourceMergingActive == nil {
+	if o == nil || IsNil(o.SourceMergingActive) {
 		var ret bool
 		return ret
 	}
@@ -149,7 +152,7 @@ func (o *StatusIngestStatus) GetSourceMergingActive() bool {
 // GetSourceMergingActiveOk returns a tuple with the SourceMergingActive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatus) GetSourceMergingActiveOk() (*bool, bool) {
-	if o == nil || o.SourceMergingActive == nil {
+	if o == nil || IsNil(o.SourceMergingActive) {
 		return nil, false
 	}
 	return o.SourceMergingActive, true
@@ -157,7 +160,7 @@ func (o *StatusIngestStatus) GetSourceMergingActiveOk() (*bool, bool) {
 
 // HasSourceMergingActive returns a boolean if a field has been set.
 func (o *StatusIngestStatus) HasSourceMergingActive() bool {
-	if o != nil && o.SourceMergingActive != nil {
+	if o != nil && !IsNil(o.SourceMergingActive) {
 		return true
 	}
 
@@ -171,7 +174,7 @@ func (o *StatusIngestStatus) SetSourceMergingActive(v bool) {
 
 // GetSourceMergingDisabled returns the SourceMergingDisabled field value if set, zero value otherwise.
 func (o *StatusIngestStatus) GetSourceMergingDisabled() bool {
-	if o == nil || o.SourceMergingDisabled == nil {
+	if o == nil || IsNil(o.SourceMergingDisabled) {
 		var ret bool
 		return ret
 	}
@@ -181,7 +184,7 @@ func (o *StatusIngestStatus) GetSourceMergingDisabled() bool {
 // GetSourceMergingDisabledOk returns a tuple with the SourceMergingDisabled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatus) GetSourceMergingDisabledOk() (*bool, bool) {
-	if o == nil || o.SourceMergingDisabled == nil {
+	if o == nil || IsNil(o.SourceMergingDisabled) {
 		return nil, false
 	}
 	return o.SourceMergingDisabled, true
@@ -189,7 +192,7 @@ func (o *StatusIngestStatus) GetSourceMergingDisabledOk() (*bool, bool) {
 
 // HasSourceMergingDisabled returns a boolean if a field has been set.
 func (o *StatusIngestStatus) HasSourceMergingDisabled() bool {
-	if o != nil && o.SourceMergingDisabled != nil {
+	if o != nil && !IsNil(o.SourceMergingDisabled) {
 		return true
 	}
 
@@ -202,23 +205,31 @@ func (o *StatusIngestStatus) SetSourceMergingDisabled(v bool) {
 }
 
 func (o StatusIngestStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.PrimaryStatus != nil {
-		toSerialize["primary_status"] = o.PrimaryStatus
-	}
-	if o.SecondaryStatus != nil {
-		toSerialize["secondary_status"] = o.SecondaryStatus
-	}
-	if o.SourceLossSlateStatus != nil {
-		toSerialize["source_loss_slate_status"] = o.SourceLossSlateStatus
-	}
-	if o.SourceMergingActive != nil {
-		toSerialize["source_merging_active"] = o.SourceMergingActive
-	}
-	if o.SourceMergingDisabled != nil {
-		toSerialize["source_merging_disabled"] = o.SourceMergingDisabled
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.PrimaryStatus) {
+		toSerialize["primary_status"] = o.PrimaryStatus
+	}
+	if !IsNil(o.SecondaryStatus) {
+		toSerialize["secondary_status"] = o.SecondaryStatus
+	}
+	if !IsNil(o.SourceLossSlateStatus) {
+		toSerialize["source_loss_slate_status"] = o.SourceLossSlateStatus
+	}
+	if !IsNil(o.SourceMergingActive) {
+		toSerialize["source_merging_active"] = o.SourceMergingActive
+	}
+	if !IsNil(o.SourceMergingDisabled) {
+		toSerialize["source_merging_disabled"] = o.SourceMergingDisabled
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatus struct {

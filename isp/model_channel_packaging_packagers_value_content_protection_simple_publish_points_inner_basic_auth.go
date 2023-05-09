@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth{}
+
 // ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth Only one of ['basic_auth'] may be set.
 type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth struct {
 	// Plain text password for basic auth.
@@ -40,7 +43,7 @@ func NewChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerB
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) GetPassword() string {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		var ret string
 		return ret
 	}
@@ -50,7 +53,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) GetPasswordOk() (*string, bool) {
-	if o == nil || o.Password == nil {
+	if o == nil || IsNil(o.Password) {
 		return nil, false
 	}
 	return o.Password, true
@@ -58,7 +61,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 
 // HasPassword returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) HasPassword() bool {
-	if o != nil && o.Password != nil {
+	if o != nil && !IsNil(o.Password) {
 		return true
 	}
 
@@ -72,7 +75,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) GetUsername() string {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		var ret string
 		return ret
 	}
@@ -82,7 +85,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) GetUsernameOk() (*string, bool) {
-	if o == nil || o.Username == nil {
+	if o == nil || IsNil(o.Username) {
 		return nil, false
 	}
 	return o.Username, true
@@ -90,7 +93,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 
 // HasUsername returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) HasUsername() bool {
-	if o != nil && o.Username != nil {
+	if o != nil && !IsNil(o.Username) {
 		return true
 	}
 
@@ -103,14 +106,22 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Password != nil {
-		toSerialize["password"] = o.Password
-	}
-	if o.Username != nil {
-		toSerialize["username"] = o.Username
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Password) {
+		toSerialize["password"] = o.Password
+	}
+	if !IsNil(o.Username) {
+		toSerialize["username"] = o.Username
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth struct {

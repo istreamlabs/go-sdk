@@ -24,7 +24,7 @@ type SourcesApi interface {
 	/*
 	GetSource Get Source
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
 
 Get a source's configuration
 
@@ -44,7 +44,7 @@ Get a source's configuration
 	/*
 	ListSources List Sources
 
-	<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
 
 Get a list of sources that are used to create channels.
 
@@ -77,7 +77,7 @@ func (r ApiGetSourceRequest) Execute() (*Source, *http.Response, error) {
 /*
 GetSource Get Source
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-source](#get-/v2/-org-/sources/-source-id-) instead.</b>
 
 Get a source's configuration
 
@@ -269,7 +269,7 @@ func (r ApiListSourcesRequest) Execute() ([]Summary, *http.Response, error) {
 /*
 ListSources List Sources
 
-<b>This route is deprecated and will be removed on `Wed, 15 Mar 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
+<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-sources](#get-/v2/-org-/sources) instead.</b>
 
 Get a list of sources that are used to create channels.
 

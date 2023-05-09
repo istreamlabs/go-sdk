@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelSignalingBlackoutSettingsSlatesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelSignalingBlackoutSettingsSlatesInner{}
+
 // ChannelSignalingBlackoutSettingsSlatesInner struct for ChannelSignalingBlackoutSettingsSlatesInner
 type ChannelSignalingBlackoutSettingsSlatesInner struct {
 	// Blackout slate URL to use for the specified segments. It must have one audio and one video stream. Either MPEG2 or H.264 can be used.
@@ -42,7 +45,7 @@ func NewChannelSignalingBlackoutSettingsSlatesInnerWithDefaults() *ChannelSignal
 
 // GetBlackoutSlateUrl returns the BlackoutSlateUrl field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetBlackoutSlateUrl() string {
-	if o == nil || o.BlackoutSlateUrl == nil {
+	if o == nil || IsNil(o.BlackoutSlateUrl) {
 		var ret string
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetBlackoutSlateUrl() stri
 // GetBlackoutSlateUrlOk returns a tuple with the BlackoutSlateUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetBlackoutSlateUrlOk() (*string, bool) {
-	if o == nil || o.BlackoutSlateUrl == nil {
+	if o == nil || IsNil(o.BlackoutSlateUrl) {
 		return nil, false
 	}
 	return o.BlackoutSlateUrl, true
@@ -60,7 +63,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetBlackoutSlateUrlOk() (*
 
 // HasBlackoutSlateUrl returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) HasBlackoutSlateUrl() bool {
-	if o != nil && o.BlackoutSlateUrl != nil {
+	if o != nil && !IsNil(o.BlackoutSlateUrl) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) SetBlackoutSlateUrl(v stri
 
 // GetSegments returns the Segments field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetSegments() []string {
-	if o == nil || o.Segments == nil {
+	if o == nil || IsNil(o.Segments) {
 		var ret []string
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetSegments() []string {
 // GetSegmentsOk returns a tuple with the Segments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetSegmentsOk() ([]string, bool) {
-	if o == nil || o.Segments == nil {
+	if o == nil || IsNil(o.Segments) {
 		return nil, false
 	}
 	return o.Segments, true
@@ -92,7 +95,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetSegmentsOk() ([]string,
 
 // HasSegments returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) HasSegments() bool {
-	if o != nil && o.Segments != nil {
+	if o != nil && !IsNil(o.Segments) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) SetSegments(v []string) {
 
 // GetUpids returns the Upids field value if set, zero value otherwise.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetUpids() []string {
-	if o == nil || o.Upids == nil {
+	if o == nil || IsNil(o.Upids) {
 		var ret []string
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetUpids() []string {
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetUpidsOk() ([]string, bool) {
-	if o == nil || o.Upids == nil {
+	if o == nil || IsNil(o.Upids) {
 		return nil, false
 	}
 	return o.Upids, true
@@ -124,7 +127,7 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) GetUpidsOk() ([]string, bo
 
 // HasUpids returns a boolean if a field has been set.
 func (o *ChannelSignalingBlackoutSettingsSlatesInner) HasUpids() bool {
-	if o != nil && o.Upids != nil {
+	if o != nil && !IsNil(o.Upids) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ChannelSignalingBlackoutSettingsSlatesInner) SetUpids(v []string) {
 }
 
 func (o ChannelSignalingBlackoutSettingsSlatesInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.BlackoutSlateUrl != nil {
-		toSerialize["blackout_slate_url"] = o.BlackoutSlateUrl
-	}
-	if o.Segments != nil {
-		toSerialize["segments"] = o.Segments
-	}
-	if o.Upids != nil {
-		toSerialize["upids"] = o.Upids
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelSignalingBlackoutSettingsSlatesInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BlackoutSlateUrl) {
+		toSerialize["blackout_slate_url"] = o.BlackoutSlateUrl
+	}
+	if !IsNil(o.Segments) {
+		toSerialize["segments"] = o.Segments
+	}
+	if !IsNil(o.Upids) {
+		toSerialize["upids"] = o.Upids
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelSignalingBlackoutSettingsSlatesInner struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ErrorModel type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorModel{}
+
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
 	// An optional URL to a JSON Schema document describing this resource
@@ -54,7 +57,7 @@ func NewErrorModelWithDefaults() *ErrorModel {
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *ErrorModel) GetSchema() string {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
 	}
@@ -64,7 +67,7 @@ func (o *ErrorModel) GetSchema() string {
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetSchemaOk() (*string, bool) {
-	if o == nil || o.Schema == nil {
+	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
 	return o.Schema, true
@@ -72,7 +75,7 @@ func (o *ErrorModel) GetSchemaOk() (*string, bool) {
 
 // HasSchema returns a boolean if a field has been set.
 func (o *ErrorModel) HasSchema() bool {
-	if o != nil && o.Schema != nil {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
@@ -86,7 +89,7 @@ func (o *ErrorModel) SetSchema(v string) {
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *ErrorModel) GetDetail() string {
-	if o == nil || o.Detail == nil {
+	if o == nil || IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
@@ -96,7 +99,7 @@ func (o *ErrorModel) GetDetail() string {
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetDetailOk() (*string, bool) {
-	if o == nil || o.Detail == nil {
+	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
 	return o.Detail, true
@@ -104,7 +107,7 @@ func (o *ErrorModel) GetDetailOk() (*string, bool) {
 
 // HasDetail returns a boolean if a field has been set.
 func (o *ErrorModel) HasDetail() bool {
-	if o != nil && o.Detail != nil {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
@@ -118,7 +121,7 @@ func (o *ErrorModel) SetDetail(v string) {
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *ErrorModel) GetErrors() []ErrorModelErrorsInner {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret []ErrorModelErrorsInner
 		return ret
 	}
@@ -128,7 +131,7 @@ func (o *ErrorModel) GetErrors() []ErrorModelErrorsInner {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetErrorsOk() ([]ErrorModelErrorsInner, bool) {
-	if o == nil || o.Errors == nil {
+	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
 	return o.Errors, true
@@ -136,7 +139,7 @@ func (o *ErrorModel) GetErrorsOk() ([]ErrorModelErrorsInner, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *ErrorModel) HasErrors() bool {
-	if o != nil && o.Errors != nil {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -150,7 +153,7 @@ func (o *ErrorModel) SetErrors(v []ErrorModelErrorsInner) {
 
 // GetInstance returns the Instance field value if set, zero value otherwise.
 func (o *ErrorModel) GetInstance() string {
-	if o == nil || o.Instance == nil {
+	if o == nil || IsNil(o.Instance) {
 		var ret string
 		return ret
 	}
@@ -160,7 +163,7 @@ func (o *ErrorModel) GetInstance() string {
 // GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetInstanceOk() (*string, bool) {
-	if o == nil || o.Instance == nil {
+	if o == nil || IsNil(o.Instance) {
 		return nil, false
 	}
 	return o.Instance, true
@@ -168,7 +171,7 @@ func (o *ErrorModel) GetInstanceOk() (*string, bool) {
 
 // HasInstance returns a boolean if a field has been set.
 func (o *ErrorModel) HasInstance() bool {
-	if o != nil && o.Instance != nil {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
@@ -182,7 +185,7 @@ func (o *ErrorModel) SetInstance(v string) {
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *ErrorModel) GetStatus() int32 {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
 	}
@@ -192,7 +195,7 @@ func (o *ErrorModel) GetStatus() int32 {
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetStatusOk() (*int32, bool) {
-	if o == nil || o.Status == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return o.Status, true
@@ -200,7 +203,7 @@ func (o *ErrorModel) GetStatusOk() (*int32, bool) {
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ErrorModel) HasStatus() bool {
-	if o != nil && o.Status != nil {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
@@ -214,7 +217,7 @@ func (o *ErrorModel) SetStatus(v int32) {
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ErrorModel) GetTitle() string {
-	if o == nil || o.Title == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
@@ -224,7 +227,7 @@ func (o *ErrorModel) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetTitleOk() (*string, bool) {
-	if o == nil || o.Title == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
 	return o.Title, true
@@ -232,7 +235,7 @@ func (o *ErrorModel) GetTitleOk() (*string, bool) {
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ErrorModel) HasTitle() bool {
-	if o != nil && o.Title != nil {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
@@ -246,7 +249,7 @@ func (o *ErrorModel) SetTitle(v string) {
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ErrorModel) GetType() string {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret string
 		return ret
 	}
@@ -256,7 +259,7 @@ func (o *ErrorModel) GetType() string {
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ErrorModel) GetTypeOk() (*string, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
 	return o.Type, true
@@ -264,7 +267,7 @@ func (o *ErrorModel) GetTypeOk() (*string, bool) {
 
 // HasType returns a boolean if a field has been set.
 func (o *ErrorModel) HasType() bool {
-	if o != nil && o.Type != nil {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
@@ -277,29 +280,37 @@ func (o *ErrorModel) SetType(v string) {
 }
 
 func (o ErrorModel) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
-		toSerialize["$schema"] = o.Schema
-	}
-	if o.Detail != nil {
-		toSerialize["detail"] = o.Detail
-	}
-	if o.Errors != nil {
-		toSerialize["errors"] = o.Errors
-	}
-	if o.Instance != nil {
-		toSerialize["instance"] = o.Instance
-	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
-	}
-	if o.Title != nil {
-		toSerialize["title"] = o.Title
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ErrorModel) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Schema) {
+		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
+	}
+	if !IsNil(o.Errors) {
+		toSerialize["errors"] = o.Errors
+	}
+	if !IsNil(o.Instance) {
+		toSerialize["instance"] = o.Instance
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	return toSerialize, nil
 }
 
 type NullableErrorModel struct {

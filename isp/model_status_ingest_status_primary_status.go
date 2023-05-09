@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+// checks if the StatusIngestStatusPrimaryStatus type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &StatusIngestStatusPrimaryStatus{}
+
 // StatusIngestStatusPrimaryStatus Primary source status.
 type StatusIngestStatusPrimaryStatus struct {
 	// Reports whether this is the active source - i.e. the source being transcoded.
@@ -50,7 +53,7 @@ func NewStatusIngestStatusPrimaryStatusWithDefaults() *StatusIngestStatusPrimary
 
 // GetActive returns the Active field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetActive() bool {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		var ret bool
 		return ret
 	}
@@ -60,7 +63,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetActive() bool {
 // GetActiveOk returns a tuple with the Active field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetActiveOk() (*bool, bool) {
-	if o == nil || o.Active == nil {
+	if o == nil || IsNil(o.Active) {
 		return nil, false
 	}
 	return o.Active, true
@@ -68,7 +71,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetActiveOk() (*bool, bool) {
 
 // HasActive returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasActive() bool {
-	if o != nil && o.Active != nil {
+	if o != nil && !IsNil(o.Active) {
 		return true
 	}
 
@@ -82,7 +85,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetActive(v bool) {
 
 // GetCcErrors returns the CcErrors field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetCcErrors() int64 {
-	if o == nil || o.CcErrors == nil {
+	if o == nil || IsNil(o.CcErrors) {
 		var ret int64
 		return ret
 	}
@@ -92,7 +95,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetCcErrors() int64 {
 // GetCcErrorsOk returns a tuple with the CcErrors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetCcErrorsOk() (*int64, bool) {
-	if o == nil || o.CcErrors == nil {
+	if o == nil || IsNil(o.CcErrors) {
 		return nil, false
 	}
 	return o.CcErrors, true
@@ -100,7 +103,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetCcErrorsOk() (*int64, bool) {
 
 // HasCcErrors returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasCcErrors() bool {
-	if o != nil && o.CcErrors != nil {
+	if o != nil && !IsNil(o.CcErrors) {
 		return true
 	}
 
@@ -114,7 +117,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetCcErrors(v int64) {
 
 // GetLastDataReceived returns the LastDataReceived field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetLastDataReceived() time.Time {
-	if o == nil || o.LastDataReceived == nil {
+	if o == nil || IsNil(o.LastDataReceived) {
 		var ret time.Time
 		return ret
 	}
@@ -124,7 +127,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetLastDataReceived() time.Time {
 // GetLastDataReceivedOk returns a tuple with the LastDataReceived field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetLastDataReceivedOk() (*time.Time, bool) {
-	if o == nil || o.LastDataReceived == nil {
+	if o == nil || IsNil(o.LastDataReceived) {
 		return nil, false
 	}
 	return o.LastDataReceived, true
@@ -132,7 +135,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetLastDataReceivedOk() (*time.Time, b
 
 // HasLastDataReceived returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasLastDataReceived() bool {
-	if o != nil && o.LastDataReceived != nil {
+	if o != nil && !IsNil(o.LastDataReceived) {
 		return true
 	}
 
@@ -146,7 +149,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetLastDataReceived(v time.Time) {
 
 // GetPinned returns the Pinned field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetPinned() bool {
-	if o == nil || o.Pinned == nil {
+	if o == nil || IsNil(o.Pinned) {
 		var ret bool
 		return ret
 	}
@@ -156,7 +159,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetPinned() bool {
 // GetPinnedOk returns a tuple with the Pinned field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetPinnedOk() (*bool, bool) {
-	if o == nil || o.Pinned == nil {
+	if o == nil || IsNil(o.Pinned) {
 		return nil, false
 	}
 	return o.Pinned, true
@@ -164,7 +167,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetPinnedOk() (*bool, bool) {
 
 // HasPinned returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasPinned() bool {
-	if o != nil && o.Pinned != nil {
+	if o != nil && !IsNil(o.Pinned) {
 		return true
 	}
 
@@ -178,7 +181,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetPinned(v bool) {
 
 // GetPmt returns the Pmt field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetPmt() StatusIngestStatusPrimaryStatusPmt {
-	if o == nil || o.Pmt == nil {
+	if o == nil || IsNil(o.Pmt) {
 		var ret StatusIngestStatusPrimaryStatusPmt
 		return ret
 	}
@@ -188,7 +191,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetPmt() StatusIngestStatusPrimaryStat
 // GetPmtOk returns a tuple with the Pmt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetPmtOk() (*StatusIngestStatusPrimaryStatusPmt, bool) {
-	if o == nil || o.Pmt == nil {
+	if o == nil || IsNil(o.Pmt) {
 		return nil, false
 	}
 	return o.Pmt, true
@@ -196,7 +199,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetPmtOk() (*StatusIngestStatusPrimary
 
 // HasPmt returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasPmt() bool {
-	if o != nil && o.Pmt != nil {
+	if o != nil && !IsNil(o.Pmt) {
 		return true
 	}
 
@@ -210,7 +213,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetPmt(v StatusIngestStatusPrimaryStat
 
 // GetQualityScore returns the QualityScore field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetQualityScore() float64 {
-	if o == nil || o.QualityScore == nil {
+	if o == nil || IsNil(o.QualityScore) {
 		var ret float64
 		return ret
 	}
@@ -220,7 +223,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetQualityScore() float64 {
 // GetQualityScoreOk returns a tuple with the QualityScore field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetQualityScoreOk() (*float64, bool) {
-	if o == nil || o.QualityScore == nil {
+	if o == nil || IsNil(o.QualityScore) {
 		return nil, false
 	}
 	return o.QualityScore, true
@@ -228,7 +231,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetQualityScoreOk() (*float64, bool) {
 
 // HasQualityScore returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasQualityScore() bool {
-	if o != nil && o.QualityScore != nil {
+	if o != nil && !IsNil(o.QualityScore) {
 		return true
 	}
 
@@ -242,7 +245,7 @@ func (o *StatusIngestStatusPrimaryStatus) SetQualityScore(v float64) {
 
 // GetUnavailableReason returns the UnavailableReason field value if set, zero value otherwise.
 func (o *StatusIngestStatusPrimaryStatus) GetUnavailableReason() string {
-	if o == nil || o.UnavailableReason == nil {
+	if o == nil || IsNil(o.UnavailableReason) {
 		var ret string
 		return ret
 	}
@@ -252,7 +255,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetUnavailableReason() string {
 // GetUnavailableReasonOk returns a tuple with the UnavailableReason field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StatusIngestStatusPrimaryStatus) GetUnavailableReasonOk() (*string, bool) {
-	if o == nil || o.UnavailableReason == nil {
+	if o == nil || IsNil(o.UnavailableReason) {
 		return nil, false
 	}
 	return o.UnavailableReason, true
@@ -260,7 +263,7 @@ func (o *StatusIngestStatusPrimaryStatus) GetUnavailableReasonOk() (*string, boo
 
 // HasUnavailableReason returns a boolean if a field has been set.
 func (o *StatusIngestStatusPrimaryStatus) HasUnavailableReason() bool {
-	if o != nil && o.UnavailableReason != nil {
+	if o != nil && !IsNil(o.UnavailableReason) {
 		return true
 	}
 
@@ -273,29 +276,37 @@ func (o *StatusIngestStatusPrimaryStatus) SetUnavailableReason(v string) {
 }
 
 func (o StatusIngestStatusPrimaryStatus) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.Active != nil {
-		toSerialize["active"] = o.Active
-	}
-	if o.CcErrors != nil {
-		toSerialize["cc_errors"] = o.CcErrors
-	}
-	if o.LastDataReceived != nil {
-		toSerialize["last_data_received"] = o.LastDataReceived
-	}
-	if o.Pinned != nil {
-		toSerialize["pinned"] = o.Pinned
-	}
-	if o.Pmt != nil {
-		toSerialize["pmt"] = o.Pmt
-	}
-	if o.QualityScore != nil {
-		toSerialize["quality_score"] = o.QualityScore
-	}
-	if o.UnavailableReason != nil {
-		toSerialize["unavailable_reason"] = o.UnavailableReason
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o StatusIngestStatusPrimaryStatus) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Active) {
+		toSerialize["active"] = o.Active
+	}
+	if !IsNil(o.CcErrors) {
+		toSerialize["cc_errors"] = o.CcErrors
+	}
+	if !IsNil(o.LastDataReceived) {
+		toSerialize["last_data_received"] = o.LastDataReceived
+	}
+	if !IsNil(o.Pinned) {
+		toSerialize["pinned"] = o.Pinned
+	}
+	if !IsNil(o.Pmt) {
+		toSerialize["pmt"] = o.Pmt
+	}
+	if !IsNil(o.QualityScore) {
+		toSerialize["quality_score"] = o.QualityScore
+	}
+	if !IsNil(o.UnavailableReason) {
+		toSerialize["unavailable_reason"] = o.UnavailableReason
+	}
+	return toSerialize, nil
 }
 
 type NullableStatusIngestStatusPrimaryStatus struct {

@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPackagingPackagersValueContentProtectionKeyRotation type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionKeyRotation{}
+
 // ChannelPackagingPackagersValueContentProtectionKeyRotation Configures how keys should be rotated
 type ChannelPackagingPackagersValueContentProtectionKeyRotation struct {
 	// Rotate keys based on the specified time interval. If Program is also provided then this time interval will only apply to media segments that are outside of program boundaries. If Program is NOT provided then only this time interval will be used to decided when to rotate keys.
@@ -42,7 +45,7 @@ func NewChannelPackagingPackagersValueContentProtectionKeyRotationWithDefaults()
 
 // GetIntervalSecs returns the IntervalSecs field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetIntervalSecs() float32 {
-	if o == nil || o.IntervalSecs == nil {
+	if o == nil || IsNil(o.IntervalSecs) {
 		var ret float32
 		return ret
 	}
@@ -52,7 +55,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetInterval
 // GetIntervalSecsOk returns a tuple with the IntervalSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetIntervalSecsOk() (*float32, bool) {
-	if o == nil || o.IntervalSecs == nil {
+	if o == nil || IsNil(o.IntervalSecs) {
 		return nil, false
 	}
 	return o.IntervalSecs, true
@@ -60,7 +63,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetInterval
 
 // HasIntervalSecs returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) HasIntervalSecs() bool {
-	if o != nil && o.IntervalSecs != nil {
+	if o != nil && !IsNil(o.IntervalSecs) {
 		return true
 	}
 
@@ -74,7 +77,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) SetInterval
 
 // GetProgram returns the Program field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgram() bool {
-	if o == nil || o.Program == nil {
+	if o == nil || IsNil(o.Program) {
 		var ret bool
 		return ret
 	}
@@ -84,7 +87,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgram(
 // GetProgramOk returns a tuple with the Program field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramOk() (*bool, bool) {
-	if o == nil || o.Program == nil {
+	if o == nil || IsNil(o.Program) {
 		return nil, false
 	}
 	return o.Program, true
@@ -92,7 +95,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramO
 
 // HasProgram returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) HasProgram() bool {
-	if o != nil && o.Program != nil {
+	if o != nil && !IsNil(o.Program) {
 		return true
 	}
 
@@ -106,7 +109,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) SetProgram(
 
 // GetProgramOverlapSkipEncrypt returns the ProgramOverlapSkipEncrypt field value if set, zero value otherwise.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramOverlapSkipEncrypt() bool {
-	if o == nil || o.ProgramOverlapSkipEncrypt == nil {
+	if o == nil || IsNil(o.ProgramOverlapSkipEncrypt) {
 		var ret bool
 		return ret
 	}
@@ -116,7 +119,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramO
 // GetProgramOverlapSkipEncryptOk returns a tuple with the ProgramOverlapSkipEncrypt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramOverlapSkipEncryptOk() (*bool, bool) {
-	if o == nil || o.ProgramOverlapSkipEncrypt == nil {
+	if o == nil || IsNil(o.ProgramOverlapSkipEncrypt) {
 		return nil, false
 	}
 	return o.ProgramOverlapSkipEncrypt, true
@@ -124,7 +127,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) GetProgramO
 
 // HasProgramOverlapSkipEncrypt returns a boolean if a field has been set.
 func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) HasProgramOverlapSkipEncrypt() bool {
-	if o != nil && o.ProgramOverlapSkipEncrypt != nil {
+	if o != nil && !IsNil(o.ProgramOverlapSkipEncrypt) {
 		return true
 	}
 
@@ -137,17 +140,25 @@ func (o *ChannelPackagingPackagersValueContentProtectionKeyRotation) SetProgramO
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionKeyRotation) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.IntervalSecs != nil {
-		toSerialize["interval_secs"] = o.IntervalSecs
-	}
-	if o.Program != nil {
-		toSerialize["program"] = o.Program
-	}
-	if o.ProgramOverlapSkipEncrypt != nil {
-		toSerialize["program_overlap_skip_encrypt"] = o.ProgramOverlapSkipEncrypt
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPackagingPackagersValueContentProtectionKeyRotation) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.IntervalSecs) {
+		toSerialize["interval_secs"] = o.IntervalSecs
+	}
+	if !IsNil(o.Program) {
+		toSerialize["program"] = o.Program
+	}
+	if !IsNil(o.ProgramOverlapSkipEncrypt) {
+		toSerialize["program_overlap_skip_encrypt"] = o.ProgramOverlapSkipEncrypt
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPackagingPackagersValueContentProtectionKeyRotation struct {

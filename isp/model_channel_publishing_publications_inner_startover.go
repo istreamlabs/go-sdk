@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ChannelPublishingPublicationsInnerStartover type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerStartover{}
+
 // ChannelPublishingPublicationsInnerStartover Configures startover processing for this Publication.
 type ChannelPublishingPublicationsInnerStartover struct {
 	// Trigger Startover on the first Program Start. Only one of ['first_program_start', 'on_airing_id'] may be set.
@@ -39,7 +42,7 @@ func NewChannelPublishingPublicationsInnerStartoverWithDefaults() *ChannelPublis
 
 // GetFirstProgramStart returns the FirstProgramStart field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStart() map[string]interface{} {
-	if o == nil || o.FirstProgramStart == nil {
+	if o == nil || IsNil(o.FirstProgramStart) {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -49,15 +52,15 @@ func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStart() map
 // GetFirstProgramStartOk returns a tuple with the FirstProgramStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStartOk() (map[string]interface{}, bool) {
-	if o == nil || o.FirstProgramStart == nil {
-		return nil, false
+	if o == nil || IsNil(o.FirstProgramStart) {
+		return map[string]interface{}{}, false
 	}
 	return o.FirstProgramStart, true
 }
 
 // HasFirstProgramStart returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerStartover) HasFirstProgramStart() bool {
-	if o != nil && o.FirstProgramStart != nil {
+	if o != nil && !IsNil(o.FirstProgramStart) {
 		return true
 	}
 
@@ -71,7 +74,7 @@ func (o *ChannelPublishingPublicationsInnerStartover) SetFirstProgramStart(v map
 
 // GetOnAiringId returns the OnAiringId field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerStartover) GetOnAiringId() ChannelPublishingPublicationsInnerStartoverOnAiringId {
-	if o == nil || o.OnAiringId == nil {
+	if o == nil || IsNil(o.OnAiringId) {
 		var ret ChannelPublishingPublicationsInnerStartoverOnAiringId
 		return ret
 	}
@@ -81,7 +84,7 @@ func (o *ChannelPublishingPublicationsInnerStartover) GetOnAiringId() ChannelPub
 // GetOnAiringIdOk returns a tuple with the OnAiringId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ChannelPublishingPublicationsInnerStartover) GetOnAiringIdOk() (*ChannelPublishingPublicationsInnerStartoverOnAiringId, bool) {
-	if o == nil || o.OnAiringId == nil {
+	if o == nil || IsNil(o.OnAiringId) {
 		return nil, false
 	}
 	return o.OnAiringId, true
@@ -89,7 +92,7 @@ func (o *ChannelPublishingPublicationsInnerStartover) GetOnAiringIdOk() (*Channe
 
 // HasOnAiringId returns a boolean if a field has been set.
 func (o *ChannelPublishingPublicationsInnerStartover) HasOnAiringId() bool {
-	if o != nil && o.OnAiringId != nil {
+	if o != nil && !IsNil(o.OnAiringId) {
 		return true
 	}
 
@@ -102,14 +105,22 @@ func (o *ChannelPublishingPublicationsInnerStartover) SetOnAiringId(v ChannelPub
 }
 
 func (o ChannelPublishingPublicationsInnerStartover) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.FirstProgramStart != nil {
-		toSerialize["first_program_start"] = o.FirstProgramStart
-	}
-	if o.OnAiringId != nil {
-		toSerialize["on_airing_id"] = o.OnAiringId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ChannelPublishingPublicationsInnerStartover) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FirstProgramStart) {
+		toSerialize["first_program_start"] = o.FirstProgramStart
+	}
+	if !IsNil(o.OnAiringId) {
+		toSerialize["on_airing_id"] = o.OnAiringId
+	}
+	return toSerialize, nil
 }
 
 type NullableChannelPublishingPublicationsInnerStartover struct {

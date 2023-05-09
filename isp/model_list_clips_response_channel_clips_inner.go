@@ -13,6 +13,9 @@ import (
 	"encoding/json"
 )
 
+// checks if the ListClipsResponseChannelClipsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListClipsResponseChannelClipsInner{}
+
 // ListClipsResponseChannelClipsInner struct for ListClipsResponseChannelClipsInner
 type ListClipsResponseChannelClipsInner struct {
 	// List of clips associated with the VOD
@@ -89,14 +92,18 @@ func (o *ListClipsResponseChannelClipsInner) SetVodId(v string) {
 }
 
 func (o ListClipsResponseChannelClipsInner) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if true {
-		toSerialize["clips"] = o.Clips
-	}
-	if true {
-		toSerialize["vod_id"] = o.VodId
+	toSerialize,err := o.ToMap()
+	if err != nil {
+		return []byte{}, err
 	}
 	return json.Marshal(toSerialize)
+}
+
+func (o ListClipsResponseChannelClipsInner) ToMap() (map[string]interface{}, error) {
+	toSerialize := map[string]interface{}{}
+	toSerialize["clips"] = o.Clips
+	toSerialize["vod_id"] = o.VodId
+	return toSerialize, nil
 }
 
 type NullableListClipsResponseChannelClipsInner struct {
