@@ -188,5 +188,16 @@ model_update_product_config_request_notifications_inner.go
 model_update_product_config_request_notifications_inner_notification.go
 model_update_product_config_request_workflow_config.go
 response.go
+test/api_audit_operations_for_organization_test.go
+test/api_audit_operations_test.go
+test/api_available_sources_test.go
+test/api_channel_operations_for_organization_test.go
+test/api_channel_operations_test.go
+test/api_channels_for_organization_test.go
+test/api_channels_test.go
 test/api_deprecated_live2_vod_test.go
+test/api_live2_vod_for_organization_test.go
+test/api_organizations_test.go
+test/api_source_previews_test.go
+test/api_sources_test.go
 utils.go
