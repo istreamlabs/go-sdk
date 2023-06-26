@@ -20,6 +20,7 @@ var _ MappedNullable = &ChannelPublishingRtmpPublicationsInner{}
 type ChannelPublishingRtmpPublicationsInner struct {
 	// Only AAC encoders are supported
 	AudioEncoderId *string `json:"audio_encoder_id,omitempty"`
+	// RTMP publication ID. Must be unique.
 	Id *string `json:"id,omitempty"`
 	Url *string `json:"url,omitempty"`
 	// Only h264 encoders are supported

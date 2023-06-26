@@ -63,7 +63,7 @@ type APIClient struct {
 
 	ChannelsForOrganizationApi ChannelsForOrganizationApi
 
-	DefaultApi DefaultApi
+	DeprecatedLive2VODApi DeprecatedLive2VODApi
 
 	Live2VODForOrganizationApi Live2VODForOrganizationApi
 
@@ -97,7 +97,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ChannelOperationsForOrganizationApi = (*ChannelOperationsForOrganizationApiService)(&c.common)
 	c.ChannelsApi = (*ChannelsApiService)(&c.common)
 	c.ChannelsForOrganizationApi = (*ChannelsForOrganizationApiService)(&c.common)
-	c.DefaultApi = (*DefaultApiService)(&c.common)
+	c.DeprecatedLive2VODApi = (*DeprecatedLive2VODApiService)(&c.common)
 	c.Live2VODForOrganizationApi = (*Live2VODForOrganizationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
@@ -684,16 +684,17 @@ func formatErrorMessage(status string, v interface{}) string {
 	str := ""
 	metaValue := reflect.ValueOf(v).Elem()
 
-	field := metaValue.FieldByName("Title")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s", field.Interface())
+	if metaValue.Kind() == reflect.Struct {
+		field := metaValue.FieldByName("Title")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s", field.Interface())
+		}
+
+		field = metaValue.FieldByName("Detail")
+		if field != (reflect.Value{}) {
+			str = fmt.Sprintf("%s (%s)", str, field.Interface())
+		}
 	}
 
-	field = metaValue.FieldByName("Detail")
-	if field != (reflect.Value{}) {
-		str = fmt.Sprintf("%s (%s)", str, field.Interface())
-	}
-
-	// status title (detail)
 	return strings.TrimSpace(fmt.Sprintf("%s %s", status, str))
 }

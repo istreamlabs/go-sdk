@@ -21,6 +21,7 @@ type ChannelPackagingPackagersValue struct {
 	ContentProtection *ChannelPackagingPackagersValueContentProtection `json:"content_protection,omitempty"`
 	Mp2t *ChannelPackagingPackagersValueMp2t `json:"mp2t,omitempty"`
 	Mp4 *ChannelPackagingPackagersValueMp4 `json:"mp4,omitempty"`
+	WebVtt *ChannelPackagingPackagersValueWebVtt `json:"web_vtt,omitempty"`
 }
 
 // NewChannelPackagingPackagersValue instantiates a new ChannelPackagingPackagersValue object
@@ -136,6 +137,38 @@ func (o *ChannelPackagingPackagersValue) SetMp4(v ChannelPackagingPackagersValue
 	o.Mp4 = &v
 }
 
+// GetWebVtt returns the WebVtt field value if set, zero value otherwise.
+func (o *ChannelPackagingPackagersValue) GetWebVtt() ChannelPackagingPackagersValueWebVtt {
+	if o == nil || IsNil(o.WebVtt) {
+		var ret ChannelPackagingPackagersValueWebVtt
+		return ret
+	}
+	return *o.WebVtt
+}
+
+// GetWebVttOk returns a tuple with the WebVtt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingPackagersValue) GetWebVttOk() (*ChannelPackagingPackagersValueWebVtt, bool) {
+	if o == nil || IsNil(o.WebVtt) {
+		return nil, false
+	}
+	return o.WebVtt, true
+}
+
+// HasWebVtt returns a boolean if a field has been set.
+func (o *ChannelPackagingPackagersValue) HasWebVtt() bool {
+	if o != nil && !IsNil(o.WebVtt) {
+		return true
+	}
+
+	return false
+}
+
+// SetWebVtt gets a reference to the given ChannelPackagingPackagersValueWebVtt and assigns it to the WebVtt field.
+func (o *ChannelPackagingPackagersValue) SetWebVtt(v ChannelPackagingPackagersValueWebVtt) {
+	o.WebVtt = &v
+}
+
 func (o ChannelPackagingPackagersValue) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +187,9 @@ func (o ChannelPackagingPackagersValue) ToMap() (map[string]interface{}, error) 
 	}
 	if !IsNil(o.Mp4) {
 		toSerialize["mp4"] = o.Mp4
+	}
+	if !IsNil(o.WebVtt) {
+		toSerialize["web_vtt"] = o.WebVtt
 	}
 	return toSerialize, nil
 }
