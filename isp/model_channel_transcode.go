@@ -32,6 +32,8 @@ type ChannelTranscode struct {
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
 	ResizeMode *string `json:"resize_mode,omitempty"`
 	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
+	// Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec.
+	SubtitleEncoders []ChannelTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty"`
 	// Thumbnail encoders specify how to create image snapshots of the video stream.
 	ThumbnailEncoders []ChannelTranscodeThumbnailEncodersInner `json:"thumbnail_encoders,omitempty"`
 	// Video encoders specify video conversion settings, e.g. dimensions, codec, bitrate, etc.
@@ -311,6 +313,38 @@ func (o *ChannelTranscode) SetSegmenter(v ChannelTranscodeSegmenter) {
 	o.Segmenter = &v
 }
 
+// GetSubtitleEncoders returns the SubtitleEncoders field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetSubtitleEncoders() []ChannelTranscodeSubtitleEncodersInner {
+	if o == nil || IsNil(o.SubtitleEncoders) {
+		var ret []ChannelTranscodeSubtitleEncodersInner
+		return ret
+	}
+	return o.SubtitleEncoders
+}
+
+// GetSubtitleEncodersOk returns a tuple with the SubtitleEncoders field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetSubtitleEncodersOk() ([]ChannelTranscodeSubtitleEncodersInner, bool) {
+	if o == nil || IsNil(o.SubtitleEncoders) {
+		return nil, false
+	}
+	return o.SubtitleEncoders, true
+}
+
+// HasSubtitleEncoders returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasSubtitleEncoders() bool {
+	if o != nil && !IsNil(o.SubtitleEncoders) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtitleEncoders gets a reference to the given []ChannelTranscodeSubtitleEncodersInner and assigns it to the SubtitleEncoders field.
+func (o *ChannelTranscode) SetSubtitleEncoders(v []ChannelTranscodeSubtitleEncodersInner) {
+	o.SubtitleEncoders = v
+}
+
 // GetThumbnailEncoders returns the ThumbnailEncoders field value if set, zero value otherwise.
 func (o *ChannelTranscode) GetThumbnailEncoders() []ChannelTranscodeThumbnailEncodersInner {
 	if o == nil || IsNil(o.ThumbnailEncoders) {
@@ -408,6 +442,9 @@ func (o ChannelTranscode) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Segmenter) {
 		toSerialize["segmenter"] = o.Segmenter
+	}
+	if !IsNil(o.SubtitleEncoders) {
+		toSerialize["subtitle_encoders"] = o.SubtitleEncoders
 	}
 	if !IsNil(o.ThumbnailEncoders) {
 		toSerialize["thumbnail_encoders"] = o.ThumbnailEncoders

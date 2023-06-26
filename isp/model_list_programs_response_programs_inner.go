@@ -31,8 +31,8 @@ type ListProgramsResponseProgramsInner struct {
 	PublishedClipId int64 `json:"published_clip_id"`
 	// VOD ID published for program
 	PublishedVodId int64 `json:"published_vod_id"`
-	// Region that the program is in
-	Region string `json:"region"`
+	// Region represents the general geolocation the program is in.
+	Region *string `json:"region,omitempty"`
 	// How many days the program is retained for
 	RetentionDays int64 `json:"retention_days"`
 	// Total Bytes of the Program
@@ -43,7 +43,7 @@ type ListProgramsResponseProgramsInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListProgramsResponseProgramsInner(description string, fileCount int64, id string, lastPublished time.Time, publishedClipId int64, publishedVodId int64, region string, retentionDays int64, totalBytes int64) *ListProgramsResponseProgramsInner {
+func NewListProgramsResponseProgramsInner(description string, fileCount int64, id string, lastPublished time.Time, publishedClipId int64, publishedVodId int64, retentionDays int64, totalBytes int64) *ListProgramsResponseProgramsInner {
 	this := ListProgramsResponseProgramsInner{}
 	this.Description = description
 	this.FileCount = fileCount
@@ -51,7 +51,6 @@ func NewListProgramsResponseProgramsInner(description string, fileCount int64, i
 	this.LastPublished = lastPublished
 	this.PublishedClipId = publishedClipId
 	this.PublishedVodId = publishedVodId
-	this.Region = region
 	this.RetentionDays = retentionDays
 	this.TotalBytes = totalBytes
 	return &this
@@ -209,28 +208,36 @@ func (o *ListProgramsResponseProgramsInner) SetPublishedVodId(v int64) {
 	o.PublishedVodId = v
 }
 
-// GetRegion returns the Region field value
+// GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ListProgramsResponseProgramsInner) GetRegion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-
-	return o.Region
+	return *o.Region
 }
 
-// GetRegionOk returns a tuple with the Region field value
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ListProgramsResponseProgramsInner) GetRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
-	return &o.Region, true
+	return o.Region, true
 }
 
-// SetRegion sets field value
+// HasRegion returns a boolean if a field has been set.
+func (o *ListProgramsResponseProgramsInner) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *ListProgramsResponseProgramsInner) SetRegion(v string) {
-	o.Region = v
+	o.Region = &v
 }
 
 // GetRetentionDays returns the RetentionDays field value
@@ -297,7 +304,9 @@ func (o ListProgramsResponseProgramsInner) ToMap() (map[string]interface{}, erro
 	toSerialize["last_published"] = o.LastPublished
 	toSerialize["published_clip_id"] = o.PublishedClipId
 	toSerialize["published_vod_id"] = o.PublishedVodId
-	toSerialize["region"] = o.Region
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
 	toSerialize["retention_days"] = o.RetentionDays
 	toSerialize["total_bytes"] = o.TotalBytes
 	return toSerialize, nil

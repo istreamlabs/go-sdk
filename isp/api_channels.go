@@ -27,7 +27,12 @@ type ChannelsApi interface {
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
 
-Delete a channel and stop publishing.  This action is idempotent.
+Delete a channel and stop publishing. This action is idempotent.
+
+End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
+1. The channel's DesiredState must be updated to `OFF` and include the flag to not end playlist. See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
+2. Once the channel is `OFF`, the channel can be deleted.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param channelId Unique channel identifier
@@ -197,7 +202,12 @@ DeleteChannel Delete channel
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [delete-org-channel](#delete-/v2/-org-/channels/-channel-id-) instead.</b>
 
-Delete a channel and stop publishing.  This action is idempotent.
+Delete a channel and stop publishing. This action is idempotent.
+
+End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
+1. The channel's DesiredState must be updated to `OFF` and include the flag to not end playlist. See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
+2. Once the channel is `OFF`, the channel can be deleted.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param channelId Unique channel identifier
