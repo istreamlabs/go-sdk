@@ -20,6 +20,8 @@ var _ MappedNullable = &PostClipRequest{}
 type PostClipRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty"`
+	// Identifer that is carried through archive and collapse notifications for the clip creation
+	CorrelationId *string `json:"correlation_id,omitempty"`
 	// Description of the clip being created
 	Description *string `json:"description,omitempty"`
 	// End timestamp in RFC3339Nano format
@@ -79,6 +81,38 @@ func (o *PostClipRequest) HasSchema() bool {
 // SetSchema gets a reference to the given string and assigns it to the Schema field.
 func (o *PostClipRequest) SetSchema(v string) {
 	o.Schema = &v
+}
+
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
+func (o *PostClipRequest) GetCorrelationId() string {
+	if o == nil || IsNil(o.CorrelationId) {
+		var ret string
+		return ret
+	}
+	return *o.CorrelationId
+}
+
+// GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostClipRequest) GetCorrelationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
+		return nil, false
+	}
+	return o.CorrelationId, true
+}
+
+// HasCorrelationId returns a boolean if a field has been set.
+func (o *PostClipRequest) HasCorrelationId() bool {
+	if o != nil && !IsNil(o.CorrelationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
+func (o *PostClipRequest) SetCorrelationId(v string) {
+	o.CorrelationId = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -205,6 +239,9 @@ func (o PostClipRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.CorrelationId) {
+		toSerialize["correlation_id"] = o.CorrelationId
 	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description

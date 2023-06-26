@@ -18,10 +18,13 @@ var _ MappedNullable = &ChannelPublishingSrtPublicationsInner{}
 
 // ChannelPublishingSrtPublicationsInner struct for ChannelPublishingSrtPublicationsInner
 type ChannelPublishingSrtPublicationsInner struct {
-	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty"`
+	AudioEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"audio_encoders,omitempty"`
+	// SRT publication ID. Must be unique.
 	Id *string `json:"id,omitempty"`
+	// MPEG-TS PMT PID. PIDs should be set on the PMT and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+	PmtPid *int32 `json:"pmt_pid,omitempty"`
 	Url *string `json:"url,omitempty"`
-	VideoEncoderIds []string `json:"video_encoder_ids,omitempty"`
+	VideoEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"video_encoders,omitempty"`
 }
 
 // NewChannelPublishingSrtPublicationsInner instantiates a new ChannelPublishingSrtPublicationsInner object
@@ -41,36 +44,36 @@ func NewChannelPublishingSrtPublicationsInnerWithDefaults() *ChannelPublishingSr
 	return &this
 }
 
-// GetAudioEncoderIds returns the AudioEncoderIds field value if set, zero value otherwise.
-func (o *ChannelPublishingSrtPublicationsInner) GetAudioEncoderIds() []string {
-	if o == nil || IsNil(o.AudioEncoderIds) {
-		var ret []string
+// GetAudioEncoders returns the AudioEncoders field value if set, zero value otherwise.
+func (o *ChannelPublishingSrtPublicationsInner) GetAudioEncoders() []ChannelPublishingSrtPublicationsInnerAudioEncodersInner {
+	if o == nil || IsNil(o.AudioEncoders) {
+		var ret []ChannelPublishingSrtPublicationsInnerAudioEncodersInner
 		return ret
 	}
-	return o.AudioEncoderIds
+	return o.AudioEncoders
 }
 
-// GetAudioEncoderIdsOk returns a tuple with the AudioEncoderIds field value if set, nil otherwise
+// GetAudioEncodersOk returns a tuple with the AudioEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingSrtPublicationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.AudioEncoderIds) {
+func (o *ChannelPublishingSrtPublicationsInner) GetAudioEncodersOk() ([]ChannelPublishingSrtPublicationsInnerAudioEncodersInner, bool) {
+	if o == nil || IsNil(o.AudioEncoders) {
 		return nil, false
 	}
-	return o.AudioEncoderIds, true
+	return o.AudioEncoders, true
 }
 
-// HasAudioEncoderIds returns a boolean if a field has been set.
-func (o *ChannelPublishingSrtPublicationsInner) HasAudioEncoderIds() bool {
-	if o != nil && !IsNil(o.AudioEncoderIds) {
+// HasAudioEncoders returns a boolean if a field has been set.
+func (o *ChannelPublishingSrtPublicationsInner) HasAudioEncoders() bool {
+	if o != nil && !IsNil(o.AudioEncoders) {
 		return true
 	}
 
 	return false
 }
 
-// SetAudioEncoderIds gets a reference to the given []string and assigns it to the AudioEncoderIds field.
-func (o *ChannelPublishingSrtPublicationsInner) SetAudioEncoderIds(v []string) {
-	o.AudioEncoderIds = v
+// SetAudioEncoders gets a reference to the given []ChannelPublishingSrtPublicationsInnerAudioEncodersInner and assigns it to the AudioEncoders field.
+func (o *ChannelPublishingSrtPublicationsInner) SetAudioEncoders(v []ChannelPublishingSrtPublicationsInnerAudioEncodersInner) {
+	o.AudioEncoders = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -105,6 +108,38 @@ func (o *ChannelPublishingSrtPublicationsInner) SetId(v string) {
 	o.Id = &v
 }
 
+// GetPmtPid returns the PmtPid field value if set, zero value otherwise.
+func (o *ChannelPublishingSrtPublicationsInner) GetPmtPid() int32 {
+	if o == nil || IsNil(o.PmtPid) {
+		var ret int32
+		return ret
+	}
+	return *o.PmtPid
+}
+
+// GetPmtPidOk returns a tuple with the PmtPid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingSrtPublicationsInner) GetPmtPidOk() (*int32, bool) {
+	if o == nil || IsNil(o.PmtPid) {
+		return nil, false
+	}
+	return o.PmtPid, true
+}
+
+// HasPmtPid returns a boolean if a field has been set.
+func (o *ChannelPublishingSrtPublicationsInner) HasPmtPid() bool {
+	if o != nil && !IsNil(o.PmtPid) {
+		return true
+	}
+
+	return false
+}
+
+// SetPmtPid gets a reference to the given int32 and assigns it to the PmtPid field.
+func (o *ChannelPublishingSrtPublicationsInner) SetPmtPid(v int32) {
+	o.PmtPid = &v
+}
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ChannelPublishingSrtPublicationsInner) GetUrl() string {
 	if o == nil || IsNil(o.Url) {
@@ -137,36 +172,36 @@ func (o *ChannelPublishingSrtPublicationsInner) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetVideoEncoderIds returns the VideoEncoderIds field value if set, zero value otherwise.
-func (o *ChannelPublishingSrtPublicationsInner) GetVideoEncoderIds() []string {
-	if o == nil || IsNil(o.VideoEncoderIds) {
-		var ret []string
+// GetVideoEncoders returns the VideoEncoders field value if set, zero value otherwise.
+func (o *ChannelPublishingSrtPublicationsInner) GetVideoEncoders() []ChannelPublishingSrtPublicationsInnerAudioEncodersInner {
+	if o == nil || IsNil(o.VideoEncoders) {
+		var ret []ChannelPublishingSrtPublicationsInnerAudioEncodersInner
 		return ret
 	}
-	return o.VideoEncoderIds
+	return o.VideoEncoders
 }
 
-// GetVideoEncoderIdsOk returns a tuple with the VideoEncoderIds field value if set, nil otherwise
+// GetVideoEncodersOk returns a tuple with the VideoEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingSrtPublicationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
-	if o == nil || IsNil(o.VideoEncoderIds) {
+func (o *ChannelPublishingSrtPublicationsInner) GetVideoEncodersOk() ([]ChannelPublishingSrtPublicationsInnerAudioEncodersInner, bool) {
+	if o == nil || IsNil(o.VideoEncoders) {
 		return nil, false
 	}
-	return o.VideoEncoderIds, true
+	return o.VideoEncoders, true
 }
 
-// HasVideoEncoderIds returns a boolean if a field has been set.
-func (o *ChannelPublishingSrtPublicationsInner) HasVideoEncoderIds() bool {
-	if o != nil && !IsNil(o.VideoEncoderIds) {
+// HasVideoEncoders returns a boolean if a field has been set.
+func (o *ChannelPublishingSrtPublicationsInner) HasVideoEncoders() bool {
+	if o != nil && !IsNil(o.VideoEncoders) {
 		return true
 	}
 
 	return false
 }
 
-// SetVideoEncoderIds gets a reference to the given []string and assigns it to the VideoEncoderIds field.
-func (o *ChannelPublishingSrtPublicationsInner) SetVideoEncoderIds(v []string) {
-	o.VideoEncoderIds = v
+// SetVideoEncoders gets a reference to the given []ChannelPublishingSrtPublicationsInnerAudioEncodersInner and assigns it to the VideoEncoders field.
+func (o *ChannelPublishingSrtPublicationsInner) SetVideoEncoders(v []ChannelPublishingSrtPublicationsInnerAudioEncodersInner) {
+	o.VideoEncoders = v
 }
 
 func (o ChannelPublishingSrtPublicationsInner) MarshalJSON() ([]byte, error) {
@@ -179,17 +214,20 @@ func (o ChannelPublishingSrtPublicationsInner) MarshalJSON() ([]byte, error) {
 
 func (o ChannelPublishingSrtPublicationsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AudioEncoderIds) {
-		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
+	if !IsNil(o.AudioEncoders) {
+		toSerialize["audio_encoders"] = o.AudioEncoders
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.PmtPid) {
+		toSerialize["pmt_pid"] = o.PmtPid
+	}
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
 	}
-	if !IsNil(o.VideoEncoderIds) {
-		toSerialize["video_encoder_ids"] = o.VideoEncoderIds
+	if !IsNil(o.VideoEncoders) {
+		toSerialize["video_encoders"] = o.VideoEncoders
 	}
 	return toSerialize, nil
 }

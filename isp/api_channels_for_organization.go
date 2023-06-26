@@ -25,7 +25,12 @@ type ChannelsForOrganizationApi interface {
 	/*
 	DeleteOrgChannel Delete channel
 
-	Delete a channel and stop publishing.  This action is idempotent.
+	Delete a channel and stop publishing. This action is idempotent.
+
+End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
+1. The channel's DesiredState must be updated to `OFF` and include the flag to not end playlist. See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
+2. Once the channel is `OFF`, the channel can be deleted.
+
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
@@ -173,7 +178,12 @@ func (r ApiDeleteOrgChannelRequest) Execute() (*http.Response, error) {
 /*
 DeleteOrgChannel Delete channel
 
-Delete a channel and stop publishing.  This action is idempotent.
+Delete a channel and stop publishing. This action is idempotent.
+
+End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
+1. The channel's DesiredState must be updated to `OFF` and include the flag to not end playlist. See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
+2. Once the channel is `OFF`, the channel can be deleted.
+
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name

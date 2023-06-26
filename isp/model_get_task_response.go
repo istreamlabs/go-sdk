@@ -37,8 +37,8 @@ type GetTaskResponse struct {
 	Params string `json:"params"`
 	// the progress of the task
 	Progress float64 `json:"progress"`
-	// region this task is running in
-	Region string `json:"region"`
+	// Region represents the general geolocation the task is in.
+	Region *string `json:"region,omitempty"`
 	// status for the task
 	Status string `json:"status"`
 	// indicates if the task succeeded or not
@@ -57,7 +57,7 @@ type GetTaskResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetTaskResponse(created time.Time, done bool, ended time.Time, error_ string, failureCount int32, id string, params string, progress float64, region string, status string, succeeded bool, type_ int32, weight int32, workerVersion string, workerId int64) *GetTaskResponse {
+func NewGetTaskResponse(created time.Time, done bool, ended time.Time, error_ string, failureCount int32, id string, params string, progress float64, status string, succeeded bool, type_ int32, weight int32, workerVersion string, workerId int64) *GetTaskResponse {
 	this := GetTaskResponse{}
 	this.Created = created
 	this.Done = done
@@ -67,7 +67,6 @@ func NewGetTaskResponse(created time.Time, done bool, ended time.Time, error_ st
 	this.Id = id
 	this.Params = params
 	this.Progress = progress
-	this.Region = region
 	this.Status = status
 	this.Succeeded = succeeded
 	this.Type = type_
@@ -309,28 +308,36 @@ func (o *GetTaskResponse) SetProgress(v float64) {
 	o.Progress = v
 }
 
-// GetRegion returns the Region field value
+// GetRegion returns the Region field value if set, zero value otherwise.
 func (o *GetTaskResponse) GetRegion() string {
-	if o == nil {
+	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
 	}
-
-	return o.Region
+	return *o.Region
 }
 
-// GetRegionOk returns a tuple with the Region field value
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GetTaskResponse) GetRegionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
-	return &o.Region, true
+	return o.Region, true
 }
 
-// SetRegion sets field value
+// HasRegion returns a boolean if a field has been set.
+func (o *GetTaskResponse) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given string and assigns it to the Region field.
 func (o *GetTaskResponse) SetRegion(v string) {
-	o.Region = v
+	o.Region = &v
 }
 
 // GetStatus returns the Status field value
@@ -498,7 +505,9 @@ func (o GetTaskResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["params"] = o.Params
 	toSerialize["progress"] = o.Progress
-	toSerialize["region"] = o.Region
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["succeeded"] = o.Succeeded
 	toSerialize["type"] = o.Type
