@@ -12,13 +12,22 @@ See https://istreamlabs.github.io/docs/sdks/golang
   - `.openapi-generator-ignore`
   - `convenience.go`
 
-A clean directory is required to ensure defunct files are removed. However, some like the above mentioned files do need to be kept to ensure the SDK is generated properly.
+A clean directory is required to ensure defunct files are removed. However, some like the above mentioned files do need to be kept to ensure the SDK is generated properly. 
+
+This is automatically handled when using `./run.sh`
 
 ## Requirements
 - Docker
 
-execute `./run.sh`, generated SDK will be outputted to the `isp` folder.
+Generated SDK will be outputted to the `isp` folder.
 
+```sh
+# By default, it generates against prod
+./run.sh 
+
+# Generate against stage
+./run.sh stage
+```
 ## Verify SDK generated successfully
 
 ```sh
