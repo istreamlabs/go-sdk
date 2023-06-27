@@ -8,11 +8,7 @@ See https://istreamlabs.github.io/docs/sdks/golang
 # How to run
 
 ## Prerequisites
-- Remove all files in the `isp` directory apart from the following:
-  - `.openapi-generator-ignore`
-  - `convenience.go`
-
-A clean directory is required to ensure defunct files are removed. However, some like the above mentioned files do need to be kept to ensure the SDK is generated properly. 
+A clean directory is required to ensure defunct files are removed. However, some d files do need to be kept to ensure the SDK is generated properly. 
 
 This is automatically handled when using `./run.sh`
 
