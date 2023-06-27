@@ -129,6 +129,7 @@ model_patch_channel_request_ingest.go
 model_patch_org_channel_request.go
 model_pin_source_request.go
 model_play_url_response.go
+model_post_clip_archive_request.go
 model_post_clip_archive_response.go
 model_post_clip_request.go
 model_post_clip_response.go

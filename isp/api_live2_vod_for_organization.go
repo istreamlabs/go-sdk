@@ -2994,6 +2994,12 @@ type ApiPostOrgClipArchiveRequest struct {
 	org string
 	channelId string
 	clipId string
+	postClipArchiveRequest *PostClipArchiveRequest
+}
+
+func (r ApiPostOrgClipArchiveRequest) PostClipArchiveRequest(postClipArchiveRequest PostClipArchiveRequest) ApiPostOrgClipArchiveRequest {
+	r.postClipArchiveRequest = &postClipArchiveRequest
+	return r
 }
 
 func (r ApiPostOrgClipArchiveRequest) Execute() (*PostClipArchiveResponse, *http.Response, error) {
@@ -3049,7 +3055,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -3065,6 +3071,8 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.postClipArchiveRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3098,6 +3106,26 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 408 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
