@@ -22,6 +22,8 @@ type PostClipResponse struct {
 	Schema *string `json:"$schema,omitempty"`
 	// List of clip identifiers paired with each VodID that was clipped
 	Clips []PostClipResponseClipsInner `json:"clips"`
+	// Identifer that is carried through archive and collapse notifications for the clip creation
+	CorrelationId *string `json:"correlation_id,omitempty"`
 	// Reports failures of individual clip tasks. Empty if all are successful
 	TaskErrors []ErrorModelErrorsInner `json:"task_errors"`
 	// Identifies clipping tasks, each task producing N VodItems
@@ -104,6 +106,38 @@ func (o *PostClipResponse) SetClips(v []PostClipResponseClipsInner) {
 	o.Clips = v
 }
 
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
+func (o *PostClipResponse) GetCorrelationId() string {
+	if o == nil || IsNil(o.CorrelationId) {
+		var ret string
+		return ret
+	}
+	return *o.CorrelationId
+}
+
+// GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostClipResponse) GetCorrelationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
+		return nil, false
+	}
+	return o.CorrelationId, true
+}
+
+// HasCorrelationId returns a boolean if a field has been set.
+func (o *PostClipResponse) HasCorrelationId() bool {
+	if o != nil && !IsNil(o.CorrelationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
+func (o *PostClipResponse) SetCorrelationId(v string) {
+	o.CorrelationId = &v
+}
+
 // GetTaskErrors returns the TaskErrors field value
 func (o *PostClipResponse) GetTaskErrors() []ErrorModelErrorsInner {
 	if o == nil {
@@ -166,6 +200,9 @@ func (o PostClipResponse) ToMap() (map[string]interface{}, error) {
 		toSerialize["$schema"] = o.Schema
 	}
 	toSerialize["clips"] = o.Clips
+	if !IsNil(o.CorrelationId) {
+		toSerialize["correlation_id"] = o.CorrelationId
+	}
 	toSerialize["task_errors"] = o.TaskErrors
 	toSerialize["task_ids"] = o.TaskIds
 	return toSerialize, nil

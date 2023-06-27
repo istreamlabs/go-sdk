@@ -20,6 +20,8 @@ var _ MappedNullable = &PostClipArchiveResponse{}
 type PostClipArchiveResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty"`
+	// Identifer that is carried through the archive request
+	CorrelationId *string `json:"correlation_id,omitempty"`
 	// Set if Live2VOD failed to start an archive task for any configured archive destination. Empty if all are successful
 	TaskErrors []ErrorModelErrorsInner `json:"task_errors"`
 	// Array of task ids for each archive destination task started by Live2VOD
@@ -75,6 +77,38 @@ func (o *PostClipArchiveResponse) HasSchema() bool {
 // SetSchema gets a reference to the given string and assigns it to the Schema field.
 func (o *PostClipArchiveResponse) SetSchema(v string) {
 	o.Schema = &v
+}
+
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
+func (o *PostClipArchiveResponse) GetCorrelationId() string {
+	if o == nil || IsNil(o.CorrelationId) {
+		var ret string
+		return ret
+	}
+	return *o.CorrelationId
+}
+
+// GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PostClipArchiveResponse) GetCorrelationIdOk() (*string, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
+		return nil, false
+	}
+	return o.CorrelationId, true
+}
+
+// HasCorrelationId returns a boolean if a field has been set.
+func (o *PostClipArchiveResponse) HasCorrelationId() bool {
+	if o != nil && !IsNil(o.CorrelationId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
+func (o *PostClipArchiveResponse) SetCorrelationId(v string) {
+	o.CorrelationId = &v
 }
 
 // GetTaskErrors returns the TaskErrors field value
@@ -137,6 +171,9 @@ func (o PostClipArchiveResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.CorrelationId) {
+		toSerialize["correlation_id"] = o.CorrelationId
 	}
 	toSerialize["task_errors"] = o.TaskErrors
 	toSerialize["task_ids"] = o.TaskIds
