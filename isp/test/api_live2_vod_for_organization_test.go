@@ -165,6 +165,22 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test Live2VODForOrganizationApiService ListOrgClipsVod", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var vodId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgClipsVod(context.Background(), org, channelId, vodId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test Live2VODForOrganizationApiService ListOrgProducts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
