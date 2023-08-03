@@ -13,40 +13,40 @@ import (
 	"encoding/json"
 )
 
-// checks if the ListClipsResponse type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListClipsResponse{}
+// checks if the ListClipsForVodResponse type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListClipsForVodResponse{}
 
-// ListClipsResponse struct for ListClipsResponse
-type ListClipsResponse struct {
+// ListClipsForVodResponse struct for ListClipsForVodResponse
+type ListClipsForVodResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty"`
 	// List of clips for the channel
 	ChannelClips []ListClipsForVodResponseChannelClipsInner `json:"channel_clips"`
 	// Reports failures to fetch the clips of a single VOD. Empty if clips from all VODs are successfully fetched.
-	Errors []string `json:"errors"`
+	Errors []ErrorModelErrorsInner `json:"errors"`
 }
 
-// NewListClipsResponse instantiates a new ListClipsResponse object
+// NewListClipsForVodResponse instantiates a new ListClipsForVodResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListClipsResponse(channelClips []ListClipsForVodResponseChannelClipsInner, errors []string) *ListClipsResponse {
-	this := ListClipsResponse{}
+func NewListClipsForVodResponse(channelClips []ListClipsForVodResponseChannelClipsInner, errors []ErrorModelErrorsInner) *ListClipsForVodResponse {
+	this := ListClipsForVodResponse{}
 	this.ChannelClips = channelClips
 	this.Errors = errors
 	return &this
 }
 
-// NewListClipsResponseWithDefaults instantiates a new ListClipsResponse object
+// NewListClipsForVodResponseWithDefaults instantiates a new ListClipsForVodResponse object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListClipsResponseWithDefaults() *ListClipsResponse {
-	this := ListClipsResponse{}
+func NewListClipsForVodResponseWithDefaults() *ListClipsForVodResponse {
+	this := ListClipsForVodResponse{}
 	return &this
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *ListClipsResponse) GetSchema() string {
+func (o *ListClipsForVodResponse) GetSchema() string {
 	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
@@ -56,7 +56,7 @@ func (o *ListClipsResponse) GetSchema() string {
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponse) GetSchemaOk() (*string, bool) {
+func (o *ListClipsForVodResponse) GetSchemaOk() (*string, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *ListClipsResponse) GetSchemaOk() (*string, bool) {
 }
 
 // HasSchema returns a boolean if a field has been set.
-func (o *ListClipsResponse) HasSchema() bool {
+func (o *ListClipsForVodResponse) HasSchema() bool {
 	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *ListClipsResponse) HasSchema() bool {
 }
 
 // SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *ListClipsResponse) SetSchema(v string) {
+func (o *ListClipsForVodResponse) SetSchema(v string) {
 	o.Schema = &v
 }
 
 // GetChannelClips returns the ChannelClips field value
-func (o *ListClipsResponse) GetChannelClips() []ListClipsForVodResponseChannelClipsInner {
+func (o *ListClipsForVodResponse) GetChannelClips() []ListClipsForVodResponseChannelClipsInner {
 	if o == nil {
 		var ret []ListClipsForVodResponseChannelClipsInner
 		return ret
@@ -89,7 +89,7 @@ func (o *ListClipsResponse) GetChannelClips() []ListClipsForVodResponseChannelCl
 
 // GetChannelClipsOk returns a tuple with the ChannelClips field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponse) GetChannelClipsOk() ([]ListClipsForVodResponseChannelClipsInner, bool) {
+func (o *ListClipsForVodResponse) GetChannelClipsOk() ([]ListClipsForVodResponseChannelClipsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -97,14 +97,14 @@ func (o *ListClipsResponse) GetChannelClipsOk() ([]ListClipsForVodResponseChanne
 }
 
 // SetChannelClips sets field value
-func (o *ListClipsResponse) SetChannelClips(v []ListClipsForVodResponseChannelClipsInner) {
+func (o *ListClipsForVodResponse) SetChannelClips(v []ListClipsForVodResponseChannelClipsInner) {
 	o.ChannelClips = v
 }
 
 // GetErrors returns the Errors field value
-func (o *ListClipsResponse) GetErrors() []string {
+func (o *ListClipsForVodResponse) GetErrors() []ErrorModelErrorsInner {
 	if o == nil {
-		var ret []string
+		var ret []ErrorModelErrorsInner
 		return ret
 	}
 
@@ -113,7 +113,7 @@ func (o *ListClipsResponse) GetErrors() []string {
 
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponse) GetErrorsOk() ([]string, bool) {
+func (o *ListClipsForVodResponse) GetErrorsOk() ([]ErrorModelErrorsInner, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -121,11 +121,11 @@ func (o *ListClipsResponse) GetErrorsOk() ([]string, bool) {
 }
 
 // SetErrors sets field value
-func (o *ListClipsResponse) SetErrors(v []string) {
+func (o *ListClipsForVodResponse) SetErrors(v []ErrorModelErrorsInner) {
 	o.Errors = v
 }
 
-func (o ListClipsResponse) MarshalJSON() ([]byte, error) {
+func (o ListClipsForVodResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -133,7 +133,7 @@ func (o ListClipsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ListClipsResponse) ToMap() (map[string]interface{}, error) {
+func (o ListClipsForVodResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
@@ -143,38 +143,38 @@ func (o ListClipsResponse) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableListClipsResponse struct {
-	value *ListClipsResponse
+type NullableListClipsForVodResponse struct {
+	value *ListClipsForVodResponse
 	isSet bool
 }
 
-func (v NullableListClipsResponse) Get() *ListClipsResponse {
+func (v NullableListClipsForVodResponse) Get() *ListClipsForVodResponse {
 	return v.value
 }
 
-func (v *NullableListClipsResponse) Set(val *ListClipsResponse) {
+func (v *NullableListClipsForVodResponse) Set(val *ListClipsForVodResponse) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListClipsResponse) IsSet() bool {
+func (v NullableListClipsForVodResponse) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListClipsResponse) Unset() {
+func (v *NullableListClipsForVodResponse) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListClipsResponse(val *ListClipsResponse) *NullableListClipsResponse {
-	return &NullableListClipsResponse{value: val, isSet: true}
+func NewNullableListClipsForVodResponse(val *ListClipsForVodResponse) *NullableListClipsForVodResponse {
+	return &NullableListClipsForVodResponse{value: val, isSet: true}
 }
 
-func (v NullableListClipsResponse) MarshalJSON() ([]byte, error) {
+func (v NullableListClipsForVodResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListClipsResponse) UnmarshalJSON(src []byte) error {
+func (v *NullableListClipsForVodResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

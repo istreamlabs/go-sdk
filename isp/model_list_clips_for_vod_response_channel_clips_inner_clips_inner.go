@@ -14,11 +14,11 @@ import (
 	"time"
 )
 
-// checks if the ListClipsResponseChannelClipsInnerClipsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ListClipsResponseChannelClipsInnerClipsInner{}
+// checks if the ListClipsForVodResponseChannelClipsInnerClipsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ListClipsForVodResponseChannelClipsInnerClipsInner{}
 
-// ListClipsResponseChannelClipsInnerClipsInner struct for ListClipsResponseChannelClipsInnerClipsInner
-type ListClipsResponseChannelClipsInnerClipsInner struct {
+// ListClipsForVodResponseChannelClipsInnerClipsInner struct for ListClipsForVodResponseChannelClipsInnerClipsInner
+type ListClipsForVodResponseChannelClipsInnerClipsInner struct {
 	// Primary ID for the clip
 	ClipId string `json:"clip_id"`
 	// Created timestamp in RFC3339Nano format
@@ -35,12 +35,12 @@ type ListClipsResponseChannelClipsInnerClipsInner struct {
 	Start time.Time `json:"start"`
 }
 
-// NewListClipsResponseChannelClipsInnerClipsInner instantiates a new ListClipsResponseChannelClipsInnerClipsInner object
+// NewListClipsForVodResponseChannelClipsInnerClipsInner instantiates a new ListClipsForVodResponseChannelClipsInnerClipsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListClipsResponseChannelClipsInnerClipsInner(clipId string, created time.Time, description string, duration int64, end time.Time, mp4path string, start time.Time) *ListClipsResponseChannelClipsInnerClipsInner {
-	this := ListClipsResponseChannelClipsInnerClipsInner{}
+func NewListClipsForVodResponseChannelClipsInnerClipsInner(clipId string, created time.Time, description string, duration int64, end time.Time, mp4path string, start time.Time) *ListClipsForVodResponseChannelClipsInnerClipsInner {
+	this := ListClipsForVodResponseChannelClipsInnerClipsInner{}
 	this.ClipId = clipId
 	this.Created = created
 	this.Description = description
@@ -51,16 +51,16 @@ func NewListClipsResponseChannelClipsInnerClipsInner(clipId string, created time
 	return &this
 }
 
-// NewListClipsResponseChannelClipsInnerClipsInnerWithDefaults instantiates a new ListClipsResponseChannelClipsInnerClipsInner object
+// NewListClipsForVodResponseChannelClipsInnerClipsInnerWithDefaults instantiates a new ListClipsForVodResponseChannelClipsInnerClipsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewListClipsResponseChannelClipsInnerClipsInnerWithDefaults() *ListClipsResponseChannelClipsInnerClipsInner {
-	this := ListClipsResponseChannelClipsInnerClipsInner{}
+func NewListClipsForVodResponseChannelClipsInnerClipsInnerWithDefaults() *ListClipsForVodResponseChannelClipsInnerClipsInner {
+	this := ListClipsForVodResponseChannelClipsInnerClipsInner{}
 	return &this
 }
 
 // GetClipId returns the ClipId field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetClipId() string {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetClipId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -71,7 +71,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetClipId() string {
 
 // GetClipIdOk returns a tuple with the ClipId field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetClipIdOk() (*string, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetClipIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -79,12 +79,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetClipIdOk() (*string, b
 }
 
 // SetClipId sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetClipId(v string) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetClipId(v string) {
 	o.ClipId = v
 }
 
 // GetCreated returns the Created field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetCreated() time.Time {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetCreated() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -95,7 +95,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetCreated() time.Time {
 
 // GetCreatedOk returns a tuple with the Created field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetCreatedOk() (*time.Time, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetCreatedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -103,12 +103,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetCreatedOk() (*time.Tim
 }
 
 // SetCreated sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetCreated(v time.Time) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetCreated(v time.Time) {
 	o.Created = v
 }
 
 // GetDescription returns the Description field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDescription() string {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetDescription() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -119,7 +119,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDescriptionOk() (*string, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -127,12 +127,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDescriptionOk() (*stri
 }
 
 // SetDescription sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetDescription(v string) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetDescription(v string) {
 	o.Description = v
 }
 
 // GetDuration returns the Duration field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDuration() int64 {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetDuration() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -143,7 +143,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDuration() int64 {
 
 // GetDurationOk returns a tuple with the Duration field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDurationOk() (*int64, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetDurationOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -151,12 +151,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetDurationOk() (*int64, 
 }
 
 // SetDuration sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetDuration(v int64) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetDuration(v int64) {
 	o.Duration = v
 }
 
 // GetEnd returns the End field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetEnd() time.Time {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetEnd() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -167,7 +167,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetEnd() time.Time {
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetEndOk() (*time.Time, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetEndOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,12 +175,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetEndOk() (*time.Time, b
 }
 
 // SetEnd sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetEnd(v time.Time) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetEnd(v time.Time) {
 	o.End = v
 }
 
 // GetMp4path returns the Mp4path field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetMp4path() string {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetMp4path() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -191,7 +191,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetMp4path() string {
 
 // GetMp4pathOk returns a tuple with the Mp4path field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetMp4pathOk() (*string, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetMp4pathOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -199,12 +199,12 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetMp4pathOk() (*string, 
 }
 
 // SetMp4path sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetMp4path(v string) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetMp4path(v string) {
 	o.Mp4path = v
 }
 
 // GetStart returns the Start field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetStart() time.Time {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetStart() time.Time {
 	if o == nil {
 		var ret time.Time
 		return ret
@@ -215,7 +215,7 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetStart() time.Time {
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *ListClipsResponseChannelClipsInnerClipsInner) GetStartOk() (*time.Time, bool) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) GetStartOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -223,11 +223,11 @@ func (o *ListClipsResponseChannelClipsInnerClipsInner) GetStartOk() (*time.Time,
 }
 
 // SetStart sets field value
-func (o *ListClipsResponseChannelClipsInnerClipsInner) SetStart(v time.Time) {
+func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetStart(v time.Time) {
 	o.Start = v
 }
 
-func (o ListClipsResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
+func (o ListClipsForVodResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -235,7 +235,7 @@ func (o ListClipsResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, err
 	return json.Marshal(toSerialize)
 }
 
-func (o ListClipsResponseChannelClipsInnerClipsInner) ToMap() (map[string]interface{}, error) {
+func (o ListClipsForVodResponseChannelClipsInnerClipsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["clip_id"] = o.ClipId
 	toSerialize["created"] = o.Created
@@ -247,38 +247,38 @@ func (o ListClipsResponseChannelClipsInnerClipsInner) ToMap() (map[string]interf
 	return toSerialize, nil
 }
 
-type NullableListClipsResponseChannelClipsInnerClipsInner struct {
-	value *ListClipsResponseChannelClipsInnerClipsInner
+type NullableListClipsForVodResponseChannelClipsInnerClipsInner struct {
+	value *ListClipsForVodResponseChannelClipsInnerClipsInner
 	isSet bool
 }
 
-func (v NullableListClipsResponseChannelClipsInnerClipsInner) Get() *ListClipsResponseChannelClipsInnerClipsInner {
+func (v NullableListClipsForVodResponseChannelClipsInnerClipsInner) Get() *ListClipsForVodResponseChannelClipsInnerClipsInner {
 	return v.value
 }
 
-func (v *NullableListClipsResponseChannelClipsInnerClipsInner) Set(val *ListClipsResponseChannelClipsInnerClipsInner) {
+func (v *NullableListClipsForVodResponseChannelClipsInnerClipsInner) Set(val *ListClipsForVodResponseChannelClipsInnerClipsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableListClipsResponseChannelClipsInnerClipsInner) IsSet() bool {
+func (v NullableListClipsForVodResponseChannelClipsInnerClipsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableListClipsResponseChannelClipsInnerClipsInner) Unset() {
+func (v *NullableListClipsForVodResponseChannelClipsInnerClipsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableListClipsResponseChannelClipsInnerClipsInner(val *ListClipsResponseChannelClipsInnerClipsInner) *NullableListClipsResponseChannelClipsInnerClipsInner {
-	return &NullableListClipsResponseChannelClipsInnerClipsInner{value: val, isSet: true}
+func NewNullableListClipsForVodResponseChannelClipsInnerClipsInner(val *ListClipsForVodResponseChannelClipsInnerClipsInner) *NullableListClipsForVodResponseChannelClipsInnerClipsInner {
+	return &NullableListClipsForVodResponseChannelClipsInnerClipsInner{value: val, isSet: true}
 }
 
-func (v NullableListClipsResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
+func (v NullableListClipsForVodResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableListClipsResponseChannelClipsInnerClipsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableListClipsForVodResponseChannelClipsInnerClipsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -18,6 +18,6 @@ mkdir isp
 # Copy required files to isp directory
 cp ./prerequisites/.openapi-generator-ignore ./isp/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./isp/convenience.go
-
 docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}"
 docker run --rm -it -v ${SCRIPT_DIR}/isp:/go-sdk/isp generate-sdk
+cp ./prerequisites/client._go ./isp/client.go
