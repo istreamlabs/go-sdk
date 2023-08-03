@@ -30,7 +30,7 @@ type ChannelTranscodeAudioEncodersInner struct {
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	Loudness *ChannelTranscodeAudioEncodersInnerLoudness `json:"loudness,omitempty"`
-	// Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. AC3/EAC3 support only 48000.
+	// Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC-LC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. HE-AAC supports 16000, 22050, 24000, 32000, 44100, and 48000. AC3/EAC3 support only 48000.
 	SampleRate *int32 `json:"sample_rate,omitempty"`
 }
 

@@ -32,6 +32,7 @@ type ChannelPublishingPublicationsInner struct {
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty"`
 	// Optional master manifest name. When not supplied a default of 'master' will be used.
 	MasterPlaylistName *string `json:"master_playlist_name,omitempty"`
+	Origin *ChannelPublishingPublicationsInnerOrigin `json:"origin,omitempty"`
 	// Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for.
 	PackagerId *string `json:"packager_id,omitempty"`
 	// Publish points specify where to output.
@@ -320,6 +321,38 @@ func (o *ChannelPublishingPublicationsInner) SetMasterPlaylistName(v string) {
 	o.MasterPlaylistName = &v
 }
 
+// GetOrigin returns the Origin field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInner) GetOrigin() ChannelPublishingPublicationsInnerOrigin {
+	if o == nil || IsNil(o.Origin) {
+		var ret ChannelPublishingPublicationsInnerOrigin
+		return ret
+	}
+	return *o.Origin
+}
+
+// GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInner) GetOriginOk() (*ChannelPublishingPublicationsInnerOrigin, bool) {
+	if o == nil || IsNil(o.Origin) {
+		return nil, false
+	}
+	return o.Origin, true
+}
+
+// HasOrigin returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInner) HasOrigin() bool {
+	if o != nil && !IsNil(o.Origin) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigin gets a reference to the given ChannelPublishingPublicationsInnerOrigin and assigns it to the Origin field.
+func (o *ChannelPublishingPublicationsInner) SetOrigin(v ChannelPublishingPublicationsInnerOrigin) {
+	o.Origin = &v
+}
+
 // GetPackagerId returns the PackagerId field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInner) GetPackagerId() string {
 	if o == nil || IsNil(o.PackagerId) {
@@ -577,6 +610,9 @@ func (o ChannelPublishingPublicationsInner) ToMap() (map[string]interface{}, err
 	}
 	if !IsNil(o.MasterPlaylistName) {
 		toSerialize["master_playlist_name"] = o.MasterPlaylistName
+	}
+	if !IsNil(o.Origin) {
+		toSerialize["origin"] = o.Origin
 	}
 	if !IsNil(o.PackagerId) {
 		toSerialize["packager_id"] = o.PackagerId

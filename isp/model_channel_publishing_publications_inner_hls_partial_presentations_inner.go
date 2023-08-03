@@ -20,11 +20,11 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerHlsPartialPresentation
 type ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct {
 	// Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used.
 	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty"`
-	// List of video encoder IDs that should have I-Frame only playlists generated for them.
+	// List of video encoder IDs that should have I-Frame only playlists generated for them. If no 'iframe_only_encoder_ids' are given then no I-Frame playlists will be in the Partial Presentation.
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty"`
 	// Sub-path that will be appended onto the publish and playback base URLs of HTTP PublishPoints for published playlist files.
 	PlaylistPath *string `json:"playlist_path,omitempty"`
-	// Specify which thumbnail encoders should be used for this presentation. If none are specified, all thumbnail encoders configured for the parent Publication will be used.
+	// Specify which thumbnail encoders should be used for this presentation. If no 'thumbnail_encoder_ids' are given then no thumbnail playlists will be in the Partial Presentation.
 	ThumbnailEncoderIds []string `json:"thumbnail_encoder_ids,omitempty"`
 	// Specify which video encoders should be used for this presentation. If none are specified, all video encoders configured for the parent Publication will be used.
 	VideoEncoderIds []string `json:"video_encoder_ids,omitempty"`
