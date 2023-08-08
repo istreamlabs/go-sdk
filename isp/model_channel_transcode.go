@@ -26,7 +26,7 @@ type ChannelTranscode struct {
 	FeatureFlags []string `json:"feature_flags,omitempty"`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
 	Id3Mode *string `json:"id3_mode,omitempty"`
-	Nielsen map[string]interface{} `json:"nielsen,omitempty"`
+	Nielsen *map[string]interface{} `json:"nielsen,omitempty"`
 	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
 	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty"`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.

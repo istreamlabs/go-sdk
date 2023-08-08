@@ -25,7 +25,7 @@ type UpdateProductConfigRequest struct {
 	CollapseTriggerConfig *UpdateProductConfigRequestCollapseTriggerConfig `json:"collapse_trigger_config,omitempty"`
 	EdcPartialPresentations *UpdateProductConfigRequestEdcPartialPresentations `json:"edc_partial_presentations,omitempty"`
 	// Template to transcode mp4 to hls
-	EdcTranscodeTemplate map[string]interface{} `json:"edc_transcode_template,omitempty"`
+	EdcTranscodeTemplate *map[string]interface{} `json:"edc_transcode_template,omitempty"`
 	// Notifiaction settings for collapses
 	Notifications []UpdateProductConfigRequestNotificationsInner `json:"notifications,omitempty"`
 	// Region represents the general geolocation the product is in.

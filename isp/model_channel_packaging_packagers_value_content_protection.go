@@ -24,7 +24,7 @@ type ChannelPackagingPackagersValueContentProtection struct {
 	Cpix *ChannelPackagingPackagersValueContentProtectionCpix `json:"cpix,omitempty"`
 	KeyRotation *ChannelPackagingPackagersValueContentProtectionKeyRotation `json:"key_rotation,omitempty"`
 	// Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
-	SampleAes map[string]interface{} `json:"sample_aes,omitempty"`
+	SampleAes *map[string]interface{} `json:"sample_aes,omitempty"`
 	Simple *ChannelPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
 }
 

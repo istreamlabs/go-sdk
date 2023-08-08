@@ -182,7 +182,9 @@ func (o PutChannelRequestIngestSource) ToMap() (map[string]interface{}, error) {
 		toSerialize["captions_source"] = o.CaptionsSource
 	}
 	toSerialize["id"] = o.Id
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	return toSerialize, nil
 }
 

@@ -109,7 +109,9 @@ func (o OrgSummary) MarshalJSON() ([]byte, error) {
 func (o OrgSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["id"] = o.Id
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	return toSerialize, nil
 }
 

@@ -10,7 +10,6 @@ api_live2_vod_for_organization.go
 api_organizations.go
 api_source_previews.go
 api_sources.go
-client.go
 configuration.go
 model_cancel_task_response.go
 model_cancel_task_response_error.go

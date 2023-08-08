@@ -21,7 +21,7 @@ type ChannelTranscodeVideoEncodersInnerH265Hdr struct {
 	DolbyVision *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision `json:"dolby_vision,omitempty"`
 	Hdr10 *ChannelTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
 	// Only one of ['hlg', 'hdr10', 'dolby_vision'] may be set.
-	Hlg map[string]interface{} `json:"hlg,omitempty"`
+	Hlg *map[string]interface{} `json:"hlg,omitempty"`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265Hdr instantiates a new ChannelTranscodeVideoEncodersInnerH265Hdr object

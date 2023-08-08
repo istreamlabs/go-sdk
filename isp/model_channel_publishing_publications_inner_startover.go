@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerStartover{}
 // ChannelPublishingPublicationsInnerStartover Configures startover processing for this Publication.
 type ChannelPublishingPublicationsInnerStartover struct {
 	// Trigger Startover on the first Program Start. Only one of ['first_program_start', 'on_airing_id'] may be set.
-	FirstProgramStart map[string]interface{} `json:"first_program_start,omitempty"`
+	FirstProgramStart *map[string]interface{} `json:"first_program_start,omitempty"`
 	OnAiringId *ChannelPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
 }
 
