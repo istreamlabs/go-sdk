@@ -136,6 +136,8 @@ model_post_clip_archive_response.go
 model_post_clip_request.go
 model_post_clip_response.go
 model_post_clip_response_clips_inner.go
+model_post_copy_mp4_request.go
+model_post_copy_mp4_response.go
 model_program_signal.go
 model_put_channel_request.go
 model_put_channel_request_ingest.go

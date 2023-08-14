@@ -218,14 +218,14 @@ func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplate() map[string]interf
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.EdcTranscodeTemplate
+	return *o.EdcTranscodeTemplate
 }
 
 // GetEdcTranscodeTemplateOk returns a tuple with the EdcTranscodeTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplateOk() (map[string]interface{}, bool) {
+func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplateOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.EdcTranscodeTemplate) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.EdcTranscodeTemplate, true
 }
@@ -241,7 +241,7 @@ func (o *UpdateProductConfigRequest) HasEdcTranscodeTemplate() bool {
 
 // SetEdcTranscodeTemplate gets a reference to the given map[string]interface{} and assigns it to the EdcTranscodeTemplate field.
 func (o *UpdateProductConfigRequest) SetEdcTranscodeTemplate(v map[string]interface{}) {
-	o.EdcTranscodeTemplate = v
+	o.EdcTranscodeTemplate = &v
 }
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.

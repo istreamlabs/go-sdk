@@ -191,14 +191,14 @@ func (o *ChannelTranscode) GetNielsen() map[string]interface{} {
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Nielsen
+	return *o.Nielsen
 }
 
 // GetNielsenOk returns a tuple with the Nielsen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetNielsenOk() (map[string]interface{}, bool) {
+func (o *ChannelTranscode) GetNielsenOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Nielsen) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Nielsen, true
 }
@@ -214,7 +214,7 @@ func (o *ChannelTranscode) HasNielsen() bool {
 
 // SetNielsen gets a reference to the given map[string]interface{} and assigns it to the Nielsen field.
 func (o *ChannelTranscode) SetNielsen(v map[string]interface{}) {
-	o.Nielsen = v
+	o.Nielsen = &v
 }
 
 // GetOverlays returns the Overlays field value if set, zero value otherwise.

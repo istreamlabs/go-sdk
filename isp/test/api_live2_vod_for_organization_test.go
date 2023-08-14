@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/GIT_USER_ID/GIT_REPO_ID/isp"
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
 func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
@@ -230,6 +230,23 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		t.Skip("skip test")  // remove to run test
 
 		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListTasks(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationApiService PostCopyMp4", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var vodId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostCopyMp4(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

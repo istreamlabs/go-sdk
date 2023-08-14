@@ -18,6 +18,7 @@ var _ MappedNullable = &UpdateProductConfigRequestArchiveSettingsRemoteCopySetti
 
 // UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner struct for UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner
 type UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner struct {
+	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
 	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
 	AutoCopyToRemoteHost bool `json:"auto_copy_to_remote_host"`
 	RemoteAutoCopySettings *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInnerRemoteAutoCopySettings `json:"remote_auto_copy_settings,omitempty"`
@@ -43,6 +44,38 @@ func NewUpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner(autoCop
 func NewUpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInnerWithDefaults() *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner {
 	this := UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner{}
 	return &this
+}
+
+// GetArchiveTargetTypes returns the ArchiveTargetTypes field value if set, zero value otherwise.
+func (o *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) GetArchiveTargetTypes() []string {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		var ret []string
+		return ret
+	}
+	return o.ArchiveTargetTypes
+}
+
+// GetArchiveTargetTypesOk returns a tuple with the ArchiveTargetTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) GetArchiveTargetTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		return nil, false
+	}
+	return o.ArchiveTargetTypes, true
+}
+
+// HasArchiveTargetTypes returns a boolean if a field has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) HasArchiveTargetTypes() bool {
+	if o != nil && !IsNil(o.ArchiveTargetTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchiveTargetTypes gets a reference to the given []string and assigns it to the ArchiveTargetTypes field.
+func (o *UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) SetArchiveTargetTypes(v []string) {
+	o.ArchiveTargetTypes = v
 }
 
 // GetAutoArchiveOnCollapseTypes returns the AutoArchiveOnCollapseTypes field value if set, zero value otherwise.
@@ -191,6 +224,9 @@ func (o UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) Marsha
 
 func (o UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ArchiveTargetTypes) {
+		toSerialize["archive_target_types"] = o.ArchiveTargetTypes
+	}
 	if !IsNil(o.AutoArchiveOnCollapseTypes) {
 		toSerialize["auto_archive_on_collapse_types"] = o.AutoArchiveOnCollapseTypes
 	}

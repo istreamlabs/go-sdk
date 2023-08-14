@@ -211,14 +211,14 @@ func (o *ChannelPackagingPackagersValueContentProtection) GetSampleAes() map[str
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.SampleAes
+	return *o.SampleAes
 }
 
 // GetSampleAesOk returns a tuple with the SampleAes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPackagingPackagersValueContentProtection) GetSampleAesOk() (map[string]interface{}, bool) {
+func (o *ChannelPackagingPackagersValueContentProtection) GetSampleAesOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.SampleAes) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.SampleAes, true
 }
@@ -234,7 +234,7 @@ func (o *ChannelPackagingPackagersValueContentProtection) HasSampleAes() bool {
 
 // SetSampleAes gets a reference to the given map[string]interface{} and assigns it to the SampleAes field.
 func (o *ChannelPackagingPackagersValueContentProtection) SetSampleAes(v map[string]interface{}) {
-	o.SampleAes = v
+	o.SampleAes = &v
 }
 
 // GetSimple returns the Simple field value if set, zero value otherwise.

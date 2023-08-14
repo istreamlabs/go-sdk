@@ -46,14 +46,14 @@ func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStart() map
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.FirstProgramStart
+	return *o.FirstProgramStart
 }
 
 // GetFirstProgramStartOk returns a tuple with the FirstProgramStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStartOk() (map[string]interface{}, bool) {
+func (o *ChannelPublishingPublicationsInnerStartover) GetFirstProgramStartOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.FirstProgramStart) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.FirstProgramStart, true
 }
@@ -69,7 +69,7 @@ func (o *ChannelPublishingPublicationsInnerStartover) HasFirstProgramStart() boo
 
 // SetFirstProgramStart gets a reference to the given map[string]interface{} and assigns it to the FirstProgramStart field.
 func (o *ChannelPublishingPublicationsInnerStartover) SetFirstProgramStart(v map[string]interface{}) {
-	o.FirstProgramStart = v
+	o.FirstProgramStart = &v
 }
 
 // GetOnAiringId returns the OnAiringId field value if set, zero value otherwise.
