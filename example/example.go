@@ -2,6 +2,8 @@
 	iStreamPlanet Go SDK Example. Run via:
 
 	CLIENT_ID=... CLIENT_SECRET=... ORG=... go run ./example
+	or
+	AUTH_HEADER=... ORG=... go run ./example
 */
 
 package main
@@ -16,13 +18,21 @@ import (
 )
 
 func main() {
-	client := isp.NewWithClientCredentials(os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), os.Getenv("ORG"))
+	org := os.Getenv("ORG")
+
+	var client *isp.HighLevelClient
+	if header := os.Getenv("AUTH_HEADER"); header != "" {
+		client = isp.NewWithAuthHeader(header)
+	} else {
+		client = isp.NewWithClientCredentials(os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), org)
+	}
+
 	client.APIClient.GetConfig().Debug = true
 
 	ctx := context.Background()
 
 	fmt.Println("Listing sources:")
-	sourceSummaries, _, err := client.SourcesApi.ListSources(ctx).Execute()
+	sourceSummaries, _, err := client.AvailableSourcesApi.ListOrgSources(ctx, org).Execute()
 	if err != nil {
 		panic(err)
 	}
@@ -36,7 +46,7 @@ func main() {
 
 	fmt.Println("Listing channels:")
 	// List channels with a custom optional argument (page size).
-	reqChannels := client.ChannelsApi.ListChannels(ctx).PageSize(2)
+	reqChannels := client.ChannelsForOrganizationApi.ListOrgChannels(ctx, org).PageSize(2)
 	chanSummaries, _, err := reqChannels.Execute()
 	if err != nil {
 		panic(err)

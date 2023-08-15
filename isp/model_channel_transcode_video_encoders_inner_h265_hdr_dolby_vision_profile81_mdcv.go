@@ -20,7 +20,7 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct {
 	// Identifies color primaries and white point.
 	ColorProfile *string `json:"color_profile,omitempty"`
-	// Maximum display mastering luminance (nits).
+	// Maximum display mastering luminance (nits). Must be greater than min_dml.
 	MaxDml *float64 `json:"max_dml,omitempty"`
 	// Minimum display mastering luminance (nits).
 	MinDml *float64 `json:"min_dml,omitempty"`

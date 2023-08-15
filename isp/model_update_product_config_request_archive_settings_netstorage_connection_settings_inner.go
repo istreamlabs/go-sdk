@@ -18,6 +18,7 @@ var _ MappedNullable = &UpdateProductConfigRequestArchiveSettingsNetstorageConne
 
 // UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner struct for UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner
 type UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner struct {
+	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
 	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
 	AutoCopyToNetstorage bool `json:"auto_copy_to_netstorage"`
 	Basedir *string `json:"basedir,omitempty"`
@@ -52,6 +53,38 @@ func NewUpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInn
 func NewUpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInnerWithDefaults() *UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner {
 	this := UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner{}
 	return &this
+}
+
+// GetArchiveTargetTypes returns the ArchiveTargetTypes field value if set, zero value otherwise.
+func (o *UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner) GetArchiveTargetTypes() []string {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		var ret []string
+		return ret
+	}
+	return o.ArchiveTargetTypes
+}
+
+// GetArchiveTargetTypesOk returns a tuple with the ArchiveTargetTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner) GetArchiveTargetTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		return nil, false
+	}
+	return o.ArchiveTargetTypes, true
+}
+
+// HasArchiveTargetTypes returns a boolean if a field has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner) HasArchiveTargetTypes() bool {
+	if o != nil && !IsNil(o.ArchiveTargetTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchiveTargetTypes gets a reference to the given []string and assigns it to the ArchiveTargetTypes field.
+func (o *UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner) SetArchiveTargetTypes(v []string) {
+	o.ArchiveTargetTypes = v
 }
 
 // GetAutoArchiveOnCollapseTypes returns the AutoArchiveOnCollapseTypes field value if set, zero value otherwise.
@@ -328,6 +361,9 @@ func (o UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInn
 
 func (o UpdateProductConfigRequestArchiveSettingsNetstorageConnectionSettingsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ArchiveTargetTypes) {
+		toSerialize["archive_target_types"] = o.ArchiveTargetTypes
+	}
 	if !IsNil(o.AutoArchiveOnCollapseTypes) {
 		toSerialize["auto_archive_on_collapse_types"] = o.AutoArchiveOnCollapseTypes
 	}

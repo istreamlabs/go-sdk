@@ -505,7 +505,9 @@ func (o TaskResponseTasksInner) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Region) {
 		toSerialize["region"] = o.Region
 	}
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["succeeded"] = o.Succeeded
 	toSerialize["type"] = o.Type

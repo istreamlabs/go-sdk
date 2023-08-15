@@ -293,7 +293,9 @@ func (o Summary2) ToMap() (map[string]interface{}, error) {
 		toSerialize["name"] = o.Name
 	}
 	toSerialize["org"] = o.Org
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	toSerialize["source"] = o.Source
 	return toSerialize, nil
 }

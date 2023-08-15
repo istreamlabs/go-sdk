@@ -3,7 +3,7 @@ package isp
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -47,7 +47,6 @@ func GetLink(resp *http.Response, rel string) *url.URL {
 // and the *last* response. If any request in the chain has an error, then
 // processing is stopped and the error is returned.
 func getAllPages(client *APIClient, parsed interface{}, resp *http.Response) (interface{}, *http.Response, GenericOpenAPIError) {
-	var err error
 	items := reflect.ValueOf(parsed)
 
 	// Check for a `next` link relation header for pagination. If present, we
@@ -55,15 +54,24 @@ func getAllPages(client *APIClient, parsed interface{}, resp *http.Response) (in
 	// is available (signaling the end of the list).
 	for {
 		if uri := GetLink(resp, RelNext); uri != nil {
+			req, err := http.NewRequest(http.MethodGet, uri.String(), nil)
+			if err != nil {
+				return nil, nil, GenericOpenAPIError{
+					error: err.Error(),
+				}
+			}
+			for k, v := range client.cfg.DefaultHeader {
+				req.Header.Set(k, v)
+			}
 			// Response gets set to the next response in the series.
-			resp, err = client.cfg.HTTPClient.Get(uri.String())
+			resp, err = client.cfg.HTTPClient.Do(req)
 			if err != nil {
 				return nil, resp, GenericOpenAPIError{
 					error: err.Error(),
 				}
 			}
 
-			data, err := ioutil.ReadAll(resp.Body)
+			data, err := io.ReadAll(resp.Body)
 			if err != nil {
 				return nil, resp, GenericOpenAPIError{
 					error: err.Error(),
@@ -125,7 +133,7 @@ func (c *HighLevelClient) DoModel(req *http.Request, model interface{}) (*http.R
 		return nil, fmt.Errorf("unable to get model: status code %d", resp.StatusCode)
 	}
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, err
 	}
@@ -194,6 +202,19 @@ func NewWithClientCredentials(clientID, clientSecret, organization string) *High
 	config := NewConfiguration()
 	config.HTTPClient = auth.Client(context.Background())
 
+	client := NewAPIClient(config)
+	return &HighLevelClient{
+		APIClient: client,
+		Client:    config.HTTPClient,
+	}
+}
+
+// NewWithAuthHeader creates a new authenticated client using the given
+// authorization header. The header format should be `Bearer <token>`, where
+// `<token>` is replaced by the contents of the encoded & signed JWT.
+func NewWithAuthHeader(header string) *HighLevelClient {
+	config := NewConfiguration()
+	config.AddDefaultHeader("Authorization", header)
 	client := NewAPIClient(config)
 	return &HighLevelClient{
 		APIClient: client,

@@ -19,6 +19,7 @@ var _ MappedNullable = &UpdateProductConfigRequestArchiveSettingsS3ArchiveSettin
 // UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct for UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner
 type UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct {
 	AccessKeyId *string `json:"access_key_id,omitempty"`
+	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
 	AutoArchive bool `json:"auto_archive"`
 	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
 	Bucket string `json:"bucket"`
@@ -79,6 +80,38 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasAcc
 // SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
 func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
+}
+
+// GetArchiveTargetTypes returns the ArchiveTargetTypes field value if set, zero value otherwise.
+func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypes() []string {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		var ret []string
+		return ret
+	}
+	return o.ArchiveTargetTypes
+}
+
+// GetArchiveTargetTypesOk returns a tuple with the ArchiveTargetTypes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypesOk() ([]string, bool) {
+	if o == nil || IsNil(o.ArchiveTargetTypes) {
+		return nil, false
+	}
+	return o.ArchiveTargetTypes, true
+}
+
+// HasArchiveTargetTypes returns a boolean if a field has been set.
+func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasArchiveTargetTypes() bool {
+	if o != nil && !IsNil(o.ArchiveTargetTypes) {
+		return true
+	}
+
+	return false
+}
+
+// SetArchiveTargetTypes gets a reference to the given []string and assigns it to the ArchiveTargetTypes field.
+func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetArchiveTargetTypes(v []string) {
+	o.ArchiveTargetTypes = v
 }
 
 // GetAutoArchive returns the AutoArchive field value
@@ -285,6 +318,9 @@ func (o UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) ToMap()
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AccessKeyId) {
 		toSerialize["access_key_id"] = o.AccessKeyId
+	}
+	if !IsNil(o.ArchiveTargetTypes) {
+		toSerialize["archive_target_types"] = o.ArchiveTargetTypes
 	}
 	toSerialize["auto_archive"] = o.AutoArchive
 	if !IsNil(o.AutoArchiveOnCollapseTypes) {

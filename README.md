@@ -4,26 +4,28 @@ This is the iStreamPlanet SDK for the Go programming language. It is generated f
 
 See https://istreamlabs.github.io/docs/sdks/golang
 
-
 # How to run
 
 ## Prerequisites
-A clean directory is required to ensure defunct files are removed. However, some d files do need to be kept to ensure the SDK is generated properly. 
+
+A clean directory is required to ensure defunct files are removed. However, some files do need to be kept to ensure the SDK is generated properly.
 
 This is automatically handled when using `./run.sh`
 
 ## Requirements
+
 - Docker
 
 Generated SDK will be outputted to the `isp` folder.
 
 ```sh
 # By default, it generates against prod
-./run.sh 
+./run.sh
 
 # Generate against stage
 ./run.sh stage
 ```
+
 ## Verify SDK generated successfully
 
 ```sh
@@ -31,5 +33,8 @@ Generated SDK will be outputted to the `isp` folder.
 go build ./...
 
 # Running the example with valid client id, client secret, and org should be successful.
- CLIENT_ID="<YOUR_CLIENT_ID>" CLIENT_SECRET="<YOUR_CLIENT_SECRET>" ORG="<ORG>" go run ./example 
+CLIENT_ID="<YOUR_CLIENT_ID>" CLIENT_SECRET="<YOUR_CLIENT_SECRET>" ORG="<ORG>" go run ./example
+
+# Or use a JWT you already have:
+AUTH_HEADER=$(restish auth-header isp) ORG="<ORG>" go run ./example
 ```

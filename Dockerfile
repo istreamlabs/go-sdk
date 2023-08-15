@@ -8,4 +8,4 @@ WORKDIR /go-sdk
 COPY .generator.yaml .generator.yaml
 COPY templates templates
 
-CMD ["sh", "-c", "java -jar /opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate -c .generator.yaml -i ${OPENAPI_SPEC} -g go -o isp --skip-validate-spec"]
+CMD ["sh", "-c", "java -jar /opt/openapi-generator/modules/openapi-generator-cli/target/openapi-generator-cli.jar generate -c .generator.yaml -i ${OPENAPI_SPEC} -g go -o isp --skip-validate-spec --git-user-id=istreamlabs --git-repo-id=go-sdk"]

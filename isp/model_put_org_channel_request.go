@@ -615,16 +615,22 @@ func (o PutOrgChannelRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
-	// skip: created is readOnly
+	if !IsNil(o.Created) {
+		toSerialize["created"] = o.Created
+	}
 	if !IsNil(o.DesiredState) {
 		toSerialize["desired_state"] = o.DesiredState
 	}
-	// skip: id is readOnly
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["ingest"] = o.Ingest
 	if !IsNil(o.Labels) {
 		toSerialize["labels"] = o.Labels
 	}
-	// skip: modified is readOnly
+	if !IsNil(o.Modified) {
+		toSerialize["modified"] = o.Modified
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
@@ -643,7 +649,9 @@ func (o PutOrgChannelRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ResourceClass) {
 		toSerialize["resource_class"] = o.ResourceClass
 	}
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	if !IsNil(o.Signaling) {
 		toSerialize["signaling"] = o.Signaling
 	}

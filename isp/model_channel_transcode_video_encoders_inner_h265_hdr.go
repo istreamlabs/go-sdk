@@ -21,7 +21,7 @@ type ChannelTranscodeVideoEncodersInnerH265Hdr struct {
 	DolbyVision *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision `json:"dolby_vision,omitempty"`
 	Hdr10 *ChannelTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
 	// Only one of ['hlg', 'hdr10', 'dolby_vision'] may be set.
-	Hlg map[string]interface{} `json:"hlg,omitempty"`
+	Hlg *map[string]interface{} `json:"hlg,omitempty"`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265Hdr instantiates a new ChannelTranscodeVideoEncodersInnerH265Hdr object
@@ -111,14 +111,14 @@ func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) GetHlg() map[string]interfac
 		var ret map[string]interface{}
 		return ret
 	}
-	return o.Hlg
+	return *o.Hlg
 }
 
 // GetHlgOk returns a tuple with the Hlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) GetHlgOk() (map[string]interface{}, bool) {
+func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) GetHlgOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Hlg) {
-		return map[string]interface{}{}, false
+		return nil, false
 	}
 	return o.Hlg, true
 }
@@ -134,7 +134,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) HasHlg() bool {
 
 // SetHlg gets a reference to the given map[string]interface{} and assigns it to the Hlg field.
 func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) SetHlg(v map[string]interface{}) {
-	o.Hlg = v
+	o.Hlg = &v
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265Hdr) MarshalJSON() ([]byte, error) {

@@ -191,7 +191,9 @@ func (o ChannelIngestSource) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
-	// skip: self is readOnly
+	if !IsNil(o.Self) {
+		toSerialize["self"] = o.Self
+	}
 	return toSerialize, nil
 }
 
