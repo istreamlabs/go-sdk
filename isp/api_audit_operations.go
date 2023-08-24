@@ -49,15 +49,8 @@ type ApiGetChannelTimelineRequest struct {
 	ctx context.Context
 	ApiService AuditOperationsApi
 	channelId string
-	offset *int32
 	cursor *string
 	pageSize *int32
-}
-
-// Number of items to skip when calling a paginated API
-func (r ApiGetChannelTimelineRequest) Offset(offset int32) ApiGetChannelTimelineRequest {
-	r.offset = &offset
-	return r
 }
 
 // Current page cursor
@@ -123,9 +116,6 @@ func (a *AuditOperationsApiService) GetChannelTimelineExecute(r ApiGetChannelTim
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
-	if r.offset != nil {
-		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
-	}
 	if r.cursor != nil {
 		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
 	}

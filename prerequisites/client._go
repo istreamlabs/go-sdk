@@ -79,20 +79,41 @@ type service struct {
 }
 
 type CloseableTransport struct {
-	oauth2.Transport
+	http.RoundTripper
+}
+
+type idleConnectionsCloser interface {
+	CloseIdleConnections()
 }
 
 func (t *CloseableTransport) CloseIdleConnections() {
-	http.DefaultTransport.(*http.Transport).CloseIdleConnections()
+	base := t.RoundTripper
+	if o, ok := base.(*oauth2.Transport); ok {
+		// oath2.Transport doesn't implement what we need, but we know it stores
+		// the underlying RoundTripper in a field called Base and can access it
+		// here. It's likely an `http.Transport` and should implement the
+		// connection closer.
+		base = o.Base
+	}
+
+	if closer, ok := base.(idleConnectionsCloser); ok {
+		closer.CloseIdleConnections()
+	} else {
+		panic("HTTP transport does not implement IdleConnectionsCloser")
+	}
 }
 
-func NewCloseableTransport(t *oauth2.Transport) *CloseableTransport {
-	return &CloseableTransport{
-		oauth2.Transport{
-			Base:   t.Base,
-			Source: t.Source,
-		},
+func NewCloseableTransport(t http.RoundTripper) *CloseableTransport {
+	// Attempt to fail fast if we get an invalid transport. Still have to check
+	// later as e.g. `oauth2.Transport.Base` could change at runtime.
+	if _, ok := t.(*oauth2.Transport); ok {
+		// Ok
+	} else if _, ok := t.(idleConnectionsCloser); ok {
+		// Ok
+	} else {
+		panic("HTTP transport does not implement IdleConnectionsCloser")
 	}
+	return &CloseableTransport{t}
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
@@ -101,10 +122,10 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	if cfg.HTTPClient == nil {
 		cfg.HTTPClient = http.DefaultClient
 	}
-
-	if _, ok := cfg.HTTPClient.Transport.(*oauth2.Transport); ok {
-		cfg.HTTPClient.Transport = NewCloseableTransport(cfg.HTTPClient.Transport.(*oauth2.Transport))
+	if cfg.HTTPClient.Transport == nil {
+		cfg.HTTPClient.Transport = http.DefaultTransport
 	}
+	cfg.HTTPClient.Transport = NewCloseableTransport(cfg.HTTPClient.Transport)
 
 	c := &APIClient{}
 	c.cfg = cfg
