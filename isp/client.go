@@ -96,6 +96,10 @@ func (t *CloseableTransport) CloseIdleConnections() {
 		base = o.Base
 	}
 
+	if base == nil {
+		base = http.DefaultTransport
+	}
+
 	if closer, ok := base.(idleConnectionsCloser); ok {
 		closer.CloseIdleConnections()
 	} else {

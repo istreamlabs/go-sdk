@@ -67,8 +67,9 @@ func TestCloseableTransport(t *testing.T) {
 	assert.Panics(t, func() {
 		closeable2 := isp.NewCloseableTransport(custom2)
 
-		// Screw things up after creation.
-		custom2.Base = nil
+		// Screw things up after creation by setting a custom transport without
+		// support for CloseIdleConnections as the oauth2.Transport's base.
+		custom2.Base = custom1
 		closeable2.CloseIdleConnections()
 	})
 
