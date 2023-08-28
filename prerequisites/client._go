@@ -110,11 +110,10 @@ func (t *CloseableTransport) CloseIdleConnections() {
 func NewCloseableTransport(t http.RoundTripper) *CloseableTransport {
 	// Attempt to fail fast if we get an invalid transport. Still have to check
 	// later as e.g. `oauth2.Transport.Base` could change at runtime.
-	if _, ok := t.(*oauth2.Transport); ok {
-		// Ok
-	} else if _, ok := t.(idleConnectionsCloser); ok {
-		// Ok
-	} else {
+	switch t.(type) {
+	case *oauth2.Transport, idleConnectionsCloser:
+		// ok
+	default:
 		panic("HTTP transport does not implement IdleConnectionsCloser")
 	}
 	return &CloseableTransport{t}
