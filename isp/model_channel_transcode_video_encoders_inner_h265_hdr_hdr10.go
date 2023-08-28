@@ -16,7 +16,7 @@ import (
 // checks if the ChannelTranscodeVideoEncodersInnerH265HdrHdr10 type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrHdr10{}
 
-// ChannelTranscodeVideoEncodersInnerH265HdrHdr10 Only one of ['hlg', 'hdr10', 'dolby_vision'] may be set.
+// ChannelTranscodeVideoEncodersInnerH265HdrHdr10 Only one of ['hdr10', 'dolby_vision'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrHdr10 struct {
 	Clli *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
 	Mdcv *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv `json:"mdcv,omitempty"`
