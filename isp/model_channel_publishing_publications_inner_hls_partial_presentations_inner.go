@@ -20,6 +20,8 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerHlsPartialPresentation
 type ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct {
 	// Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used.
 	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty"`
+	// Optionally specify which audio encoders should be used when generating the FER of this Partial Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used.
+	FerAudioEncoderIds []string `json:"fer_audio_encoder_ids,omitempty"`
 	// List of video encoder IDs that should have I-Frame only playlists generated for them. If no 'iframe_only_encoder_ids' are given then no I-Frame playlists will be in the Partial Presentation.
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty"`
 	// Sub-path that will be appended onto the publish and playback base URLs of HTTP PublishPoints for published playlist files.
@@ -77,6 +79,38 @@ func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasAudi
 // SetAudioEncoderIds gets a reference to the given []string and assigns it to the AudioEncoderIds field.
 func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetAudioEncoderIds(v []string) {
 	o.AudioEncoderIds = v
+}
+
+// GetFerAudioEncoderIds returns the FerAudioEncoderIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetFerAudioEncoderIds() []string {
+	if o == nil || IsNil(o.FerAudioEncoderIds) {
+		var ret []string
+		return ret
+	}
+	return o.FerAudioEncoderIds
+}
+
+// GetFerAudioEncoderIdsOk returns a tuple with the FerAudioEncoderIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) GetFerAudioEncoderIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.FerAudioEncoderIds) {
+		return nil, false
+	}
+	return o.FerAudioEncoderIds, true
+}
+
+// HasFerAudioEncoderIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) HasFerAudioEncoderIds() bool {
+	if o != nil && !IsNil(o.FerAudioEncoderIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetFerAudioEncoderIds gets a reference to the given []string and assigns it to the FerAudioEncoderIds field.
+func (o *ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) SetFerAudioEncoderIds(v []string) {
+	o.FerAudioEncoderIds = v
 }
 
 // GetIframeOnlyEncoderIds returns the IframeOnlyEncoderIds field value if set, zero value otherwise.
@@ -219,6 +253,9 @@ func (o ChannelPublishingPublicationsInnerHlsPartialPresentationsInner) ToMap() 
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AudioEncoderIds) {
 		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
+	}
+	if !IsNil(o.FerAudioEncoderIds) {
+		toSerialize["fer_audio_encoder_ids"] = o.FerAudioEncoderIds
 	}
 	if !IsNil(o.IframeOnlyEncoderIds) {
 		toSerialize["iframe_only_encoder_ids"] = o.IframeOnlyEncoderIds

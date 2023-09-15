@@ -27,6 +27,8 @@ type ChannelPublishingPublicationsInner struct {
 	Drms []string `json:"drms,omitempty"`
 	// DVR window is the max sum(duration of media segments) that will be kept in a manifest at a given time in seconds. The max supported DVR window is 10 hours.
 	DvrWindowSecs *int32 `json:"dvr_window_secs,omitempty"`
+	// Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used.
+	FerAudioEncoderIds []string `json:"fer_audio_encoder_ids,omitempty"`
 	Hls *ChannelPublishingPublicationsInnerHls `json:"hls,omitempty"`
 	// List of video encoder IDs that should have I-Frame only playlists generated for them.
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty"`
@@ -223,6 +225,38 @@ func (o *ChannelPublishingPublicationsInner) HasDvrWindowSecs() bool {
 // SetDvrWindowSecs gets a reference to the given int32 and assigns it to the DvrWindowSecs field.
 func (o *ChannelPublishingPublicationsInner) SetDvrWindowSecs(v int32) {
 	o.DvrWindowSecs = &v
+}
+
+// GetFerAudioEncoderIds returns the FerAudioEncoderIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInner) GetFerAudioEncoderIds() []string {
+	if o == nil || IsNil(o.FerAudioEncoderIds) {
+		var ret []string
+		return ret
+	}
+	return o.FerAudioEncoderIds
+}
+
+// GetFerAudioEncoderIdsOk returns a tuple with the FerAudioEncoderIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInner) GetFerAudioEncoderIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.FerAudioEncoderIds) {
+		return nil, false
+	}
+	return o.FerAudioEncoderIds, true
+}
+
+// HasFerAudioEncoderIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInner) HasFerAudioEncoderIds() bool {
+	if o != nil && !IsNil(o.FerAudioEncoderIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetFerAudioEncoderIds gets a reference to the given []string and assigns it to the FerAudioEncoderIds field.
+func (o *ChannelPublishingPublicationsInner) SetFerAudioEncoderIds(v []string) {
+	o.FerAudioEncoderIds = v
 }
 
 // GetHls returns the Hls field value if set, zero value otherwise.
@@ -601,6 +635,9 @@ func (o ChannelPublishingPublicationsInner) ToMap() (map[string]interface{}, err
 	}
 	if !IsNil(o.DvrWindowSecs) {
 		toSerialize["dvr_window_secs"] = o.DvrWindowSecs
+	}
+	if !IsNil(o.FerAudioEncoderIds) {
+		toSerialize["fer_audio_encoder_ids"] = o.FerAudioEncoderIds
 	}
 	if !IsNil(o.Hls) {
 		toSerialize["hls"] = o.Hls
