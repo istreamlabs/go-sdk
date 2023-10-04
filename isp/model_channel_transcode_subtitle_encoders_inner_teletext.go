@@ -16,7 +16,7 @@ import (
 // checks if the ChannelTranscodeSubtitleEncodersInnerTeletext type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInnerTeletext{}
 
-// ChannelTranscodeSubtitleEncodersInnerTeletext Only one of ['teletext'] may be set.
+// ChannelTranscodeSubtitleEncodersInnerTeletext Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
 type ChannelTranscodeSubtitleEncodersInnerTeletext struct {
 	// The teletext magazine number where the subtitles are found.
 	Magazine *int32 `json:"magazine,omitempty"`
