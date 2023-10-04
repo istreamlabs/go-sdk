@@ -18,6 +18,7 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInner{}
 
 // ChannelTranscodeSubtitleEncodersInner struct for ChannelTranscodeSubtitleEncodersInner
 type ChannelTranscodeSubtitleEncodersInner struct {
+	AtscCaptions *ChannelTranscodeSubtitleEncodersInnerAtscCaptions `json:"atsc_captions,omitempty"`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty"`
 	// Language is the code for the language in which the subtitles are written.
@@ -42,6 +43,38 @@ func NewChannelTranscodeSubtitleEncodersInner() *ChannelTranscodeSubtitleEncoder
 func NewChannelTranscodeSubtitleEncodersInnerWithDefaults() *ChannelTranscodeSubtitleEncodersInner {
 	this := ChannelTranscodeSubtitleEncodersInner{}
 	return &this
+}
+
+// GetAtscCaptions returns the AtscCaptions field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetAtscCaptions() ChannelTranscodeSubtitleEncodersInnerAtscCaptions {
+	if o == nil || IsNil(o.AtscCaptions) {
+		var ret ChannelTranscodeSubtitleEncodersInnerAtscCaptions
+		return ret
+	}
+	return *o.AtscCaptions
+}
+
+// GetAtscCaptionsOk returns a tuple with the AtscCaptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetAtscCaptionsOk() (*ChannelTranscodeSubtitleEncodersInnerAtscCaptions, bool) {
+	if o == nil || IsNil(o.AtscCaptions) {
+		return nil, false
+	}
+	return o.AtscCaptions, true
+}
+
+// HasAtscCaptions returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) HasAtscCaptions() bool {
+	if o != nil && !IsNil(o.AtscCaptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetAtscCaptions gets a reference to the given ChannelTranscodeSubtitleEncodersInnerAtscCaptions and assigns it to the AtscCaptions field.
+func (o *ChannelTranscodeSubtitleEncodersInner) SetAtscCaptions(v ChannelTranscodeSubtitleEncodersInnerAtscCaptions) {
+	o.AtscCaptions = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -182,6 +215,9 @@ func (o ChannelTranscodeSubtitleEncodersInner) MarshalJSON() ([]byte, error) {
 
 func (o ChannelTranscodeSubtitleEncodersInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AtscCaptions) {
+		toSerialize["atsc_captions"] = o.AtscCaptions
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}

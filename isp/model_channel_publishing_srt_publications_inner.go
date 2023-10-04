@@ -23,6 +23,8 @@ type ChannelPublishingSrtPublicationsInner struct {
 	Id *string `json:"id,omitempty"`
 	// MPEG-TS PMT PID. PIDs should be set on the PMT and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	PmtPid *int32 `json:"pmt_pid,omitempty"`
+	// MPEG-TS SCTE-35 PID.
+	Scte35Pid *int32 `json:"scte35_pid,omitempty"`
 	Url *string `json:"url,omitempty"`
 	VideoEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"video_encoders,omitempty"`
 }
@@ -140,6 +142,38 @@ func (o *ChannelPublishingSrtPublicationsInner) SetPmtPid(v int32) {
 	o.PmtPid = &v
 }
 
+// GetScte35Pid returns the Scte35Pid field value if set, zero value otherwise.
+func (o *ChannelPublishingSrtPublicationsInner) GetScte35Pid() int32 {
+	if o == nil || IsNil(o.Scte35Pid) {
+		var ret int32
+		return ret
+	}
+	return *o.Scte35Pid
+}
+
+// GetScte35PidOk returns a tuple with the Scte35Pid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingSrtPublicationsInner) GetScte35PidOk() (*int32, bool) {
+	if o == nil || IsNil(o.Scte35Pid) {
+		return nil, false
+	}
+	return o.Scte35Pid, true
+}
+
+// HasScte35Pid returns a boolean if a field has been set.
+func (o *ChannelPublishingSrtPublicationsInner) HasScte35Pid() bool {
+	if o != nil && !IsNil(o.Scte35Pid) {
+		return true
+	}
+
+	return false
+}
+
+// SetScte35Pid gets a reference to the given int32 and assigns it to the Scte35Pid field.
+func (o *ChannelPublishingSrtPublicationsInner) SetScte35Pid(v int32) {
+	o.Scte35Pid = &v
+}
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *ChannelPublishingSrtPublicationsInner) GetUrl() string {
 	if o == nil || IsNil(o.Url) {
@@ -222,6 +256,9 @@ func (o ChannelPublishingSrtPublicationsInner) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.PmtPid) {
 		toSerialize["pmt_pid"] = o.PmtPid
+	}
+	if !IsNil(o.Scte35Pid) {
+		toSerialize["scte35_pid"] = o.Scte35Pid
 	}
 	if !IsNil(o.Url) {
 		toSerialize["url"] = o.Url
