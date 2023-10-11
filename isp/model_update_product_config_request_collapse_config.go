@@ -18,6 +18,7 @@ var _ MappedNullable = &UpdateProductConfigRequestCollapseConfig{}
 
 // UpdateProductConfigRequestCollapseConfig Collapse filter options
 type UpdateProductConfigRequestCollapseConfig struct {
+	AutoCopyMp4 bool `json:"auto_copy_mp4"`
 	AutoCreateMp4 bool `json:"auto_create_mp4"`
 	M3u8FiltersConfig UpdateProductConfigRequestCollapseConfigM3u8FiltersConfig `json:"m3u8_filters_config"`
 	V2FiltersConfig UpdateProductConfigRequestCollapseConfigV2FiltersConfig `json:"v2_filters_config"`
@@ -27,8 +28,9 @@ type UpdateProductConfigRequestCollapseConfig struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateProductConfigRequestCollapseConfig(autoCreateMp4 bool, m3u8FiltersConfig UpdateProductConfigRequestCollapseConfigM3u8FiltersConfig, v2FiltersConfig UpdateProductConfigRequestCollapseConfigV2FiltersConfig) *UpdateProductConfigRequestCollapseConfig {
+func NewUpdateProductConfigRequestCollapseConfig(autoCopyMp4 bool, autoCreateMp4 bool, m3u8FiltersConfig UpdateProductConfigRequestCollapseConfigM3u8FiltersConfig, v2FiltersConfig UpdateProductConfigRequestCollapseConfigV2FiltersConfig) *UpdateProductConfigRequestCollapseConfig {
 	this := UpdateProductConfigRequestCollapseConfig{}
+	this.AutoCopyMp4 = autoCopyMp4
 	this.AutoCreateMp4 = autoCreateMp4
 	this.M3u8FiltersConfig = m3u8FiltersConfig
 	this.V2FiltersConfig = v2FiltersConfig
@@ -41,6 +43,30 @@ func NewUpdateProductConfigRequestCollapseConfig(autoCreateMp4 bool, m3u8Filters
 func NewUpdateProductConfigRequestCollapseConfigWithDefaults() *UpdateProductConfigRequestCollapseConfig {
 	this := UpdateProductConfigRequestCollapseConfig{}
 	return &this
+}
+
+// GetAutoCopyMp4 returns the AutoCopyMp4 field value
+func (o *UpdateProductConfigRequestCollapseConfig) GetAutoCopyMp4() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+
+	return o.AutoCopyMp4
+}
+
+// GetAutoCopyMp4Ok returns a tuple with the AutoCopyMp4 field value
+// and a boolean to check if the value has been set.
+func (o *UpdateProductConfigRequestCollapseConfig) GetAutoCopyMp4Ok() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.AutoCopyMp4, true
+}
+
+// SetAutoCopyMp4 sets field value
+func (o *UpdateProductConfigRequestCollapseConfig) SetAutoCopyMp4(v bool) {
+	o.AutoCopyMp4 = v
 }
 
 // GetAutoCreateMp4 returns the AutoCreateMp4 field value
@@ -125,6 +151,7 @@ func (o UpdateProductConfigRequestCollapseConfig) MarshalJSON() ([]byte, error) 
 
 func (o UpdateProductConfigRequestCollapseConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["auto_copy_mp4"] = o.AutoCopyMp4
 	toSerialize["auto_create_mp4"] = o.AutoCreateMp4
 	toSerialize["m3u8_filters_config"] = o.M3u8FiltersConfig
 	toSerialize["v2_filters_config"] = o.V2FiltersConfig

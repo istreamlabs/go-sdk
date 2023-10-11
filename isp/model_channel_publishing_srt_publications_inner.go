@@ -21,9 +21,9 @@ type ChannelPublishingSrtPublicationsInner struct {
 	AudioEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"audio_encoders,omitempty"`
 	// SRT publication ID. Must be unique.
 	Id *string `json:"id,omitempty"`
-	// MPEG-TS PMT PID. PIDs should be set on the PMT and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+	// MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	PmtPid *int32 `json:"pmt_pid,omitempty"`
-	// MPEG-TS SCTE-35 PID.
+	// MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	Scte35Pid *int32 `json:"scte35_pid,omitempty"`
 	Url *string `json:"url,omitempty"`
 	VideoEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"video_encoders,omitempty"`
