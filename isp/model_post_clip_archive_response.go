@@ -19,13 +19,13 @@ var _ MappedNullable = &PostClipArchiveResponse{}
 // PostClipArchiveResponse struct for PostClipArchiveResponse
 type PostClipArchiveResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Identifer that is carried through the archive request
-	CorrelationId *string `json:"correlation_id,omitempty"`
+	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through the archive request"`
 	// Set if Live2VOD failed to start an archive task for any configured archive destination. Empty if all are successful
-	TaskErrors []ErrorModelErrorsInner `json:"task_errors"`
+	TaskErrors []ErrorModelErrorsInner `json:"task_errors" doc:"Set if Live2VOD failed to start an archive task for any configured archive destination. Empty if all are successful"`
 	// Array of task ids for each archive destination task started by Live2VOD
-	TaskIds []string `json:"task_ids"`
+	TaskIds []string `json:"task_ids" doc:"Array of task ids for each archive destination task started by Live2VOD"`
 }
 
 // NewPostClipArchiveResponse instantiates a new PostClipArchiveResponse object

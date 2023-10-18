@@ -19,11 +19,11 @@ var _ MappedNullable = &ListProgramsResponse{}
 // ListProgramsResponse struct for ListProgramsResponse
 type ListProgramsResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Errors when fetching programs
-	Errors []ErrorModelErrorsInner `json:"errors"`
+	Errors []ErrorModelErrorsInner `json:"errors" doc:"Errors when fetching programs"`
 	// Program Array
-	Programs []ListProgramsResponseProgramsInner `json:"programs"`
+	Programs []ListProgramsResponseProgramsInner `json:"programs" doc:"Program Array"`
 }
 
 // NewListProgramsResponse instantiates a new ListProgramsResponse object

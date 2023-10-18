@@ -19,7 +19,7 @@ var _ MappedNullable = &CollapseVODRequestFilterconfigScte35Options{}
 // CollapseVODRequestFilterconfigScte35Options Additional SCTE filter options
 type CollapseVODRequestFilterconfigScte35Options struct {
 	// Signal removal of provider ads
-	SignalRemovedProviderAd bool `json:"signal_removed_provider_ad"`
+	SignalRemovedProviderAd bool `json:"signal_removed_provider_ad" doc:"Signal removal of provider ads"`
 }
 
 // NewCollapseVODRequestFilterconfigScte35Options instantiates a new CollapseVODRequestFilterconfigScte35Options object

@@ -20,35 +20,35 @@ var _ MappedNullable = &ListTasksResponseTasksInner{}
 // ListTasksResponseTasksInner struct for ListTasksResponseTasksInner
 type ListTasksResponseTasksInner struct {
 	// when the task was created in RFC3339Nano format
-	Created time.Time `json:"created"`
+	Created time.Time `json:"created" format:"date-time" doc:"when the task was created in RFC3339Nano format"`
 	// indicates if the task is done or not
-	Done bool `json:"done"`
+	Done bool `json:"done" doc:"indicates if the task is done or not"`
 	// when the task ended in RFC3339Nano format
-	Ended time.Time `json:"ended"`
+	Ended time.Time `json:"ended" format:"date-time" doc:"when the task ended in RFC3339Nano format"`
 	// error message if any for this task
-	Error string `json:"error"`
+	Error string `json:"error" doc:"error message if any for this task"`
 	// number of times the task failed
-	FailureCount int32 `json:"failure_count"`
+	FailureCount int32 `json:"failure_count" format:"int32" doc:"number of times the task failed"`
 	// ID for the task
-	Id string `json:"id"`
+	Id string `json:"id" doc:"ID for the task"`
 	// params sent to task
-	Params string `json:"params"`
+	Params string `json:"params" doc:"params sent to task"`
 	// the progress of the task
-	Progress float64 `json:"progress"`
+	Progress float64 `json:"progress" format:"double" doc:"the progress of the task"`
 	// Region represents the general geolocation the task is in.
-	Region *string `json:"region,omitempty"`
+	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation the task is in."`
 	// status for the task
-	Status string `json:"status"`
+	Status string `json:"status" doc:"status for the task"`
 	// indicates if the task succeeded or not
-	Succeeded bool `json:"succeeded"`
+	Succeeded bool `json:"succeeded" doc:"indicates if the task succeeded or not"`
 	// type of task
-	Type int32 `json:"type"`
+	Type int32 `json:"type" format:"int32" doc:"type of task"`
 	// priority
-	Weight int32 `json:"weight"`
+	Weight int32 `json:"weight" format:"int32" doc:"priority"`
 	// the version of the worker for this task
-	WorkerVersion string `json:"workerVersion"`
+	WorkerVersion string `json:"workerVersion" doc:"the version of the worker for this task"`
 	// the id of the worker for the task
-	WorkerId int64 `json:"worker_id"`
+	WorkerId int64 `json:"worker_id" format:"int64" doc:"the id of the worker for the task"`
 }
 
 // NewListTasksResponseTasksInner instantiates a new ListTasksResponseTasksInner object

@@ -19,16 +19,16 @@ var _ MappedNullable = &ChannelPublishing{}
 // ChannelPublishing Publishing configures playlist formats and where to send video and playlist data.
 type ChannelPublishing struct {
 	// Configures how captioning information, which references CEA-608 captions embedded in video segments, is published.
-	ClosedCaptionStreams []ChannelPublishingClosedCaptionStreamsInner `json:"closed_caption_streams,omitempty"`
+	ClosedCaptionStreams []ChannelPublishingClosedCaptionStreamsInner `json:"closed_caption_streams,omitempty" doc:"Configures how captioning information, which references CEA-608 captions embedded in video segments, is published."`
 	// Set of string identifiers corresponding to features that this Channel is opting in.
-	FeatureFlags []string `json:"feature_flags,omitempty"`
+	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Set of string identifiers corresponding to features that this Channel is opting in."`
 	Live2vod *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
 	// A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists.
-	Publications []ChannelPublishingPublicationsInner `json:"publications,omitempty"`
+	Publications []ChannelPublishingPublicationsInner `json:"publications,omitempty" doc:"A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists."`
 	// A set of configurations for delivering RTMP streams
-	RtmpPublications []ChannelPublishingRtmpPublicationsInner `json:"rtmp_publications,omitempty"`
+	RtmpPublications []ChannelPublishingRtmpPublicationsInner `json:"rtmp_publications,omitempty" doc:"A set of configurations for delivering RTMP streams"`
 	// A set of configurations for delivering SRT streams
-	SrtPublications []ChannelPublishingSrtPublicationsInner `json:"srt_publications,omitempty"`
+	SrtPublications []ChannelPublishingSrtPublicationsInner `json:"srt_publications,omitempty" doc:"A set of configurations for delivering SRT streams"`
 }
 
 // NewChannelPublishing instantiates a new ChannelPublishing object

@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelPublishingClosedCaptionStreamsInner{}
 // ChannelPublishingClosedCaptionStreamsInner struct for ChannelPublishingClosedCaptionStreamsInner
 type ChannelPublishingClosedCaptionStreamsInner struct {
 	// Indicates that the client should play the captioning media selection group if the user has not indicated a user preference. If both auto_select and default are not set, the first captioning media selection group will be used.
-	AutoSelect *string `json:"auto_select,omitempty"`
+	AutoSelect *string `json:"auto_select,omitempty" enum:"NO,YES" doc:"Indicates that the client should play the captioning media selection group if the user has not indicated a user preference. If both auto_select and default are not set, the first captioning media selection group will be used."`
 	// Configures the captioning media selection group that will be played if the user has not indicated a user preference. If both auto_select and default are not set, the first captioning media selection group will be used.
-	Default *string `json:"default,omitempty"`
+	Default *string `json:"default,omitempty" enum:"NO,YES" doc:"Configures the captioning media selection group that will be played if the user has not indicated a user preference. If both auto_select and default are not set, the first captioning media selection group will be used."`
 	// Language code as RFC 5646, e.g. 'en' 'en-US'.
-	Language *string `json:"language,omitempty"`
+	Language *string `json:"language,omitempty" doc:"Language code as RFC 5646, e.g. 'en' 'en-US'."`
 	// Source stream name.
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" doc:"Source stream name."`
 }
 
 // NewChannelPublishingClosedCaptionStreamsInner instantiates a new ChannelPublishingClosedCaptionStreamsInner object

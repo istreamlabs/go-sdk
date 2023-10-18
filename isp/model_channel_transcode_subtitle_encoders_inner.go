@@ -20,12 +20,12 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInner{}
 type ChannelTranscodeSubtitleEncodersInner struct {
 	AtscCaptions *ChannelTranscodeSubtitleEncodersInnerAtscCaptions `json:"atsc_captions,omitempty"`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	// Language is the code for the language in which the subtitles are written.
-	Language *string `json:"language,omitempty"`
+	Language *string `json:"language,omitempty" minLength:"2" doc:"Language is the code for the language in which the subtitles are written."`
 	Teletext *ChannelTranscodeSubtitleEncodersInnerTeletext `json:"teletext,omitempty"`
 	// Usage indicates how this encoder should be flagged in generated manifests.
-	Usage *string `json:"usage,omitempty"`
+	Usage *string `json:"usage,omitempty" enum:"CLOSED_CAPTIONS,SUBTITLES" doc:"Usage indicates how this encoder should be flagged in generated manifests."`
 }
 
 // NewChannelTranscodeSubtitleEncodersInner instantiates a new ChannelTranscodeSubtitleEncodersInner object

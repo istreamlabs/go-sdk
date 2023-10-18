@@ -19,25 +19,25 @@ var _ MappedNullable = &ChannelTranscode{}
 // ChannelTranscode Transcode configures audio/video conversion settings.
 type ChannelTranscode struct {
 	// Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc.
-	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty"`
+	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1" doc:"Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc."`
 	// Debug_overlay overlays debugging information from the transcoder into the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay.
-	DebugOverlay *bool `json:"debug_overlay,omitempty"`
+	DebugOverlay *bool `json:"debug_overlay,omitempty" doc:"Debug_overlay overlays debugging information from the transcoder into the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay."`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper.
-	FeatureFlags []string `json:"feature_flags,omitempty"`
+	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper."`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
-	Id3Mode *string `json:"id3_mode,omitempty"`
+	Id3Mode *string `json:"id3_mode,omitempty" enum:"PASSTHROUGH" doc:"Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored."`
 	Nielsen *map[string]interface{} `json:"nielsen,omitempty"`
 	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
-	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty"`
+	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty" maxItems:"1" doc:"List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on."`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
-	ResizeMode *string `json:"resize_mode,omitempty"`
+	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX" doc:"Resize mode specifies how to scale a video up or down to match the output dimensions."`
 	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
 	// Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec.
-	SubtitleEncoders []ChannelTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty"`
+	SubtitleEncoders []ChannelTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty" doc:"Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec."`
 	// Thumbnail encoders specify how to create image snapshots of the video stream.
-	ThumbnailEncoders []ChannelTranscodeThumbnailEncodersInner `json:"thumbnail_encoders,omitempty"`
+	ThumbnailEncoders []ChannelTranscodeThumbnailEncodersInner `json:"thumbnail_encoders,omitempty" doc:"Thumbnail encoders specify how to create image snapshots of the video stream."`
 	// Video encoders specify video conversion settings, e.g. dimensions, codec, bitrate, etc.
-	VideoEncoders []ChannelTranscodeVideoEncodersInner `json:"video_encoders,omitempty"`
+	VideoEncoders []ChannelTranscodeVideoEncodersInner `json:"video_encoders,omitempty" minItems:"1" doc:"Video encoders specify video conversion settings, e.g. dimensions, codec, bitrate, etc."`
 }
 
 // NewChannelTranscode instantiates a new ChannelTranscode object

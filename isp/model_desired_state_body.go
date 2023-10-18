@@ -19,9 +19,9 @@ var _ MappedNullable = &DesiredStateBody{}
 // DesiredStateBody struct for DesiredStateBody
 type DesiredStateBody struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Desired state
-	DesiredState string `json:"desired_state"`
+	DesiredState string `json:"desired_state" enum:"ON,OFF" doc:"Desired state"`
 }
 
 // NewDesiredStateBody instantiates a new DesiredStateBody object

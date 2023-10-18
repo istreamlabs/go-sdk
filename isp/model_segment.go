@@ -20,16 +20,16 @@ var _ MappedNullable = &Segment{}
 // Segment struct for Segment
 type Segment struct {
 	// The program time when the segment ends (or ended).
-	End *time.Time `json:"end,omitempty"`
+	End *time.Time `json:"end,omitempty" format:"date-time" doc:"The program time when the segment ends (or ended)."`
 	// The event_id used in the Signal START that resulted in this signaling segment.
-	EventId *int32 `json:"event_id,omitempty"`
+	EventId *int32 `json:"event_id,omitempty" format:"int32" minimum:"0" doc:"The event_id used in the Signal START that resulted in this signaling segment."`
 	// Uniquely identifies the signaling segment for a channel. This is assigned by the transcoder when the segment is created.
-	SegmentId *int64 `json:"segment_id,omitempty"`
+	SegmentId *int64 `json:"segment_id,omitempty" format:"int64" minimum:"0" doc:"Uniquely identifies the signaling segment for a channel. This is assigned by the transcoder when the segment is created."`
 	// When set, contains the URL to the slate media asset that will play for the duration of the segment.
-	SlateUrl *string `json:"slate_url,omitempty"`
+	SlateUrl *string `json:"slate_url,omitempty" doc:"When set, contains the URL to the slate media asset that will play for the duration of the segment."`
 	// The program time when the segment starts (or started).
-	Start *time.Time `json:"start,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Start *time.Time `json:"start,omitempty" format:"date-time" doc:"The program time when the segment starts (or started)."`
+	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE"`
 }
 
 // NewSegment instantiates a new Segment object

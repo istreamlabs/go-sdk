@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli struct for ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli struct {
 	// Maximum Content Light Level (nits).
-	MaxCll *float64 `json:"max_cll,omitempty"`
+	MaxCll *float64 `json:"max_cll,omitempty" format:"double" minimum:"0" maximum:"10000" doc:"Maximum Content Light Level (nits)."`
 	// Maximum Frame-Average Light Level (nits).
-	MaxFall *float64 `json:"max_fall,omitempty"`
+	MaxFall *float64 `json:"max_fall,omitempty" format:"double" minimum:"0" maximum:"10000" doc:"Maximum Frame-Average Light Level (nits)."`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli instantiates a new ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli object

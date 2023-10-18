@@ -19,7 +19,7 @@ var _ MappedNullable = &DeprecatedGetPresentationsResponseItem{}
 // DeprecatedGetPresentationsResponseItem struct for DeprecatedGetPresentationsResponseItem
 type DeprecatedGetPresentationsResponseItem struct {
 	Path string `json:"path"`
-	Presid int64 `json:"presid"`
+	Presid int64 `json:"presid" format:"int64"`
 	Renditions []DeprecatedGetPresentationsResponseItemRenditionsInner `json:"renditions"`
 	Storepath string `json:"storepath"`
 }

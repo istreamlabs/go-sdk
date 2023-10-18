@@ -20,11 +20,11 @@ var _ MappedNullable = &CollapseVODRequestFilterconfigTimeInner{}
 // CollapseVODRequestFilterconfigTimeInner struct for CollapseVODRequestFilterconfigTimeInner
 type CollapseVODRequestFilterconfigTimeInner struct {
 	// end time of the time window of segments
-	End time.Time `json:"end"`
+	End time.Time `json:"end" format:"date-time" doc:"end time of the time window of segments"`
 	// should include boundary within the VOD
-	Include bool `json:"include"`
+	Include bool `json:"include" doc:"should include boundary within the VOD"`
 	// start time of the time window of segments
-	Start time.Time `json:"start"`
+	Start time.Time `json:"start" format:"date-time" doc:"start time of the time window of segments"`
 }
 
 // NewCollapseVODRequestFilterconfigTimeInner instantiates a new CollapseVODRequestFilterconfigTimeInner object

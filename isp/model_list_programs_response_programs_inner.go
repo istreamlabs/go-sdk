@@ -20,23 +20,23 @@ var _ MappedNullable = &ListProgramsResponseProgramsInner{}
 // ListProgramsResponseProgramsInner struct for ListProgramsResponseProgramsInner
 type ListProgramsResponseProgramsInner struct {
 	// Description for the Program
-	Description string `json:"description"`
+	Description string `json:"description" doc:"Description for the Program"`
 	// Number of files in the program
-	FileCount int64 `json:"file_count"`
+	FileCount int64 `json:"file_count" format:"int64" doc:"Number of files in the program"`
 	// ID for the program
-	Id string `json:"id"`
+	Id string `json:"id" doc:"ID for the program"`
 	// Last published time for the program
-	LastPublished time.Time `json:"last_published"`
+	LastPublished time.Time `json:"last_published" format:"date-time" doc:"Last published time for the program"`
 	// Clip ID published for program
-	PublishedClipId int64 `json:"published_clip_id"`
+	PublishedClipId int64 `json:"published_clip_id" format:"int64" doc:"Clip ID published for program"`
 	// VOD ID published for program
-	PublishedVodId int64 `json:"published_vod_id"`
+	PublishedVodId int64 `json:"published_vod_id" format:"int64" doc:"VOD ID published for program"`
 	// Region represents the general geolocation the program is in.
-	Region *string `json:"region,omitempty"`
+	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation the program is in."`
 	// How many days the program is retained for
-	RetentionDays int64 `json:"retention_days"`
+	RetentionDays int64 `json:"retention_days" format:"int64" doc:"How many days the program is retained for"`
 	// Total Bytes of the Program
-	TotalBytes int64 `json:"total_bytes"`
+	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"Total Bytes of the Program"`
 }
 
 // NewListProgramsResponseProgramsInner instantiates a new ListProgramsResponseProgramsInner object

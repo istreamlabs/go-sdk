@@ -18,11 +18,11 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo{}
 
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo Only one of ['video'] may be set.
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo struct {
-	BitDepth *int32 `json:"bit_depth,omitempty"`
+	BitDepth *int32 `json:"bit_depth,omitempty" format:"int32"`
 	Clli *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli `json:"clli,omitempty"`
 	ColorDescription *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription `json:"color_description,omitempty"`
-	FrameHeight *int32 `json:"frame_height,omitempty"`
-	FrameWidth *int32 `json:"frame_width,omitempty"`
+	FrameHeight *int32 `json:"frame_height,omitempty" format:"int32"`
+	FrameWidth *int32 `json:"frame_width,omitempty" format:"int32"`
 	Mdcv *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv `json:"mdcv,omitempty"`
 }
 

@@ -19,17 +19,17 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerHlsPartialPresentation
 // ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct for ChannelPublishingPublicationsInnerHlsPartialPresentationsInner
 type ChannelPublishingPublicationsInnerHlsPartialPresentationsInner struct {
 	// Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used.
-	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty"`
+	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used."`
 	// Optionally specify which audio encoders should be used when generating the FER of this Partial Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used.
-	FerAudioEncoderIds []string `json:"fer_audio_encoder_ids,omitempty"`
+	FerAudioEncoderIds []string `json:"fer_audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used when generating the FER of this Partial Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used."`
 	// List of video encoder IDs that should have I-Frame only playlists generated for them. If no 'iframe_only_encoder_ids' are given then no I-Frame playlists will be in the Partial Presentation.
-	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty"`
+	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty" uniqueItems:"true" doc:"List of video encoder IDs that should have I-Frame only playlists generated for them. If no 'iframe_only_encoder_ids' are given then no I-Frame playlists will be in the Partial Presentation."`
 	// Sub-path that will be appended onto the publish and playback base URLs of HTTP PublishPoints for published playlist files.
-	PlaylistPath *string `json:"playlist_path,omitempty"`
+	PlaylistPath *string `json:"playlist_path,omitempty" minLength:"1" doc:"Sub-path that will be appended onto the publish and playback base URLs of HTTP PublishPoints for published playlist files."`
 	// Specify which thumbnail encoders should be used for this presentation. If no 'thumbnail_encoder_ids' are given then no thumbnail playlists will be in the Partial Presentation.
-	ThumbnailEncoderIds []string `json:"thumbnail_encoder_ids,omitempty"`
+	ThumbnailEncoderIds []string `json:"thumbnail_encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which thumbnail encoders should be used for this presentation. If no 'thumbnail_encoder_ids' are given then no thumbnail playlists will be in the Partial Presentation."`
 	// Specify which video encoders should be used for this presentation. If none are specified, all video encoders configured for the parent Publication will be used.
-	VideoEncoderIds []string `json:"video_encoder_ids,omitempty"`
+	VideoEncoderIds []string `json:"video_encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which video encoders should be used for this presentation. If none are specified, all video encoders configured for the parent Publication will be used."`
 }
 
 // NewChannelPublishingPublicationsInnerHlsPartialPresentationsInner instantiates a new ChannelPublishingPublicationsInnerHlsPartialPresentationsInner object

@@ -19,15 +19,15 @@ var _ MappedNullable = &SpliceInsertStartSignal{}
 // SpliceInsertStartSignal struct for SpliceInsertStartSignal
 type SpliceInsertStartSignal struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Splice duration (ms).  If no duration or a duration of 0 then the splice is indifinite.
-	Duration *int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration,omitempty" format:"int32" default:"0" minimum:"1000" doc:"Splice duration (ms).  If no duration or a duration of 0 then the splice is indifinite."`
 	// Event ID
-	EventId int32 `json:"event_id"`
+	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Event ID"`
 	// Slate url
-	SlateUri *string `json:"slate_uri,omitempty"`
+	SlateUri *string `json:"slate_uri,omitempty" format:"uri" doc:"Slate url"`
 	// UPIDs
-	Upids []string `json:"upids,omitempty"`
+	Upids []string `json:"upids,omitempty" doc:"UPIDs"`
 }
 
 // NewSpliceInsertStartSignal instantiates a new SpliceInsertStartSignal object

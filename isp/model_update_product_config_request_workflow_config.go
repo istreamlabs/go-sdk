@@ -18,7 +18,7 @@ var _ MappedNullable = &UpdateProductConfigRequestWorkflowConfig{}
 
 // UpdateProductConfigRequestWorkflowConfig Config variables for workflows
 type UpdateProductConfigRequestWorkflowConfig struct {
-	CutprogramPaddingInSeconds *int32 `json:"cutprogram_padding_in_seconds,omitempty"`
+	CutprogramPaddingInSeconds *int32 `json:"cutprogram_padding_in_seconds,omitempty" format:"int32"`
 	MakeMp4 *bool `json:"make_mp4,omitempty"`
 	Mp4FeatureFlag *string `json:"mp4-feature-flag,omitempty"`
 }

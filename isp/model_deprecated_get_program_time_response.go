@@ -19,8 +19,8 @@ var _ MappedNullable = &DeprecatedGetProgramTimeResponse{}
 // DeprecatedGetProgramTimeResponse struct for DeprecatedGetProgramTimeResponse
 type DeprecatedGetProgramTimeResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
-	Duration int64 `json:"duration"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	Duration int64 `json:"duration" format:"int64"`
 	ProgramEnd string `json:"program_end"`
 	ProgramStart string `json:"program_start"`
 }

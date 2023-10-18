@@ -19,15 +19,15 @@ var _ MappedNullable = &GetPreviewStreamsResponse{}
 // GetPreviewStreamsResponse struct for GetPreviewStreamsResponse
 type GetPreviewStreamsResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here.
-	AudioTracks []GetPreviewStreamsResponseAudioTracksInner `json:"audio_tracks,omitempty"`
+	AudioTracks []GetPreviewStreamsResponseAudioTracksInner `json:"audio_tracks,omitempty" doc:"Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here."`
 	DefaultAudioTrack *GetPreviewStreamsResponseDefaultAudioTrack `json:"default_audio_track,omitempty"`
 	// default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations.
-	DefaultUrl *string `json:"default_url,omitempty"`
+	DefaultUrl *string `json:"default_url,omitempty" doc:"default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations."`
 	DefaultVideoTrack *GetPreviewStreamsResponseDefaultVideoTrack `json:"default_video_track,omitempty"`
 	// JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server.
-	Token *string `json:"token,omitempty"`
+	Token *string `json:"token,omitempty" doc:"JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server."`
 	VideoTracks []GetPreviewStreamsResponseDefaultVideoTrack `json:"video_tracks,omitempty"`
 }
 

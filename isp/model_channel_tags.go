@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTags{}
 // ChannelTags Use ChannelMetadata when possible instead of tags.
 type ChannelTags struct {
 	// Indicates whether this channel is monitored by automation.
-	Monitored *bool `json:"monitored,omitempty"`
+	Monitored *bool `json:"monitored,omitempty" doc:"Indicates whether this channel is monitored by automation."`
 }
 
 // NewChannelTags instantiates a new ChannelTags object

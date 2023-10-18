@@ -18,9 +18,9 @@ var _ MappedNullable = &ChannelPublishingSrtPublicationsInnerAudioEncodersInner{
 
 // ChannelPublishingSrtPublicationsInnerAudioEncodersInner struct for ChannelPublishingSrtPublicationsInnerAudioEncodersInner
 type ChannelPublishingSrtPublicationsInnerAudioEncodersInner struct {
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" minLength:"1"`
 	// Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-	Pid *int32 `json:"pid,omitempty"`
+	Pid *int32 `json:"pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
 }
 
 // NewChannelPublishingSrtPublicationsInnerAudioEncodersInner instantiates a new ChannelPublishingSrtPublicationsInnerAudioEncodersInner object

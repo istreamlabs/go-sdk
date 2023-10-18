@@ -19,13 +19,13 @@ var _ MappedNullable = &PatchChannelRequest2Inner{}
 // PatchChannelRequest2Inner struct for PatchChannelRequest2Inner
 type PatchChannelRequest2Inner struct {
 	// JSON Pointer for the source of a move or copy
-	From *string `json:"from,omitempty"`
+	From *string `json:"from,omitempty" doc:"JSON Pointer for the source of a move or copy"`
 	// Operation name
-	Op string `json:"op"`
+	Op string `json:"op" enum:"add,remove,replace,move,copy,test" doc:"Operation name"`
 	// JSON Pointer to the field being operated on, or the destination of a move/copy operation
-	Path string `json:"path"`
+	Path string `json:"path" doc:"JSON Pointer to the field being operated on, or the destination of a move/copy operation"`
 	// The value to set
-	Value interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty" doc:"The value to set"`
 }
 
 // NewPatchChannelRequest2Inner instantiates a new PatchChannelRequest2Inner object

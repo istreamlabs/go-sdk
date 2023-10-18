@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelTranscodeSegmenter{}
 // ChannelTranscodeSegmenter Segmenter configures how video GOPs and segments get generated.
 type ChannelTranscodeSegmenter struct {
 	// GOP (group of pictures) duration specifies the amount of time between I-frames. Shorter durations can lower quality slightly as each I-frame uses more bits than P- & B-frames but can provide a better seeking experience when enabling thumbnail encoders and/or I-Frame Only playlists.
-	GopDurationSecs *float64 `json:"gop_duration_secs,omitempty"`
+	GopDurationSecs *float64 `json:"gop_duration_secs,omitempty" format:"double" exclusiveMinimum:"0" doc:"GOP (group of pictures) duration specifies the amount of time between I-frames. Shorter durations can lower quality slightly as each I-frame uses more bits than P- & B-frames but can provide a better seeking experience when enabling thumbnail encoders and/or I-Frame Only playlists."`
 	// Not public because we haven't shipped low latency HLS yet and we probably need to update the naming.
-	PartialsMode *string `json:"partials_mode,omitempty"`
+	PartialsMode *string `json:"partials_mode,omitempty" enum:"GOP" doc:"Not public because we haven't shipped low latency HLS yet and we probably need to update the naming."`
 	// Segment duration specifies the target duration of a single segment. Segments shorter than this duration can occur at signaling boundaries. This value _must_ be a multiple of the GOP duration value.
-	SegmentDurationSecs *float64 `json:"segment_duration_secs,omitempty"`
+	SegmentDurationSecs *float64 `json:"segment_duration_secs,omitempty" format:"double" exclusiveMinimum:"0" doc:"Segment duration specifies the target duration of a single segment. Segments shorter than this duration can occur at signaling boundaries. This value _must_ be a multiple of the GOP duration value."`
 	// Include TEMI (Timeline and External Media Information ISO/IEC 13818-1:2019 Annex U) to mpeg-ts segments.
-	Temi *bool `json:"temi,omitempty"`
+	Temi *bool `json:"temi,omitempty" doc:"Include TEMI (Timeline and External Media Information ISO/IEC 13818-1:2019 Annex U) to mpeg-ts segments."`
 }
 
 // NewChannelTranscodeSegmenter instantiates a new ChannelTranscodeSegmenter object

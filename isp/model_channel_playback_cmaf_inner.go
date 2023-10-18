@@ -20,9 +20,9 @@ var _ MappedNullable = &ChannelPlaybackCmafInner{}
 type ChannelPlaybackCmafInner struct {
 	ContentProtection *ChannelPlaybackCmafInnerContentProtection `json:"content_protection,omitempty"`
 	// Partial Presentation Playback URLs
-	PartialPresentations []string `json:"partial_presentations,omitempty"`
+	PartialPresentations []string `json:"partial_presentations,omitempty" doc:"Partial Presentation Playback URLs"`
 	// Playback URL
-	Url string `json:"url"`
+	Url string `json:"url" doc:"Playback URL"`
 }
 
 // NewChannelPlaybackCmafInner instantiates a new ChannelPlaybackCmafInner object

@@ -19,7 +19,7 @@ var _ MappedNullable = &DeprecatedGetClipManifestsResponseItem{}
 // DeprecatedGetClipManifestsResponseItem struct for DeprecatedGetClipManifestsResponseItem
 type DeprecatedGetClipManifestsResponseItem struct {
 	CdnURL string `json:"cdnURL"`
-	ManifestID int64 `json:"manifestID"`
+	ManifestID int64 `json:"manifestID" format:"int64"`
 	Path string `json:"path"`
 	Storepath string `json:"storepath"`
 }

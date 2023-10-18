@@ -19,9 +19,9 @@ var _ MappedNullable = &PinSourceRequest{}
 // PinSourceRequest struct for PinSourceRequest
 type PinSourceRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Which ingest origin to pin the transcoder to.
-	IngestOrigin *string `json:"ingest_origin,omitempty"`
+	IngestOrigin *string `json:"ingest_origin,omitempty" enum:"PRIMARY,SECONDARY" doc:"Which ingest origin to pin the transcoder to."`
 }
 
 // NewPinSourceRequest instantiates a new PinSourceRequest object

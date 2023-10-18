@@ -20,23 +20,23 @@ var _ MappedNullable = &DeprecatedListVODsResponse{}
 // DeprecatedListVODsResponse struct for DeprecatedListVODsResponse
 type DeprecatedListVODsResponse struct {
 	// description of the vod
-	Description string `json:"description"`
+	Description string `json:"description" doc:"description of the vod"`
 	// number of files for the vod
-	FileCount int64 `json:"file_count"`
+	FileCount int64 `json:"file_count" format:"int64" doc:"number of files for the vod"`
 	// date last published
-	LastPublished *time.Time `json:"last_published,omitempty"`
+	LastPublished *time.Time `json:"last_published,omitempty" format:"date-time" doc:"date last published"`
 	// format
-	PackagingFormat *string `json:"packaging_format,omitempty"`
+	PackagingFormat *string `json:"packaging_format,omitempty" doc:"format"`
 	// store location of the vod
-	Store string `json:"store"`
+	Store string `json:"store" doc:"store location of the vod"`
 	// store prefix for the vod
-	Storeprefix string `json:"storeprefix"`
+	Storeprefix string `json:"storeprefix" doc:"store prefix for the vod"`
 	// total bytes for the vod
-	TotalBytes int64 `json:"total_bytes"`
+	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"total bytes for the vod"`
 	// version of the vod
-	Version string `json:"version"`
+	Version string `json:"version" doc:"version of the vod"`
 	// id of the vod
-	Vodid int64 `json:"vodid"`
+	Vodid int64 `json:"vodid" format:"int64" doc:"id of the vod"`
 }
 
 // NewDeprecatedListVODsResponse instantiates a new DeprecatedListVODsResponse object

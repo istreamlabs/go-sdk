@@ -19,11 +19,11 @@ var _ MappedNullable = &GetProductResponse{}
 // GetProductResponse struct for GetProductResponse
 type GetProductResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Errors when fetching product
-	Errors []ErrorModelErrorsInner `json:"errors"`
+	Errors []ErrorModelErrorsInner `json:"errors" doc:"Errors when fetching product"`
 	// Product Array
-	Products []GetProductResponseProductsInner `json:"products"`
+	Products []GetProductResponseProductsInner `json:"products" doc:"Product Array"`
 }
 
 // NewGetProductResponse instantiates a new GetProductResponse object

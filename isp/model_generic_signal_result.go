@@ -19,9 +19,9 @@ var _ MappedNullable = &GenericSignalResult{}
 // GenericSignalResult struct for GenericSignalResult
 type GenericSignalResult struct {
 	// Error details from the signaling subsystem
-	ErrorMessage string `json:"error_message"`
+	ErrorMessage string `json:"error_message" doc:"Error details from the signaling subsystem"`
 	// Result of signal; 'accepted' means no error
-	ResultCode string `json:"result_code"`
+	ResultCode string `json:"result_code" enum:"accepted,not_found,already_exists,invalid_argument,internal_error" doc:"Result of signal; 'accepted' means no error"`
 }
 
 // NewGenericSignalResult instantiates a new GenericSignalResult object

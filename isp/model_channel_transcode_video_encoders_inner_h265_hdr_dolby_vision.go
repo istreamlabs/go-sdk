@@ -19,10 +19,10 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision{}
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision Only one of ['hdr10', 'dolby_vision'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision struct {
 	// Only one of ['profile5', 'profile81', 'profile84'] may be set.
-	Profile5 *map[string]interface{} `json:"profile5,omitempty"`
+	Profile5 *map[string]interface{} `json:"profile5,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84'] may be set."`
 	Profile81 *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 `json:"profile81,omitempty"`
 	// Only one of ['profile5', 'profile81', 'profile84'] may be set.
-	Profile84 *map[string]interface{} `json:"profile84,omitempty"`
+	Profile84 *map[string]interface{} `json:"profile84,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84'] may be set."`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVision instantiates a new ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision object

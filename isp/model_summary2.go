@@ -19,19 +19,19 @@ var _ MappedNullable = &Summary2{}
 // Summary2 struct for Summary2
 type Summary2 struct {
 	// Desired state of channel
-	DesiredState string `json:"desired_state"`
+	DesiredState string `json:"desired_state" enum:"ON,OFF" doc:"Desired state of channel"`
 	// Content hash
-	Etag string `json:"etag"`
+	Etag string `json:"etag" doc:"Content hash"`
 	// Unique channel ID
-	Id string `json:"id"`
+	Id string `json:"id" doc:"Unique channel ID"`
 	// Channel Labels
-	Labels []string `json:"labels,omitempty"`
+	Labels []string `json:"labels,omitempty" doc:"Channel Labels"`
 	// Friendly channel description
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" doc:"Friendly channel description"`
 	// Organization
-	Org string `json:"org"`
+	Org string `json:"org" doc:"Organization"`
 	// Link to this resource
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 	Source Summary2Source `json:"source"`
 }
 

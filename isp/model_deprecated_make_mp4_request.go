@@ -19,9 +19,9 @@ var _ MappedNullable = &DeprecatedMakeMP4Request{}
 // DeprecatedMakeMP4Request struct for DeprecatedMakeMP4Request
 type DeprecatedMakeMP4Request struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// if true, forces recreation of the mp4 if already created.
-	Force *bool `json:"force,omitempty"`
+	Force *bool `json:"force,omitempty" doc:"if true, forces recreation of the mp4 if already created."`
 }
 
 // NewDeprecatedMakeMP4Request instantiates a new DeprecatedMakeMP4Request object

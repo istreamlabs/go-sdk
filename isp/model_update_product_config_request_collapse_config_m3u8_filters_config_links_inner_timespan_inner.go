@@ -19,8 +19,8 @@ var _ MappedNullable = &UpdateProductConfigRequestCollapseConfigM3u8FiltersConfi
 
 // UpdateProductConfigRequestCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner struct for UpdateProductConfigRequestCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner
 type UpdateProductConfigRequestCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner struct {
-	Endtime *time.Time `json:"endtime,omitempty"`
-	Starttime time.Time `json:"starttime"`
+	Endtime *time.Time `json:"endtime,omitempty" format:"date-time"`
+	Starttime time.Time `json:"starttime" format:"date-time"`
 }
 
 // NewUpdateProductConfigRequestCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner instantiates a new UpdateProductConfigRequestCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner object

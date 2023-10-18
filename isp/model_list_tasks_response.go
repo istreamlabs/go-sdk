@@ -19,11 +19,11 @@ var _ MappedNullable = &ListTasksResponse{}
 // ListTasksResponse struct for ListTasksResponse
 type ListTasksResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Errors when fetching tasks
-	Errors []ErrorModelErrorsInner `json:"errors"`
+	Errors []ErrorModelErrorsInner `json:"errors" doc:"Errors when fetching tasks"`
 	// Task Array
-	Tasks []ListTasksResponseTasksInner `json:"tasks"`
+	Tasks []ListTasksResponseTasksInner `json:"tasks" doc:"Task Array"`
 }
 
 // NewListTasksResponse instantiates a new ListTasksResponse object

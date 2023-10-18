@@ -20,11 +20,11 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmt{}
 // StatusIngestStatusPrimaryStatusPmt The PMT for this source.
 type StatusIngestStatusPrimaryStatusPmt struct {
 	// The time that the PMT was updated.
-	LastUpdate *time.Time `json:"last_update,omitempty"`
-	PcrPid *int32 `json:"pcr_pid,omitempty"`
-	Pid *int32 `json:"pid,omitempty"`
+	LastUpdate *time.Time `json:"last_update,omitempty" format:"date-time" doc:"The time that the PMT was updated."`
+	PcrPid *int32 `json:"pcr_pid,omitempty" format:"int32" minimum:"0"`
+	Pid *int32 `json:"pid,omitempty" format:"int32" minimum:"0"`
 	// The following fields correspond to fields in github.com/iStreamPlanet/go-media/mp2t.PMT
-	ProgramNumber *int32 `json:"program_number,omitempty"`
+	ProgramNumber *int32 `json:"program_number,omitempty" format:"int32" minimum:"0" doc:"The following fields correspond to fields in github.com/iStreamPlanet/go-media/mp2t.PMT"`
 	Streams []StatusIngestStatusPrimaryStatusPmtStreamsInner `json:"streams,omitempty"`
 }
 

@@ -19,9 +19,9 @@ var _ MappedNullable = &Scte35{}
 // Scte35 struct for Scte35
 type Scte35 struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// The SCTE-35 payload, encoded as base-64 in JSON or binary data in CBOR
-	Payload string `json:"payload"`
+	Payload string `json:"payload" doc:"The SCTE-35 payload, encoded as base-64 in JSON or binary data in CBOR"`
 }
 
 // NewScte35 instantiates a new Scte35 object

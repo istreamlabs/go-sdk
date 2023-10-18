@@ -21,7 +21,7 @@ type UpdateProductConfigRequestArchiveSettingsRemoteCopySettingsInnerRemoteCopyC
 	Basedir string `json:"basedir"`
 	Hostname string `json:"hostname"`
 	Password *string `json:"password,omitempty"`
-	Port *int32 `json:"port,omitempty"`
+	Port *int32 `json:"port,omitempty" format:"int32"`
 	Username string `json:"username"`
 }
 

@@ -19,9 +19,9 @@ var _ MappedNullable = &TaskResponse{}
 // TaskResponse struct for TaskResponse
 type TaskResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// List of tasks for the program
-	Tasks []TaskResponseTasksInner `json:"tasks"`
+	Tasks []TaskResponseTasksInner `json:"tasks" doc:"List of tasks for the program"`
 }
 
 // NewTaskResponse instantiates a new TaskResponse object

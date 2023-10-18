@@ -19,9 +19,9 @@ var _ MappedNullable = &MP4URLResponse{}
 // MP4URLResponse struct for MP4URLResponse
 type MP4URLResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// URL for mp4 of a clip
-	Mp4url string `json:"mp4url"`
+	Mp4url string `json:"mp4url" doc:"URL for mp4 of a clip"`
 }
 
 // NewMP4URLResponse instantiates a new MP4URLResponse object

@@ -18,7 +18,7 @@ var _ MappedNullable = &ChannelSignalingSegmentSettingsInnerTierFilterExplicitTi
 
 // ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier Only one of ['explicit_tier'] may be set.
 type ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier struct {
-	Values []int32 `json:"values,omitempty"`
+	Values []int32 `json:"values,omitempty" format:"int32"`
 }
 
 // NewChannelSignalingSegmentSettingsInnerTierFilterExplicitTier instantiates a new ChannelSignalingSegmentSettingsInnerTierFilterExplicitTier object

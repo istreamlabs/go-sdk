@@ -19,7 +19,7 @@ var _ MappedNullable = &Status{}
 // Status struct for Status
 type Status struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
 }
 

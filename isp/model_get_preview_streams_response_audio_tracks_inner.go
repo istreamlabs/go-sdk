@@ -18,14 +18,14 @@ var _ MappedNullable = &GetPreviewStreamsResponseAudioTracksInner{}
 
 // GetPreviewStreamsResponseAudioTracksInner struct for GetPreviewStreamsResponseAudioTracksInner
 type GetPreviewStreamsResponseAudioTracksInner struct {
-	Bitrate *int32 `json:"bitrate,omitempty"`
+	Bitrate *int32 `json:"bitrate,omitempty" format:"int32"`
 	// codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this AudioTrackInfo. ex. 'mp4a.40.2' for AAC Low-Complexity.
-	CodecString *string `json:"codec_string,omitempty"`
-	Id *int32 `json:"id,omitempty"`
+	CodecString *string `json:"codec_string,omitempty" doc:"codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this AudioTrackInfo. ex. 'mp4a.40.2' for AAC Low-Complexity."`
+	Id *int32 `json:"id,omitempty" format:"int32" minimum:"0"`
 	// Friendly name of the AudioTrack.
-	Name *string `json:"name,omitempty"`
-	NumChannels *int32 `json:"num_channels,omitempty"`
-	SampleRate *int32 `json:"sample_rate,omitempty"`
+	Name *string `json:"name,omitempty" doc:"Friendly name of the AudioTrack."`
+	NumChannels *int32 `json:"num_channels,omitempty" format:"int32"`
+	SampleRate *int32 `json:"sample_rate,omitempty" format:"int32"`
 }
 
 // NewGetPreviewStreamsResponseAudioTracksInner instantiates a new GetPreviewStreamsResponseAudioTracksInner object

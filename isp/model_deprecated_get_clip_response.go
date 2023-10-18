@@ -20,23 +20,23 @@ var _ MappedNullable = &DeprecatedGetClipResponse{}
 // DeprecatedGetClipResponse struct for DeprecatedGetClipResponse
 type DeprecatedGetClipResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// id for this clip
-	Clipid int64 `json:"clipid"`
+	Clipid int64 `json:"clipid" format:"int64" doc:"id for this clip"`
 	// date and time when clip was created
-	Created time.Time `json:"created"`
+	Created time.Time `json:"created" format:"date-time" doc:"date and time when clip was created"`
 	// description of the clip
-	Description string `json:"description"`
+	Description string `json:"description" doc:"description of the clip"`
 	// clip duration in seconds
-	Duration int64 `json:"duration"`
+	Duration int64 `json:"duration" format:"int64" doc:"clip duration in seconds"`
 	// clip end time
-	EndTime time.Time `json:"endTime"`
+	EndTime time.Time `json:"endTime" format:"date-time" doc:"clip end time"`
 	// path to the mp4
-	Mp4path string `json:"mp4path"`
+	Mp4path string `json:"mp4path" doc:"path to the mp4"`
 	// source of the clip
-	Source string `json:"source"`
+	Source string `json:"source" doc:"source of the clip"`
 	// clip start time
-	StartTime time.Time `json:"startTime"`
+	StartTime time.Time `json:"startTime" format:"date-time" doc:"clip start time"`
 }
 
 // NewDeprecatedGetClipResponse instantiates a new DeprecatedGetClipResponse object

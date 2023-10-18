@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct for ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv struct {
 	// Identifies color primaries and white point.
-	ColorProfile *string `json:"color_profile,omitempty"`
+	ColorProfile *string `json:"color_profile,omitempty" enum:"BT2020,P3_D65,BT709" doc:"Identifies color primaries and white point."`
 	// Maximum display mastering luminance (nits). Must be greater than min_dml.
-	MaxDml *float64 `json:"max_dml,omitempty"`
+	MaxDml *float64 `json:"max_dml,omitempty" format:"double" minimum:"0" maximum:"10000" doc:"Maximum display mastering luminance (nits). Must be greater than min_dml."`
 	// Minimum display mastering luminance (nits).
-	MinDml *float64 `json:"min_dml,omitempty"`
+	MinDml *float64 `json:"min_dml,omitempty" format:"double" minimum:"0" maximum:"10000" doc:"Minimum display mastering luminance (nits)."`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv instantiates a new ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv object

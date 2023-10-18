@@ -19,9 +19,9 @@ var _ MappedNullable = &ListClipsForVodResponseChannelClipsInner{}
 // ListClipsForVodResponseChannelClipsInner struct for ListClipsForVodResponseChannelClipsInner
 type ListClipsForVodResponseChannelClipsInner struct {
 	// List of clips associated with the VOD
-	Clips []ListClipsForVodResponseChannelClipsInnerClipsInner `json:"clips"`
+	Clips []ListClipsForVodResponseChannelClipsInnerClipsInner `json:"clips" doc:"List of clips associated with the VOD"`
 	// ID of the VOD from which the clips were created
-	VodId string `json:"vod_id"`
+	VodId string `json:"vod_id" doc:"ID of the VOD from which the clips were created"`
 }
 
 // NewListClipsForVodResponseChannelClipsInner instantiates a new ListClipsForVodResponseChannelClipsInner object

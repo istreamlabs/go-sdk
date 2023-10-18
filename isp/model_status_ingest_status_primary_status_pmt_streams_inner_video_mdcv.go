@@ -20,8 +20,8 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv{
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct {
 	Blue *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"blue,omitempty"`
 	Green *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"green,omitempty"`
-	MaxDisplayMasteringLuminance *float64 `json:"max_display_mastering_luminance,omitempty"`
-	MinDisplayMasteringLuminance *float64 `json:"min_display_mastering_luminance,omitempty"`
+	MaxDisplayMasteringLuminance *float64 `json:"max_display_mastering_luminance,omitempty" format:"double"`
+	MinDisplayMasteringLuminance *float64 `json:"min_display_mastering_luminance,omitempty" format:"double"`
 	Red *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"red,omitempty"`
 	WhitePoint *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"white_point,omitempty"`
 }

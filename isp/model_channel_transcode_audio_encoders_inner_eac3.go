@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTranscodeAudioEncodersInnerEac3{}
 // ChannelTranscodeAudioEncodersInnerEac3 Only one of ['eac3'] may be set.
 type ChannelTranscodeAudioEncodersInnerEac3 struct {
 	// Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence.
-	DdpJocPassthrough *bool `json:"ddp_joc_passthrough,omitempty"`
+	DdpJocPassthrough *bool `json:"ddp_joc_passthrough,omitempty" doc:"Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence."`
 }
 
 // NewChannelTranscodeAudioEncodersInnerEac3 instantiates a new ChannelTranscodeAudioEncodersInnerEac3 object

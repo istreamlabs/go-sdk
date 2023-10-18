@@ -19,19 +19,19 @@ var _ MappedNullable = &GenericSignal{}
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
 	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
-	Duration *int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration,omitempty" format:"int32" default:"0" minimum:"1000" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
 	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
-	EventId int32 `json:"event_id"`
+	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id."`
 	// The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc.
-	SegmentType string `json:"segment_type"`
+	SegmentType string `json:"segment_type" enum:"splice_insert,content_id,program,program_breakaway,chapter,break,opening_credit,closing_credit,provider_placement,distributor_placement,provider_overlay,distributor_overlay,provider_ad,distributor_ad,unscheduled_event,network,slate" doc:"The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc."`
 	// Whether this signal will start/end/etc a signaling segment
-	SignalType string `json:"signal_type"`
+	SignalType string `json:"signal_type" enum:"start,end,breakaway,resumption" doc:"Whether this signal will start/end/etc a signaling segment"`
 	// Slate url
-	SlateUri *string `json:"slate_uri,omitempty"`
+	SlateUri *string `json:"slate_uri,omitempty" format:"uri" doc:"Slate url"`
 	// Qualifier type
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty" enum:"none,overlap,in_progress" doc:"Qualifier type"`
 	// UPIDs
-	Upids []string `json:"upids,omitempty"`
+	Upids []string `json:"upids,omitempty" doc:"UPIDs"`
 }
 
 // NewGenericSignal instantiates a new GenericSignal object

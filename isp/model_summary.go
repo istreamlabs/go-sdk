@@ -19,11 +19,11 @@ var _ MappedNullable = &Summary{}
 // Summary struct for Summary
 type Summary struct {
 	// Station source ID
-	Id string `json:"id"`
+	Id string `json:"id" doc:"Station source ID"`
 	// Source name
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" doc:"Source name"`
 	// Link to this resource
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 }
 
 // NewSummary instantiates a new Summary object

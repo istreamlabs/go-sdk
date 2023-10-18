@@ -22,7 +22,7 @@ type DeprecatedGetPresentationsResponseItemRenditionsInner struct {
 	Metadata string `json:"metadata"`
 	Path string `json:"path"`
 	Ready bool `json:"ready"`
-	Rendid int64 `json:"rendid"`
+	Rendid int64 `json:"rendid" format:"int64"`
 	Storepath string `json:"storepath"`
 }
 

@@ -19,15 +19,15 @@ var _ MappedNullable = &ChannelSignalingSegmentSettingsInner{}
 // ChannelSignalingSegmentSettingsInner struct for ChannelSignalingSegmentSettingsInner
 type ChannelSignalingSegmentSettingsInner struct {
 	// Specifies the duration of a segment when the in-band SCTE-35 that initiates it (e.g. Distributor Placement Opportunity Start) is missing an explicit duration. N.B. for program and ad types, this also affects 'Simple Program' and 'Simple Ad' markers, respectively.
-	DefaultDurationSecs *int32 `json:"default_duration_secs,omitempty"`
+	DefaultDurationSecs *int32 `json:"default_duration_secs,omitempty" format:"int32" minimum:"0" maximum:"172800" doc:"Specifies the duration of a segment when the in-band SCTE-35 that initiates it (e.g. Distributor Placement Opportunity Start) is missing an explicit duration. N.B. for program and ad types, this also affects 'Simple Program' and 'Simple Ad' markers, respectively."`
 	// Determines whether to include the default duration in the output SCTE-35 messages when the input SCTE-35 message did not specify a duration.
-	EmitDefaultDuration *bool `json:"emit_default_duration,omitempty"`
+	EmitDefaultDuration *bool `json:"emit_default_duration,omitempty" doc:"Determines whether to include the default duration in the output SCTE-35 messages when the input SCTE-35 message did not specify a duration."`
 	// Specifies a 'correction' to the splice_time of in-band SCTE-35 in milliseconds.
-	OffsetMillis *int32 `json:"offset_millis,omitempty"`
+	OffsetMillis *int32 `json:"offset_millis,omitempty" format:"int32" minimum:"-4000" maximum:"4000" doc:"Specifies a 'correction' to the splice_time of in-band SCTE-35 in milliseconds."`
 	// Determines which Segment End signaling mode to use for the provided segments. If unspecified, defaults to MATCH_END_EVENT_ID.
-	SegmentEndMode *string `json:"segment_end_mode,omitempty"`
+	SegmentEndMode *string `json:"segment_end_mode,omitempty" enum:"MATCH_END_EVENT_ID,IGNORE_END_EVENT_ID,IGNORE_END_SIGNAL" doc:"Determines which Segment End signaling mode to use for the provided segments. If unspecified, defaults to MATCH_END_EVENT_ID."`
 	// Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration.
-	Segments []string `json:"segments,omitempty"`
+	Segments []string `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE" doc:"Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration."`
 	TierFilter *ChannelSignalingSegmentSettingsInnerTierFilter `json:"tier_filter,omitempty"`
 }
 

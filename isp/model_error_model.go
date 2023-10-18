@@ -19,19 +19,19 @@ var _ MappedNullable = &ErrorModel{}
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// A human-readable explanation specific to this occurrence of the problem.
-	Detail *string `json:"detail,omitempty"`
+	Detail *string `json:"detail,omitempty" doc:"A human-readable explanation specific to this occurrence of the problem."`
 	// Optional list of individual error details
-	Errors []ErrorModelErrorsInner `json:"errors,omitempty"`
+	Errors []ErrorModelErrorsInner `json:"errors,omitempty" doc:"Optional list of individual error details"`
 	// A URI reference that identifies the specific occurence of the problem.
-	Instance *string `json:"instance,omitempty"`
+	Instance *string `json:"instance,omitempty" format:"uri" doc:"A URI reference that identifies the specific occurence of the problem."`
 	// HTTP status code
-	Status *int32 `json:"status,omitempty"`
+	Status *int32 `json:"status,omitempty" format:"int32" doc:"HTTP status code"`
 	// A short, human-readable summary of the problem type. This value should not change between occurances of the error.
-	Title *string `json:"title,omitempty"`
+	Title *string `json:"title,omitempty" doc:"A short, human-readable summary of the problem type. This value should not change between occurances of the error."`
 	// A URI reference to human-readable documentation for the error.
-	Type *string `json:"type,omitempty"`
+	Type *string `json:"type,omitempty" format:"uri" default:""about:blank"" doc:"A URI reference to human-readable documentation for the error."`
 }
 
 // NewErrorModel instantiates a new ErrorModel object

@@ -19,17 +19,17 @@ var _ MappedNullable = &PostClipRequest{}
 // PostClipRequest struct for PostClipRequest
 type PostClipRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Identifer that is carried through archive and collapse notifications for the clip creation
-	CorrelationId *string `json:"correlation_id,omitempty"`
+	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
 	// Description of the clip being created
-	Description *string `json:"description,omitempty"`
+	Description *string `json:"description,omitempty" maxLength:"80" doc:"Description of the clip being created"`
 	// End timestamp in RFC3339Nano format
-	End string `json:"end"`
+	End string `json:"end" doc:"End timestamp in RFC3339Nano format"`
 	// Overwrite existing clip. Default: false
-	Overwrite *bool `json:"overwrite,omitempty"`
+	Overwrite *bool `json:"overwrite,omitempty" doc:"Overwrite existing clip. Default: false"`
 	// Start timestamp in RFC3339Nano format
-	Start string `json:"start"`
+	Start string `json:"start" doc:"Start timestamp in RFC3339Nano format"`
 }
 
 // NewPostClipRequest instantiates a new PostClipRequest object
