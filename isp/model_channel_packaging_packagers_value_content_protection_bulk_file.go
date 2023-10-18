@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionBulkFile{
 // ChannelPackagingPackagersValueContentProtectionBulkFile Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
 type ChannelPackagingPackagersValueContentProtectionBulkFile struct {
 	// How often the IV should be rotated and how it should be created
-	IvRotation *string `json:"iv_rotation,omitempty"`
+	IvRotation *string `json:"iv_rotation,omitempty" enum:"RANDOM_PER_KEY,PER_SEGMENT_NUMBER,UNIQUE_PER_SEGMENT" doc:"How often the IV should be rotated and how it should be created"`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionBulkFile instantiates a new ChannelPackagingPackagersValueContentProtectionBulkFile object

@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelPackagingPackagersValueMp2t{}
 // ChannelPackagingPackagersValueMp2t Uses MP2T format for each segments. Only one of ['mp2t', 'mp4'] may be set.
 type ChannelPackagingPackagersValueMp2t struct {
 	// Forces the Video and Audio Encodings to be unmuxed when there is one audio encodings. This setting will have to be uniformed across MP2T packagers within a config. When there are two or more audio encodings, unmuxed will be used automatically.
-	ForceUnmuxedAudio *bool `json:"force_unmuxed_audio,omitempty"`
+	ForceUnmuxedAudio *bool `json:"force_unmuxed_audio,omitempty" doc:"Forces the Video and Audio Encodings to be unmuxed when there is one audio encodings. This setting will have to be uniformed across MP2T packagers within a config. When there are two or more audio encodings, unmuxed will be used automatically."`
 	// If true, insert ID3 tags that include a UTC timestamp. This is a Turner/WM-specific extension.
-	InsertId3UtcTime *bool `json:"insert_id3_utc_time,omitempty"`
+	InsertId3UtcTime *bool `json:"insert_id3_utc_time,omitempty" doc:"If true, insert ID3 tags that include a UTC timestamp. This is a Turner/WM-specific extension."`
 }
 
 // NewChannelPackagingPackagersValueMp2t instantiates a new ChannelPackagingPackagersValueMp2t object

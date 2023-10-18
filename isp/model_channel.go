@@ -20,29 +20,29 @@ var _ MappedNullable = &Channel{}
 // Channel struct for Channel
 type Channel struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Date and time the channel was created.
-	Created *time.Time `json:"created,omitempty"`
+	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
 	// Desired running state for a channel.
-	DesiredState *string `json:"desired_state,omitempty"`
+	DesiredState *string `json:"desired_state,omitempty" enum:"ON,OFF" doc:"Desired running state for a channel."`
 	// External Channel ID provided at channel creation time
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
 	Ingest ChannelIngest `json:"ingest"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
-	Labels []string `json:"labels,omitempty"`
+	Labels []string `json:"labels,omitempty" maxItems:"10" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10."`
 	// Date and time the channel was last modified.
-	Modified *time.Time `json:"modified,omitempty"`
+	Modified *time.Time `json:"modified,omitempty" format:"date-time" doc:"Date and time the channel was last modified."`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
-	Name *string `json:"name,omitempty"`
-	Organization *string `json:"organization,omitempty"`
+	Name *string `json:"name,omitempty" doc:"A friendly human-readable name for the channel. This will get displayed in user interfaces."`
+	Organization *string `json:"organization,omitempty" minLength:"1"`
 	Packaging *ChannelPackaging `json:"packaging,omitempty"`
 	Publishing *ChannelPublishing `json:"publishing,omitempty"`
 	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
-	Region *string `json:"region,omitempty"`
+	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used."`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
-	ResourceClass *string `json:"resource_class,omitempty"`
+	ResourceClass *string `json:"resource_class,omitempty" enum:"DYNAMIC,STATIC" doc:"If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime."`
 	// Self link for the channel.
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the channel."`
 	Signaling *ChannelSignaling `json:"signaling,omitempty"`
 	Tags *ChannelTags `json:"tags,omitempty"`
 	Transcode ChannelTranscode `json:"transcode"`

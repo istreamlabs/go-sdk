@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionCommon{}
 // ChannelPackagingPackagersValueContentProtectionCommon Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
 type ChannelPackagingPackagersValueContentProtectionCommon struct {
 	// Defines the scheme that can be used with Common Encryption
-	SchemeType *string `json:"scheme_type,omitempty"`
+	SchemeType *string `json:"scheme_type,omitempty" enum:"CENC,CBCS" doc:"Defines the scheme that can be used with Common Encryption"`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionCommon instantiates a new ChannelPackagingPackagersValueContentProtectionCommon object

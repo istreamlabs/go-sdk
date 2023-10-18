@@ -27,3 +27,7 @@ docker run --rm -it -v ${SCRIPT_DIR}/isp:/go-sdk/isp generate-sdk
 # This is preferable to writing an entire huge Java project for a `trim`
 # function in the template. I hate this. 🫣
 sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./isp/*.go
+
+# Logicless templates are dumping `example:"null"` on every field, so we've
+# got to remove those.
+sed -i '' -E 's/ example:"null"//g' ./isp/*.go

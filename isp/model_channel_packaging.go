@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPackaging{}
 // ChannelPackaging Packaging configures media format and content protection settings.
 type ChannelPackaging struct {
 	// Defines the list of packagers available for Publications.
-	Packagers *map[string]ChannelPackagingPackagersValue `json:"packagers,omitempty"`
+	Packagers *map[string]ChannelPackagingPackagersValue `json:"packagers,omitempty" doc:"Defines the list of packagers available for Publications."`
 }
 
 // NewChannelPackaging instantiates a new ChannelPackaging object

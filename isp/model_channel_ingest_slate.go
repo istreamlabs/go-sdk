@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelIngestSlate{}
 // ChannelIngestSlate Slate configures default slating behavior.
 type ChannelIngestSlate struct {
 	// Source loss URL defines the location of the TS file to play when no source is available. It must have one audio and one video stream. Either MPEG2 or H.264 can be used.
-	SourceLossUrl *string `json:"source_loss_url,omitempty"`
+	SourceLossUrl *string `json:"source_loss_url,omitempty" format:"uri-reference" doc:"Source loss URL defines the location of the TS file to play when no source is available. It must have one audio and one video stream. Either MPEG2 or H.264 can be used."`
 }
 
 // NewChannelIngestSlate instantiates a new ChannelIngestSlate object
