@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelTranscodeAudioEncodersInnerLoudness{}
 // ChannelTranscodeAudioEncodersInnerLoudness Loudness normalization settings.
 type ChannelTranscodeAudioEncodersInnerLoudness struct {
 	// Enable Dialog Intelligence. Only supported for (E)AC-3 encoders.
-	DialogIntel *bool `json:"dialog_intel,omitempty"`
+	DialogIntel *bool `json:"dialog_intel,omitempty" doc:"Enable Dialog Intelligence. Only supported for (E)AC-3 encoders."`
 	// Loudness normalization LKFS setting. Default value is -24.
-	Lkfs *int32 `json:"lkfs,omitempty"`
+	Lkfs *int32 `json:"lkfs,omitempty" format:"int32" minimum:"-31" maximum:"-10" doc:"Loudness normalization LKFS setting. Default value is -24."`
 	// Loudness Range. Only supported for non-(E)AC-3 encoders. Default value is 7.0.
-	Lra *float32 `json:"lra,omitempty"`
+	Lra *float32 `json:"lra,omitempty" format:"float" doc:"Loudness Range. Only supported for non-(E)AC-3 encoders. Default value is 7.0."`
 	// Peak Limit. Default value is -2.0.
-	PeakLimit *float32 `json:"peak_limit,omitempty"`
+	PeakLimit *float32 `json:"peak_limit,omitempty" format:"float" minimum:"-8" maximum:"-0.1" doc:"Peak Limit. Default value is -2.0."`
 }
 
 // NewChannelTranscodeAudioEncodersInnerLoudness instantiates a new ChannelTranscodeAudioEncodersInnerLoudness object

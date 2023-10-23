@@ -20,19 +20,19 @@ var _ MappedNullable = &ListClipsForVodResponseChannelClipsInnerClipsInner{}
 // ListClipsForVodResponseChannelClipsInnerClipsInner struct for ListClipsForVodResponseChannelClipsInnerClipsInner
 type ListClipsForVodResponseChannelClipsInnerClipsInner struct {
 	// Primary ID for the clip
-	ClipId string `json:"clip_id"`
+	ClipId string `json:"clip_id" doc:"Primary ID for the clip"`
 	// Created timestamp in RFC3339Nano format
-	Created time.Time `json:"created"`
+	Created time.Time `json:"created" format:"date-time" doc:"Created timestamp in RFC3339Nano format"`
 	// Description for the clip
-	Description string `json:"description"`
+	Description string `json:"description" doc:"Description for the clip"`
 	// Duration of the clip in seconds
-	Duration int64 `json:"duration"`
+	Duration int64 `json:"duration" format:"int64" doc:"Duration of the clip in seconds"`
 	// End timestamp in RFC3339Nano format
-	End time.Time `json:"end"`
+	End time.Time `json:"end" format:"date-time" doc:"End timestamp in RFC3339Nano format"`
 	// Path for the MP4 for the clip
-	Mp4path string `json:"mp4path"`
+	Mp4path string `json:"mp4path" doc:"Path for the MP4 for the clip"`
 	// Start timestamp in RFC3339Nano format
-	Start time.Time `json:"start"`
+	Start time.Time `json:"start" format:"date-time" doc:"Start timestamp in RFC3339Nano format"`
 }
 
 // NewListClipsForVodResponseChannelClipsInnerClipsInner instantiates a new ListClipsForVodResponseChannelClipsInnerClipsInner object

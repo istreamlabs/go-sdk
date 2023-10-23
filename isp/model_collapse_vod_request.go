@@ -20,26 +20,26 @@ var _ MappedNullable = &CollapseVODRequest{}
 // CollapseVODRequest struct for CollapseVODRequest
 type CollapseVODRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Prefix for clip
-	ClipPrefix *string `json:"clip_prefix,omitempty"`
+	ClipPrefix *string `json:"clip_prefix,omitempty" doc:"Prefix for clip"`
 	// Suffix for clip
-	ClipSuffix *string `json:"clip_suffix,omitempty"`
+	ClipSuffix *string `json:"clip_suffix,omitempty" doc:"Suffix for clip"`
 	// Disable any autoprefix
-	DisableAutoPrefix *bool `json:"disable_auto_prefix,omitempty"`
+	DisableAutoPrefix *bool `json:"disable_auto_prefix,omitempty" doc:"Disable any autoprefix"`
 	// EndTime of VOD
-	EndTime *time.Time `json:"end_time,omitempty"`
+	EndTime *time.Time `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
 	Filterconfig *CollapseVODRequestFilterconfig `json:"filterconfig,omitempty"`
 	// Description for new collapsed clip
-	NewClipDescription string `json:"new_clip_description"`
+	NewClipDescription string `json:"new_clip_description" doc:"Description for new collapsed clip"`
 	// New Clip ID for collapsed clip
-	NewClipId int64 `json:"new_clip_id"`
+	NewClipId int64 `json:"new_clip_id" format:"int64" doc:"New Clip ID for collapsed clip"`
 	// Publish newly created VOD
-	PublishVod *bool `json:"publish_vod,omitempty"`
+	PublishVod *bool `json:"publish_vod,omitempty" doc:"Publish newly created VOD"`
 	// StartTime of VOD
-	StartTime *time.Time `json:"start_time,omitempty"`
+	StartTime *time.Time `json:"start_time,omitempty" format:"date-time" doc:"StartTime of VOD"`
 	// UPID for VOD
-	Upid *string `json:"upid,omitempty"`
+	Upid *string `json:"upid,omitempty" doc:"UPID for VOD"`
 }
 
 // NewCollapseVODRequest instantiates a new CollapseVODRequest object

@@ -20,18 +20,18 @@ var _ MappedNullable = &ChannelTimelineEntry{}
 // ChannelTimelineEntry struct for ChannelTimelineEntry
 type ChannelTimelineEntry struct {
 	// Shortcode indicating what action was taken
-	Action string `json:"action"`
+	Action string `json:"action" doc:"Shortcode indicating what action was taken"`
 	// Agent responsible for the action taken
-	Agent string `json:"agent"`
+	Agent string `json:"agent" doc:"Agent responsible for the action taken"`
 	Query *string `json:"query,omitempty"`
 	// The request body, if any, of the original action
-	RequestBody string `json:"request_body"`
+	RequestBody string `json:"request_body" doc:"The request body, if any, of the original action"`
 	// HTTP Status code indicating outcome of the action.
-	StatusCode int32 `json:"status_code"`
+	StatusCode int32 `json:"status_code" format:"int32" doc:"HTTP Status code indicating outcome of the action."`
 	// Timestamp of the action in UTC
-	Timestamp time.Time `json:"timestamp"`
+	Timestamp time.Time `json:"timestamp" format:"date-time" doc:"Timestamp of the action in UTC"`
 	// Correlation identifier for tracing
-	TraceId string `json:"trace_id"`
+	TraceId string `json:"trace_id" doc:"Correlation identifier for tracing"`
 }
 
 // NewChannelTimelineEntry instantiates a new ChannelTimelineEntry object

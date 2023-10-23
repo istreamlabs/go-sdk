@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInnerTeletext{}
 // ChannelTranscodeSubtitleEncodersInnerTeletext Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
 type ChannelTranscodeSubtitleEncodersInnerTeletext struct {
 	// The teletext magazine number where the subtitles are found.
-	Magazine *int32 `json:"magazine,omitempty"`
+	Magazine *int32 `json:"magazine,omitempty" format:"int32" minimum:"0" doc:"The teletext magazine number where the subtitles are found."`
 	// The teletext page number where the subtitles are found.
-	Page *int32 `json:"page,omitempty"`
+	Page *int32 `json:"page,omitempty" format:"int32" minimum:"0" doc:"The teletext page number where the subtitles are found."`
 }
 
 // NewChannelTranscodeSubtitleEncodersInnerTeletext instantiates a new ChannelTranscodeSubtitleEncodersInnerTeletext object

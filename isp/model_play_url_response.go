@@ -19,9 +19,9 @@ var _ MappedNullable = &PlayURLResponse{}
 // PlayURLResponse struct for PlayURLResponse
 type PlayURLResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// URL for playback of a clip
-	Url string `json:"url"`
+	Url string `json:"url" doc:"URL for playback of a clip"`
 }
 
 // NewPlayURLResponse instantiates a new PlayURLResponse object

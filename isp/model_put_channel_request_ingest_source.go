@@ -18,13 +18,13 @@ var _ MappedNullable = &PutChannelRequestIngestSource{}
 
 // PutChannelRequestIngestSource Source provides a reference to the input media stream for this channel.
 type PutChannelRequestIngestSource struct {
-	AudioSources []ChannelIngestSourceAudioSourcesInner `json:"audio_sources,omitempty"`
+	AudioSources []ChannelIngestSourceAudioSourcesInner `json:"audio_sources,omitempty" minItems:"1"`
 	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
-	CaptionsSource *string `json:"captions_source,omitempty"`
+	CaptionsSource *string `json:"captions_source,omitempty" enum:"ATSC_A53,SMPTE_2038" doc:"Closed captions source embedding. If unspecified, defaults to ATSC_A53."`
 	// Unique identifier for this source.
-	Id string `json:"id"`
+	Id string `json:"id" doc:"Unique identifier for this source."`
 	// Self link for the source.
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the source."`
 }
 
 // NewPutChannelRequestIngestSource instantiates a new PutChannelRequestIngestSource object

@@ -19,11 +19,11 @@ var _ MappedNullable = &ListClipsResponse{}
 // ListClipsResponse struct for ListClipsResponse
 type ListClipsResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// List of clips for the channel
-	ChannelClips []ListClipsForVodResponseChannelClipsInner `json:"channel_clips"`
+	ChannelClips []ListClipsForVodResponseChannelClipsInner `json:"channel_clips" doc:"List of clips for the channel"`
 	// Reports failures to fetch the clips of a single VOD. Empty if clips from all VODs are successfully fetched.
-	Errors []string `json:"errors"`
+	Errors []string `json:"errors" doc:"Reports failures to fetch the clips of a single VOD. Empty if clips from all VODs are successfully fetched."`
 }
 
 // NewListClipsResponse instantiates a new ListClipsResponse object

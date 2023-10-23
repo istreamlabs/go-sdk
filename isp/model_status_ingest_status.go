@@ -22,9 +22,9 @@ type StatusIngestStatus struct {
 	SecondaryStatus *StatusIngestStatusSecondaryStatus `json:"secondary_status,omitempty"`
 	SourceLossSlateStatus *StatusIngestStatusSourceLossSlateStatus `json:"source_loss_slate_status,omitempty"`
 	// Reports whether source merging is currently active i.e. that the transcoder is merging samples from primary and secondary sources to conceal errors.
-	SourceMergingActive *bool `json:"source_merging_active,omitempty"`
+	SourceMergingActive *bool `json:"source_merging_active,omitempty" doc:"Reports whether source merging is currently active i.e. that the transcoder is merging samples from primary and secondary sources to conceal errors."`
 	// Reports whether source merging was disabled via API.
-	SourceMergingDisabled *bool `json:"source_merging_disabled,omitempty"`
+	SourceMergingDisabled *bool `json:"source_merging_disabled,omitempty" doc:"Reports whether source merging was disabled via API."`
 }
 
 // NewStatusIngestStatus instantiates a new StatusIngestStatus object

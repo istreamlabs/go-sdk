@@ -19,16 +19,16 @@ var _ MappedNullable = &CollapseVODRequestFilterconfigScte35{}
 // CollapseVODRequestFilterconfigScte35 SCTE-based filtering
 type CollapseVODRequestFilterconfigScte35 struct {
 	// Filter out SCTE-35 break
-	Break bool `json:"break"`
+	Break bool `json:"break" doc:"Filter out SCTE-35 break"`
 	// Filter out chapters
-	Chapter bool `json:"chapter"`
+	Chapter bool `json:"chapter" doc:"Filter out chapters"`
 	// Filter out distributor ads
-	DistributorAds bool `json:"distributor_ads"`
+	DistributorAds bool `json:"distributor_ads" doc:"Filter out distributor ads"`
 	Options CollapseVODRequestFilterconfigScte35Options `json:"options"`
 	// Filter out provider ads
-	ProviderAds bool `json:"provider_ads"`
+	ProviderAds bool `json:"provider_ads" doc:"Filter out provider ads"`
 	// Filter out SCTE-35 message upid
-	Upid string `json:"upid"`
+	Upid string `json:"upid" doc:"Filter out SCTE-35 message upid"`
 }
 
 // NewCollapseVODRequestFilterconfigScte35 instantiates a new CollapseVODRequestFilterconfigScte35 object

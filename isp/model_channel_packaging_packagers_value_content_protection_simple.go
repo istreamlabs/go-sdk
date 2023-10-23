@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimple{}
 // ChannelPackagingPackagersValueContentProtectionSimple Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionSimple struct {
 	// Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
-	PublishPoints []ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner `json:"publish_points,omitempty"`
+	PublishPoints []ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner `json:"publish_points,omitempty" doc:"Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published."`
 	// Indicates which publish points must succeed for segment publishing to use the keys.
-	RequirePublish *string `json:"require_publish,omitempty"`
+	RequirePublish *string `json:"require_publish,omitempty" enum:"ANY,ALL" doc:"Indicates which publish points must succeed for segment publishing to use the keys."`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionSimple instantiates a new ChannelPackagingPackagersValueContentProtectionSimple object

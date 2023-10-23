@@ -19,9 +19,9 @@ var _ MappedNullable = &MakeMP4Response{}
 // MakeMP4Response struct for MakeMP4Response
 type MakeMP4Response struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Task ID for makemp4 task
-	Taskid string `json:"taskid"`
+	Taskid string `json:"taskid" doc:"Task ID for makemp4 task"`
 }
 
 // NewMakeMP4Response instantiates a new MakeMP4Response object

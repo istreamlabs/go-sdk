@@ -19,11 +19,11 @@ var _ MappedNullable = &MakeClipResponse{}
 // MakeClipResponse struct for MakeClipResponse
 type MakeClipResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Identifier for the clip created from the VOD
-	ClipId string `json:"clip_id"`
+	ClipId string `json:"clip_id" doc:"Identifier for the clip created from the VOD"`
 	// Identifier for the task from which the clip was created
-	TaskId string `json:"task_id"`
+	TaskId string `json:"task_id" doc:"Identifier for the task from which the clip was created"`
 }
 
 // NewMakeClipResponse instantiates a new MakeClipResponse object

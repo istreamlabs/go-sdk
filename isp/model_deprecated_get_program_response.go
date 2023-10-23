@@ -20,24 +20,24 @@ var _ MappedNullable = &DeprecatedGetProgramResponse{}
 // DeprecatedGetProgramResponse struct for DeprecatedGetProgramResponse
 type DeprecatedGetProgramResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	ClearSegmentConfig DeprecatedGetProgramResponseClearSegmentConfig `json:"clear_segment_config"`
 	// description of the program
-	Description string `json:"description"`
+	Description string `json:"description" doc:"description of the program"`
 	// total number off files for the program
-	FileCount int64 `json:"file_count"`
+	FileCount int64 `json:"file_count" format:"int64" doc:"total number off files for the program"`
 	// date last published
-	LastPublished time.Time `json:"last_published"`
+	LastPublished time.Time `json:"last_published" format:"date-time" doc:"date last published"`
 	// id for the program
-	Progid string `json:"progid"`
+	Progid string `json:"progid" doc:"id for the program"`
 	// clip id
-	PubClipId int64 `json:"pub_clip_id"`
+	PubClipId int64 `json:"pub_clip_id" format:"int64" doc:"clip id"`
 	// vod id
-	PubVodId int64 `json:"pub_vod_id"`
+	PubVodId int64 `json:"pub_vod_id" format:"int64" doc:"vod id"`
 	// number of days to retain
-	RetentionDays int64 `json:"retention_days"`
+	RetentionDays int64 `json:"retention_days" format:"int64" doc:"number of days to retain"`
 	// total bytes in the program
-	TotalBytes int64 `json:"total_bytes"`
+	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"total bytes in the program"`
 }
 
 // NewDeprecatedGetProgramResponse instantiates a new DeprecatedGetProgramResponse object

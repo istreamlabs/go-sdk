@@ -19,7 +19,7 @@ var _ MappedNullable = &DeprecatedGetMp4UrlResponse{}
 // DeprecatedGetMp4UrlResponse struct for DeprecatedGetMp4UrlResponse
 type DeprecatedGetMp4UrlResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	PresignedUrl string `json:"presigned_url"`
 }
 

@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPackagingPackagersValueWebVtt{}
 // ChannelPackagingPackagersValueWebVtt Only one of ['web_vtt'] may be set.
 type ChannelPackagingPackagersValueWebVtt struct {
 	// The file format used to encapsulate the WebVTT segments.
-	FileFormat *string `json:"file_format,omitempty"`
+	FileFormat *string `json:"file_format,omitempty" enum:"MP4" doc:"The file format used to encapsulate the WebVTT segments."`
 }
 
 // NewChannelPackagingPackagersValueWebVtt instantiates a new ChannelPackagingPackagersValueWebVtt object

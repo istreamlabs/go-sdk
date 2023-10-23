@@ -20,7 +20,7 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerOrigin{}
 type ChannelPublishingPublicationsInnerOrigin struct {
 	ManifestDefaults *ChannelPublishingPublicationsInnerOriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
-	RetentionMinutes *int32 `json:"retention_minutes,omitempty"`
+	RetentionMinutes *int32 `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
 }
 
 // NewChannelPublishingPublicationsInnerOrigin instantiates a new ChannelPublishingPublicationsInnerOrigin object

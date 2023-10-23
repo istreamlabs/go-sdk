@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelPlayback{}
 // ChannelPlayback struct for ChannelPlayback
 type ChannelPlayback struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// CMAF playback configurations
-	Cmaf []ChannelPlaybackCmafInner `json:"cmaf,omitempty"`
+	Cmaf []ChannelPlaybackCmafInner `json:"cmaf,omitempty" doc:"CMAF playback configurations"`
 	// Dash playback configurations
-	Dash []ChannelPlaybackCmafInner `json:"dash,omitempty"`
+	Dash []ChannelPlaybackCmafInner `json:"dash,omitempty" doc:"Dash playback configurations"`
 	// HLS playback configurations
-	Hls []ChannelPlaybackCmafInner `json:"hls,omitempty"`
+	Hls []ChannelPlaybackCmafInner `json:"hls,omitempty" doc:"HLS playback configurations"`
 }
 
 // NewChannelPlayback instantiates a new ChannelPlayback object

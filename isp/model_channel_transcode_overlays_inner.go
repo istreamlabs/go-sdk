@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTranscodeOverlaysInner{}
 // ChannelTranscodeOverlaysInner struct for ChannelTranscodeOverlaysInner
 type ChannelTranscodeOverlaysInner struct {
 	// The URL of the image overlay. Only PNG is supported at the moment. The image's dimensions should match those of source for perfect pixel placement.
-	ImageUrl *string `json:"image_url,omitempty"`
+	ImageUrl *string `json:"image_url,omitempty" minLength:"1" doc:"The URL of the image overlay. Only PNG is supported at the moment. The image's dimensions should match those of source for perfect pixel placement."`
 }
 
 // NewChannelTranscodeOverlaysInner instantiates a new ChannelTranscodeOverlaysInner object

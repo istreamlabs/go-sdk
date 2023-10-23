@@ -20,21 +20,21 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimplePub
 type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner struct {
 	BasicAuth *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth `json:"basic_auth,omitempty"`
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-	Compression *string `json:"compression,omitempty"`
+	Compression *string `json:"compression,omitempty" enum:"NONE,GZIP" doc:"Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed."`
 	// Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type.
-	CrossPlaybackPaths []string `json:"cross_playback_paths,omitempty"`
+	CrossPlaybackPaths []string `json:"cross_playback_paths,omitempty" doc:"Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type."`
 	// (Optional) Specifies if this pubpoint should not be monitored by PLM.
-	DoNotMonitor *bool `json:"do_not_monitor,omitempty"`
+	DoNotMonitor *bool `json:"do_not_monitor,omitempty" doc:"(Optional) Specifies if this pubpoint should not be monitored by PLM."`
 	// Allows custom HTTP headers to be set via configuration for all HTTP requests.
-	Headers *map[string]string `json:"headers,omitempty"`
+	Headers *map[string]string `json:"headers,omitempty" doc:"Allows custom HTTP headers to be set via configuration for all HTTP requests."`
 	// Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-	Method *string `json:"method,omitempty"`
+	Method *string `json:"method,omitempty" doc:"Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST."`
 	// The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-	PlaybackBaseUrl *string `json:"playback_base_url,omitempty"`
+	PlaybackBaseUrl *string `json:"playback_base_url,omitempty" format:"uri-reference" doc:"The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows."`
 	// Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'
-	PlaybackQueryParams *string `json:"playback_query_params,omitempty"`
+	PlaybackQueryParams *string `json:"playback_query_params,omitempty" doc:"Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'"`
 	// The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-	PublishBaseUrl *string `json:"publish_base_url,omitempty"`
+	PublishBaseUrl *string `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner instantiates a new ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner object

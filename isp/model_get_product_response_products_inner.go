@@ -19,17 +19,17 @@ var _ MappedNullable = &GetProductResponseProductsInner{}
 // GetProductResponseProductsInner struct for GetProductResponseProductsInner
 type GetProductResponseProductsInner struct {
 	// Description for the product
-	Description string `json:"description"`
+	Description string `json:"description" doc:"Description for the product"`
 	// Number of files in the product
-	FileCount int64 `json:"file_count"`
+	FileCount int64 `json:"file_count" format:"int64" doc:"Number of files in the product"`
 	// ID for the product
-	Id int64 `json:"id"`
+	Id int64 `json:"id" format:"int64" doc:"ID for the product"`
 	// Name of the product
-	Name string `json:"name"`
+	Name string `json:"name" doc:"Name of the product"`
 	// Region represents the general geolocation the product is in.
-	Region *string `json:"region,omitempty"`
+	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation the product is in."`
 	// Total Bytes of the product
-	TotalBytes int64 `json:"total_bytes"`
+	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"Total Bytes of the product"`
 }
 
 // NewGetProductResponseProductsInner instantiates a new GetProductResponseProductsInner object

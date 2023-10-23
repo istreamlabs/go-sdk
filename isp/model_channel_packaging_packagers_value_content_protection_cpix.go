@@ -19,19 +19,19 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionCpix{}
 // ChannelPackagingPackagersValueContentProtectionCpix Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionCpix struct {
 	// Unique ID used for certificate settings, unique per distributor.
-	CertificatesId *string `json:"certificates_id,omitempty"`
+	CertificatesId *string `json:"certificates_id,omitempty" doc:"Unique ID used for certificate settings, unique per distributor."`
 	// (Optional) Content ID that identifies this channel in the CPIX service. Value is defined by the DRM system owner, and if defined will be included as part of a POST request.
-	ContentId *string `json:"content_id,omitempty"`
+	ContentId *string `json:"content_id,omitempty" doc:"(Optional) Content ID that identifies this channel in the CPIX service. Value is defined by the DRM system owner, and if defined will be included as part of a POST request."`
 	// Unique ID used for credentials settings, unique per distributor.
-	CredentialsId *string `json:"credentials_id,omitempty"`
+	CredentialsId *string `json:"credentials_id,omitempty" doc:"Unique ID used for credentials settings, unique per distributor."`
 	// Unique ID of the decryption key to use in case the server response contains content keys encrypted. The key is unique per distirutor, and configured ahead of time by the publishing team and the CPIX service owner.
-	DecryptionKeyId *string `json:"decryption_key_id,omitempty"`
+	DecryptionKeyId *string `json:"decryption_key_id,omitempty" doc:"Unique ID of the decryption key to use in case the server response contains content keys encrypted. The key is unique per distirutor, and configured ahead of time by the publishing team and the CPIX service owner."`
 	// (Optional) DRM system keys to request. If not defined a GET request will be done, and any key returned will be handled. If defined, random kid(s) (key ids) will be generated on rotation for each DRM system, and a POST request will be done to create them.
-	Drms []string `json:"drms,omitempty"`
+	Drms []string `json:"drms,omitempty" uniqueItems:"true" enum:"WIDEVINE,FAIRPLAY,PRIMETIME,PLAYREADY" doc:"(Optional) DRM system keys to request. If not defined a GET request will be done, and any key returned will be handled. If defined, random kid(s) (key ids) will be generated on rotation for each DRM system, and a POST request will be done to create them."`
 	// (Optional) An identifier to a list of HTTP headers to be added to the request sent to the CPIX service.
-	HeadersId *string `json:"headers_id,omitempty"`
+	HeadersId *string `json:"headers_id,omitempty" doc:"(Optional) An identifier to a list of HTTP headers to be added to the request sent to the CPIX service."`
 	// CPIX service URI
-	Uri *string `json:"uri,omitempty"`
+	Uri *string `json:"uri,omitempty" format:"uri-reference" minLength:"1" doc:"CPIX service URI"`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionCpix instantiates a new ChannelPackagingPackagersValueContentProtectionCpix object

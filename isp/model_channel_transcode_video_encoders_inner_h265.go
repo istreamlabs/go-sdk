@@ -20,7 +20,7 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265{}
 type ChannelTranscodeVideoEncodersInnerH265 struct {
 	Hdr *ChannelTranscodeVideoEncodersInnerH265Hdr `json:"hdr,omitempty"`
 	// H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
-	Profile *string `json:"profile,omitempty"`
+	Profile *string `json:"profile,omitempty" enum:"MAIN,MAIN_10" doc:"H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details."`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265 instantiates a new ChannelTranscodeVideoEncodersInnerH265 object

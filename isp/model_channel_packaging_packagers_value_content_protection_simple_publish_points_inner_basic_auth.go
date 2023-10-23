@@ -19,9 +19,9 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimplePub
 // ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth Only one of ['basic_auth'] may be set.
 type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth struct {
 	// Plain text password for basic auth.
-	Password *string `json:"password,omitempty"`
+	Password *string `json:"password,omitempty" doc:"Plain text password for basic auth."`
 	// Username for basic auth.
-	Username *string `json:"username,omitempty"`
+	Username *string `json:"username,omitempty" doc:"Username for basic auth."`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth instantiates a new ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth object

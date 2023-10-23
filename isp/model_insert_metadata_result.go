@@ -20,9 +20,9 @@ var _ MappedNullable = &InsertMetadataResult{}
 // InsertMetadataResult struct for InsertMetadataResult
 type InsertMetadataResult struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// The media stream timestamp for where the transcoder inserted the metadata
-	PresentationTime time.Time `json:"presentation_time"`
+	PresentationTime time.Time `json:"presentation_time" format:"date-time" doc:"The media stream timestamp for where the transcoder inserted the metadata"`
 }
 
 // NewInsertMetadataResult instantiates a new InsertMetadataResult object

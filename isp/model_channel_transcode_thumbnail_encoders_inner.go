@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelTranscodeThumbnailEncodersInner{}
 // ChannelTranscodeThumbnailEncodersInner struct for ChannelTranscodeThumbnailEncodersInner
 type ChannelTranscodeThumbnailEncodersInner struct {
 	// Height specifies the thumbnail image height in pixels.
-	Height *int32 `json:"height,omitempty"`
+	Height *int32 `json:"height,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Height specifies the thumbnail image height in pixels."`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	// Width specifies the thumbnail image width in pixels.
-	Width *int32 `json:"width,omitempty"`
+	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Width specifies the thumbnail image width in pixels."`
 }
 
 // NewChannelTranscodeThumbnailEncodersInner instantiates a new ChannelTranscodeThumbnailEncodersInner object

@@ -19,13 +19,13 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionAtlas{}
 // ChannelPackagingPackagersValueContentProtectionAtlas Only one of ['simple', 'atlas', 'cpix'] may be set.
 type ChannelPackagingPackagersValueContentProtectionAtlas struct {
 	// The Asset Identifier which was taken from the token entitlement service request.
-	AssetId *string `json:"asset_id,omitempty"`
+	AssetId *string `json:"asset_id,omitempty" doc:"The Asset Identifier which was taken from the token entitlement service request."`
 	// The Identifier of the Company that this token belongs.
-	CompanyId *string `json:"company_id,omitempty"`
+	CompanyId *string `json:"company_id,omitempty" doc:"The Identifier of the Company that this token belongs."`
 	// DRM system keys to request
-	Drms []string `json:"drms,omitempty"`
+	Drms []string `json:"drms,omitempty" uniqueItems:"true" enum:"WIDEVINE,FAIRPLAY,PRIMETIME,PLAYREADY" doc:"DRM system keys to request"`
 	// When TRUE the KeyID is not embedded in the pssh box which sets the version to 0. Defaults to generating v1 pssh_boxes that includes the key_id
-	WidevineV0PsshBox *bool `json:"widevine_v0_pssh_box,omitempty"`
+	WidevineV0PsshBox *bool `json:"widevine_v0_pssh_box,omitempty" doc:"When TRUE the KeyID is not embedded in the pssh box which sets the version to 0. Defaults to generating v1 pssh_boxes that includes the key_id"`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionAtlas instantiates a new ChannelPackagingPackagersValueContentProtectionAtlas object

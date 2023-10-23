@@ -20,13 +20,13 @@ var _ MappedNullable = &ChannelSignaling{}
 type ChannelSignaling struct {
 	BlackoutSettings *ChannelSignalingBlackoutSettings `json:"blackout_settings,omitempty"`
 	// Disable parsing SCTE-35 in-band signaling. Out-of-band signaling is still allowed.
-	DisableInbandParsing *bool `json:"disable_inband_parsing,omitempty"`
+	DisableInbandParsing *bool `json:"disable_inband_parsing,omitempty" doc:"Disable parsing SCTE-35 in-band signaling. Out-of-band signaling is still allowed."`
 	// Defines the specific PID containing the SCTE that the transcoder should process. Using '0' (default value) will pick the first PID containing SCTE-35 in the PMT.
-	SctePid *int32 `json:"scte_pid,omitempty"`
+	SctePid *int32 `json:"scte_pid,omitempty" format:"int32" minimum:"0" doc:"Defines the specific PID containing the SCTE that the transcoder should process. Using '0' (default value) will pick the first PID containing SCTE-35 in the PMT."`
 	// Settings that apply to specific segments.
-	SegmentSettings []ChannelSignalingSegmentSettingsInner `json:"segment_settings,omitempty"`
+	SegmentSettings []ChannelSignalingSegmentSettingsInner `json:"segment_settings,omitempty" doc:"Settings that apply to specific segments."`
 	// Segment types to process for in-band signaling.
-	Segments []string `json:"segments,omitempty"`
+	Segments []string `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE" doc:"Segment types to process for in-band signaling."`
 }
 
 // NewChannelSignaling instantiates a new ChannelSignaling object

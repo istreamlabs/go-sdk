@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH264{}
 // ChannelTranscodeVideoEncodersInnerH264 Configure the encoder to use the H.264 codec. Only one of ['H264Settings', 'H265Settings'] may be set.
 type ChannelTranscodeVideoEncodersInnerH264 struct {
 	// H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-	Profile *string `json:"profile,omitempty"`
+	Profile *string `json:"profile,omitempty" enum:"BASELINE,MAIN,HIGH,HIGH_10,HIGH_422" doc:"H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details."`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH264 instantiates a new ChannelTranscodeVideoEncodersInnerH264 object

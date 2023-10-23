@@ -20,7 +20,7 @@ var _ MappedNullable = &UpdateProductConfigRequestCollapseConfigV2FiltersConfig{
 type UpdateProductConfigRequestCollapseConfigV2FiltersConfig struct {
 	Scte35 CollapseVODRequestFilterconfigScte35 `json:"scte_35"`
 	// Time-based filtering
-	Time []CollapseVODRequestFilterconfigTimeInner `json:"time"`
+	Time []CollapseVODRequestFilterconfigTimeInner `json:"time" doc:"Time-based filtering"`
 }
 
 // NewUpdateProductConfigRequestCollapseConfigV2FiltersConfig instantiates a new UpdateProductConfigRequestCollapseConfigV2FiltersConfig object

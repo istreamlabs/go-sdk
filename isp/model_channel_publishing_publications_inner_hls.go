@@ -19,23 +19,23 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerHls{}
 // ChannelPublishingPublicationsInnerHls HLS configures publication settings. Only one of HLS or DASH can be set.
 type ChannelPublishingPublicationsInnerHls struct {
 	// Defines how audio only variant streams are included in the master playlist, where the variant streams are defined by #EXT-X-STREAM-INF tag, the tag attributes provide information about the Stream. The INCLUDE_DEFAULT option - only the default 'audio only variant stream' is included in master playlist. This is the most common use case. INCLUDE_NONE - no audio only variant streams are included in the master playlist. INCLUDE_ALL - include all audio only variant streams in the master playlist.
-	AudioOnlyVariants *string `json:"audio_only_variants,omitempty"`
+	AudioOnlyVariants *string `json:"audio_only_variants,omitempty" enum:"INCLUDE_DEFAULT,INCLUDE_NONE,INCLUDE_ALL" doc:"Defines how audio only variant streams are included in the master playlist, where the variant streams are defined by #EXT-X-STREAM-INF tag, the tag attributes provide information about the Stream. The INCLUDE_DEFAULT option - only the default 'audio only variant stream' is included in master playlist. This is the most common use case. INCLUDE_NONE - no audio only variant streams are included in the master playlist. INCLUDE_ALL - include all audio only variant streams in the master playlist."`
 	// Allows turning gap tags ON/OFF. When turned ON - the tag '#EXT-X-GAP' is inserted into media playlist for a missing segment. When turned OFF - Discontinuity is inserted into the playlist for missing segment(s). The default option UNDEFINED is mapped to OFF. Note: Gap tags are always inserted for the missing thumbnail segments independently of this setting
-	GapTags *string `json:"gap_tags,omitempty"`
+	GapTags *string `json:"gap_tags,omitempty" enum:"ON,OFF" doc:"Allows turning gap tags ON/OFF. When turned ON - the tag '#EXT-X-GAP' is inserted into media playlist for a missing segment. When turned OFF - Discontinuity is inserted into the playlist for missing segment(s). The default option UNDEFINED is mapped to OFF. Note: Gap tags are always inserted for the missing thumbnail segments independently of this setting"`
 	// How often the master playlist(s) should be published in seconds. A value of 0 means the master playlist will only be published once at channel start.
-	MasterPublishFrequencySecs *int32 `json:"master_publish_frequency_secs,omitempty"`
+	MasterPublishFrequencySecs *int32 `json:"master_publish_frequency_secs,omitempty" format:"int32" doc:"How often the master playlist(s) should be published in seconds. A value of 0 means the master playlist will only be published once at channel start."`
 	// Allows specifying url type for HLS master playlists. If not provided, playlist generation will use 'RELATIVE'.
-	MasterUrlType *string `json:"master_url_type,omitempty"`
+	MasterUrlType *string `json:"master_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS master playlists. If not provided, playlist generation will use 'RELATIVE'."`
 	// Allows specifying url type for HLS media playlists. If not provided, playlist generation will use 'RELATIVE'.
-	MediaUrlType *string `json:"media_url_type,omitempty"`
+	MediaUrlType *string `json:"media_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS media playlists. If not provided, playlist generation will use 'RELATIVE'."`
 	// Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists.
-	PartialPresentations []ChannelPublishingPublicationsInnerHlsPartialPresentationsInner `json:"partial_presentations,omitempty"`
+	PartialPresentations []ChannelPublishingPublicationsInnerHlsPartialPresentationsInner `json:"partial_presentations,omitempty" doc:"Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists."`
 	// When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.
-	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty"`
+	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty" doc:"When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification."`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
-	SignalingFormats []string `json:"signaling_formats,omitempty"`
+	SignalingFormats []string `json:"signaling_formats,omitempty" uniqueItems:"true" enum:"MDIALOG,FREEWHEEL,ADOBE_SIMPLE,ADOBE_SCTE35,APPLE_SCTE35,AD_SIMPLE,SCTE35,SCTE35_2019,SCTE35_2019_EVERY_SEGMENT" doc:"Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z
-	UtcInSegmentTitle *bool `json:"utc_in_segment_title,omitempty"`
+	UtcInSegmentTitle *bool `json:"utc_in_segment_title,omitempty" doc:"Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z"`
 }
 
 // NewChannelPublishingPublicationsInnerHls instantiates a new ChannelPublishingPublicationsInnerHls object

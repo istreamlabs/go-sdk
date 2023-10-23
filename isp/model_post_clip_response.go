@@ -19,15 +19,15 @@ var _ MappedNullable = &PostClipResponse{}
 // PostClipResponse struct for PostClipResponse
 type PostClipResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// List of clip identifiers paired with each VodID that was clipped
-	Clips []PostClipResponseClipsInner `json:"clips"`
+	Clips []PostClipResponseClipsInner `json:"clips" doc:"List of clip identifiers paired with each VodID that was clipped"`
 	// Identifer that is carried through archive and collapse notifications for the clip creation
-	CorrelationId *string `json:"correlation_id,omitempty"`
+	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
 	// Reports failures of individual clip tasks. Empty if all are successful
-	TaskErrors []ErrorModelErrorsInner `json:"task_errors"`
+	TaskErrors []ErrorModelErrorsInner `json:"task_errors" doc:"Reports failures of individual clip tasks. Empty if all are successful"`
 	// Identifies clipping tasks, each task producing N VodItems
-	TaskIds []string `json:"task_ids"`
+	TaskIds []string `json:"task_ids" doc:"Identifies clipping tasks, each task producing N VodItems"`
 }
 
 // NewPostClipResponse instantiates a new PostClipResponse object

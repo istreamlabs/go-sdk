@@ -19,13 +19,13 @@ var _ MappedNullable = &Source{}
 // Source struct for Source
 type Source struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Unique source ID
-	Id string `json:"id"`
+	Id string `json:"id" doc:"Unique source ID"`
 	// Source name
-	Name string `json:"name"`
+	Name string `json:"name" doc:"Source name"`
 	// Link to this resource
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 }
 
 // NewSource instantiates a new Source object

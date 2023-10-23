@@ -19,9 +19,9 @@ var _ MappedNullable = &OrgSummary{}
 // OrgSummary struct for OrgSummary
 type OrgSummary struct {
 	// ID of the organization
-	Id string `json:"id"`
+	Id string `json:"id" doc:"ID of the organization"`
 	// Link to this resource
-	Self *string `json:"self,omitempty"`
+	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 }
 
 // NewOrgSummary instantiates a new OrgSummary object

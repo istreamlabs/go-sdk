@@ -19,13 +19,13 @@ var _ MappedNullable = &GetClipProgramTimeResponse{}
 // GetClipProgramTimeResponse struct for GetClipProgramTimeResponse
 type GetClipProgramTimeResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Duration of the clip in ms
-	Duration int64 `json:"duration"`
+	Duration int64 `json:"duration" format:"int64" doc:"Duration of the clip in ms"`
 	// Program End of Clip
-	ProgramEnd string `json:"program_end"`
+	ProgramEnd string `json:"program_end" doc:"Program End of Clip"`
 	// Program Start of Clip
-	ProgramStart string `json:"program_start"`
+	ProgramStart string `json:"program_start" doc:"Program Start of Clip"`
 }
 
 // NewGetClipProgramTimeResponse instantiates a new GetClipProgramTimeResponse object

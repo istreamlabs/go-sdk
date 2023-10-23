@@ -21,7 +21,7 @@ var _ MappedNullable = &SignalingLog{}
 type SignalingLog struct {
 	Log SignalingLogLog `json:"log"`
 	Status string `json:"status"`
-	Timestamp time.Time `json:"timestamp"`
+	Timestamp time.Time `json:"timestamp" format:"date-time"`
 }
 
 // NewSignalingLog instantiates a new SignalingLog object

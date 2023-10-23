@@ -19,8 +19,8 @@ var _ MappedNullable = &UpdateProductConfigRequestCollapseTriggerConfigTriggersI
 // UpdateProductConfigRequestCollapseTriggerConfigTriggersInner struct for UpdateProductConfigRequestCollapseTriggerConfigTriggersInner
 type UpdateProductConfigRequestCollapseTriggerConfigTriggersInner struct {
 	Scte35Upid *string `json:"scte35_upid,omitempty"`
-	SegmentationEventId *int32 `json:"segmentation_event_id,omitempty"`
-	SegmentationTypeId int32 `json:"segmentation_type_id"`
+	SegmentationEventId *int32 `json:"segmentation_event_id,omitempty" format:"int32" minimum:"0"`
+	SegmentationTypeId int32 `json:"segmentation_type_id" format:"int32"`
 }
 
 // NewUpdateProductConfigRequestCollapseTriggerConfigTriggersInner instantiates a new UpdateProductConfigRequestCollapseTriggerConfigTriggersInner object

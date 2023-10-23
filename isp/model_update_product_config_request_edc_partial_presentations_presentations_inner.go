@@ -19,7 +19,7 @@ var _ MappedNullable = &UpdateProductConfigRequestEdcPartialPresentationsPresent
 // UpdateProductConfigRequestEdcPartialPresentationsPresentationsInner struct for UpdateProductConfigRequestEdcPartialPresentationsPresentationsInner
 type UpdateProductConfigRequestEdcPartialPresentationsPresentationsInner struct {
 	Name string `json:"name"`
-	Renditions []int32 `json:"renditions"`
+	Renditions []int32 `json:"renditions" format:"int32"`
 }
 
 // NewUpdateProductConfigRequestEdcPartialPresentationsPresentationsInner instantiates a new UpdateProductConfigRequestEdcPartialPresentationsPresentationsInner object

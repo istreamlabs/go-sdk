@@ -19,9 +19,9 @@ var _ MappedNullable = &PostCopyMP4Response{}
 // PostCopyMP4Response struct for PostCopyMP4Response
 type PostCopyMP4Response struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Array of task ids for each copymp4 destination task successfully started by Live2VOD
-	TaskIds []string `json:"task_ids"`
+	TaskIds []string `json:"task_ids" doc:"Array of task ids for each copymp4 destination task successfully started by Live2VOD"`
 }
 
 // NewPostCopyMP4Response instantiates a new PostCopyMP4Response object

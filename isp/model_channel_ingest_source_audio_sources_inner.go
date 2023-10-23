@@ -18,13 +18,13 @@ var _ MappedNullable = &ChannelIngestSourceAudioSourcesInner{}
 
 // ChannelIngestSourceAudioSourcesInner struct for ChannelIngestSourceAudioSourcesInner
 type ChannelIngestSourceAudioSourcesInner struct {
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" minLength:"1"`
 	// RFC 5646, e.g. 'en' 'en-US'
-	Language *string `json:"language,omitempty"`
+	Language *string `json:"language,omitempty" minLength:"1" doc:"RFC 5646, e.g. 'en' 'en-US'"`
 	// Language fiendly name, e.g. 'English', 'Spanish'
-	Name *string `json:"name,omitempty"`
+	Name *string `json:"name,omitempty" minLength:"1" doc:"Language fiendly name, e.g. 'English', 'Spanish'"`
 	// Expression for choosing an audio track in the stream for this AudioSource https://istreamplanet.atlassian.net/wiki/spaces/T/pages/847970791/Proposal+Audio+Track+Selection
-	Selector *string `json:"selector,omitempty"`
+	Selector *string `json:"selector,omitempty" doc:"Expression for choosing an audio track in the stream for this AudioSource https://istreamplanet.atlassian.net/wiki/spaces/T/pages/847970791/Proposal+Audio+Track+Selection"`
 }
 
 // NewChannelIngestSourceAudioSourcesInner instantiates a new ChannelIngestSourceAudioSourcesInner object

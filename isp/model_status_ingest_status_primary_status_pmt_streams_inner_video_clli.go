@@ -19,9 +19,9 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli{
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli struct {
 	// Max content light level in nits.
-	MaxCll *float64 `json:"max_cll,omitempty"`
+	MaxCll *float64 `json:"max_cll,omitempty" format:"double" doc:"Max content light level in nits."`
 	// Max frame (pic) average light level in nits.
-	MaxFall *float64 `json:"max_fall,omitempty"`
+	MaxFall *float64 `json:"max_fall,omitempty" format:"double" doc:"Max frame (pic) average light level in nits."`
 }
 
 // NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli instantiates a new StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli object

@@ -18,8 +18,8 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvB
 
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue struct {
-	X *float64 `json:"x,omitempty"`
-	Y *float64 `json:"y,omitempty"`
+	X *float64 `json:"x,omitempty" format:"double"`
+	Y *float64 `json:"y,omitempty" format:"double"`
 }
 
 // NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue instantiates a new StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue object

@@ -19,11 +19,11 @@ var _ MappedNullable = &Slate{}
 // Slate struct for Slate
 type Slate struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Slate duration (ms)
-	Duration *int32 `json:"duration,omitempty"`
+	Duration *int32 `json:"duration,omitempty" format:"int32" default:"0" minimum:"1000" doc:"Slate duration (ms)"`
 	// Slate url
-	Uri string `json:"uri"`
+	Uri string `json:"uri" format:"uri" doc:"Slate url"`
 }
 
 // NewSlate instantiates a new Slate object

@@ -19,7 +19,7 @@ var _ MappedNullable = &CancelTaskResponse{}
 // CancelTaskResponse struct for CancelTaskResponse
 type CancelTaskResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	Error CancelTaskResponseError `json:"error"`
 }
 

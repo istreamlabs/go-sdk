@@ -20,18 +20,18 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatus{}
 // StatusIngestStatusPrimaryStatus Primary source status.
 type StatusIngestStatusPrimaryStatus struct {
 	// Reports whether this is the active source - i.e. the source being transcoded.
-	Active *bool `json:"active,omitempty"`
+	Active *bool `json:"active,omitempty" doc:"Reports whether this is the active source - i.e. the source being transcoded."`
 	// Continuity counter error total since the transcoder pod started.
-	CcErrors *int64 `json:"cc_errors,omitempty"`
+	CcErrors *int64 `json:"cc_errors,omitempty" format:"int64" doc:"Continuity counter error total since the transcoder pod started."`
 	// The last time data was received for this source.
-	LastDataReceived *time.Time `json:"last_data_received,omitempty"`
+	LastDataReceived *time.Time `json:"last_data_received,omitempty" format:"date-time" doc:"The last time data was received for this source."`
 	// Reports whether this source was pinned to be always preferred (if available).
-	Pinned *bool `json:"pinned,omitempty"`
+	Pinned *bool `json:"pinned,omitempty" doc:"Reports whether this source was pinned to be always preferred (if available)."`
 	Pmt *StatusIngestStatusPrimaryStatusPmt `json:"pmt,omitempty"`
 	// A measure of the source's quality if available. Zero is the perfect score. The higher the score, the worst the quality.
-	QualityScore *float64 `json:"quality_score,omitempty"`
+	QualityScore *float64 `json:"quality_score,omitempty" format:"double" doc:"A measure of the source's quality if available. Zero is the perfect score. The higher the score, the worst the quality."`
 	// If unset (empty string), the source is available, and could be made active if necessary. Otherwise, it contains a message indicating why the source is unavailable. E.g. 'No source AUs received'.
-	UnavailableReason *string `json:"unavailable_reason,omitempty"`
+	UnavailableReason *string `json:"unavailable_reason,omitempty" doc:"If unset (empty string), the source is available, and could be made active if necessary. Otherwise, it contains a message indicating why the source is unavailable. E.g. 'No source AUs received'."`
 }
 
 // NewStatusIngestStatusPrimaryStatus instantiates a new StatusIngestStatusPrimaryStatus object

@@ -19,21 +19,21 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerOriginManifestDefaults
 // ChannelPublishingPublicationsInnerOriginManifestDefaults ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
 type ChannelPublishingPublicationsInnerOriginManifestDefaults struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
-	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty"`
+	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_BIN_DFP,SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN,SCTE35_SPLICE_INFO_SECTION_WITH_PRESENTATION_TIME,SCTE35_BIN_WITH_PRESENTATION_TIME,SCTE35_BIN_NON_REPEATING,SCTE35_SPLICE_INFO_SECTION_NON_REPEATING" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
 	// Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 10 hours. If not specified, the default duration will be 30 seconds.
-	DurationSeconds *int32 `json:"duration_seconds,omitempty"`
+	DurationSeconds *int32 `json:"duration_seconds,omitempty" format:"int32" minimum:"0" maximum:"36000" doc:"Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 10 hours. If not specified, the default duration will be 30 seconds."`
 	// HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
-	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty"`
+	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty" uniqueItems:"true" enum:"MDIALOG,FREEWHEEL,ADOBE_SIMPLE,ADOBE_SCTE35,APPLE_SCTE35,AD_SIMPLE,SCTE35,SCTE35_2019,SCTE35_2019_EVERY_SEGMENT" doc:"HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
-	MediaUrlType *string `json:"media_url_type,omitempty"`
+	MediaUrlType *string `json:"media_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'."`
 	// Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
-	MinimumUpdatePeriodSeconds *int32 `json:"minimum_update_period_seconds,omitempty"`
+	MinimumUpdatePeriodSeconds *int32 `json:"minimum_update_period_seconds,omitempty" format:"int32" minimum:"0" doc:"Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'."`
 	// Allows specifying url type for HLS multi-variant playlists. If not provided, playlist generation will use 'RELATIVE'.
-	MultiVariantUrlType *string `json:"multi_variant_url_type,omitempty"`
+	MultiVariantUrlType *string `json:"multi_variant_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS multi-variant playlists. If not provided, playlist generation will use 'RELATIVE'."`
 	// When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in HLS media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.
-	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty"`
+	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty" doc:"When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in HLS media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification."`
 	// Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration.
-	SuggestedPresentationDelaySeconds *int32 `json:"suggested_presentation_delay_seconds,omitempty"`
+	SuggestedPresentationDelaySeconds *int32 `json:"suggested_presentation_delay_seconds,omitempty" format:"int32" minimum:"0" doc:"Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration."`
 }
 
 // NewChannelPublishingPublicationsInnerOriginManifestDefaults instantiates a new ChannelPublishingPublicationsInnerOriginManifestDefaults object

@@ -20,24 +20,24 @@ var _ MappedNullable = &GetVODResponse{}
 // GetVODResponse struct for GetVODResponse
 type GetVODResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Description of a vod
-	Description string `json:"description"`
+	Description string `json:"description" doc:"Description of a vod"`
 	// File count for the vod
-	FileCount int64 `json:"file_count"`
+	FileCount int64 `json:"file_count" format:"int64" doc:"File count for the vod"`
 	// ID of a vod
-	Id string `json:"id"`
+	Id string `json:"id" doc:"ID of a vod"`
 	// Last published time for VOD
-	LastPublished *time.Time `json:"last_published,omitempty"`
+	LastPublished *time.Time `json:"last_published,omitempty" format:"date-time" doc:"Last published time for VOD"`
 	// Packaging Format for VOD
-	PackagingFormat *string `json:"packaging_format,omitempty"`
+	PackagingFormat *string `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF" doc:"Packaging Format for VOD"`
 	// Store address for vod
-	Store string `json:"store"`
+	Store string `json:"store" doc:"Store address for vod"`
 	StorePrefix string `json:"store_prefix"`
 	// Total bytes of a vod
-	TotalBytes int64 `json:"total_bytes"`
+	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"Total bytes of a vod"`
 	// Vod version (either v1 or v2)
-	Version string `json:"version"`
+	Version string `json:"version" doc:"Vod version (either v1 or v2)"`
 }
 
 // NewGetVODResponse instantiates a new GetVODResponse object

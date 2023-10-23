@@ -19,9 +19,9 @@ var _ MappedNullable = &ProgramSignal{}
 // ProgramSignal struct for ProgramSignal
 type ProgramSignal struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Event ID
-	EventId int32 `json:"event_id"`
+	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Event ID"`
 }
 
 // NewProgramSignal instantiates a new ProgramSignal object

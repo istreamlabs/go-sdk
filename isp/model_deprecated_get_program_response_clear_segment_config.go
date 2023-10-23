@@ -20,11 +20,11 @@ var _ MappedNullable = &DeprecatedGetProgramResponseClearSegmentConfig{}
 // DeprecatedGetProgramResponseClearSegmentConfig struct for DeprecatedGetProgramResponseClearSegmentConfig
 type DeprecatedGetProgramResponseClearSegmentConfig struct {
 	// date first published
-	FirstPublished time.Time `json:"first_published"`
+	FirstPublished time.Time `json:"first_published" format:"date-time" doc:"date first published"`
 	// store location
-	Store string `json:"store"`
+	Store string `json:"store" doc:"store location"`
 	// prefix of the store
-	StorePrefix string `json:"store_prefix"`
+	StorePrefix string `json:"store_prefix" doc:"prefix of the store"`
 }
 
 // NewDeprecatedGetProgramResponseClearSegmentConfig instantiates a new DeprecatedGetProgramResponseClearSegmentConfig object

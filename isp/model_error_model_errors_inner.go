@@ -19,11 +19,11 @@ var _ MappedNullable = &ErrorModelErrorsInner{}
 // ErrorModelErrorsInner struct for ErrorModelErrorsInner
 type ErrorModelErrorsInner struct {
 	// Where the error occured, e.g. 'body.items[3].tags' or 'path.thing-id'
-	Location *string `json:"location,omitempty"`
+	Location *string `json:"location,omitempty" doc:"Where the error occured, e.g. 'body.items[3].tags' or 'path.thing-id'"`
 	// Error message text
-	Message *string `json:"message,omitempty"`
+	Message *string `json:"message,omitempty" doc:"Error message text"`
 	// The value at the given location
-	Value interface{} `json:"value,omitempty"`
+	Value interface{} `json:"value,omitempty" doc:"The value at the given location"`
 }
 
 // NewErrorModelErrorsInner instantiates a new ErrorModelErrorsInner object

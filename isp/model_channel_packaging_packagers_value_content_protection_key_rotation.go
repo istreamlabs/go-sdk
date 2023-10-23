@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionKeyRotati
 // ChannelPackagingPackagersValueContentProtectionKeyRotation Configures how keys should be rotated
 type ChannelPackagingPackagersValueContentProtectionKeyRotation struct {
 	// Rotate keys based on the specified time interval. If Program is also provided then this time interval will only apply to media segments that are outside of program boundaries. If Program is NOT provided then only this time interval will be used to decided when to rotate keys.
-	IntervalSecs *float32 `json:"interval_secs,omitempty"`
+	IntervalSecs *float32 `json:"interval_secs,omitempty" format:"float" minimum:"300" doc:"Rotate keys based on the specified time interval. If Program is also provided then this time interval will only apply to media segments that are outside of program boundaries. If Program is NOT provided then only this time interval will be used to decided when to rotate keys."`
 	// Rotate keys on (SCTE35) program boundaries such that no two programs will be protected with the same key.
-	Program *bool `json:"program,omitempty"`
+	Program *bool `json:"program,omitempty" doc:"Rotate keys on (SCTE35) program boundaries such that no two programs will be protected with the same key."`
 	// Do not encrypt segments that are part of more than one SCTE-35 program.
-	ProgramOverlapSkipEncrypt *bool `json:"program_overlap_skip_encrypt,omitempty"`
+	ProgramOverlapSkipEncrypt *bool `json:"program_overlap_skip_encrypt,omitempty" doc:"Do not encrypt segments that are part of more than one SCTE-35 program."`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionKeyRotation instantiates a new ChannelPackagingPackagersValueContentProtectionKeyRotation object

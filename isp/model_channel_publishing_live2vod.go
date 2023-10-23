@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelPublishingLive2vod{}
 // ChannelPublishingLive2vod Live2VOD configuration used to archive the channel data, this allows clip creation after the content is no longer live.
 type ChannelPublishingLive2vod struct {
 	// BETA - (Optional) Indicates whether the system should send the unpackaged segments produced from the transcoder to the L2V system for purposes of creating mp4s and/or repackaging.
-	ClearCapture *bool `json:"clear_capture,omitempty"`
+	ClearCapture *bool `json:"clear_capture,omitempty" doc:"BETA - (Optional) Indicates whether the system should send the unpackaged segments produced from the transcoder to the L2V system for purposes of creating mp4s and/or repackaging."`
 	// Product ID that VODs will be associated with in the Live2VOD system. The value of this ID is pre-configured in the Live2VOD portal.
-	ProductId *string `json:"product_id,omitempty"`
+	ProductId *string `json:"product_id,omitempty" minLength:"1" doc:"Product ID that VODs will be associated with in the Live2VOD system. The value of this ID is pre-configured in the Live2VOD portal."`
 	// Specifies the retention time, in days, for archived content.
-	RetentionDays *int32 `json:"retention_days,omitempty"`
+	RetentionDays *int32 `json:"retention_days,omitempty" format:"int32" minimum:"1" maximum:"30" doc:"Specifies the retention time, in days, for archived content."`
 }
 
 // NewChannelPublishingLive2vod instantiates a new ChannelPublishingLive2vod object

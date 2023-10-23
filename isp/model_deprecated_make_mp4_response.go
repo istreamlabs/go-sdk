@@ -19,9 +19,9 @@ var _ MappedNullable = &DeprecatedMakeMP4Response{}
 // DeprecatedMakeMP4Response struct for DeprecatedMakeMP4Response
 type DeprecatedMakeMP4Response struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// task id of the makemp4 task that has been created.
-	Taskid string `json:"taskid"`
+	Taskid string `json:"taskid" doc:"task id of the makemp4 task that has been created."`
 }
 
 // NewDeprecatedMakeMP4Response instantiates a new DeprecatedMakeMP4Response object

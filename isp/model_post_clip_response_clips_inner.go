@@ -19,9 +19,9 @@ var _ MappedNullable = &PostClipResponseClipsInner{}
 // PostClipResponseClipsInner struct for PostClipResponseClipsInner
 type PostClipResponseClipsInner struct {
 	// Identifier for the clip created from the VOD
-	ClipId string `json:"clip_id"`
+	ClipId string `json:"clip_id" doc:"Identifier for the clip created from the VOD"`
 	// Identifier for the VOD from which the clip was created
-	VodId string `json:"vod_id"`
+	VodId string `json:"vod_id" doc:"Identifier for the VOD from which the clip was created"`
 }
 
 // NewPostClipResponseClipsInner instantiates a new PostClipResponseClipsInner object

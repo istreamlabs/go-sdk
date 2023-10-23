@@ -19,11 +19,11 @@ var _ MappedNullable = &CollapseVODResponse{}
 // CollapseVODResponse struct for CollapseVODResponse
 type CollapseVODResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// New Clip ID for collapsed vod
-	ClipId int64 `json:"clip_id"`
+	ClipId int64 `json:"clip_id" format:"int64" doc:"New Clip ID for collapsed vod"`
 	// Identifies collapse task id
-	TaskId string `json:"task_id"`
+	TaskId string `json:"task_id" doc:"Identifies collapse task id"`
 }
 
 // NewCollapseVODResponse instantiates a new CollapseVODResponse object

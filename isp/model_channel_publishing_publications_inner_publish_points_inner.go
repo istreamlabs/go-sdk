@@ -20,9 +20,9 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerPublishPointsInner{}
 type ChannelPublishingPublicationsInnerPublishPointsInner struct {
 	Http *ChannelPublishingPublicationsInnerPublishPointsInnerHttp `json:"http,omitempty"`
 	// uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
-	Id *string `json:"id,omitempty"`
+	Id *string `json:"id,omitempty" doc:"uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field."`
 	// playlist_only_for identifies the id of the publish_point that has the segments for this publish_point, which is only publishing a playlist for those segments. All publish_points within a publication must either have 'playlist_only_for' all set or all not set.
-	PlaylistOnlyFor *string `json:"playlist_only_for,omitempty"`
+	PlaylistOnlyFor *string `json:"playlist_only_for,omitempty" doc:"playlist_only_for identifies the id of the publish_point that has the segments for this publish_point, which is only publishing a playlist for those segments. All publish_points within a publication must either have 'playlist_only_for' all set or all not set."`
 }
 
 // NewChannelPublishingPublicationsInnerPublishPointsInner instantiates a new ChannelPublishingPublicationsInnerPublishPointsInner object
