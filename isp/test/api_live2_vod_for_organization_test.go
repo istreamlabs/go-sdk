@@ -86,6 +86,21 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test Live2VODForOrganizationApiService GetOrgProductConfig", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var productId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgProductConfig(context.Background(), org, productId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test Live2VODForOrganizationApiService GetOrgProgramTasks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -143,6 +158,23 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var clipId string
 
 		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgVodClipProgramTime(context.Background(), org, channelId, vodId, clipId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationApiService GetOrgVodClipScte35Markers", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var vodId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgVodClipScte35Markers(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
