@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner{}
+// checks if the GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner{}
 
-// UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct for UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner
-type UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct {
+// GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner struct for GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner
+type GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner struct {
 	AccessKeyId *string `json:"access_key_id,omitempty"`
 	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
 	AutoArchive bool `json:"auto_archive"`
@@ -29,12 +29,12 @@ type UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct {
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 }
 
-// NewUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner instantiates a new UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner object
+// NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner(autoArchive bool, bucket string, prefix string, region string) *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner {
-	this := UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner{}
+func NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner(autoArchive bool, bucket string, prefix string, region string) *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner {
+	this := GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner{}
 	this.AutoArchive = autoArchive
 	this.Bucket = bucket
 	this.Prefix = prefix
@@ -42,16 +42,16 @@ func NewUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner(autoArch
 	return &this
 }
 
-// NewUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInnerWithDefaults instantiates a new UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner object
+// NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInnerWithDefaults instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInnerWithDefaults() *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner {
-	this := UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner{}
+func NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInnerWithDefaults() *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner {
+	this := GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner{}
 	return &this
 }
 
 // GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAccessKeyId() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAccessKeyId() string {
 	if o == nil || IsNil(o.AccessKeyId) {
 		var ret string
 		return ret
@@ -61,7 +61,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAcc
 
 // GetAccessKeyIdOk returns a tuple with the AccessKeyId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAccessKeyIdOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAccessKeyIdOk() (*string, bool) {
 	if o == nil || IsNil(o.AccessKeyId) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAcc
 }
 
 // HasAccessKeyId returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasAccessKeyId() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasAccessKeyId() bool {
 	if o != nil && !IsNil(o.AccessKeyId) {
 		return true
 	}
@@ -78,12 +78,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasAcc
 }
 
 // SetAccessKeyId gets a reference to the given string and assigns it to the AccessKeyId field.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetAccessKeyId(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
 
 // GetArchiveTargetTypes returns the ArchiveTargetTypes field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypes() []string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypes() []string {
 	if o == nil || IsNil(o.ArchiveTargetTypes) {
 		var ret []string
 		return ret
@@ -93,7 +93,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArc
 
 // GetArchiveTargetTypesOk returns a tuple with the ArchiveTargetTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypesOk() ([]string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetArchiveTargetTypesOk() ([]string, bool) {
 	if o == nil || IsNil(o.ArchiveTargetTypes) {
 		return nil, false
 	}
@@ -101,7 +101,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetArc
 }
 
 // HasArchiveTargetTypes returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasArchiveTargetTypes() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasArchiveTargetTypes() bool {
 	if o != nil && !IsNil(o.ArchiveTargetTypes) {
 		return true
 	}
@@ -110,12 +110,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasArc
 }
 
 // SetArchiveTargetTypes gets a reference to the given []string and assigns it to the ArchiveTargetTypes field.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetArchiveTargetTypes(v []string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetArchiveTargetTypes(v []string) {
 	o.ArchiveTargetTypes = v
 }
 
 // GetAutoArchive returns the AutoArchive field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAutoArchive() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAutoArchive() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -126,7 +126,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAut
 
 // GetAutoArchiveOk returns a tuple with the AutoArchive field value
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOk() (*bool, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -134,12 +134,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAut
 }
 
 // SetAutoArchive sets field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetAutoArchive(v bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetAutoArchive(v bool) {
 	o.AutoArchive = v
 }
 
 // GetAutoArchiveOnCollapseTypes returns the AutoArchiveOnCollapseTypes field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOnCollapseTypes() []string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOnCollapseTypes() []string {
 	if o == nil || IsNil(o.AutoArchiveOnCollapseTypes) {
 		var ret []string
 		return ret
@@ -149,7 +149,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAut
 
 // GetAutoArchiveOnCollapseTypesOk returns a tuple with the AutoArchiveOnCollapseTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOnCollapseTypesOk() ([]string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetAutoArchiveOnCollapseTypesOk() ([]string, bool) {
 	if o == nil || IsNil(o.AutoArchiveOnCollapseTypes) {
 		return nil, false
 	}
@@ -157,7 +157,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetAut
 }
 
 // HasAutoArchiveOnCollapseTypes returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasAutoArchiveOnCollapseTypes() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasAutoArchiveOnCollapseTypes() bool {
 	if o != nil && !IsNil(o.AutoArchiveOnCollapseTypes) {
 		return true
 	}
@@ -166,12 +166,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasAut
 }
 
 // SetAutoArchiveOnCollapseTypes gets a reference to the given []string and assigns it to the AutoArchiveOnCollapseTypes field.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetAutoArchiveOnCollapseTypes(v []string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetAutoArchiveOnCollapseTypes(v []string) {
 	o.AutoArchiveOnCollapseTypes = v
 }
 
 // GetBucket returns the Bucket field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetBucket() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetBucket() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -182,7 +182,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetBuc
 
 // GetBucketOk returns a tuple with the Bucket field value
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetBucketOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetBucketOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -190,12 +190,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetBuc
 }
 
 // SetBucket sets field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetBucket(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetBucket(v string) {
 	o.Bucket = v
 }
 
 // GetEndpoint returns the Endpoint field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetEndpoint() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetEndpoint() string {
 	if o == nil || IsNil(o.Endpoint) {
 		var ret string
 		return ret
@@ -205,7 +205,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetEnd
 
 // GetEndpointOk returns a tuple with the Endpoint field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetEndpointOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetEndpointOk() (*string, bool) {
 	if o == nil || IsNil(o.Endpoint) {
 		return nil, false
 	}
@@ -213,7 +213,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetEnd
 }
 
 // HasEndpoint returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasEndpoint() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasEndpoint() bool {
 	if o != nil && !IsNil(o.Endpoint) {
 		return true
 	}
@@ -222,12 +222,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasEnd
 }
 
 // SetEndpoint gets a reference to the given string and assigns it to the Endpoint field.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetEndpoint(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetEndpoint(v string) {
 	o.Endpoint = &v
 }
 
 // GetPrefix returns the Prefix field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetPrefix() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetPrefix() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -238,7 +238,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetPre
 
 // GetPrefixOk returns a tuple with the Prefix field value
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetPrefixOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetPrefixOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -246,12 +246,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetPre
 }
 
 // SetPrefix sets field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetPrefix(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetPrefix(v string) {
 	o.Prefix = v
 }
 
 // GetRegion returns the Region field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetRegion() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetRegion() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -262,7 +262,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetReg
 
 // GetRegionOk returns a tuple with the Region field value
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetRegionOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetRegionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -270,12 +270,12 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetReg
 }
 
 // SetRegion sets field value
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetRegion(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetRegion(v string) {
 	o.Region = v
 }
 
 // GetSecretAccessKey returns the SecretAccessKey field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetSecretAccessKey() string {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetSecretAccessKey() string {
 	if o == nil || IsNil(o.SecretAccessKey) {
 		var ret string
 		return ret
@@ -285,7 +285,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetSec
 
 // GetSecretAccessKeyOk returns a tuple with the SecretAccessKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetSecretAccessKeyOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetSecretAccessKeyOk() (*string, bool) {
 	if o == nil || IsNil(o.SecretAccessKey) {
 		return nil, false
 	}
@@ -293,7 +293,7 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) GetSec
 }
 
 // HasSecretAccessKey returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasSecretAccessKey() bool {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasSecretAccessKey() bool {
 	if o != nil && !IsNil(o.SecretAccessKey) {
 		return true
 	}
@@ -302,11 +302,11 @@ func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) HasSec
 }
 
 // SetSecretAccessKey gets a reference to the given string and assigns it to the SecretAccessKey field.
-func (o *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) SetSecretAccessKey(v string) {
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetSecretAccessKey(v string) {
 	o.SecretAccessKey = &v
 }
 
-func (o UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
+func (o GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -314,7 +314,7 @@ func (o UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) Marshal
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) ToMap() (map[string]interface{}, error) {
+func (o GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AccessKeyId) {
 		toSerialize["access_key_id"] = o.AccessKeyId
@@ -338,38 +338,38 @@ func (o UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) ToMap()
 	return toSerialize, nil
 }
 
-type NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner struct {
-	value *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner
+type NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner struct {
+	value *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner
 	isSet bool
 }
 
-func (v NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) Get() *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner {
+func (v NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) Get() *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner {
 	return v.value
 }
 
-func (v *NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) Set(val *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) {
+func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) Set(val *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) IsSet() bool {
+func (v NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) Unset() {
+func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner(val *UpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) *NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner {
-	return &NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner{value: val, isSet: true}
+func NewNullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner(val *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner {
+	return &NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner{value: val, isSet: true}
 }
 
-func (v NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
+func (v NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateProductConfigRequestArchiveSettingsS3ArchiveSettingsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -13,13 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateProductConfigRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateProductConfigRequest{}
+// checks if the GetProductConfigResponseProductConfigInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProductConfigResponseProductConfigInner{}
 
-// UpdateProductConfigRequest struct for UpdateProductConfigRequest
-type UpdateProductConfigRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+// GetProductConfigResponseProductConfigInner struct for GetProductConfigResponseProductConfigInner
+type GetProductConfigResponseProductConfigInner struct {
 	ArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettings `json:"archive_settings,omitempty"`
 	CollapseConfig *GetProductConfigResponseProductConfigInnerCollapseConfig `json:"collapse_config,omitempty"`
 	CollapseTriggerConfig *GetProductConfigResponseProductConfigInnerCollapseTriggerConfig `json:"collapse_trigger_config,omitempty"`
@@ -35,57 +33,25 @@ type UpdateProductConfigRequest struct {
 	WorkflowConfig *GetProductConfigResponseProductConfigInnerWorkflowConfig `json:"workflow_config,omitempty"`
 }
 
-// NewUpdateProductConfigRequest instantiates a new UpdateProductConfigRequest object
+// NewGetProductConfigResponseProductConfigInner instantiates a new GetProductConfigResponseProductConfigInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateProductConfigRequest() *UpdateProductConfigRequest {
-	this := UpdateProductConfigRequest{}
+func NewGetProductConfigResponseProductConfigInner() *GetProductConfigResponseProductConfigInner {
+	this := GetProductConfigResponseProductConfigInner{}
 	return &this
 }
 
-// NewUpdateProductConfigRequestWithDefaults instantiates a new UpdateProductConfigRequest object
+// NewGetProductConfigResponseProductConfigInnerWithDefaults instantiates a new GetProductConfigResponseProductConfigInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateProductConfigRequestWithDefaults() *UpdateProductConfigRequest {
-	this := UpdateProductConfigRequest{}
+func NewGetProductConfigResponseProductConfigInnerWithDefaults() *GetProductConfigResponseProductConfigInner {
+	this := GetProductConfigResponseProductConfigInner{}
 	return &this
-}
-
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
-		return ret
-	}
-	return *o.Schema
-}
-
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetSchemaOk() (*string, bool) {
-	if o == nil || IsNil(o.Schema) {
-		return nil, false
-	}
-	return o.Schema, true
-}
-
-// HasSchema returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
-		return true
-	}
-
-	return false
-}
-
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *UpdateProductConfigRequest) SetSchema(v string) {
-	o.Schema = &v
 }
 
 // GetArchiveSettings returns the ArchiveSettings field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetArchiveSettings() GetProductConfigResponseProductConfigInnerArchiveSettings {
+func (o *GetProductConfigResponseProductConfigInner) GetArchiveSettings() GetProductConfigResponseProductConfigInnerArchiveSettings {
 	if o == nil || IsNil(o.ArchiveSettings) {
 		var ret GetProductConfigResponseProductConfigInnerArchiveSettings
 		return ret
@@ -95,7 +61,7 @@ func (o *UpdateProductConfigRequest) GetArchiveSettings() GetProductConfigRespon
 
 // GetArchiveSettingsOk returns a tuple with the ArchiveSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetArchiveSettingsOk() (*GetProductConfigResponseProductConfigInnerArchiveSettings, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetArchiveSettingsOk() (*GetProductConfigResponseProductConfigInnerArchiveSettings, bool) {
 	if o == nil || IsNil(o.ArchiveSettings) {
 		return nil, false
 	}
@@ -103,7 +69,7 @@ func (o *UpdateProductConfigRequest) GetArchiveSettingsOk() (*GetProductConfigRe
 }
 
 // HasArchiveSettings returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasArchiveSettings() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasArchiveSettings() bool {
 	if o != nil && !IsNil(o.ArchiveSettings) {
 		return true
 	}
@@ -112,12 +78,12 @@ func (o *UpdateProductConfigRequest) HasArchiveSettings() bool {
 }
 
 // SetArchiveSettings gets a reference to the given GetProductConfigResponseProductConfigInnerArchiveSettings and assigns it to the ArchiveSettings field.
-func (o *UpdateProductConfigRequest) SetArchiveSettings(v GetProductConfigResponseProductConfigInnerArchiveSettings) {
+func (o *GetProductConfigResponseProductConfigInner) SetArchiveSettings(v GetProductConfigResponseProductConfigInnerArchiveSettings) {
 	o.ArchiveSettings = &v
 }
 
 // GetCollapseConfig returns the CollapseConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetCollapseConfig() GetProductConfigResponseProductConfigInnerCollapseConfig {
+func (o *GetProductConfigResponseProductConfigInner) GetCollapseConfig() GetProductConfigResponseProductConfigInnerCollapseConfig {
 	if o == nil || IsNil(o.CollapseConfig) {
 		var ret GetProductConfigResponseProductConfigInnerCollapseConfig
 		return ret
@@ -127,7 +93,7 @@ func (o *UpdateProductConfigRequest) GetCollapseConfig() GetProductConfigRespons
 
 // GetCollapseConfigOk returns a tuple with the CollapseConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetCollapseConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseConfig, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetCollapseConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseConfig, bool) {
 	if o == nil || IsNil(o.CollapseConfig) {
 		return nil, false
 	}
@@ -135,7 +101,7 @@ func (o *UpdateProductConfigRequest) GetCollapseConfigOk() (*GetProductConfigRes
 }
 
 // HasCollapseConfig returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasCollapseConfig() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasCollapseConfig() bool {
 	if o != nil && !IsNil(o.CollapseConfig) {
 		return true
 	}
@@ -144,12 +110,12 @@ func (o *UpdateProductConfigRequest) HasCollapseConfig() bool {
 }
 
 // SetCollapseConfig gets a reference to the given GetProductConfigResponseProductConfigInnerCollapseConfig and assigns it to the CollapseConfig field.
-func (o *UpdateProductConfigRequest) SetCollapseConfig(v GetProductConfigResponseProductConfigInnerCollapseConfig) {
+func (o *GetProductConfigResponseProductConfigInner) SetCollapseConfig(v GetProductConfigResponseProductConfigInnerCollapseConfig) {
 	o.CollapseConfig = &v
 }
 
 // GetCollapseTriggerConfig returns the CollapseTriggerConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetCollapseTriggerConfig() GetProductConfigResponseProductConfigInnerCollapseTriggerConfig {
+func (o *GetProductConfigResponseProductConfigInner) GetCollapseTriggerConfig() GetProductConfigResponseProductConfigInnerCollapseTriggerConfig {
 	if o == nil || IsNil(o.CollapseTriggerConfig) {
 		var ret GetProductConfigResponseProductConfigInnerCollapseTriggerConfig
 		return ret
@@ -159,7 +125,7 @@ func (o *UpdateProductConfigRequest) GetCollapseTriggerConfig() GetProductConfig
 
 // GetCollapseTriggerConfigOk returns a tuple with the CollapseTriggerConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetCollapseTriggerConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseTriggerConfig, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetCollapseTriggerConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseTriggerConfig, bool) {
 	if o == nil || IsNil(o.CollapseTriggerConfig) {
 		return nil, false
 	}
@@ -167,7 +133,7 @@ func (o *UpdateProductConfigRequest) GetCollapseTriggerConfigOk() (*GetProductCo
 }
 
 // HasCollapseTriggerConfig returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasCollapseTriggerConfig() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasCollapseTriggerConfig() bool {
 	if o != nil && !IsNil(o.CollapseTriggerConfig) {
 		return true
 	}
@@ -176,12 +142,12 @@ func (o *UpdateProductConfigRequest) HasCollapseTriggerConfig() bool {
 }
 
 // SetCollapseTriggerConfig gets a reference to the given GetProductConfigResponseProductConfigInnerCollapseTriggerConfig and assigns it to the CollapseTriggerConfig field.
-func (o *UpdateProductConfigRequest) SetCollapseTriggerConfig(v GetProductConfigResponseProductConfigInnerCollapseTriggerConfig) {
+func (o *GetProductConfigResponseProductConfigInner) SetCollapseTriggerConfig(v GetProductConfigResponseProductConfigInnerCollapseTriggerConfig) {
 	o.CollapseTriggerConfig = &v
 }
 
 // GetEdcPartialPresentations returns the EdcPartialPresentations field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetEdcPartialPresentations() GetProductConfigResponseProductConfigInnerEdcPartialPresentations {
+func (o *GetProductConfigResponseProductConfigInner) GetEdcPartialPresentations() GetProductConfigResponseProductConfigInnerEdcPartialPresentations {
 	if o == nil || IsNil(o.EdcPartialPresentations) {
 		var ret GetProductConfigResponseProductConfigInnerEdcPartialPresentations
 		return ret
@@ -191,7 +157,7 @@ func (o *UpdateProductConfigRequest) GetEdcPartialPresentations() GetProductConf
 
 // GetEdcPartialPresentationsOk returns a tuple with the EdcPartialPresentations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetEdcPartialPresentationsOk() (*GetProductConfigResponseProductConfigInnerEdcPartialPresentations, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetEdcPartialPresentationsOk() (*GetProductConfigResponseProductConfigInnerEdcPartialPresentations, bool) {
 	if o == nil || IsNil(o.EdcPartialPresentations) {
 		return nil, false
 	}
@@ -199,7 +165,7 @@ func (o *UpdateProductConfigRequest) GetEdcPartialPresentationsOk() (*GetProduct
 }
 
 // HasEdcPartialPresentations returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasEdcPartialPresentations() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasEdcPartialPresentations() bool {
 	if o != nil && !IsNil(o.EdcPartialPresentations) {
 		return true
 	}
@@ -208,12 +174,12 @@ func (o *UpdateProductConfigRequest) HasEdcPartialPresentations() bool {
 }
 
 // SetEdcPartialPresentations gets a reference to the given GetProductConfigResponseProductConfigInnerEdcPartialPresentations and assigns it to the EdcPartialPresentations field.
-func (o *UpdateProductConfigRequest) SetEdcPartialPresentations(v GetProductConfigResponseProductConfigInnerEdcPartialPresentations) {
+func (o *GetProductConfigResponseProductConfigInner) SetEdcPartialPresentations(v GetProductConfigResponseProductConfigInnerEdcPartialPresentations) {
 	o.EdcPartialPresentations = &v
 }
 
 // GetEdcTranscodeTemplate returns the EdcTranscodeTemplate field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplate() map[string]interface{} {
+func (o *GetProductConfigResponseProductConfigInner) GetEdcTranscodeTemplate() map[string]interface{} {
 	if o == nil || IsNil(o.EdcTranscodeTemplate) {
 		var ret map[string]interface{}
 		return ret
@@ -223,7 +189,7 @@ func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplate() map[string]interf
 
 // GetEdcTranscodeTemplateOk returns a tuple with the EdcTranscodeTemplate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplateOk() (*map[string]interface{}, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetEdcTranscodeTemplateOk() (*map[string]interface{}, bool) {
 	if o == nil || IsNil(o.EdcTranscodeTemplate) {
 		return nil, false
 	}
@@ -231,7 +197,7 @@ func (o *UpdateProductConfigRequest) GetEdcTranscodeTemplateOk() (*map[string]in
 }
 
 // HasEdcTranscodeTemplate returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasEdcTranscodeTemplate() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasEdcTranscodeTemplate() bool {
 	if o != nil && !IsNil(o.EdcTranscodeTemplate) {
 		return true
 	}
@@ -240,12 +206,12 @@ func (o *UpdateProductConfigRequest) HasEdcTranscodeTemplate() bool {
 }
 
 // SetEdcTranscodeTemplate gets a reference to the given map[string]interface{} and assigns it to the EdcTranscodeTemplate field.
-func (o *UpdateProductConfigRequest) SetEdcTranscodeTemplate(v map[string]interface{}) {
+func (o *GetProductConfigResponseProductConfigInner) SetEdcTranscodeTemplate(v map[string]interface{}) {
 	o.EdcTranscodeTemplate = &v
 }
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetNotifications() []GetProductConfigResponseProductConfigInnerNotificationsInner {
+func (o *GetProductConfigResponseProductConfigInner) GetNotifications() []GetProductConfigResponseProductConfigInnerNotificationsInner {
 	if o == nil || IsNil(o.Notifications) {
 		var ret []GetProductConfigResponseProductConfigInnerNotificationsInner
 		return ret
@@ -255,7 +221,7 @@ func (o *UpdateProductConfigRequest) GetNotifications() []GetProductConfigRespon
 
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetNotificationsOk() ([]GetProductConfigResponseProductConfigInnerNotificationsInner, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetNotificationsOk() ([]GetProductConfigResponseProductConfigInnerNotificationsInner, bool) {
 	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
@@ -263,7 +229,7 @@ func (o *UpdateProductConfigRequest) GetNotificationsOk() ([]GetProductConfigRes
 }
 
 // HasNotifications returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasNotifications() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasNotifications() bool {
 	if o != nil && !IsNil(o.Notifications) {
 		return true
 	}
@@ -272,12 +238,12 @@ func (o *UpdateProductConfigRequest) HasNotifications() bool {
 }
 
 // SetNotifications gets a reference to the given []GetProductConfigResponseProductConfigInnerNotificationsInner and assigns it to the Notifications field.
-func (o *UpdateProductConfigRequest) SetNotifications(v []GetProductConfigResponseProductConfigInnerNotificationsInner) {
+func (o *GetProductConfigResponseProductConfigInner) SetNotifications(v []GetProductConfigResponseProductConfigInnerNotificationsInner) {
 	o.Notifications = v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetRegion() string {
+func (o *GetProductConfigResponseProductConfigInner) GetRegion() string {
 	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
@@ -287,7 +253,7 @@ func (o *UpdateProductConfigRequest) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetRegionOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetRegionOk() (*string, bool) {
 	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
@@ -295,7 +261,7 @@ func (o *UpdateProductConfigRequest) GetRegionOk() (*string, bool) {
 }
 
 // HasRegion returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasRegion() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasRegion() bool {
 	if o != nil && !IsNil(o.Region) {
 		return true
 	}
@@ -304,12 +270,12 @@ func (o *UpdateProductConfigRequest) HasRegion() bool {
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *UpdateProductConfigRequest) SetRegion(v string) {
+func (o *GetProductConfigResponseProductConfigInner) SetRegion(v string) {
 	o.Region = &v
 }
 
 // GetStore returns the Store field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetStore() string {
+func (o *GetProductConfigResponseProductConfigInner) GetStore() string {
 	if o == nil || IsNil(o.Store) {
 		var ret string
 		return ret
@@ -319,7 +285,7 @@ func (o *UpdateProductConfigRequest) GetStore() string {
 
 // GetStoreOk returns a tuple with the Store field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetStoreOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetStoreOk() (*string, bool) {
 	if o == nil || IsNil(o.Store) {
 		return nil, false
 	}
@@ -327,7 +293,7 @@ func (o *UpdateProductConfigRequest) GetStoreOk() (*string, bool) {
 }
 
 // HasStore returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasStore() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasStore() bool {
 	if o != nil && !IsNil(o.Store) {
 		return true
 	}
@@ -336,12 +302,12 @@ func (o *UpdateProductConfigRequest) HasStore() bool {
 }
 
 // SetStore gets a reference to the given string and assigns it to the Store field.
-func (o *UpdateProductConfigRequest) SetStore(v string) {
+func (o *GetProductConfigResponseProductConfigInner) SetStore(v string) {
 	o.Store = &v
 }
 
 // GetWorkflowConfig returns the WorkflowConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetWorkflowConfig() GetProductConfigResponseProductConfigInnerWorkflowConfig {
+func (o *GetProductConfigResponseProductConfigInner) GetWorkflowConfig() GetProductConfigResponseProductConfigInnerWorkflowConfig {
 	if o == nil || IsNil(o.WorkflowConfig) {
 		var ret GetProductConfigResponseProductConfigInnerWorkflowConfig
 		return ret
@@ -351,7 +317,7 @@ func (o *UpdateProductConfigRequest) GetWorkflowConfig() GetProductConfigRespons
 
 // GetWorkflowConfigOk returns a tuple with the WorkflowConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetWorkflowConfigOk() (*GetProductConfigResponseProductConfigInnerWorkflowConfig, bool) {
+func (o *GetProductConfigResponseProductConfigInner) GetWorkflowConfigOk() (*GetProductConfigResponseProductConfigInnerWorkflowConfig, bool) {
 	if o == nil || IsNil(o.WorkflowConfig) {
 		return nil, false
 	}
@@ -359,7 +325,7 @@ func (o *UpdateProductConfigRequest) GetWorkflowConfigOk() (*GetProductConfigRes
 }
 
 // HasWorkflowConfig returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequest) HasWorkflowConfig() bool {
+func (o *GetProductConfigResponseProductConfigInner) HasWorkflowConfig() bool {
 	if o != nil && !IsNil(o.WorkflowConfig) {
 		return true
 	}
@@ -368,11 +334,11 @@ func (o *UpdateProductConfigRequest) HasWorkflowConfig() bool {
 }
 
 // SetWorkflowConfig gets a reference to the given GetProductConfigResponseProductConfigInnerWorkflowConfig and assigns it to the WorkflowConfig field.
-func (o *UpdateProductConfigRequest) SetWorkflowConfig(v GetProductConfigResponseProductConfigInnerWorkflowConfig) {
+func (o *GetProductConfigResponseProductConfigInner) SetWorkflowConfig(v GetProductConfigResponseProductConfigInnerWorkflowConfig) {
 	o.WorkflowConfig = &v
 }
 
-func (o UpdateProductConfigRequest) MarshalJSON() ([]byte, error) {
+func (o GetProductConfigResponseProductConfigInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -380,11 +346,8 @@ func (o UpdateProductConfigRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateProductConfigRequest) ToMap() (map[string]interface{}, error) {
+func (o GetProductConfigResponseProductConfigInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
-		toSerialize["$schema"] = o.Schema
-	}
 	if !IsNil(o.ArchiveSettings) {
 		toSerialize["archive_settings"] = o.ArchiveSettings
 	}
@@ -415,38 +378,38 @@ func (o UpdateProductConfigRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableUpdateProductConfigRequest struct {
-	value *UpdateProductConfigRequest
+type NullableGetProductConfigResponseProductConfigInner struct {
+	value *GetProductConfigResponseProductConfigInner
 	isSet bool
 }
 
-func (v NullableUpdateProductConfigRequest) Get() *UpdateProductConfigRequest {
+func (v NullableGetProductConfigResponseProductConfigInner) Get() *GetProductConfigResponseProductConfigInner {
 	return v.value
 }
 
-func (v *NullableUpdateProductConfigRequest) Set(val *UpdateProductConfigRequest) {
+func (v *NullableGetProductConfigResponseProductConfigInner) Set(val *GetProductConfigResponseProductConfigInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateProductConfigRequest) IsSet() bool {
+func (v NullableGetProductConfigResponseProductConfigInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateProductConfigRequest) Unset() {
+func (v *NullableGetProductConfigResponseProductConfigInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateProductConfigRequest(val *UpdateProductConfigRequest) *NullableUpdateProductConfigRequest {
-	return &NullableUpdateProductConfigRequest{value: val, isSet: true}
+func NewNullableGetProductConfigResponseProductConfigInner(val *GetProductConfigResponseProductConfigInner) *NullableGetProductConfigResponseProductConfigInner {
+	return &NullableGetProductConfigResponseProductConfigInner{value: val, isSet: true}
 }
 
-func (v NullableUpdateProductConfigRequest) MarshalJSON() ([]byte, error) {
+func (v NullableGetProductConfigResponseProductConfigInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateProductConfigRequest) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProductConfigResponseProductConfigInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

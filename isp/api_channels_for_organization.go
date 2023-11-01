@@ -1550,7 +1550,7 @@ type ApiPutOrgChannelDesiredStateRequest struct {
 	desiredStateBody *DesiredStateBody
 }
 
-// Whether a channel should send the endlist playlist tag on stop, effectively finishing the playlist. Video players will no longer expect new segments to be published. Defaults to true.
+// Deprecated, server ignores all values. Will be removed from API once all clients are confirmed to not break.
 func (r ApiPutOrgChannelDesiredStateRequest) EndPlaylist(endPlaylist bool) ApiPutOrgChannelDesiredStateRequest {
 	r.endPlaylist = &endPlaylist
 	return r

@@ -13,35 +13,35 @@ import (
 	"encoding/json"
 )
 
-// checks if the UpdateProductConfigRequestWorkflowConfig type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &UpdateProductConfigRequestWorkflowConfig{}
+// checks if the GetProductConfigResponseProductConfigInnerWorkflowConfig type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &GetProductConfigResponseProductConfigInnerWorkflowConfig{}
 
-// UpdateProductConfigRequestWorkflowConfig Config variables for workflows
-type UpdateProductConfigRequestWorkflowConfig struct {
+// GetProductConfigResponseProductConfigInnerWorkflowConfig Config variables for workflows
+type GetProductConfigResponseProductConfigInnerWorkflowConfig struct {
 	CutprogramPaddingInSeconds *int32 `json:"cutprogram_padding_in_seconds,omitempty" format:"int32"`
 	MakeMp4 *bool `json:"make_mp4,omitempty"`
 	Mp4FeatureFlag *string `json:"mp4-feature-flag,omitempty"`
 }
 
-// NewUpdateProductConfigRequestWorkflowConfig instantiates a new UpdateProductConfigRequestWorkflowConfig object
+// NewGetProductConfigResponseProductConfigInnerWorkflowConfig instantiates a new GetProductConfigResponseProductConfigInnerWorkflowConfig object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUpdateProductConfigRequestWorkflowConfig() *UpdateProductConfigRequestWorkflowConfig {
-	this := UpdateProductConfigRequestWorkflowConfig{}
+func NewGetProductConfigResponseProductConfigInnerWorkflowConfig() *GetProductConfigResponseProductConfigInnerWorkflowConfig {
+	this := GetProductConfigResponseProductConfigInnerWorkflowConfig{}
 	return &this
 }
 
-// NewUpdateProductConfigRequestWorkflowConfigWithDefaults instantiates a new UpdateProductConfigRequestWorkflowConfig object
+// NewGetProductConfigResponseProductConfigInnerWorkflowConfigWithDefaults instantiates a new GetProductConfigResponseProductConfigInnerWorkflowConfig object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewUpdateProductConfigRequestWorkflowConfigWithDefaults() *UpdateProductConfigRequestWorkflowConfig {
-	this := UpdateProductConfigRequestWorkflowConfig{}
+func NewGetProductConfigResponseProductConfigInnerWorkflowConfigWithDefaults() *GetProductConfigResponseProductConfigInnerWorkflowConfig {
+	this := GetProductConfigResponseProductConfigInnerWorkflowConfig{}
 	return &this
 }
 
 // GetCutprogramPaddingInSeconds returns the CutprogramPaddingInSeconds field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetCutprogramPaddingInSeconds() int32 {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetCutprogramPaddingInSeconds() int32 {
 	if o == nil || IsNil(o.CutprogramPaddingInSeconds) {
 		var ret int32
 		return ret
@@ -51,7 +51,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetCutprogramPaddingInSeconds
 
 // GetCutprogramPaddingInSecondsOk returns a tuple with the CutprogramPaddingInSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetCutprogramPaddingInSecondsOk() (*int32, bool) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetCutprogramPaddingInSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.CutprogramPaddingInSeconds) {
 		return nil, false
 	}
@@ -59,7 +59,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetCutprogramPaddingInSeconds
 }
 
 // HasCutprogramPaddingInSeconds returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) HasCutprogramPaddingInSeconds() bool {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) HasCutprogramPaddingInSeconds() bool {
 	if o != nil && !IsNil(o.CutprogramPaddingInSeconds) {
 		return true
 	}
@@ -68,12 +68,12 @@ func (o *UpdateProductConfigRequestWorkflowConfig) HasCutprogramPaddingInSeconds
 }
 
 // SetCutprogramPaddingInSeconds gets a reference to the given int32 and assigns it to the CutprogramPaddingInSeconds field.
-func (o *UpdateProductConfigRequestWorkflowConfig) SetCutprogramPaddingInSeconds(v int32) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) SetCutprogramPaddingInSeconds(v int32) {
 	o.CutprogramPaddingInSeconds = &v
 }
 
 // GetMakeMp4 returns the MakeMp4 field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetMakeMp4() bool {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetMakeMp4() bool {
 	if o == nil || IsNil(o.MakeMp4) {
 		var ret bool
 		return ret
@@ -83,7 +83,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetMakeMp4() bool {
 
 // GetMakeMp4Ok returns a tuple with the MakeMp4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetMakeMp4Ok() (*bool, bool) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetMakeMp4Ok() (*bool, bool) {
 	if o == nil || IsNil(o.MakeMp4) {
 		return nil, false
 	}
@@ -91,7 +91,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetMakeMp4Ok() (*bool, bool) 
 }
 
 // HasMakeMp4 returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) HasMakeMp4() bool {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) HasMakeMp4() bool {
 	if o != nil && !IsNil(o.MakeMp4) {
 		return true
 	}
@@ -100,12 +100,12 @@ func (o *UpdateProductConfigRequestWorkflowConfig) HasMakeMp4() bool {
 }
 
 // SetMakeMp4 gets a reference to the given bool and assigns it to the MakeMp4 field.
-func (o *UpdateProductConfigRequestWorkflowConfig) SetMakeMp4(v bool) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) SetMakeMp4(v bool) {
 	o.MakeMp4 = &v
 }
 
 // GetMp4FeatureFlag returns the Mp4FeatureFlag field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetMp4FeatureFlag() string {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetMp4FeatureFlag() string {
 	if o == nil || IsNil(o.Mp4FeatureFlag) {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetMp4FeatureFlag() string {
 
 // GetMp4FeatureFlagOk returns a tuple with the Mp4FeatureFlag field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) GetMp4FeatureFlagOk() (*string, bool) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) GetMp4FeatureFlagOk() (*string, bool) {
 	if o == nil || IsNil(o.Mp4FeatureFlag) {
 		return nil, false
 	}
@@ -123,7 +123,7 @@ func (o *UpdateProductConfigRequestWorkflowConfig) GetMp4FeatureFlagOk() (*strin
 }
 
 // HasMp4FeatureFlag returns a boolean if a field has been set.
-func (o *UpdateProductConfigRequestWorkflowConfig) HasMp4FeatureFlag() bool {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) HasMp4FeatureFlag() bool {
 	if o != nil && !IsNil(o.Mp4FeatureFlag) {
 		return true
 	}
@@ -132,11 +132,11 @@ func (o *UpdateProductConfigRequestWorkflowConfig) HasMp4FeatureFlag() bool {
 }
 
 // SetMp4FeatureFlag gets a reference to the given string and assigns it to the Mp4FeatureFlag field.
-func (o *UpdateProductConfigRequestWorkflowConfig) SetMp4FeatureFlag(v string) {
+func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) SetMp4FeatureFlag(v string) {
 	o.Mp4FeatureFlag = &v
 }
 
-func (o UpdateProductConfigRequestWorkflowConfig) MarshalJSON() ([]byte, error) {
+func (o GetProductConfigResponseProductConfigInnerWorkflowConfig) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -144,7 +144,7 @@ func (o UpdateProductConfigRequestWorkflowConfig) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-func (o UpdateProductConfigRequestWorkflowConfig) ToMap() (map[string]interface{}, error) {
+func (o GetProductConfigResponseProductConfigInnerWorkflowConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CutprogramPaddingInSeconds) {
 		toSerialize["cutprogram_padding_in_seconds"] = o.CutprogramPaddingInSeconds
@@ -158,38 +158,38 @@ func (o UpdateProductConfigRequestWorkflowConfig) ToMap() (map[string]interface{
 	return toSerialize, nil
 }
 
-type NullableUpdateProductConfigRequestWorkflowConfig struct {
-	value *UpdateProductConfigRequestWorkflowConfig
+type NullableGetProductConfigResponseProductConfigInnerWorkflowConfig struct {
+	value *GetProductConfigResponseProductConfigInnerWorkflowConfig
 	isSet bool
 }
 
-func (v NullableUpdateProductConfigRequestWorkflowConfig) Get() *UpdateProductConfigRequestWorkflowConfig {
+func (v NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) Get() *GetProductConfigResponseProductConfigInnerWorkflowConfig {
 	return v.value
 }
 
-func (v *NullableUpdateProductConfigRequestWorkflowConfig) Set(val *UpdateProductConfigRequestWorkflowConfig) {
+func (v *NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) Set(val *GetProductConfigResponseProductConfigInnerWorkflowConfig) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableUpdateProductConfigRequestWorkflowConfig) IsSet() bool {
+func (v NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableUpdateProductConfigRequestWorkflowConfig) Unset() {
+func (v *NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableUpdateProductConfigRequestWorkflowConfig(val *UpdateProductConfigRequestWorkflowConfig) *NullableUpdateProductConfigRequestWorkflowConfig {
-	return &NullableUpdateProductConfigRequestWorkflowConfig{value: val, isSet: true}
+func NewNullableGetProductConfigResponseProductConfigInnerWorkflowConfig(val *GetProductConfigResponseProductConfigInnerWorkflowConfig) *NullableGetProductConfigResponseProductConfigInnerWorkflowConfig {
+	return &NullableGetProductConfigResponseProductConfigInnerWorkflowConfig{value: val, isSet: true}
 }
 
-func (v NullableUpdateProductConfigRequestWorkflowConfig) MarshalJSON() ([]byte, error) {
+func (v NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableUpdateProductConfigRequestWorkflowConfig) UnmarshalJSON(src []byte) error {
+func (v *NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

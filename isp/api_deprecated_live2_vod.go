@@ -29,9 +29,9 @@ type DeprecatedLive2VODApi interface {
 Retrieves a playback URL for the MP4 playback for a clip if available.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiDeprecatedClipGetMp4Request
@@ -53,9 +53,9 @@ Retrieves a playback URL for the MP4 playback for a clip if available.
 Retrieve List of Presentations for a given Clip
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiDeprecatedClipGetPresentationsRequest
@@ -77,9 +77,9 @@ Retrieve List of Presentations for a given Clip
 Retrieves Program Time for a given Clip
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiDeprecatedClipGetProgramTimeRequest
@@ -101,9 +101,9 @@ Retrieves Program Time for a given Clip
 Create a mp4 entity for the clip within a vod
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiDeprecatedClipMakeMp4Request
@@ -125,9 +125,9 @@ Create a mp4 entity for the clip within a vod
 Retrieve List of Manifests for a given Clip
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiDeprecatedGetClipManifestRequest
@@ -149,9 +149,9 @@ Retrieve List of Manifests for a given Clip
 Get the clip with the clip id sent in the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@param clipId ID for a Clip
 	@return ApiGetDeprecatedClipRequest
@@ -174,9 +174,9 @@ Get a program with an customer, product and program id. This API is deprecated, 
 the program from the west region.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@return ApiGetDeprecatedProgramRequest
 
 	Deprecated
@@ -196,9 +196,9 @@ the program from the west region.
 List all clips for the vod identified in the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param vodId ID for a VOD
 	@return ApiListDeprecatedClipsRequest
 
@@ -220,9 +220,9 @@ VODs can be listed after an appropriately configured channel is turned on for th
 If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
 	@param productId Product ID for a l2v request
-	@param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+	@param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
 	@return ApiListDeprecatedVodsRequest
 
 	Deprecated
@@ -260,9 +260,9 @@ DeprecatedClipGetMp4 Get MP4 URL
 Retrieves a playback URL for the MP4 playback for a clip if available.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiDeprecatedClipGetMp4Request
@@ -458,9 +458,9 @@ DeprecatedClipGetPresentations Get Presentations for Clip
 Retrieve List of Presentations for a given Clip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiDeprecatedClipGetPresentationsRequest
@@ -656,9 +656,9 @@ DeprecatedClipGetProgramTime Get Program Time
 Retrieves Program Time for a given Clip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiDeprecatedClipGetProgramTimeRequest
@@ -860,9 +860,9 @@ DeprecatedClipMakeMp4 Create MP4 for Clip
 Create a mp4 entity for the clip within a vod
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiDeprecatedClipMakeMp4Request
@@ -1080,9 +1080,9 @@ DeprecatedGetClipManifest Get Manifests for Clip
 Retrieve List of Manifests for a given Clip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiDeprecatedGetClipManifestRequest
@@ -1278,9 +1278,9 @@ GetDeprecatedClip Get clip
 Get the clip with the clip id sent in the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @param clipId ID for a Clip
  @return ApiGetDeprecatedClipRequest
@@ -1475,9 +1475,9 @@ Get a program with an customer, product and program id. This API is deprecated, 
 the program from the west region.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @return ApiGetDeprecatedProgramRequest
 
 Deprecated
@@ -1666,9 +1666,9 @@ ListDeprecatedClips List available clips
 List all clips for the vod identified in the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @param vodId ID for a VOD
  @return ApiListDeprecatedClipsRequest
 
@@ -1860,9 +1860,9 @@ VODs can be listed after an appropriately configured channel is turned on for th
 If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param customerId Customer ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param customerId Customer ID for a l2v request.  Used only for the deprecated legacy route support.
  @param productId Product ID for a l2v request
- @param programId Program ID for a l2v request.  Used only for the depreciated legacy route support.
+ @param programId Program ID for a l2v request.  Used only for the deprecated legacy route support.
  @return ApiListDeprecatedVodsRequest
 
 Deprecated
