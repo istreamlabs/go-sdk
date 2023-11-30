@@ -20,8 +20,10 @@ var _ MappedNullable = &ChannelTranscode{}
 type ChannelTranscode struct {
 	// Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc.
 	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1" doc:"Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc."`
-	// Debug_overlay overlays debugging information from the transcoder into the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay.
-	DebugOverlay *bool `json:"debug_overlay,omitempty" doc:"Debug_overlay overlays debugging information from the transcoder into the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay."`
+	// Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlay2.
+	// Deprecated
+	DebugOverlay *bool `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlay2."`
+	DebugOverlays *ChannelTranscodeDebugOverlays `json:"debug_overlays,omitempty"`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper.
 	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper."`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
@@ -90,6 +92,7 @@ func (o *ChannelTranscode) SetAudioEncoders(v []ChannelTranscodeAudioEncodersInn
 }
 
 // GetDebugOverlay returns the DebugOverlay field value if set, zero value otherwise.
+// Deprecated
 func (o *ChannelTranscode) GetDebugOverlay() bool {
 	if o == nil || IsNil(o.DebugOverlay) {
 		var ret bool
@@ -100,6 +103,7 @@ func (o *ChannelTranscode) GetDebugOverlay() bool {
 
 // GetDebugOverlayOk returns a tuple with the DebugOverlay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ChannelTranscode) GetDebugOverlayOk() (*bool, bool) {
 	if o == nil || IsNil(o.DebugOverlay) {
 		return nil, false
@@ -117,8 +121,41 @@ func (o *ChannelTranscode) HasDebugOverlay() bool {
 }
 
 // SetDebugOverlay gets a reference to the given bool and assigns it to the DebugOverlay field.
+// Deprecated
 func (o *ChannelTranscode) SetDebugOverlay(v bool) {
 	o.DebugOverlay = &v
+}
+
+// GetDebugOverlays returns the DebugOverlays field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetDebugOverlays() ChannelTranscodeDebugOverlays {
+	if o == nil || IsNil(o.DebugOverlays) {
+		var ret ChannelTranscodeDebugOverlays
+		return ret
+	}
+	return *o.DebugOverlays
+}
+
+// GetDebugOverlaysOk returns a tuple with the DebugOverlays field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetDebugOverlaysOk() (*ChannelTranscodeDebugOverlays, bool) {
+	if o == nil || IsNil(o.DebugOverlays) {
+		return nil, false
+	}
+	return o.DebugOverlays, true
+}
+
+// HasDebugOverlays returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasDebugOverlays() bool {
+	if o != nil && !IsNil(o.DebugOverlays) {
+		return true
+	}
+
+	return false
+}
+
+// SetDebugOverlays gets a reference to the given ChannelTranscodeDebugOverlays and assigns it to the DebugOverlays field.
+func (o *ChannelTranscode) SetDebugOverlays(v ChannelTranscodeDebugOverlays) {
+	o.DebugOverlays = &v
 }
 
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
@@ -424,6 +461,9 @@ func (o ChannelTranscode) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DebugOverlay) {
 		toSerialize["debug_overlay"] = o.DebugOverlay
+	}
+	if !IsNil(o.DebugOverlays) {
+		toSerialize["debug_overlays"] = o.DebugOverlays
 	}
 	if !IsNil(o.FeatureFlags) {
 		toSerialize["feature_flags"] = o.FeatureFlags
