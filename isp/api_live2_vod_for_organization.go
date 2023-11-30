@@ -4830,11 +4830,11 @@ type ApiPostOrgVodClipRequest struct {
 	org string
 	channelId string
 	vodId string
-	postClipRequest *PostClipRequest
+	makeClipRequest *MakeClipRequest
 }
 
-func (r ApiPostOrgVodClipRequest) PostClipRequest(postClipRequest PostClipRequest) ApiPostOrgVodClipRequest {
-	r.postClipRequest = &postClipRequest
+func (r ApiPostOrgVodClipRequest) MakeClipRequest(makeClipRequest MakeClipRequest) ApiPostOrgVodClipRequest {
+	r.makeClipRequest = &makeClipRequest
 	return r
 }
 
@@ -4908,7 +4908,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.postClipRequest
+	localVarPostBody = r.makeClipRequest
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

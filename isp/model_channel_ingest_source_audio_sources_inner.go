@@ -21,6 +21,8 @@ type ChannelIngestSourceAudioSourcesInner struct {
 	Id *string `json:"id,omitempty" minLength:"1"`
 	// RFC 5646, e.g. 'en' 'en-US'
 	Language *string `json:"language,omitempty" minLength:"1" doc:"RFC 5646, e.g. 'en' 'en-US'"`
+	// License specifies how the audio in this source is licensed.
+	License *string `json:"license,omitempty" enum:"LIVE,REPLAY" doc:"License specifies how the audio in this source is licensed."`
 	// Language fiendly name, e.g. 'English', 'Spanish'
 	Name *string `json:"name,omitempty" minLength:"1" doc:"Language fiendly name, e.g. 'English', 'Spanish'"`
 	// Expression for choosing an audio track in the stream for this AudioSource https://istreamplanet.atlassian.net/wiki/spaces/T/pages/847970791/Proposal+Audio+Track+Selection
@@ -108,6 +110,38 @@ func (o *ChannelIngestSourceAudioSourcesInner) SetLanguage(v string) {
 	o.Language = &v
 }
 
+// GetLicense returns the License field value if set, zero value otherwise.
+func (o *ChannelIngestSourceAudioSourcesInner) GetLicense() string {
+	if o == nil || IsNil(o.License) {
+		var ret string
+		return ret
+	}
+	return *o.License
+}
+
+// GetLicenseOk returns a tuple with the License field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelIngestSourceAudioSourcesInner) GetLicenseOk() (*string, bool) {
+	if o == nil || IsNil(o.License) {
+		return nil, false
+	}
+	return o.License, true
+}
+
+// HasLicense returns a boolean if a field has been set.
+func (o *ChannelIngestSourceAudioSourcesInner) HasLicense() bool {
+	if o != nil && !IsNil(o.License) {
+		return true
+	}
+
+	return false
+}
+
+// SetLicense gets a reference to the given string and assigns it to the License field.
+func (o *ChannelIngestSourceAudioSourcesInner) SetLicense(v string) {
+	o.License = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ChannelIngestSourceAudioSourcesInner) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -187,6 +221,9 @@ func (o ChannelIngestSourceAudioSourcesInner) ToMap() (map[string]interface{}, e
 	}
 	if !IsNil(o.Language) {
 		toSerialize["language"] = o.Language
+	}
+	if !IsNil(o.License) {
+		toSerialize["license"] = o.License
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name

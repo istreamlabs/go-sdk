@@ -20,7 +20,6 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 type GetProductConfigResponseProductConfigInnerArchiveSettings struct {
 	GlobalArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings `json:"global_archive_settings,omitempty"`
 	NetstorageConnectionSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner `json:"netstorage_connection_settings,omitempty"`
-	RemoteCopySettings []GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner `json:"remote_copy_settings,omitempty"`
 	S3ArchiveSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner `json:"s3_archive_settings,omitempty"`
 }
 
@@ -105,38 +104,6 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) SetNetstorag
 	o.NetstorageConnectionSettings = v
 }
 
-// GetRemoteCopySettings returns the RemoteCopySettings field value if set, zero value otherwise.
-func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) GetRemoteCopySettings() []GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner {
-	if o == nil || IsNil(o.RemoteCopySettings) {
-		var ret []GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner
-		return ret
-	}
-	return o.RemoteCopySettings
-}
-
-// GetRemoteCopySettingsOk returns a tuple with the RemoteCopySettings field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) GetRemoteCopySettingsOk() ([]GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner, bool) {
-	if o == nil || IsNil(o.RemoteCopySettings) {
-		return nil, false
-	}
-	return o.RemoteCopySettings, true
-}
-
-// HasRemoteCopySettings returns a boolean if a field has been set.
-func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) HasRemoteCopySettings() bool {
-	if o != nil && !IsNil(o.RemoteCopySettings) {
-		return true
-	}
-
-	return false
-}
-
-// SetRemoteCopySettings gets a reference to the given []GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner and assigns it to the RemoteCopySettings field.
-func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) SetRemoteCopySettings(v []GetProductConfigResponseProductConfigInnerArchiveSettingsRemoteCopySettingsInner) {
-	o.RemoteCopySettings = v
-}
-
 // GetS3ArchiveSettings returns the S3ArchiveSettings field value if set, zero value otherwise.
 func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) GetS3ArchiveSettings() []GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner {
 	if o == nil || IsNil(o.S3ArchiveSettings) {
@@ -184,9 +151,6 @@ func (o GetProductConfigResponseProductConfigInnerArchiveSettings) ToMap() (map[
 	}
 	if !IsNil(o.NetstorageConnectionSettings) {
 		toSerialize["netstorage_connection_settings"] = o.NetstorageConnectionSettings
-	}
-	if !IsNil(o.RemoteCopySettings) {
-		toSerialize["remote_copy_settings"] = o.RemoteCopySettings
 	}
 	if !IsNil(o.S3ArchiveSettings) {
 		toSerialize["s3_archive_settings"] = o.S3ArchiveSettings
