@@ -18,6 +18,7 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerOrigin{}
 
 // ChannelPublishingPublicationsInnerOrigin Configures defaults used when generating manifests or playlist using the dynamic origin. Cannot be set if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for').
 type ChannelPublishingPublicationsInnerOrigin struct {
+	FallbackDefaults *ChannelPublishingPublicationsInnerOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
 	ManifestDefaults *ChannelPublishingPublicationsInnerOriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
 	RetentionMinutes *int32 `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
@@ -38,6 +39,38 @@ func NewChannelPublishingPublicationsInnerOrigin() *ChannelPublishingPublication
 func NewChannelPublishingPublicationsInnerOriginWithDefaults() *ChannelPublishingPublicationsInnerOrigin {
 	this := ChannelPublishingPublicationsInnerOrigin{}
 	return &this
+}
+
+// GetFallbackDefaults returns the FallbackDefaults field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOrigin) GetFallbackDefaults() ChannelPublishingPublicationsInnerOriginFallbackDefaults {
+	if o == nil || IsNil(o.FallbackDefaults) {
+		var ret ChannelPublishingPublicationsInnerOriginFallbackDefaults
+		return ret
+	}
+	return *o.FallbackDefaults
+}
+
+// GetFallbackDefaultsOk returns a tuple with the FallbackDefaults field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOrigin) GetFallbackDefaultsOk() (*ChannelPublishingPublicationsInnerOriginFallbackDefaults, bool) {
+	if o == nil || IsNil(o.FallbackDefaults) {
+		return nil, false
+	}
+	return o.FallbackDefaults, true
+}
+
+// HasFallbackDefaults returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOrigin) HasFallbackDefaults() bool {
+	if o != nil && !IsNil(o.FallbackDefaults) {
+		return true
+	}
+
+	return false
+}
+
+// SetFallbackDefaults gets a reference to the given ChannelPublishingPublicationsInnerOriginFallbackDefaults and assigns it to the FallbackDefaults field.
+func (o *ChannelPublishingPublicationsInnerOrigin) SetFallbackDefaults(v ChannelPublishingPublicationsInnerOriginFallbackDefaults) {
+	o.FallbackDefaults = &v
 }
 
 // GetManifestDefaults returns the ManifestDefaults field value if set, zero value otherwise.
@@ -114,6 +147,9 @@ func (o ChannelPublishingPublicationsInnerOrigin) MarshalJSON() ([]byte, error) 
 
 func (o ChannelPublishingPublicationsInnerOrigin) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.FallbackDefaults) {
+		toSerialize["fallback_defaults"] = o.FallbackDefaults
+	}
 	if !IsNil(o.ManifestDefaults) {
 		toSerialize["manifest_defaults"] = o.ManifestDefaults
 	}

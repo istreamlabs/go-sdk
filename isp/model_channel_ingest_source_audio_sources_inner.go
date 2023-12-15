@@ -25,8 +25,8 @@ type ChannelIngestSourceAudioSourcesInner struct {
 	License *string `json:"license,omitempty" enum:"LIVE,REPLAY" doc:"License specifies how the audio in this source is licensed."`
 	// Language fiendly name, e.g. 'English', 'Spanish'
 	Name *string `json:"name,omitempty" minLength:"1" doc:"Language fiendly name, e.g. 'English', 'Spanish'"`
-	// Expression for choosing an audio track in the stream for this AudioSource https://istreamplanet.atlassian.net/wiki/spaces/T/pages/847970791/Proposal+Audio+Track+Selection
-	Selector *string `json:"selector,omitempty" doc:"Expression for choosing an audio track in the stream for this AudioSource https://istreamplanet.atlassian.net/wiki/spaces/T/pages/847970791/Proposal+Audio+Track+Selection"`
+	// Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection
+	Selector *string `json:"selector,omitempty" doc:"Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection"`
 }
 
 // NewChannelIngestSourceAudioSourcesInner instantiates a new ChannelIngestSourceAudioSourcesInner object

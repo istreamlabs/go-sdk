@@ -26,6 +26,8 @@ type ChannelPlayback struct {
 	Dash []ChannelPlaybackCmafInner `json:"dash,omitempty" doc:"Dash playback configurations"`
 	// HLS playback configurations
 	Hls []ChannelPlaybackCmafInner `json:"hls,omitempty" doc:"HLS playback configurations"`
+	// Origin playback configurations
+	Origin []ChannelPlaybackOriginInner `json:"origin,omitempty" doc:"Origin playback configurations"`
 }
 
 // NewChannelPlayback instantiates a new ChannelPlayback object
@@ -173,6 +175,38 @@ func (o *ChannelPlayback) SetHls(v []ChannelPlaybackCmafInner) {
 	o.Hls = v
 }
 
+// GetOrigin returns the Origin field value if set, zero value otherwise.
+func (o *ChannelPlayback) GetOrigin() []ChannelPlaybackOriginInner {
+	if o == nil || IsNil(o.Origin) {
+		var ret []ChannelPlaybackOriginInner
+		return ret
+	}
+	return o.Origin
+}
+
+// GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPlayback) GetOriginOk() ([]ChannelPlaybackOriginInner, bool) {
+	if o == nil || IsNil(o.Origin) {
+		return nil, false
+	}
+	return o.Origin, true
+}
+
+// HasOrigin returns a boolean if a field has been set.
+func (o *ChannelPlayback) HasOrigin() bool {
+	if o != nil && !IsNil(o.Origin) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrigin gets a reference to the given []ChannelPlaybackOriginInner and assigns it to the Origin field.
+func (o *ChannelPlayback) SetOrigin(v []ChannelPlaybackOriginInner) {
+	o.Origin = v
+}
+
 func (o ChannelPlayback) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -194,6 +228,9 @@ func (o ChannelPlayback) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Hls) {
 		toSerialize["hls"] = o.Hls
+	}
+	if !IsNil(o.Origin) {
+		toSerialize["origin"] = o.Origin
 	}
 	return toSerialize, nil
 }
