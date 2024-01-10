@@ -110,6 +110,9 @@ model_deprecated_list_vods_response.go
 model_deprecated_make_mp4_request.go
 model_deprecated_make_mp4_response.go
 model_desired_state_body.go
+model_dynamic_archive_mp4_request.go
+model_dynamic_archive_mp4_request_clear_publication.go
+model_dynamic_archive_mp4_response.go
 model_error_model.go
 model_error_model_errors_inner.go
 model_generic_signal.go

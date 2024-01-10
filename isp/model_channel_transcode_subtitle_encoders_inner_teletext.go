@@ -18,10 +18,14 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInnerTeletext{}
 
 // ChannelTranscodeSubtitleEncodersInnerTeletext Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
 type ChannelTranscodeSubtitleEncodersInnerTeletext struct {
-	// The teletext magazine number where the subtitles are found.
-	Magazine *int32 `json:"magazine,omitempty" format:"int32" minimum:"0" doc:"The teletext magazine number where the subtitles are found."`
-	// The teletext page number where the subtitles are found.
-	Page *int32 `json:"page,omitempty" format:"int32" minimum:"0" doc:"The teletext page number where the subtitles are found."`
+	// The three-letter language code declared in the Teletext descriptor in the source PMT. If the language is not found, the subtitles will be empty. language + type configuration is mutually exclusive with magazine + page configuration.
+	Language *string `json:"language,omitempty" doc:"The three-letter language code declared in the Teletext descriptor in the source PMT. If the language is not found, the subtitles will be empty. language + type configuration is mutually exclusive with magazine + page configuration."`
+	// The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+	Magazine *int32 `json:"magazine,omitempty" format:"int32" minimum:"0" doc:"The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration."`
+	// The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+	Page *int32 `json:"page,omitempty" format:"int32" minimum:"0" doc:"The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration."`
+	// The Teletext page type declared in the Teletext descriptor in the source PMT. If this field is unset, it will be inferred from the 'usage' field on the SubtitleEncoder using this table: SubtitleEncoder.CLOSED_CAPTIONS => TeletextSource.PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED SubtitleEncoder.SUBTITLES => TeletextSource.PAGE_TYPE_SUBTITLE
+	PageType *string `json:"page_type,omitempty" enum:"PAGE_TYPE_INITIAL,PAGE_TYPE_SUBTITLE,PAGE_TYPE_ADDITIONAL_INFORMATION,PAGE_TYPE_PROGRAMME_SCHEDULE,PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED" doc:"The Teletext page type declared in the Teletext descriptor in the source PMT. If this field is unset, it will be inferred from the 'usage' field on the SubtitleEncoder using this table: SubtitleEncoder.CLOSED_CAPTIONS => TeletextSource.PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED SubtitleEncoder.SUBTITLES => TeletextSource.PAGE_TYPE_SUBTITLE"`
 }
 
 // NewChannelTranscodeSubtitleEncodersInnerTeletext instantiates a new ChannelTranscodeSubtitleEncodersInnerTeletext object
@@ -39,6 +43,38 @@ func NewChannelTranscodeSubtitleEncodersInnerTeletext() *ChannelTranscodeSubtitl
 func NewChannelTranscodeSubtitleEncodersInnerTeletextWithDefaults() *ChannelTranscodeSubtitleEncodersInnerTeletext {
 	this := ChannelTranscodeSubtitleEncodersInnerTeletext{}
 	return &this
+}
+
+// GetLanguage returns the Language field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetLanguage() string {
+	if o == nil || IsNil(o.Language) {
+		var ret string
+		return ret
+	}
+	return *o.Language
+}
+
+// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetLanguageOk() (*string, bool) {
+	if o == nil || IsNil(o.Language) {
+		return nil, false
+	}
+	return o.Language, true
+}
+
+// HasLanguage returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) HasLanguage() bool {
+	if o != nil && !IsNil(o.Language) {
+		return true
+	}
+
+	return false
+}
+
+// SetLanguage gets a reference to the given string and assigns it to the Language field.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) SetLanguage(v string) {
+	o.Language = &v
 }
 
 // GetMagazine returns the Magazine field value if set, zero value otherwise.
@@ -105,6 +141,38 @@ func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) SetPage(v int32) {
 	o.Page = &v
 }
 
+// GetPageType returns the PageType field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetPageType() string {
+	if o == nil || IsNil(o.PageType) {
+		var ret string
+		return ret
+	}
+	return *o.PageType
+}
+
+// GetPageTypeOk returns a tuple with the PageType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetPageTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.PageType) {
+		return nil, false
+	}
+	return o.PageType, true
+}
+
+// HasPageType returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) HasPageType() bool {
+	if o != nil && !IsNil(o.PageType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPageType gets a reference to the given string and assigns it to the PageType field.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) SetPageType(v string) {
+	o.PageType = &v
+}
+
 func (o ChannelTranscodeSubtitleEncodersInnerTeletext) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -115,11 +183,17 @@ func (o ChannelTranscodeSubtitleEncodersInnerTeletext) MarshalJSON() ([]byte, er
 
 func (o ChannelTranscodeSubtitleEncodersInnerTeletext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
+	}
 	if !IsNil(o.Magazine) {
 		toSerialize["magazine"] = o.Magazine
 	}
 	if !IsNil(o.Page) {
 		toSerialize["page"] = o.Page
+	}
+	if !IsNil(o.PageType) {
+		toSerialize["page_type"] = o.PageType
 	}
 	return toSerialize, nil
 }
