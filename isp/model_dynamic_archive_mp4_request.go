@@ -20,13 +20,13 @@ var _ MappedNullable = &DynamicArchiveMP4Request{}
 type DynamicArchiveMP4Request struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Archive ArchiveFERRequestArchive `json:"archive"`
+	Archive DynamicArchiveMP4RequestArchive `json:"archive"`
 	ClearPublication DynamicArchiveMP4RequestClearPublication `json:"clear_publication"`
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// Global query params
 	GlobalParams string `json:"global_params" doc:"Global query params"`
-	Notification ArchiveFERRequestNotification `json:"notification"`
+	Notification DynamicArchiveMP4RequestNotification `json:"notification"`
 	// Playback base URL for the FER
 	PlaybackBaseUrl string `json:"playback_base_url" doc:"Playback base URL for the FER"`
 }
@@ -35,7 +35,7 @@ type DynamicArchiveMP4Request struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDynamicArchiveMP4Request(archive ArchiveFERRequestArchive, clearPublication DynamicArchiveMP4RequestClearPublication, correlationId string, globalParams string, notification ArchiveFERRequestNotification, playbackBaseUrl string) *DynamicArchiveMP4Request {
+func NewDynamicArchiveMP4Request(archive DynamicArchiveMP4RequestArchive, clearPublication DynamicArchiveMP4RequestClearPublication, correlationId string, globalParams string, notification DynamicArchiveMP4RequestNotification, playbackBaseUrl string) *DynamicArchiveMP4Request {
 	this := DynamicArchiveMP4Request{}
 	this.Archive = archive
 	this.ClearPublication = clearPublication
@@ -87,9 +87,9 @@ func (o *DynamicArchiveMP4Request) SetSchema(v string) {
 }
 
 // GetArchive returns the Archive field value
-func (o *DynamicArchiveMP4Request) GetArchive() ArchiveFERRequestArchive {
+func (o *DynamicArchiveMP4Request) GetArchive() DynamicArchiveMP4RequestArchive {
 	if o == nil {
-		var ret ArchiveFERRequestArchive
+		var ret DynamicArchiveMP4RequestArchive
 		return ret
 	}
 
@@ -98,7 +98,7 @@ func (o *DynamicArchiveMP4Request) GetArchive() ArchiveFERRequestArchive {
 
 // GetArchiveOk returns a tuple with the Archive field value
 // and a boolean to check if the value has been set.
-func (o *DynamicArchiveMP4Request) GetArchiveOk() (*ArchiveFERRequestArchive, bool) {
+func (o *DynamicArchiveMP4Request) GetArchiveOk() (*DynamicArchiveMP4RequestArchive, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *DynamicArchiveMP4Request) GetArchiveOk() (*ArchiveFERRequestArchive, bo
 }
 
 // SetArchive sets field value
-func (o *DynamicArchiveMP4Request) SetArchive(v ArchiveFERRequestArchive) {
+func (o *DynamicArchiveMP4Request) SetArchive(v DynamicArchiveMP4RequestArchive) {
 	o.Archive = v
 }
 
@@ -183,9 +183,9 @@ func (o *DynamicArchiveMP4Request) SetGlobalParams(v string) {
 }
 
 // GetNotification returns the Notification field value
-func (o *DynamicArchiveMP4Request) GetNotification() ArchiveFERRequestNotification {
+func (o *DynamicArchiveMP4Request) GetNotification() DynamicArchiveMP4RequestNotification {
 	if o == nil {
-		var ret ArchiveFERRequestNotification
+		var ret DynamicArchiveMP4RequestNotification
 		return ret
 	}
 
@@ -194,7 +194,7 @@ func (o *DynamicArchiveMP4Request) GetNotification() ArchiveFERRequestNotificati
 
 // GetNotificationOk returns a tuple with the Notification field value
 // and a boolean to check if the value has been set.
-func (o *DynamicArchiveMP4Request) GetNotificationOk() (*ArchiveFERRequestNotification, bool) {
+func (o *DynamicArchiveMP4Request) GetNotificationOk() (*DynamicArchiveMP4RequestNotification, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -202,7 +202,7 @@ func (o *DynamicArchiveMP4Request) GetNotificationOk() (*ArchiveFERRequestNotifi
 }
 
 // SetNotification sets field value
-func (o *DynamicArchiveMP4Request) SetNotification(v ArchiveFERRequestNotification) {
+func (o *DynamicArchiveMP4Request) SetNotification(v DynamicArchiveMP4RequestNotification) {
 	o.Notification = v
 }
 

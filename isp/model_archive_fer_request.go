@@ -20,30 +20,25 @@ var _ MappedNullable = &ArchiveFERRequest{}
 type ArchiveFERRequest struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Archive ArchiveFERRequestArchive `json:"archive"`
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
-	// Global query params
-	GlobalParams string `json:"global_params" doc:"Global query params"`
+	// Portion of the query string that applies to all packages
+	GlobalQueryString string `json:"global_query_string" doc:"Portion of the query string that applies to all packages"`
 	Notification ArchiveFERRequestNotification `json:"notification"`
-	// Playback base URL for the FER
-	PlaybackBaseUrl string `json:"playback_base_url" doc:"Playback base URL for the FER"`
-	// Publications for fer archival
-	Publications []ArchiveFERRequestPublicationsInner `json:"publications" doc:"Publications for fer archival"`
+	// Packages to be archived as FERs
+	Packages []ArchiveFERRequestPackagesInner `json:"packages" doc:"Packages to be archived as FERs"`
 }
 
 // NewArchiveFERRequest instantiates a new ArchiveFERRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArchiveFERRequest(archive ArchiveFERRequestArchive, correlationId string, globalParams string, notification ArchiveFERRequestNotification, playbackBaseUrl string, publications []ArchiveFERRequestPublicationsInner) *ArchiveFERRequest {
+func NewArchiveFERRequest(correlationId string, globalQueryString string, notification ArchiveFERRequestNotification, packages []ArchiveFERRequestPackagesInner) *ArchiveFERRequest {
 	this := ArchiveFERRequest{}
-	this.Archive = archive
 	this.CorrelationId = correlationId
-	this.GlobalParams = globalParams
+	this.GlobalQueryString = globalQueryString
 	this.Notification = notification
-	this.PlaybackBaseUrl = playbackBaseUrl
-	this.Publications = publications
+	this.Packages = packages
 	return &this
 }
 
@@ -87,30 +82,6 @@ func (o *ArchiveFERRequest) SetSchema(v string) {
 	o.Schema = &v
 }
 
-// GetArchive returns the Archive field value
-func (o *ArchiveFERRequest) GetArchive() ArchiveFERRequestArchive {
-	if o == nil {
-		var ret ArchiveFERRequestArchive
-		return ret
-	}
-
-	return o.Archive
-}
-
-// GetArchiveOk returns a tuple with the Archive field value
-// and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetArchiveOk() (*ArchiveFERRequestArchive, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Archive, true
-}
-
-// SetArchive sets field value
-func (o *ArchiveFERRequest) SetArchive(v ArchiveFERRequestArchive) {
-	o.Archive = v
-}
-
 // GetCorrelationId returns the CorrelationId field value
 func (o *ArchiveFERRequest) GetCorrelationId() string {
 	if o == nil {
@@ -135,28 +106,28 @@ func (o *ArchiveFERRequest) SetCorrelationId(v string) {
 	o.CorrelationId = v
 }
 
-// GetGlobalParams returns the GlobalParams field value
-func (o *ArchiveFERRequest) GetGlobalParams() string {
+// GetGlobalQueryString returns the GlobalQueryString field value
+func (o *ArchiveFERRequest) GetGlobalQueryString() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.GlobalParams
+	return o.GlobalQueryString
 }
 
-// GetGlobalParamsOk returns a tuple with the GlobalParams field value
+// GetGlobalQueryStringOk returns a tuple with the GlobalQueryString field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetGlobalParamsOk() (*string, bool) {
+func (o *ArchiveFERRequest) GetGlobalQueryStringOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GlobalParams, true
+	return &o.GlobalQueryString, true
 }
 
-// SetGlobalParams sets field value
-func (o *ArchiveFERRequest) SetGlobalParams(v string) {
-	o.GlobalParams = v
+// SetGlobalQueryString sets field value
+func (o *ArchiveFERRequest) SetGlobalQueryString(v string) {
+	o.GlobalQueryString = v
 }
 
 // GetNotification returns the Notification field value
@@ -183,52 +154,28 @@ func (o *ArchiveFERRequest) SetNotification(v ArchiveFERRequestNotification) {
 	o.Notification = v
 }
 
-// GetPlaybackBaseUrl returns the PlaybackBaseUrl field value
-func (o *ArchiveFERRequest) GetPlaybackBaseUrl() string {
+// GetPackages returns the Packages field value
+func (o *ArchiveFERRequest) GetPackages() []ArchiveFERRequestPackagesInner {
 	if o == nil {
-		var ret string
+		var ret []ArchiveFERRequestPackagesInner
 		return ret
 	}
 
-	return o.PlaybackBaseUrl
+	return o.Packages
 }
 
-// GetPlaybackBaseUrlOk returns a tuple with the PlaybackBaseUrl field value
+// GetPackagesOk returns a tuple with the Packages field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetPlaybackBaseUrlOk() (*string, bool) {
+func (o *ArchiveFERRequest) GetPackagesOk() ([]ArchiveFERRequestPackagesInner, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlaybackBaseUrl, true
+	return o.Packages, true
 }
 
-// SetPlaybackBaseUrl sets field value
-func (o *ArchiveFERRequest) SetPlaybackBaseUrl(v string) {
-	o.PlaybackBaseUrl = v
-}
-
-// GetPublications returns the Publications field value
-func (o *ArchiveFERRequest) GetPublications() []ArchiveFERRequestPublicationsInner {
-	if o == nil {
-		var ret []ArchiveFERRequestPublicationsInner
-		return ret
-	}
-
-	return o.Publications
-}
-
-// GetPublicationsOk returns a tuple with the Publications field value
-// and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetPublicationsOk() ([]ArchiveFERRequestPublicationsInner, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Publications, true
-}
-
-// SetPublications sets field value
-func (o *ArchiveFERRequest) SetPublications(v []ArchiveFERRequestPublicationsInner) {
-	o.Publications = v
+// SetPackages sets field value
+func (o *ArchiveFERRequest) SetPackages(v []ArchiveFERRequestPackagesInner) {
+	o.Packages = v
 }
 
 func (o ArchiveFERRequest) MarshalJSON() ([]byte, error) {
@@ -244,12 +191,10 @@ func (o ArchiveFERRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["archive"] = o.Archive
 	toSerialize["correlation_id"] = o.CorrelationId
-	toSerialize["global_params"] = o.GlobalParams
+	toSerialize["global_query_string"] = o.GlobalQueryString
 	toSerialize["notification"] = o.Notification
-	toSerialize["playback_base_url"] = o.PlaybackBaseUrl
-	toSerialize["publications"] = o.Publications
+	toSerialize["packages"] = o.Packages
 	return toSerialize, nil
 }
 
