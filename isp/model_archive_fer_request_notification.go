@@ -16,7 +16,7 @@ import (
 // checks if the ArchiveFERRequestNotification type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ArchiveFERRequestNotification{}
 
-// ArchiveFERRequestNotification Notification Settings
+// ArchiveFERRequestNotification Notification settings
 type ArchiveFERRequestNotification struct {
 	Sns ArchiveFERRequestNotificationSns `json:"sns"`
 }
