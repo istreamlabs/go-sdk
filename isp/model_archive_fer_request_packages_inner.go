@@ -21,17 +21,19 @@ type ArchiveFERRequestPackagesInner struct {
 	Archive ArchiveFERRequestPackagesInnerArchive `json:"archive"`
 	Dash ArchiveFERRequestPackagesInnerDash `json:"dash"`
 	Hls ArchiveFERRequestPackagesInnerDash `json:"hls"`
+	PackageId string `json:"package_id"`
 }
 
 // NewArchiveFERRequestPackagesInner instantiates a new ArchiveFERRequestPackagesInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArchiveFERRequestPackagesInner(archive ArchiveFERRequestPackagesInnerArchive, dash ArchiveFERRequestPackagesInnerDash, hls ArchiveFERRequestPackagesInnerDash) *ArchiveFERRequestPackagesInner {
+func NewArchiveFERRequestPackagesInner(archive ArchiveFERRequestPackagesInnerArchive, dash ArchiveFERRequestPackagesInnerDash, hls ArchiveFERRequestPackagesInnerDash, packageId string) *ArchiveFERRequestPackagesInner {
 	this := ArchiveFERRequestPackagesInner{}
 	this.Archive = archive
 	this.Dash = dash
 	this.Hls = hls
+	this.PackageId = packageId
 	return &this
 }
 
@@ -115,6 +117,30 @@ func (o *ArchiveFERRequestPackagesInner) SetHls(v ArchiveFERRequestPackagesInner
 	o.Hls = v
 }
 
+// GetPackageId returns the PackageId field value
+func (o *ArchiveFERRequestPackagesInner) GetPackageId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.PackageId
+}
+
+// GetPackageIdOk returns a tuple with the PackageId field value
+// and a boolean to check if the value has been set.
+func (o *ArchiveFERRequestPackagesInner) GetPackageIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PackageId, true
+}
+
+// SetPackageId sets field value
+func (o *ArchiveFERRequestPackagesInner) SetPackageId(v string) {
+	o.PackageId = v
+}
+
 func (o ArchiveFERRequestPackagesInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -128,6 +154,7 @@ func (o ArchiveFERRequestPackagesInner) ToMap() (map[string]interface{}, error) 
 	toSerialize["archive"] = o.Archive
 	toSerialize["dash"] = o.Dash
 	toSerialize["hls"] = o.Hls
+	toSerialize["package_id"] = o.PackageId
 	return toSerialize, nil
 }
 

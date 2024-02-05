@@ -28,7 +28,6 @@ type ChannelTranscode struct {
 	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper."`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
 	Id3Mode *string `json:"id3_mode,omitempty" enum:"PASSTHROUGH" doc:"Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored."`
-	Nielsen *map[string]interface{} `json:"nielsen,omitempty"`
 	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
 	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty" maxItems:"1" doc:"List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on."`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
@@ -220,38 +219,6 @@ func (o *ChannelTranscode) HasId3Mode() bool {
 // SetId3Mode gets a reference to the given string and assigns it to the Id3Mode field.
 func (o *ChannelTranscode) SetId3Mode(v string) {
 	o.Id3Mode = &v
-}
-
-// GetNielsen returns the Nielsen field value if set, zero value otherwise.
-func (o *ChannelTranscode) GetNielsen() map[string]interface{} {
-	if o == nil || IsNil(o.Nielsen) {
-		var ret map[string]interface{}
-		return ret
-	}
-	return *o.Nielsen
-}
-
-// GetNielsenOk returns a tuple with the Nielsen field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelTranscode) GetNielsenOk() (*map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Nielsen) {
-		return nil, false
-	}
-	return o.Nielsen, true
-}
-
-// HasNielsen returns a boolean if a field has been set.
-func (o *ChannelTranscode) HasNielsen() bool {
-	if o != nil && !IsNil(o.Nielsen) {
-		return true
-	}
-
-	return false
-}
-
-// SetNielsen gets a reference to the given map[string]interface{} and assigns it to the Nielsen field.
-func (o *ChannelTranscode) SetNielsen(v map[string]interface{}) {
-	o.Nielsen = &v
 }
 
 // GetOverlays returns the Overlays field value if set, zero value otherwise.
@@ -470,9 +437,6 @@ func (o ChannelTranscode) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id3Mode) {
 		toSerialize["id3_mode"] = o.Id3Mode
-	}
-	if !IsNil(o.Nielsen) {
-		toSerialize["nielsen"] = o.Nielsen
 	}
 	if !IsNil(o.Overlays) {
 		toSerialize["overlays"] = o.Overlays

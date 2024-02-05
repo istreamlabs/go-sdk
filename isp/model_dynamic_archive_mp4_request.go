@@ -21,28 +21,29 @@ type DynamicArchiveMP4Request struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	Archive DynamicArchiveMP4RequestArchive `json:"archive"`
-	ClearPublication DynamicArchiveMP4RequestClearPublication `json:"clear_publication"`
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
-	// Global query params
-	GlobalParams string `json:"global_params" doc:"Global query params"`
+	// URL of the main manifest to reference for the mp4
+	ManifestUrl string `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
 	Notification DynamicArchiveMP4RequestNotification `json:"notification"`
-	// Playback base URL for the FER
-	PlaybackBaseUrl string `json:"playback_base_url" doc:"Playback base URL for the FER"`
+	// Filename for the generated mp4
+	OutputFilename string `json:"output_filename" doc:"Filename for the generated mp4"`
+	// Query string containing params for the manifest url
+	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
 }
 
 // NewDynamicArchiveMP4Request instantiates a new DynamicArchiveMP4Request object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDynamicArchiveMP4Request(archive DynamicArchiveMP4RequestArchive, clearPublication DynamicArchiveMP4RequestClearPublication, correlationId string, globalParams string, notification DynamicArchiveMP4RequestNotification, playbackBaseUrl string) *DynamicArchiveMP4Request {
+func NewDynamicArchiveMP4Request(archive DynamicArchiveMP4RequestArchive, correlationId string, manifestUrl string, notification DynamicArchiveMP4RequestNotification, outputFilename string, queryString string) *DynamicArchiveMP4Request {
 	this := DynamicArchiveMP4Request{}
 	this.Archive = archive
-	this.ClearPublication = clearPublication
 	this.CorrelationId = correlationId
-	this.GlobalParams = globalParams
+	this.ManifestUrl = manifestUrl
 	this.Notification = notification
-	this.PlaybackBaseUrl = playbackBaseUrl
+	this.OutputFilename = outputFilename
+	this.QueryString = queryString
 	return &this
 }
 
@@ -110,30 +111,6 @@ func (o *DynamicArchiveMP4Request) SetArchive(v DynamicArchiveMP4RequestArchive)
 	o.Archive = v
 }
 
-// GetClearPublication returns the ClearPublication field value
-func (o *DynamicArchiveMP4Request) GetClearPublication() DynamicArchiveMP4RequestClearPublication {
-	if o == nil {
-		var ret DynamicArchiveMP4RequestClearPublication
-		return ret
-	}
-
-	return o.ClearPublication
-}
-
-// GetClearPublicationOk returns a tuple with the ClearPublication field value
-// and a boolean to check if the value has been set.
-func (o *DynamicArchiveMP4Request) GetClearPublicationOk() (*DynamicArchiveMP4RequestClearPublication, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ClearPublication, true
-}
-
-// SetClearPublication sets field value
-func (o *DynamicArchiveMP4Request) SetClearPublication(v DynamicArchiveMP4RequestClearPublication) {
-	o.ClearPublication = v
-}
-
 // GetCorrelationId returns the CorrelationId field value
 func (o *DynamicArchiveMP4Request) GetCorrelationId() string {
 	if o == nil {
@@ -158,28 +135,28 @@ func (o *DynamicArchiveMP4Request) SetCorrelationId(v string) {
 	o.CorrelationId = v
 }
 
-// GetGlobalParams returns the GlobalParams field value
-func (o *DynamicArchiveMP4Request) GetGlobalParams() string {
+// GetManifestUrl returns the ManifestUrl field value
+func (o *DynamicArchiveMP4Request) GetManifestUrl() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.GlobalParams
+	return o.ManifestUrl
 }
 
-// GetGlobalParamsOk returns a tuple with the GlobalParams field value
+// GetManifestUrlOk returns a tuple with the ManifestUrl field value
 // and a boolean to check if the value has been set.
-func (o *DynamicArchiveMP4Request) GetGlobalParamsOk() (*string, bool) {
+func (o *DynamicArchiveMP4Request) GetManifestUrlOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.GlobalParams, true
+	return &o.ManifestUrl, true
 }
 
-// SetGlobalParams sets field value
-func (o *DynamicArchiveMP4Request) SetGlobalParams(v string) {
-	o.GlobalParams = v
+// SetManifestUrl sets field value
+func (o *DynamicArchiveMP4Request) SetManifestUrl(v string) {
+	o.ManifestUrl = v
 }
 
 // GetNotification returns the Notification field value
@@ -206,28 +183,52 @@ func (o *DynamicArchiveMP4Request) SetNotification(v DynamicArchiveMP4RequestNot
 	o.Notification = v
 }
 
-// GetPlaybackBaseUrl returns the PlaybackBaseUrl field value
-func (o *DynamicArchiveMP4Request) GetPlaybackBaseUrl() string {
+// GetOutputFilename returns the OutputFilename field value
+func (o *DynamicArchiveMP4Request) GetOutputFilename() string {
 	if o == nil {
 		var ret string
 		return ret
 	}
 
-	return o.PlaybackBaseUrl
+	return o.OutputFilename
 }
 
-// GetPlaybackBaseUrlOk returns a tuple with the PlaybackBaseUrl field value
+// GetOutputFilenameOk returns a tuple with the OutputFilename field value
 // and a boolean to check if the value has been set.
-func (o *DynamicArchiveMP4Request) GetPlaybackBaseUrlOk() (*string, bool) {
+func (o *DynamicArchiveMP4Request) GetOutputFilenameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.PlaybackBaseUrl, true
+	return &o.OutputFilename, true
 }
 
-// SetPlaybackBaseUrl sets field value
-func (o *DynamicArchiveMP4Request) SetPlaybackBaseUrl(v string) {
-	o.PlaybackBaseUrl = v
+// SetOutputFilename sets field value
+func (o *DynamicArchiveMP4Request) SetOutputFilename(v string) {
+	o.OutputFilename = v
+}
+
+// GetQueryString returns the QueryString field value
+func (o *DynamicArchiveMP4Request) GetQueryString() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.QueryString
+}
+
+// GetQueryStringOk returns a tuple with the QueryString field value
+// and a boolean to check if the value has been set.
+func (o *DynamicArchiveMP4Request) GetQueryStringOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.QueryString, true
+}
+
+// SetQueryString sets field value
+func (o *DynamicArchiveMP4Request) SetQueryString(v string) {
+	o.QueryString = v
 }
 
 func (o DynamicArchiveMP4Request) MarshalJSON() ([]byte, error) {
@@ -244,11 +245,11 @@ func (o DynamicArchiveMP4Request) ToMap() (map[string]interface{}, error) {
 		toSerialize["$schema"] = o.Schema
 	}
 	toSerialize["archive"] = o.Archive
-	toSerialize["clear_publication"] = o.ClearPublication
 	toSerialize["correlation_id"] = o.CorrelationId
-	toSerialize["global_params"] = o.GlobalParams
+	toSerialize["manifest_url"] = o.ManifestUrl
 	toSerialize["notification"] = o.Notification
-	toSerialize["playback_base_url"] = o.PlaybackBaseUrl
+	toSerialize["output_filename"] = o.OutputFilename
+	toSerialize["query_string"] = o.QueryString
 	return toSerialize, nil
 }
 
