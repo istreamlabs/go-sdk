@@ -22,6 +22,8 @@ type ChannelPlaybackOriginInner struct {
 	FallbackManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"fallback_manifest_defaults,omitempty"`
 	Hls *ChannelPlaybackOriginInnerDash `json:"hls,omitempty"`
 	PackagerConfig *ChannelPackagingPackagersValue `json:"packager_config,omitempty"`
+	// packager_id is the ID used to identify the packager_config within the channel configuration.
+	PackagerId *string `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
 	PrimaryManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"primary_manifest_defaults,omitempty"`
 }
 
@@ -170,6 +172,38 @@ func (o *ChannelPlaybackOriginInner) SetPackagerConfig(v ChannelPackagingPackage
 	o.PackagerConfig = &v
 }
 
+// GetPackagerId returns the PackagerId field value if set, zero value otherwise.
+func (o *ChannelPlaybackOriginInner) GetPackagerId() string {
+	if o == nil || IsNil(o.PackagerId) {
+		var ret string
+		return ret
+	}
+	return *o.PackagerId
+}
+
+// GetPackagerIdOk returns a tuple with the PackagerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPlaybackOriginInner) GetPackagerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PackagerId) {
+		return nil, false
+	}
+	return o.PackagerId, true
+}
+
+// HasPackagerId returns a boolean if a field has been set.
+func (o *ChannelPlaybackOriginInner) HasPackagerId() bool {
+	if o != nil && !IsNil(o.PackagerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPackagerId gets a reference to the given string and assigns it to the PackagerId field.
+func (o *ChannelPlaybackOriginInner) SetPackagerId(v string) {
+	o.PackagerId = &v
+}
+
 // GetPrimaryManifestDefaults returns the PrimaryManifestDefaults field value if set, zero value otherwise.
 func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaults() ChannelPlaybackOriginInnerFallbackManifestDefaults {
 	if o == nil || IsNil(o.PrimaryManifestDefaults) {
@@ -223,6 +257,9 @@ func (o ChannelPlaybackOriginInner) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PackagerConfig) {
 		toSerialize["packager_config"] = o.PackagerConfig
+	}
+	if !IsNil(o.PackagerId) {
+		toSerialize["packager_id"] = o.PackagerId
 	}
 	if !IsNil(o.PrimaryManifestDefaults) {
 		toSerialize["primary_manifest_defaults"] = o.PrimaryManifestDefaults
