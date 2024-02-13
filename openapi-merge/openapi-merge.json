@@ -1,0 +1,11 @@
+{
+    "inputs": [
+      {
+        "inputFile": "./channelapi.json"
+      },
+      {
+        "inputFile": "./slates.json"
+      }
+    ],
+    "output": "./output.json"
+}
