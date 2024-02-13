@@ -1,13 +1,16 @@
 #!/bin/bash
 
 OPENAPI_SPEC="http://api.istreamplanet.com/openapi.json"
+OPENAPI_SPEC_SLATES="http://api.istreamplanet.com/docs/slates/openapi.json"
 
 ENV=$1
 if [[ $ENV == "stage" ]]; then
   OPENAPI_SPEC="http://stage.api.istreamplanet.com/openapi.json"
+  OPENAPI_SPEC_SLATES="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
 fi
 
 echo -e "Generating SDK against ${OPENAPI_SPEC}\n"
+echo -e "Generating Slate SDK against ${OPENAPI_SPEC_SLATES}\n"
 
 SCRIPT_DIR=${PWD}
 
@@ -19,8 +22,12 @@ mkdir isp
 cp ./prerequisites/.openapi-generator-ignore ./isp/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./isp/convenience.go
 cp ./prerequisites/client._go ./isp/client.go
+docker build -t generate-sdk-slates . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC_SLATES}"
 docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}"
+
+docker run --rm -it -v ${SCRIPT_DIR}/isp:/go-sdk/isp generate-sdk-slates
 docker run --rm -it -v ${SCRIPT_DIR}/isp:/go-sdk/isp generate-sdk
+
 
 # Logicless templates are dumping extra quotes around enum values, so we've
 # added some padding chars and now need to replace the padding + quotes.
