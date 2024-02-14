@@ -8,6 +8,8 @@ api_channels_for_organization.go
 api_deprecated_live2_vod.go
 api_live2_vod_for_organization.go
 api_organizations.go
+api_slate_operations.go
+api_slates_for_organization.go
 api_source_previews.go
 api_sources.go
 configuration.go
@@ -166,9 +168,9 @@ model_make_clip_response.go
 model_make_mp4_response.go
 model_mp4_url_response.go
 model_org_summary.go
-model_patch_channel_request.go
-model_patch_channel_request2_inner.go
-model_patch_channel_request_ingest.go
+model_patch_channel_request2.go
+model_patch_channel_request2_ingest.go
+model_patch_channel_request_inner.go
 model_patch_org_channel_request.go
 model_pin_source_request.go
 model_play_url_response.go
@@ -191,6 +193,9 @@ model_segment.go
 model_signaling_log.go
 model_signaling_log_log.go
 model_slate.go
+model_slate1.go
+model_slate2.go
+model_slate_without_id.go
 model_source.go
 model_splice_insert_end_signal.go
 model_splice_insert_start_signal.go
@@ -223,6 +228,8 @@ test/api_channels_test.go
 test/api_deprecated_live2_vod_test.go
 test/api_live2_vod_for_organization_test.go
 test/api_organizations_test.go
+test/api_slate_operations_test.go
+test/api_slates_for_organization_test.go
 test/api_source_previews_test.go
 test/api_sources_test.go
 utils.go
