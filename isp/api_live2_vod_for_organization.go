@@ -288,9 +288,9 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponse, *http.Response, error)
 
 	/*
-	PostCopyMp4 Archive a clip
+	PostCopyMp4 Copy mp4
 
-	Uses archive settings configured in Live2VOD for the organization and on the channel.
+	Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
@@ -3472,9 +3472,9 @@ func (r ApiPostCopyMp4Request) Execute() (*PostCopyMP4Response, *http.Response, 
 }
 
 /*
-PostCopyMp4 Archive a clip
+PostCopyMp4 Copy mp4
 
-Uses archive settings configured in Live2VOD for the organization and on the channel.
+Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name

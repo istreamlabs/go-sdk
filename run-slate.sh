@@ -18,8 +18,7 @@ mkdir isp-slate
 # Copy required files to isp directory
 cp ./prerequisites/.openapi-generator-ignore ./isp-slate/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./isp-slate/convenience.go
-# cp ./prerequisites/client._go ./isp/client.go
-docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}"
+docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" --build-arg OUT=isp-slate
 docker run --rm -it -v ${SCRIPT_DIR}/isp-slate:/go-sdk/isp-slate generate-sdk
 
 # Logicless templates are dumping extra quotes around enum values, so we've

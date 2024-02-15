@@ -1,6 +1,5 @@
 api_slate_operations.go
 api_slates_for_organization.go
-client.go
 configuration.go
 model_error_model.go
 model_error_model_errors_inner.go
