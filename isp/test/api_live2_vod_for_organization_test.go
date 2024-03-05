@@ -301,6 +301,21 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test Live2VODForOrganizationApiService PostOrgChannelSyndication", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgChannelSyndication(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test Live2VODForOrganizationApiService PostOrgClip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
