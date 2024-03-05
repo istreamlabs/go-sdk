@@ -24,12 +24,12 @@ type ChannelTranscodeVideoEncodersInner struct {
 	FrameRate *string `json:"frame_rate,omitempty" enum:"FR_23_98,FR_24,FR_25,FR_29_97,FR_30,FR_50,FR_59_94,FR_60" doc:"Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream."`
 	H264 *ChannelTranscodeVideoEncodersInnerH264 `json:"h264,omitempty"`
 	H265 *ChannelTranscodeVideoEncodersInnerH265 `json:"h265,omitempty"`
-	// Height specifies the video height in pixels. Must be a multiple of two.
-	Height *int32 `json:"height,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Height specifies the video height in pixels. Must be a multiple of two."`
+	// Height specifies the video height in pixels. Must be a multiple of two. For H.265 encoders the minimum height is 34.
+	Height *int32 `json:"height,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Height specifies the video height in pixels. Must be a multiple of two. For H.265 encoders the minimum height is 34."`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
-	// Width specifies the video width in pixels. Must be a multiple of two.
-	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Width specifies the video width in pixels. Must be a multiple of two."`
+	// Width specifies the video width in pixels. Must be a multiple of two. For H.265 encoders the minimum width is 130.
+	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Width specifies the video width in pixels. Must be a multiple of two. For H.265 encoders the minimum width is 130."`
 }
 
 // NewChannelTranscodeVideoEncodersInner instantiates a new ChannelTranscodeVideoEncodersInner object
