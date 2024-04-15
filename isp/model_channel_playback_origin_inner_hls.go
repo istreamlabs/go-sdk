@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the ChannelPlaybackOriginInnerDash type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ChannelPlaybackOriginInnerDash{}
+// checks if the ChannelPlaybackOriginInnerHls type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPlaybackOriginInnerHls{}
 
-// ChannelPlaybackOriginInnerDash Dash can be an empty value if Aventus Origin does not have a valid Dash url for the packaged segments.
-type ChannelPlaybackOriginInnerDash struct {
+// ChannelPlaybackOriginInnerHls HLS can be an empty value if Aventus Origin does not have a valid HLS url for the packaged segments.
+type ChannelPlaybackOriginInnerHls struct {
 	// fallback_manifest is the name of the fallback playback manifest. ex. 'fallback.m3u8' or 'fallback.mpd'
 	FallbackManifest *string `json:"fallback_manifest,omitempty" doc:"fallback_manifest is the name of the fallback playback manifest. ex. 'fallback.m3u8' or 'fallback.mpd'"`
 	// fallback_url is the full playback url for the fallback. It is a composition of hostname, path and fallback_manifest fields. ex. 'https://foo.example.com/live/usw2/path/to/manifest/dir/fallback.m3u8'
@@ -32,25 +32,25 @@ type ChannelPlaybackOriginInnerDash struct {
 	PrimaryUrl *string `json:"primary_url,omitempty" doc:"primary_url is the full playback url for the primary. It is a composition of hostname, path and primary_manifest fields. ex. 'https://foo.example.com/live/usw2/path/to/manifest/dir/main.m3u8'"`
 }
 
-// NewChannelPlaybackOriginInnerDash instantiates a new ChannelPlaybackOriginInnerDash object
+// NewChannelPlaybackOriginInnerHls instantiates a new ChannelPlaybackOriginInnerHls object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelPlaybackOriginInnerDash() *ChannelPlaybackOriginInnerDash {
-	this := ChannelPlaybackOriginInnerDash{}
+func NewChannelPlaybackOriginInnerHls() *ChannelPlaybackOriginInnerHls {
+	this := ChannelPlaybackOriginInnerHls{}
 	return &this
 }
 
-// NewChannelPlaybackOriginInnerDashWithDefaults instantiates a new ChannelPlaybackOriginInnerDash object
+// NewChannelPlaybackOriginInnerHlsWithDefaults instantiates a new ChannelPlaybackOriginInnerHls object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelPlaybackOriginInnerDashWithDefaults() *ChannelPlaybackOriginInnerDash {
-	this := ChannelPlaybackOriginInnerDash{}
+func NewChannelPlaybackOriginInnerHlsWithDefaults() *ChannelPlaybackOriginInnerHls {
+	this := ChannelPlaybackOriginInnerHls{}
 	return &this
 }
 
 // GetFallbackManifest returns the FallbackManifest field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetFallbackManifest() string {
+func (o *ChannelPlaybackOriginInnerHls) GetFallbackManifest() string {
 	if o == nil || IsNil(o.FallbackManifest) {
 		var ret string
 		return ret
@@ -60,7 +60,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetFallbackManifest() string {
 
 // GetFallbackManifestOk returns a tuple with the FallbackManifest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetFallbackManifestOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetFallbackManifestOk() (*string, bool) {
 	if o == nil || IsNil(o.FallbackManifest) {
 		return nil, false
 	}
@@ -68,7 +68,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetFallbackManifestOk() (*string, bool)
 }
 
 // HasFallbackManifest returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasFallbackManifest() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasFallbackManifest() bool {
 	if o != nil && !IsNil(o.FallbackManifest) {
 		return true
 	}
@@ -77,12 +77,12 @@ func (o *ChannelPlaybackOriginInnerDash) HasFallbackManifest() bool {
 }
 
 // SetFallbackManifest gets a reference to the given string and assigns it to the FallbackManifest field.
-func (o *ChannelPlaybackOriginInnerDash) SetFallbackManifest(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetFallbackManifest(v string) {
 	o.FallbackManifest = &v
 }
 
 // GetFallbackUrl returns the FallbackUrl field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetFallbackUrl() string {
+func (o *ChannelPlaybackOriginInnerHls) GetFallbackUrl() string {
 	if o == nil || IsNil(o.FallbackUrl) {
 		var ret string
 		return ret
@@ -92,7 +92,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetFallbackUrl() string {
 
 // GetFallbackUrlOk returns a tuple with the FallbackUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetFallbackUrlOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetFallbackUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.FallbackUrl) {
 		return nil, false
 	}
@@ -100,7 +100,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetFallbackUrlOk() (*string, bool) {
 }
 
 // HasFallbackUrl returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasFallbackUrl() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasFallbackUrl() bool {
 	if o != nil && !IsNil(o.FallbackUrl) {
 		return true
 	}
@@ -109,12 +109,12 @@ func (o *ChannelPlaybackOriginInnerDash) HasFallbackUrl() bool {
 }
 
 // SetFallbackUrl gets a reference to the given string and assigns it to the FallbackUrl field.
-func (o *ChannelPlaybackOriginInnerDash) SetFallbackUrl(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetFallbackUrl(v string) {
 	o.FallbackUrl = &v
 }
 
 // GetHostname returns the Hostname field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetHostname() string {
+func (o *ChannelPlaybackOriginInnerHls) GetHostname() string {
 	if o == nil || IsNil(o.Hostname) {
 		var ret string
 		return ret
@@ -124,7 +124,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetHostname() string {
 
 // GetHostnameOk returns a tuple with the Hostname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetHostnameOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetHostnameOk() (*string, bool) {
 	if o == nil || IsNil(o.Hostname) {
 		return nil, false
 	}
@@ -132,7 +132,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetHostnameOk() (*string, bool) {
 }
 
 // HasHostname returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasHostname() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasHostname() bool {
 	if o != nil && !IsNil(o.Hostname) {
 		return true
 	}
@@ -141,12 +141,12 @@ func (o *ChannelPlaybackOriginInnerDash) HasHostname() bool {
 }
 
 // SetHostname gets a reference to the given string and assigns it to the Hostname field.
-func (o *ChannelPlaybackOriginInnerDash) SetHostname(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetHostname(v string) {
 	o.Hostname = &v
 }
 
 // GetPath returns the Path field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetPath() string {
+func (o *ChannelPlaybackOriginInnerHls) GetPath() string {
 	if o == nil || IsNil(o.Path) {
 		var ret string
 		return ret
@@ -156,7 +156,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetPathOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetPathOk() (*string, bool) {
 	if o == nil || IsNil(o.Path) {
 		return nil, false
 	}
@@ -164,7 +164,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPathOk() (*string, bool) {
 }
 
 // HasPath returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasPath() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasPath() bool {
 	if o != nil && !IsNil(o.Path) {
 		return true
 	}
@@ -173,12 +173,12 @@ func (o *ChannelPlaybackOriginInnerDash) HasPath() bool {
 }
 
 // SetPath gets a reference to the given string and assigns it to the Path field.
-func (o *ChannelPlaybackOriginInnerDash) SetPath(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetPath(v string) {
 	o.Path = &v
 }
 
 // GetPrimaryManifest returns the PrimaryManifest field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetPrimaryManifest() string {
+func (o *ChannelPlaybackOriginInnerHls) GetPrimaryManifest() string {
 	if o == nil || IsNil(o.PrimaryManifest) {
 		var ret string
 		return ret
@@ -188,7 +188,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPrimaryManifest() string {
 
 // GetPrimaryManifestOk returns a tuple with the PrimaryManifest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetPrimaryManifestOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetPrimaryManifestOk() (*string, bool) {
 	if o == nil || IsNil(o.PrimaryManifest) {
 		return nil, false
 	}
@@ -196,7 +196,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPrimaryManifestOk() (*string, bool) 
 }
 
 // HasPrimaryManifest returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasPrimaryManifest() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasPrimaryManifest() bool {
 	if o != nil && !IsNil(o.PrimaryManifest) {
 		return true
 	}
@@ -205,12 +205,12 @@ func (o *ChannelPlaybackOriginInnerDash) HasPrimaryManifest() bool {
 }
 
 // SetPrimaryManifest gets a reference to the given string and assigns it to the PrimaryManifest field.
-func (o *ChannelPlaybackOriginInnerDash) SetPrimaryManifest(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetPrimaryManifest(v string) {
 	o.PrimaryManifest = &v
 }
 
 // GetPrimaryUrl returns the PrimaryUrl field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerDash) GetPrimaryUrl() string {
+func (o *ChannelPlaybackOriginInnerHls) GetPrimaryUrl() string {
 	if o == nil || IsNil(o.PrimaryUrl) {
 		var ret string
 		return ret
@@ -220,7 +220,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPrimaryUrl() string {
 
 // GetPrimaryUrlOk returns a tuple with the PrimaryUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerDash) GetPrimaryUrlOk() (*string, bool) {
+func (o *ChannelPlaybackOriginInnerHls) GetPrimaryUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.PrimaryUrl) {
 		return nil, false
 	}
@@ -228,7 +228,7 @@ func (o *ChannelPlaybackOriginInnerDash) GetPrimaryUrlOk() (*string, bool) {
 }
 
 // HasPrimaryUrl returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerDash) HasPrimaryUrl() bool {
+func (o *ChannelPlaybackOriginInnerHls) HasPrimaryUrl() bool {
 	if o != nil && !IsNil(o.PrimaryUrl) {
 		return true
 	}
@@ -237,11 +237,11 @@ func (o *ChannelPlaybackOriginInnerDash) HasPrimaryUrl() bool {
 }
 
 // SetPrimaryUrl gets a reference to the given string and assigns it to the PrimaryUrl field.
-func (o *ChannelPlaybackOriginInnerDash) SetPrimaryUrl(v string) {
+func (o *ChannelPlaybackOriginInnerHls) SetPrimaryUrl(v string) {
 	o.PrimaryUrl = &v
 }
 
-func (o ChannelPlaybackOriginInnerDash) MarshalJSON() ([]byte, error) {
+func (o ChannelPlaybackOriginInnerHls) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -249,7 +249,7 @@ func (o ChannelPlaybackOriginInnerDash) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ChannelPlaybackOriginInnerDash) ToMap() (map[string]interface{}, error) {
+func (o ChannelPlaybackOriginInnerHls) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.FallbackManifest) {
 		toSerialize["fallback_manifest"] = o.FallbackManifest
@@ -272,38 +272,38 @@ func (o ChannelPlaybackOriginInnerDash) ToMap() (map[string]interface{}, error) 
 	return toSerialize, nil
 }
 
-type NullableChannelPlaybackOriginInnerDash struct {
-	value *ChannelPlaybackOriginInnerDash
+type NullableChannelPlaybackOriginInnerHls struct {
+	value *ChannelPlaybackOriginInnerHls
 	isSet bool
 }
 
-func (v NullableChannelPlaybackOriginInnerDash) Get() *ChannelPlaybackOriginInnerDash {
+func (v NullableChannelPlaybackOriginInnerHls) Get() *ChannelPlaybackOriginInnerHls {
 	return v.value
 }
 
-func (v *NullableChannelPlaybackOriginInnerDash) Set(val *ChannelPlaybackOriginInnerDash) {
+func (v *NullableChannelPlaybackOriginInnerHls) Set(val *ChannelPlaybackOriginInnerHls) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelPlaybackOriginInnerDash) IsSet() bool {
+func (v NullableChannelPlaybackOriginInnerHls) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelPlaybackOriginInnerDash) Unset() {
+func (v *NullableChannelPlaybackOriginInnerHls) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelPlaybackOriginInnerDash(val *ChannelPlaybackOriginInnerDash) *NullableChannelPlaybackOriginInnerDash {
-	return &NullableChannelPlaybackOriginInnerDash{value: val, isSet: true}
+func NewNullableChannelPlaybackOriginInnerHls(val *ChannelPlaybackOriginInnerHls) *NullableChannelPlaybackOriginInnerHls {
+	return &NullableChannelPlaybackOriginInnerHls{value: val, isSet: true}
 }
 
-func (v NullableChannelPlaybackOriginInnerDash) MarshalJSON() ([]byte, error) {
+func (v NullableChannelPlaybackOriginInnerHls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelPlaybackOriginInnerDash) UnmarshalJSON(src []byte) error {
+func (v *NullableChannelPlaybackOriginInnerHls) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

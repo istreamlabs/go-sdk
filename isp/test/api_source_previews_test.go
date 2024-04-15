@@ -1,5 +1,5 @@
 /*
-iStreamPlanet Channels API
+WBD Aventus Channels API
 
 Testing SourcePreviewsApiService
 
