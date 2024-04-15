@@ -1,5 +1,5 @@
 /*
-iStreamPlanet Channels API
+WBD Aventus Channels API
 
 Testing Live2VODForOrganizationApiService
 
@@ -279,21 +279,6 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var clipId string
 
 		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostCopyMp4(context.Background(), org, channelId, vodId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService PostOrgChannelMp4", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgChannelMp4(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
