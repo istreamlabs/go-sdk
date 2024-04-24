@@ -22,6 +22,12 @@ type ChannelTranscodeAudioEncodersInnerEac3 struct {
 	DdpJocLogicalChannels *int32 `json:"ddp_joc_logical_channels,omitempty" format:"int32" doc:"If non-zero, configures the encoder to compute JOC metadata (i.e. Dolby Atmos) for the given logical speaker layout. The transcoder does not guarantee any particular bed layout in the JOC metadata, and this setting currently has no effect on that. It merely determines the channel layout to which all inputs are converted before encoding. Legal values are: 8 - 5.1.2 10 - 5.1.4 For sources with raw PCM input and more than 6 channels, configure this according to the expected input channel layout. For channels which expect to take a 7.1 EAC-3 input, configure to 8. For all other cases, including upmixing from 5.1 or fewer channels or any kind of Atmos input, configure to 10. This setting is mutually exclusive with ddp_joc_passthrough. This setting has no effect on the current production version of the transcoder, nor does the current production version of the transcoder support raw PCM inputs."`
 	// Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence.
 	DdpJocPassthrough *bool `json:"ddp_joc_passthrough,omitempty" doc:"Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence."`
+	// If specified, overrides the dynamic range control line mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC line mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding.
+	DrcLineMode *string `json:"drc_line_mode,omitempty" enum:"DRC_FILM_STANDARD,DRC_FILM_LIGHT,DRC_MUSIC_STANDARD,DRC_MUSIC_LIGHT,DRC_SPEECH" doc:"If specified, overrides the dynamic range control line mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC line mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding."`
+	// If specified, overrides the dynamic range control RF mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC RF mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding.
+	DrcRfMode *string `json:"drc_rf_mode,omitempty" enum:"DRC_FILM_STANDARD,DRC_FILM_LIGHT,DRC_MUSIC_STANDARD,DRC_MUSIC_LIGHT,DRC_SPEECH" doc:"If specified, overrides the dynamic range control RF mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC RF mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding."`
+	// If specified, overrides whether surround phase shift is enabled. If unspecified and the source audio is AC-3 or EAC-3, the surround phase shift mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding.
+	SurroundPhaseShift *string `json:"surround_phase_shift,omitempty" enum:"SURROUND_PHASE_SHIFT_ENABLED,SURROUND_PHASE_SHIFT_DISABLED" doc:"If specified, overrides whether surround phase shift is enabled. If unspecified and the source audio is AC-3 or EAC-3, the surround phase shift mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice. This setting has no effect on transcoder versions which do not support Atmos encoding."`
 }
 
 // NewChannelTranscodeAudioEncodersInnerEac3 instantiates a new ChannelTranscodeAudioEncodersInnerEac3 object
@@ -105,6 +111,102 @@ func (o *ChannelTranscodeAudioEncodersInnerEac3) SetDdpJocPassthrough(v bool) {
 	o.DdpJocPassthrough = &v
 }
 
+// GetDrcLineMode returns the DrcLineMode field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDrcLineMode() string {
+	if o == nil || IsNil(o.DrcLineMode) {
+		var ret string
+		return ret
+	}
+	return *o.DrcLineMode
+}
+
+// GetDrcLineModeOk returns a tuple with the DrcLineMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDrcLineModeOk() (*string, bool) {
+	if o == nil || IsNil(o.DrcLineMode) {
+		return nil, false
+	}
+	return o.DrcLineMode, true
+}
+
+// HasDrcLineMode returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) HasDrcLineMode() bool {
+	if o != nil && !IsNil(o.DrcLineMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrcLineMode gets a reference to the given string and assigns it to the DrcLineMode field.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) SetDrcLineMode(v string) {
+	o.DrcLineMode = &v
+}
+
+// GetDrcRfMode returns the DrcRfMode field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDrcRfMode() string {
+	if o == nil || IsNil(o.DrcRfMode) {
+		var ret string
+		return ret
+	}
+	return *o.DrcRfMode
+}
+
+// GetDrcRfModeOk returns a tuple with the DrcRfMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDrcRfModeOk() (*string, bool) {
+	if o == nil || IsNil(o.DrcRfMode) {
+		return nil, false
+	}
+	return o.DrcRfMode, true
+}
+
+// HasDrcRfMode returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) HasDrcRfMode() bool {
+	if o != nil && !IsNil(o.DrcRfMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrcRfMode gets a reference to the given string and assigns it to the DrcRfMode field.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) SetDrcRfMode(v string) {
+	o.DrcRfMode = &v
+}
+
+// GetSurroundPhaseShift returns the SurroundPhaseShift field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetSurroundPhaseShift() string {
+	if o == nil || IsNil(o.SurroundPhaseShift) {
+		var ret string
+		return ret
+	}
+	return *o.SurroundPhaseShift
+}
+
+// GetSurroundPhaseShiftOk returns a tuple with the SurroundPhaseShift field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetSurroundPhaseShiftOk() (*string, bool) {
+	if o == nil || IsNil(o.SurroundPhaseShift) {
+		return nil, false
+	}
+	return o.SurroundPhaseShift, true
+}
+
+// HasSurroundPhaseShift returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) HasSurroundPhaseShift() bool {
+	if o != nil && !IsNil(o.SurroundPhaseShift) {
+		return true
+	}
+
+	return false
+}
+
+// SetSurroundPhaseShift gets a reference to the given string and assigns it to the SurroundPhaseShift field.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) SetSurroundPhaseShift(v string) {
+	o.SurroundPhaseShift = &v
+}
+
 func (o ChannelTranscodeAudioEncodersInnerEac3) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -120,6 +222,15 @@ func (o ChannelTranscodeAudioEncodersInnerEac3) ToMap() (map[string]interface{},
 	}
 	if !IsNil(o.DdpJocPassthrough) {
 		toSerialize["ddp_joc_passthrough"] = o.DdpJocPassthrough
+	}
+	if !IsNil(o.DrcLineMode) {
+		toSerialize["drc_line_mode"] = o.DrcLineMode
+	}
+	if !IsNil(o.DrcRfMode) {
+		toSerialize["drc_rf_mode"] = o.DrcRfMode
+	}
+	if !IsNil(o.SurroundPhaseShift) {
+		toSerialize["surround_phase_shift"] = o.SurroundPhaseShift
 	}
 	return toSerialize, nil
 }
