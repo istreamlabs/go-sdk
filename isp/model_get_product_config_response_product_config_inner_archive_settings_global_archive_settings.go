@@ -19,6 +19,7 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 // GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings struct for GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings
 type GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings struct {
 	AesKeyConversion *string `json:"aes_key_conversion,omitempty"`
+	EnforceCustomMp4Path *bool `json:"enforce_custom_mp4_path,omitempty"`
 	MasterUrlType *string `json:"master_url_type,omitempty"`
 	MediaUrlType *string `json:"media_url_type,omitempty"`
 	Origins *map[string]GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue `json:"origins,omitempty"`
@@ -73,6 +74,38 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveS
 // SetAesKeyConversion gets a reference to the given string and assigns it to the AesKeyConversion field.
 func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) SetAesKeyConversion(v string) {
 	o.AesKeyConversion = &v
+}
+
+// GetEnforceCustomMp4Path returns the EnforceCustomMp4Path field value if set, zero value otherwise.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) GetEnforceCustomMp4Path() bool {
+	if o == nil || IsNil(o.EnforceCustomMp4Path) {
+		var ret bool
+		return ret
+	}
+	return *o.EnforceCustomMp4Path
+}
+
+// GetEnforceCustomMp4PathOk returns a tuple with the EnforceCustomMp4Path field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) GetEnforceCustomMp4PathOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnforceCustomMp4Path) {
+		return nil, false
+	}
+	return o.EnforceCustomMp4Path, true
+}
+
+// HasEnforceCustomMp4Path returns a boolean if a field has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) HasEnforceCustomMp4Path() bool {
+	if o != nil && !IsNil(o.EnforceCustomMp4Path) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnforceCustomMp4Path gets a reference to the given bool and assigns it to the EnforceCustomMp4Path field.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) SetEnforceCustomMp4Path(v bool) {
+	o.EnforceCustomMp4Path = &v
 }
 
 // GetMasterUrlType returns the MasterUrlType field value if set, zero value otherwise.
@@ -247,6 +280,9 @@ func (o GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSe
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AesKeyConversion) {
 		toSerialize["aes_key_conversion"] = o.AesKeyConversion
+	}
+	if !IsNil(o.EnforceCustomMp4Path) {
+		toSerialize["enforce_custom_mp4_path"] = o.EnforceCustomMp4Path
 	}
 	if !IsNil(o.MasterUrlType) {
 		toSerialize["master_url_type"] = o.MasterUrlType

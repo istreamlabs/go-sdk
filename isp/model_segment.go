@@ -29,7 +29,7 @@ type Segment struct {
 	SlateUrl *string `json:"slate_url,omitempty" doc:"When set, contains the URL to the slate media asset that will play for the duration of the segment."`
 	// The program time when the segment starts (or started).
 	Start *time.Time `json:"start,omitempty" format:"date-time" doc:"The program time when the segment starts (or started)."`
-	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE"`
+	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,NOT_INDICATED,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE"`
 }
 
 // NewSegment instantiates a new Segment object

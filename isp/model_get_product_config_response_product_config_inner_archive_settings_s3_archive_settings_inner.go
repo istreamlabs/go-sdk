@@ -27,6 +27,7 @@ type GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsI
 	Prefix string `json:"prefix"`
 	Region string `json:"region"`
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
+	SessionToken *string `json:"session_token,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner object
@@ -306,6 +307,38 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSetti
 	o.SecretAccessKey = &v
 }
 
+// GetSessionToken returns the SessionToken field value if set, zero value otherwise.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetSessionToken() string {
+	if o == nil || IsNil(o.SessionToken) {
+		var ret string
+		return ret
+	}
+	return *o.SessionToken
+}
+
+// GetSessionTokenOk returns a tuple with the SessionToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) GetSessionTokenOk() (*string, bool) {
+	if o == nil || IsNil(o.SessionToken) {
+		return nil, false
+	}
+	return o.SessionToken, true
+}
+
+// HasSessionToken returns a boolean if a field has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) HasSessionToken() bool {
+	if o != nil && !IsNil(o.SessionToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetSessionToken gets a reference to the given string and assigns it to the SessionToken field.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) SetSessionToken(v string) {
+	o.SessionToken = &v
+}
+
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -334,6 +367,9 @@ func (o GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettin
 	toSerialize["region"] = o.Region
 	if !IsNil(o.SecretAccessKey) {
 		toSerialize["secret_access_key"] = o.SecretAccessKey
+	}
+	if !IsNil(o.SessionToken) {
+		toSerialize["session_token"] = o.SessionToken
 	}
 	return toSerialize, nil
 }
