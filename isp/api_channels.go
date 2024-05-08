@@ -1026,7 +1026,7 @@ type ApiPatchChannelRequest struct {
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	patchChannelRequest2Inner *[]PatchChannelRequest2Inner
+	patchChannelRequestInner *[]PatchChannelRequestInner
 }
 
 // Validate request but do not otherwise process it
@@ -1059,8 +1059,8 @@ func (r ApiPatchChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) A
 	return r
 }
 
-func (r ApiPatchChannelRequest) PatchChannelRequest2Inner(patchChannelRequest2Inner []PatchChannelRequest2Inner) ApiPatchChannelRequest {
-	r.patchChannelRequest2Inner = &patchChannelRequest2Inner
+func (r ApiPatchChannelRequest) PatchChannelRequestInner(patchChannelRequestInner []PatchChannelRequestInner) ApiPatchChannelRequest {
+	r.patchChannelRequestInner = &patchChannelRequestInner
 	return r
 }
 
@@ -1144,7 +1144,7 @@ func (a *ChannelsApiService) PatchChannelExecute(r ApiPatchChannelRequest) (*htt
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchChannelRequest2Inner
+	localVarPostBody = r.patchChannelRequestInner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
