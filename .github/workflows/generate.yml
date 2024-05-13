@@ -39,6 +39,8 @@ jobs:
       - name: Detect generated changes
         id: changes
         run: |
+          echo "${{ steps.pr-branch.outputs.name }}" >> .trigger
+          git add .trigger
           git add isp
           git status -s
 
