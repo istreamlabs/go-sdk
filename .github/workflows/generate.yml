@@ -31,7 +31,7 @@ jobs:
         id: pr-branch
         run: |
           DATE=$(date '+%Y-%m-%d')
-          echo "name=gen/$DATE" | tee -a "$GITHUB_ACTIONS"
+          echo "name=gen/$DATE" | tee -a "$GITHUB_OUTPUT"
 
       - name: Re-generate
         run: ./run.sh
