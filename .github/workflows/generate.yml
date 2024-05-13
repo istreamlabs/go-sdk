@@ -1,7 +1,6 @@
 name: generate
 
 on:
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -30,14 +29,7 @@ jobs:
       - name: Determine base branch name
         id: pr-base
         run: |
-          case "${{ github.event_name }}" in
-            pull_request)
-              echo "name=${{ github.base_ref }}" | tee -a "$GITHUB_OUTPUT"
-              ;;
-            *)
-              echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
-              ;;
-          esac
+          echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
 
       - name: Determine head branch name
         id: pr-head
