@@ -21,3 +21,9 @@ jobs:
         run: |
           DATE=$(date '+%Y-%m-%d')
           git checkout -B "gen/$DATE"
+
+      - name: Re-generate
+        run: ./run.sh
+
+      - name: Print diff
+        run: git status
