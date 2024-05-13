@@ -24,14 +24,33 @@ jobs:
     steps:
 
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
-      - name: Checkout new branch
+      - name: Determine branch name
+        id: pr-branch
         run: |
           DATE=$(date '+%Y-%m-%d')
-          git checkout -B "gen/$DATE"
+          echo "name=gen/$DATE" | tee -a "$GITHUB_ACTIONS"
 
       - name: Re-generate
         run: ./run.sh
 
-      - name: Print diff
-        run: git add isp && git status
+      - name: Detect generated changes
+        id: changes
+        run: |
+          git add isp
+          git status -s
+
+          if [ -n "$(git status -s)" ]; then
+            echo "should-commit=true" | tee -a "$GITHUB_OUTPUT"
+          else
+            echo "should-commit=false" | tee -a "$GITHUB_OUTPUT"
+          fi
+        
+      - name: Create Pull Request
+        if: steps.changes.outputs.should-commit == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: "re-generate sdk"
+          branch: ${{ steps.pr-branch.outputs.name }}
