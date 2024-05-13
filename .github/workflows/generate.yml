@@ -27,11 +27,23 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Determine branch name
-        id: pr-branch
+      - name: Determine head branch name
+        id: pr-head
         run: |
           DATE=$(date '+%Y-%m-%d')
           echo "name=gen/$DATE" | tee -a "$GITHUB_OUTPUT"
+
+      - name: Determine base branch name
+        id: pr-base
+        run: |
+          case "${{ github.event_name }}" in
+            pull_request)
+              echo "name=${{ github.base_ref }}" | tee -a "$GITHUB_OUTPUT"
+              ;;
+            *)
+              echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
+              ;;
+          esac
 
       - name: Re-generate
         run: ./run.sh
@@ -39,7 +51,7 @@ jobs:
       - name: Detect generated changes
         id: changes
         run: |
-          echo "${{ steps.pr-branch.outputs.name }}" >> .trigger
+          echo "${{ steps.pr-head.outputs.name }}" >> .trigger
           git add .trigger
           git add isp
           git status -s
@@ -55,5 +67,5 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           commit-message: "re-generate sdk"
-          branch: ${{ steps.pr-branch.outputs.name }}
-          base: ${{ github.ref_name }}
+          branch: ${{ steps.pr-head.outputs.name }}
+          base: ${{ steps.pr-base.outputs.name }}
