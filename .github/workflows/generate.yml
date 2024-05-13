@@ -56,3 +56,4 @@ jobs:
         with:
           commit-message: "re-generate sdk"
           branch: ${{ steps.pr-branch.outputs.name }}
+          base: ${{ github.ref_name }}
