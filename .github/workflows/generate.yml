@@ -30,8 +30,12 @@ jobs:
           DATE=$(date '+%Y-%m-%d')
           git checkout -B "gen/$DATE"
 
+      - name: Revert last commit
+        run: git revert HEAD
+
       - name: Re-generate
         run: ./run.sh
 
+
       - name: Print diff
-        run: git status
+        run: git add isp && git status
