@@ -27,12 +27,6 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Determine head branch name
-        id: pr-head
-        run: |
-          DATE=$(date '+%Y-%m-%d')
-          echo "name=gen/$DATE" | tee -a "$GITHUB_OUTPUT"
-
       - name: Determine base branch name
         id: pr-base
         run: |
@@ -44,6 +38,14 @@ jobs:
               echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
               ;;
           esac
+
+      - name: Determine head branch name
+        id: pr-head
+        env:
+          BASE: ${{ steps.pr-base.outputs.name }}
+        run: |
+          DATE=$(date '+%Y-%m-%d')
+          echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
       - name: Re-generate
         run: ./run.sh
