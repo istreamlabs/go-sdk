@@ -39,8 +39,11 @@ jobs:
           DATE=$(date '+%Y-%m-%d')
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
-      - name: Re-generate
+      - name: Re-generate isp
         run: ./run.sh
+
+      - name: Re-generate isp-slates
+        run: ./run-slate.sh
 
       - name: Detect generated changes
         id: changes
@@ -48,6 +51,7 @@ jobs:
           echo "${{ steps.pr-head.outputs.name }}" >> .trigger
           git add .trigger
           git add isp
+          git add isp-slate
           git status -s
 
           if [ -n "$(git status -s)" ]; then

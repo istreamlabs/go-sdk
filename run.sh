@@ -36,5 +36,3 @@ else
   sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./isp/*.go
   sed -i '' -E 's/ example:"null"//g' ./isp/*.go
 fi
-
-

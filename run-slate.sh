@@ -20,14 +20,19 @@ cp ./prerequisites/.openapi-generator-ignore ./isp-slate/.openapi-generator-igno
 cp ./prerequisites/convenience._go ./isp-slate/convenience.go
 cp ./prerequisites/slates_client._go ./isp-slate/client.go
 docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" --build-arg OUT=isp-slate
-docker run --rm -it -v ${SCRIPT_DIR}/isp-slate:/go-sdk/isp-slate generate-sdk
+docker run --rm -v ${SCRIPT_DIR}/isp-slate:/go-sdk/isp-slate generate-sdk
 
-# Logicless templates are dumping extra quotes around enum values, so we've
-# added some padding chars and now need to replace the padding + quotes.
-# This is preferable to writing an entire huge Java project for a `trim`
-# function in the template. I hate this. 🫣
-sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./isp/*.go
+if [[ "$GITHUB_ACTIONS" = "true" ]]; then
+  # Logicless templates are dumping extra quotes around enum values, so we've
+  # added some padding chars and now need to replace the padding + quotes.
+  # This is preferable to writing an entire huge Java project for a `trim`
+  # function in the template. I hate this. 🫣
+  sed -i -E 's/@@@@"([^"]+)"@@@@/\1/g' ./isp/*.go
 
-# Logicless templates are dumping `example:"null"` on every field, so we've
-# got to remove those.
-sed -i '' -E 's/ example:"null"//g' ./isp/*.go
+  # Logicless templates are dumping `example:"null"` on every field, so we've
+  # got to remove those.
+  sed -i -E 's/ example:"null"//g' ./isp/*.go
+else
+  sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./isp/*.go
+  sed -i '' -E 's/ example:"null"//g' ./isp/*.go
+fi
