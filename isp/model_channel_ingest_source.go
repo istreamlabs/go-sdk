@@ -25,6 +25,7 @@ type ChannelIngestSource struct {
 	Id *string `json:"id,omitempty" doc:"Unique identifier for this source."`
 	// Self link for the source.
 	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the source."`
+	VideoSource *ChannelIngestSourceVideoSource `json:"video_source,omitempty"`
 }
 
 // NewChannelIngestSource instantiates a new ChannelIngestSource object
@@ -172,6 +173,38 @@ func (o *ChannelIngestSource) SetSelf(v string) {
 	o.Self = &v
 }
 
+// GetVideoSource returns the VideoSource field value if set, zero value otherwise.
+func (o *ChannelIngestSource) GetVideoSource() ChannelIngestSourceVideoSource {
+	if o == nil || IsNil(o.VideoSource) {
+		var ret ChannelIngestSourceVideoSource
+		return ret
+	}
+	return *o.VideoSource
+}
+
+// GetVideoSourceOk returns a tuple with the VideoSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelIngestSource) GetVideoSourceOk() (*ChannelIngestSourceVideoSource, bool) {
+	if o == nil || IsNil(o.VideoSource) {
+		return nil, false
+	}
+	return o.VideoSource, true
+}
+
+// HasVideoSource returns a boolean if a field has been set.
+func (o *ChannelIngestSource) HasVideoSource() bool {
+	if o != nil && !IsNil(o.VideoSource) {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoSource gets a reference to the given ChannelIngestSourceVideoSource and assigns it to the VideoSource field.
+func (o *ChannelIngestSource) SetVideoSource(v ChannelIngestSourceVideoSource) {
+	o.VideoSource = &v
+}
+
 func (o ChannelIngestSource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -193,6 +226,9 @@ func (o ChannelIngestSource) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Self) {
 		toSerialize["self"] = o.Self
+	}
+	if !IsNil(o.VideoSource) {
+		toSerialize["video_source"] = o.VideoSource
 	}
 	return toSerialize, nil
 }
