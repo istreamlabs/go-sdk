@@ -27,7 +27,7 @@ jobs:
       - name: Determine PR details
         id: pr-details
         run: |
-          details=$(gh pr view ${{ github.event.issue.number }} --json 'baseRefName,headRefName' 2>&1)
+          details=$(gh pr view ${{ github.event.issue.number }} --json 'baseRefName,headRefName')
 
           headRefName=$(printf '%s' "$details" | jq -rc '.headRefName')
           baseRefName=$(printf '%s' "$details" | jq -rc '.baseRefName')
