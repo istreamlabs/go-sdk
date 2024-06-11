@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'recreate-me') }}
     outputs:
-      pr-head: ${{ steps.pr-details.outputs.head }}
+      pr-base: ${{ steps.pr-details.outputs.base }}
     steps:
 
       - uses: actions/checkout@v4
@@ -47,7 +47,7 @@ jobs:
     needs: [handle-comment]
     uses: ./.github/workflows/generate.yml
     with:
-      pr-base: ${{ needs.handle-comment.outputs.pr-head }}
+      pr-base: ${{ needs.handle-comment.outputs.pr-base }}
     secrets: inherit
           
   close-old:
