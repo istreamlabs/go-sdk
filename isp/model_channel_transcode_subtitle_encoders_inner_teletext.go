@@ -18,6 +18,8 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInnerTeletext{}
 
 // ChannelTranscodeSubtitleEncodersInnerTeletext Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
 type ChannelTranscodeSubtitleEncodersInnerTeletext struct {
+	// If set, forces interpretation of the National Option field to choose from character sets in this specific set of character sets. Determining the correct value for this configuration is non-trivial, but there are some guidelines. Usually, all languages in one Teletext stream will use the same charset set. If only one set can handle all the languages, it's probably that one. Some of the sets roughly correspond to geopolitical divisions from the Cold War era: SET3 is roughly Yugoslavia plus Romania; SET4 is the rest of the former USSR/Warsaw Pact, including East Germany but excluding Poland; SET8 is Africa; SET10 is the Middle East. There does not seem to be any standard name for this configuration. The standard calls it 'the upper four bits of Triplet 1', which is highly ambiguous and nonsensical outside of the context of that usage. The decoder ffmpeg uses calls it 'region', but most of the sets cannot cleanly be described as any particular geographic region.
+	CharsetSet *string `json:"charset_set,omitempty" enum:"SET0,SET1,SET2,SET3,SET4,SET6,SET8,SET10" doc:"If set, forces interpretation of the National Option field to choose from character sets in this specific set of character sets. Determining the correct value for this configuration is non-trivial, but there are some guidelines. Usually, all languages in one Teletext stream will use the same charset set. If only one set can handle all the languages, it's probably that one. Some of the sets roughly correspond to geopolitical divisions from the Cold War era: SET3 is roughly Yugoslavia plus Romania; SET4 is the rest of the former USSR/Warsaw Pact, including East Germany but excluding Poland; SET8 is Africa; SET10 is the Middle East. There does not seem to be any standard name for this configuration. The standard calls it 'the upper four bits of Triplet 1', which is highly ambiguous and nonsensical outside of the context of that usage. The decoder ffmpeg uses calls it 'region', but most of the sets cannot cleanly be described as any particular geographic region."`
 	// The three-letter language code declared in the Teletext descriptor in the source PMT. If the language is not found, the subtitles will be empty. language + type configuration is mutually exclusive with magazine + page configuration.
 	Language *string `json:"language,omitempty" doc:"The three-letter language code declared in the Teletext descriptor in the source PMT. If the language is not found, the subtitles will be empty. language + type configuration is mutually exclusive with magazine + page configuration."`
 	// The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
@@ -43,6 +45,38 @@ func NewChannelTranscodeSubtitleEncodersInnerTeletext() *ChannelTranscodeSubtitl
 func NewChannelTranscodeSubtitleEncodersInnerTeletextWithDefaults() *ChannelTranscodeSubtitleEncodersInnerTeletext {
 	this := ChannelTranscodeSubtitleEncodersInnerTeletext{}
 	return &this
+}
+
+// GetCharsetSet returns the CharsetSet field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetCharsetSet() string {
+	if o == nil || IsNil(o.CharsetSet) {
+		var ret string
+		return ret
+	}
+	return *o.CharsetSet
+}
+
+// GetCharsetSetOk returns a tuple with the CharsetSet field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) GetCharsetSetOk() (*string, bool) {
+	if o == nil || IsNil(o.CharsetSet) {
+		return nil, false
+	}
+	return o.CharsetSet, true
+}
+
+// HasCharsetSet returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) HasCharsetSet() bool {
+	if o != nil && !IsNil(o.CharsetSet) {
+		return true
+	}
+
+	return false
+}
+
+// SetCharsetSet gets a reference to the given string and assigns it to the CharsetSet field.
+func (o *ChannelTranscodeSubtitleEncodersInnerTeletext) SetCharsetSet(v string) {
+	o.CharsetSet = &v
 }
 
 // GetLanguage returns the Language field value if set, zero value otherwise.
@@ -183,6 +217,9 @@ func (o ChannelTranscodeSubtitleEncodersInnerTeletext) MarshalJSON() ([]byte, er
 
 func (o ChannelTranscodeSubtitleEncodersInnerTeletext) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CharsetSet) {
+		toSerialize["charset_set"] = o.CharsetSet
+	}
 	if !IsNil(o.Language) {
 		toSerialize["language"] = o.Language
 	}

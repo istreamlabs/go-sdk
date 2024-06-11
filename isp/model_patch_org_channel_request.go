@@ -25,6 +25,8 @@ type PatchOrgChannelRequest struct {
 	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
 	// Desired running state for a channel.
 	DesiredState *string `json:"desired_state,omitempty" enum:"ON,OFF" doc:"Desired running state for a channel."`
+	// Indicates whether the channel's transcoder needs to run in a designated IP range.
+	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
 	Ingest *PatchChannelRequestIngest `json:"ingest,omitempty"`
@@ -159,6 +161,38 @@ func (o *PatchOrgChannelRequest) HasDesiredState() bool {
 // SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
 func (o *PatchOrgChannelRequest) SetDesiredState(v string) {
 	o.DesiredState = &v
+}
+
+// GetEnableByoip returns the EnableByoip field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequest) GetEnableByoip() bool {
+	if o == nil || IsNil(o.EnableByoip) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableByoip
+}
+
+// GetEnableByoipOk returns a tuple with the EnableByoip field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchOrgChannelRequest) GetEnableByoipOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableByoip) {
+		return nil, false
+	}
+	return o.EnableByoip, true
+}
+
+// HasEnableByoip returns a boolean if a field has been set.
+func (o *PatchOrgChannelRequest) HasEnableByoip() bool {
+	if o != nil && !IsNil(o.EnableByoip) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableByoip gets a reference to the given bool and assigns it to the EnableByoip field.
+func (o *PatchOrgChannelRequest) SetEnableByoip(v bool) {
+	o.EnableByoip = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -627,6 +661,9 @@ func (o PatchOrgChannelRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DesiredState) {
 		toSerialize["desired_state"] = o.DesiredState
+	}
+	if !IsNil(o.EnableByoip) {
+		toSerialize["enable_byoip"] = o.EnableByoip
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

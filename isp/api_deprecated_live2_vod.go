@@ -1117,7 +1117,7 @@ func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifestExecute(r ApiDep
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/cust/{customer-id}/prod/{product-id}/prog/{program-id}/vod/{vod_id}/clip/{clip-id}/clipmanifest"
+	localVarPath := localBasePath + "/cust/{customer-id}/prod/{product-id}/prog/{program-id}/vod/{vod_id}/clip/{clip-id}/clipManifest"
 	localVarPath = strings.Replace(localVarPath, "{"+"customer-id"+"}", url.PathEscape(parameterToString(r.customerId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"product-id"+"}", url.PathEscape(parameterToString(r.productId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"program-id"+"}", url.PathEscape(parameterToString(r.programId, "")), -1)

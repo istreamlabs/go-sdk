@@ -19,8 +19,8 @@ var _ MappedNullable = &ArchiveFERRequestPackagesInner{}
 // ArchiveFERRequestPackagesInner struct for ArchiveFERRequestPackagesInner
 type ArchiveFERRequestPackagesInner struct {
 	Archive ArchiveFERRequestPackagesInnerArchive `json:"archive"`
-	Dash ArchiveFERRequestPackagesInnerDash `json:"dash"`
-	Hls ArchiveFERRequestPackagesInnerDash `json:"hls"`
+	Dash *ArchiveFERRequestPackagesInnerDash `json:"dash,omitempty"`
+	Hls *ArchiveFERRequestPackagesInnerDash `json:"hls,omitempty"`
 	PackageId string `json:"package_id"`
 }
 
@@ -28,11 +28,9 @@ type ArchiveFERRequestPackagesInner struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArchiveFERRequestPackagesInner(archive ArchiveFERRequestPackagesInnerArchive, dash ArchiveFERRequestPackagesInnerDash, hls ArchiveFERRequestPackagesInnerDash, packageId string) *ArchiveFERRequestPackagesInner {
+func NewArchiveFERRequestPackagesInner(archive ArchiveFERRequestPackagesInnerArchive, packageId string) *ArchiveFERRequestPackagesInner {
 	this := ArchiveFERRequestPackagesInner{}
 	this.Archive = archive
-	this.Dash = dash
-	this.Hls = hls
 	this.PackageId = packageId
 	return &this
 }
@@ -69,52 +67,68 @@ func (o *ArchiveFERRequestPackagesInner) SetArchive(v ArchiveFERRequestPackagesI
 	o.Archive = v
 }
 
-// GetDash returns the Dash field value
+// GetDash returns the Dash field value if set, zero value otherwise.
 func (o *ArchiveFERRequestPackagesInner) GetDash() ArchiveFERRequestPackagesInnerDash {
-	if o == nil {
+	if o == nil || IsNil(o.Dash) {
 		var ret ArchiveFERRequestPackagesInnerDash
 		return ret
 	}
-
-	return o.Dash
+	return *o.Dash
 }
 
-// GetDashOk returns a tuple with the Dash field value
+// GetDashOk returns a tuple with the Dash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArchiveFERRequestPackagesInner) GetDashOk() (*ArchiveFERRequestPackagesInnerDash, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Dash) {
 		return nil, false
 	}
-	return &o.Dash, true
+	return o.Dash, true
 }
 
-// SetDash sets field value
+// HasDash returns a boolean if a field has been set.
+func (o *ArchiveFERRequestPackagesInner) HasDash() bool {
+	if o != nil && !IsNil(o.Dash) {
+		return true
+	}
+
+	return false
+}
+
+// SetDash gets a reference to the given ArchiveFERRequestPackagesInnerDash and assigns it to the Dash field.
 func (o *ArchiveFERRequestPackagesInner) SetDash(v ArchiveFERRequestPackagesInnerDash) {
-	o.Dash = v
+	o.Dash = &v
 }
 
-// GetHls returns the Hls field value
+// GetHls returns the Hls field value if set, zero value otherwise.
 func (o *ArchiveFERRequestPackagesInner) GetHls() ArchiveFERRequestPackagesInnerDash {
-	if o == nil {
+	if o == nil || IsNil(o.Hls) {
 		var ret ArchiveFERRequestPackagesInnerDash
 		return ret
 	}
-
-	return o.Hls
+	return *o.Hls
 }
 
-// GetHlsOk returns a tuple with the Hls field value
+// GetHlsOk returns a tuple with the Hls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ArchiveFERRequestPackagesInner) GetHlsOk() (*ArchiveFERRequestPackagesInnerDash, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Hls) {
 		return nil, false
 	}
-	return &o.Hls, true
+	return o.Hls, true
 }
 
-// SetHls sets field value
+// HasHls returns a boolean if a field has been set.
+func (o *ArchiveFERRequestPackagesInner) HasHls() bool {
+	if o != nil && !IsNil(o.Hls) {
+		return true
+	}
+
+	return false
+}
+
+// SetHls gets a reference to the given ArchiveFERRequestPackagesInnerDash and assigns it to the Hls field.
 func (o *ArchiveFERRequestPackagesInner) SetHls(v ArchiveFERRequestPackagesInnerDash) {
-	o.Hls = v
+	o.Hls = &v
 }
 
 // GetPackageId returns the PackageId field value
@@ -152,8 +166,12 @@ func (o ArchiveFERRequestPackagesInner) MarshalJSON() ([]byte, error) {
 func (o ArchiveFERRequestPackagesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["archive"] = o.Archive
-	toSerialize["dash"] = o.Dash
-	toSerialize["hls"] = o.Hls
+	if !IsNil(o.Dash) {
+		toSerialize["dash"] = o.Dash
+	}
+	if !IsNil(o.Hls) {
+		toSerialize["hls"] = o.Hls
+	}
 	toSerialize["package_id"] = o.PackageId
 	return toSerialize, nil
 }

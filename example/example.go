@@ -24,7 +24,7 @@ func main() {
 	if header := os.Getenv("AUTH_HEADER"); header != "" {
 		client = isp.NewWithAuthHeader(header)
 	} else {
-		client = isp.NewWithClientCredentials(os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"), org)
+		client = isp.NewWithOktaClientCredentials(os.Getenv("CLIENT_ID"), os.Getenv("CLIENT_SECRET"))
 	}
 
 	client.APIClient.GetConfig().Debug = true
