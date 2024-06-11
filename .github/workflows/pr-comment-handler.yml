@@ -42,6 +42,15 @@ jobs:
 
           echo "head=$headRefName" | tee -a "$GITHUB_OUTPUT"
           echo "base=$baseRefName" | tee -a "$GITHUB_OUTPUT"
+      
+      - name: Comment on PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          number: ${{ github.event.issue.number }}
+          recreate: true
+          header: recreation
+          message: |
+            This pull request is being re-created by [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
   create-new:
     needs: [handle-comment]
