@@ -1,4 +1,4 @@
-name: generate
+name: generate-sdk
 
 on:
   workflow_dispatch:
@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
 
-  generate:
+  generate-sdk:
     runs-on: ubuntu-latest
     outputs:
       pr-number: ${{ steps.create-pr.outputs.pull-request-number }}
@@ -63,8 +63,6 @@ jobs:
       - name: Detect generated changes
         id: changes
         run: |
-          echo "${{ steps.pr-head.outputs.name }}" >> .trigger
-          git add .trigger
           git add isp
           git add isp-slate
           git status -s
