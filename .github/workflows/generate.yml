@@ -10,7 +10,7 @@ on:
     outputs:
       pr-number:
         description: pr number
-        value: ${{ jobs.generate.outputs.pr-number }}
+        value: ${{ jobs.generate-sdk.outputs.pr-number }}
 
 permissions:
   actions: read
