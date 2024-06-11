@@ -1,0 +1,59 @@
+name: pr-comment-handler
+
+on:
+  issue_comment:
+    types: [created, edited]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+
+  handle-comment:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.issue.pull_request && contains(github.event.comment.body, 'recreate-me') }}
+    outputs:
+      pr-head: ${{ steps.pr-details.outputs.head }}
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Determine PR details
+        id: pr-details
+        run: |
+          details=$(gh pr view ${{ github.event.issue.number }} --json 'baseRefName,headRefName' 2>&1)
+
+          headRefName=$(printf '%s' "$details" | jq -rc '.headRefName')
+          baseRefName=$(printf '%s' "$details" | jq -rc '.baseRefName')
+          if [[ "$headRefName" = "null" ]] || [[ "$baseRefName" = "null" ]]; then
+            echo "::error::Failed to parse pr details"
+            echo "$details"
+            exit 1
+          fi
+
+          echo "head=$headRefName" | tee -a "$GITHUB_OUTPUT"
+          echo "base=$baseRefName" | tee -a "$GITHUB_OUTPUT"
+
+  create-new:
+    needs: [handle-comment]
+    uses: ./.github/workflows/generate.yml
+    with:
+      pr-base: ${{ needs.handle-comment.outputs.pr-head }}
+    secrets: inherit
+          
+  close-old:
+    needs: [handle-comment, create-new]
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - name: Close old PR
+        run: |
+          gh pr close ${{ github.event.issue.number }} \
+            -c "Re-created as #${{ needs.create-new.outputs.pr-number }}"

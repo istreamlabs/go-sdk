@@ -2,6 +2,15 @@ name: generate
 
 on:
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      pr-base:
+        required: true
+        type: string
+    outputs:
+      pr-number:
+        description: pr number
+        value: ${{ jobs.generate.outputs.pr-number }}
 
 permissions:
   actions: read
@@ -20,6 +29,8 @@ jobs:
 
   generate:
     runs-on: ubuntu-latest
+    outputs:
+      pr-number: ${{ steps.create-pr.outputs.pull-request-number }}
     steps:
 
       - uses: actions/checkout@v4
@@ -29,14 +40,18 @@ jobs:
       - name: Determine base branch name
         id: pr-base
         run: |
-          echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
+          if [[ "${{ github.event_name }}" = "issue_comment" ]]; then
+            echo "name=${{ inputs.pr-base }}" | tee -a "$GITHUB_OUTPUT"
+          else
+            echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
+          fi
 
       - name: Determine head branch name
         id: pr-head
         env:
           BASE: ${{ steps.pr-base.outputs.name }}
         run: |
-          DATE=$(date '+%Y-%m-%d')
+          DATE=$(date '+%s')
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
       - name: Re-generate isp
@@ -61,6 +76,7 @@ jobs:
           fi
         
       - name: Create Pull Request
+        id: create-pr
         if: steps.changes.outputs.should-commit == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
