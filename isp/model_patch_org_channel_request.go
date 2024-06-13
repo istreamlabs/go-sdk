@@ -29,7 +29,7 @@ type PatchOrgChannelRequest struct {
 	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
-	Ingest *PatchChannelRequestIngest `json:"ingest,omitempty"`
+	Ingest *PatchOrgChannelRequestIngest `json:"ingest,omitempty"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
 	Labels []string `json:"labels,omitempty" maxItems:"10" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10."`
 	// Date and time the channel was last modified.
@@ -228,9 +228,9 @@ func (o *PatchOrgChannelRequest) SetId(v string) {
 }
 
 // GetIngest returns the Ingest field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetIngest() PatchChannelRequestIngest {
+func (o *PatchOrgChannelRequest) GetIngest() PatchOrgChannelRequestIngest {
 	if o == nil || IsNil(o.Ingest) {
-		var ret PatchChannelRequestIngest
+		var ret PatchOrgChannelRequestIngest
 		return ret
 	}
 	return *o.Ingest
@@ -238,7 +238,7 @@ func (o *PatchOrgChannelRequest) GetIngest() PatchChannelRequestIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchChannelRequestIngest, bool) {
+func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchOrgChannelRequestIngest, bool) {
 	if o == nil || IsNil(o.Ingest) {
 		return nil, false
 	}
@@ -254,8 +254,8 @@ func (o *PatchOrgChannelRequest) HasIngest() bool {
 	return false
 }
 
-// SetIngest gets a reference to the given PatchChannelRequestIngest and assigns it to the Ingest field.
-func (o *PatchOrgChannelRequest) SetIngest(v PatchChannelRequestIngest) {
+// SetIngest gets a reference to the given PatchOrgChannelRequestIngest and assigns it to the Ingest field.
+func (o *PatchOrgChannelRequest) SetIngest(v PatchOrgChannelRequestIngest) {
 	o.Ingest = &v
 }
 
