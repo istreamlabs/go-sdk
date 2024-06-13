@@ -22,47 +22,6 @@ func Test_isp_ChannelsApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ChannelsApiService DeleteChannel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		httpRes, err := apiClient.ChannelsApi.DeleteChannel(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsApiService GetChannel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		resp, httpRes, err := apiClient.ChannelsApi.GetChannel(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsApiService GetPlaybackConfig", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		resp, httpRes, err := apiClient.ChannelsApi.GetPlaybackConfig(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
 	t.Run("Test ChannelsApiService ListChannels", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -71,45 +30,6 @@ func Test_isp_ChannelsApiService(t *testing.T) {
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsApiService PatchChannel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		httpRes, err := apiClient.ChannelsApi.PatchChannel(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsApiService PutChannel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		httpRes, err := apiClient.ChannelsApi.PutChannel(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsApiService PutChannelDesiredState", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var channelId string
-
-		httpRes, err := apiClient.ChannelsApi.PutChannelDesiredState(context.Background(), channelId).Execute()
-
-		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
