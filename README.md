@@ -10,7 +10,7 @@ See https://istreamlabs.github.io/docs/sdks/golang
 
 A clean directory is required to ensure defunct files are removed. However, some files do need to be kept to ensure the SDK is generated properly.
 
-This is automatically handled when using `./run.sh`
+This is automatically handled when using `./run.sh isp`
 
 ## Requirements
 
@@ -20,10 +20,12 @@ Generated SDK will be outputted to the `isp` folder.
 
 ```sh
 # By default, it generates against prod
-./run.sh
+./run.sh isp
+./run.sh isp-slates
 
 # Generate against stage
-./run.sh stage
+./run.sh isp stage
+./run.sh isp-slates stage
 ```
 
 ## Verify SDK generated successfully
