@@ -19,8 +19,18 @@ mkdir isp
 cp ./prerequisites/.openapi-generator-ignore ./isp/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./isp/convenience.go
 cp ./prerequisites/client._go ./isp/client.go
-docker build -t generate-sdk . --no-cache --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" --build-arg OUT=isp
-docker run --rm -v ${SCRIPT_DIR}/isp:/go-sdk/isp generate-sdk
+
+# build sdk generation image
+docker build -t generate-sdk . \
+  --no-cache \
+  --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" \
+  --build-arg OUT=isp
+
+# generate sdk
+docker run --rm \
+  -u "$(id -u):$(id -g)" \
+  -v ${SCRIPT_DIR}/isp:/go-sdk/isp \
+  generate-sdk
 
 if [[ "$GITHUB_ACTIONS" = "true" ]]; then
   # Logicless templates are dumping extra quotes around enum values, so we've

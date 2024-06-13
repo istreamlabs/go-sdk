@@ -24,3 +24,5 @@ _testmain.go
 *.prof
 
 isp/api
+
+.DS_Store

@@ -57,15 +57,14 @@ jobs:
       - name: Re-generate isp
         run: ./run.sh
 
-      - name: Re-generate isp-slates
+      - name: Re-generate isp-slate
         run: ./run-slate.sh
 
       - name: Detect generated changes
         id: changes
         run: |
-          git add isp
-          git add isp-slate
-          git status -s
+          git add isp isp-slate
+          git status
 
           if [ -n "$(git status -s)" ]; then
             echo "should-commit=true" | tee -a "$GITHUB_OUTPUT"
