@@ -54,17 +54,15 @@ jobs:
           DATE=$(date '+%s')
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
-      - name: Re-generate SDKs
+      - name: Re-generate isp
         run: |
-          echo "::group::isp"
           ./run.sh
           sudo chown -R $USER:$USER isp
-          echo "::endgroup::"
 
-          echo "::group::isp-slate"
+      - name: Re-generate isp-slate
+        run: |
           ./run-slate.sh
           sudo chown -R $USER:$USER isp-slate
-          echo "::endgroup::"
 
       - name: Detect generated changes
         id: changes
