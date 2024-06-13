@@ -209,6 +209,27 @@ func NewWithClientCredentials(clientID, clientSecret, organization string) *High
 	}
 }
 
+// NewWithOktaClientCredentials creates a new authenticated client using the OAuth
+// 2.0 client credentials flow, caching and refreshing the access token as
+// needed whenever requests to the API are made. Leave the organization blank
+// if using multi-org tokens. It is specific to WBD-Okta and replaces NewWithClientCredentials.
+func NewWithOktaClientCredentials(clientID, clientSecret string) *HighLevelClient {
+	auth := &clientcredentials.Config{
+		ClientID:     clientID,
+		ClientSecret: clientSecret,
+		TokenURL:     "https://tw.okta.com/oauth2/aus125bl6q770za4g0x8/v1/token",
+	}
+
+	config := NewConfiguration()
+	config.HTTPClient = auth.Client(context.Background())
+
+	client := NewAPIClient(config)
+	return &HighLevelClient{
+		APIClient: client,
+		Client:    config.HTTPClient,
+	}
+}
+
 // NewWithAuthHeader creates a new authenticated client using the given
 // authorization header. The header format should be `Bearer <token>`, where
 // `<token>` is replaced by the contents of the encoded & signed JWT.
