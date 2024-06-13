@@ -1,28 +1,26 @@
 #!/bin/bash
 
+API="${1-isp}"
+ENV="${2-prod}"
+
 OPENAPI_SPEC=""
-API=$1
-ENV=$2
-
-MAIN_OPENAPI_SPEC="http://api.istreamplanet.com/openapi.json"
-SLATE_OPENAPI_SPEC="http://api.istreamplanet.com/docs/slates/openapi.json"
-
-if [[ $ENV == "stage" ]]; then
-  MAIN_OPENAPI_SPEC="http://stage.api.istreamplanet.com/openapi.json"
-  SLATE_OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
-fi
-
 if [[ "$API" == "isp" ]]; then
-  OPENAPI_SPEC="${MAIN_OPENAPI_SPEC}"
+  OPENAPI_SPEC="http://api.istreamplanet.com/openapi.json"
+  if [[ $ENV == "stage" ]]; then
+    OPENAPI_SPEC="http://stage.api.istreamplanet.com/openapi.json"
+  fi
 elif [[ "$API" == "isp-slates" ]]; then
-  OPENAPI_SPEC="${SLATE_OPENAPI_SPEC}"
+  OPENAPI_SPEC="http://api.istreamplanet.com/docs/slates/openapi.json"
+  if [[ $ENV == "stage" ]]; then
+    OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
+  fi
 else
   >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slates"
   >&2 echo ""
   exit 1
 fi
 
-echo -e "Generating ${API} SDK against ${OPENAPI_SPEC}\n"
+echo -e "Generating ${API} SDK against ${ENV} (${OPENAPI_SPEC})\n"
 
 SCRIPT_DIR=${PWD}
 
