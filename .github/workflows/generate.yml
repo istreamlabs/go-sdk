@@ -55,10 +55,14 @@ jobs:
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
       - name: Re-generate isp
-        run: ./run.sh
+        run: |
+          ./run.sh
+          sudo chown -R $USER:$USER isp
 
       - name: Re-generate isp-slates
-        run: ./run-slate.sh
+        run: |
+          ./run-slate.sh
+          sudo chown -R $USER:$USER isp-slate
 
       - name: Detect generated changes
         id: changes
