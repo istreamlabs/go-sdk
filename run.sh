@@ -17,7 +17,8 @@ if [[ "$API" == "isp" ]]; then
 elif [[ "$API" == "isp-slates" ]]; then
   OPENAPI_SPEC="${SLATE_OPENAPI_SPEC}"
 else
-  >&2 echo "Unrecognized api $API"
+  >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slates"
+  >&2 echo ""
   exit 1
 fi
 
