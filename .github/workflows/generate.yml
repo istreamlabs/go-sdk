@@ -58,7 +58,7 @@ jobs:
         run: ./run.sh isp
 
       - name: Re-generate isp-slates
-        run: ./run isp-slates
+        run: ./run.sh isp-slates
 
       - name: Detect generated changes
         id: changes
