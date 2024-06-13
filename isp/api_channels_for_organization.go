@@ -1005,7 +1005,7 @@ type ApiPatchOrgChannelRequest struct {
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	patchChannelRequest2Inner *[]PatchChannelRequest2Inner
+	patchOrgChannelRequest2Inner *[]PatchOrgChannelRequest2Inner
 }
 
 // Validate request but do not otherwise process it
@@ -1038,8 +1038,8 @@ func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time
 	return r
 }
 
-func (r ApiPatchOrgChannelRequest) PatchChannelRequest2Inner(patchChannelRequest2Inner []PatchChannelRequest2Inner) ApiPatchOrgChannelRequest {
-	r.patchChannelRequest2Inner = &patchChannelRequest2Inner
+func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequest2Inner(patchOrgChannelRequest2Inner []PatchOrgChannelRequest2Inner) ApiPatchOrgChannelRequest {
+	r.patchOrgChannelRequest2Inner = &patchOrgChannelRequest2Inner
 	return r
 }
 
@@ -1123,7 +1123,7 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchChannelRequest2Inner
+	localVarPostBody = r.patchOrgChannelRequest2Inner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PutChannelRequestIngestSource type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PutChannelRequestIngestSource{}
+// checks if the PutOrgChannelRequestIngestSource type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PutOrgChannelRequestIngestSource{}
 
-// PutChannelRequestIngestSource Source provides a reference to the input media stream for this channel.
-type PutChannelRequestIngestSource struct {
+// PutOrgChannelRequestIngestSource Source provides a reference to the input media stream for this channel.
+type PutOrgChannelRequestIngestSource struct {
 	AudioSources []ChannelIngestSourceAudioSourcesInner `json:"audio_sources,omitempty" minItems:"1"`
 	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
 	CaptionsSource *string `json:"captions_source,omitempty" enum:"ATSC_A53,SMPTE_2038" doc:"Closed captions source embedding. If unspecified, defaults to ATSC_A53."`
@@ -28,26 +28,26 @@ type PutChannelRequestIngestSource struct {
 	VideoSource *ChannelIngestSourceVideoSource `json:"video_source,omitempty"`
 }
 
-// NewPutChannelRequestIngestSource instantiates a new PutChannelRequestIngestSource object
+// NewPutOrgChannelRequestIngestSource instantiates a new PutOrgChannelRequestIngestSource object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPutChannelRequestIngestSource(id string) *PutChannelRequestIngestSource {
-	this := PutChannelRequestIngestSource{}
+func NewPutOrgChannelRequestIngestSource(id string) *PutOrgChannelRequestIngestSource {
+	this := PutOrgChannelRequestIngestSource{}
 	this.Id = id
 	return &this
 }
 
-// NewPutChannelRequestIngestSourceWithDefaults instantiates a new PutChannelRequestIngestSource object
+// NewPutOrgChannelRequestIngestSourceWithDefaults instantiates a new PutOrgChannelRequestIngestSource object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPutChannelRequestIngestSourceWithDefaults() *PutChannelRequestIngestSource {
-	this := PutChannelRequestIngestSource{}
+func NewPutOrgChannelRequestIngestSourceWithDefaults() *PutOrgChannelRequestIngestSource {
+	this := PutOrgChannelRequestIngestSource{}
 	return &this
 }
 
 // GetAudioSources returns the AudioSources field value if set, zero value otherwise.
-func (o *PutChannelRequestIngestSource) GetAudioSources() []ChannelIngestSourceAudioSourcesInner {
+func (o *PutOrgChannelRequestIngestSource) GetAudioSources() []ChannelIngestSourceAudioSourcesInner {
 	if o == nil || IsNil(o.AudioSources) {
 		var ret []ChannelIngestSourceAudioSourcesInner
 		return ret
@@ -57,7 +57,7 @@ func (o *PutChannelRequestIngestSource) GetAudioSources() []ChannelIngestSourceA
 
 // GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestIngestSource) GetAudioSourcesOk() ([]ChannelIngestSourceAudioSourcesInner, bool) {
+func (o *PutOrgChannelRequestIngestSource) GetAudioSourcesOk() ([]ChannelIngestSourceAudioSourcesInner, bool) {
 	if o == nil || IsNil(o.AudioSources) {
 		return nil, false
 	}
@@ -65,7 +65,7 @@ func (o *PutChannelRequestIngestSource) GetAudioSourcesOk() ([]ChannelIngestSour
 }
 
 // HasAudioSources returns a boolean if a field has been set.
-func (o *PutChannelRequestIngestSource) HasAudioSources() bool {
+func (o *PutOrgChannelRequestIngestSource) HasAudioSources() bool {
 	if o != nil && !IsNil(o.AudioSources) {
 		return true
 	}
@@ -74,12 +74,12 @@ func (o *PutChannelRequestIngestSource) HasAudioSources() bool {
 }
 
 // SetAudioSources gets a reference to the given []ChannelIngestSourceAudioSourcesInner and assigns it to the AudioSources field.
-func (o *PutChannelRequestIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSourcesInner) {
+func (o *PutOrgChannelRequestIngestSource) SetAudioSources(v []ChannelIngestSourceAudioSourcesInner) {
 	o.AudioSources = v
 }
 
 // GetCaptionsSource returns the CaptionsSource field value if set, zero value otherwise.
-func (o *PutChannelRequestIngestSource) GetCaptionsSource() string {
+func (o *PutOrgChannelRequestIngestSource) GetCaptionsSource() string {
 	if o == nil || IsNil(o.CaptionsSource) {
 		var ret string
 		return ret
@@ -89,7 +89,7 @@ func (o *PutChannelRequestIngestSource) GetCaptionsSource() string {
 
 // GetCaptionsSourceOk returns a tuple with the CaptionsSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestIngestSource) GetCaptionsSourceOk() (*string, bool) {
+func (o *PutOrgChannelRequestIngestSource) GetCaptionsSourceOk() (*string, bool) {
 	if o == nil || IsNil(o.CaptionsSource) {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *PutChannelRequestIngestSource) GetCaptionsSourceOk() (*string, bool) {
 }
 
 // HasCaptionsSource returns a boolean if a field has been set.
-func (o *PutChannelRequestIngestSource) HasCaptionsSource() bool {
+func (o *PutOrgChannelRequestIngestSource) HasCaptionsSource() bool {
 	if o != nil && !IsNil(o.CaptionsSource) {
 		return true
 	}
@@ -106,12 +106,12 @@ func (o *PutChannelRequestIngestSource) HasCaptionsSource() bool {
 }
 
 // SetCaptionsSource gets a reference to the given string and assigns it to the CaptionsSource field.
-func (o *PutChannelRequestIngestSource) SetCaptionsSource(v string) {
+func (o *PutOrgChannelRequestIngestSource) SetCaptionsSource(v string) {
 	o.CaptionsSource = &v
 }
 
 // GetId returns the Id field value
-func (o *PutChannelRequestIngestSource) GetId() string {
+func (o *PutOrgChannelRequestIngestSource) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -122,7 +122,7 @@ func (o *PutChannelRequestIngestSource) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestIngestSource) GetIdOk() (*string, bool) {
+func (o *PutOrgChannelRequestIngestSource) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -130,12 +130,12 @@ func (o *PutChannelRequestIngestSource) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value
-func (o *PutChannelRequestIngestSource) SetId(v string) {
+func (o *PutOrgChannelRequestIngestSource) SetId(v string) {
 	o.Id = v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
-func (o *PutChannelRequestIngestSource) GetSelf() string {
+func (o *PutOrgChannelRequestIngestSource) GetSelf() string {
 	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
@@ -145,7 +145,7 @@ func (o *PutChannelRequestIngestSource) GetSelf() string {
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestIngestSource) GetSelfOk() (*string, bool) {
+func (o *PutOrgChannelRequestIngestSource) GetSelfOk() (*string, bool) {
 	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
@@ -153,7 +153,7 @@ func (o *PutChannelRequestIngestSource) GetSelfOk() (*string, bool) {
 }
 
 // HasSelf returns a boolean if a field has been set.
-func (o *PutChannelRequestIngestSource) HasSelf() bool {
+func (o *PutOrgChannelRequestIngestSource) HasSelf() bool {
 	if o != nil && !IsNil(o.Self) {
 		return true
 	}
@@ -162,12 +162,12 @@ func (o *PutChannelRequestIngestSource) HasSelf() bool {
 }
 
 // SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *PutChannelRequestIngestSource) SetSelf(v string) {
+func (o *PutOrgChannelRequestIngestSource) SetSelf(v string) {
 	o.Self = &v
 }
 
 // GetVideoSource returns the VideoSource field value if set, zero value otherwise.
-func (o *PutChannelRequestIngestSource) GetVideoSource() ChannelIngestSourceVideoSource {
+func (o *PutOrgChannelRequestIngestSource) GetVideoSource() ChannelIngestSourceVideoSource {
 	if o == nil || IsNil(o.VideoSource) {
 		var ret ChannelIngestSourceVideoSource
 		return ret
@@ -177,7 +177,7 @@ func (o *PutChannelRequestIngestSource) GetVideoSource() ChannelIngestSourceVide
 
 // GetVideoSourceOk returns a tuple with the VideoSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestIngestSource) GetVideoSourceOk() (*ChannelIngestSourceVideoSource, bool) {
+func (o *PutOrgChannelRequestIngestSource) GetVideoSourceOk() (*ChannelIngestSourceVideoSource, bool) {
 	if o == nil || IsNil(o.VideoSource) {
 		return nil, false
 	}
@@ -185,7 +185,7 @@ func (o *PutChannelRequestIngestSource) GetVideoSourceOk() (*ChannelIngestSource
 }
 
 // HasVideoSource returns a boolean if a field has been set.
-func (o *PutChannelRequestIngestSource) HasVideoSource() bool {
+func (o *PutOrgChannelRequestIngestSource) HasVideoSource() bool {
 	if o != nil && !IsNil(o.VideoSource) {
 		return true
 	}
@@ -194,11 +194,11 @@ func (o *PutChannelRequestIngestSource) HasVideoSource() bool {
 }
 
 // SetVideoSource gets a reference to the given ChannelIngestSourceVideoSource and assigns it to the VideoSource field.
-func (o *PutChannelRequestIngestSource) SetVideoSource(v ChannelIngestSourceVideoSource) {
+func (o *PutOrgChannelRequestIngestSource) SetVideoSource(v ChannelIngestSourceVideoSource) {
 	o.VideoSource = &v
 }
 
-func (o PutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
+func (o PutOrgChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -206,7 +206,7 @@ func (o PutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PutChannelRequestIngestSource) ToMap() (map[string]interface{}, error) {
+func (o PutOrgChannelRequestIngestSource) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AudioSources) {
 		toSerialize["audio_sources"] = o.AudioSources
@@ -224,38 +224,38 @@ func (o PutChannelRequestIngestSource) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePutChannelRequestIngestSource struct {
-	value *PutChannelRequestIngestSource
+type NullablePutOrgChannelRequestIngestSource struct {
+	value *PutOrgChannelRequestIngestSource
 	isSet bool
 }
 
-func (v NullablePutChannelRequestIngestSource) Get() *PutChannelRequestIngestSource {
+func (v NullablePutOrgChannelRequestIngestSource) Get() *PutOrgChannelRequestIngestSource {
 	return v.value
 }
 
-func (v *NullablePutChannelRequestIngestSource) Set(val *PutChannelRequestIngestSource) {
+func (v *NullablePutOrgChannelRequestIngestSource) Set(val *PutOrgChannelRequestIngestSource) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePutChannelRequestIngestSource) IsSet() bool {
+func (v NullablePutOrgChannelRequestIngestSource) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePutChannelRequestIngestSource) Unset() {
+func (v *NullablePutOrgChannelRequestIngestSource) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePutChannelRequestIngestSource(val *PutChannelRequestIngestSource) *NullablePutChannelRequestIngestSource {
-	return &NullablePutChannelRequestIngestSource{value: val, isSet: true}
+func NewNullablePutOrgChannelRequestIngestSource(val *PutOrgChannelRequestIngestSource) *NullablePutOrgChannelRequestIngestSource {
+	return &NullablePutOrgChannelRequestIngestSource{value: val, isSet: true}
 }
 
-func (v NullablePutChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
+func (v NullablePutOrgChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePutChannelRequestIngestSource) UnmarshalJSON(src []byte) error {
+func (v *NullablePutOrgChannelRequestIngestSource) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
