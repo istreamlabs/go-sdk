@@ -57,13 +57,13 @@ jobs:
       - name: Re-generate isp
         run: ./run.sh
 
-      - name: Re-generate isp-slate
+      - name: Re-generate isp-slates
         run: ./run-slate.sh
 
       - name: Detect generated changes
         id: changes
         run: |
-          git add isp isp-slate
+          git add isp isp-slates
           git status
 
           if [ -n "$(git status -s)" ]; then

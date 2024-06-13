@@ -11,25 +11,25 @@ echo -e "Generating SDK against ${OPENAPI_SPEC}\n"
 
 SCRIPT_DIR=${PWD}
 
-# Recreate isp-slate directory to ensure clean build
-rm -rf isp-slate
-mkdir isp-slate
+# Recreate isp-slates directory to ensure clean build
+rm -rf isp-slates
+mkdir isp-slates
 
 # Copy required files to isp directory
-cp ./prerequisites/.openapi-generator-ignore ./isp-slate/.openapi-generator-ignore
-cp ./prerequisites/convenience._go ./isp-slate/convenience.go
-cp ./prerequisites/slates_client._go ./isp-slate/client.go
+cp ./prerequisites/.openapi-generator-ignore ./isp-slates/.openapi-generator-ignore
+cp ./prerequisites/convenience._go ./isp-slates/convenience.go
+cp ./prerequisites/slates_client._go ./isp-slates/client.go
 
 # build sdk generation image
 docker build -t generate-sdk . \
   --no-cache \
   --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" \
-  --build-arg OUT=isp-slate
+  --build-arg OUT=isp-slates
 
 # generate sdk
 docker run --rm \
   -u "$(id -u):$(id -g)" \
-  -v ${SCRIPT_DIR}/isp-slate:/go-sdk/isp-slate \
+  -v ${SCRIPT_DIR}/isp-slates:/go-sdk/isp-slates \
   generate-sdk
 
 if [[ "$GITHUB_ACTIONS" = "true" ]]; then
