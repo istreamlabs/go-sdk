@@ -63,8 +63,7 @@ jobs:
       - name: Detect generated changes
         id: changes
         run: |
-          git add isp
-          git add isp-slate
+          git add .
           git status -s
 
           if [ -n "$(git status -s)" ]; then
