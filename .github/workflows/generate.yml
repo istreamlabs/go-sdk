@@ -70,7 +70,7 @@ jobs:
         id: changes
         run: |
           git add .
-          git status -s
+          git status
 
           if [ -n "$(git status -s)" ]; then
             echo "should-commit=true" | tee -a "$GITHUB_OUTPUT"
