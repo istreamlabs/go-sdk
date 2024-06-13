@@ -29,7 +29,7 @@ type PutOrgChannelRequest struct {
 	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
-	Ingest PutChannelRequestIngest `json:"ingest"`
+	Ingest PutOrgChannelRequestIngest `json:"ingest"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
 	Labels []string `json:"labels,omitempty" maxItems:"10" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10."`
 	// Date and time the channel was last modified.
@@ -54,7 +54,7 @@ type PutOrgChannelRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPutOrgChannelRequest(ingest PutChannelRequestIngest) *PutOrgChannelRequest {
+func NewPutOrgChannelRequest(ingest PutOrgChannelRequestIngest) *PutOrgChannelRequest {
 	this := PutOrgChannelRequest{}
 	this.Ingest = ingest
 	return &this
@@ -229,9 +229,9 @@ func (o *PutOrgChannelRequest) SetId(v string) {
 }
 
 // GetIngest returns the Ingest field value
-func (o *PutOrgChannelRequest) GetIngest() PutChannelRequestIngest {
+func (o *PutOrgChannelRequest) GetIngest() PutOrgChannelRequestIngest {
 	if o == nil {
-		var ret PutChannelRequestIngest
+		var ret PutOrgChannelRequestIngest
 		return ret
 	}
 
@@ -240,7 +240,7 @@ func (o *PutOrgChannelRequest) GetIngest() PutChannelRequestIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value
 // and a boolean to check if the value has been set.
-func (o *PutOrgChannelRequest) GetIngestOk() (*PutChannelRequestIngest, bool) {
+func (o *PutOrgChannelRequest) GetIngestOk() (*PutOrgChannelRequestIngest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -248,7 +248,7 @@ func (o *PutOrgChannelRequest) GetIngestOk() (*PutChannelRequestIngest, bool) {
 }
 
 // SetIngest sets field value
-func (o *PutOrgChannelRequest) SetIngest(v PutChannelRequestIngest) {
+func (o *PutOrgChannelRequest) SetIngest(v PutOrgChannelRequestIngest) {
 	o.Ingest = v
 }
 
