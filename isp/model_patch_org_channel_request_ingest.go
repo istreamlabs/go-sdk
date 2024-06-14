@@ -13,34 +13,34 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchChannelRequestIngest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchChannelRequestIngest{}
+// checks if the PatchOrgChannelRequestIngest type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequestIngest{}
 
-// PatchChannelRequestIngest Ingest configures inputs for the transcoder.
-type PatchChannelRequestIngest struct {
+// PatchOrgChannelRequestIngest Ingest configures inputs for the transcoder.
+type PatchOrgChannelRequestIngest struct {
 	Slate *ChannelIngestSlate `json:"slate,omitempty"`
 	Source *ChannelIngestSource `json:"source,omitempty"`
 }
 
-// NewPatchChannelRequestIngest instantiates a new PatchChannelRequestIngest object
+// NewPatchOrgChannelRequestIngest instantiates a new PatchOrgChannelRequestIngest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchChannelRequestIngest() *PatchChannelRequestIngest {
-	this := PatchChannelRequestIngest{}
+func NewPatchOrgChannelRequestIngest() *PatchOrgChannelRequestIngest {
+	this := PatchOrgChannelRequestIngest{}
 	return &this
 }
 
-// NewPatchChannelRequestIngestWithDefaults instantiates a new PatchChannelRequestIngest object
+// NewPatchOrgChannelRequestIngestWithDefaults instantiates a new PatchOrgChannelRequestIngest object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchChannelRequestIngestWithDefaults() *PatchChannelRequestIngest {
-	this := PatchChannelRequestIngest{}
+func NewPatchOrgChannelRequestIngestWithDefaults() *PatchOrgChannelRequestIngest {
+	this := PatchOrgChannelRequestIngest{}
 	return &this
 }
 
 // GetSlate returns the Slate field value if set, zero value otherwise.
-func (o *PatchChannelRequestIngest) GetSlate() ChannelIngestSlate {
+func (o *PatchOrgChannelRequestIngest) GetSlate() ChannelIngestSlate {
 	if o == nil || IsNil(o.Slate) {
 		var ret ChannelIngestSlate
 		return ret
@@ -50,7 +50,7 @@ func (o *PatchChannelRequestIngest) GetSlate() ChannelIngestSlate {
 
 // GetSlateOk returns a tuple with the Slate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchChannelRequestIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
+func (o *PatchOrgChannelRequestIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
 	if o == nil || IsNil(o.Slate) {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *PatchChannelRequestIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
 }
 
 // HasSlate returns a boolean if a field has been set.
-func (o *PatchChannelRequestIngest) HasSlate() bool {
+func (o *PatchOrgChannelRequestIngest) HasSlate() bool {
 	if o != nil && !IsNil(o.Slate) {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *PatchChannelRequestIngest) HasSlate() bool {
 }
 
 // SetSlate gets a reference to the given ChannelIngestSlate and assigns it to the Slate field.
-func (o *PatchChannelRequestIngest) SetSlate(v ChannelIngestSlate) {
+func (o *PatchOrgChannelRequestIngest) SetSlate(v ChannelIngestSlate) {
 	o.Slate = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *PatchChannelRequestIngest) GetSource() ChannelIngestSource {
+func (o *PatchOrgChannelRequestIngest) GetSource() ChannelIngestSource {
 	if o == nil || IsNil(o.Source) {
 		var ret ChannelIngestSource
 		return ret
@@ -82,7 +82,7 @@ func (o *PatchChannelRequestIngest) GetSource() ChannelIngestSource {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchChannelRequestIngest) GetSourceOk() (*ChannelIngestSource, bool) {
+func (o *PatchOrgChannelRequestIngest) GetSourceOk() (*ChannelIngestSource, bool) {
 	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *PatchChannelRequestIngest) GetSourceOk() (*ChannelIngestSource, bool) {
 }
 
 // HasSource returns a boolean if a field has been set.
-func (o *PatchChannelRequestIngest) HasSource() bool {
+func (o *PatchOrgChannelRequestIngest) HasSource() bool {
 	if o != nil && !IsNil(o.Source) {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *PatchChannelRequestIngest) HasSource() bool {
 }
 
 // SetSource gets a reference to the given ChannelIngestSource and assigns it to the Source field.
-func (o *PatchChannelRequestIngest) SetSource(v ChannelIngestSource) {
+func (o *PatchOrgChannelRequestIngest) SetSource(v ChannelIngestSource) {
 	o.Source = &v
 }
 
-func (o PatchChannelRequestIngest) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequestIngest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -111,7 +111,7 @@ func (o PatchChannelRequestIngest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchChannelRequestIngest) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequestIngest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Slate) {
 		toSerialize["slate"] = o.Slate
@@ -122,38 +122,38 @@ func (o PatchChannelRequestIngest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePatchChannelRequestIngest struct {
-	value *PatchChannelRequestIngest
+type NullablePatchOrgChannelRequestIngest struct {
+	value *PatchOrgChannelRequestIngest
 	isSet bool
 }
 
-func (v NullablePatchChannelRequestIngest) Get() *PatchChannelRequestIngest {
+func (v NullablePatchOrgChannelRequestIngest) Get() *PatchOrgChannelRequestIngest {
 	return v.value
 }
 
-func (v *NullablePatchChannelRequestIngest) Set(val *PatchChannelRequestIngest) {
+func (v *NullablePatchOrgChannelRequestIngest) Set(val *PatchOrgChannelRequestIngest) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchChannelRequestIngest) IsSet() bool {
+func (v NullablePatchOrgChannelRequestIngest) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchChannelRequestIngest) Unset() {
+func (v *NullablePatchOrgChannelRequestIngest) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchChannelRequestIngest(val *PatchChannelRequestIngest) *NullablePatchChannelRequestIngest {
-	return &NullablePatchChannelRequestIngest{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequestIngest(val *PatchOrgChannelRequestIngest) *NullablePatchOrgChannelRequestIngest {
+	return &NullablePatchOrgChannelRequestIngest{value: val, isSet: true}
 }
 
-func (v NullablePatchChannelRequestIngest) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequestIngest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchChannelRequestIngest) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequestIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
