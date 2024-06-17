@@ -33,6 +33,7 @@ cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./${API}/convenience.go
 cp ./prerequisites/${API}_client._go ./${API}/client.go
 
+# Generate the SDK
 docker run --rm \
   --user $(id -u) \
   -v ${SCRIPT_DIR}/${API}:/go-sdk \
