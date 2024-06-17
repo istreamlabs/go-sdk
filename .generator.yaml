@@ -1,5 +1,8 @@
-templateDir: templates
+templateDir: /go-sdk/templates
 disallowAdditionalPropertiesIfNotPresent: false
 generateInterfaces: true
 isGoSubmodule: true
 packageName: isp
+gitUserId: istreamlabs
+gitRepoId: go-sdk
+validateSpec: false
