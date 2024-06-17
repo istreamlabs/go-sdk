@@ -17,8 +17,29 @@ concurrency:
 
 jobs:
 
-  lint:
+  setup:
     runs-on: ubuntu-latest
+    outputs:
+      changed-go: ${{ steps.changed-paths.outputs.go == 'true' }}
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: changed-paths
+        with:
+          filters: |
+            go:
+              - 'isp/**'
+              - 'isp-slate/**'
+              - '*.go'
+              - 'go.*'
+
+  lint:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    if: needs.setup.outputs.changed-go
     steps:
       -
         uses: actions/checkout@v4
@@ -27,3 +48,16 @@ jobs:
       -
         name: Lint
         run: go vet ./...
+
+  pr-ready:
+    needs: [setup, lint]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Validate lint job
+        if: needs.setup.outputs.changed-go
+        run: |
+          if [[ '${{ needs.lint.result }}' != 'success' ]]; then
+            echo '::error::lint job had issues'
+            exit 1
+          fi
