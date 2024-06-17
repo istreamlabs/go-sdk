@@ -36,7 +36,7 @@ jobs:
               - '*.go'
               - 'go.*'
 
-  lint:
+  unit-test:
     needs: [setup]
     runs-on: ubuntu-latest
     if: needs.setup.outputs.changed-go
@@ -47,17 +47,17 @@ jobs:
         uses: actions/setup-go@v5
       -
         name: Lint
-        run: go vet ./...
+        run: go test ./...
 
   pr-ready:
-    needs: [setup, lint]
+    needs: [setup, unit-test]
     runs-on: ubuntu-latest
     if: always()
     steps:
-      - name: Validate lint job
+      - name: Validate unit-test job
         if: needs.setup.outputs.changed-go
         run: |
-          if [[ '${{ needs.lint.result }}' != 'success' ]]; then
-            echo '::error::lint job had issues'
+          if [[ '${{ needs.unit-test.result }}' != 'success' ]]; then
+            echo '::error::unit-test job had issues'
             exit 1
           fi
