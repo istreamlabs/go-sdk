@@ -33,20 +33,17 @@ cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./${API}/convenience.go
 cp ./prerequisites/${API}_client._go ./${API}/client.go
 
-# Generate the SDK
+# build sdk generation image
+docker build -q -t generate-sdk . \
+  --no-cache \
+  --build-arg OPENAPI_SPEC="${OPENAPI_SPEC}" \
+  --build-arg OUT=sdk
+
+# generate sdk
 docker run --rm \
-  --user $(id -u) \
-  -v ${SCRIPT_DIR}/${API}:/go-sdk \
-  -v ${SCRIPT_DIR}/templates:/templates \
-  -v ${SCRIPT_DIR}/.generator.yaml:/.generator.yaml \
-  openapitools/openapi-generator-cli:v6.6.0 generate \
-  -c .generator.yaml \
-  -i "${OPENAPI_SPEC}" \
-  -g go \
-  -o go-sdk \
-  --skip-validate-spec \
-  --git-user-id=istreamlabs \
-  --git-repo-id=go-sdk
+  -u "$(id -u):$(id -g)" \
+  -v ${SCRIPT_DIR}/${API}:/go-sdk/sdk \
+  generate-sdk
 
 if [[ "$GITHUB_ACTIONS" = "true" ]]; then
   # Logicless templates are dumping extra quotes around enum values, so we've
