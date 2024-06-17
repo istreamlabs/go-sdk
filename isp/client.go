@@ -49,13 +49,9 @@ type APIClient struct {
 
 	// API Services
 
-	AuditOperationsApi AuditOperationsApi
-
 	AuditOperationsForOrganizationApi AuditOperationsForOrganizationApi
 
 	AvailableSourcesApi AvailableSourcesApi
-
-	ChannelOperationsApi ChannelOperationsApi
 
 	ChannelOperationsForOrganizationApi ChannelOperationsForOrganizationApi
 
@@ -70,8 +66,6 @@ type APIClient struct {
 	OrganizationsApi OrganizationsApi
 
 	SourcePreviewsApi SourcePreviewsApi
-
-	SourcesApi SourcesApi
 }
 
 type service struct {
@@ -135,10 +129,8 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.AuditOperationsApi = (*AuditOperationsApiService)(&c.common)
 	c.AuditOperationsForOrganizationApi = (*AuditOperationsForOrganizationApiService)(&c.common)
 	c.AvailableSourcesApi = (*AvailableSourcesApiService)(&c.common)
-	c.ChannelOperationsApi = (*ChannelOperationsApiService)(&c.common)
 	c.ChannelOperationsForOrganizationApi = (*ChannelOperationsForOrganizationApiService)(&c.common)
 	c.ChannelsApi = (*ChannelsApiService)(&c.common)
 	c.ChannelsForOrganizationApi = (*ChannelsForOrganizationApiService)(&c.common)
@@ -146,7 +138,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Live2VODForOrganizationApi = (*Live2VODForOrganizationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
-	c.SourcesApi = (*SourcesApiService)(&c.common)
 
 	return c
 }

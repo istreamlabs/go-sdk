@@ -31,7 +31,7 @@ mkdir "${API}"
 # Copy required files to directory
 cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
 cp ./prerequisites/convenience._go ./${API}/convenience.go
-cp ./prerequisites/client._go ./${API}/client.go
+cp ./prerequisites/${API}_client._go ./${API}/client.go
 
 # build sdk generation image
 docker build -q -t generate-sdk . \
