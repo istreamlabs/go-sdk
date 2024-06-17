@@ -40,13 +40,11 @@ docker run --rm \
   --user $(id -u) \
   -v ${SCRIPT_DIR}:/go-sdk \
   "${GENERATOR_IMAGE}" generate \
-    -c "go-sdk/.generator.yaml" \
+    -g go -c "go-sdk/.generator.yaml" \
     -i "${OPENAPI_SPEC}" \
-    -g go \
     -o go-sdk/${API} \
     --skip-validate-spec \
-    --git-user-id=istreamlabs \
-    --git-repo-id=go-sdk
+    --git-user-id=istreamlabs --git-repo-id=go-sdk
 
 if [[ "$GITHUB_ACTIONS" = "true" ]]; then
   # Logicless templates are dumping extra quotes around enum values, so we've
