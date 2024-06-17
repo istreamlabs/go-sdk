@@ -45,19 +45,18 @@ docker run --rm \
   -v ${SCRIPT_DIR}/${API}:/go-sdk/sdk \
   generate-sdk
 
-if [[ "$GITHUB_ACTIONS" = "true" ]]; then
-  # Logicless templates are dumping extra quotes around enum values, so we've
-  # added some padding chars and now need to replace the padding + quotes.
-  # This is preferable to writing an entire huge Java project for a `trim`
-  # function in the template. I hate this. 🫣
-  sed -i -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
+# Logicless templates are dumping extra quotes around enum values, so we've
+# added some padding chars and now need to replace the padding + quotes.
+# This is preferable to writing an entire huge Java project for a `trim`
+# function in the template. I hate this. 🫣
+sed -i.bak -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
 
-  # Logicless templates are dumping `example:"null"` on every field, so we've
-  # got to remove those.
-  sed -i -E 's/ example:"null"//g' ./${API}/*.go
-  sed -i -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
-else
-  sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
-  sed -i '' -E 's/ example:"null"//g' ./${API}/*.go
-  sed -i '' -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
-fi
+# Logicless templates are dumping `example:"null"` on every field, so we've
+# got to remove those.
+sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
+
+# Correct an error in the unit tests
+sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
+
+# Cleanup all sed backups
+find . -name '*.bak' -delete
