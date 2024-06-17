@@ -3,3 +3,6 @@ disallowAdditionalPropertiesIfNotPresent: false
 generateInterfaces: true
 isGoSubmodule: true
 packageName: isp
+gitUserId: istreamlabs
+gitRepoId: go-sdk
+validateSpec: false
