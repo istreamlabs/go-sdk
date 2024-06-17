@@ -57,6 +57,7 @@ if [[ "$GITHUB_ACTIONS" = "true" ]]; then
   # Logicless templates are dumping `example:"null"` on every field, so we've
   # got to remove those.
   sed -i -E 's/ example:"null"//g' ./${API}/*.go
+  sed -i -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
 else
   sed -i '' -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
   sed -i '' -E 's/ example:"null"//g' ./${API}/*.go
