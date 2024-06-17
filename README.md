@@ -21,11 +21,11 @@ Generated SDK will be outputted to the `isp` folder.
 ```sh
 # By default, it generates against prod
 ./run.sh isp
-./run.sh isp-slates
+./run.sh isp-slate
 
 # Generate against stage
 ./run.sh isp stage
-./run.sh isp-slates stage
+./run.sh isp-slate stage
 ```
 
 ## Verify SDK generated successfully

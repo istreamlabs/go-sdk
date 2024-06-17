@@ -9,13 +9,13 @@ if [[ "$API" == "isp" ]]; then
   if [[ $ENV == "stage" ]]; then
     OPENAPI_SPEC="http://stage.api.istreamplanet.com/openapi.json"
   fi
-elif [[ "$API" == "isp-slates" ]]; then
+elif [[ "$API" == "isp-slate" ]]; then
   OPENAPI_SPEC="http://api.istreamplanet.com/docs/slates/openapi.json"
   if [[ $ENV == "stage" ]]; then
     OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
   fi
 else
-  >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slates"
+  >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slate"
   >&2 echo ""
   exit 1
 fi
