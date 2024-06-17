@@ -1,7 +1,7 @@
 /*
- * iStreamPlanet Channels API
+ * iStreamPlanet Slate Management API
  *
- * API version: 0.0.0
+ * API version: 1.0.0
  * Contact: support@istreamplanet.com
  */
 
@@ -35,13 +35,13 @@ import (
 )
 
 var (
-	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:[^;]+\+)?json)`)
+	jsonCheck = regexp.MustCompile(`(?i:(?:application|text)/(?:vnd\.[^;]+\+)?json)`)
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 	queryParamSplit = regexp.MustCompile(`(^|&)([^&]+)`)
 	queryDescape    = strings.NewReplacer( "%5B", "[", "%5D", "]" )
 )
 
-// APIClient manages communication with the iStreamPlanet Channels API API v0.0.0
+// APIClient manages communication with the iStreamPlanet Slate Management API API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -49,74 +49,11 @@ type APIClient struct {
 
 	// API Services
 
-	AuditOperationsApi AuditOperationsApi
-
-	AuditOperationsForOrganizationApi AuditOperationsForOrganizationApi
-
-	AvailableSourcesApi AvailableSourcesApi
-
-	ChannelOperationsApi ChannelOperationsApi
-
-	ChannelOperationsForOrganizationApi ChannelOperationsForOrganizationApi
-
-	ChannelsApi ChannelsApi
-
-	ChannelsForOrganizationApi ChannelsForOrganizationApi
-
-	DeprecatedLive2VODApi DeprecatedLive2VODApi
-
-	Live2VODForOrganizationApi Live2VODForOrganizationApi
-
-	OrganizationsApi OrganizationsApi
-
-	SourcePreviewsApi SourcePreviewsApi
-
-	SourcesApi SourcesApi
+	SlatesForOrganizationApi SlatesForOrganizationApi
 }
 
 type service struct {
 	client *APIClient
-}
-
-type CloseableTransport struct {
-	http.RoundTripper
-}
-
-type idleConnectionsCloser interface {
-	CloseIdleConnections()
-}
-
-func (t *CloseableTransport) CloseIdleConnections() {
-	base := t.RoundTripper
-	if o, ok := base.(*oauth2.Transport); ok {
-		// oath2.Transport doesn't implement what we need, but we know it stores
-		// the underlying RoundTripper in a field called Base and can access it
-		// here. It's likely an `http.Transport` and should implement the
-		// connection closer.
-		base = o.Base
-	}
-
-	if base == nil {
-		base = http.DefaultTransport
-	}
-
-	if closer, ok := base.(idleConnectionsCloser); ok {
-		closer.CloseIdleConnections()
-	} else {
-		panic("HTTP transport does not implement IdleConnectionsCloser")
-	}
-}
-
-func NewCloseableTransport(t http.RoundTripper) *CloseableTransport {
-	// Attempt to fail fast if we get an invalid transport. Still have to check
-	// later as e.g. `oauth2.Transport.Base` could change at runtime.
-	switch t.(type) {
-	case *oauth2.Transport, idleConnectionsCloser:
-		// ok
-	default:
-		panic("HTTP transport does not implement IdleConnectionsCloser")
-	}
-	return &CloseableTransport{t}
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
@@ -125,28 +62,13 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	if cfg.HTTPClient == nil {
 		cfg.HTTPClient = http.DefaultClient
 	}
-	if cfg.HTTPClient.Transport == nil {
-		cfg.HTTPClient.Transport = http.DefaultTransport
-	}
-	cfg.HTTPClient.Transport = NewCloseableTransport(cfg.HTTPClient.Transport)
 
 	c := &APIClient{}
 	c.cfg = cfg
 	c.common.client = c
 
 	// API Services
-	c.AuditOperationsApi = (*AuditOperationsApiService)(&c.common)
-	c.AuditOperationsForOrganizationApi = (*AuditOperationsForOrganizationApiService)(&c.common)
-	c.AvailableSourcesApi = (*AvailableSourcesApiService)(&c.common)
-	c.ChannelOperationsApi = (*ChannelOperationsApiService)(&c.common)
-	c.ChannelOperationsForOrganizationApi = (*ChannelOperationsForOrganizationApiService)(&c.common)
-	c.ChannelsApi = (*ChannelsApiService)(&c.common)
-	c.ChannelsForOrganizationApi = (*ChannelsForOrganizationApiService)(&c.common)
-	c.DeprecatedLive2VODApi = (*DeprecatedLive2VODApiService)(&c.common)
-	c.Live2VODForOrganizationApi = (*Live2VODForOrganizationApiService)(&c.common)
-	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
-	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
-	c.SourcesApi = (*SourcesApiService)(&c.common)
+	c.SlatesForOrganizationApi = (*SlatesForOrganizationApiService)(&c.common)
 
 	return c
 }
@@ -327,10 +249,6 @@ func (c *APIClient) callAPI(request *http.Request) (*http.Response, error) {
 	resp, err := c.cfg.HTTPClient.Do(request)
 	if err != nil {
 		return resp, err
-	}
-
-	if resp.StatusCode == 503 {
-		c.cfg.HTTPClient.CloseIdleConnections()
 	}
 
 	if c.cfg.Debug {
