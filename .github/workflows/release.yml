@@ -1,0 +1,48 @@
+---
+name: release
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  tag-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Tag new version
+        id: tag
+        uses: paulhatch/semantic-version@v5.4.0
+        with:
+          change_path: "isp isp-slate"
+          tag_prefix: v
+          version_format: "v${major}.${minor}.${patch}"
+          major_pattern: "/(^[^!:]+!:|BREAKING)/"
+          minor_pattern: "/^feat[^!:]*:/"
+          bump_each_commit: false
+          search_commit_body: false
+          user_format_type: csv
+      -
+        name: Publish release
+        if: ${{ !steps.tag.outputs.is_tagged }}
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.tag.outputs.version_tag }}
+          name: ${{ steps.tag.outputs.version }}
+          generate_release_notes: true
