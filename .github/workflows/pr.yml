@@ -46,7 +46,7 @@ jobs:
       -
         uses: actions/setup-go@v5
       -
-        name: Lint
+        name: Run tests
         run: go test ./...
 
   pr-ready:
