@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
+	openapiclient "github.com/istreamlabs/go-sdk/isp-slate"
 )
 
 func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
