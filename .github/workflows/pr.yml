@@ -1,0 +1,63 @@
+---
+name: pr
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  setup:
+    runs-on: ubuntu-latest
+    outputs:
+      changed-go: ${{ steps.changed-paths.outputs.go == 'true' }}
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        name: Detect changes
+        uses: dorny/paths-filter@v3
+        id: changed-paths
+        with:
+          filters: |
+            go:
+              - 'isp/**'
+              - 'isp-slate/**'
+              - '*.go'
+              - 'go.*'
+
+  unit-test:
+    needs: [setup]
+    runs-on: ubuntu-latest
+    if: needs.setup.outputs.changed-go
+    steps:
+      -
+        uses: actions/checkout@v4
+      -
+        uses: actions/setup-go@v5
+      -
+        name: Run tests
+        run: go test ./...
+
+  pr-ready:
+    needs: [setup, unit-test]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Validate unit-test job
+        if: needs.setup.outputs.changed-go
+        run: |
+          if [[ '${{ needs.unit-test.result }}' != 'success' ]]; then
+            echo '::error::unit-test job had issues'
+            exit 1
+          fi
