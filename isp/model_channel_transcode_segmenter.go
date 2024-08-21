@@ -20,8 +20,6 @@ var _ MappedNullable = &ChannelTranscodeSegmenter{}
 type ChannelTranscodeSegmenter struct {
 	// GOP (group of pictures) duration specifies the amount of time between I-frames. Shorter durations can lower quality slightly as each I-frame uses more bits than P- & B-frames but can provide a better seeking experience when enabling thumbnail encoders and/or I-Frame Only playlists.
 	GopDurationSecs *float64 `json:"gop_duration_secs,omitempty" format:"double" exclusiveMinimum:"0" doc:"GOP (group of pictures) duration specifies the amount of time between I-frames. Shorter durations can lower quality slightly as each I-frame uses more bits than P- & B-frames but can provide a better seeking experience when enabling thumbnail encoders and/or I-Frame Only playlists."`
-	// Not public because we haven't shipped low latency HLS yet and we probably need to update the naming.
-	PartialsMode *string `json:"partials_mode,omitempty" enum:"GOP" doc:"Not public because we haven't shipped low latency HLS yet and we probably need to update the naming."`
 	// Segment duration specifies the target duration of a single segment. Segments shorter than this duration can occur at signaling boundaries. This value _must_ be a multiple of the GOP duration value.
 	SegmentDurationSecs *float64 `json:"segment_duration_secs,omitempty" format:"double" exclusiveMinimum:"0" doc:"Segment duration specifies the target duration of a single segment. Segments shorter than this duration can occur at signaling boundaries. This value _must_ be a multiple of the GOP duration value."`
 	// Include TEMI (Timeline and External Media Information ISO/IEC 13818-1:2019 Annex U) to mpeg-ts segments.
@@ -75,38 +73,6 @@ func (o *ChannelTranscodeSegmenter) HasGopDurationSecs() bool {
 // SetGopDurationSecs gets a reference to the given float64 and assigns it to the GopDurationSecs field.
 func (o *ChannelTranscodeSegmenter) SetGopDurationSecs(v float64) {
 	o.GopDurationSecs = &v
-}
-
-// GetPartialsMode returns the PartialsMode field value if set, zero value otherwise.
-func (o *ChannelTranscodeSegmenter) GetPartialsMode() string {
-	if o == nil || IsNil(o.PartialsMode) {
-		var ret string
-		return ret
-	}
-	return *o.PartialsMode
-}
-
-// GetPartialsModeOk returns a tuple with the PartialsMode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelTranscodeSegmenter) GetPartialsModeOk() (*string, bool) {
-	if o == nil || IsNil(o.PartialsMode) {
-		return nil, false
-	}
-	return o.PartialsMode, true
-}
-
-// HasPartialsMode returns a boolean if a field has been set.
-func (o *ChannelTranscodeSegmenter) HasPartialsMode() bool {
-	if o != nil && !IsNil(o.PartialsMode) {
-		return true
-	}
-
-	return false
-}
-
-// SetPartialsMode gets a reference to the given string and assigns it to the PartialsMode field.
-func (o *ChannelTranscodeSegmenter) SetPartialsMode(v string) {
-	o.PartialsMode = &v
 }
 
 // GetSegmentDurationSecs returns the SegmentDurationSecs field value if set, zero value otherwise.
@@ -185,9 +151,6 @@ func (o ChannelTranscodeSegmenter) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.GopDurationSecs) {
 		toSerialize["gop_duration_secs"] = o.GopDurationSecs
-	}
-	if !IsNil(o.PartialsMode) {
-		toSerialize["partials_mode"] = o.PartialsMode
 	}
 	if !IsNil(o.SegmentDurationSecs) {
 		toSerialize["segment_duration_secs"] = o.SegmentDurationSecs
