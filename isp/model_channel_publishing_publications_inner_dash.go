@@ -21,7 +21,7 @@ type ChannelPublishingPublicationsInnerDash struct {
 	// Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
 	MinimumUpdatePeriodSecs *int32 `json:"minimum_update_period_secs,omitempty" format:"int32" doc:"Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'."`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
-	SignalingFormats []string `json:"signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_BIN_DFP,SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN,SCTE35_SPLICE_INFO_SECTION_WITH_PRESENTATION_TIME,SCTE35_BIN_WITH_PRESENTATION_TIME,SCTE35_BIN_NON_REPEATING,SCTE35_SPLICE_INFO_SECTION_NON_REPEATING" doc:"Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
+	SignalingFormats []string `json:"signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// The suggested amount of time (in seconds) the player should be behind the live stream. This value must be greater or equal to 'minimum_update_period_secs'.
 	SuggestedPresentationDelaySecs *int32 `json:"suggested_presentation_delay_secs,omitempty" format:"int32" minimum:"0" doc:"The suggested amount of time (in seconds) the player should be behind the live stream. This value must be greater or equal to 'minimum_update_period_secs'."`
 	// If set to 'URL_TYPE_UNDEFINED' playlist generation will use 'RELATIVE'.

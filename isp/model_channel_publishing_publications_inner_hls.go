@@ -33,7 +33,7 @@ type ChannelPublishingPublicationsInnerHls struct {
 	// When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.
 	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty" doc:"When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification."`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
-	SignalingFormats []string `json:"signaling_formats,omitempty" uniqueItems:"true" enum:"MDIALOG,FREEWHEEL,ADOBE_SIMPLE,ADOBE_SCTE35,APPLE_SCTE35,AD_SIMPLE,SCTE35,SCTE35_2019,SCTE35_2019_EVERY_SEGMENT" doc:"Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
+	SignalingFormats []string `json:"signaling_formats,omitempty" uniqueItems:"true" enum:"APPLE_SCTE35,AD_SIMPLE,SCTE35" doc:"Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z
 	UtcInSegmentTitle *bool `json:"utc_in_segment_title,omitempty" doc:"Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z"`
 }

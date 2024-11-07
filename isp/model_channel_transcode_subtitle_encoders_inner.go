@@ -23,6 +23,8 @@ type ChannelTranscodeSubtitleEncodersInner struct {
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	// Language is the code for the language in which the subtitles are written.
 	Language *string `json:"language,omitempty" minLength:"2" doc:"Language is the code for the language in which the subtitles are written."`
+	// Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
+	Tag *string `json:"tag,omitempty" doc:"Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus."`
 	Teletext *ChannelTranscodeSubtitleEncodersInnerTeletext `json:"teletext,omitempty"`
 	// Usage indicates how this encoder should be flagged in generated manifests.
 	Usage *string `json:"usage,omitempty" enum:"CLOSED_CAPTIONS,SUBTITLES" doc:"Usage indicates how this encoder should be flagged in generated manifests."`
@@ -141,6 +143,38 @@ func (o *ChannelTranscodeSubtitleEncodersInner) SetLanguage(v string) {
 	o.Language = &v
 }
 
+// GetTag returns the Tag field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetTag() string {
+	if o == nil || IsNil(o.Tag) {
+		var ret string
+		return ret
+	}
+	return *o.Tag
+}
+
+// GetTagOk returns a tuple with the Tag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetTagOk() (*string, bool) {
+	if o == nil || IsNil(o.Tag) {
+		return nil, false
+	}
+	return o.Tag, true
+}
+
+// HasTag returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) HasTag() bool {
+	if o != nil && !IsNil(o.Tag) {
+		return true
+	}
+
+	return false
+}
+
+// SetTag gets a reference to the given string and assigns it to the Tag field.
+func (o *ChannelTranscodeSubtitleEncodersInner) SetTag(v string) {
+	o.Tag = &v
+}
+
 // GetTeletext returns the Teletext field value if set, zero value otherwise.
 func (o *ChannelTranscodeSubtitleEncodersInner) GetTeletext() ChannelTranscodeSubtitleEncodersInnerTeletext {
 	if o == nil || IsNil(o.Teletext) {
@@ -223,6 +257,9 @@ func (o ChannelTranscodeSubtitleEncodersInner) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.Language) {
 		toSerialize["language"] = o.Language
+	}
+	if !IsNil(o.Tag) {
+		toSerialize["tag"] = o.Tag
 	}
 	if !IsNil(o.Teletext) {
 		toSerialize["teletext"] = o.Teletext

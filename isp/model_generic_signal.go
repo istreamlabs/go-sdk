@@ -23,11 +23,15 @@ type GenericSignal struct {
 	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
 	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id."`
 	// The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc.
-	SegmentType string `json:"segment_type" enum:"splice_insert,content_id,program,program_breakaway,chapter,break,opening_credit,closing_credit,provider_placement,distributor_placement,provider_overlay,distributor_overlay,provider_ad,distributor_ad,unscheduled_event,network,slate" doc:"The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc."`
+	SegmentType string `json:"segment_type" enum:"splice_insert,content_id,program,program_breakaway,chapter,break,opening_credit,closing_credit,provider_placement,distributor_placement,provider_overlay,distributor_overlay,provider_ad,distributor_ad,unscheduled_event,network,slate,timed_metadata" doc:"The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc."`
 	// Whether this signal will start/end/etc a signaling segment
 	SignalType string `json:"signal_type" enum:"start,end,breakaway,resumption" doc:"Whether this signal will start/end/etc a signaling segment"`
 	// Slate url
 	SlateUri *string `json:"slate_uri,omitempty" format:"uri" doc:"Slate url"`
+	// Timed metadata opaque payload data
+	TimedMetadataPayload *string `json:"timed_metadata_payload,omitempty" doc:"Timed metadata opaque payload data"`
+	// The timed metadata signal's type
+	TimedMetadataType *string `json:"timed_metadata_type,omitempty" doc:"The timed metadata signal's type"`
 	// Qualifier type
 	Type *string `json:"type,omitempty" enum:"none,overlap,in_progress" doc:"Qualifier type"`
 	// UPIDs
@@ -194,6 +198,70 @@ func (o *GenericSignal) SetSlateUri(v string) {
 	o.SlateUri = &v
 }
 
+// GetTimedMetadataPayload returns the TimedMetadataPayload field value if set, zero value otherwise.
+func (o *GenericSignal) GetTimedMetadataPayload() string {
+	if o == nil || IsNil(o.TimedMetadataPayload) {
+		var ret string
+		return ret
+	}
+	return *o.TimedMetadataPayload
+}
+
+// GetTimedMetadataPayloadOk returns a tuple with the TimedMetadataPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericSignal) GetTimedMetadataPayloadOk() (*string, bool) {
+	if o == nil || IsNil(o.TimedMetadataPayload) {
+		return nil, false
+	}
+	return o.TimedMetadataPayload, true
+}
+
+// HasTimedMetadataPayload returns a boolean if a field has been set.
+func (o *GenericSignal) HasTimedMetadataPayload() bool {
+	if o != nil && !IsNil(o.TimedMetadataPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimedMetadataPayload gets a reference to the given string and assigns it to the TimedMetadataPayload field.
+func (o *GenericSignal) SetTimedMetadataPayload(v string) {
+	o.TimedMetadataPayload = &v
+}
+
+// GetTimedMetadataType returns the TimedMetadataType field value if set, zero value otherwise.
+func (o *GenericSignal) GetTimedMetadataType() string {
+	if o == nil || IsNil(o.TimedMetadataType) {
+		var ret string
+		return ret
+	}
+	return *o.TimedMetadataType
+}
+
+// GetTimedMetadataTypeOk returns a tuple with the TimedMetadataType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericSignal) GetTimedMetadataTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.TimedMetadataType) {
+		return nil, false
+	}
+	return o.TimedMetadataType, true
+}
+
+// HasTimedMetadataType returns a boolean if a field has been set.
+func (o *GenericSignal) HasTimedMetadataType() bool {
+	if o != nil && !IsNil(o.TimedMetadataType) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimedMetadataType gets a reference to the given string and assigns it to the TimedMetadataType field.
+func (o *GenericSignal) SetTimedMetadataType(v string) {
+	o.TimedMetadataType = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GenericSignal) GetType() string {
 	if o == nil || IsNil(o.Type) {
@@ -276,6 +344,12 @@ func (o GenericSignal) ToMap() (map[string]interface{}, error) {
 	toSerialize["signal_type"] = o.SignalType
 	if !IsNil(o.SlateUri) {
 		toSerialize["slate_uri"] = o.SlateUri
+	}
+	if !IsNil(o.TimedMetadataPayload) {
+		toSerialize["timed_metadata_payload"] = o.TimedMetadataPayload
+	}
+	if !IsNil(o.TimedMetadataType) {
+		toSerialize["timed_metadata_type"] = o.TimedMetadataType
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
