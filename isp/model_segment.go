@@ -29,7 +29,11 @@ type Segment struct {
 	SlateUrl *string `json:"slate_url,omitempty" doc:"When set, contains the URL to the slate media asset that will play for the duration of the segment."`
 	// The program time when the segment starts (or started).
 	Start *time.Time `json:"start,omitempty" format:"date-time" doc:"The program time when the segment starts (or started)."`
-	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,NOT_INDICATED,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE"`
+	// Timed metadata opaque payload data.
+	TimedMetadataPayload *string `json:"timed_metadata_payload,omitempty" doc:"Timed metadata opaque payload data."`
+	// The timed metadata signal's type.
+	TimedMetadataType *string `json:"timed_metadata_type,omitempty" doc:"The timed metadata signal's type."`
+	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,NOT_INDICATED,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,TIMED_METADATA"`
 }
 
 // NewSegment instantiates a new Segment object
@@ -209,6 +213,70 @@ func (o *Segment) SetStart(v time.Time) {
 	o.Start = &v
 }
 
+// GetTimedMetadataPayload returns the TimedMetadataPayload field value if set, zero value otherwise.
+func (o *Segment) GetTimedMetadataPayload() string {
+	if o == nil || IsNil(o.TimedMetadataPayload) {
+		var ret string
+		return ret
+	}
+	return *o.TimedMetadataPayload
+}
+
+// GetTimedMetadataPayloadOk returns a tuple with the TimedMetadataPayload field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Segment) GetTimedMetadataPayloadOk() (*string, bool) {
+	if o == nil || IsNil(o.TimedMetadataPayload) {
+		return nil, false
+	}
+	return o.TimedMetadataPayload, true
+}
+
+// HasTimedMetadataPayload returns a boolean if a field has been set.
+func (o *Segment) HasTimedMetadataPayload() bool {
+	if o != nil && !IsNil(o.TimedMetadataPayload) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimedMetadataPayload gets a reference to the given string and assigns it to the TimedMetadataPayload field.
+func (o *Segment) SetTimedMetadataPayload(v string) {
+	o.TimedMetadataPayload = &v
+}
+
+// GetTimedMetadataType returns the TimedMetadataType field value if set, zero value otherwise.
+func (o *Segment) GetTimedMetadataType() string {
+	if o == nil || IsNil(o.TimedMetadataType) {
+		var ret string
+		return ret
+	}
+	return *o.TimedMetadataType
+}
+
+// GetTimedMetadataTypeOk returns a tuple with the TimedMetadataType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Segment) GetTimedMetadataTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.TimedMetadataType) {
+		return nil, false
+	}
+	return o.TimedMetadataType, true
+}
+
+// HasTimedMetadataType returns a boolean if a field has been set.
+func (o *Segment) HasTimedMetadataType() bool {
+	if o != nil && !IsNil(o.TimedMetadataType) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimedMetadataType gets a reference to the given string and assigns it to the TimedMetadataType field.
+func (o *Segment) SetTimedMetadataType(v string) {
+	o.TimedMetadataType = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Segment) GetType() string {
 	if o == nil || IsNil(o.Type) {
@@ -265,6 +333,12 @@ func (o Segment) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Start) {
 		toSerialize["start"] = o.Start
+	}
+	if !IsNil(o.TimedMetadataPayload) {
+		toSerialize["timed_metadata_payload"] = o.TimedMetadataPayload
+	}
+	if !IsNil(o.TimedMetadataType) {
+		toSerialize["timed_metadata_type"] = o.TimedMetadataType
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type

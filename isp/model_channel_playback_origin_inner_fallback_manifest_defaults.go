@@ -19,11 +19,11 @@ var _ MappedNullable = &ChannelPlaybackOriginInnerFallbackManifestDefaults{}
 // ChannelPlaybackOriginInnerFallbackManifestDefaults struct for ChannelPlaybackOriginInnerFallbackManifestDefaults
 type ChannelPlaybackOriginInnerFallbackManifestDefaults struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
-	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_BIN_DFP,SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN,SCTE35_SPLICE_INFO_SECTION_WITH_PRESENTATION_TIME,SCTE35_BIN_WITH_PRESENTATION_TIME,SCTE35_BIN_NON_REPEATING,SCTE35_SPLICE_INFO_SECTION_NON_REPEATING" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
+	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
 	// Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
 	DurationSeconds *int32 `json:"duration_seconds,omitempty" format:"int32" minimum:"0" maximum:"43200" doc:"Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds."`
 	// HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
-	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty" uniqueItems:"true" enum:"MDIALOG,FREEWHEEL,ADOBE_SIMPLE,ADOBE_SCTE35,APPLE_SCTE35,AD_SIMPLE,SCTE35,SCTE35_2019,SCTE35_2019_EVERY_SEGMENT" doc:"HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
+	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty" uniqueItems:"true" enum:"APPLE_SCTE35,AD_SIMPLE,SCTE35" doc:"HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
 	MediaUrlType *string `json:"media_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'."`
 	// Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.

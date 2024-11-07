@@ -22,6 +22,7 @@ type ChannelPublishingPublicationsInnerOrigin struct {
 	ManifestDefaults *ChannelPublishingPublicationsInnerOriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
 	RetentionMinutes *int32 `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
+	Segments *ChannelPublishingPublicationsInnerOriginSegments `json:"segments,omitempty"`
 }
 
 // NewChannelPublishingPublicationsInnerOrigin instantiates a new ChannelPublishingPublicationsInnerOrigin object
@@ -137,6 +138,38 @@ func (o *ChannelPublishingPublicationsInnerOrigin) SetRetentionMinutes(v int32) 
 	o.RetentionMinutes = &v
 }
 
+// GetSegments returns the Segments field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOrigin) GetSegments() ChannelPublishingPublicationsInnerOriginSegments {
+	if o == nil || IsNil(o.Segments) {
+		var ret ChannelPublishingPublicationsInnerOriginSegments
+		return ret
+	}
+	return *o.Segments
+}
+
+// GetSegmentsOk returns a tuple with the Segments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOrigin) GetSegmentsOk() (*ChannelPublishingPublicationsInnerOriginSegments, bool) {
+	if o == nil || IsNil(o.Segments) {
+		return nil, false
+	}
+	return o.Segments, true
+}
+
+// HasSegments returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOrigin) HasSegments() bool {
+	if o != nil && !IsNil(o.Segments) {
+		return true
+	}
+
+	return false
+}
+
+// SetSegments gets a reference to the given ChannelPublishingPublicationsInnerOriginSegments and assigns it to the Segments field.
+func (o *ChannelPublishingPublicationsInnerOrigin) SetSegments(v ChannelPublishingPublicationsInnerOriginSegments) {
+	o.Segments = &v
+}
+
 func (o ChannelPublishingPublicationsInnerOrigin) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -155,6 +188,9 @@ func (o ChannelPublishingPublicationsInnerOrigin) ToMap() (map[string]interface{
 	}
 	if !IsNil(o.RetentionMinutes) {
 		toSerialize["retention_minutes"] = o.RetentionMinutes
+	}
+	if !IsNil(o.Segments) {
+		toSerialize["segments"] = o.Segments
 	}
 	return toSerialize, nil
 }

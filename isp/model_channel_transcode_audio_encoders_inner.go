@@ -32,6 +32,8 @@ type ChannelTranscodeAudioEncodersInner struct {
 	Loudness *ChannelTranscodeAudioEncodersInnerLoudness `json:"loudness,omitempty"`
 	// Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC-LC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. HE-AAC supports 16000, 22050, 24000, 32000, 44100, and 48000. AC3/EAC3 support only 48000.
 	SampleRate *int32 `json:"sample_rate,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC-LC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. HE-AAC supports 16000, 22050, 24000, 32000, 44100, and 48000. AC3/EAC3 support only 48000."`
+	// Used by the player to map audio tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
+	Tag *string `json:"tag,omitempty" doc:"Used by the player to map audio tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus."`
 }
 
 // NewChannelTranscodeAudioEncodersInner instantiates a new ChannelTranscodeAudioEncodersInner object
@@ -307,6 +309,38 @@ func (o *ChannelTranscodeAudioEncodersInner) SetSampleRate(v int32) {
 	o.SampleRate = &v
 }
 
+// GetTag returns the Tag field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInner) GetTag() string {
+	if o == nil || IsNil(o.Tag) {
+		var ret string
+		return ret
+	}
+	return *o.Tag
+}
+
+// GetTagOk returns a tuple with the Tag field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInner) GetTagOk() (*string, bool) {
+	if o == nil || IsNil(o.Tag) {
+		return nil, false
+	}
+	return o.Tag, true
+}
+
+// HasTag returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInner) HasTag() bool {
+	if o != nil && !IsNil(o.Tag) {
+		return true
+	}
+
+	return false
+}
+
+// SetTag gets a reference to the given string and assigns it to the Tag field.
+func (o *ChannelTranscodeAudioEncodersInner) SetTag(v string) {
+	o.Tag = &v
+}
+
 func (o ChannelTranscodeAudioEncodersInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -340,6 +374,9 @@ func (o ChannelTranscodeAudioEncodersInner) ToMap() (map[string]interface{}, err
 	}
 	if !IsNil(o.SampleRate) {
 		toSerialize["sample_rate"] = o.SampleRate
+	}
+	if !IsNil(o.Tag) {
+		toSerialize["tag"] = o.Tag
 	}
 	return toSerialize, nil
 }
