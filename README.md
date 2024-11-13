@@ -13,7 +13,6 @@ A clean directory is required to ensure defunct files are removed. However, some
 This is automatically handled when using `./run.sh isp`
 
 ## Requirements
-
 - Docker
 
 Generated SDK will be outputted to the `isp` folder.
