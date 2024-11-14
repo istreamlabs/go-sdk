@@ -1643,7 +1643,7 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/problem+json", "text/plain"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
