@@ -26,7 +26,7 @@ type ChannelSignaling struct {
 	// Settings that apply to specific segments.
 	SegmentSettings []ChannelSignalingSegmentSettingsInner `json:"segment_settings,omitempty" doc:"Settings that apply to specific segments."`
 	// Segment types to process for in-band signaling.
-	Segments []string `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,NOT_INDICATED,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,TIMED_METADATA" doc:"Segment types to process for in-band signaling."`
+	Segments []string `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA" doc:"Segment types to process for in-band signaling."`
 }
 
 // NewChannelSignaling instantiates a new ChannelSignaling object
