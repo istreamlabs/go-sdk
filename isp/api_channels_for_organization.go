@@ -19,23 +19,22 @@ import (
 	"time"
 )
 
-
-type ChannelsForOrganizationApi interface {
+type ChannelsForOrganizationAPI interface {
 
 	/*
-	DeleteOrgChannel Delete channel
+			DeleteOrgChannel Delete channel
 
-	Delete a channel and stop publishing. This action is idempotent.
+			Delete a channel and stop publishing. This action is idempotent.
 
-End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
-1. The channel's DesiredState must be updated to `OFF`See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
-2. Once the channel is `OFF`, the channel can be deleted with the flag`--end_playlist=false`.
+		End distributions are automatically sent when attempting to delete an `ON` channel. To delete a channel without sending end distribution:
+		1. The channel's DesiredState must be updated to `OFF`See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
+		2. Once the channel is `OFF`, the channel can be deleted with the flag`--end_playlist=false`.
 
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiDeleteOrgChannelRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param channelId Unique channel identifier
+			@return ApiDeleteOrgChannelRequest
 	*/
 	DeleteOrgChannel(ctx context.Context, org string, channelId string) ApiDeleteOrgChannelRequest
 
@@ -43,14 +42,14 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	DeleteOrgChannelExecute(r ApiDeleteOrgChannelRequest) (*http.Response, error)
 
 	/*
-	GetOrgChannel Get Channel
+		GetOrgChannel Get Channel
 
-	Get a channel's configuration
+		Get a channel's configuration
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiGetOrgChannelRequest
 	*/
 	GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest
 
@@ -59,14 +58,14 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	GetOrgChannelExecute(r ApiGetOrgChannelRequest) (*Channel, *http.Response, error)
 
 	/*
-	GetOrgPlaybackConfig Get Channel Playback Config
+		GetOrgPlaybackConfig Get Channel Playback Config
 
-	Get a channel's playback configuration
+		Get a channel's playback configuration
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgPlaybackConfigRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiGetOrgPlaybackConfigRequest
 	*/
 	GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest
 
@@ -75,13 +74,13 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error)
 
 	/*
-	ListOrgChannels List channels
+		ListOrgChannels List channels
 
-	Get a list of your channels.
+		Get a list of your channels.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@return ApiListOrgChannelsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@return ApiListOrgChannelsRequest
 	*/
 	ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest
 
@@ -90,14 +89,14 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error)
 
 	/*
-	PatchOrgChannel Patch org-channel
+		PatchOrgChannel Patch org-channel
 
-	Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
+		Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPatchOrgChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiPatchOrgChannelRequest
 	*/
 	PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest
 
@@ -105,14 +104,14 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error)
 
 	/*
-	PutOrgChannel Create/Update channel
+		PutOrgChannel Create/Update channel
 
-	Create or update an existing channel configuration.
+		Create or update an existing channel configuration.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPutOrgChannelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiPutOrgChannelRequest
 	*/
 	PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest
 
@@ -120,12 +119,12 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error)
 
 	/*
-	PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
+		PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPutOrgChannelDesiredStateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiPutOrgChannelDesiredStateRequest
 	*/
 	PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest
 
@@ -133,17 +132,17 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error)
 }
 
-// ChannelsForOrganizationApiService ChannelsForOrganizationApi service
-type ChannelsForOrganizationApiService service
+// ChannelsForOrganizationAPIService ChannelsForOrganizationAPI service
+type ChannelsForOrganizationAPIService service
 
 type ApiDeleteOrgChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
-	ifMatch *[]string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
+	ctx               context.Context
+	ApiService        ChannelsForOrganizationAPI
+	org               string
+	channelId         string
+	ifMatch           *[]string
+	ifNoneMatch       *[]string
+	ifModifiedSince   *time.Time
 	ifUnmodifiedSince *time.Time
 }
 
@@ -184,30 +183,29 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 1. The channel's DesiredState must be updated to `OFF`See [put-org-channel-desired-state](#put-/v2/-org-/channels/-channel-id-/desired-state) for more details.
 2. Once the channel is `OFF`, the channel can be deleted with the flag`--end_playlist=false`.
 
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiDeleteOrgChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiDeleteOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) DeleteOrgChannel(ctx context.Context, org string, channelId string) ApiDeleteOrgChannelRequest {
+func (a *ChannelsForOrganizationAPIService) DeleteOrgChannel(ctx context.Context, org string, channelId string) ApiDeleteOrgChannelRequest {
 	return ApiDeleteOrgChannelRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationAPIService) DeleteOrgChannelExecute(r ApiDeleteOrgChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.DeleteOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.DeleteOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -360,13 +358,13 @@ func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteO
 }
 
 type ApiGetOrgChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
-	ifMatch *[]string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
+	ctx               context.Context
+	ApiService        ChannelsForOrganizationAPI
+	org               string
+	channelId         string
+	ifMatch           *[]string
+	ifNoneMatch       *[]string
+	ifModifiedSince   *time.Time
 	ifUnmodifiedSince *time.Time
 }
 
@@ -403,31 +401,32 @@ GetOrgChannel Get Channel
 
 Get a channel's configuration
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiGetOrgChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest {
+func (a *ChannelsForOrganizationAPIService) GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest {
 	return ApiGetOrgChannelRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return Channel
-func (a *ChannelsForOrganizationApiService) GetOrgChannelExecute(r ApiGetOrgChannelRequest) (*Channel, *http.Response, error) {
+//
+//	@return Channel
+func (a *ChannelsForOrganizationAPIService) GetOrgChannelExecute(r ApiGetOrgChannelRequest) (*Channel, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Channel
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Channel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.GetOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.GetOrgChannel")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -591,10 +590,10 @@ func (a *ChannelsForOrganizationApiService) GetOrgChannelExecute(r ApiGetOrgChan
 }
 
 type ApiGetOrgPlaybackConfigRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
+	ctx        context.Context
+	ApiService ChannelsForOrganizationAPI
+	org        string
+	channelId  string
 }
 
 func (r ApiGetOrgPlaybackConfigRequest) Execute() (*ChannelPlayback, *http.Response, error) {
@@ -606,31 +605,32 @@ GetOrgPlaybackConfig Get Channel Playback Config
 
 Get a channel's playback configuration
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiGetOrgPlaybackConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgPlaybackConfigRequest
 */
-func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest {
+func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest {
 	return ApiGetOrgPlaybackConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return ChannelPlayback
-func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
+//
+//	@return ChannelPlayback
+func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ChannelPlayback
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ChannelPlayback
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.GetOrgPlaybackConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.GetOrgPlaybackConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -782,12 +782,12 @@ func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGet
 }
 
 type ApiListOrgChannelsRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	cursor *string
-	pageSize *int32
-	q *string
+	ctx          context.Context
+	ApiService   ChannelsForOrganizationAPI
+	org          string
+	cursor       *string
+	pageSize     *int32
+	q            *string
 	desiredState *string
 }
 
@@ -824,29 +824,30 @@ ListOrgChannels List channels
 
 Get a list of your channels.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @return ApiListOrgChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@return ApiListOrgChannelsRequest
 */
-func (a *ChannelsForOrganizationApiService) ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest {
+func (a *ChannelsForOrganizationAPIService) ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest {
 	return ApiListOrgChannelsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
+		ctx:        ctx,
+		org:        org,
 	}
 }
 
 // Execute executes the request
-//  @return []Summary2
-func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error) {
+//
+//	@return []Summary2
+func (a *ChannelsForOrganizationAPIService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []Summary2
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Summary2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.ListOrgChannels")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.ListOrgChannels")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -996,16 +997,16 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgC
 }
 
 type ApiPatchOrgChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
-	validateOnly *bool
-	ifMatch *[]string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
-	patchOrgChannelRequestInner *[]PatchOrgChannelRequestInner
+	ctx                          context.Context
+	ApiService                   ChannelsForOrganizationAPI
+	org                          string
+	channelId                    string
+	validateOnly                 *bool
+	ifMatch                      *[]string
+	ifNoneMatch                  *[]string
+	ifModifiedSince              *time.Time
+	ifUnmodifiedSince            *time.Time
+	patchOrgChannelRequest2Inner *[]PatchOrgChannelRequest2Inner
 }
 
 // Validate request but do not otherwise process it
@@ -1038,8 +1039,8 @@ func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time
 	return r
 }
 
-func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequestInner(patchOrgChannelRequestInner []PatchOrgChannelRequestInner) ApiPatchOrgChannelRequest {
-	r.patchOrgChannelRequestInner = &patchOrgChannelRequestInner
+func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequest2Inner(patchOrgChannelRequest2Inner []PatchOrgChannelRequest2Inner) ApiPatchOrgChannelRequest {
+	r.patchOrgChannelRequest2Inner = &patchOrgChannelRequest2Inner
 	return r
 }
 
@@ -1052,29 +1053,29 @@ PatchOrgChannel Patch org-channel
 
 Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPatchOrgChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPatchOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest {
+func (a *ChannelsForOrganizationAPIService) PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest {
 	return ApiPatchOrgChannelRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationAPIService) PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPatch
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPatch
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PatchOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PatchOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1123,7 +1124,7 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchOrgChannelRequestInner
+	localVarPostBody = r.patchOrgChannelRequest2Inner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -1272,15 +1273,15 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 }
 
 type ApiPutOrgChannelRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
-	validateOnly *bool
-	ifMatch *[]string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
+	ctx                  context.Context
+	ApiService           ChannelsForOrganizationAPI
+	org                  string
+	channelId            string
+	validateOnly         *bool
+	ifMatch              *[]string
+	ifNoneMatch          *[]string
+	ifModifiedSince      *time.Time
+	ifUnmodifiedSince    *time.Time
 	putOrgChannelRequest *PutOrgChannelRequest
 }
 
@@ -1328,29 +1329,29 @@ PutOrgChannel Create/Update channel
 
 Create or update an existing channel configuration.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPutOrgChannelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPutOrgChannelRequest
 */
-func (a *ChannelsForOrganizationApiService) PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest {
+func (a *ChannelsForOrganizationAPIService) PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest {
 	return ApiPutOrgChannelRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationAPIService) PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PutOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PutOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1538,16 +1539,16 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 }
 
 type ApiPutOrgChannelDesiredStateRequest struct {
-	ctx context.Context
-	ApiService ChannelsForOrganizationApi
-	org string
-	channelId string
-	endPlaylist *bool
-	ifMatch *[]string
-	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
+	ctx               context.Context
+	ApiService        ChannelsForOrganizationAPI
+	org               string
+	channelId         string
+	endPlaylist       *bool
+	ifMatch           *[]string
+	ifNoneMatch       *[]string
+	ifModifiedSince   *time.Time
 	ifUnmodifiedSince *time.Time
-	desiredStateBody *DesiredStateBody
+	desiredStateBody  *DesiredStateBody
 }
 
 // Deprecated, server ignores all values. Will be removed from API once all clients are confirmed to not break.
@@ -1592,29 +1593,29 @@ func (r ApiPutOrgChannelDesiredStateRequest) Execute() (*http.Response, error) {
 /*
 PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPutOrgChannelDesiredStateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPutOrgChannelDesiredStateRequest
 */
-func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest {
+func (a *ChannelsForOrganizationAPIService) PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest {
 	return ApiPutOrgChannelDesiredStateRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationAPIService) PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PutOrgChannelDesiredState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PutOrgChannelDesiredState")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

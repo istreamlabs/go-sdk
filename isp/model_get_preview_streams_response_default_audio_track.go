@@ -21,11 +21,11 @@ type GetPreviewStreamsResponseDefaultAudioTrack struct {
 	Bitrate *int32 `json:"bitrate,omitempty" format:"int32"`
 	// codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this AudioTrackInfo. ex. 'mp4a.40.2' for AAC Low-Complexity.
 	CodecString *string `json:"codec_string,omitempty" doc:"codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this AudioTrackInfo. ex. 'mp4a.40.2' for AAC Low-Complexity."`
-	Id *int32 `json:"id,omitempty" format:"int32" minimum:"0"`
+	Id          *int32  `json:"id,omitempty" format:"int32" minimum:"0"`
 	// Friendly name of the AudioTrack.
-	Name *string `json:"name,omitempty" doc:"Friendly name of the AudioTrack."`
-	NumChannels *int32 `json:"num_channels,omitempty" format:"int32"`
-	SampleRate *int32 `json:"sample_rate,omitempty" format:"int32"`
+	Name        *string `json:"name,omitempty" doc:"Friendly name of the AudioTrack."`
+	NumChannels *int32  `json:"num_channels,omitempty" format:"int32"`
+	SampleRate  *int32  `json:"sample_rate,omitempty" format:"int32"`
 }
 
 // NewGetPreviewStreamsResponseDefaultAudioTrack instantiates a new GetPreviewStreamsResponseDefaultAudioTrack object
@@ -238,7 +238,7 @@ func (o *GetPreviewStreamsResponseDefaultAudioTrack) SetSampleRate(v int32) {
 }
 
 func (o GetPreviewStreamsResponseDefaultAudioTrack) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -303,5 +303,3 @@ func (v *NullableGetPreviewStreamsResponseDefaultAudioTrack) UnmarshalJSON(src [
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

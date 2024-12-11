@@ -19,7 +19,7 @@ var _ MappedNullable = &ArchiveFERRequestPackagesInnerDash{}
 // ArchiveFERRequestPackagesInnerDash struct for ArchiveFERRequestPackagesInnerDash
 type ArchiveFERRequestPackagesInnerDash struct {
 	FallbackUrl string `json:"fallback_url"`
-	PrimaryUrl string `json:"primary_url"`
+	PrimaryUrl  string `json:"primary_url"`
 	QueryString string `json:"query_string"`
 }
 
@@ -116,7 +116,7 @@ func (o *ArchiveFERRequestPackagesInnerDash) SetQueryString(v string) {
 }
 
 func (o ArchiveFERRequestPackagesInnerDash) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,5 +166,3 @@ func (v *NullableArchiveFERRequestPackagesInnerDash) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

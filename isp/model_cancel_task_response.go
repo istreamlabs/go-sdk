@@ -19,8 +19,8 @@ var _ MappedNullable = &CancelTaskResponse{}
 // CancelTaskResponse struct for CancelTaskResponse
 type CancelTaskResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Error CancelTaskResponseError `json:"error"`
+	Schema *string                 `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	Error  CancelTaskResponseError `json:"error"`
 }
 
 // NewCancelTaskResponse instantiates a new CancelTaskResponse object
@@ -98,7 +98,7 @@ func (o *CancelTaskResponse) SetError(v CancelTaskResponseError) {
 }
 
 func (o CancelTaskResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -149,5 +149,3 @@ func (v *NullableCancelTaskResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

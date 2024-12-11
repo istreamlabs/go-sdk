@@ -24,7 +24,7 @@ type PutOrgChannelRequestIngestSource struct {
 	// Unique identifier for this source.
 	Id string `json:"id" doc:"Unique identifier for this source."`
 	// Self link for the source.
-	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the source."`
+	Self        *string                         `json:"self,omitempty" format:"uri-reference" doc:"Self link for the source."`
 	VideoSource *ChannelIngestSourceVideoSource `json:"video_source,omitempty"`
 }
 
@@ -199,7 +199,7 @@ func (o *PutOrgChannelRequestIngestSource) SetVideoSource(v ChannelIngestSourceV
 }
 
 func (o PutOrgChannelRequestIngestSource) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -259,5 +259,3 @@ func (v *NullablePutOrgChannelRequestIngestSource) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

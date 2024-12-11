@@ -19,7 +19,7 @@ var _ MappedNullable = &Status{}
 // Status struct for Status
 type Status struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	Schema       *string             `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
 }
 
@@ -105,7 +105,7 @@ func (o *Status) SetIngestStatus(v StatusIngestStatus) {
 }
 
 func (o Status) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,5 +158,3 @@ func (v *NullableStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -19,12 +19,12 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInner{}
 // StatusIngestStatusPrimaryStatusPmtStreamsInner struct for StatusIngestStatusPrimaryStatusPmtStreamsInner
 type StatusIngestStatusPrimaryStatusPmtStreamsInner struct {
 	// Indicates whether the stream is being used by the transcoder. The remaining fields are only valid if 'mapped' is true.
-	Mapped *bool `json:"mapped,omitempty" doc:"Indicates whether the stream is being used by the transcoder. The remaining fields are only valid if 'mapped' is true."`
-	Pid *int32 `json:"pid,omitempty" format:"int32" minimum:"0"`
+	Mapped *bool  `json:"mapped,omitempty" doc:"Indicates whether the stream is being used by the transcoder. The remaining fields are only valid if 'mapped' is true."`
+	Pid    *int32 `json:"pid,omitempty" format:"int32" minimum:"0"`
 	// The type of the stream as reported in the PMT.
 	RawType *string `json:"raw_type,omitempty" enum:"MP2T_STREAM_TYPE_MPEG1_VIDEO,MP2T_STREAM_TYPE_MPEG2_VIDEO,MP2T_STREAM_TYPE_MPEG1_AUDIO,MP2T_STREAM_TYPE_MPEG2_AUDIO,MP2T_STREAM_TYPE_PES_PRIVATE_DATA,MP2T_STREAM_TYPE_ADTS_AAC,MP2T_STREAM_TYPE_METADATA,MP2T_STREAM_TYPE_AVC,MP2T_STREAM_TYPE_HEVC,MP2T_STREAM_TYPE_TEMI,MP2T_STREAM_TYPE_AC3,MP2T_STREAM_TYPE_SCTE35,MP2T_STREAM_TYPE_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_AC3,MP2T_STREAM_TYPE_ENCRYPTED_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_ADTS_AAC,MP2T_STREAM_TYPE_ENCRYPTED_AVC,MP2T_STREAM_TYPE_ID3,MP2T_STREAM_TYPE_ANC,MP2T_STREAM_TYPE_UNKNOWN" doc:"The type of the stream as reported in the PMT."`
 	// The type of the stream inferred by the demuxer. Includes MP2TStreamType's pseudo-types values. It is not guaranteed to be the same value reported in the PMT. E.g. MP2T_STREAM_TYPE_PES_PRIVATE_DATA plus the right descriptor might result in MP2T_STREAM_TYPE_ID3.
-	Type *string `json:"type,omitempty" enum:"MP2T_STREAM_TYPE_MPEG1_VIDEO,MP2T_STREAM_TYPE_MPEG2_VIDEO,MP2T_STREAM_TYPE_MPEG1_AUDIO,MP2T_STREAM_TYPE_MPEG2_AUDIO,MP2T_STREAM_TYPE_PES_PRIVATE_DATA,MP2T_STREAM_TYPE_ADTS_AAC,MP2T_STREAM_TYPE_METADATA,MP2T_STREAM_TYPE_AVC,MP2T_STREAM_TYPE_HEVC,MP2T_STREAM_TYPE_TEMI,MP2T_STREAM_TYPE_AC3,MP2T_STREAM_TYPE_SCTE35,MP2T_STREAM_TYPE_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_AC3,MP2T_STREAM_TYPE_ENCRYPTED_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_ADTS_AAC,MP2T_STREAM_TYPE_ENCRYPTED_AVC,MP2T_STREAM_TYPE_ID3,MP2T_STREAM_TYPE_ANC,MP2T_STREAM_TYPE_UNKNOWN" doc:"The type of the stream inferred by the demuxer. Includes MP2TStreamType's pseudo-types values. It is not guaranteed to be the same value reported in the PMT. E.g. MP2T_STREAM_TYPE_PES_PRIVATE_DATA plus the right descriptor might result in MP2T_STREAM_TYPE_ID3."`
+	Type  *string                                              `json:"type,omitempty" enum:"MP2T_STREAM_TYPE_MPEG1_VIDEO,MP2T_STREAM_TYPE_MPEG2_VIDEO,MP2T_STREAM_TYPE_MPEG1_AUDIO,MP2T_STREAM_TYPE_MPEG2_AUDIO,MP2T_STREAM_TYPE_PES_PRIVATE_DATA,MP2T_STREAM_TYPE_ADTS_AAC,MP2T_STREAM_TYPE_METADATA,MP2T_STREAM_TYPE_AVC,MP2T_STREAM_TYPE_HEVC,MP2T_STREAM_TYPE_TEMI,MP2T_STREAM_TYPE_AC3,MP2T_STREAM_TYPE_SCTE35,MP2T_STREAM_TYPE_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_AC3,MP2T_STREAM_TYPE_ENCRYPTED_EAC3,MP2T_STREAM_TYPE_ENCRYPTED_ADTS_AAC,MP2T_STREAM_TYPE_ENCRYPTED_AVC,MP2T_STREAM_TYPE_ID3,MP2T_STREAM_TYPE_ANC,MP2T_STREAM_TYPE_UNKNOWN" doc:"The type of the stream inferred by the demuxer. Includes MP2TStreamType's pseudo-types values. It is not guaranteed to be the same value reported in the PMT. E.g. MP2T_STREAM_TYPE_PES_PRIVATE_DATA plus the right descriptor might result in MP2T_STREAM_TYPE_ID3."`
 	Video *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo `json:"video,omitempty"`
 }
 
@@ -206,7 +206,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInner) SetVideo(v StatusIngest
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -268,5 +268,3 @@ func (v *NullableStatusIngestStatusPrimaryStatusPmtStreamsInner) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

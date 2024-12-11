@@ -26,8 +26,8 @@ type StatusIngestStatusSecondaryStatus struct {
 	// The last time data was received for this source.
 	LastDataReceived *time.Time `json:"last_data_received,omitempty" format:"date-time" doc:"The last time data was received for this source."`
 	// Reports whether this source was pinned to be always preferred (if available).
-	Pinned *bool `json:"pinned,omitempty" doc:"Reports whether this source was pinned to be always preferred (if available)."`
-	Pmt *StatusIngestStatusPrimaryStatusPmt `json:"pmt,omitempty"`
+	Pinned *bool                               `json:"pinned,omitempty" doc:"Reports whether this source was pinned to be always preferred (if available)."`
+	Pmt    *StatusIngestStatusPrimaryStatusPmt `json:"pmt,omitempty"`
 	// A measure of the source's quality if available. Zero is the perfect score. The higher the score, the worst the quality.
 	QualityScore *float64 `json:"quality_score,omitempty" format:"double" doc:"A measure of the source's quality if available. Zero is the perfect score. The higher the score, the worst the quality."`
 	// If unset (empty string), the source is available, and could be made active if necessary. Otherwise, it contains a message indicating why the source is unavailable. E.g. 'No source AUs received'.
@@ -276,7 +276,7 @@ func (o *StatusIngestStatusSecondaryStatus) SetUnavailableReason(v string) {
 }
 
 func (o StatusIngestStatusSecondaryStatus) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -344,5 +344,3 @@ func (v *NullableStatusIngestStatusSecondaryStatus) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

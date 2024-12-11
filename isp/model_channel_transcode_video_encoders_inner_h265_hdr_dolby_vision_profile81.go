@@ -104,7 +104,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetMdcv(
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,5 +157,3 @@ func (v *NullableChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

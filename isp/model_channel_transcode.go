@@ -22,7 +22,7 @@ type ChannelTranscode struct {
 	AudioEncoders []ChannelTranscodeAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1" doc:"Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc."`
 	// Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays.
 	// Deprecated
-	DebugOverlay *bool `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays."`
+	DebugOverlay  *bool                          `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays."`
 	DebugOverlays *ChannelTranscodeDebugOverlays `json:"debug_overlays,omitempty"`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper. Do not enable on customer facing channels.
 	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper. Do not enable on customer facing channels."`
@@ -31,8 +31,8 @@ type ChannelTranscode struct {
 	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
 	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty" maxItems:"1" doc:"List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on."`
 	// Resize mode specifies how to scale a video up or down to match the output dimensions.
-	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX" doc:"Resize mode specifies how to scale a video up or down to match the output dimensions."`
-	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
+	ResizeMode *string                    `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX" doc:"Resize mode specifies how to scale a video up or down to match the output dimensions."`
+	Segmenter  *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
 	// Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec.
 	SubtitleEncoders []ChannelTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty" doc:"Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec."`
 	// Thumbnail encoders specify how to create image snapshots of the video stream.
@@ -414,7 +414,7 @@ func (o *ChannelTranscode) SetVideoEncoders(v []ChannelTranscodeVideoEncodersInn
 }
 
 func (o ChannelTranscode) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -494,5 +494,3 @@ func (v *NullableChannelTranscode) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

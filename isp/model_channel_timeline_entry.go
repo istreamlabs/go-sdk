@@ -22,7 +22,7 @@ type ChannelTimelineEntry struct {
 	// Shortcode indicating what action was taken
 	Action string `json:"action" doc:"Shortcode indicating what action was taken"`
 	// Agent responsible for the action taken
-	Agent string `json:"agent" doc:"Agent responsible for the action taken"`
+	Agent string  `json:"agent" doc:"Agent responsible for the action taken"`
 	Query *string `json:"query,omitempty"`
 	// The request body, if any, of the original action
 	RequestBody string `json:"request_body" doc:"The request body, if any, of the original action"`
@@ -234,7 +234,7 @@ func (o *ChannelTimelineEntry) SetTraceId(v string) {
 }
 
 func (o ChannelTimelineEntry) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -290,5 +290,3 @@ func (v *NullableChannelTimelineEntry) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

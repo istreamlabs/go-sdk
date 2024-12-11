@@ -18,12 +18,12 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv{
 
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv struct {
-	Blue *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"blue,omitempty"`
-	Green *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"green,omitempty"`
-	MaxDisplayMasteringLuminance *float64 `json:"max_display_mastering_luminance,omitempty" format:"double"`
-	MinDisplayMasteringLuminance *float64 `json:"min_display_mastering_luminance,omitempty" format:"double"`
-	Red *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"red,omitempty"`
-	WhitePoint *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"white_point,omitempty"`
+	Blue                         *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"blue,omitempty"`
+	Green                        *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"green,omitempty"`
+	MaxDisplayMasteringLuminance *float64                                                     `json:"max_display_mastering_luminance,omitempty" format:"double"`
+	MinDisplayMasteringLuminance *float64                                                     `json:"min_display_mastering_luminance,omitempty" format:"double"`
+	Red                          *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"red,omitempty"`
+	WhitePoint                   *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcvBlue `json:"white_point,omitempty"`
 }
 
 // NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv instantiates a new StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv object
@@ -236,7 +236,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) SetWhitePoint(
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -301,5 +301,3 @@ func (v *NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -18,10 +18,10 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerCollapseConfig
 
 // GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner struct for GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner
 type GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner struct {
-	Filtertypes []string `json:"filtertypes"`
-	Include bool `json:"include"`
-	MaintainMarkers *bool `json:"maintain_markers,omitempty"`
-	Timespan []GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner `json:"timespan,omitempty"`
+	Filtertypes     []string                                                                                           `json:"filtertypes"`
+	Include         bool                                                                                               `json:"include"`
+	MaintainMarkers *bool                                                                                              `json:"maintain_markers,omitempty"`
+	Timespan        []GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner `json:"timespan,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner instantiates a new GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner object
@@ -156,7 +156,7 @@ func (o *GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConf
 }
 
 func (o GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,5 +211,3 @@ func (v *NullableGetProductConfigResponseProductConfigInnerCollapseConfigM3u8Fil
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

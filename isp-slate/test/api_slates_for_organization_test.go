@@ -1,7 +1,7 @@
 /*
 iStreamPlanet Slate Management API
 
-Testing SlatesForOrganizationApiService
+Testing SlatesForOrganizationAPIService
 
 */
 
@@ -11,53 +11,40 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/isp-slate"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp-slate"
 )
 
-func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
+func Test_isp_SlatesForOrganizationAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SlatesForOrganizationApiService DeleteOrgSlate", func(t *testing.T) {
+	t.Run("Test SlatesForOrganizationAPIService DeleteOrgSlate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var slateId string
 
-		httpRes, err := apiClient.SlatesForOrganizationApi.DeleteOrgSlate(context.Background(), org, slateId).Execute()
+		httpRes, err := apiClient.SlatesForOrganizationAPI.DeleteOrgSlate(context.Background(), org, slateId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SlatesForOrganizationApiService GetOrgSlate", func(t *testing.T) {
+	t.Run("Test SlatesForOrganizationAPIService GetOrgSlate", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var slateId string
 
-		resp, httpRes, err := apiClient.SlatesForOrganizationApi.GetOrgSlate(context.Background(), org, slateId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test SlatesForOrganizationApiService ListOrgSlates", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-
-		resp, httpRes, err := apiClient.SlatesForOrganizationApi.ListOrgSlates(context.Background(), org).Execute()
+		resp, httpRes, err := apiClient.SlatesForOrganizationAPI.GetOrgSlate(context.Background(), org, slateId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -65,14 +52,28 @@ func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test SlatesForOrganizationApiService PutOrgSlate", func(t *testing.T) {
+	t.Run("Test SlatesForOrganizationAPIService ListOrgSlates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
+
+		var org string
+
+		resp, httpRes, err := apiClient.SlatesForOrganizationAPI.ListOrgSlates(context.Background(), org).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test SlatesForOrganizationAPIService PutOrgSlate", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var slateId string
 
-		resp, httpRes, err := apiClient.SlatesForOrganizationApi.PutOrgSlate(context.Background(), org, slateId).Execute()
+		resp, httpRes, err := apiClient.SlatesForOrganizationAPI.PutOrgSlate(context.Background(), org, slateId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

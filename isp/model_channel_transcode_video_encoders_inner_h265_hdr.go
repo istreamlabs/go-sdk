@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265Hdr{}
 // ChannelTranscodeVideoEncodersInnerH265Hdr Configure the HDR settings.
 type ChannelTranscodeVideoEncodersInnerH265Hdr struct {
 	DolbyVision *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision `json:"dolby_vision,omitempty"`
-	Hdr10 *ChannelTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
+	Hdr10       *ChannelTranscodeVideoEncodersInnerH265HdrHdr10       `json:"hdr10,omitempty"`
 }
 
 // NewChannelTranscodeVideoEncodersInnerH265Hdr instantiates a new ChannelTranscodeVideoEncodersInnerH265Hdr object
@@ -104,7 +104,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265Hdr) SetHdr10(v ChannelTranscodeV
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265Hdr) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,5 +157,3 @@ func (v *NullableChannelTranscodeVideoEncodersInnerH265Hdr) UnmarshalJSON(src []
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

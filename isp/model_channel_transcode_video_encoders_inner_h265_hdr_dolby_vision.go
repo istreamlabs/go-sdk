@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision{}
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision Only one of ['hdr10', 'dolby_vision'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision struct {
 	// Only one of ['profile5', 'profile81', 'profile84'] may be set.
-	Profile5 *map[string]interface{} `json:"profile5,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84'] may be set."`
+	Profile5  *map[string]interface{}                                        `json:"profile5,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84'] may be set."`
 	Profile81 *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 `json:"profile81,omitempty"`
 	// Only one of ['profile5', 'profile81', 'profile84'] may be set.
 	Profile84 *map[string]interface{} `json:"profile84,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84'] may be set."`
@@ -139,7 +139,7 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) SetProfile84(v ma
 }
 
 func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,5 +195,3 @@ func (v *NullableChannelTranscodeVideoEncodersInnerH265HdrDolbyVision) Unmarshal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

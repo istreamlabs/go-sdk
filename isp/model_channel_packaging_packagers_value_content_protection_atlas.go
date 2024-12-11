@@ -174,7 +174,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionAtlas) SetWidevineV0Pssh
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionAtlas) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -233,5 +233,3 @@ func (v *NullableChannelPackagingPackagersValueContentProtectionAtlas) Unmarshal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
