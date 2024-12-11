@@ -65,4 +65,10 @@ sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-
 # Cleanup all sed backups
 find . -name '*.bak' -delete
 
-goimports -w ./${API}/...
+# Ensure goimports is installed
+if ! which goimports 2>&1 > /dev/null; then
+  go install golang.org/x/tools/cmd/goimports@latest
+fi
+
+# Clean imports
+$(go env GOPATH)/bin/goimports -w ./${API}
