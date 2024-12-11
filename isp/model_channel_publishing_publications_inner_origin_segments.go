@@ -71,7 +71,7 @@ func (o *ChannelPublishingPublicationsInnerOriginSegments) SetRedundancy(v strin
 }
 
 func (o ChannelPublishingPublicationsInnerOriginSegments) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -121,5 +121,3 @@ func (v *NullableChannelPublishingPublicationsInnerOriginSegments) UnmarshalJSON
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

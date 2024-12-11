@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing OrganizationsApiService
+Testing OrganizationsAPIService
 
 */
 
@@ -11,22 +11,23 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
-func Test_isp_OrganizationsApiService(t *testing.T) {
+func Test_isp_OrganizationsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test OrganizationsApiService ListOrgs", func(t *testing.T) {
+	t.Run("Test OrganizationsAPIService ListOrgs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsApi.ListOrgs(context.Background()).Execute()
+		resp, httpRes, err := apiClient.OrganizationsAPI.ListOrgs(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

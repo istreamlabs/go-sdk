@@ -19,10 +19,10 @@ var _ MappedNullable = &ChannelPackagingPackagersValue{}
 // ChannelPackagingPackagersValue struct for ChannelPackagingPackagersValue
 type ChannelPackagingPackagersValue struct {
 	ContentProtection *ChannelPackagingPackagersValueContentProtection `json:"content_protection,omitempty"`
-	Mp2t *ChannelPackagingPackagersValueMp2t `json:"mp2t,omitempty"`
-	Mp4 *ChannelPackagingPackagersValueMp4 `json:"mp4,omitempty"`
+	Mp2t              *ChannelPackagingPackagersValueMp2t              `json:"mp2t,omitempty"`
+	Mp4               *ChannelPackagingPackagersValueMp4               `json:"mp4,omitempty"`
 	// Only one of ['web_vtt', 'ttml'] may be set.
-	Ttml *map[string]interface{} `json:"ttml,omitempty" doc:"Only one of ['web_vtt', 'ttml'] may be set."`
+	Ttml   *map[string]interface{}               `json:"ttml,omitempty" doc:"Only one of ['web_vtt', 'ttml'] may be set."`
 	WebVtt *ChannelPackagingPackagersValueWebVtt `json:"web_vtt,omitempty"`
 }
 
@@ -204,7 +204,7 @@ func (o *ChannelPackagingPackagersValue) SetWebVtt(v ChannelPackagingPackagersVa
 }
 
 func (o ChannelPackagingPackagersValue) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -266,5 +266,3 @@ func (v *NullableChannelPackagingPackagersValue) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

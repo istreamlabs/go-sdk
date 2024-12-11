@@ -18,17 +18,17 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 
 // GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner struct for GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner
 type GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner struct {
-	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
-	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
-	AutoCopyToNetstorage bool `json:"auto_copy_to_netstorage"`
-	Basedir *string `json:"basedir,omitempty"`
-	CopyCollapsedArchive bool `json:"copy_collapsed_archive"`
-	CopyRawArchive bool `json:"copy_raw_archive"`
-	Cpcode string `json:"cpcode"`
-	Hostname string `json:"hostname"`
-	Key string `json:"key"`
-	Keyname string `json:"keyname"`
-	ManifestUpdates *GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates `json:"manifest_updates,omitempty"`
+	ArchiveTargetTypes         []string                                                                                                   `json:"archive_target_types,omitempty"`
+	AutoArchiveOnCollapseTypes []string                                                                                                   `json:"auto_archive_on_collapse_types,omitempty"`
+	AutoCopyToNetstorage       bool                                                                                                       `json:"auto_copy_to_netstorage"`
+	Basedir                    *string                                                                                                    `json:"basedir,omitempty"`
+	CopyCollapsedArchive       bool                                                                                                       `json:"copy_collapsed_archive"`
+	CopyRawArchive             bool                                                                                                       `json:"copy_raw_archive"`
+	Cpcode                     string                                                                                                     `json:"cpcode"`
+	Hostname                   string                                                                                                     `json:"hostname"`
+	Key                        string                                                                                                     `json:"key"`
+	Keyname                    string                                                                                                     `json:"keyname"`
+	ManifestUpdates            *GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates `json:"manifest_updates,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner object
@@ -352,7 +352,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConn
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -418,5 +418,3 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsNetsto
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

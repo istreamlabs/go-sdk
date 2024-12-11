@@ -19,8 +19,8 @@ var _ MappedNullable = &RetryTaskResponse{}
 // RetryTaskResponse struct for RetryTaskResponse
 type RetryTaskResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Error CancelTaskResponseError `json:"error"`
+	Schema *string                 `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	Error  CancelTaskResponseError `json:"error"`
 }
 
 // NewRetryTaskResponse instantiates a new RetryTaskResponse object
@@ -98,7 +98,7 @@ func (o *RetryTaskResponse) SetError(v CancelTaskResponseError) {
 }
 
 func (o RetryTaskResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -149,5 +149,3 @@ func (v *NullableRetryTaskResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

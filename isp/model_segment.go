@@ -33,7 +33,7 @@ type Segment struct {
 	TimedMetadataPayload *string `json:"timed_metadata_payload,omitempty" doc:"Timed metadata opaque payload data."`
 	// The timed metadata signal's type.
 	TimedMetadataType *string `json:"timed_metadata_type,omitempty" doc:"The timed metadata signal's type."`
-	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA"`
+	Type              *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA"`
 }
 
 // NewSegment instantiates a new Segment object
@@ -310,7 +310,7 @@ func (o *Segment) SetType(v string) {
 }
 
 func (o Segment) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -381,5 +381,3 @@ func (v *NullableSegment) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

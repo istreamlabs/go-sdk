@@ -18,9 +18,9 @@ var _ MappedNullable = &DynamicSyndicationRequestSyndicationFilesInner{}
 
 // DynamicSyndicationRequestSyndicationFilesInner struct for DynamicSyndicationRequestSyndicationFilesInner
 type DynamicSyndicationRequestSyndicationFilesInner struct {
-	AudioEncoderId string `json:"audio_encoder_id"`
-	FilePath string `json:"file_path"`
-	ManifestPath *string `json:"manifest_path,omitempty"`
+	AudioEncoderId string  `json:"audio_encoder_id"`
+	FilePath       string  `json:"file_path"`
+	ManifestPath   *string `json:"manifest_path,omitempty"`
 	VideoEncoderId *string `json:"video_encoder_id,omitempty"`
 }
 
@@ -156,7 +156,7 @@ func (o *DynamicSyndicationRequestSyndicationFilesInner) SetVideoEncoderId(v str
 }
 
 func (o DynamicSyndicationRequestSyndicationFilesInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,5 +211,3 @@ func (v *NullableDynamicSyndicationRequestSyndicationFilesInner) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

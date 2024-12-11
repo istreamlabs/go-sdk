@@ -1,7 +1,7 @@
 /*
 Channel Lifecycle State API
 
-Testing DefaultApiService
+Testing DefaultAPIService
 
 */
 
@@ -11,41 +11,26 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
-func Test_isp_DefaultApiService(t *testing.T) {
+func Test_isp_DefaultAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DefaultApiService CalculateLifecycleState", func(t *testing.T) {
+	t.Run("Test DefaultAPIService CalculateLifecycleState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
-		var org interface{}
-		var channelId interface{}
+		var org string
+		var channelId string
 
-		resp, httpRes, err := apiClient.DefaultApi.CalculateLifecycleState(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test DefaultApiService GetLifecycleComponentState", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org interface{}
-		var channelId interface{}
-		var component interface{}
-
-		resp, httpRes, err := apiClient.DefaultApi.GetLifecycleComponentState(context.Background(), org, channelId, component).Execute()
+		resp, httpRes, err := apiClient.DefaultAPI.CalculateLifecycleState(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -53,14 +38,30 @@ func Test_isp_DefaultApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DefaultApiService PutLifecycleComponentState", func(t *testing.T) {
+	t.Run("Test DefaultAPIService GetLifecycleComponentState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
-		var channelUrn interface{}
-		var component interface{}
+		var org string
+		var channelId string
+		var component string
 
-		httpRes, err := apiClient.DefaultApi.PutLifecycleComponentState(context.Background(), channelUrn, component).Execute()
+		resp, httpRes, err := apiClient.DefaultAPI.GetLifecycleComponentState(context.Background(), org, channelId, component).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test DefaultAPIService PutLifecycleComponentState", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var channelUrn string
+		var component string
+
+		httpRes, err := apiClient.DefaultAPI.PutLifecycleComponentState(context.Background(), channelUrn, component).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

@@ -21,9 +21,9 @@ type ChannelTranscodeVideoEncodersInner struct {
 	// Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
 	BitRate *int32 `json:"bit_rate,omitempty" format:"int32" exclusiveMinimum:"1000" doc:"Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate."`
 	// Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-	FrameRate *string `json:"frame_rate,omitempty" enum:"FR_23_98,FR_24,FR_25,FR_29_97,FR_30,FR_50,FR_59_94,FR_60" doc:"Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream."`
-	H264 *ChannelTranscodeVideoEncodersInnerH264 `json:"h264,omitempty"`
-	H265 *ChannelTranscodeVideoEncodersInnerH265 `json:"h265,omitempty"`
+	FrameRate *string                                 `json:"frame_rate,omitempty" enum:"FR_23_98,FR_24,FR_25,FR_29_97,FR_30,FR_50,FR_59_94,FR_60" doc:"Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream."`
+	H264      *ChannelTranscodeVideoEncodersInnerH264 `json:"h264,omitempty"`
+	H265      *ChannelTranscodeVideoEncodersInnerH265 `json:"h265,omitempty"`
 	// Height specifies the video height in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.
 	Height *int32 `json:"height,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Height specifies the video height in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels."`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
@@ -274,7 +274,7 @@ func (o *ChannelTranscodeVideoEncodersInner) SetWidth(v int32) {
 }
 
 func (o ChannelTranscodeVideoEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -342,5 +342,3 @@ func (v *NullableChannelTranscodeVideoEncodersInner) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

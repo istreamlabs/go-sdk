@@ -23,8 +23,8 @@ type ArchiveFERRequest struct {
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// Portion of the query string that applies to all packages
-	GlobalQueryString string `json:"global_query_string" doc:"Portion of the query string that applies to all packages"`
-	Notification ArchiveFERRequestNotification `json:"notification"`
+	GlobalQueryString string                        `json:"global_query_string" doc:"Portion of the query string that applies to all packages"`
+	Notification      ArchiveFERRequestNotification `json:"notification"`
 	// Packages to be archived as FERs
 	Packages []ArchiveFERRequestPackagesInner `json:"packages" doc:"Packages to be archived as FERs"`
 }
@@ -179,7 +179,7 @@ func (o *ArchiveFERRequest) SetPackages(v []ArchiveFERRequestPackagesInner) {
 }
 
 func (o ArchiveFERRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -233,5 +233,3 @@ func (v *NullableArchiveFERRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing AuditOperationsForOrganizationApiService
+Testing AuditOperationsForOrganizationAPIService
 
 */
 
@@ -11,25 +11,26 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
-func Test_isp_AuditOperationsForOrganizationApiService(t *testing.T) {
+func Test_isp_AuditOperationsForOrganizationAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test AuditOperationsForOrganizationApiService GetOrgChannelTimeline", func(t *testing.T) {
+	t.Run("Test AuditOperationsForOrganizationAPIService GetOrgChannelTimeline", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.AuditOperationsForOrganizationApi.GetOrgChannelTimeline(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.AuditOperationsForOrganizationAPI.GetOrgChannelTimeline(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

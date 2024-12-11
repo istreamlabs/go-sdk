@@ -19,8 +19,8 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerStartover{}
 // ChannelPublishingPublicationsInnerStartover Configures startover processing for this Publication.
 type ChannelPublishingPublicationsInnerStartover struct {
 	// Trigger Startover on the first Program Start. Only one of ['first_program_start', 'on_airing_id'] may be set.
-	FirstProgramStart *map[string]interface{} `json:"first_program_start,omitempty" doc:"Trigger Startover on the first Program Start. Only one of ['first_program_start', 'on_airing_id'] may be set."`
-	OnAiringId *ChannelPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
+	FirstProgramStart *map[string]interface{}                                `json:"first_program_start,omitempty" doc:"Trigger Startover on the first Program Start. Only one of ['first_program_start', 'on_airing_id'] may be set."`
+	OnAiringId        *ChannelPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
 }
 
 // NewChannelPublishingPublicationsInnerStartover instantiates a new ChannelPublishingPublicationsInnerStartover object
@@ -105,7 +105,7 @@ func (o *ChannelPublishingPublicationsInnerStartover) SetOnAiringId(v ChannelPub
 }
 
 func (o ChannelPublishingPublicationsInnerStartover) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -158,5 +158,3 @@ func (v *NullableChannelPublishingPublicationsInnerStartover) UnmarshalJSON(src 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

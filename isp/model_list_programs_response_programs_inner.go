@@ -289,7 +289,7 @@ func (o *ListProgramsResponseProgramsInner) SetTotalBytes(v int64) {
 }
 
 func (o ListProgramsResponseProgramsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,5 +347,3 @@ func (v *NullableListProgramsResponseProgramsInner) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

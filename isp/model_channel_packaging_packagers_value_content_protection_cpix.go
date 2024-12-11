@@ -276,7 +276,7 @@ func (o *ChannelPackagingPackagersValueContentProtectionCpix) SetUri(v string) {
 }
 
 func (o ChannelPackagingPackagersValueContentProtectionCpix) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -344,5 +344,3 @@ func (v *NullableChannelPackagingPackagersValueContentProtectionCpix) UnmarshalJ
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

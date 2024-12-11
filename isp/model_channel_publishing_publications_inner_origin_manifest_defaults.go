@@ -344,7 +344,7 @@ func (o *ChannelPublishingPublicationsInnerOriginManifestDefaults) SetSuggestedP
 }
 
 func (o ChannelPublishingPublicationsInnerOriginManifestDefaults) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -418,5 +418,3 @@ func (v *NullableChannelPublishingPublicationsInnerOriginManifestDefaults) Unmar
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

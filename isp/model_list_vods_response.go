@@ -19,15 +19,15 @@ var _ MappedNullable = &ListVODsResponse{}
 
 // ListVODsResponse struct for ListVODsResponse
 type ListVODsResponse struct {
-	Description string `json:"description"`
-	FileCount int64 `json:"file_count" format:"int64"`
-	Id string `json:"id"`
-	LastPublished *time.Time `json:"last_published,omitempty" format:"date-time"`
-	PackagingFormat *string `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF"`
-	Store string `json:"store"`
-	StorePrefix string `json:"store_prefix"`
-	TotalBytes int64 `json:"total_bytes" format:"int64"`
-	Version string `json:"version"`
+	Description     string     `json:"description"`
+	FileCount       int64      `json:"file_count" format:"int64"`
+	Id              string     `json:"id"`
+	LastPublished   *time.Time `json:"last_published,omitempty" format:"date-time"`
+	PackagingFormat *string    `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF"`
+	Store           string     `json:"store"`
+	StorePrefix     string     `json:"store_prefix"`
+	TotalBytes      int64      `json:"total_bytes" format:"int64"`
+	Version         string     `json:"version"`
 }
 
 // NewListVODsResponse instantiates a new ListVODsResponse object
@@ -287,7 +287,7 @@ func (o *ListVODsResponse) SetVersion(v string) {
 }
 
 func (o ListVODsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -347,5 +347,3 @@ func (v *NullableListVODsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

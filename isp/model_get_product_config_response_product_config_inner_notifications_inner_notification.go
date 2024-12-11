@@ -19,9 +19,9 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerNotificationsI
 // GetProductConfigResponseProductConfigInnerNotificationsInnerNotification struct for GetProductConfigResponseProductConfigInnerNotificationsInnerNotification
 type GetProductConfigResponseProductConfigInnerNotificationsInnerNotification struct {
 	NotificationHostname *string `json:"notification_hostname,omitempty"`
-	NotificationSettings string `json:"notification_settings"`
-	NotificationType string `json:"notification_type"`
-	UseChannelApi *bool `json:"use_channel_api,omitempty"`
+	NotificationSettings string  `json:"notification_settings"`
+	NotificationType     string  `json:"notification_type"`
+	UseChannelApi        *bool   `json:"use_channel_api,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerNotificationsInnerNotification instantiates a new GetProductConfigResponseProductConfigInnerNotificationsInnerNotification object
@@ -156,7 +156,7 @@ func (o *GetProductConfigResponseProductConfigInnerNotificationsInnerNotificatio
 }
 
 func (o GetProductConfigResponseProductConfigInnerNotificationsInnerNotification) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,5 +211,3 @@ func (v *NullableGetProductConfigResponseProductConfigInnerNotificationsInnerNot
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

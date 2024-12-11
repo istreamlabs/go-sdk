@@ -18,7 +18,7 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerEdcPartialPres
 
 // GetProductConfigResponseProductConfigInnerEdcPartialPresentationsPresentationsInner struct for GetProductConfigResponseProductConfigInnerEdcPartialPresentationsPresentationsInner
 type GetProductConfigResponseProductConfigInnerEdcPartialPresentationsPresentationsInner struct {
-	Name string `json:"name"`
+	Name       string  `json:"name"`
 	Renditions []int32 `json:"renditions" format:"int32"`
 }
 
@@ -90,7 +90,7 @@ func (o *GetProductConfigResponseProductConfigInnerEdcPartialPresentationsPresen
 }
 
 func (o GetProductConfigResponseProductConfigInnerEdcPartialPresentationsPresentationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -139,5 +139,3 @@ func (v *NullableGetProductConfigResponseProductConfigInnerEdcPartialPresentatio
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
