@@ -20,12 +20,12 @@ var _ MappedNullable = &ChannelPublishingSrtPublicationsInner{}
 type ChannelPublishingSrtPublicationsInner struct {
 	AudioEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1"`
 	// SRT publication ID. Must be unique.
-	Id *string `json:"id,omitempty" validate:"regexp=^([a-z0-9]+(-*[a-z0-9]+)*)$" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"SRT publication ID. Must be unique."`
+	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"SRT publication ID. Must be unique."`
 	// MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	PmtPid *int32 `json:"pmt_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
 	// MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	Scte35Pid     *int32                                                    `json:"scte35_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
-	Url           *string                                                   `json:"url,omitempty" validate:"regexp=^srt:\\/\\/" format:"uri" minLength:"1" pattern:"/^srt:\/\//"`
+	Url           *string                                                   `json:"url,omitempty" format:"uri" minLength:"1" pattern:"/^srt:\/\//"`
 	VideoEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"video_encoders,omitempty" minItems:"1"`
 }
 

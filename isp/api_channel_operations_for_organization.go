@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-type ChannelOperationsForOrganizationAPI interface {
+type ChannelOperationsForOrganizationApi interface {
 
 	/*
 		ClearOrgDvrWindow Clear DVR Window
@@ -375,12 +375,12 @@ type ChannelOperationsForOrganizationAPI interface {
 	PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error)
 }
 
-// ChannelOperationsForOrganizationAPIService ChannelOperationsForOrganizationAPI service
-type ChannelOperationsForOrganizationAPIService service
+// ChannelOperationsForOrganizationApiService ChannelOperationsForOrganizationApi service
+type ChannelOperationsForOrganizationApiService service
 
 type ApiClearOrgDvrWindowRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 }
@@ -399,7 +399,7 @@ Clears the DVR window for the channel by removing all video segments in the mani
 	@param channelId Unique channel identifier
 	@return ApiClearOrgDvrWindowRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) ClearOrgDvrWindow(ctx context.Context, org string, channelId string) ApiClearOrgDvrWindowRequest {
+func (a *ChannelOperationsForOrganizationApiService) ClearOrgDvrWindow(ctx context.Context, org string, channelId string) ApiClearOrgDvrWindowRequest {
 	return ApiClearOrgDvrWindowRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -409,14 +409,14 @@ func (a *ChannelOperationsForOrganizationAPIService) ClearOrgDvrWindow(ctx conte
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationAPIService) ClearOrgDvrWindowExecute(r ApiClearOrgDvrWindowRequest) (*http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) ClearOrgDvrWindowExecute(r ApiClearOrgDvrWindowRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.ClearOrgDvrWindow")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.ClearOrgDvrWindow")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -528,7 +528,7 @@ func (a *ChannelOperationsForOrganizationAPIService) ClearOrgDvrWindowExecute(r 
 
 type ApiGetOrgPreviewImageRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 	accept     *string
@@ -554,7 +554,7 @@ Get a static image of what your channel is outputting.  Valid Accept headers are
 	@param channelId Unique channel identifier
 	@return ApiGetOrgPreviewImageRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgPreviewImage(ctx context.Context, org string, channelId string) ApiGetOrgPreviewImageRequest {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImage(ctx context.Context, org string, channelId string) ApiGetOrgPreviewImageRequest {
 	return ApiGetOrgPreviewImageRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -564,14 +564,14 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgPreviewImage(ctx cont
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodGet
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.GetOrgPreviewImage")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgPreviewImage")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -716,7 +716,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgPreviewImageExecute(r
 
 type ApiGetOrgSignalLogsRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 	from       *time.Time
@@ -751,7 +751,7 @@ Returns the signalling history for a channel.
 	@param channelId Unique channel identifier
 	@return ApiGetOrgSignalLogsRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest {
 	return ApiGetOrgSignalLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -763,7 +763,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalLogs(ctx contex
 // Execute executes the request
 //
 //	@return []SignalingLog
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -771,7 +771,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalLogsExecute(r A
 		localVarReturnValue []SignalingLog
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.GetOrgSignalLogs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgSignalLogs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -940,7 +940,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalLogsExecute(r A
 
 type ApiGetOrgSignalsRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 }
@@ -959,7 +959,7 @@ Returns the active signals for a channel.
 	@param channelId Unique channel identifier
 	@return ApiGetOrgSignalsRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest {
 	return ApiGetOrgSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -971,7 +971,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignals(ctx context.C
 // Execute executes the request
 //
 //	@return []Segment
-func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalsExecute(r ApiGetOrgSignalsRequest) ([]Segment, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalsExecute(r ApiGetOrgSignalsRequest) ([]Segment, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -979,7 +979,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalsExecute(r ApiG
 		localVarReturnValue []Segment
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.GetOrgSignals")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgSignals")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1132,7 +1132,7 @@ func (a *ChannelOperationsForOrganizationAPIService) GetOrgSignalsExecute(r ApiG
 
 type ApiInsertOrgId3Request struct {
 	ctx                   context.Context
-	ApiService            ChannelOperationsForOrganizationAPI
+	ApiService            ChannelOperationsForOrganizationApi
 	org                   string
 	channelId             string
 	accept                *string
@@ -1164,7 +1164,7 @@ Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX
 	@param channelId Unique channel identifier
 	@return ApiInsertOrgId3Request
 */
-func (a *ChannelOperationsForOrganizationAPIService) InsertOrgId3(ctx context.Context, org string, channelId string) ApiInsertOrgId3Request {
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3(ctx context.Context, org string, channelId string) ApiInsertOrgId3Request {
 	return ApiInsertOrgId3Request{
 		ApiService: a,
 		ctx:        ctx,
@@ -1176,7 +1176,7 @@ func (a *ChannelOperationsForOrganizationAPIService) InsertOrgId3(ctx context.Co
 // Execute executes the request
 //
 //	@return InsertMetadataResult
-func (a *ChannelOperationsForOrganizationAPIService) InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -1184,7 +1184,7 @@ func (a *ChannelOperationsForOrganizationAPIService) InsertOrgId3Execute(r ApiIn
 		localVarReturnValue *InsertMetadataResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.InsertOrgId3")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgId3")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1362,7 +1362,7 @@ func (a *ChannelOperationsForOrganizationAPIService) InsertOrgId3Execute(r ApiIn
 
 type ApiInsertOrgScte35Request struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 	scte35     *Scte35
@@ -1387,7 +1387,7 @@ Inserts a SCTE-35 formatted binary payload into the channel.
 	@param channelId Unique channel identifier
 	@return ApiInsertOrgScte35Request
 */
-func (a *ChannelOperationsForOrganizationAPIService) InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request {
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request {
 	return ApiInsertOrgScte35Request{
 		ApiService: a,
 		ctx:        ctx,
@@ -1397,14 +1397,14 @@ func (a *ChannelOperationsForOrganizationAPIService) InsertOrgScte35(ctx context
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationAPIService) InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPost
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.InsertOrgScte35")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgScte35")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1548,7 +1548,7 @@ func (a *ChannelOperationsForOrganizationAPIService) InsertOrgScte35Execute(r Ap
 
 type ApiOrgGetTranscoderStatusRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	channelId  string
 	org        string
 }
@@ -1567,7 +1567,7 @@ Get the current status for the live transcoder powering the channel.
 	@param org Organization name
 	@return ApiOrgGetTranscoderStatusRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest {
 	return ApiOrgGetTranscoderStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1579,7 +1579,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgGetTranscoderStatus(ctx 
 // Execute executes the request
 //
 //	@return Status
-func (a *ChannelOperationsForOrganizationAPIService) OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1587,7 +1587,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgGetTranscoderStatusExecu
 		localVarReturnValue *Status
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.OrgGetTranscoderStatus")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgGetTranscoderStatus")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1740,7 +1740,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgGetTranscoderStatusExecu
 
 type ApiOrgPinIngestRequest struct {
 	ctx              context.Context
-	ApiService       ChannelOperationsForOrganizationAPI
+	ApiService       ChannelOperationsForOrganizationApi
 	channelId        string
 	org              string
 	pinSourceRequest *PinSourceRequest
@@ -1766,7 +1766,7 @@ Note that this will disable some automated ingest failover that is based on the 
 	@param org Organization name
 	@return ApiOrgPinIngestRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest {
 	return ApiOrgPinIngestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1776,14 +1776,14 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgPinIngest(ctx context.Co
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationAPIService) OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.OrgPinIngest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPinIngest")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1947,7 +1947,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgPinIngestExecute(r ApiOr
 
 type ApiOrgPreviewStreamsRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	org        string
 	channelId  string
 }
@@ -1967,7 +1967,7 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	@param channelId Unique channel identifier
 	@return ApiOrgPreviewStreamsRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest {
 	return ApiOrgPreviewStreamsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1979,7 +1979,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgPreviewStreams(ctx conte
 // Execute executes the request
 //
 //	@return GetPreviewStreamsResponse
-func (a *ChannelOperationsForOrganizationAPIService) OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1987,7 +1987,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgPreviewStreamsExecute(r 
 		localVarReturnValue *GetPreviewStreamsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.OrgPreviewStreams")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPreviewStreams")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2150,7 +2150,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgPreviewStreamsExecute(r 
 
 type ApiOrgUnpinIngestRequest struct {
 	ctx        context.Context
-	ApiService ChannelOperationsForOrganizationAPI
+	ApiService ChannelOperationsForOrganizationApi
 	channelId  string
 	org        string
 }
@@ -2170,7 +2170,7 @@ Automated source failover based on feed quality will be resumed.
 	@param org Organization name
 	@return ApiOrgUnpinIngestRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest {
 	return ApiOrgUnpinIngestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2180,14 +2180,14 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgUnpinIngest(ctx context.
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationAPIService) OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.OrgUnpinIngest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgUnpinIngest")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2329,7 +2329,7 @@ func (a *ChannelOperationsForOrganizationAPIService) OrgUnpinIngestExecute(r Api
 
 type ApiPostOrgSignalsRequest struct {
 	ctx           context.Context
-	ApiService    ChannelOperationsForOrganizationAPI
+	ApiService    ChannelOperationsForOrganizationApi
 	org           string
 	channelId     string
 	genericSignal *[]GenericSignal
@@ -2543,7 +2543,7 @@ Example input body:
 	@param channelId Unique channel identifier
 	@return ApiPostOrgSignalsRequest
 */
-func (a *ChannelOperationsForOrganizationAPIService) PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest {
+func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest {
 	return ApiPostOrgSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -2555,7 +2555,7 @@ func (a *ChannelOperationsForOrganizationAPIService) PostOrgSignals(ctx context.
 // Execute executes the request
 //
 //	@return []GenericSignalResult
-func (a *ChannelOperationsForOrganizationAPIService) PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error) {
+func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -2563,7 +2563,7 @@ func (a *ChannelOperationsForOrganizationAPIService) PostOrgSignalsExecute(r Api
 		localVarReturnValue []GenericSignalResult
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationAPIService.PostOrgSignals")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.PostOrgSignals")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

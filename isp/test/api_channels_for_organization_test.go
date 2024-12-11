@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing ChannelsForOrganizationAPIService
+Testing ChannelsForOrganizationApiService
 
 */
 
@@ -18,48 +18,33 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_isp_ChannelsForOrganizationAPIService(t *testing.T) {
+func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ChannelsForOrganizationAPIService DeleteOrgChannel", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService DeleteOrgChannel", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelsForOrganizationAPI.DeleteOrgChannel(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelsForOrganizationApi.DeleteOrgChannel(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelsForOrganizationAPIService GetOrgChannel", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService GetOrgChannel", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelsForOrganizationAPI.GetOrgChannel(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelsForOrganizationAPIService GetOrgPlaybackConfig", func(t *testing.T) {
-
-		t.Skip("skip test") // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.ChannelsForOrganizationAPI.GetOrgPlaybackConfig(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.GetOrgChannel(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -67,13 +52,14 @@ func Test_isp_ChannelsForOrganizationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelsForOrganizationAPIService ListOrgChannels", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService GetOrgPlaybackConfig", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
+		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelsForOrganizationAPI.ListOrgChannels(context.Background(), org).Execute()
+		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.GetOrgPlaybackConfig(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -81,42 +67,56 @@ func Test_isp_ChannelsForOrganizationAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelsForOrganizationAPIService PatchOrgChannel", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService ListOrgChannels", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+
+		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.ListOrgChannels(context.Background(), org).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ChannelsForOrganizationApiService PatchOrgChannel", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelsForOrganizationAPI.PatchOrgChannel(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelsForOrganizationApi.PatchOrgChannel(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelsForOrganizationAPIService PutOrgChannel", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService PutOrgChannel", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelsForOrganizationAPI.PutOrgChannel(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelsForOrganizationApi.PutOrgChannel(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelsForOrganizationAPIService PutOrgChannelDesiredState", func(t *testing.T) {
+	t.Run("Test ChannelsForOrganizationApiService PutOrgChannelDesiredState", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelsForOrganizationAPI.PutOrgChannelDesiredState(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelsForOrganizationApi.PutOrgChannelDesiredState(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

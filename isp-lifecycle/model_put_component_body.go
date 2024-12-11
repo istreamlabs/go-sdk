@@ -18,18 +18,18 @@ var _ MappedNullable = &PutComponentBody{}
 // PutComponentBody struct for PutComponentBody
 type PutComponentBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// The ChannelDoc's revision
-	ChannelRevision int32 `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
+	ChannelRevision interface{} `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
 	// The current state of the component.
-	ComponentState string `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
+	ComponentState interface{} `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
 }
 
 // NewPutComponentBody instantiates a new PutComponentBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPutComponentBody(channelRevision int32, componentState string) *PutComponentBody {
+func NewPutComponentBody(channelRevision interface{}, componentState interface{}) *PutComponentBody {
 	this := PutComponentBody{}
 	this.ChannelRevision = channelRevision
 	this.ComponentState = componentState
@@ -44,42 +44,44 @@ func NewPutComponentBodyWithDefaults() *PutComponentBody {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PutComponentBody) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PutComponentBody) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutComponentBody) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PutComponentBody) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PutComponentBody) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PutComponentBody) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *PutComponentBody) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetChannelRevision returns the ChannelRevision field value
-func (o *PutComponentBody) GetChannelRevision() int32 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PutComponentBody) GetChannelRevision() interface{} {
 	if o == nil {
-		var ret int32
+		var ret interface{}
 		return ret
 	}
 
@@ -88,22 +90,24 @@ func (o *PutComponentBody) GetChannelRevision() int32 {
 
 // GetChannelRevisionOk returns a tuple with the ChannelRevision field value
 // and a boolean to check if the value has been set.
-func (o *PutComponentBody) GetChannelRevisionOk() (*int32, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PutComponentBody) GetChannelRevisionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ChannelRevision) {
 		return nil, false
 	}
 	return &o.ChannelRevision, true
 }
 
 // SetChannelRevision sets field value
-func (o *PutComponentBody) SetChannelRevision(v int32) {
+func (o *PutComponentBody) SetChannelRevision(v interface{}) {
 	o.ChannelRevision = v
 }
 
 // GetComponentState returns the ComponentState field value
-func (o *PutComponentBody) GetComponentState() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PutComponentBody) GetComponentState() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -112,15 +116,16 @@ func (o *PutComponentBody) GetComponentState() string {
 
 // GetComponentStateOk returns a tuple with the ComponentState field value
 // and a boolean to check if the value has been set.
-func (o *PutComponentBody) GetComponentStateOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PutComponentBody) GetComponentStateOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ComponentState) {
 		return nil, false
 	}
 	return &o.ComponentState, true
 }
 
 // SetComponentState sets field value
-func (o *PutComponentBody) SetComponentState(v string) {
+func (o *PutComponentBody) SetComponentState(v interface{}) {
 	o.ComponentState = v
 }
 
@@ -134,11 +139,15 @@ func (o PutComponentBody) MarshalJSON() ([]byte, error) {
 
 func (o PutComponentBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["channel_revision"] = o.ChannelRevision
-	toSerialize["component_state"] = o.ComponentState
+	if o.ChannelRevision != nil {
+		toSerialize["channel_revision"] = o.ChannelRevision
+	}
+	if o.ComponentState != nil {
+		toSerialize["component_state"] = o.ComponentState
+	}
 	return toSerialize, nil
 }
 

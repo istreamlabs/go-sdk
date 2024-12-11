@@ -18,7 +18,7 @@ import (
 	"strings"
 )
 
-type AuditOperationsForOrganizationAPI interface {
+type AuditOperationsForOrganizationApi interface {
 
 	/*
 		GetOrgChannelTimeline Get Channel Timeline
@@ -37,12 +37,12 @@ type AuditOperationsForOrganizationAPI interface {
 	GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error)
 }
 
-// AuditOperationsForOrganizationAPIService AuditOperationsForOrganizationAPI service
-type AuditOperationsForOrganizationAPIService service
+// AuditOperationsForOrganizationApiService AuditOperationsForOrganizationApi service
+type AuditOperationsForOrganizationApiService service
 
 type ApiGetOrgChannelTimelineRequest struct {
 	ctx        context.Context
-	ApiService AuditOperationsForOrganizationAPI
+	ApiService AuditOperationsForOrganizationApi
 	org        string
 	channelId  string
 	cursor     *string
@@ -75,7 +75,7 @@ Returns up to twenty items from the event timeline for a channel, sorted in reve
 	@param channelId Unique channel identifier
 	@return ApiGetOrgChannelTimelineRequest
 */
-func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest {
+func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest {
 	return ApiGetOrgChannelTimelineRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -87,7 +87,7 @@ func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimeline(ctx con
 // Execute executes the request
 //
 //	@return []ChannelTimelineEntry
-func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
+func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -95,7 +95,7 @@ func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimelineExecute(
 		localVarReturnValue []ChannelTimelineEntry
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditOperationsForOrganizationAPIService.GetOrgChannelTimeline")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditOperationsForOrganizationApiService.GetOrgChannelTimeline")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

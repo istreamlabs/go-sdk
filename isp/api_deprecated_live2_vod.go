@@ -18,7 +18,7 @@ import (
 	"strings"
 )
 
-type DeprecatedLive2VODAPI interface {
+type DeprecatedLive2VODApi interface {
 
 	/*
 			DeprecatedClipGetMp4 Get MP4 URL
@@ -210,12 +210,12 @@ type DeprecatedLive2VODAPI interface {
 	ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponse, *http.Response, error)
 }
 
-// DeprecatedLive2VODAPIService DeprecatedLive2VODAPI service
-type DeprecatedLive2VODAPIService service
+// DeprecatedLive2VODApiService DeprecatedLive2VODApi service
+type DeprecatedLive2VODApiService service
 
 type ApiDeprecatedClipGetMp4Request struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -244,7 +244,7 @@ Retrieves a playback URL for the MP4 playback for a clip if available.
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetMp4Request {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetMp4Request {
 	return ApiDeprecatedClipGetMp4Request{
 		ApiService: a,
 		ctx:        ctx,
@@ -261,7 +261,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetMp4(ctx context.Context,
 //	@return DeprecatedGetMp4UrlResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -269,7 +269,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetMp4Execute(r ApiDeprecat
 		localVarReturnValue *DeprecatedGetMp4UrlResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.DeprecatedClipGetMp4")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipGetMp4")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -415,7 +415,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetMp4Execute(r ApiDeprecat
 
 type ApiDeprecatedClipGetProgramTimeRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -444,7 +444,7 @@ Retrieves Program Time for a given Clip
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetProgramTime(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetProgramTimeRequest {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTime(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetProgramTimeRequest {
 	return ApiDeprecatedClipGetProgramTimeRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -461,7 +461,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetProgramTime(ctx context.
 //	@return DeprecatedGetProgramTimeResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -469,7 +469,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetProgramTimeExecute(r Api
 		localVarReturnValue *DeprecatedGetProgramTimeResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.DeprecatedClipGetProgramTime")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipGetProgramTime")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -615,7 +615,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipGetProgramTimeExecute(r Api
 
 type ApiDeprecatedClipMakeMp4Request struct {
 	ctx                      context.Context
-	ApiService               DeprecatedLive2VODAPI
+	ApiService               DeprecatedLive2VODApi
 	customerId               string
 	productId                string
 	programId                string
@@ -650,7 +650,7 @@ Create a mp4 entity for the clip within a vod
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipMakeMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipMakeMp4Request {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipMakeMp4Request {
 	return ApiDeprecatedClipMakeMp4Request{
 		ApiService: a,
 		ctx:        ctx,
@@ -667,7 +667,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipMakeMp4(ctx context.Context
 //	@return DeprecatedMakeMP4Response
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4Response, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4Response, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodPost
 		localVarPostBody    interface{}
@@ -675,7 +675,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipMakeMp4Execute(r ApiDepreca
 		localVarReturnValue *DeprecatedMakeMP4Response
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.DeprecatedClipMakeMp4")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipMakeMp4")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -843,7 +843,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedClipMakeMp4Execute(r ApiDepreca
 
 type ApiDeprecatedGetClipManifestRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -872,7 +872,7 @@ Retrieve List of Manifests for a given Clip
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) DeprecatedGetClipManifest(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedGetClipManifestRequest {
+func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifest(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedGetClipManifestRequest {
 	return ApiDeprecatedGetClipManifestRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -889,7 +889,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedGetClipManifest(ctx context.Con
 //	@return []DeprecatedGetClipManifestsResponseItem
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsResponseItem, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsResponseItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -897,7 +897,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedGetClipManifestExecute(r ApiDep
 		localVarReturnValue []DeprecatedGetClipManifestsResponseItem
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.DeprecatedGetClipManifest")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedGetClipManifest")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1043,7 +1043,7 @@ func (a *DeprecatedLive2VODAPIService) DeprecatedGetClipManifestExecute(r ApiDep
 
 type ApiGetDeprecatedClipRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -1072,7 +1072,7 @@ Get the clip with the clip id sent in the request.
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) GetDeprecatedClip(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiGetDeprecatedClipRequest {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedClip(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiGetDeprecatedClipRequest {
 	return ApiGetDeprecatedClipRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1089,7 +1089,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedClip(ctx context.Context, cu
 //	@return DeprecatedGetClipResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1097,7 +1097,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedClipExecute(r ApiGetDeprecat
 		localVarReturnValue *DeprecatedGetClipResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.GetDeprecatedClip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.GetDeprecatedClip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1243,7 +1243,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedClipExecute(r ApiGetDeprecat
 
 type ApiGetDeprecatedProgramRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -1269,7 +1269,7 @@ the program from the west region.
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) GetDeprecatedProgram(ctx context.Context, customerId string, productId string, programId string) ApiGetDeprecatedProgramRequest {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedProgram(ctx context.Context, customerId string, productId string, programId string) ApiGetDeprecatedProgramRequest {
 	return ApiGetDeprecatedProgramRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1284,7 +1284,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedProgram(ctx context.Context,
 //	@return DeprecatedGetProgramResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1292,7 +1292,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedProgramExecute(r ApiGetDepre
 		localVarReturnValue *DeprecatedGetProgramResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.GetDeprecatedProgram")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.GetDeprecatedProgram")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1436,7 +1436,7 @@ func (a *DeprecatedLive2VODAPIService) GetDeprecatedProgramExecute(r ApiGetDepre
 
 type ApiListDeprecatedClipsRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -1463,7 +1463,7 @@ List all clips for the vod identified in the request.
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) ListDeprecatedClips(ctx context.Context, customerId string, productId string, programId string, vodId string) ApiListDeprecatedClipsRequest {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedClips(ctx context.Context, customerId string, productId string, programId string, vodId string) ApiListDeprecatedClipsRequest {
 	return ApiListDeprecatedClipsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1479,7 +1479,7 @@ func (a *DeprecatedLive2VODAPIService) ListDeprecatedClips(ctx context.Context, 
 //	@return []DeprecatedListClipsResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1487,7 +1487,7 @@ func (a *DeprecatedLive2VODAPIService) ListDeprecatedClipsExecute(r ApiListDepre
 		localVarReturnValue []DeprecatedListClipsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.ListDeprecatedClips")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.ListDeprecatedClips")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1632,7 +1632,7 @@ func (a *DeprecatedLive2VODAPIService) ListDeprecatedClipsExecute(r ApiListDepre
 
 type ApiListDeprecatedVodsRequest struct {
 	ctx        context.Context
-	ApiService DeprecatedLive2VODAPI
+	ApiService DeprecatedLive2VODApi
 	customerId string
 	productId  string
 	programId  string
@@ -1658,7 +1658,7 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 
 Deprecated
 */
-func (a *DeprecatedLive2VODAPIService) ListDeprecatedVods(ctx context.Context, customerId string, productId string, programId string) ApiListDeprecatedVodsRequest {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedVods(ctx context.Context, customerId string, productId string, programId string) ApiListDeprecatedVodsRequest {
 	return ApiListDeprecatedVodsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1673,7 +1673,7 @@ func (a *DeprecatedLive2VODAPIService) ListDeprecatedVods(ctx context.Context, c
 //	@return []DeprecatedListVODsResponse
 //
 // Deprecated
-func (a *DeprecatedLive2VODAPIService) ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -1681,7 +1681,7 @@ func (a *DeprecatedLive2VODAPIService) ListDeprecatedVodsExecute(r ApiListDeprec
 		localVarReturnValue []DeprecatedListVODsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODAPIService.ListDeprecatedVods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.ListDeprecatedVods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

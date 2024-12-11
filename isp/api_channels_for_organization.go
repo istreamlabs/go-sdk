@@ -19,7 +19,7 @@ import (
 	"time"
 )
 
-type ChannelsForOrganizationAPI interface {
+type ChannelsForOrganizationApi interface {
 
 	/*
 			DeleteOrgChannel Delete channel
@@ -132,12 +132,12 @@ type ChannelsForOrganizationAPI interface {
 	PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error)
 }
 
-// ChannelsForOrganizationAPIService ChannelsForOrganizationAPI service
-type ChannelsForOrganizationAPIService service
+// ChannelsForOrganizationApiService ChannelsForOrganizationApi service
+type ChannelsForOrganizationApiService service
 
 type ApiDeleteOrgChannelRequest struct {
 	ctx               context.Context
-	ApiService        ChannelsForOrganizationAPI
+	ApiService        ChannelsForOrganizationApi
 	org               string
 	channelId         string
 	ifMatch           *[]string
@@ -188,7 +188,7 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	@param channelId Unique channel identifier
 	@return ApiDeleteOrgChannelRequest
 */
-func (a *ChannelsForOrganizationAPIService) DeleteOrgChannel(ctx context.Context, org string, channelId string) ApiDeleteOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) DeleteOrgChannel(ctx context.Context, org string, channelId string) ApiDeleteOrgChannelRequest {
 	return ApiDeleteOrgChannelRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -198,14 +198,14 @@ func (a *ChannelsForOrganizationAPIService) DeleteOrgChannel(ctx context.Context
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationAPIService) DeleteOrgChannelExecute(r ApiDeleteOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationApiService) DeleteOrgChannelExecute(r ApiDeleteOrgChannelRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodDelete
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.DeleteOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.DeleteOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -359,7 +359,7 @@ func (a *ChannelsForOrganizationAPIService) DeleteOrgChannelExecute(r ApiDeleteO
 
 type ApiGetOrgChannelRequest struct {
 	ctx               context.Context
-	ApiService        ChannelsForOrganizationAPI
+	ApiService        ChannelsForOrganizationApi
 	org               string
 	channelId         string
 	ifMatch           *[]string
@@ -406,7 +406,7 @@ Get a channel's configuration
 	@param channelId Unique channel identifier
 	@return ApiGetOrgChannelRequest
 */
-func (a *ChannelsForOrganizationAPIService) GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) GetOrgChannel(ctx context.Context, org string, channelId string) ApiGetOrgChannelRequest {
 	return ApiGetOrgChannelRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -418,7 +418,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgChannel(ctx context.Context, o
 // Execute executes the request
 //
 //	@return Channel
-func (a *ChannelsForOrganizationAPIService) GetOrgChannelExecute(r ApiGetOrgChannelRequest) (*Channel, *http.Response, error) {
+func (a *ChannelsForOrganizationApiService) GetOrgChannelExecute(r ApiGetOrgChannelRequest) (*Channel, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -426,7 +426,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgChannelExecute(r ApiGetOrgChan
 		localVarReturnValue *Channel
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.GetOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.GetOrgChannel")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -591,7 +591,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgChannelExecute(r ApiGetOrgChan
 
 type ApiGetOrgPlaybackConfigRequest struct {
 	ctx        context.Context
-	ApiService ChannelsForOrganizationAPI
+	ApiService ChannelsForOrganizationApi
 	org        string
 	channelId  string
 }
@@ -610,7 +610,7 @@ Get a channel's playback configuration
 	@param channelId Unique channel identifier
 	@return ApiGetOrgPlaybackConfigRequest
 */
-func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest {
+func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest {
 	return ApiGetOrgPlaybackConfigRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -622,7 +622,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfig(ctx context.Con
 // Execute executes the request
 //
 //	@return ChannelPlayback
-func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
+func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -630,7 +630,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfigExecute(r ApiGet
 		localVarReturnValue *ChannelPlayback
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.GetOrgPlaybackConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.GetOrgPlaybackConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -783,7 +783,7 @@ func (a *ChannelsForOrganizationAPIService) GetOrgPlaybackConfigExecute(r ApiGet
 
 type ApiListOrgChannelsRequest struct {
 	ctx          context.Context
-	ApiService   ChannelsForOrganizationAPI
+	ApiService   ChannelsForOrganizationApi
 	org          string
 	cursor       *string
 	pageSize     *int32
@@ -828,7 +828,7 @@ Get a list of your channels.
 	@param org Organization name
 	@return ApiListOrgChannelsRequest
 */
-func (a *ChannelsForOrganizationAPIService) ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest {
+func (a *ChannelsForOrganizationApiService) ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest {
 	return ApiListOrgChannelsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -839,7 +839,7 @@ func (a *ChannelsForOrganizationAPIService) ListOrgChannels(ctx context.Context,
 // Execute executes the request
 //
 //	@return []Summary2
-func (a *ChannelsForOrganizationAPIService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error) {
+func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -847,7 +847,7 @@ func (a *ChannelsForOrganizationAPIService) ListOrgChannelsExecute(r ApiListOrgC
 		localVarReturnValue []Summary2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.ListOrgChannels")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.ListOrgChannels")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -998,7 +998,7 @@ func (a *ChannelsForOrganizationAPIService) ListOrgChannelsExecute(r ApiListOrgC
 
 type ApiPatchOrgChannelRequest struct {
 	ctx                          context.Context
-	ApiService                   ChannelsForOrganizationAPI
+	ApiService                   ChannelsForOrganizationApi
 	org                          string
 	channelId                    string
 	validateOnly                 *bool
@@ -1058,7 +1058,7 @@ Partial update operation supporting both JSON Merge Patch & JSON Patch updates.
 	@param channelId Unique channel identifier
 	@return ApiPatchOrgChannelRequest
 */
-func (a *ChannelsForOrganizationAPIService) PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) PatchOrgChannel(ctx context.Context, org string, channelId string) ApiPatchOrgChannelRequest {
 	return ApiPatchOrgChannelRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1068,14 +1068,14 @@ func (a *ChannelsForOrganizationAPIService) PatchOrgChannel(ctx context.Context,
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationAPIService) PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrgChannelRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPatch
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PatchOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PatchOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1274,7 +1274,7 @@ func (a *ChannelsForOrganizationAPIService) PatchOrgChannelExecute(r ApiPatchOrg
 
 type ApiPutOrgChannelRequest struct {
 	ctx                  context.Context
-	ApiService           ChannelsForOrganizationAPI
+	ApiService           ChannelsForOrganizationApi
 	org                  string
 	channelId            string
 	validateOnly         *bool
@@ -1334,7 +1334,7 @@ Create or update an existing channel configuration.
 	@param channelId Unique channel identifier
 	@return ApiPutOrgChannelRequest
 */
-func (a *ChannelsForOrganizationAPIService) PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest {
+func (a *ChannelsForOrganizationApiService) PutOrgChannel(ctx context.Context, org string, channelId string) ApiPutOrgChannelRequest {
 	return ApiPutOrgChannelRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1344,14 +1344,14 @@ func (a *ChannelsForOrganizationAPIService) PutOrgChannel(ctx context.Context, o
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationAPIService) PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PutOrgChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PutOrgChannel")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1540,7 +1540,7 @@ func (a *ChannelsForOrganizationAPIService) PutOrgChannelExecute(r ApiPutOrgChan
 
 type ApiPutOrgChannelDesiredStateRequest struct {
 	ctx               context.Context
-	ApiService        ChannelsForOrganizationAPI
+	ApiService        ChannelsForOrganizationApi
 	org               string
 	channelId         string
 	endPlaylist       *bool
@@ -1598,7 +1598,7 @@ PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
 	@param channelId Unique channel identifier
 	@return ApiPutOrgChannelDesiredStateRequest
 */
-func (a *ChannelsForOrganizationAPIService) PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest {
+func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredState(ctx context.Context, org string, channelId string) ApiPutOrgChannelDesiredStateRequest {
 	return ApiPutOrgChannelDesiredStateRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1608,14 +1608,14 @@ func (a *ChannelsForOrganizationAPIService) PutOrgChannelDesiredState(ctx contex
 }
 
 // Execute executes the request
-func (a *ChannelsForOrganizationAPIService) PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error) {
+func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r ApiPutOrgChannelDesiredStateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod = http.MethodPut
 		localVarPostBody   interface{}
 		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationAPIService.PutOrgChannelDesiredState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.PutOrgChannelDesiredState")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}

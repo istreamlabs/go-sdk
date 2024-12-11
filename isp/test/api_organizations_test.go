@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing OrganizationsAPIService
+Testing OrganizationsApiService
 
 */
 
@@ -18,16 +18,16 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_isp_OrganizationsAPIService(t *testing.T) {
+func Test_isp_OrganizationsApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test OrganizationsAPIService ListOrgs", func(t *testing.T) {
+	t.Run("Test OrganizationsApiService ListOrgs", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
-		resp, httpRes, err := apiClient.OrganizationsAPI.ListOrgs(context.Background()).Execute()
+		resp, httpRes, err := apiClient.OrganizationsApi.ListOrgs(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

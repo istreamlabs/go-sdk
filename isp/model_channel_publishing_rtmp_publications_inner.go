@@ -21,8 +21,8 @@ type ChannelPublishingRtmpPublicationsInner struct {
 	// Only AAC encoders are supported
 	AudioEncoderId *string `json:"audio_encoder_id,omitempty" minLength:"1" doc:"Only AAC encoders are supported"`
 	// RTMP publication ID. Must be unique.
-	Id  *string `json:"id,omitempty" validate:"regexp=^([a-z0-9]+(-*[a-z0-9]+)*)$" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"RTMP publication ID. Must be unique."`
-	Url *string `json:"url,omitempty" validate:"regexp=^rtmps?:\\/\\/" format:"uri" minLength:"1" pattern:"/^rtmps?:\/\//"`
+	Id  *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"RTMP publication ID. Must be unique."`
+	Url *string `json:"url,omitempty" format:"uri" minLength:"1" pattern:"/^rtmps?:\/\//"`
 	// Only h264 encoders are supported
 	VideoEncoderId *string `json:"video_encoder_id,omitempty" minLength:"1" doc:"Only h264 encoders are supported"`
 }

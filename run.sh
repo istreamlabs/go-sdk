@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GENERATOR_IMAGE="openapitools/openapi-generator-cli:v7.10.0"
+GENERATOR_IMAGE="openapitools/openapi-generator-cli:v6.6.0"
 
 API="${1-isp}"
 ENV="${2-prod}"

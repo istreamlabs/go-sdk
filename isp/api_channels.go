@@ -17,7 +17,7 @@ import (
 	"net/url"
 )
 
-type ChannelsAPI interface {
+type ChannelsApi interface {
 
 	/*
 		ListChannels List channels
@@ -34,12 +34,12 @@ type ChannelsAPI interface {
 	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
 }
 
-// ChannelsAPIService ChannelsAPI service
-type ChannelsAPIService service
+// ChannelsApiService ChannelsApi service
+type ChannelsApiService service
 
 type ApiListChannelsRequest struct {
 	ctx          context.Context
-	ApiService   ChannelsAPI
+	ApiService   ChannelsApi
 	cursor       *string
 	pageSize     *int32
 	q            *string
@@ -82,7 +82,7 @@ Get a list of your channels.
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListChannelsRequest
 */
-func (a *ChannelsAPIService) ListChannels(ctx context.Context) ApiListChannelsRequest {
+func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -92,7 +92,7 @@ func (a *ChannelsAPIService) ListChannels(ctx context.Context) ApiListChannelsRe
 // Execute executes the request
 //
 //	@return []Summary2
-func (a *ChannelsAPIService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
+func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
 		localVarHTTPMethod  = http.MethodGet
 		localVarPostBody    interface{}
@@ -100,7 +100,7 @@ func (a *ChannelsAPIService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 		localVarReturnValue []Summary2
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsAPIService.ListChannels")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.ListChannels")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

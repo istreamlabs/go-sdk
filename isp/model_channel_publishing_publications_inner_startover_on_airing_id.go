@@ -19,7 +19,7 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerStartoverOnAiringId{}
 // ChannelPublishingPublicationsInnerStartoverOnAiringId Use the Airing Id of a Program Start to trigger a Startover on the first match. Only one of ['first_program_start', 'on_airing_id'] may be set.
 type ChannelPublishingPublicationsInnerStartoverOnAiringId struct {
 	// Airing Id is a SCTE-35 Segmentation Unique Program ID (UPID) of type 0x08 used to specify the unique airing of a program. Is a 8 byte hex encoded string that is prepended with '0x'.
-	AiringId *string `json:"airing_id,omitempty" validate:"regexp=^0x[0-9a-fA-F]{16}$" pattern:"/^0x[0-9a-fA-F]{16}$/" doc:"Airing Id is a SCTE-35 Segmentation Unique Program ID (UPID) of type 0x08 used to specify the unique airing of a program. Is a 8 byte hex encoded string that is prepended with '0x'."`
+	AiringId *string `json:"airing_id,omitempty" pattern:"/^0x[0-9a-fA-F]{16}$/" doc:"Airing Id is a SCTE-35 Segmentation Unique Program ID (UPID) of type 0x08 used to specify the unique airing of a program. Is a 8 byte hex encoded string that is prepended with '0x'."`
 }
 
 // NewChannelPublishingPublicationsInnerStartoverOnAiringId instantiates a new ChannelPublishingPublicationsInnerStartoverOnAiringId object

@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing SourcePreviewsAPIService
+Testing SourcePreviewsApiService
 
 */
 
@@ -18,19 +18,19 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_isp_SourcePreviewsAPIService(t *testing.T) {
+func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test SourcePreviewsAPIService GetSourcePreviewStream", func(t *testing.T) {
+	t.Run("Test SourcePreviewsApiService GetSourcePreviewStream", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
 
-		resp, httpRes, err := apiClient.SourcePreviewsAPI.GetSourcePreviewStream(context.Background(), org, sourceId).Execute()
+		resp, httpRes, err := apiClient.SourcePreviewsApi.GetSourcePreviewStream(context.Background(), org, sourceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,14 +38,14 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SourcePreviewsAPIService GetSourcePreviewTranscoderStatus", func(t *testing.T) {
+	t.Run("Test SourcePreviewsApiService GetSourcePreviewTranscoderStatus", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
 
-		resp, httpRes, err := apiClient.SourcePreviewsAPI.GetSourcePreviewTranscoderStatus(context.Background(), org, sourceId).Execute()
+		resp, httpRes, err := apiClient.SourcePreviewsApi.GetSourcePreviewTranscoderStatus(context.Background(), org, sourceId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -53,42 +53,42 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	})
 
-	t.Run("Test SourcePreviewsAPIService PutSourcePreview", func(t *testing.T) {
+	t.Run("Test SourcePreviewsApiService PutSourcePreview", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
 
-		httpRes, err := apiClient.SourcePreviewsAPI.PutSourcePreview(context.Background(), org, sourceId).Execute()
+		httpRes, err := apiClient.SourcePreviewsApi.PutSourcePreview(context.Background(), org, sourceId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SourcePreviewsAPIService SourcePreviewPinIngest", func(t *testing.T) {
+	t.Run("Test SourcePreviewsApiService SourcePreviewPinIngest", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
 
-		httpRes, err := apiClient.SourcePreviewsAPI.SourcePreviewPinIngest(context.Background(), org, sourceId).Execute()
+		httpRes, err := apiClient.SourcePreviewsApi.SourcePreviewPinIngest(context.Background(), org, sourceId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test SourcePreviewsAPIService SourcePreviewUnpinIngest", func(t *testing.T) {
+	t.Run("Test SourcePreviewsApiService SourcePreviewUnpinIngest", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
 
-		httpRes, err := apiClient.SourcePreviewsAPI.SourcePreviewUnpinIngest(context.Background(), org, sourceId).Execute()
+		httpRes, err := apiClient.SourcePreviewsApi.SourcePreviewUnpinIngest(context.Background(), org, sourceId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
