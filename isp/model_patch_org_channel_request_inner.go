@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchOrgChannelRequest2Inner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchOrgChannelRequest2Inner{}
+// checks if the PatchOrgChannelRequestInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequestInner{}
 
-// PatchOrgChannelRequest2Inner struct for PatchOrgChannelRequest2Inner
-type PatchOrgChannelRequest2Inner struct {
+// PatchOrgChannelRequestInner struct for PatchOrgChannelRequestInner
+type PatchOrgChannelRequestInner struct {
 	// JSON Pointer for the source of a move or copy
 	From *string `json:"from,omitempty" doc:"JSON Pointer for the source of a move or copy"`
 	// Operation name
@@ -28,27 +28,27 @@ type PatchOrgChannelRequest2Inner struct {
 	Value interface{} `json:"value,omitempty" doc:"The value to set"`
 }
 
-// NewPatchOrgChannelRequest2Inner instantiates a new PatchOrgChannelRequest2Inner object
+// NewPatchOrgChannelRequestInner instantiates a new PatchOrgChannelRequestInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOrgChannelRequest2Inner(op string, path string) *PatchOrgChannelRequest2Inner {
-	this := PatchOrgChannelRequest2Inner{}
+func NewPatchOrgChannelRequestInner(op string, path string) *PatchOrgChannelRequestInner {
+	this := PatchOrgChannelRequestInner{}
 	this.Op = op
 	this.Path = path
 	return &this
 }
 
-// NewPatchOrgChannelRequest2InnerWithDefaults instantiates a new PatchOrgChannelRequest2Inner object
+// NewPatchOrgChannelRequestInnerWithDefaults instantiates a new PatchOrgChannelRequestInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchOrgChannelRequest2InnerWithDefaults() *PatchOrgChannelRequest2Inner {
-	this := PatchOrgChannelRequest2Inner{}
+func NewPatchOrgChannelRequestInnerWithDefaults() *PatchOrgChannelRequestInner {
+	this := PatchOrgChannelRequestInner{}
 	return &this
 }
 
 // GetFrom returns the From field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest2Inner) GetFrom() string {
+func (o *PatchOrgChannelRequestInner) GetFrom() string {
 	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *PatchOrgChannelRequest2Inner) GetFrom() string {
 
 // GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest2Inner) GetFromOk() (*string, bool) {
+func (o *PatchOrgChannelRequestInner) GetFromOk() (*string, bool) {
 	if o == nil || IsNil(o.From) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PatchOrgChannelRequest2Inner) GetFromOk() (*string, bool) {
 }
 
 // HasFrom returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest2Inner) HasFrom() bool {
+func (o *PatchOrgChannelRequestInner) HasFrom() bool {
 	if o != nil && !IsNil(o.From) {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *PatchOrgChannelRequest2Inner) HasFrom() bool {
 }
 
 // SetFrom gets a reference to the given string and assigns it to the From field.
-func (o *PatchOrgChannelRequest2Inner) SetFrom(v string) {
+func (o *PatchOrgChannelRequestInner) SetFrom(v string) {
 	o.From = &v
 }
 
 // GetOp returns the Op field value
-func (o *PatchOrgChannelRequest2Inner) GetOp() string {
+func (o *PatchOrgChannelRequestInner) GetOp() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -91,7 +91,7 @@ func (o *PatchOrgChannelRequest2Inner) GetOp() string {
 
 // GetOpOk returns a tuple with the Op field value
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest2Inner) GetOpOk() (*string, bool) {
+func (o *PatchOrgChannelRequestInner) GetOpOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -99,12 +99,12 @@ func (o *PatchOrgChannelRequest2Inner) GetOpOk() (*string, bool) {
 }
 
 // SetOp sets field value
-func (o *PatchOrgChannelRequest2Inner) SetOp(v string) {
+func (o *PatchOrgChannelRequestInner) SetOp(v string) {
 	o.Op = v
 }
 
 // GetPath returns the Path field value
-func (o *PatchOrgChannelRequest2Inner) GetPath() string {
+func (o *PatchOrgChannelRequestInner) GetPath() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *PatchOrgChannelRequest2Inner) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest2Inner) GetPathOk() (*string, bool) {
+func (o *PatchOrgChannelRequestInner) GetPathOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -123,12 +123,12 @@ func (o *PatchOrgChannelRequest2Inner) GetPathOk() (*string, bool) {
 }
 
 // SetPath sets field value
-func (o *PatchOrgChannelRequest2Inner) SetPath(v string) {
+func (o *PatchOrgChannelRequestInner) SetPath(v string) {
 	o.Path = v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchOrgChannelRequest2Inner) GetValue() interface{} {
+func (o *PatchOrgChannelRequestInner) GetValue() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
@@ -139,7 +139,7 @@ func (o *PatchOrgChannelRequest2Inner) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchOrgChannelRequest2Inner) GetValueOk() (*interface{}, bool) {
+func (o *PatchOrgChannelRequestInner) GetValueOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -147,7 +147,7 @@ func (o *PatchOrgChannelRequest2Inner) GetValueOk() (*interface{}, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest2Inner) HasValue() bool {
+func (o *PatchOrgChannelRequestInner) HasValue() bool {
 	if o != nil && IsNil(o.Value) {
 		return true
 	}
@@ -156,11 +156,11 @@ func (o *PatchOrgChannelRequest2Inner) HasValue() bool {
 }
 
 // SetValue gets a reference to the given interface{} and assigns it to the Value field.
-func (o *PatchOrgChannelRequest2Inner) SetValue(v interface{}) {
+func (o *PatchOrgChannelRequestInner) SetValue(v interface{}) {
 	o.Value = v
 }
 
-func (o PatchOrgChannelRequest2Inner) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequestInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -168,7 +168,7 @@ func (o PatchOrgChannelRequest2Inner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchOrgChannelRequest2Inner) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequestInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.From) {
 		toSerialize["from"] = o.From
@@ -181,38 +181,38 @@ func (o PatchOrgChannelRequest2Inner) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePatchOrgChannelRequest2Inner struct {
-	value *PatchOrgChannelRequest2Inner
+type NullablePatchOrgChannelRequestInner struct {
+	value *PatchOrgChannelRequestInner
 	isSet bool
 }
 
-func (v NullablePatchOrgChannelRequest2Inner) Get() *PatchOrgChannelRequest2Inner {
+func (v NullablePatchOrgChannelRequestInner) Get() *PatchOrgChannelRequestInner {
 	return v.value
 }
 
-func (v *NullablePatchOrgChannelRequest2Inner) Set(val *PatchOrgChannelRequest2Inner) {
+func (v *NullablePatchOrgChannelRequestInner) Set(val *PatchOrgChannelRequestInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchOrgChannelRequest2Inner) IsSet() bool {
+func (v NullablePatchOrgChannelRequestInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchOrgChannelRequest2Inner) Unset() {
+func (v *NullablePatchOrgChannelRequestInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchOrgChannelRequest2Inner(val *PatchOrgChannelRequest2Inner) *NullablePatchOrgChannelRequest2Inner {
-	return &NullablePatchOrgChannelRequest2Inner{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequestInner(val *PatchOrgChannelRequestInner) *NullablePatchOrgChannelRequestInner {
+	return &NullablePatchOrgChannelRequestInner{value: val, isSet: true}
 }
 
-func (v NullablePatchOrgChannelRequest2Inner) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequestInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchOrgChannelRequest2Inner) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequestInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

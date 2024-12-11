@@ -118,9 +118,9 @@ func (o *ErrorModel) SetDetail(v string) {
 	o.Detail = &v
 }
 
-// GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *ErrorModel) GetErrors() []ErrorDetail {
-	if o == nil {
+	if o == nil || IsNil(o.Errors) {
 		var ret []ErrorDetail
 		return ret
 	}
@@ -129,7 +129,6 @@ func (o *ErrorModel) GetErrors() []ErrorDetail {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ErrorModel) GetErrorsOk() ([]ErrorDetail, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
@@ -139,7 +138,7 @@ func (o *ErrorModel) GetErrorsOk() ([]ErrorDetail, bool) {
 
 // HasErrors returns a boolean if a field has been set.
 func (o *ErrorModel) HasErrors() bool {
-	if o != nil && IsNil(o.Errors) {
+	if o != nil && !IsNil(o.Errors) {
 		return true
 	}
 
@@ -295,7 +294,7 @@ func (o ErrorModel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
-	if o.Errors != nil {
+	if !IsNil(o.Errors) {
 		toSerialize["errors"] = o.Errors
 	}
 	if !IsNil(o.Instance) {

@@ -14,11 +14,11 @@ import (
 	"time"
 )
 
-// checks if the PatchOrgChannelRequest type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchOrgChannelRequest{}
+// checks if the PatchOrgChannelRequest2 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequest2{}
 
-// PatchOrgChannelRequest struct for PatchOrgChannelRequest
-type PatchOrgChannelRequest struct {
+// PatchOrgChannelRequest2 struct for PatchOrgChannelRequest2
+type PatchOrgChannelRequest2 struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Date and time the channel was created.
@@ -28,8 +28,8 @@ type PatchOrgChannelRequest struct {
 	// Indicates whether the channel's transcoder needs to run in a designated IP range.
 	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
-	Id     *string                       `json:"id,omitempty" validate:"regexp=^([a-z0-9]+(-*[a-z0-9]+)*)$" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
-	Ingest *PatchOrgChannelRequestIngest `json:"ingest,omitempty"`
+	Id     *string                        `json:"id,omitempty" validate:"regexp=^([a-z0-9]+(-*[a-z0-9]+)*)$" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
+	Ingest *PatchOrgChannelRequest2Ingest `json:"ingest,omitempty"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
 	Labels []string `json:"labels,omitempty" maxItems:"10" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10."`
 	// Date and time the channel was last modified.
@@ -50,25 +50,25 @@ type PatchOrgChannelRequest struct {
 	Transcode *ChannelTranscode `json:"transcode,omitempty"`
 }
 
-// NewPatchOrgChannelRequest instantiates a new PatchOrgChannelRequest object
+// NewPatchOrgChannelRequest2 instantiates a new PatchOrgChannelRequest2 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOrgChannelRequest() *PatchOrgChannelRequest {
-	this := PatchOrgChannelRequest{}
+func NewPatchOrgChannelRequest2() *PatchOrgChannelRequest2 {
+	this := PatchOrgChannelRequest2{}
 	return &this
 }
 
-// NewPatchOrgChannelRequestWithDefaults instantiates a new PatchOrgChannelRequest object
+// NewPatchOrgChannelRequest2WithDefaults instantiates a new PatchOrgChannelRequest2 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchOrgChannelRequestWithDefaults() *PatchOrgChannelRequest {
-	this := PatchOrgChannelRequest{}
+func NewPatchOrgChannelRequest2WithDefaults() *PatchOrgChannelRequest2 {
+	this := PatchOrgChannelRequest2{}
 	return &this
 }
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetSchema() string {
+func (o *PatchOrgChannelRequest2) GetSchema() string {
 	if o == nil || IsNil(o.Schema) {
 		var ret string
 		return ret
@@ -78,7 +78,7 @@ func (o *PatchOrgChannelRequest) GetSchema() string {
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetSchemaOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetSchemaOk() (*string, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
@@ -86,7 +86,7 @@ func (o *PatchOrgChannelRequest) GetSchemaOk() (*string, bool) {
 }
 
 // HasSchema returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasSchema() bool {
+func (o *PatchOrgChannelRequest2) HasSchema() bool {
 	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
@@ -95,12 +95,12 @@ func (o *PatchOrgChannelRequest) HasSchema() bool {
 }
 
 // SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PatchOrgChannelRequest) SetSchema(v string) {
+func (o *PatchOrgChannelRequest2) SetSchema(v string) {
 	o.Schema = &v
 }
 
 // GetCreated returns the Created field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetCreated() time.Time {
+func (o *PatchOrgChannelRequest2) GetCreated() time.Time {
 	if o == nil || IsNil(o.Created) {
 		var ret time.Time
 		return ret
@@ -110,7 +110,7 @@ func (o *PatchOrgChannelRequest) GetCreated() time.Time {
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetCreatedOk() (*time.Time, bool) {
+func (o *PatchOrgChannelRequest2) GetCreatedOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
@@ -118,7 +118,7 @@ func (o *PatchOrgChannelRequest) GetCreatedOk() (*time.Time, bool) {
 }
 
 // HasCreated returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasCreated() bool {
+func (o *PatchOrgChannelRequest2) HasCreated() bool {
 	if o != nil && !IsNil(o.Created) {
 		return true
 	}
@@ -127,12 +127,12 @@ func (o *PatchOrgChannelRequest) HasCreated() bool {
 }
 
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-func (o *PatchOrgChannelRequest) SetCreated(v time.Time) {
+func (o *PatchOrgChannelRequest2) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
 // GetDesiredState returns the DesiredState field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetDesiredState() string {
+func (o *PatchOrgChannelRequest2) GetDesiredState() string {
 	if o == nil || IsNil(o.DesiredState) {
 		var ret string
 		return ret
@@ -142,7 +142,7 @@ func (o *PatchOrgChannelRequest) GetDesiredState() string {
 
 // GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetDesiredStateOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetDesiredStateOk() (*string, bool) {
 	if o == nil || IsNil(o.DesiredState) {
 		return nil, false
 	}
@@ -150,7 +150,7 @@ func (o *PatchOrgChannelRequest) GetDesiredStateOk() (*string, bool) {
 }
 
 // HasDesiredState returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasDesiredState() bool {
+func (o *PatchOrgChannelRequest2) HasDesiredState() bool {
 	if o != nil && !IsNil(o.DesiredState) {
 		return true
 	}
@@ -159,12 +159,12 @@ func (o *PatchOrgChannelRequest) HasDesiredState() bool {
 }
 
 // SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
-func (o *PatchOrgChannelRequest) SetDesiredState(v string) {
+func (o *PatchOrgChannelRequest2) SetDesiredState(v string) {
 	o.DesiredState = &v
 }
 
 // GetEnableByoip returns the EnableByoip field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetEnableByoip() bool {
+func (o *PatchOrgChannelRequest2) GetEnableByoip() bool {
 	if o == nil || IsNil(o.EnableByoip) {
 		var ret bool
 		return ret
@@ -174,7 +174,7 @@ func (o *PatchOrgChannelRequest) GetEnableByoip() bool {
 
 // GetEnableByoipOk returns a tuple with the EnableByoip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetEnableByoipOk() (*bool, bool) {
+func (o *PatchOrgChannelRequest2) GetEnableByoipOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableByoip) {
 		return nil, false
 	}
@@ -182,7 +182,7 @@ func (o *PatchOrgChannelRequest) GetEnableByoipOk() (*bool, bool) {
 }
 
 // HasEnableByoip returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasEnableByoip() bool {
+func (o *PatchOrgChannelRequest2) HasEnableByoip() bool {
 	if o != nil && !IsNil(o.EnableByoip) {
 		return true
 	}
@@ -191,12 +191,12 @@ func (o *PatchOrgChannelRequest) HasEnableByoip() bool {
 }
 
 // SetEnableByoip gets a reference to the given bool and assigns it to the EnableByoip field.
-func (o *PatchOrgChannelRequest) SetEnableByoip(v bool) {
+func (o *PatchOrgChannelRequest2) SetEnableByoip(v bool) {
 	o.EnableByoip = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetId() string {
+func (o *PatchOrgChannelRequest2) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -206,7 +206,7 @@ func (o *PatchOrgChannelRequest) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetIdOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -214,7 +214,7 @@ func (o *PatchOrgChannelRequest) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasId() bool {
+func (o *PatchOrgChannelRequest2) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -223,14 +223,14 @@ func (o *PatchOrgChannelRequest) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PatchOrgChannelRequest) SetId(v string) {
+func (o *PatchOrgChannelRequest2) SetId(v string) {
 	o.Id = &v
 }
 
 // GetIngest returns the Ingest field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetIngest() PatchOrgChannelRequestIngest {
+func (o *PatchOrgChannelRequest2) GetIngest() PatchOrgChannelRequest2Ingest {
 	if o == nil || IsNil(o.Ingest) {
-		var ret PatchOrgChannelRequestIngest
+		var ret PatchOrgChannelRequest2Ingest
 		return ret
 	}
 	return *o.Ingest
@@ -238,7 +238,7 @@ func (o *PatchOrgChannelRequest) GetIngest() PatchOrgChannelRequestIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchOrgChannelRequestIngest, bool) {
+func (o *PatchOrgChannelRequest2) GetIngestOk() (*PatchOrgChannelRequest2Ingest, bool) {
 	if o == nil || IsNil(o.Ingest) {
 		return nil, false
 	}
@@ -246,7 +246,7 @@ func (o *PatchOrgChannelRequest) GetIngestOk() (*PatchOrgChannelRequestIngest, b
 }
 
 // HasIngest returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasIngest() bool {
+func (o *PatchOrgChannelRequest2) HasIngest() bool {
 	if o != nil && !IsNil(o.Ingest) {
 		return true
 	}
@@ -254,13 +254,13 @@ func (o *PatchOrgChannelRequest) HasIngest() bool {
 	return false
 }
 
-// SetIngest gets a reference to the given PatchOrgChannelRequestIngest and assigns it to the Ingest field.
-func (o *PatchOrgChannelRequest) SetIngest(v PatchOrgChannelRequestIngest) {
+// SetIngest gets a reference to the given PatchOrgChannelRequest2Ingest and assigns it to the Ingest field.
+func (o *PatchOrgChannelRequest2) SetIngest(v PatchOrgChannelRequest2Ingest) {
 	o.Ingest = &v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetLabels() []string {
+func (o *PatchOrgChannelRequest2) GetLabels() []string {
 	if o == nil || IsNil(o.Labels) {
 		var ret []string
 		return ret
@@ -270,7 +270,7 @@ func (o *PatchOrgChannelRequest) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetLabelsOk() ([]string, bool) {
+func (o *PatchOrgChannelRequest2) GetLabelsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
@@ -278,7 +278,7 @@ func (o *PatchOrgChannelRequest) GetLabelsOk() ([]string, bool) {
 }
 
 // HasLabels returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasLabels() bool {
+func (o *PatchOrgChannelRequest2) HasLabels() bool {
 	if o != nil && !IsNil(o.Labels) {
 		return true
 	}
@@ -287,12 +287,12 @@ func (o *PatchOrgChannelRequest) HasLabels() bool {
 }
 
 // SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *PatchOrgChannelRequest) SetLabels(v []string) {
+func (o *PatchOrgChannelRequest2) SetLabels(v []string) {
 	o.Labels = v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetModified() time.Time {
+func (o *PatchOrgChannelRequest2) GetModified() time.Time {
 	if o == nil || IsNil(o.Modified) {
 		var ret time.Time
 		return ret
@@ -302,7 +302,7 @@ func (o *PatchOrgChannelRequest) GetModified() time.Time {
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetModifiedOk() (*time.Time, bool) {
+func (o *PatchOrgChannelRequest2) GetModifiedOk() (*time.Time, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
@@ -310,7 +310,7 @@ func (o *PatchOrgChannelRequest) GetModifiedOk() (*time.Time, bool) {
 }
 
 // HasModified returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasModified() bool {
+func (o *PatchOrgChannelRequest2) HasModified() bool {
 	if o != nil && !IsNil(o.Modified) {
 		return true
 	}
@@ -319,12 +319,12 @@ func (o *PatchOrgChannelRequest) HasModified() bool {
 }
 
 // SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *PatchOrgChannelRequest) SetModified(v time.Time) {
+func (o *PatchOrgChannelRequest2) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetName() string {
+func (o *PatchOrgChannelRequest2) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -334,7 +334,7 @@ func (o *PatchOrgChannelRequest) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetNameOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -342,7 +342,7 @@ func (o *PatchOrgChannelRequest) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasName() bool {
+func (o *PatchOrgChannelRequest2) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -351,12 +351,12 @@ func (o *PatchOrgChannelRequest) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchOrgChannelRequest) SetName(v string) {
+func (o *PatchOrgChannelRequest2) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetOrganization() string {
+func (o *PatchOrgChannelRequest2) GetOrganization() string {
 	if o == nil || IsNil(o.Organization) {
 		var ret string
 		return ret
@@ -366,7 +366,7 @@ func (o *PatchOrgChannelRequest) GetOrganization() string {
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetOrganizationOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetOrganizationOk() (*string, bool) {
 	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
@@ -374,7 +374,7 @@ func (o *PatchOrgChannelRequest) GetOrganizationOk() (*string, bool) {
 }
 
 // HasOrganization returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasOrganization() bool {
+func (o *PatchOrgChannelRequest2) HasOrganization() bool {
 	if o != nil && !IsNil(o.Organization) {
 		return true
 	}
@@ -383,12 +383,12 @@ func (o *PatchOrgChannelRequest) HasOrganization() bool {
 }
 
 // SetOrganization gets a reference to the given string and assigns it to the Organization field.
-func (o *PatchOrgChannelRequest) SetOrganization(v string) {
+func (o *PatchOrgChannelRequest2) SetOrganization(v string) {
 	o.Organization = &v
 }
 
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetPackaging() ChannelPackaging {
+func (o *PatchOrgChannelRequest2) GetPackaging() ChannelPackaging {
 	if o == nil || IsNil(o.Packaging) {
 		var ret ChannelPackaging
 		return ret
@@ -398,7 +398,7 @@ func (o *PatchOrgChannelRequest) GetPackaging() ChannelPackaging {
 
 // GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetPackagingOk() (*ChannelPackaging, bool) {
+func (o *PatchOrgChannelRequest2) GetPackagingOk() (*ChannelPackaging, bool) {
 	if o == nil || IsNil(o.Packaging) {
 		return nil, false
 	}
@@ -406,7 +406,7 @@ func (o *PatchOrgChannelRequest) GetPackagingOk() (*ChannelPackaging, bool) {
 }
 
 // HasPackaging returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasPackaging() bool {
+func (o *PatchOrgChannelRequest2) HasPackaging() bool {
 	if o != nil && !IsNil(o.Packaging) {
 		return true
 	}
@@ -415,12 +415,12 @@ func (o *PatchOrgChannelRequest) HasPackaging() bool {
 }
 
 // SetPackaging gets a reference to the given ChannelPackaging and assigns it to the Packaging field.
-func (o *PatchOrgChannelRequest) SetPackaging(v ChannelPackaging) {
+func (o *PatchOrgChannelRequest2) SetPackaging(v ChannelPackaging) {
 	o.Packaging = &v
 }
 
 // GetPublishing returns the Publishing field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetPublishing() ChannelPublishing {
+func (o *PatchOrgChannelRequest2) GetPublishing() ChannelPublishing {
 	if o == nil || IsNil(o.Publishing) {
 		var ret ChannelPublishing
 		return ret
@@ -430,7 +430,7 @@ func (o *PatchOrgChannelRequest) GetPublishing() ChannelPublishing {
 
 // GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetPublishingOk() (*ChannelPublishing, bool) {
+func (o *PatchOrgChannelRequest2) GetPublishingOk() (*ChannelPublishing, bool) {
 	if o == nil || IsNil(o.Publishing) {
 		return nil, false
 	}
@@ -438,7 +438,7 @@ func (o *PatchOrgChannelRequest) GetPublishingOk() (*ChannelPublishing, bool) {
 }
 
 // HasPublishing returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasPublishing() bool {
+func (o *PatchOrgChannelRequest2) HasPublishing() bool {
 	if o != nil && !IsNil(o.Publishing) {
 		return true
 	}
@@ -447,12 +447,12 @@ func (o *PatchOrgChannelRequest) HasPublishing() bool {
 }
 
 // SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
-func (o *PatchOrgChannelRequest) SetPublishing(v ChannelPublishing) {
+func (o *PatchOrgChannelRequest2) SetPublishing(v ChannelPublishing) {
 	o.Publishing = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetRegion() string {
+func (o *PatchOrgChannelRequest2) GetRegion() string {
 	if o == nil || IsNil(o.Region) {
 		var ret string
 		return ret
@@ -462,7 +462,7 @@ func (o *PatchOrgChannelRequest) GetRegion() string {
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetRegionOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetRegionOk() (*string, bool) {
 	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
@@ -470,7 +470,7 @@ func (o *PatchOrgChannelRequest) GetRegionOk() (*string, bool) {
 }
 
 // HasRegion returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasRegion() bool {
+func (o *PatchOrgChannelRequest2) HasRegion() bool {
 	if o != nil && !IsNil(o.Region) {
 		return true
 	}
@@ -479,12 +479,12 @@ func (o *PatchOrgChannelRequest) HasRegion() bool {
 }
 
 // SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *PatchOrgChannelRequest) SetRegion(v string) {
+func (o *PatchOrgChannelRequest2) SetRegion(v string) {
 	o.Region = &v
 }
 
 // GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetResourceClass() string {
+func (o *PatchOrgChannelRequest2) GetResourceClass() string {
 	if o == nil || IsNil(o.ResourceClass) {
 		var ret string
 		return ret
@@ -494,7 +494,7 @@ func (o *PatchOrgChannelRequest) GetResourceClass() string {
 
 // GetResourceClassOk returns a tuple with the ResourceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetResourceClassOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetResourceClassOk() (*string, bool) {
 	if o == nil || IsNil(o.ResourceClass) {
 		return nil, false
 	}
@@ -502,7 +502,7 @@ func (o *PatchOrgChannelRequest) GetResourceClassOk() (*string, bool) {
 }
 
 // HasResourceClass returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasResourceClass() bool {
+func (o *PatchOrgChannelRequest2) HasResourceClass() bool {
 	if o != nil && !IsNil(o.ResourceClass) {
 		return true
 	}
@@ -511,12 +511,12 @@ func (o *PatchOrgChannelRequest) HasResourceClass() bool {
 }
 
 // SetResourceClass gets a reference to the given string and assigns it to the ResourceClass field.
-func (o *PatchOrgChannelRequest) SetResourceClass(v string) {
+func (o *PatchOrgChannelRequest2) SetResourceClass(v string) {
 	o.ResourceClass = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetSelf() string {
+func (o *PatchOrgChannelRequest2) GetSelf() string {
 	if o == nil || IsNil(o.Self) {
 		var ret string
 		return ret
@@ -526,7 +526,7 @@ func (o *PatchOrgChannelRequest) GetSelf() string {
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetSelfOk() (*string, bool) {
+func (o *PatchOrgChannelRequest2) GetSelfOk() (*string, bool) {
 	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
@@ -534,7 +534,7 @@ func (o *PatchOrgChannelRequest) GetSelfOk() (*string, bool) {
 }
 
 // HasSelf returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasSelf() bool {
+func (o *PatchOrgChannelRequest2) HasSelf() bool {
 	if o != nil && !IsNil(o.Self) {
 		return true
 	}
@@ -543,12 +543,12 @@ func (o *PatchOrgChannelRequest) HasSelf() bool {
 }
 
 // SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *PatchOrgChannelRequest) SetSelf(v string) {
+func (o *PatchOrgChannelRequest2) SetSelf(v string) {
 	o.Self = &v
 }
 
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetSignaling() ChannelSignaling {
+func (o *PatchOrgChannelRequest2) GetSignaling() ChannelSignaling {
 	if o == nil || IsNil(o.Signaling) {
 		var ret ChannelSignaling
 		return ret
@@ -558,7 +558,7 @@ func (o *PatchOrgChannelRequest) GetSignaling() ChannelSignaling {
 
 // GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetSignalingOk() (*ChannelSignaling, bool) {
+func (o *PatchOrgChannelRequest2) GetSignalingOk() (*ChannelSignaling, bool) {
 	if o == nil || IsNil(o.Signaling) {
 		return nil, false
 	}
@@ -566,7 +566,7 @@ func (o *PatchOrgChannelRequest) GetSignalingOk() (*ChannelSignaling, bool) {
 }
 
 // HasSignaling returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasSignaling() bool {
+func (o *PatchOrgChannelRequest2) HasSignaling() bool {
 	if o != nil && !IsNil(o.Signaling) {
 		return true
 	}
@@ -575,12 +575,12 @@ func (o *PatchOrgChannelRequest) HasSignaling() bool {
 }
 
 // SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
-func (o *PatchOrgChannelRequest) SetSignaling(v ChannelSignaling) {
+func (o *PatchOrgChannelRequest2) SetSignaling(v ChannelSignaling) {
 	o.Signaling = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetTags() ChannelTags {
+func (o *PatchOrgChannelRequest2) GetTags() ChannelTags {
 	if o == nil || IsNil(o.Tags) {
 		var ret ChannelTags
 		return ret
@@ -590,7 +590,7 @@ func (o *PatchOrgChannelRequest) GetTags() ChannelTags {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetTagsOk() (*ChannelTags, bool) {
+func (o *PatchOrgChannelRequest2) GetTagsOk() (*ChannelTags, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -598,7 +598,7 @@ func (o *PatchOrgChannelRequest) GetTagsOk() (*ChannelTags, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasTags() bool {
+func (o *PatchOrgChannelRequest2) HasTags() bool {
 	if o != nil && !IsNil(o.Tags) {
 		return true
 	}
@@ -607,12 +607,12 @@ func (o *PatchOrgChannelRequest) HasTags() bool {
 }
 
 // SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
-func (o *PatchOrgChannelRequest) SetTags(v ChannelTags) {
+func (o *PatchOrgChannelRequest2) SetTags(v ChannelTags) {
 	o.Tags = &v
 }
 
 // GetTranscode returns the Transcode field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetTranscode() ChannelTranscode {
+func (o *PatchOrgChannelRequest2) GetTranscode() ChannelTranscode {
 	if o == nil || IsNil(o.Transcode) {
 		var ret ChannelTranscode
 		return ret
@@ -622,7 +622,7 @@ func (o *PatchOrgChannelRequest) GetTranscode() ChannelTranscode {
 
 // GetTranscodeOk returns a tuple with the Transcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetTranscodeOk() (*ChannelTranscode, bool) {
+func (o *PatchOrgChannelRequest2) GetTranscodeOk() (*ChannelTranscode, bool) {
 	if o == nil || IsNil(o.Transcode) {
 		return nil, false
 	}
@@ -630,7 +630,7 @@ func (o *PatchOrgChannelRequest) GetTranscodeOk() (*ChannelTranscode, bool) {
 }
 
 // HasTranscode returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequest) HasTranscode() bool {
+func (o *PatchOrgChannelRequest2) HasTranscode() bool {
 	if o != nil && !IsNil(o.Transcode) {
 		return true
 	}
@@ -639,11 +639,11 @@ func (o *PatchOrgChannelRequest) HasTranscode() bool {
 }
 
 // SetTranscode gets a reference to the given ChannelTranscode and assigns it to the Transcode field.
-func (o *PatchOrgChannelRequest) SetTranscode(v ChannelTranscode) {
+func (o *PatchOrgChannelRequest2) SetTranscode(v ChannelTranscode) {
 	o.Transcode = &v
 }
 
-func (o PatchOrgChannelRequest) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequest2) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -651,7 +651,7 @@ func (o PatchOrgChannelRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchOrgChannelRequest) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequest2) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
@@ -710,38 +710,38 @@ func (o PatchOrgChannelRequest) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePatchOrgChannelRequest struct {
-	value *PatchOrgChannelRequest
+type NullablePatchOrgChannelRequest2 struct {
+	value *PatchOrgChannelRequest2
 	isSet bool
 }
 
-func (v NullablePatchOrgChannelRequest) Get() *PatchOrgChannelRequest {
+func (v NullablePatchOrgChannelRequest2) Get() *PatchOrgChannelRequest2 {
 	return v.value
 }
 
-func (v *NullablePatchOrgChannelRequest) Set(val *PatchOrgChannelRequest) {
+func (v *NullablePatchOrgChannelRequest2) Set(val *PatchOrgChannelRequest2) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchOrgChannelRequest) IsSet() bool {
+func (v NullablePatchOrgChannelRequest2) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchOrgChannelRequest) Unset() {
+func (v *NullablePatchOrgChannelRequest2) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchOrgChannelRequest(val *PatchOrgChannelRequest) *NullablePatchOrgChannelRequest {
-	return &NullablePatchOrgChannelRequest{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequest2(val *PatchOrgChannelRequest2) *NullablePatchOrgChannelRequest2 {
+	return &NullablePatchOrgChannelRequest2{value: val, isSet: true}
 }
 
-func (v NullablePatchOrgChannelRequest) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequest2) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchOrgChannelRequest) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequest2) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

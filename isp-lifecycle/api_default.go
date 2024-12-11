@@ -25,8 +25,8 @@ type DefaultAPI interface {
 		Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org The organization that owns the channel.
-		@param channelId The name of the channel.
+		@param org
+		@param channelId
 		@return ApiCalculateLifecycleStateRequest
 	*/
 	CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest
@@ -41,9 +41,9 @@ type DefaultAPI interface {
 		Retrieve the current state of a component for a given channel.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org The organization that owns the channel.
-		@param channelId The name of the channel.
-		@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+		@param org
+		@param channelId
+		@param component
 		@return ApiGetLifecycleComponentStateRequest
 	*/
 	GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest
@@ -58,8 +58,8 @@ type DefaultAPI interface {
 		Update the state of a component associated with the given channel.
 
 		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelUrn The channel_urn (channeldoc identifier).
-		@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+		@param channelUrn
+		@param component
 		@return ApiPutLifecycleComponentStateRequest
 	*/
 	PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest
@@ -88,8 +88,8 @@ CalculateLifecycleState Calculates channel lifecycle state
 Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org The organization that owns the channel.
-	@param channelId The name of the channel.
+	@param org
+	@param channelId
 	@return ApiCalculateLifecycleStateRequest
 */
 func (a *DefaultAPIService) CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest {
@@ -222,9 +222,9 @@ GetLifecycleComponentState Get component state
 Retrieve the current state of a component for a given channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org The organization that owns the channel.
-	@param channelId The name of the channel.
-	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+	@param org
+	@param channelId
+	@param component
 	@return ApiGetLifecycleComponentStateRequest
 */
 func (a *DefaultAPIService) GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest {
@@ -364,8 +364,8 @@ PutLifecycleComponentState Put component state
 Update the state of a component associated with the given channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelUrn The channel_urn (channeldoc identifier).
-	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+	@param channelUrn
+	@param component
 	@return ApiPutLifecycleComponentStateRequest
 */
 func (a *DefaultAPIService) PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest {

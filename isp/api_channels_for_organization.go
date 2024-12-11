@@ -997,16 +997,16 @@ func (a *ChannelsForOrganizationAPIService) ListOrgChannelsExecute(r ApiListOrgC
 }
 
 type ApiPatchOrgChannelRequest struct {
-	ctx                          context.Context
-	ApiService                   ChannelsForOrganizationAPI
-	org                          string
-	channelId                    string
-	validateOnly                 *bool
-	ifMatch                      *[]string
-	ifNoneMatch                  *[]string
-	ifModifiedSince              *time.Time
-	ifUnmodifiedSince            *time.Time
-	patchOrgChannelRequest2Inner *[]PatchOrgChannelRequest2Inner
+	ctx                         context.Context
+	ApiService                  ChannelsForOrganizationAPI
+	org                         string
+	channelId                   string
+	validateOnly                *bool
+	ifMatch                     *[]string
+	ifNoneMatch                 *[]string
+	ifModifiedSince             *time.Time
+	ifUnmodifiedSince           *time.Time
+	patchOrgChannelRequestInner *[]PatchOrgChannelRequestInner
 }
 
 // Validate request but do not otherwise process it
@@ -1039,8 +1039,8 @@ func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time
 	return r
 }
 
-func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequest2Inner(patchOrgChannelRequest2Inner []PatchOrgChannelRequest2Inner) ApiPatchOrgChannelRequest {
-	r.patchOrgChannelRequest2Inner = &patchOrgChannelRequest2Inner
+func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequestInner(patchOrgChannelRequestInner []PatchOrgChannelRequestInner) ApiPatchOrgChannelRequest {
+	r.patchOrgChannelRequestInner = &patchOrgChannelRequestInner
 	return r
 }
 
@@ -1124,7 +1124,7 @@ func (a *ChannelsForOrganizationAPIService) PatchOrgChannelExecute(r ApiPatchOrg
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchOrgChannelRequest2Inner
+	localVarPostBody = r.patchOrgChannelRequestInner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
