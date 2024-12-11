@@ -21,7 +21,7 @@ type ChannelPublishingRtmpPublicationsInner struct {
 	// Only AAC encoders are supported
 	AudioEncoderId *string `json:"audio_encoder_id,omitempty" minLength:"1" doc:"Only AAC encoders are supported"`
 	// RTMP publication ID. Must be unique.
-	Id  *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"RTMP publication ID. Must be unique."`
+	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"RTMP publication ID. Must be unique."`
 	Url *string `json:"url,omitempty" format:"uri" minLength:"1" pattern:"/^rtmps?:\/\//"`
 	// Only h264 encoders are supported
 	VideoEncoderId *string `json:"video_encoder_id,omitempty" minLength:"1" doc:"Only h264 encoders are supported"`
@@ -173,7 +173,7 @@ func (o *ChannelPublishingRtmpPublicationsInner) SetVideoEncoderId(v string) {
 }
 
 func (o ChannelPublishingRtmpPublicationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -232,3 +232,5 @@ func (v *NullableChannelPublishingRtmpPublicationsInner) UnmarshalJSON(src []byt
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

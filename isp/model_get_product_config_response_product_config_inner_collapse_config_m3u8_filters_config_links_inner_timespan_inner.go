@@ -19,8 +19,8 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerCollapseConfig
 
 // GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner struct for GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner
 type GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner struct {
-	Endtime   *time.Time `json:"endtime,omitempty" format:"date-time"`
-	Starttime time.Time  `json:"starttime" format:"date-time"`
+	Endtime *time.Time `json:"endtime,omitempty" format:"date-time"`
+	Starttime time.Time `json:"starttime" format:"date-time"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner instantiates a new GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner object
@@ -98,7 +98,7 @@ func (o *GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConf
 }
 
 func (o GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfigLinksInnerTimespanInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -149,3 +149,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerCollapseConfigM3u8Fil
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

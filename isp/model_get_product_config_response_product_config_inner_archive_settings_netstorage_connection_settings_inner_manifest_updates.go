@@ -19,7 +19,7 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 // GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates struct for GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates
 type GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates struct {
 	PlaybackAbsoluteBaseUrl *string `json:"playback_absolute_base_url,omitempty"`
-	RemoveCrossPlaybackUrls bool    `json:"remove_cross_playback_urls"`
+	RemoveCrossPlaybackUrls bool `json:"remove_cross_playback_urls"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates object
@@ -97,7 +97,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConn
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInnerManifestUpdates) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -148,3 +148,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsNetsto
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -21,27 +21,27 @@ type ChannelPublishingPublicationsInner struct {
 	// Optionally specify which audio encoders should be used for this publication. If none are specified, all audio encoders configured for the transcoder will be used.
 	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used for this publication. If none are specified, all audio encoders configured for the transcoder will be used."`
 	// Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|.
-	CreateVods *bool                                   `json:"create_vods,omitempty" doc:"Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|."`
-	Dash       *ChannelPublishingPublicationsInnerDash `json:"dash,omitempty"`
+	CreateVods *bool `json:"create_vods,omitempty" doc:"Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|."`
+	Dash *ChannelPublishingPublicationsInnerDash `json:"dash,omitempty"`
 	// Optionally specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this publication. If omitted or empty, all DRMs specified by the packager will be advertised. This setting can only be used for HLS playlists.
 	Drms []string `json:"drms,omitempty" uniqueItems:"true" enum:"WIDEVINE,FAIRPLAY,PRIMETIME,PLAYREADY,W3C_COMMON_CLEAR_KEY,BULK_FILE" doc:"Optionally specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this publication. If omitted or empty, all DRMs specified by the packager will be advertised. This setting can only be used for HLS playlists."`
 	// DVR window is the max sum(duration of media segments) that will be kept in a manifest at a given time in seconds. The max supported DVR window is 10 hours.
 	DvrWindowSecs *int32 `json:"dvr_window_secs,omitempty" format:"int32" minimum:"0" maximum:"36000" doc:"DVR window is the max sum(duration of media segments) that will be kept in a manifest at a given time in seconds. The max supported DVR window is 10 hours."`
 	// Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used.
-	FerAudioEncoderIds []string                               `json:"fer_audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used."`
-	Hls                *ChannelPublishingPublicationsInnerHls `json:"hls,omitempty"`
+	FerAudioEncoderIds []string `json:"fer_audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used."`
+	Hls *ChannelPublishingPublicationsInnerHls `json:"hls,omitempty"`
 	// List of video encoder IDs that should have I-Frame only playlists generated for them.
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty" uniqueItems:"true" doc:"List of video encoder IDs that should have I-Frame only playlists generated for them."`
 	// Optional master manifest name. When not supplied a default of 'master' will be used.
-	MasterPlaylistName *string                                   `json:"master_playlist_name,omitempty" doc:"Optional master manifest name. When not supplied a default of 'master' will be used."`
-	Origin             *ChannelPublishingPublicationsInnerOrigin `json:"origin,omitempty"`
+	MasterPlaylistName *string `json:"master_playlist_name,omitempty" doc:"Optional master manifest name. When not supplied a default of 'master' will be used."`
+	Origin *ChannelPublishingPublicationsInnerOrigin `json:"origin,omitempty"`
 	// Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for.
 	PackagerId *string `json:"packager_id,omitempty" doc:"Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for."`
 	// Publish points specify where to output.
 	PublishPoints []ChannelPublishingPublicationsInnerPublishPointsInner `json:"publish_points,omitempty" doc:"Publish points specify where to output."`
 	// When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication.
-	RedundantPublishing *bool                                        `json:"redundant_publishing,omitempty" doc:"When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication."`
-	Startover           *ChannelPublishingPublicationsInnerStartover `json:"startover,omitempty"`
+	RedundantPublishing *bool `json:"redundant_publishing,omitempty" doc:"When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication."`
+	Startover *ChannelPublishingPublicationsInnerStartover `json:"startover,omitempty"`
 	// Optional: Specify what thumbnail_encoders should be in this Publication
 	ThumbnailEncoderIds []string `json:"thumbnail_encoder_ids,omitempty" uniqueItems:"true" doc:"Optional: Specify what thumbnail_encoders should be in this Publication"`
 	// Optional, indicates whether we should pad the bitrate (false) or use what is explicitly provided (true)
@@ -612,7 +612,7 @@ func (o *ChannelPublishingPublicationsInner) SetVideoEncoderIds(v []string) {
 }
 
 func (o ChannelPublishingPublicationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -710,3 +710,5 @@ func (v *NullableChannelPublishingPublicationsInner) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

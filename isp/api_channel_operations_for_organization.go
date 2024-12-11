@@ -19,17 +19,18 @@ import (
 	"time"
 )
 
+
 type ChannelOperationsForOrganizationApi interface {
 
 	/*
-		ClearOrgDvrWindow Clear DVR Window
+	ClearOrgDvrWindow Clear DVR Window
 
-		Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
+	Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param channelId Unique channel identifier
-		@return ApiClearOrgDvrWindowRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiClearOrgDvrWindowRequest
 	*/
 	ClearOrgDvrWindow(ctx context.Context, org string, channelId string) ApiClearOrgDvrWindowRequest
 
@@ -37,14 +38,14 @@ type ChannelOperationsForOrganizationApi interface {
 	ClearOrgDvrWindowExecute(r ApiClearOrgDvrWindowRequest) (*http.Response, error)
 
 	/*
-		GetOrgPreviewImage Get Preview Image
+	GetOrgPreviewImage Get Preview Image
 
-		Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
+	Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param channelId Unique channel identifier
-		@return ApiGetOrgPreviewImageRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgPreviewImageRequest
 	*/
 	GetOrgPreviewImage(ctx context.Context, org string, channelId string) ApiGetOrgPreviewImageRequest
 
@@ -52,16 +53,16 @@ type ChannelOperationsForOrganizationApi interface {
 	GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error)
 
 	/*
-			GetOrgSignalLogs Signal Logs
+	GetOrgSignalLogs Signal Logs
 
-			Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
+	Warning: This is deprecated beta functionality and is unstable and may change, break, or be removed in the future without notice.
 
-		Returns the signalling history for a channel.
+Returns the signalling history for a channel.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param channelId Unique channel identifier
-			@return ApiGetOrgSignalLogsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgSignalLogsRequest
 	*/
 	GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest
 
@@ -70,14 +71,14 @@ type ChannelOperationsForOrganizationApi interface {
 	GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error)
 
 	/*
-		GetOrgSignals Get Signals
+	GetOrgSignals Get Signals
 
-		Returns the active signals for a channel.
+	Returns the active signals for a channel.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param channelId Unique channel identifier
-		@return ApiGetOrgSignalsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgSignalsRequest
 	*/
 	GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest
 
@@ -86,14 +87,14 @@ type ChannelOperationsForOrganizationApi interface {
 	GetOrgSignalsExecute(r ApiGetOrgSignalsRequest) ([]Segment, *http.Response, error)
 
 	/*
-		InsertOrgId3 Insert ID3
+	InsertOrgId3 Insert ID3
 
-		Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
+	Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param channelId Unique channel identifier
-		@return ApiInsertOrgId3Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiInsertOrgId3Request
 	*/
 	InsertOrgId3(ctx context.Context, org string, channelId string) ApiInsertOrgId3Request
 
@@ -102,14 +103,14 @@ type ChannelOperationsForOrganizationApi interface {
 	InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error)
 
 	/*
-		InsertOrgScte35 Insert SCTE-35
+	InsertOrgScte35 Insert SCTE-35
 
-		Inserts a SCTE-35 formatted binary payload into the channel.
+	Inserts a SCTE-35 formatted binary payload into the channel.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param channelId Unique channel identifier
-		@return ApiInsertOrgScte35Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiInsertOrgScte35Request
 	*/
 	InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request
 
@@ -117,14 +118,14 @@ type ChannelOperationsForOrganizationApi interface {
 	InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error)
 
 	/*
-		OrgGetTranscoderStatus Get Transcoder Status
+	OrgGetTranscoderStatus Get Transcoder Status
 
-		Get the current status for the live transcoder powering the channel.
+	Get the current status for the live transcoder powering the channel.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param channelId Unique channel identifier
-		@param org Organization name
-		@return ApiOrgGetTranscoderStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgGetTranscoderStatusRequest
 	*/
 	OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest
 
@@ -133,16 +134,16 @@ type ChannelOperationsForOrganizationApi interface {
 	OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error)
 
 	/*
-			OrgPinIngest Pin Ingest
+	OrgPinIngest Pin Ingest
 
-			Pin the channel's transcoder to prefer either primary or secondary ingest feeds.
-		Note that this will disable some automated ingest failover that is based on the quality of the feeds.
+	Pin the channel's transcoder to prefer either primary or secondary ingest feeds.
+Note that this will disable some automated ingest failover that is based on the quality of the feeds.
 
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param channelId Unique channel identifier
-			@param org Organization name
-			@return ApiOrgPinIngestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgPinIngestRequest
 	*/
 	OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest
 
@@ -150,15 +151,15 @@ type ChannelOperationsForOrganizationApi interface {
 	OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error)
 
 	/*
-			OrgPreviewStreams Get Preview Streams
+	OrgPreviewStreams Get Preview Streams
 
-			Get a default url that links to a preview of the channel. Additionally, all possible
-		video and audio tracks are provided back and can be interchanged in the given url.
+	Get a default url that links to a preview of the channel. Additionally, all possible
+video and audio tracks are provided back and can be interchanged in the given url.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param channelId Unique channel identifier
-			@return ApiOrgPreviewStreamsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiOrgPreviewStreamsRequest
 	*/
 	OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest
 
@@ -167,15 +168,15 @@ type ChannelOperationsForOrganizationApi interface {
 	OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error)
 
 	/*
-			OrgUnpinIngest Unpin Ingest
+	OrgUnpinIngest Unpin Ingest
 
-			Remove the preferrence for primary or secondary ingest feed from the channel's transcoder.
-		Automated source failover based on feed quality will be resumed.
+	Remove the preferrence for primary or secondary ingest feed from the channel's transcoder.
+Automated source failover based on feed quality will be resumed.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param channelId Unique channel identifier
-			@param org Organization name
-			@return ApiOrgUnpinIngestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelId Unique channel identifier
+	@param org Organization name
+	@return ApiOrgUnpinIngestRequest
 	*/
 	OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest
 
@@ -183,190 +184,190 @@ type ChannelOperationsForOrganizationApi interface {
 	OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error)
 
 	/*
-			PostOrgSignals Generic Signal
+	PostOrgSignals Generic Signal
 
-			Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
+	Inserts an out-of-band signal into a channel. A signal represents a program signal like chapter-start or ad-end. Signals operate on signaling segments. For example, a chapter-start will result in a new active Chapter segment, while a chapter-end with the same event_id will end it. Signals loosely map to SCTE-35 time_signals and splice_inserts.
 
-		The breakaway and resumption signal types are only valid with program segments.
+The breakaway and resumption signal types are only valid with program segments.
 
-		The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
 
-		### Program Start
+### Program Start
 
-		Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
+Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
 
-		Example input body:
+Example input body:
 
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "program",
-				"signal_type": "start"
-			}
-		]
-		```
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "start"
+	}
+]
+```
 
-		### Program End
+### Program End
 
-		Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
+Inserts a SCTE-35 program end message into the channel with the given event ID. The event ID must match the one given during program start.
 
-		Example input body:
+Example input body:
 
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "program",
-				"signal_type": "end"
-			}
-		]
-		```
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "program",
+		"signal_type": "end"
+	}
+]
+```
 
-		### Slate In
+### Slate In
 
-		Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
+Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
 
 
-		The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
+The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
 
-		<table>
-			<tr>
-				<th>Attribute</td>
-				<th>Supported</td>
-				<th>Recommended</td>
-			</tr>
-			<tr>
-				<td>Max File Size</td>
-				<td>100MB (104,857,600 bytes)</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Total Duration</td>
-				<td>Minimum: 3s</td>
-				<td>10-30s</td>
-			</tr>
-			<tr>
-				<td>Container</td>
-				<td>MPEG-TS</td>
-				<td></td>
-			</tr>
-			<tr>
-				<td>Resolution (Recommended)</td>
-				<td>Up to 4k (2160p)</td>
-				<td>720p</td>
-			</tr>
-			<tr>
-				<td>Framerate</td>
-				<td>25i, 25p, 29.97i, 30p, 60p</td>
-				<td>30p</td>
-			</tr>
-			<tr>
-				<td>Video Codec</td>
-				<td>
-					- H.264<br/>
-					- H.265<br/>
-					- MPEG2<br/>
-				</td>
-				<td>H.264 Main or High profile</td>
-			</tr>
-			<tr>
-				<td>Audio Codec</td>
-				<td>
-					- AAC-LC<br/>
-					- AC-3<br/>
-					- E-AC-3<br/>
-					- MPEG1|2 Audio<br/>
-				</td>
-				<td>48KHz AAC-LC</td>
-			</tr>
-		</table>
+<table>
+	<tr>
+		<th>Attribute</td>
+		<th>Supported</td>
+		<th>Recommended</td>
+	</tr>
+	<tr>
+		<td>Max File Size</td>
+		<td>100MB (104,857,600 bytes)</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Total Duration</td>
+		<td>Minimum: 3s</td>
+		<td>10-30s</td>
+	</tr>
+	<tr>
+		<td>Container</td>
+		<td>MPEG-TS</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>Resolution (Recommended)</td>
+		<td>Up to 4k (2160p)</td>
+		<td>720p</td>
+	</tr>
+	<tr>
+		<td>Framerate</td>
+		<td>25i, 25p, 29.97i, 30p, 60p</td>
+		<td>30p</td>
+	</tr>
+	<tr>
+		<td>Video Codec</td>
+		<td>
+			- H.264<br/>
+			- H.265<br/>
+			- MPEG2<br/>
+		</td>
+		<td>H.264 Main or High profile</td>
+	</tr>
+	<tr>
+		<td>Audio Codec</td>
+		<td>
+			- AAC-LC<br/>
+			- AC-3<br/>
+			- E-AC-3<br/>
+			- MPEG1|2 Audio<br/>
+		</td>
+		<td>48KHz AAC-LC</td>
+	</tr>
+</table>
 
-		Additional slate requirements:
+Additional slate requirements:
+<ul>
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
 		<ul>
-		    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
-		    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
-		    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
-				<ul>
-		        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
-				</ul>
-			</li>
-			<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
-				<ul>
-		        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
-				</ul>
-			</li>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
 		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
+</ul>
 
-		Example input body:
+Example input body:
 
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "slate",
-				"signal_type": "start",
-				"slate_uri": "https://example.com/slate.ts"
-			}
-		]
-		```
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "start",
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
+	
+### Slate Out
 
-		### Slate Out
+Removes any active slate and shows the source video content.
 
-		Removes any active slate and shows the source video content.
+Example input body:
 
-		Example input body:
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "slate",
+		"signal_type": "end"
+	}
+]
+```
 
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "slate",
-				"signal_type": "end"
-			}
-		]
-		```
+### Splice Insert Start
 
-		### Splice Insert Start
+Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
 
-		Inserts a splice opportunity into the channel for a given duration. Can optionally include UPIDs and a slate URL to select the content to splice into the channel.
+Example input body:
 
-		Example input body:
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "start",
+		"duration": 25000,
+		"slate_uri": "https://example.com/slate.ts"
+	}
+]
+```
 
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "splice_insert",
-				"signal_type": "start",
-				"duration": 25000,
-				"slate_uri": "https://example.com/slate.ts"
-			}
-		]
-		```
+### Splice Insert End
 
-		### Splice Insert End
+Removes an active splice signaling segment from the channel.
 
-		Removes an active splice signaling segment from the channel.
+Example input body:
 
-		Example input body:
-
-		```json
-		[
-			{
-				"event_id": 0,
-				"segment_type": "splice_insert",
-				"signal_type": "end"
-			}
-		]
-		```
+```json
+[
+	{
+		"event_id": 0,
+		"segment_type": "splice_insert",
+		"signal_type": "end"
+	}
+]
+```
 
 
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param channelId Unique channel identifier
-			@return ApiPostOrgSignalsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPostOrgSignalsRequest
 	*/
 	PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest
 
@@ -379,10 +380,10 @@ type ChannelOperationsForOrganizationApi interface {
 type ChannelOperationsForOrganizationApiService service
 
 type ApiClearOrgDvrWindowRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
+	org string
+	channelId string
 }
 
 func (r ApiClearOrgDvrWindowRequest) Execute() (*http.Response, error) {
@@ -394,26 +395,26 @@ ClearOrgDvrWindow Clear DVR Window
 
 Clears the DVR window for the channel by removing all video segments in the manifest from before the request.  This sets the earliest time a player can rewind to this point.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiClearOrgDvrWindowRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiClearOrgDvrWindowRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) ClearOrgDvrWindow(ctx context.Context, org string, channelId string) ApiClearOrgDvrWindowRequest {
 	return ApiClearOrgDvrWindowRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelOperationsForOrganizationApiService) ClearOrgDvrWindowExecute(r ApiClearOrgDvrWindowRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.ClearOrgDvrWindow")
@@ -527,11 +528,11 @@ func (a *ChannelOperationsForOrganizationApiService) ClearOrgDvrWindowExecute(r 
 }
 
 type ApiGetOrgPreviewImageRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
-	accept     *string
+	org string
+	channelId string
+	accept *string
 }
 
 // List of accepted Content-Type headers
@@ -549,26 +550,26 @@ GetOrgPreviewImage Get Preview Image
 
 Get a static image of what your channel is outputting.  Valid Accept headers are: image/jpeg
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgPreviewImageRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiGetOrgPreviewImageRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImage(ctx context.Context, org string, channelId string) ApiGetOrgPreviewImageRequest {
 	return ApiGetOrgPreviewImageRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodGet
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgPreviewImage")
@@ -715,12 +716,12 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 }
 
 type ApiGetOrgSignalLogsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
-	from       *time.Time
-	to         *time.Time
+	org string
+	channelId string
+	from *time.Time
+	to *time.Time
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
@@ -746,29 +747,28 @@ Warning: This is deprecated beta functionality and is unstable and may change, b
 
 Returns the signalling history for a channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgSignalLogsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiGetOrgSignalLogsRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogs(ctx context.Context, org string, channelId string) ApiGetOrgSignalLogsRequest {
 	return ApiGetOrgSignalLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []SignalingLog
+//  @return []SignalingLog
 func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r ApiGetOrgSignalLogsRequest) ([]SignalingLog, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []SignalingLog
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []SignalingLog
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgSignalLogs")
@@ -939,10 +939,10 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalLogsExecute(r A
 }
 
 type ApiGetOrgSignalsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
+	org string
+	channelId string
 }
 
 func (r ApiGetOrgSignalsRequest) Execute() ([]Segment, *http.Response, error) {
@@ -954,29 +954,28 @@ GetOrgSignals Get Signals
 
 Returns the active signals for a channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgSignalsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiGetOrgSignalsRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) GetOrgSignals(ctx context.Context, org string, channelId string) ApiGetOrgSignalsRequest {
 	return ApiGetOrgSignalsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []Segment
+//  @return []Segment
 func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalsExecute(r ApiGetOrgSignalsRequest) ([]Segment, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []Segment
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []Segment
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgSignals")
@@ -1131,11 +1130,11 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgSignalsExecute(r ApiG
 }
 
 type ApiInsertOrgId3Request struct {
-	ctx                   context.Context
-	ApiService            ChannelOperationsForOrganizationApi
-	org                   string
-	channelId             string
-	accept                *string
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	org string
+	channelId string
+	accept *string
 	insertMetadataRequest *InsertMetadataRequest
 }
 
@@ -1159,29 +1158,28 @@ InsertOrgId3 Insert ID3
 
 Inserts the provided UTF-8 text metadata in the output stream embedded in a TXXX frame of a ID3 tag.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiInsertOrgId3Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiInsertOrgId3Request
 */
 func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3(ctx context.Context, org string, channelId string) ApiInsertOrgId3Request {
 	return ApiInsertOrgId3Request{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return InsertMetadataResult
+//  @return InsertMetadataResult
 func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *InsertMetadataResult
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *InsertMetadataResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgId3")
@@ -1361,11 +1359,11 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiIn
 }
 
 type ApiInsertOrgScte35Request struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
-	scte35     *Scte35
+	org string
+	channelId string
+	scte35 *Scte35
 }
 
 func (r ApiInsertOrgScte35Request) Scte35(scte35 Scte35) ApiInsertOrgScte35Request {
@@ -1382,26 +1380,26 @@ InsertOrgScte35 Insert SCTE-35
 
 Inserts a SCTE-35 formatted binary payload into the channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiInsertOrgScte35Request
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiInsertOrgScte35Request
 */
 func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35(ctx context.Context, org string, channelId string) ApiInsertOrgScte35Request {
 	return ApiInsertOrgScte35Request{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r ApiInsertOrgScte35Request) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPost
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgScte35")
@@ -1547,10 +1545,10 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r Ap
 }
 
 type ApiOrgGetTranscoderStatusRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId  string
-	org        string
+	channelId string
+	org string
 }
 
 func (r ApiOrgGetTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
@@ -1562,29 +1560,28 @@ OrgGetTranscoderStatus Get Transcoder Status
 
 Get the current status for the live transcoder powering the channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
-	@param org Organization name
-	@return ApiOrgGetTranscoderStatusRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgGetTranscoderStatusRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest {
 	return ApiOrgGetTranscoderStatusRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
-		org:        org,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
 	}
 }
 
 // Execute executes the request
-//
-//	@return Status
+//  @return Status
 func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecute(r ApiOrgGetTranscoderStatusRequest) (*Status, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Status
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Status
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgGetTranscoderStatus")
@@ -1739,10 +1736,10 @@ func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecu
 }
 
 type ApiOrgPinIngestRequest struct {
-	ctx              context.Context
-	ApiService       ChannelOperationsForOrganizationApi
-	channelId        string
-	org              string
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	channelId string
+	org string
 	pinSourceRequest *PinSourceRequest
 }
 
@@ -1761,26 +1758,27 @@ OrgPinIngest Pin Ingest
 Pin the channel's transcoder to prefer either primary or secondary ingest feeds.
 Note that this will disable some automated ingest failover that is based on the quality of the feeds.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
-	@param org Organization name
-	@return ApiOrgPinIngestRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgPinIngestRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest {
 	return ApiOrgPinIngestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
-		org:        org,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelOperationsForOrganizationApiService) OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPinIngest")
@@ -1946,10 +1944,10 @@ func (a *ChannelOperationsForOrganizationApiService) OrgPinIngestExecute(r ApiOr
 }
 
 type ApiOrgPreviewStreamsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	org        string
-	channelId  string
+	org string
+	channelId string
 }
 
 func (r ApiOrgPreviewStreamsRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
@@ -1962,29 +1960,28 @@ OrgPreviewStreams Get Preview Streams
 Get a default url that links to a preview of the channel. Additionally, all possible
 video and audio tracks are provided back and can be interchanged in the given url.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiOrgPreviewStreamsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiOrgPreviewStreamsRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreams(ctx context.Context, org string, channelId string) ApiOrgPreviewStreamsRequest {
 	return ApiOrgPreviewStreamsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GetPreviewStreamsResponse
+//  @return GetPreviewStreamsResponse
 func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetPreviewStreamsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPreviewStreamsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgPreviewStreams")
@@ -2149,10 +2146,10 @@ func (a *ChannelOperationsForOrganizationApiService) OrgPreviewStreamsExecute(r 
 }
 
 type ApiOrgUnpinIngestRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId  string
-	org        string
+	channelId string
+	org string
 }
 
 func (r ApiOrgUnpinIngestRequest) Execute() (*http.Response, error) {
@@ -2165,26 +2162,26 @@ OrgUnpinIngest Unpin Ingest
 Remove the preferrence for primary or secondary ingest feed from the channel's transcoder.
 Automated source failover based on feed quality will be resumed.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
-	@param org Organization name
-	@return ApiOrgUnpinIngestRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param channelId Unique channel identifier
+ @param org Organization name
+ @return ApiOrgUnpinIngestRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest {
 	return ApiOrgUnpinIngestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		channelId:  channelId,
-		org:        org,
+		ctx: ctx,
+		channelId: channelId,
+		org: org,
 	}
 }
 
 // Execute executes the request
 func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgUnpinIngest")
@@ -2328,10 +2325,10 @@ func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngestExecute(r Api
 }
 
 type ApiPostOrgSignalsRequest struct {
-	ctx           context.Context
-	ApiService    ChannelOperationsForOrganizationApi
-	org           string
-	channelId     string
+	ctx context.Context
+	ApiService ChannelOperationsForOrganizationApi
+	org string
+	channelId string
 	genericSignal *[]GenericSignal
 }
 
@@ -2361,13 +2358,11 @@ Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "program",
 		"signal_type": "start"
 	}
-
 ]
 ```
 
@@ -2379,13 +2374,11 @@ Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "program",
 		"signal_type": "end"
 	}
-
 ]
 ```
 
@@ -2393,10 +2386,10 @@ Example input body:
 
 Replaces the current video source with a video slate. An optional duration may be passed to automatically remove the slate after some time, otherwise the slate will remain until removed via a slate out signal.
 
+
 The following table describes how video slates are supported and recommended attributes. Image slates are **NOT** supported.
 
 <table>
-
 	<tr>
 		<th>Attribute</td>
 		<th>Supported</td>
@@ -2446,42 +2439,37 @@ The following table describes how video slates are supported and recommended att
 		</td>
 		<td>48KHz AAC-LC</td>
 	</tr>
-
 </table>
 
 Additional slate requirements:
 <ul>
-
-	    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
-	    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
-	    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
-			<ul>
-	        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
-			</ul>
-		</li>
-		<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
-			<ul>
-	        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
-			</ul>
-		</li>
-
+    <li>The slate MUST contain at least 3 seconds of supported audio and video.</li>
+    <li>The delta between the duration of audio and video MUST be less than 3 seconds.</li>
+    <li>The delta between the timestamps of the first audio and the first video samples MUST be less than 3 seconds.
+		<ul>
+        	<li>Audio and video duration measurement begins after the first IDR in the file.</li>
+		</ul>
+	</li>
+	<li>The MPEG2TS PMT MUST NOT change for the duration of the file.
+		<ul>
+        	<li>Ex. PIDs, audio codec, video codec, etc. must be the same throughout.</li>
+		</ul>
+	</li>
 </ul>
 
 Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "slate",
 		"signal_type": "start",
 		"slate_uri": "https://example.com/slate.ts"
 	}
-
 ]
 ```
-
+	
 ### Slate Out
 
 Removes any active slate and shows the source video content.
@@ -2490,13 +2478,11 @@ Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "slate",
 		"signal_type": "end"
 	}
-
 ]
 ```
 
@@ -2508,7 +2494,6 @@ Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "splice_insert",
@@ -2516,7 +2501,6 @@ Example input body:
 		"duration": 25000,
 		"slate_uri": "https://example.com/slate.ts"
 	}
-
 ]
 ```
 
@@ -2528,39 +2512,38 @@ Example input body:
 
 ```json
 [
-
 	{
 		"event_id": 0,
 		"segment_type": "splice_insert",
 		"signal_type": "end"
 	}
-
 ]
 ```
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPostOrgSignalsRequest
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiPostOrgSignalsRequest
 */
 func (a *ChannelOperationsForOrganizationApiService) PostOrgSignals(ctx context.Context, org string, channelId string) ApiPostOrgSignalsRequest {
 	return ApiPostOrgSignalsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		channelId:  channelId,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []GenericSignalResult
+//  @return []GenericSignalResult
 func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r ApiPostOrgSignalsRequest) ([]GenericSignalResult, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodPost
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []GenericSignalResult
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []GenericSignalResult
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.PostOrgSignals")

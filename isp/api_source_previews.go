@@ -18,19 +18,20 @@ import (
 	"strings"
 )
 
+
 type SourcePreviewsApi interface {
 
 	/*
-			GetSourcePreviewStream Get Source Preview Stream
+	GetSourcePreviewStream Get Source Preview Stream
 
-			Gets the information required for the Low Latency Preview Player to enable playback.
+	Gets the information required for the Low Latency Preview Player to enable playback.
 
-		'PUT /v2/{org}/sources/{source-id}/preview' SHOULD be called prior to ensure that the necessary Source Preview resources have been created. Otherwise, the Source Preview Stream will not be available and this API route will never succeed.
+'PUT /v2/{org}/sources/{source-id}/preview' SHOULD be called prior to ensure that the necessary Source Preview resources have been created. Otherwise, the Source Preview Stream will not be available and this API route will never succeed.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param sourceId Unique source identifier
-			@return ApiGetSourcePreviewStreamRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiGetSourcePreviewStreamRequest
 	*/
 	GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest
 
@@ -39,14 +40,14 @@ type SourcePreviewsApi interface {
 	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error)
 
 	/*
-		GetSourcePreviewTranscoderStatus Get Transcoder Status
+	GetSourcePreviewTranscoderStatus Get Transcoder Status
 
-		Get the current status for the live transcoder powering the Source Preview.
+	Get the current status for the live transcoder powering the Source Preview.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@param org Organization name
-		@param sourceId Unique source identifier
-		@return ApiGetSourcePreviewTranscoderStatusRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiGetSourcePreviewTranscoderStatusRequest
 	*/
 	GetSourcePreviewTranscoderStatus(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewTranscoderStatusRequest
 
@@ -55,19 +56,19 @@ type SourcePreviewsApi interface {
 	GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error)
 
 	/*
-			PutSourcePreview Create Source Preview
+	PutSourcePreview Create Source Preview
 
-			Create Source Preview, if one does not already exist. This operation is idempotent and may be called multiple times.
+	Create Source Preview, if one does not already exist. This operation is idempotent and may be called multiple times.
 
-		A response status code of 201 Created indicates the necessary Source Preview resources have been created. Once created, it may take up to 30 seconds before all resources to be running and available to provide Source Preview Streams information.
+A response status code of 201 Created indicates the necessary Source Preview resources have been created. Once created, it may take up to 30 seconds before all resources to be running and available to provide Source Preview Streams information.
 
-		A response status code of 204 NoContent indicates the requisite Source Preview resources have already been created.
+A response status code of 204 NoContent indicates the requisite Source Preview resources have already been created.
 
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param sourceId Unique source identifier
-			@return ApiPutSourcePreviewRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiPutSourcePreviewRequest
 	*/
 	PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest
 
@@ -75,16 +76,16 @@ type SourcePreviewsApi interface {
 	PutSourcePreviewExecute(r ApiPutSourcePreviewRequest) (*http.Response, error)
 
 	/*
-			SourcePreviewPinIngest Pin Ingest
+	SourcePreviewPinIngest Pin Ingest
 
-			Pin the Source Preview's transcoder to prefer either primary or secondary ingest feeds.
-		Note that this will disable some automated ingest failover that is based on the quality of the feeds.
+	Pin the Source Preview's transcoder to prefer either primary or secondary ingest feeds.
+Note that this will disable some automated ingest failover that is based on the quality of the feeds.
 
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param sourceId Unique source identifier
-			@return ApiSourcePreviewPinIngestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiSourcePreviewPinIngestRequest
 	*/
 	SourcePreviewPinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewPinIngestRequest
 
@@ -92,15 +93,15 @@ type SourcePreviewsApi interface {
 	SourcePreviewPinIngestExecute(r ApiSourcePreviewPinIngestRequest) (*http.Response, error)
 
 	/*
-			SourcePreviewUnpinIngest Unpin Ingest
+	SourcePreviewUnpinIngest Unpin Ingest
 
-			Remove the preferrence for primary or secondary ingest feed from the Source Preview's transcoder.
-		Automated source failover based on feed quality will be resumed.
+	Remove the preferrence for primary or secondary ingest feed from the Source Preview's transcoder.
+Automated source failover based on feed quality will be resumed.
 
-			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-			@param org Organization name
-			@param sourceId Unique source identifier
-			@return ApiSourcePreviewUnpinIngestRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiSourcePreviewUnpinIngestRequest
 	*/
 	SourcePreviewUnpinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewUnpinIngestRequest
 
@@ -112,10 +113,10 @@ type SourcePreviewsApi interface {
 type SourcePreviewsApiService service
 
 type ApiGetSourcePreviewStreamRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SourcePreviewsApi
-	org        string
-	sourceId   string
+	org string
+	sourceId string
 }
 
 func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
@@ -129,29 +130,28 @@ Gets the information required for the Low Latency Preview Player to enable playb
 
 'PUT /v2/{org}/sources/{source-id}/preview' SHOULD be called prior to ensure that the necessary Source Preview resources have been created. Otherwise, the Source Preview Stream will not be available and this API route will never succeed.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiGetSourcePreviewStreamRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiGetSourcePreviewStreamRequest
 */
 func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest {
 	return ApiGetSourcePreviewStreamRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		sourceId:   sourceId,
+		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return GetPreviewStreamsResponse
+//  @return GetPreviewStreamsResponse
 func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *GetPreviewStreamsResponse
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *GetPreviewStreamsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewStream")
@@ -313,10 +313,10 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourceP
 }
 
 type ApiGetSourcePreviewTranscoderStatusRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SourcePreviewsApi
-	org        string
-	sourceId   string
+	org string
+	sourceId string
 }
 
 func (r ApiGetSourcePreviewTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
@@ -328,29 +328,28 @@ GetSourcePreviewTranscoderStatus Get Transcoder Status
 
 Get the current status for the live transcoder powering the Source Preview.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiGetSourcePreviewTranscoderStatusRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiGetSourcePreviewTranscoderStatusRequest
 */
 func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatus(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewTranscoderStatusRequest {
 	return ApiGetSourcePreviewTranscoderStatusRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		sourceId:   sourceId,
+		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
-//
-//	@return Status
+//  @return Status
 func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue *Status
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *Status
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewTranscoderStatus")
@@ -502,10 +501,10 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r Api
 }
 
 type ApiPutSourcePreviewRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SourcePreviewsApi
-	org        string
-	sourceId   string
+	org string
+	sourceId string
 }
 
 func (r ApiPutSourcePreviewRequest) Execute() (*http.Response, error) {
@@ -521,26 +520,27 @@ A response status code of 201 Created indicates the necessary Source Preview res
 
 A response status code of 204 NoContent indicates the requisite Source Preview resources have already been created.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiPutSourcePreviewRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiPutSourcePreviewRequest
 */
 func (a *SourcePreviewsApiService) PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest {
 	return ApiPutSourcePreviewRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		sourceId:   sourceId,
+		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
 func (a *SourcePreviewsApiService) PutSourcePreviewExecute(r ApiPutSourcePreviewRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.PutSourcePreview")
@@ -701,10 +701,10 @@ func (a *SourcePreviewsApiService) PutSourcePreviewExecute(r ApiPutSourcePreview
 }
 
 type ApiSourcePreviewPinIngestRequest struct {
-	ctx              context.Context
-	ApiService       SourcePreviewsApi
-	org              string
-	sourceId         string
+	ctx context.Context
+	ApiService SourcePreviewsApi
+	org string
+	sourceId string
 	pinSourceRequest *PinSourceRequest
 }
 
@@ -723,26 +723,27 @@ SourcePreviewPinIngest Pin Ingest
 Pin the Source Preview's transcoder to prefer either primary or secondary ingest feeds.
 Note that this will disable some automated ingest failover that is based on the quality of the feeds.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiSourcePreviewPinIngestRequest
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiSourcePreviewPinIngestRequest
 */
 func (a *SourcePreviewsApiService) SourcePreviewPinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewPinIngestRequest {
 	return ApiSourcePreviewPinIngestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		sourceId:   sourceId,
+		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
 func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePreviewPinIngestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodPut
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.SourcePreviewPinIngest")
@@ -905,10 +906,10 @@ func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePrev
 }
 
 type ApiSourcePreviewUnpinIngestRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService SourcePreviewsApi
-	org        string
-	sourceId   string
+	org string
+	sourceId string
 }
 
 func (r ApiSourcePreviewUnpinIngestRequest) Execute() (*http.Response, error) {
@@ -921,26 +922,26 @@ SourcePreviewUnpinIngest Unpin Ingest
 Remove the preferrence for primary or secondary ingest feed from the Source Preview's transcoder.
 Automated source failover based on feed quality will be resumed.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiSourcePreviewUnpinIngestRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param sourceId Unique source identifier
+ @return ApiSourcePreviewUnpinIngestRequest
 */
 func (a *SourcePreviewsApiService) SourcePreviewUnpinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewUnpinIngestRequest {
 	return ApiSourcePreviewUnpinIngestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		org:        org,
-		sourceId:   sourceId,
+		ctx: ctx,
+		org: org,
+		sourceId: sourceId,
 	}
 }
 
 // Execute executes the request
 func (a *SourcePreviewsApiService) SourcePreviewUnpinIngestExecute(r ApiSourcePreviewUnpinIngestRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod = http.MethodDelete
-		localVarPostBody   interface{}
-		formFiles          []formFile
+		localVarHTTPMethod   = http.MethodDelete
+		localVarPostBody     interface{}
+		formFiles            []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.SourcePreviewUnpinIngest")

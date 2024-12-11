@@ -17,15 +17,16 @@ import (
 	"net/url"
 )
 
+
 type ChannelsApi interface {
 
 	/*
-		ListChannels List channels
+	ListChannels List channels
 
-		Get a list of your channels.
+	Get a list of your channels.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiListChannelsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListChannelsRequest
 	*/
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
@@ -38,11 +39,11 @@ type ChannelsApi interface {
 type ChannelsApiService service
 
 type ApiListChannelsRequest struct {
-	ctx          context.Context
-	ApiService   ChannelsApi
-	cursor       *string
-	pageSize     *int32
-	q            *string
+	ctx context.Context
+	ApiService ChannelsApi
+	cursor *string
+	pageSize *int32
+	q *string
 	desiredState *string
 }
 
@@ -79,25 +80,24 @@ ListChannels List channels
 
 Get a list of your channels.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListChannelsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListChannelsRequest
 */
 func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRequest {
 	return ApiListChannelsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []Summary2
+//  @return []Summary2
 func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []Summary2
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []Summary2
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.ListChannels")

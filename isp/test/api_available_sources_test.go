@@ -11,11 +11,10 @@ package isp
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
 func Test_isp_AvailableSourcesApiService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_isp_AvailableSourcesApiService(t *testing.T) {
 
 	t.Run("Test AvailableSourcesApiService GetOrgSource", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var sourceId string
@@ -40,7 +39,7 @@ func Test_isp_AvailableSourcesApiService(t *testing.T) {
 
 	t.Run("Test AvailableSourcesApiService ListOrgSources", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 

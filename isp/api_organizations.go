@@ -17,15 +17,16 @@ import (
 	"net/url"
 )
 
+
 type OrganizationsApi interface {
 
 	/*
-		ListOrgs List organizations
+	ListOrgs List organizations
 
-		Get a list of organizations that you can access.
+	Get a list of organizations that you can access.
 
-		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-		@return ApiListOrgsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListOrgsRequest
 	*/
 	ListOrgs(ctx context.Context) ApiListOrgsRequest
 
@@ -38,7 +39,7 @@ type OrganizationsApi interface {
 type OrganizationsApiService service
 
 type ApiListOrgsRequest struct {
-	ctx        context.Context
+	ctx context.Context
 	ApiService OrganizationsApi
 }
 
@@ -51,25 +52,24 @@ ListOrgs List organizations
 
 Get a list of organizations that you can access.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListOrgsRequest
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListOrgsRequest
 */
 func (a *OrganizationsApiService) ListOrgs(ctx context.Context) ApiListOrgsRequest {
 	return ApiListOrgsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 }
 
 // Execute executes the request
-//
-//	@return []OrgSummary
+//  @return []OrgSummary
 func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod  = http.MethodGet
-		localVarPostBody    interface{}
-		formFiles           []formFile
-		localVarReturnValue []OrgSummary
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  []OrgSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.ListOrgs")

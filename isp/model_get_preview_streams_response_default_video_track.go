@@ -20,13 +20,13 @@ var _ MappedNullable = &GetPreviewStreamsResponseDefaultVideoTrack{}
 type GetPreviewStreamsResponseDefaultVideoTrack struct {
 	Bitrate *int32 `json:"bitrate,omitempty" format:"int32"`
 	// codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this VideoTrackInfo. ex. 'avc1.4d401e' for H.264 and 'hvc1.2.4.L150.90' for H.265. This can be used to verify track+browser compatibility.
-	CodecString *string  `json:"codec_string,omitempty" doc:"codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this VideoTrackInfo. ex. 'avc1.4d401e' for H.264 and 'hvc1.2.4.L150.90' for H.265. This can be used to verify track+browser compatibility."`
-	FrameRate   *float32 `json:"frame_rate,omitempty" format:"float"`
-	Height      *int32   `json:"height,omitempty" format:"int32"`
-	Id          *int32   `json:"id,omitempty" format:"int32" minimum:"0"`
+	CodecString *string `json:"codec_string,omitempty" doc:"codec_string will be set to the RFC 6381 compliant string that represents the specific codec in this VideoTrackInfo. ex. 'avc1.4d401e' for H.264 and 'hvc1.2.4.L150.90' for H.265. This can be used to verify track+browser compatibility."`
+	FrameRate *float32 `json:"frame_rate,omitempty" format:"float"`
+	Height *int32 `json:"height,omitempty" format:"int32"`
+	Id *int32 `json:"id,omitempty" format:"int32" minimum:"0"`
 	// Friendly name of the VideoTrack.
-	Name  *string `json:"name,omitempty" doc:"Friendly name of the VideoTrack."`
-	Width *int32  `json:"width,omitempty" format:"int32"`
+	Name *string `json:"name,omitempty" doc:"Friendly name of the VideoTrack."`
+	Width *int32 `json:"width,omitempty" format:"int32"`
 }
 
 // NewGetPreviewStreamsResponseDefaultVideoTrack instantiates a new GetPreviewStreamsResponseDefaultVideoTrack object
@@ -271,7 +271,7 @@ func (o *GetPreviewStreamsResponseDefaultVideoTrack) SetWidth(v int32) {
 }
 
 func (o GetPreviewStreamsResponseDefaultVideoTrack) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -339,3 +339,5 @@ func (v *NullableGetPreviewStreamsResponseDefaultVideoTrack) UnmarshalJSON(src [
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

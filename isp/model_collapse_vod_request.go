@@ -28,7 +28,7 @@ type CollapseVODRequest struct {
 	// Disable any autoprefix
 	DisableAutoPrefix *bool `json:"disable_auto_prefix,omitempty" doc:"Disable any autoprefix"`
 	// EndTime of VOD
-	EndTime      *time.Time                      `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
+	EndTime *time.Time `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
 	Filterconfig *CollapseVODRequestFilterconfig `json:"filterconfig,omitempty"`
 	// Description for new collapsed clip
 	NewClipDescription string `json:"new_clip_description" doc:"Description for new collapsed clip"`
@@ -398,7 +398,7 @@ func (o *CollapseVODRequest) SetUpid(v string) {
 }
 
 func (o CollapseVODRequest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -474,3 +474,5 @@ func (v *NullableCollapseVODRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

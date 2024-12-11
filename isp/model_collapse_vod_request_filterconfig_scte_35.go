@@ -23,8 +23,8 @@ type CollapseVODRequestFilterconfigScte35 struct {
 	// Filter out chapters
 	Chapter bool `json:"chapter" doc:"Filter out chapters"`
 	// Filter out distributor ads
-	DistributorAds bool                                         `json:"distributor_ads" doc:"Filter out distributor ads"`
-	Options        *CollapseVODRequestFilterconfigScte35Options `json:"options,omitempty"`
+	DistributorAds bool `json:"distributor_ads" doc:"Filter out distributor ads"`
+	Options *CollapseVODRequestFilterconfigScte35Options `json:"options,omitempty"`
 	// Filter out provider ads
 	ProviderAds bool `json:"provider_ads" doc:"Filter out provider ads"`
 	// Filter out SCTE-35 message upid
@@ -206,7 +206,7 @@ func (o *CollapseVODRequestFilterconfigScte35) SetUpid(v string) {
 }
 
 func (o CollapseVODRequestFilterconfigScte35) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -261,3 +261,5 @@ func (v *NullableCollapseVODRequestFilterconfigScte35) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -25,10 +25,10 @@ type ChannelTranscodeAudioEncodersInner struct {
 	// Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.
 	Channels *int32 `json:"channels,omitempty" format:"int32" exclusiveMinimum:"0" maximum:"6" doc:"Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired."`
 	// Codec specifies the audio data encoding format.
-	Codec *string                                 `json:"codec,omitempty" enum:"AAC_LC,AC3,EAC3,HE_AAC" doc:"Codec specifies the audio data encoding format."`
-	Eac3  *ChannelTranscodeAudioEncodersInnerEac3 `json:"eac3,omitempty"`
+	Codec *string `json:"codec,omitempty" enum:"AAC_LC,AC3,EAC3,HE_AAC" doc:"Codec specifies the audio data encoding format."`
+	Eac3 *ChannelTranscodeAudioEncodersInnerEac3 `json:"eac3,omitempty"`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
-	Id       *string                                     `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
+	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	Loudness *ChannelTranscodeAudioEncodersInnerLoudness `json:"loudness,omitempty"`
 	// Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC-LC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. HE-AAC supports 16000, 22050, 24000, 32000, 44100, and 48000. AC3/EAC3 support only 48000.
 	SampleRate *int32 `json:"sample_rate,omitempty" format:"int32" exclusiveMinimum:"0" doc:"Sample rate specifies the number of audio samples in hertz. The available options depend on the audio codec: AAC-LC supports 8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000, 64000, 88200, and 96000. HE-AAC supports 16000, 22050, 24000, 32000, 44100, and 48000. AC3/EAC3 support only 48000."`
@@ -342,7 +342,7 @@ func (o *ChannelTranscodeAudioEncodersInner) SetTag(v string) {
 }
 
 func (o ChannelTranscodeAudioEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -416,3 +416,5 @@ func (v *NullableChannelTranscodeAudioEncodersInner) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

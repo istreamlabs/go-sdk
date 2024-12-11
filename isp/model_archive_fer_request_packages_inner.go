@@ -18,10 +18,10 @@ var _ MappedNullable = &ArchiveFERRequestPackagesInner{}
 
 // ArchiveFERRequestPackagesInner struct for ArchiveFERRequestPackagesInner
 type ArchiveFERRequestPackagesInner struct {
-	Archive   ArchiveFERRequestPackagesInnerArchive `json:"archive"`
-	Dash      *ArchiveFERRequestPackagesInnerDash   `json:"dash,omitempty"`
-	Hls       *ArchiveFERRequestPackagesInnerDash   `json:"hls,omitempty"`
-	PackageId string                                `json:"package_id"`
+	Archive ArchiveFERRequestPackagesInnerArchive `json:"archive"`
+	Dash *ArchiveFERRequestPackagesInnerDash `json:"dash,omitempty"`
+	Hls *ArchiveFERRequestPackagesInnerDash `json:"hls,omitempty"`
+	PackageId string `json:"package_id"`
 }
 
 // NewArchiveFERRequestPackagesInner instantiates a new ArchiveFERRequestPackagesInner object
@@ -156,7 +156,7 @@ func (o *ArchiveFERRequestPackagesInner) SetPackageId(v string) {
 }
 
 func (o ArchiveFERRequestPackagesInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,3 +211,5 @@ func (v *NullableArchiveFERRequestPackagesInner) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

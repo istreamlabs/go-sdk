@@ -18,7 +18,7 @@ var _ MappedNullable = &ChannelIngest{}
 
 // ChannelIngest Ingest configures inputs for the transcoder.
 type ChannelIngest struct {
-	Slate  *ChannelIngestSlate `json:"slate,omitempty"`
+	Slate *ChannelIngestSlate `json:"slate,omitempty"`
 	Source ChannelIngestSource `json:"source"`
 }
 
@@ -97,7 +97,7 @@ func (o *ChannelIngest) SetSource(v ChannelIngestSource) {
 }
 
 func (o ChannelIngest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -148,3 +148,5 @@ func (v *NullableChannelIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

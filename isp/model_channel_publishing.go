@@ -21,8 +21,8 @@ type ChannelPublishing struct {
 	// Configures how captioning information, which references CEA-608 captions embedded in video segments, is published.
 	ClosedCaptionStreams []ChannelPublishingClosedCaptionStreamsInner `json:"closed_caption_streams,omitempty" doc:"Configures how captioning information, which references CEA-608 captions embedded in video segments, is published."`
 	// Set of string identifiers corresponding to features that this Channel is opting in.
-	FeatureFlags []string                   `json:"feature_flags,omitempty" doc:"Set of string identifiers corresponding to features that this Channel is opting in."`
-	Live2vod     *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
+	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Set of string identifiers corresponding to features that this Channel is opting in."`
+	Live2vod *ChannelPublishingLive2vod `json:"live2vod,omitempty"`
 	// A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists.
 	Publications []ChannelPublishingPublicationsInner `json:"publications,omitempty" doc:"A set of individual configurations that each can configure a specific destination and mechanism of delivery for segments and/or playlists."`
 	// A set of configurations for delivering RTMP streams
@@ -241,7 +241,7 @@ func (o *ChannelPublishing) SetSrtPublications(v []ChannelPublishingSrtPublicati
 }
 
 func (o ChannelPublishing) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -306,3 +306,5 @@ func (v *NullableChannelPublishing) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

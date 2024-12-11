@@ -71,7 +71,7 @@ func (o *ChannelSignalingSegmentSettingsInnerTierFilter) SetExplicitTier(v Chann
 }
 
 func (o ChannelSignalingSegmentSettingsInnerTierFilter) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -121,3 +121,5 @@ func (v *NullableChannelSignalingSegmentSettingsInnerTierFilter) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

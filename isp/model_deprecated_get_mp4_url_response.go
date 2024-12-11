@@ -19,8 +19,8 @@ var _ MappedNullable = &DeprecatedGetMp4UrlResponse{}
 // DeprecatedGetMp4UrlResponse struct for DeprecatedGetMp4UrlResponse
 type DeprecatedGetMp4UrlResponse struct {
 	// An optional URL to a JSON Schema document describing this resource
-	Schema       *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	PresignedUrl string  `json:"presigned_url"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	PresignedUrl string `json:"presigned_url"`
 }
 
 // NewDeprecatedGetMp4UrlResponse instantiates a new DeprecatedGetMp4UrlResponse object
@@ -98,7 +98,7 @@ func (o *DeprecatedGetMp4UrlResponse) SetPresignedUrl(v string) {
 }
 
 func (o DeprecatedGetMp4UrlResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -149,3 +149,5 @@ func (v *NullableDeprecatedGetMp4UrlResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -18,11 +18,11 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerCollapseConfig
 
 // GetProductConfigResponseProductConfigInnerCollapseConfig Collapse filter options
 type GetProductConfigResponseProductConfigInnerCollapseConfig struct {
-	AutoCopyMp4                   *bool                                                                      `json:"auto_copy_mp4,omitempty"`
-	AutoCreateMp4                 *bool                                                                      `json:"auto_create_mp4,omitempty"`
-	M3u8FiltersConfig             *GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfig `json:"m3u8_filters_config,omitempty"`
-	UsePerUrlCollapseNotification *bool                                                                      `json:"use_per_url_collapse_notification,omitempty"`
-	V2FiltersConfig               *GetProductConfigResponseProductConfigInnerCollapseConfigV2FiltersConfig   `json:"v2_filters_config,omitempty"`
+	AutoCopyMp4 *bool `json:"auto_copy_mp4,omitempty"`
+	AutoCreateMp4 *bool `json:"auto_create_mp4,omitempty"`
+	M3u8FiltersConfig *GetProductConfigResponseProductConfigInnerCollapseConfigM3u8FiltersConfig `json:"m3u8_filters_config,omitempty"`
+	UsePerUrlCollapseNotification *bool `json:"use_per_url_collapse_notification,omitempty"`
+	V2FiltersConfig *GetProductConfigResponseProductConfigInnerCollapseConfigV2FiltersConfig `json:"v2_filters_config,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerCollapseConfig instantiates a new GetProductConfigResponseProductConfigInnerCollapseConfig object
@@ -203,7 +203,7 @@ func (o *GetProductConfigResponseProductConfigInnerCollapseConfig) SetV2FiltersC
 }
 
 func (o GetProductConfigResponseProductConfigInnerCollapseConfig) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,3 +265,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerCollapseConfig) Unmar
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

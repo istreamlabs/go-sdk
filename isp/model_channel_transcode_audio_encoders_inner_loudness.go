@@ -140,7 +140,7 @@ func (o *ChannelTranscodeAudioEncodersInnerLoudness) SetPeakLimit(v float32) {
 }
 
 func (o ChannelTranscodeAudioEncodersInnerLoudness) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -196,3 +196,5 @@ func (v *NullableChannelTranscodeAudioEncodersInnerLoudness) UnmarshalJSON(src [
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -18,19 +18,19 @@ var _ MappedNullable = &ErrorModel{}
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
 	// A URL to the JSON Schema for this object.
-	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// A human-readable explanation specific to this occurrence of the problem.
-	Detail interface{} `json:"detail,omitempty" doc:"A human-readable explanation specific to this occurrence of the problem."`
+	Detail *string `json:"detail,omitempty" doc:"A human-readable explanation specific to this occurrence of the problem."`
 	// Optional list of individual error details
-	Errors interface{} `json:"errors,omitempty" doc:"Optional list of individual error details"`
+	Errors []ErrorDetail `json:"errors,omitempty" doc:"Optional list of individual error details"`
 	// A URI reference that identifies the specific occurrence of the problem.
-	Instance interface{} `json:"instance,omitempty" format:"uri" doc:"A URI reference that identifies the specific occurrence of the problem."`
+	Instance *string `json:"instance,omitempty" format:"uri" doc:"A URI reference that identifies the specific occurrence of the problem."`
 	// HTTP status code
-	Status interface{} `json:"status,omitempty" format:"int64" doc:"HTTP status code"`
+	Status *int64 `json:"status,omitempty" format:"int64" doc:"HTTP status code"`
 	// A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-	Title interface{} `json:"title,omitempty" doc:"A short, human-readable summary of the problem type. This value should not change between occurrences of the error."`
+	Title *string `json:"title,omitempty" doc:"A short, human-readable summary of the problem type. This value should not change between occurrences of the error."`
 	// A URI reference to human-readable documentation for the error.
-	Type interface{} `json:"type,omitempty" format:"uri" default:"about:blank" doc:"A URI reference to human-readable documentation for the error."`
+	Type *string `json:"type,omitempty" format:"uri" default:""about:blank"" doc:"A URI reference to human-readable documentation for the error."`
 }
 
 // NewErrorModel instantiates a new ErrorModel object
@@ -39,6 +39,8 @@ type ErrorModel struct {
 // will change when the set of required properties is changed
 func NewErrorModel() *ErrorModel {
 	this := ErrorModel{}
+	var type_ string = "about:blank"
+	this.Type = &type_
 	return &this
 }
 
@@ -47,79 +49,79 @@ func NewErrorModel() *ErrorModel {
 // but it doesn't guarantee that properties required by API are set
 func NewErrorModelWithDefaults() *ErrorModel {
 	this := ErrorModel{}
+	var type_ string = "about:blank"
+	this.Type = &type_
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetSchema() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *ErrorModel) GetSchema() string {
+	if o == nil || IsNil(o.Schema) {
+		var ret string
 		return ret
 	}
-	return o.Schema
+	return *o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetSchemaOk() (*interface{}, bool) {
+func (o *ErrorModel) GetSchemaOk() (*string, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return &o.Schema, true
+	return o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *ErrorModel) HasSchema() bool {
-	if o != nil && IsNil(o.Schema) {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
-func (o *ErrorModel) SetSchema(v interface{}) {
-	o.Schema = v
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *ErrorModel) SetSchema(v string) {
+	o.Schema = &v
 }
 
-// GetDetail returns the Detail field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetDetail() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetDetail returns the Detail field value if set, zero value otherwise.
+func (o *ErrorModel) GetDetail() string {
+	if o == nil || IsNil(o.Detail) {
+		var ret string
 		return ret
 	}
-	return o.Detail
+	return *o.Detail
 }
 
 // GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetDetailOk() (*interface{}, bool) {
+func (o *ErrorModel) GetDetailOk() (*string, bool) {
 	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
-	return &o.Detail, true
+	return o.Detail, true
 }
 
 // HasDetail returns a boolean if a field has been set.
 func (o *ErrorModel) HasDetail() bool {
-	if o != nil && IsNil(o.Detail) {
+	if o != nil && !IsNil(o.Detail) {
 		return true
 	}
 
 	return false
 }
 
-// SetDetail gets a reference to the given interface{} and assigns it to the Detail field.
-func (o *ErrorModel) SetDetail(v interface{}) {
-	o.Detail = v
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
+func (o *ErrorModel) SetDetail(v string) {
+	o.Detail = &v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetErrors() interface{} {
+func (o *ErrorModel) GetErrors() []ErrorDetail {
 	if o == nil {
-		var ret interface{}
+		var ret []ErrorDetail
 		return ret
 	}
 	return o.Errors
@@ -128,11 +130,11 @@ func (o *ErrorModel) GetErrors() interface{} {
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetErrorsOk() (*interface{}, bool) {
+func (o *ErrorModel) GetErrorsOk() ([]ErrorDetail, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
-	return &o.Errors, true
+	return o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -144,145 +146,141 @@ func (o *ErrorModel) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given interface{} and assigns it to the Errors field.
-func (o *ErrorModel) SetErrors(v interface{}) {
+// SetErrors gets a reference to the given []ErrorDetail and assigns it to the Errors field.
+func (o *ErrorModel) SetErrors(v []ErrorDetail) {
 	o.Errors = v
 }
 
-// GetInstance returns the Instance field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetInstance() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetInstance returns the Instance field value if set, zero value otherwise.
+func (o *ErrorModel) GetInstance() string {
+	if o == nil || IsNil(o.Instance) {
+		var ret string
 		return ret
 	}
-	return o.Instance
+	return *o.Instance
 }
 
 // GetInstanceOk returns a tuple with the Instance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetInstanceOk() (*interface{}, bool) {
+func (o *ErrorModel) GetInstanceOk() (*string, bool) {
 	if o == nil || IsNil(o.Instance) {
 		return nil, false
 	}
-	return &o.Instance, true
+	return o.Instance, true
 }
 
 // HasInstance returns a boolean if a field has been set.
 func (o *ErrorModel) HasInstance() bool {
-	if o != nil && IsNil(o.Instance) {
+	if o != nil && !IsNil(o.Instance) {
 		return true
 	}
 
 	return false
 }
 
-// SetInstance gets a reference to the given interface{} and assigns it to the Instance field.
-func (o *ErrorModel) SetInstance(v interface{}) {
-	o.Instance = v
+// SetInstance gets a reference to the given string and assigns it to the Instance field.
+func (o *ErrorModel) SetInstance(v string) {
+	o.Instance = &v
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetStatus() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *ErrorModel) GetStatus() int64 {
+	if o == nil || IsNil(o.Status) {
+		var ret int64
 		return ret
 	}
-	return o.Status
+	return *o.Status
 }
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetStatusOk() (*interface{}, bool) {
+func (o *ErrorModel) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
 // HasStatus returns a boolean if a field has been set.
 func (o *ErrorModel) HasStatus() bool {
-	if o != nil && IsNil(o.Status) {
+	if o != nil && !IsNil(o.Status) {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given interface{} and assigns it to the Status field.
-func (o *ErrorModel) SetStatus(v interface{}) {
-	o.Status = v
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *ErrorModel) SetStatus(v int64) {
+	o.Status = &v
 }
 
-// GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetTitle() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetTitle returns the Title field value if set, zero value otherwise.
+func (o *ErrorModel) GetTitle() string {
+	if o == nil || IsNil(o.Title) {
+		var ret string
 		return ret
 	}
-	return o.Title
+	return *o.Title
 }
 
 // GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetTitleOk() (*interface{}, bool) {
+func (o *ErrorModel) GetTitleOk() (*string, bool) {
 	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
 // HasTitle returns a boolean if a field has been set.
 func (o *ErrorModel) HasTitle() bool {
-	if o != nil && IsNil(o.Title) {
+	if o != nil && !IsNil(o.Title) {
 		return true
 	}
 
 	return false
 }
 
-// SetTitle gets a reference to the given interface{} and assigns it to the Title field.
-func (o *ErrorModel) SetTitle(v interface{}) {
-	o.Title = v
+// SetTitle gets a reference to the given string and assigns it to the Title field.
+func (o *ErrorModel) SetTitle(v string) {
+	o.Title = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModel) GetType() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *ErrorModel) GetType() string {
+	if o == nil || IsNil(o.Type) {
+		var ret string
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModel) GetTypeOk() (*interface{}, bool) {
+func (o *ErrorModel) GetTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *ErrorModel) HasType() bool {
-	if o != nil && IsNil(o.Type) {
+	if o != nil && !IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given interface{} and assigns it to the Type field.
-func (o *ErrorModel) SetType(v interface{}) {
-	o.Type = v
+// SetType gets a reference to the given string and assigns it to the Type field.
+func (o *ErrorModel) SetType(v string) {
+	o.Type = &v
 }
 
 func (o ErrorModel) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -291,25 +289,25 @@ func (o ErrorModel) MarshalJSON() ([]byte, error) {
 
 func (o ErrorModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
+	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
-	if o.Detail != nil {
+	if !IsNil(o.Detail) {
 		toSerialize["detail"] = o.Detail
 	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
-	if o.Instance != nil {
+	if !IsNil(o.Instance) {
 		toSerialize["instance"] = o.Instance
 	}
-	if o.Status != nil {
+	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
 	}
-	if o.Title != nil {
+	if !IsNil(o.Title) {
 		toSerialize["title"] = o.Title
 	}
-	if o.Type != nil {
+	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
@@ -350,3 +348,5 @@ func (v *NullableErrorModel) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

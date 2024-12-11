@@ -17,9 +17,9 @@ elif [[ "$API" == "isp-slate" ]]; then
     OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
   fi
 elif [[ "$API" == "isp-lifecycle" ]]; then
-  OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="http://stage.api.istreamplanet.com/state/openapi.json"
+    OPENAPI_SPEC="http://stage.api.istreamplanet.com/state/openapi-3.0.json"
   fi
 else
   >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slate, isp-lifecycle"
@@ -65,11 +65,3 @@ sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
-
-# Ensure goimports is installed
-if ! which goimports 2>&1 > /dev/null; then
-  go install golang.org/x/tools/cmd/goimports@latest
-fi
-
-# Clean imports
-$(go env GOPATH)/bin/goimports -w ./${API}

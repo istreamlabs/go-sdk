@@ -92,7 +92,7 @@ func (o *GenericSignalResult) SetResultCode(v string) {
 }
 
 func (o GenericSignalResult) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -141,3 +141,5 @@ func (v *NullableGenericSignalResult) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

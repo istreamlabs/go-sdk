@@ -19,13 +19,13 @@ var _ MappedNullable = &GetScte35MarkerByClipIDResponseScte35MarkersInner{}
 
 // GetScte35MarkerByClipIDResponseScte35MarkersInner struct for GetScte35MarkerByClipIDResponseScte35MarkersInner
 type GetScte35MarkerByClipIDResponseScte35MarkersInner struct {
-	CreatedTime   time.Time `json:"created_time" format:"date-time"`
-	CueId         int32     `json:"cue_id" format:"int32" minimum:"0"`
-	MarkerId      int64     `json:"marker_id" format:"int64"`
-	Progress      string    `json:"progress"`
-	TimelineEvent string    `json:"timeline_event"`
-	Timestamp     time.Time `json:"timestamp" format:"date-time"`
-	Type          string    `json:"type"`
+	CreatedTime time.Time `json:"created_time" format:"date-time"`
+	CueId int32 `json:"cue_id" format:"int32" minimum:"0"`
+	MarkerId int64 `json:"marker_id" format:"int64"`
+	Progress string `json:"progress"`
+	TimelineEvent string `json:"timeline_event"`
+	Timestamp time.Time `json:"timestamp" format:"date-time"`
+	Type string `json:"type"`
 }
 
 // NewGetScte35MarkerByClipIDResponseScte35MarkersInner instantiates a new GetScte35MarkerByClipIDResponseScte35MarkersInner object
@@ -221,7 +221,7 @@ func (o *GetScte35MarkerByClipIDResponseScte35MarkersInner) SetType(v string) {
 }
 
 func (o GetScte35MarkerByClipIDResponseScte35MarkersInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -275,3 +275,5 @@ func (v *NullableGetScte35MarkerByClipIDResponseScte35MarkersInner) UnmarshalJSO
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

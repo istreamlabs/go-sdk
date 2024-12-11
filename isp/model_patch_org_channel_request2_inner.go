@@ -161,7 +161,7 @@ func (o *PatchOrgChannelRequest2Inner) SetValue(v interface{}) {
 }
 
 func (o PatchOrgChannelRequest2Inner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -216,3 +216,5 @@ func (v *NullablePatchOrgChannelRequest2Inner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

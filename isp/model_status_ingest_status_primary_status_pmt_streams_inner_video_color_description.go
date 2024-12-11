@@ -18,8 +18,8 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColor
 
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription struct for StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription struct {
-	ColorPrimaries          *string `json:"color_primaries,omitempty" enum:"CP_RESERVED,CP_BT_709,CP_BT_470_M,CP_BT_470_BG,CP_SMPTE_170_M,CP_SMPTE_240_M,CP_FILM,CP_BT_2020,CP_SMPTE_428,CP_SMPTE_431,CP_SMPTE_432"`
-	MatrixCoeffs            *string `json:"matrix_coeffs,omitempty" enum:"MC_GBR,MC_BT_709,MC_FCC,MC_BT_470_BG,MC_SMPTE_170_M,MC_SMPTE_240_M,MC_Y_CG_CO,MC_BT_2020_NC,MC_BT_2020_C,MC_SMPTE_2085,MC_CHROMA_DERIVED_NC,MC_CHROMA_DERIVED_C,MC_I_CT_CP"`
+	ColorPrimaries *string `json:"color_primaries,omitempty" enum:"CP_RESERVED,CP_BT_709,CP_BT_470_M,CP_BT_470_BG,CP_SMPTE_170_M,CP_SMPTE_240_M,CP_FILM,CP_BT_2020,CP_SMPTE_428,CP_SMPTE_431,CP_SMPTE_432"`
+	MatrixCoeffs *string `json:"matrix_coeffs,omitempty" enum:"MC_GBR,MC_BT_709,MC_FCC,MC_BT_470_BG,MC_SMPTE_170_M,MC_SMPTE_240_M,MC_Y_CG_CO,MC_BT_2020_NC,MC_BT_2020_C,MC_SMPTE_2085,MC_CHROMA_DERIVED_NC,MC_CHROMA_DERIVED_C,MC_I_CT_CP"`
 	TransferCharacteristics *string `json:"transfer_characteristics,omitempty" enum:"TC_RESERVED,TC_BT_709,TC_BT_470_M,TC_BT_470_BG,TC_SMPTE_170_M,TC_SMPTE_240_M,TC_LINEAR,TC_LOG_100,TC_LOG_316,TC_IEC_61966_2_4,TC_BT_1361_E,TC_IEC_61966_2_1,TC_BT_2020_10,TC_BT_2020_12,TC_SMPTE_2084_PQ,TC_SMPTE_428,TC_ARIB_STD_B67_HLG"`
 }
 
@@ -137,7 +137,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) Se
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,3 +193,5 @@ func (v *NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescrip
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

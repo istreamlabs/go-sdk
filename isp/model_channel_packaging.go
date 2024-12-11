@@ -72,7 +72,7 @@ func (o *ChannelPackaging) SetPackagers(v map[string]ChannelPackagingPackagersVa
 }
 
 func (o ChannelPackaging) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -122,3 +122,5 @@ func (v *NullableChannelPackaging) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

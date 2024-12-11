@@ -18,9 +18,9 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerWorkflowConfig
 
 // GetProductConfigResponseProductConfigInnerWorkflowConfig Config variables for workflows
 type GetProductConfigResponseProductConfigInnerWorkflowConfig struct {
-	CutprogramPaddingInSeconds *int32  `json:"cutprogram_padding_in_seconds,omitempty" format:"int32"`
-	MakeMp4                    *bool   `json:"make_mp4,omitempty"`
-	Mp4FeatureFlag             *string `json:"mp4-feature-flag,omitempty"`
+	CutprogramPaddingInSeconds *int32 `json:"cutprogram_padding_in_seconds,omitempty" format:"int32"`
+	MakeMp4 *bool `json:"make_mp4,omitempty"`
+	Mp4FeatureFlag *string `json:"mp4-feature-flag,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerWorkflowConfig instantiates a new GetProductConfigResponseProductConfigInnerWorkflowConfig object
@@ -137,7 +137,7 @@ func (o *GetProductConfigResponseProductConfigInnerWorkflowConfig) SetMp4Feature
 }
 
 func (o GetProductConfigResponseProductConfigInnerWorkflowConfig) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,3 +193,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerWorkflowConfig) Unmar
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -174,7 +174,7 @@ func (o *ChannelPublishingPublicationsInnerDash) SetUrlType(v string) {
 }
 
 func (o ChannelPublishingPublicationsInnerDash) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -233,3 +233,5 @@ func (v *NullableChannelPublishingPublicationsInnerDash) UnmarshalJSON(src []byt
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

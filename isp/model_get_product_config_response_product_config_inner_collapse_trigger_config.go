@@ -18,11 +18,11 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerCollapseTrigge
 
 // GetProductConfigResponseProductConfigInnerCollapseTriggerConfig Options for when to trigger collapses
 type GetProductConfigResponseProductConfigInnerCollapseTriggerConfig struct {
-	AllowMultiple   bool                                                                           `json:"allow_multiple"`
-	CollapseProgram bool                                                                           `json:"collapse_program"`
-	CollapseStream  bool                                                                           `json:"collapse_stream"`
-	Scte35Upid      *string                                                                        `json:"scte35_upid,omitempty"`
-	Triggers        []GetProductConfigResponseProductConfigInnerCollapseTriggerConfigTriggersInner `json:"triggers,omitempty"`
+	AllowMultiple bool `json:"allow_multiple"`
+	CollapseProgram bool `json:"collapse_program"`
+	CollapseStream bool `json:"collapse_stream"`
+	Scte35Upid *string `json:"scte35_upid,omitempty"`
+	Triggers []GetProductConfigResponseProductConfigInnerCollapseTriggerConfigTriggersInner `json:"triggers,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerCollapseTriggerConfig instantiates a new GetProductConfigResponseProductConfigInnerCollapseTriggerConfig object
@@ -182,7 +182,7 @@ func (o *GetProductConfigResponseProductConfigInnerCollapseTriggerConfig) SetTri
 }
 
 func (o GetProductConfigResponseProductConfigInnerCollapseTriggerConfig) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -238,3 +238,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerCollapseTriggerConfig
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

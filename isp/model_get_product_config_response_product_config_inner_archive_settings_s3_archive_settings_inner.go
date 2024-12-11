@@ -18,16 +18,16 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 
 // GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner struct for GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner
 type GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner struct {
-	AccessKeyId                *string  `json:"access_key_id,omitempty"`
-	ArchiveTargetTypes         []string `json:"archive_target_types,omitempty"`
-	AutoArchive                bool     `json:"auto_archive"`
+	AccessKeyId *string `json:"access_key_id,omitempty"`
+	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
+	AutoArchive bool `json:"auto_archive"`
 	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
-	Bucket                     string   `json:"bucket"`
-	Endpoint                   *string  `json:"endpoint,omitempty"`
-	Prefix                     string   `json:"prefix"`
-	Region                     string   `json:"region"`
-	SecretAccessKey            *string  `json:"secret_access_key,omitempty"`
-	SessionToken               *string  `json:"session_token,omitempty"`
+	Bucket string `json:"bucket"`
+	Endpoint *string `json:"endpoint,omitempty"`
+	Prefix string `json:"prefix"`
+	Region string `json:"region"`
+	SecretAccessKey *string `json:"secret_access_key,omitempty"`
+	SessionToken *string `json:"session_token,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner object
@@ -340,7 +340,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSetti
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -409,3 +409,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsS3Arch
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -18,14 +18,14 @@ var _ MappedNullable = &ChannelPlaybackCmafInnerContentProtection{}
 
 // ChannelPlaybackCmafInnerContentProtection Content Protection settings
 type ChannelPlaybackCmafInnerContentProtection struct {
-	Atlas       *ChannelPackagingPackagersValueContentProtectionAtlas       `json:"atlas,omitempty"`
-	BulkFile    *ChannelPackagingPackagersValueContentProtectionBulkFile    `json:"bulk_file,omitempty"`
-	Common      *ChannelPackagingPackagersValueContentProtectionCommon      `json:"common,omitempty"`
-	Cpix        *ChannelPackagingPackagersValueContentProtectionCpix        `json:"cpix,omitempty"`
+	Atlas *ChannelPackagingPackagersValueContentProtectionAtlas `json:"atlas,omitempty"`
+	BulkFile *ChannelPackagingPackagersValueContentProtectionBulkFile `json:"bulk_file,omitempty"`
+	Common *ChannelPackagingPackagersValueContentProtectionCommon `json:"common,omitempty"`
+	Cpix *ChannelPackagingPackagersValueContentProtectionCpix `json:"cpix,omitempty"`
 	KeyRotation *ChannelPackagingPackagersValueContentProtectionKeyRotation `json:"key_rotation,omitempty"`
 	// Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
-	SampleAes *map[string]interface{}                                `json:"sample_aes,omitempty" doc:"Only one of ['bulk_file', 'sample_aes', 'common'] may be set."`
-	Simple    *ChannelPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
+	SampleAes *map[string]interface{} `json:"sample_aes,omitempty" doc:"Only one of ['bulk_file', 'sample_aes', 'common'] may be set."`
+	Simple *ChannelPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
 }
 
 // NewChannelPlaybackCmafInnerContentProtection instantiates a new ChannelPlaybackCmafInnerContentProtection object
@@ -270,7 +270,7 @@ func (o *ChannelPlaybackCmafInnerContentProtection) SetSimple(v ChannelPackaging
 }
 
 func (o ChannelPlaybackCmafInnerContentProtection) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,3 +338,5 @@ func (v *NullableChannelPlaybackCmafInnerContentProtection) UnmarshalJSON(src []
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

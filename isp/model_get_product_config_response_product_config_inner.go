@@ -18,9 +18,9 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInner{}
 
 // GetProductConfigResponseProductConfigInner struct for GetProductConfigResponseProductConfigInner
 type GetProductConfigResponseProductConfigInner struct {
-	ArchiveSettings         *GetProductConfigResponseProductConfigInnerArchiveSettings         `json:"archive_settings,omitempty"`
-	CollapseConfig          *GetProductConfigResponseProductConfigInnerCollapseConfig          `json:"collapse_config,omitempty"`
-	CollapseTriggerConfig   *GetProductConfigResponseProductConfigInnerCollapseTriggerConfig   `json:"collapse_trigger_config,omitempty"`
+	ArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettings `json:"archive_settings,omitempty"`
+	CollapseConfig *GetProductConfigResponseProductConfigInnerCollapseConfig `json:"collapse_config,omitempty"`
+	CollapseTriggerConfig *GetProductConfigResponseProductConfigInnerCollapseTriggerConfig `json:"collapse_trigger_config,omitempty"`
 	EdcPartialPresentations *GetProductConfigResponseProductConfigInnerEdcPartialPresentations `json:"edc_partial_presentations,omitempty"`
 	// Template to transcode mp4 to hls
 	EdcTranscodeTemplate *map[string]interface{} `json:"edc_transcode_template,omitempty" doc:"Template to transcode mp4 to hls"`
@@ -29,7 +29,7 @@ type GetProductConfigResponseProductConfigInner struct {
 	// Region represents the general geolocation the product is in.
 	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation the product is in."`
 	// store for product
-	Store          *string                                                   `json:"store,omitempty" doc:"store for product"`
+	Store *string `json:"store,omitempty" doc:"store for product"`
 	WorkflowConfig *GetProductConfigResponseProductConfigInnerWorkflowConfig `json:"workflow_config,omitempty"`
 }
 
@@ -339,7 +339,7 @@ func (o *GetProductConfigResponseProductConfigInner) SetWorkflowConfig(v GetProd
 }
 
 func (o GetProductConfigResponseProductConfigInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -413,3 +413,5 @@ func (v *NullableGetProductConfigResponseProductConfigInner) UnmarshalJSON(src [
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

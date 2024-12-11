@@ -18,9 +18,9 @@ var _ MappedNullable = &ErrorDetail{}
 // ErrorDetail struct for ErrorDetail
 type ErrorDetail struct {
 	// Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-	Location interface{} `json:"location,omitempty" doc:"Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'"`
+	Location *string `json:"location,omitempty" doc:"Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'"`
 	// Error message text
-	Message interface{} `json:"message,omitempty" doc:"Error message text"`
+	Message *string `json:"message,omitempty" doc:"Error message text"`
 	// The value at the given location
 	Value interface{} `json:"value,omitempty" doc:"The value at the given location"`
 }
@@ -42,70 +42,68 @@ func NewErrorDetailWithDefaults() *ErrorDetail {
 	return &this
 }
 
-// GetLocation returns the Location field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorDetail) GetLocation() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetLocation returns the Location field value if set, zero value otherwise.
+func (o *ErrorDetail) GetLocation() string {
+	if o == nil || IsNil(o.Location) {
+		var ret string
 		return ret
 	}
-	return o.Location
+	return *o.Location
 }
 
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorDetail) GetLocationOk() (*interface{}, bool) {
+func (o *ErrorDetail) GetLocationOk() (*string, bool) {
 	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
-	return &o.Location, true
+	return o.Location, true
 }
 
 // HasLocation returns a boolean if a field has been set.
 func (o *ErrorDetail) HasLocation() bool {
-	if o != nil && IsNil(o.Location) {
+	if o != nil && !IsNil(o.Location) {
 		return true
 	}
 
 	return false
 }
 
-// SetLocation gets a reference to the given interface{} and assigns it to the Location field.
-func (o *ErrorDetail) SetLocation(v interface{}) {
-	o.Location = v
+// SetLocation gets a reference to the given string and assigns it to the Location field.
+func (o *ErrorDetail) SetLocation(v string) {
+	o.Location = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorDetail) GetMessage() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *ErrorDetail) GetMessage() string {
+	if o == nil || IsNil(o.Message) {
+		var ret string
 		return ret
 	}
-	return o.Message
+	return *o.Message
 }
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorDetail) GetMessageOk() (*interface{}, bool) {
+func (o *ErrorDetail) GetMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
 // HasMessage returns a boolean if a field has been set.
 func (o *ErrorDetail) HasMessage() bool {
-	if o != nil && IsNil(o.Message) {
+	if o != nil && !IsNil(o.Message) {
 		return true
 	}
 
 	return false
 }
 
-// SetMessage gets a reference to the given interface{} and assigns it to the Message field.
-func (o *ErrorDetail) SetMessage(v interface{}) {
-	o.Message = v
+// SetMessage gets a reference to the given string and assigns it to the Message field.
+func (o *ErrorDetail) SetMessage(v string) {
+	o.Message = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -142,7 +140,7 @@ func (o *ErrorDetail) SetValue(v interface{}) {
 }
 
 func (o ErrorDetail) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -151,10 +149,10 @@ func (o ErrorDetail) MarshalJSON() ([]byte, error) {
 
 func (o ErrorDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Location != nil {
+	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
 	}
-	if o.Message != nil {
+	if !IsNil(o.Message) {
 		toSerialize["message"] = o.Message
 	}
 	if o.Value != nil {
@@ -198,3 +196,5 @@ func (v *NullableErrorDetail) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

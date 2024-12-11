@@ -32,7 +32,7 @@ type GetVODResponse struct {
 	// Packaging Format for VOD
 	PackagingFormat *string `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF" doc:"Packaging Format for VOD"`
 	// Store address for vod
-	Store       string `json:"store" doc:"Store address for vod"`
+	Store string `json:"store" doc:"Store address for vod"`
 	StorePrefix string `json:"store_prefix"`
 	// Total bytes of a vod
 	TotalBytes int64 `json:"total_bytes" format:"int64" doc:"Total bytes of a vod"`
@@ -329,7 +329,7 @@ func (o *GetVODResponse) SetVersion(v string) {
 }
 
 func (o GetVODResponse) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -392,3 +392,5 @@ func (v *NullableGetVODResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

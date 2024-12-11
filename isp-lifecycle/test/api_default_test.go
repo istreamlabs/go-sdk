@@ -11,11 +11,10 @@ package isp
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/istreamlabs/go-sdk/isp-lifecycle"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/istreamlabs/go-sdk/isp-lifecycle"
 )
 
 func Test_isp_DefaultApiService(t *testing.T) {
@@ -25,10 +24,10 @@ func Test_isp_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService CalculateLifecycleState", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-		var org interface{}
-		var channelId interface{}
+		var org string
+		var channelId string
 
 		resp, httpRes, err := apiClient.DefaultApi.CalculateLifecycleState(context.Background(), org, channelId).Execute()
 
@@ -40,11 +39,11 @@ func Test_isp_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService GetLifecycleComponentState", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-		var org interface{}
-		var channelId interface{}
-		var component interface{}
+		var org string
+		var channelId string
+		var component string
 
 		resp, httpRes, err := apiClient.DefaultApi.GetLifecycleComponentState(context.Background(), org, channelId, component).Execute()
 
@@ -56,10 +55,10 @@ func Test_isp_DefaultApiService(t *testing.T) {
 
 	t.Run("Test DefaultApiService PutLifecycleComponentState", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
-		var channelUrn interface{}
-		var component interface{}
+		var channelUrn string
+		var component string
 
 		httpRes, err := apiClient.DefaultApi.PutLifecycleComponentState(context.Background(), channelUrn, component).Execute()
 

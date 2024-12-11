@@ -11,11 +11,10 @@ package isp
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
 func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipGetMp4", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -43,7 +42,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipGetProgramTime", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -61,7 +60,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipMakeMp4", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -79,7 +78,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService DeprecatedGetClipManifest", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -97,7 +96,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService GetDeprecatedClip", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -115,7 +114,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService GetDeprecatedProgram", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -131,7 +130,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService ListDeprecatedClips", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string
@@ -148,7 +147,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	t.Run("Test DeprecatedLive2VODApiService ListDeprecatedVods", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var customerId string
 		var productId string

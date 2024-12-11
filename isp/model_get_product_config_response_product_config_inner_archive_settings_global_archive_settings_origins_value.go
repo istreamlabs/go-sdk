@@ -18,8 +18,8 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 
 // GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue struct for GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue
 type GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue struct {
-	Headers  map[string]string `json:"headers"`
-	Hostname string            `json:"hostname"`
+	Headers map[string]string `json:"headers"`
+	Hostname string `json:"hostname"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue object
@@ -90,7 +90,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveS
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -139,3 +139,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsGlobal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

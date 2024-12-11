@@ -228,7 +228,7 @@ func (o *ListClipsForVodResponseChannelClipsInnerClipsInner) SetStart(v time.Tim
 }
 
 func (o ListClipsForVodResponseChannelClipsInnerClipsInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -282,3 +282,5 @@ func (v *NullableListClipsForVodResponseChannelClipsInnerClipsInner) UnmarshalJS
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

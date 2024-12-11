@@ -18,9 +18,9 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 
 // GetProductConfigResponseProductConfigInnerArchiveSettings Archive settings for collapses
 type GetProductConfigResponseProductConfigInnerArchiveSettings struct {
-	GlobalArchiveSettings        *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings              `json:"global_archive_settings,omitempty"`
+	GlobalArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings `json:"global_archive_settings,omitempty"`
 	NetstorageConnectionSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner `json:"netstorage_connection_settings,omitempty"`
-	S3ArchiveSettings            []GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner            `json:"s3_archive_settings,omitempty"`
+	S3ArchiveSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner `json:"s3_archive_settings,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettings instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettings object
@@ -137,7 +137,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) SetS3Archive
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettings) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,3 +193,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettings) Unma
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

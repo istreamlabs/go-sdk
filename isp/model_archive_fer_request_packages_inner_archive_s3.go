@@ -19,8 +19,8 @@ var _ MappedNullable = &ArchiveFERRequestPackagesInnerArchiveS3{}
 // ArchiveFERRequestPackagesInnerArchiveS3 struct for ArchiveFERRequestPackagesInnerArchiveS3
 type ArchiveFERRequestPackagesInnerArchiveS3 struct {
 	BucketName string `json:"bucket_name"`
-	Key        string `json:"key"`
-	Region     string `json:"region"`
+	Key string `json:"key"`
+	Region string `json:"region"`
 }
 
 // NewArchiveFERRequestPackagesInnerArchiveS3 instantiates a new ArchiveFERRequestPackagesInnerArchiveS3 object
@@ -116,7 +116,7 @@ func (o *ArchiveFERRequestPackagesInnerArchiveS3) SetRegion(v string) {
 }
 
 func (o ArchiveFERRequestPackagesInnerArchiveS3) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,3 +166,5 @@ func (v *NullableArchiveFERRequestPackagesInnerArchiveS3) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

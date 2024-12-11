@@ -106,7 +106,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) SetMaxFall(v f
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,3 +159,5 @@ func (v *NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

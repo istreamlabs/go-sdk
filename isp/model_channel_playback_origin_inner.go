@@ -18,12 +18,12 @@ var _ MappedNullable = &ChannelPlaybackOriginInner{}
 
 // ChannelPlaybackOriginInner struct for ChannelPlaybackOriginInner
 type ChannelPlaybackOriginInner struct {
-	Dash                     *ChannelPlaybackOriginInnerDash                     `json:"dash,omitempty"`
+	Dash *ChannelPlaybackOriginInnerDash `json:"dash,omitempty"`
 	FallbackManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"fallback_manifest_defaults,omitempty"`
-	Hls                      *ChannelPlaybackOriginInnerHls                      `json:"hls,omitempty"`
-	PackagerConfig           *ChannelPackagingPackagersValue                     `json:"packager_config,omitempty"`
+	Hls *ChannelPlaybackOriginInnerHls `json:"hls,omitempty"`
+	PackagerConfig *ChannelPackagingPackagersValue `json:"packager_config,omitempty"`
 	// packager_id is the ID used to identify the packager_config within the channel configuration.
-	PackagerId              *string                                             `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
+	PackagerId *string `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
 	PrimaryManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"primary_manifest_defaults,omitempty"`
 }
 
@@ -237,7 +237,7 @@ func (o *ChannelPlaybackOriginInner) SetPrimaryManifestDefaults(v ChannelPlaybac
 }
 
 func (o ChannelPlaybackOriginInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,3 +302,5 @@ func (v *NullableChannelPlaybackOriginInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -72,7 +72,7 @@ func (o *ChannelPublishingPublicationsInnerStartoverOnAiringId) SetAiringId(v st
 }
 
 func (o ChannelPublishingPublicationsInnerStartoverOnAiringId) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -122,3 +122,5 @@ func (v *NullableChannelPublishingPublicationsInnerStartoverOnAiringId) Unmarsha
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

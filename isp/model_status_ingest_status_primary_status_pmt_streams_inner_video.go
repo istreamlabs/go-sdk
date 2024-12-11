@@ -18,12 +18,12 @@ var _ MappedNullable = &StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo{}
 
 // StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo Only one of ['video'] may be set.
 type StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo struct {
-	BitDepth         *int32                                                               `json:"bit_depth,omitempty" format:"int32"`
-	Clli             *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli             `json:"clli,omitempty"`
+	BitDepth *int32 `json:"bit_depth,omitempty" format:"int32"`
+	Clli *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoClli `json:"clli,omitempty"`
 	ColorDescription *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoColorDescription `json:"color_description,omitempty"`
-	FrameHeight      *int32                                                               `json:"frame_height,omitempty" format:"int32"`
-	FrameWidth       *int32                                                               `json:"frame_width,omitempty" format:"int32"`
-	Mdcv             *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv             `json:"mdcv,omitempty"`
+	FrameHeight *int32 `json:"frame_height,omitempty" format:"int32"`
+	FrameWidth *int32 `json:"frame_width,omitempty" format:"int32"`
+	Mdcv *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideoMdcv `json:"mdcv,omitempty"`
 }
 
 // NewStatusIngestStatusPrimaryStatusPmtStreamsInnerVideo instantiates a new StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo object
@@ -236,7 +236,7 @@ func (o *StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) SetMdcv(v StatusIn
 }
 
 func (o StatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -301,3 +301,5 @@ func (v *NullableStatusIngestStatusPrimaryStatusPmtStreamsInnerVideo) UnmarshalJ
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

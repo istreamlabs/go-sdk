@@ -18,14 +18,14 @@ var _ MappedNullable = &ChannelPackagingPackagersValueContentProtection{}
 
 // ChannelPackagingPackagersValueContentProtection Configures how to protect packaged media segments.
 type ChannelPackagingPackagersValueContentProtection struct {
-	Atlas       *ChannelPackagingPackagersValueContentProtectionAtlas       `json:"atlas,omitempty"`
-	BulkFile    *ChannelPackagingPackagersValueContentProtectionBulkFile    `json:"bulk_file,omitempty"`
-	Common      *ChannelPackagingPackagersValueContentProtectionCommon      `json:"common,omitempty"`
-	Cpix        *ChannelPackagingPackagersValueContentProtectionCpix        `json:"cpix,omitempty"`
+	Atlas *ChannelPackagingPackagersValueContentProtectionAtlas `json:"atlas,omitempty"`
+	BulkFile *ChannelPackagingPackagersValueContentProtectionBulkFile `json:"bulk_file,omitempty"`
+	Common *ChannelPackagingPackagersValueContentProtectionCommon `json:"common,omitempty"`
+	Cpix *ChannelPackagingPackagersValueContentProtectionCpix `json:"cpix,omitempty"`
 	KeyRotation *ChannelPackagingPackagersValueContentProtectionKeyRotation `json:"key_rotation,omitempty"`
 	// Only one of ['bulk_file', 'sample_aes', 'common'] may be set.
-	SampleAes *map[string]interface{}                                `json:"sample_aes,omitempty" doc:"Only one of ['bulk_file', 'sample_aes', 'common'] may be set."`
-	Simple    *ChannelPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
+	SampleAes *map[string]interface{} `json:"sample_aes,omitempty" doc:"Only one of ['bulk_file', 'sample_aes', 'common'] may be set."`
+	Simple *ChannelPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
 }
 
 // NewChannelPackagingPackagersValueContentProtection instantiates a new ChannelPackagingPackagersValueContentProtection object
@@ -270,7 +270,7 @@ func (o *ChannelPackagingPackagersValueContentProtection) SetSimple(v ChannelPac
 }
 
 func (o ChannelPackagingPackagersValueContentProtection) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -338,3 +338,5 @@ func (v *NullableChannelPackagingPackagersValueContentProtection) UnmarshalJSON(
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

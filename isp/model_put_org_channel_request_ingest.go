@@ -18,7 +18,7 @@ var _ MappedNullable = &PutOrgChannelRequestIngest{}
 
 // PutOrgChannelRequestIngest Ingest configures inputs for the transcoder.
 type PutOrgChannelRequestIngest struct {
-	Slate  *ChannelIngestSlate              `json:"slate,omitempty"`
+	Slate *ChannelIngestSlate `json:"slate,omitempty"`
 	Source PutOrgChannelRequestIngestSource `json:"source"`
 }
 
@@ -97,7 +97,7 @@ func (o *PutOrgChannelRequestIngest) SetSource(v PutOrgChannelRequestIngestSourc
 }
 
 func (o PutOrgChannelRequestIngest) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -148,3 +148,5 @@ func (v *NullablePutOrgChannelRequestIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -24,8 +24,8 @@ type ChannelPublishingSrtPublicationsInner struct {
 	// MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	PmtPid *int32 `json:"pmt_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
 	// MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-	Scte35Pid     *int32                                                    `json:"scte35_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
-	Url           *string                                                   `json:"url,omitempty" format:"uri" minLength:"1" pattern:"/^srt:\/\//"`
+	Scte35Pid *int32 `json:"scte35_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
+	Url *string `json:"url,omitempty" format:"uri" minLength:"1" pattern:"/^srt:\/\//"`
 	VideoEncoders []ChannelPublishingSrtPublicationsInnerAudioEncodersInner `json:"video_encoders,omitempty" minItems:"1"`
 }
 
@@ -239,7 +239,7 @@ func (o *ChannelPublishingSrtPublicationsInner) SetVideoEncoders(v []ChannelPubl
 }
 
 func (o ChannelPublishingSrtPublicationsInner) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -304,3 +304,5 @@ func (v *NullableChannelPublishingSrtPublicationsInner) UnmarshalJSON(src []byte
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -49,7 +49,7 @@ type APIClient struct {
 
 	// API Services
 
-	SlatesForOrganizationAPI SlatesForOrganizationAPI
+	SlatesForOrganizationApi SlatesForOrganizationApi
 }
 
 type service struct {
@@ -68,7 +68,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
-	c.SlatesForOrganizationAPI = (*SlatesForOrganizationAPIService)(&c.common)
+	c.SlatesForOrganizationApi = (*SlatesForOrganizationApiService)(&c.common)
 
 	return c
 }
@@ -502,6 +502,18 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	_, err = io.Copy(part, file)
 
 	return err
+}
+
+// Prevent trying to import "fmt"
+func reportError(format string, a ...interface{}) error {
+	return fmt.Errorf(format, a...)
+}
+
+// A wrapper for strict JSON decoding
+func newStrictDecoder(data []byte) *json.Decoder {
+	dec := json.NewDecoder(bytes.NewBuffer(data))
+	dec.DisallowUnknownFields()
+	return dec
 }
 
 // Set request body from an interface{}

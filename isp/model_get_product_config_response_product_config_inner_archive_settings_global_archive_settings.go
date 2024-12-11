@@ -18,13 +18,13 @@ var _ MappedNullable = &GetProductConfigResponseProductConfigInnerArchiveSetting
 
 // GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings struct for GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings
 type GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings struct {
-	AesKeyConversion                    *string                                                                                                `json:"aes_key_conversion,omitempty"`
-	EnforceCustomMp4Path                *bool                                                                                                  `json:"enforce_custom_mp4_path,omitempty"`
-	MasterUrlType                       *string                                                                                                `json:"master_url_type,omitempty"`
-	MediaUrlType                        *string                                                                                                `json:"media_url_type,omitempty"`
-	Origins                             *map[string]GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue `json:"origins,omitempty"`
-	PreservePublishedDirectoryStructure *bool                                                                                                  `json:"preserve_published_directory_structure,omitempty"`
-	UrlType                             *string                                                                                                `json:"url_type,omitempty"`
+	AesKeyConversion *string `json:"aes_key_conversion,omitempty"`
+	EnforceCustomMp4Path *bool `json:"enforce_custom_mp4_path,omitempty"`
+	MasterUrlType *string `json:"master_url_type,omitempty"`
+	MediaUrlType *string `json:"media_url_type,omitempty"`
+	Origins *map[string]GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettingsOriginsValue `json:"origins,omitempty"`
+	PreservePublishedDirectoryStructure *bool `json:"preserve_published_directory_structure,omitempty"`
+	UrlType *string `json:"url_type,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings object
@@ -269,7 +269,7 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveS
 }
 
 func (o GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -337,3 +337,5 @@ func (v *NullableGetProductConfigResponseProductConfigInnerArchiveSettingsGlobal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

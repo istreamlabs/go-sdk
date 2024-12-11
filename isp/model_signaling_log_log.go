@@ -18,9 +18,9 @@ var _ MappedNullable = &SignalingLogLog{}
 
 // SignalingLogLog struct for SignalingLogLog
 type SignalingLogLog struct {
-	Base64  string `json:"base64"`
+	Base64 string `json:"base64"`
 	Message string `json:"message"`
-	Pretty  string `json:"pretty"`
+	Pretty string `json:"pretty"`
 }
 
 // NewSignalingLogLog instantiates a new SignalingLogLog object
@@ -116,7 +116,7 @@ func (o *SignalingLogLog) SetPretty(v string) {
 }
 
 func (o SignalingLogLog) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,3 +166,5 @@ func (v *NullableSignalingLogLog) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -10,6 +10,7 @@ package isp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the GetComponentStateResponseBody type satisfies the MappedNullable interface at compile time
@@ -18,24 +19,24 @@ var _ MappedNullable = &GetComponentStateResponseBody{}
 // GetComponentStateResponseBody struct for GetComponentStateResponseBody
 type GetComponentStateResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema    interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
-	ChannelId interface{} `json:"channel_id"`
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ChannelId string `json:"channel_id"`
 	// The ChannelDoc's revision
-	ChannelRevision interface{} `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
+	ChannelRevision int32 `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
 	// A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
-	Component interface{} `json:"component" enum:"CHANNEL_CONFIG,TRANSCODER,PUBLISHING" doc:"A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with)."`
+	Component string `json:"component" enum:"CHANNEL_CONFIG,TRANSCODER,PUBLISHING" doc:"A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with)."`
 	// The current state of the component.
-	ComponentState interface{} `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
-	Org            interface{} `json:"org"`
+	ComponentState string `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
+	Org string `json:"org"`
 	// ISO 8601 timestamp when the component state was updated.
-	UpdatedAt interface{} `json:"updated_at" format:"date-time" doc:"ISO 8601 timestamp when the component state was updated."`
+	UpdatedAt time.Time `json:"updated_at" format:"date-time" doc:"ISO 8601 timestamp when the component state was updated."`
 }
 
 // NewGetComponentStateResponseBody instantiates a new GetComponentStateResponseBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGetComponentStateResponseBody(channelId interface{}, channelRevision interface{}, component interface{}, componentState interface{}, org interface{}, updatedAt interface{}) *GetComponentStateResponseBody {
+func NewGetComponentStateResponseBody(channelId string, channelRevision int32, component string, componentState string, org string, updatedAt time.Time) *GetComponentStateResponseBody {
 	this := GetComponentStateResponseBody{}
 	this.ChannelId = channelId
 	this.ChannelRevision = channelRevision
@@ -54,44 +55,42 @@ func NewGetComponentStateResponseBodyWithDefaults() *GetComponentStateResponseBo
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *GetComponentStateResponseBody) GetSchema() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetSchema returns the Schema field value if set, zero value otherwise.
+func (o *GetComponentStateResponseBody) GetSchema() string {
+	if o == nil || IsNil(o.Schema) {
+		var ret string
 		return ret
 	}
-	return o.Schema
+	return *o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetSchemaOk() (*interface{}, bool) {
+func (o *GetComponentStateResponseBody) GetSchemaOk() (*string, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return &o.Schema, true
+	return o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *GetComponentStateResponseBody) HasSchema() bool {
-	if o != nil && IsNil(o.Schema) {
+	if o != nil && !IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
-func (o *GetComponentStateResponseBody) SetSchema(v interface{}) {
-	o.Schema = v
+// SetSchema gets a reference to the given string and assigns it to the Schema field.
+func (o *GetComponentStateResponseBody) SetSchema(v string) {
+	o.Schema = &v
 }
 
 // GetChannelId returns the ChannelId field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetChannelId() interface{} {
+func (o *GetComponentStateResponseBody) GetChannelId() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -100,24 +99,22 @@ func (o *GetComponentStateResponseBody) GetChannelId() interface{} {
 
 // GetChannelIdOk returns a tuple with the ChannelId field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetChannelIdOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.ChannelId) {
+func (o *GetComponentStateResponseBody) GetChannelIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ChannelId, true
 }
 
 // SetChannelId sets field value
-func (o *GetComponentStateResponseBody) SetChannelId(v interface{}) {
+func (o *GetComponentStateResponseBody) SetChannelId(v string) {
 	o.ChannelId = v
 }
 
 // GetChannelRevision returns the ChannelRevision field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetChannelRevision() interface{} {
+func (o *GetComponentStateResponseBody) GetChannelRevision() int32 {
 	if o == nil {
-		var ret interface{}
+		var ret int32
 		return ret
 	}
 
@@ -126,24 +123,22 @@ func (o *GetComponentStateResponseBody) GetChannelRevision() interface{} {
 
 // GetChannelRevisionOk returns a tuple with the ChannelRevision field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetChannelRevisionOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.ChannelRevision) {
+func (o *GetComponentStateResponseBody) GetChannelRevisionOk() (*int32, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ChannelRevision, true
 }
 
 // SetChannelRevision sets field value
-func (o *GetComponentStateResponseBody) SetChannelRevision(v interface{}) {
+func (o *GetComponentStateResponseBody) SetChannelRevision(v int32) {
 	o.ChannelRevision = v
 }
 
 // GetComponent returns the Component field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetComponent() interface{} {
+func (o *GetComponentStateResponseBody) GetComponent() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -152,24 +147,22 @@ func (o *GetComponentStateResponseBody) GetComponent() interface{} {
 
 // GetComponentOk returns a tuple with the Component field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetComponentOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Component) {
+func (o *GetComponentStateResponseBody) GetComponentOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Component, true
 }
 
 // SetComponent sets field value
-func (o *GetComponentStateResponseBody) SetComponent(v interface{}) {
+func (o *GetComponentStateResponseBody) SetComponent(v string) {
 	o.Component = v
 }
 
 // GetComponentState returns the ComponentState field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetComponentState() interface{} {
+func (o *GetComponentStateResponseBody) GetComponentState() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -178,24 +171,22 @@ func (o *GetComponentStateResponseBody) GetComponentState() interface{} {
 
 // GetComponentStateOk returns a tuple with the ComponentState field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetComponentStateOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.ComponentState) {
+func (o *GetComponentStateResponseBody) GetComponentStateOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ComponentState, true
 }
 
 // SetComponentState sets field value
-func (o *GetComponentStateResponseBody) SetComponentState(v interface{}) {
+func (o *GetComponentStateResponseBody) SetComponentState(v string) {
 	o.ComponentState = v
 }
 
 // GetOrg returns the Org field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetOrg() interface{} {
+func (o *GetComponentStateResponseBody) GetOrg() string {
 	if o == nil {
-		var ret interface{}
+		var ret string
 		return ret
 	}
 
@@ -204,24 +195,22 @@ func (o *GetComponentStateResponseBody) GetOrg() interface{} {
 
 // GetOrgOk returns a tuple with the Org field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetOrgOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.Org) {
+func (o *GetComponentStateResponseBody) GetOrgOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Org, true
 }
 
 // SetOrg sets field value
-func (o *GetComponentStateResponseBody) SetOrg(v interface{}) {
+func (o *GetComponentStateResponseBody) SetOrg(v string) {
 	o.Org = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *GetComponentStateResponseBody) GetUpdatedAt() interface{} {
+func (o *GetComponentStateResponseBody) GetUpdatedAt() time.Time {
 	if o == nil {
-		var ret interface{}
+		var ret time.Time
 		return ret
 	}
 
@@ -230,21 +219,20 @@ func (o *GetComponentStateResponseBody) GetUpdatedAt() interface{} {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *GetComponentStateResponseBody) GetUpdatedAtOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.UpdatedAt) {
+func (o *GetComponentStateResponseBody) GetUpdatedAtOk() (*time.Time, bool) {
+	if o == nil {
 		return nil, false
 	}
 	return &o.UpdatedAt, true
 }
 
 // SetUpdatedAt sets field value
-func (o *GetComponentStateResponseBody) SetUpdatedAt(v interface{}) {
+func (o *GetComponentStateResponseBody) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
 func (o GetComponentStateResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -253,27 +241,15 @@ func (o GetComponentStateResponseBody) MarshalJSON() ([]byte, error) {
 
 func (o GetComponentStateResponseBody) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Schema != nil {
+	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
-	if o.ChannelId != nil {
-		toSerialize["channel_id"] = o.ChannelId
-	}
-	if o.ChannelRevision != nil {
-		toSerialize["channel_revision"] = o.ChannelRevision
-	}
-	if o.Component != nil {
-		toSerialize["component"] = o.Component
-	}
-	if o.ComponentState != nil {
-		toSerialize["component_state"] = o.ComponentState
-	}
-	if o.Org != nil {
-		toSerialize["org"] = o.Org
-	}
-	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
-	}
+	toSerialize["channel_id"] = o.ChannelId
+	toSerialize["channel_revision"] = o.ChannelRevision
+	toSerialize["component"] = o.Component
+	toSerialize["component_state"] = o.ComponentState
+	toSerialize["org"] = o.Org
+	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil
 }
 
@@ -312,3 +288,5 @@ func (v *NullableGetComponentStateResponseBody) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

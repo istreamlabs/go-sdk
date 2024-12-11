@@ -18,7 +18,7 @@ var _ MappedNullable = &ArchiveFERRequestNotificationSns{}
 
 // ArchiveFERRequestNotificationSns struct for ArchiveFERRequestNotificationSns
 type ArchiveFERRequestNotificationSns struct {
-	Region   string `json:"region"`
+	Region string `json:"region"`
 	TopicArn string `json:"topic_arn"`
 }
 
@@ -90,7 +90,7 @@ func (o *ArchiveFERRequestNotificationSns) SetTopicArn(v string) {
 }
 
 func (o ArchiveFERRequestNotificationSns) MarshalJSON() ([]byte, error) {
-	toSerialize, err := o.ToMap()
+	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -139,3 +139,5 @@ func (v *NullableArchiveFERRequestNotificationSns) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -11,11 +11,10 @@ package isp
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/istreamlabs/go-sdk/isp"
 )
 
 func Test_isp_AuditOperationsForOrganizationApiService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_isp_AuditOperationsForOrganizationApiService(t *testing.T) {
 
 	t.Run("Test AuditOperationsForOrganizationApiService GetOrgChannelTimeline", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var channelId string

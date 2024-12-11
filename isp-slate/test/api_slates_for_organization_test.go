@@ -11,11 +11,10 @@ package isp
 
 import (
 	"context"
-	"testing"
-
-	openapiclient "github.com/istreamlabs/go-sdk/isp-slate"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"testing"
+	openapiclient "github.com/istreamlabs/go-sdk/isp-slate"
 )
 
 func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
@@ -25,7 +24,7 @@ func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
 
 	t.Run("Test SlatesForOrganizationApiService DeleteOrgSlate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var slateId string
@@ -39,7 +38,7 @@ func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
 
 	t.Run("Test SlatesForOrganizationApiService GetOrgSlate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var slateId string
@@ -54,7 +53,7 @@ func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
 
 	t.Run("Test SlatesForOrganizationApiService ListOrgSlates", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 
@@ -68,7 +67,7 @@ func Test_isp_SlatesForOrganizationApiService(t *testing.T) {
 
 	t.Run("Test SlatesForOrganizationApiService PutOrgSlate", func(t *testing.T) {
 
-		t.Skip("skip test") // remove to run test
+		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var slateId string
