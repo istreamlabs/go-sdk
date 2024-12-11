@@ -13,7 +13,7 @@ import (
 	"context"
 	"testing"
 
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
+	openapiclient "github.com/istreamlabs/go-sdk/isp-lifecycle"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
