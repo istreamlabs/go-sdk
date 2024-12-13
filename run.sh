@@ -16,8 +16,13 @@ elif [[ "$API" == "isp-slate" ]]; then
   if [[ $ENV == "stage" ]]; then
     OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
   fi
+elif [[ "$API" == "isp-lifecycle" ]]; then
+  OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"
+  if [[ $ENV == "stage" ]]; then
+    OPENAPI_SPEC="http://stage.api.istreamplanet.com/state/openapi-3.0.json"
+  fi
 else
-  >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slate"
+  >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slate, isp-lifecycle"
   >&2 echo ""
   exit 1
 fi
@@ -56,6 +61,7 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
+sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-lifecycle",g' ./isp-lifecycle/**/*.go
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
