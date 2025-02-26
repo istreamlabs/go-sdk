@@ -18,14 +18,12 @@ var _ MappedNullable = &ListComponentStatesResponseEntry{}
 
 // ListComponentStatesResponseEntry struct for ListComponentStatesResponseEntry
 type ListComponentStatesResponseEntry struct {
-	ChannelId string `json:"channel_id"`
 	// The ChannelDoc's revision
 	ChannelRevision int32 `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
 	// A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
 	Component string `json:"component" enum:"CHANNEL_CONFIG,TRANSCODER,PUBLISHING" doc:"A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with)."`
 	// The current state of the component.
 	ComponentState string `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
-	Org string `json:"org"`
 	// ISO 8601 timestamp when the component state was updated.
 	UpdatedAt time.Time `json:"updated_at" format:"date-time" doc:"ISO 8601 timestamp when the component state was updated."`
 }
@@ -34,13 +32,11 @@ type ListComponentStatesResponseEntry struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListComponentStatesResponseEntry(channelId string, channelRevision int32, component string, componentState string, org string, updatedAt time.Time) *ListComponentStatesResponseEntry {
+func NewListComponentStatesResponseEntry(channelRevision int32, component string, componentState string, updatedAt time.Time) *ListComponentStatesResponseEntry {
 	this := ListComponentStatesResponseEntry{}
-	this.ChannelId = channelId
 	this.ChannelRevision = channelRevision
 	this.Component = component
 	this.ComponentState = componentState
-	this.Org = org
 	this.UpdatedAt = updatedAt
 	return &this
 }
@@ -51,30 +47,6 @@ func NewListComponentStatesResponseEntry(channelId string, channelRevision int32
 func NewListComponentStatesResponseEntryWithDefaults() *ListComponentStatesResponseEntry {
 	this := ListComponentStatesResponseEntry{}
 	return &this
-}
-
-// GetChannelId returns the ChannelId field value
-func (o *ListComponentStatesResponseEntry) GetChannelId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.ChannelId
-}
-
-// GetChannelIdOk returns a tuple with the ChannelId field value
-// and a boolean to check if the value has been set.
-func (o *ListComponentStatesResponseEntry) GetChannelIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ChannelId, true
-}
-
-// SetChannelId sets field value
-func (o *ListComponentStatesResponseEntry) SetChannelId(v string) {
-	o.ChannelId = v
 }
 
 // GetChannelRevision returns the ChannelRevision field value
@@ -149,30 +121,6 @@ func (o *ListComponentStatesResponseEntry) SetComponentState(v string) {
 	o.ComponentState = v
 }
 
-// GetOrg returns the Org field value
-func (o *ListComponentStatesResponseEntry) GetOrg() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Org
-}
-
-// GetOrgOk returns a tuple with the Org field value
-// and a boolean to check if the value has been set.
-func (o *ListComponentStatesResponseEntry) GetOrgOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Org, true
-}
-
-// SetOrg sets field value
-func (o *ListComponentStatesResponseEntry) SetOrg(v string) {
-	o.Org = v
-}
-
 // GetUpdatedAt returns the UpdatedAt field value
 func (o *ListComponentStatesResponseEntry) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -207,11 +155,9 @@ func (o ListComponentStatesResponseEntry) MarshalJSON() ([]byte, error) {
 
 func (o ListComponentStatesResponseEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["channel_id"] = o.ChannelId
 	toSerialize["channel_revision"] = o.ChannelRevision
 	toSerialize["component"] = o.Component
 	toSerialize["component_state"] = o.ComponentState
-	toSerialize["org"] = o.Org
 	toSerialize["updated_at"] = o.UpdatedAt
 	return toSerialize, nil
 }

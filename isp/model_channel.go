@@ -23,6 +23,8 @@ type Channel struct {
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Date and time the channel was created.
 	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
+	// A human-readable description of the channel.
+	Description *string `json:"description,omitempty" doc:"A human-readable description of the channel."`
 	// Desired running state for a channel.
 	DesiredState *string `json:"desired_state,omitempty" enum:"ON,OFF" doc:"Desired running state for a channel."`
 	// Indicates whether the channel's transcoder needs to run in a designated IP range.
@@ -131,6 +133,38 @@ func (o *Channel) HasCreated() bool {
 // SetCreated gets a reference to the given time.Time and assigns it to the Created field.
 func (o *Channel) SetCreated(v time.Time) {
 	o.Created = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *Channel) GetDescription() string {
+	if o == nil || IsNil(o.Description) {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Channel) GetDescriptionOk() (*string, bool) {
+	if o == nil || IsNil(o.Description) {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *Channel) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *Channel) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetDesiredState returns the DesiredState field value if set, zero value otherwise.
@@ -644,6 +678,9 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Created) {
 		toSerialize["created"] = o.Created
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
 	}
 	if !IsNil(o.DesiredState) {
 		toSerialize["desired_state"] = o.DesiredState

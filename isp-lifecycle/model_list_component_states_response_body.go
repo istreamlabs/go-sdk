@@ -19,17 +19,21 @@ var _ MappedNullable = &ListComponentStatesResponseBody{}
 type ListComponentStatesResponseBody struct {
 	// A URL to the JSON Schema for this object.
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ChannelId string `json:"channel_id"`
 	// The list of components states.
 	Components []ListComponentStatesResponseEntry `json:"components" doc:"The list of components states."`
+	Org string `json:"org"`
 }
 
 // NewListComponentStatesResponseBody instantiates a new ListComponentStatesResponseBody object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListComponentStatesResponseBody(components []ListComponentStatesResponseEntry) *ListComponentStatesResponseBody {
+func NewListComponentStatesResponseBody(channelId string, components []ListComponentStatesResponseEntry, org string) *ListComponentStatesResponseBody {
 	this := ListComponentStatesResponseBody{}
+	this.ChannelId = channelId
 	this.Components = components
+	this.Org = org
 	return &this
 }
 
@@ -73,6 +77,30 @@ func (o *ListComponentStatesResponseBody) SetSchema(v string) {
 	o.Schema = &v
 }
 
+// GetChannelId returns the ChannelId field value
+func (o *ListComponentStatesResponseBody) GetChannelId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.ChannelId
+}
+
+// GetChannelIdOk returns a tuple with the ChannelId field value
+// and a boolean to check if the value has been set.
+func (o *ListComponentStatesResponseBody) GetChannelIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ChannelId, true
+}
+
+// SetChannelId sets field value
+func (o *ListComponentStatesResponseBody) SetChannelId(v string) {
+	o.ChannelId = v
+}
+
 // GetComponents returns the Components field value
 // If the value is explicit nil, the zero value for []ListComponentStatesResponseEntry will be returned
 func (o *ListComponentStatesResponseBody) GetComponents() []ListComponentStatesResponseEntry {
@@ -99,6 +127,30 @@ func (o *ListComponentStatesResponseBody) SetComponents(v []ListComponentStatesR
 	o.Components = v
 }
 
+// GetOrg returns the Org field value
+func (o *ListComponentStatesResponseBody) GetOrg() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Org
+}
+
+// GetOrgOk returns a tuple with the Org field value
+// and a boolean to check if the value has been set.
+func (o *ListComponentStatesResponseBody) GetOrgOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Org, true
+}
+
+// SetOrg sets field value
+func (o *ListComponentStatesResponseBody) SetOrg(v string) {
+	o.Org = v
+}
+
 func (o ListComponentStatesResponseBody) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -112,9 +164,11 @@ func (o ListComponentStatesResponseBody) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
+	toSerialize["channel_id"] = o.ChannelId
 	if o.Components != nil {
 		toSerialize["components"] = o.Components
 	}
+	toSerialize["org"] = o.Org
 	return toSerialize, nil
 }
 
