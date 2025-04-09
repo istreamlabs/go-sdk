@@ -21,8 +21,6 @@ type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner str
 	BasicAuth *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth `json:"basic_auth,omitempty"`
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
 	Compression *string `json:"compression,omitempty" enum:"NONE,GZIP" doc:"Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed."`
-	// Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type.
-	CrossPlaybackPaths []string `json:"cross_playback_paths,omitempty" doc:"Cross Playback Paths are playback paths that reference alternative content. These playback paths could reference publish points from the same publication or a completely different encoder and packager altogether. Content published to an endpoint referenced by one of these cross playback paths MUST be of the same Manifest.Type."`
 	// (Optional) Specifies if this pubpoint should not be monitored by PLM.
 	DoNotMonitor *bool `json:"do_not_monitor,omitempty" doc:"(Optional) Specifies if this pubpoint should not be monitored by PLM."`
 	// Allows custom HTTP headers to be set via configuration for all HTTP requests.
@@ -116,38 +114,6 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 // SetCompression gets a reference to the given string and assigns it to the Compression field.
 func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetCompression(v string) {
 	o.Compression = &v
-}
-
-// GetCrossPlaybackPaths returns the CrossPlaybackPaths field value if set, zero value otherwise.
-func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetCrossPlaybackPaths() []string {
-	if o == nil || IsNil(o.CrossPlaybackPaths) {
-		var ret []string
-		return ret
-	}
-	return o.CrossPlaybackPaths
-}
-
-// GetCrossPlaybackPathsOk returns a tuple with the CrossPlaybackPaths field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetCrossPlaybackPathsOk() ([]string, bool) {
-	if o == nil || IsNil(o.CrossPlaybackPaths) {
-		return nil, false
-	}
-	return o.CrossPlaybackPaths, true
-}
-
-// HasCrossPlaybackPaths returns a boolean if a field has been set.
-func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasCrossPlaybackPaths() bool {
-	if o != nil && !IsNil(o.CrossPlaybackPaths) {
-		return true
-	}
-
-	return false
-}
-
-// SetCrossPlaybackPaths gets a reference to the given []string and assigns it to the CrossPlaybackPaths field.
-func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetCrossPlaybackPaths(v []string) {
-	o.CrossPlaybackPaths = v
 }
 
 // GetDoNotMonitor returns the DoNotMonitor field value if set, zero value otherwise.
@@ -357,9 +323,6 @@ func (o ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner)
 	}
 	if !IsNil(o.Compression) {
 		toSerialize["compression"] = o.Compression
-	}
-	if !IsNil(o.CrossPlaybackPaths) {
-		toSerialize["cross_playback_paths"] = o.CrossPlaybackPaths
 	}
 	if !IsNil(o.DoNotMonitor) {
 		toSerialize["do_not_monitor"] = o.DoNotMonitor

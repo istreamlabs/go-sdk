@@ -19,6 +19,8 @@ var _ MappedNullable = &ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 // ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 Only one of ['profile5', 'profile81', 'profile84'] may be set.
 type ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 struct {
 	Clli *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
+	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
+	Level8 []ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
 	Mdcv *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv `json:"mdcv,omitempty"`
 }
 
@@ -71,6 +73,38 @@ func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetClli(
 	o.Clli = &v
 }
 
+// GetLevel8 returns the Level8 field value if set, zero value otherwise.
+func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetLevel8() []ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner {
+	if o == nil || IsNil(o.Level8) {
+		var ret []ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner
+		return ret
+	}
+	return o.Level8
+}
+
+// GetLevel8Ok returns a tuple with the Level8 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetLevel8Ok() ([]ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner, bool) {
+	if o == nil || IsNil(o.Level8) {
+		return nil, false
+	}
+	return o.Level8, true
+}
+
+// HasLevel8 returns a boolean if a field has been set.
+func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) HasLevel8() bool {
+	if o != nil && !IsNil(o.Level8) {
+		return true
+	}
+
+	return false
+}
+
+// SetLevel8 gets a reference to the given []ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner and assigns it to the Level8 field.
+func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetLevel8(v []ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) {
+	o.Level8 = v
+}
+
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetMdcv() ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv {
 	if o == nil || IsNil(o.Mdcv) {
@@ -115,6 +149,9 @@ func (o ChannelTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) ToMap() (
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Clli) {
 		toSerialize["clli"] = o.Clli
+	}
+	if !IsNil(o.Level8) {
+		toSerialize["level8"] = o.Level8
 	}
 	if !IsNil(o.Mdcv) {
 		toSerialize["mdcv"] = o.Mdcv
