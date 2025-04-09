@@ -18,6 +18,8 @@ var _ MappedNullable = &ChannelTags{}
 
 // ChannelTags Use ChannelMetadata when possible instead of tags.
 type ChannelTags struct {
+	// Custom tags to be added to metrics and logs for this channel. In Datadog, the tags will be prefixed with 'dy_' to avoid collisions with system tags.
+	Custom *map[string]string `json:"custom,omitempty" doc:"Custom tags to be added to metrics and logs for this channel. In Datadog, the tags will be prefixed with 'dy_' to avoid collisions with system tags."`
 	// Indicates whether this channel is monitored by automation.
 	Monitored *bool `json:"monitored,omitempty" doc:"Indicates whether this channel is monitored by automation."`
 }
@@ -37,6 +39,38 @@ func NewChannelTags() *ChannelTags {
 func NewChannelTagsWithDefaults() *ChannelTags {
 	this := ChannelTags{}
 	return &this
+}
+
+// GetCustom returns the Custom field value if set, zero value otherwise.
+func (o *ChannelTags) GetCustom() map[string]string {
+	if o == nil || IsNil(o.Custom) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Custom
+}
+
+// GetCustomOk returns a tuple with the Custom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTags) GetCustomOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Custom) {
+		return nil, false
+	}
+	return o.Custom, true
+}
+
+// HasCustom returns a boolean if a field has been set.
+func (o *ChannelTags) HasCustom() bool {
+	if o != nil && !IsNil(o.Custom) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustom gets a reference to the given map[string]string and assigns it to the Custom field.
+func (o *ChannelTags) SetCustom(v map[string]string) {
+	o.Custom = &v
 }
 
 // GetMonitored returns the Monitored field value if set, zero value otherwise.
@@ -81,6 +115,9 @@ func (o ChannelTags) MarshalJSON() ([]byte, error) {
 
 func (o ChannelTags) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Custom) {
+		toSerialize["custom"] = o.Custom
+	}
 	if !IsNil(o.Monitored) {
 		toSerialize["monitored"] = o.Monitored
 	}

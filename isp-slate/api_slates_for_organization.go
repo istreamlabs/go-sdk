@@ -73,11 +73,11 @@ type SlatesForOrganizationApi interface {
 	Create or update a slate by id.  The URL of the slate must already exist.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
 	@param slateId Unique identifier for this slate
+	@param org Organization name
 	@return ApiPutOrgSlateRequest
 	*/
-	PutOrgSlate(ctx context.Context, org string, slateId string) ApiPutOrgSlateRequest
+	PutOrgSlate(ctx context.Context, slateId string, org string) ApiPutOrgSlateRequest
 
 	// PutOrgSlateExecute executes the request
 	//  @return Slate
@@ -627,8 +627,8 @@ func (a *SlatesForOrganizationApiService) ListOrgSlatesExecute(r ApiListOrgSlate
 type ApiPutOrgSlateRequest struct {
 	ctx context.Context
 	ApiService SlatesForOrganizationApi
-	org string
 	slateId string
+	org string
 	slateWithoutID *SlateWithoutID
 }
 
@@ -647,16 +647,16 @@ PutOrgSlate Create/Update Slate
 Create or update a slate by id.  The URL of the slate must already exist.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
  @param slateId Unique identifier for this slate
+ @param org Organization name
  @return ApiPutOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) PutOrgSlate(ctx context.Context, org string, slateId string) ApiPutOrgSlateRequest {
+func (a *SlatesForOrganizationApiService) PutOrgSlate(ctx context.Context, slateId string, org string) ApiPutOrgSlateRequest {
 	return ApiPutOrgSlateRequest{
 		ApiService: a,
 		ctx: ctx,
-		org: org,
 		slateId: slateId,
+		org: org,
 	}
 }
 
@@ -676,8 +676,8 @@ func (a *SlatesForOrganizationApiService) PutOrgSlateExecute(r ApiPutOrgSlateReq
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/slates/{slate-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"slate-id"+"}", url.PathEscape(parameterToString(r.slateId, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

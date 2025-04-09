@@ -22,8 +22,8 @@ type SlateWithoutID struct {
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// A friendly slate description.
 	Description string `json:"description" doc:"A friendly slate description."`
-	// The url where the slate can be accessed.
-	Url string `json:"url" doc:"The url where the slate can be accessed."`
+	// The url where the slate can be accessed. Must be a valid URL
+	Url string `json:"url" doc:"The url where the slate can be accessed. Must be a valid URL"`
 }
 
 // NewSlateWithoutID instantiates a new SlateWithoutID object
