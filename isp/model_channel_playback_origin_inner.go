@@ -1,7 +1,7 @@
 /*
  * WBD Aventus Channels API
  *
- * API version: 0.0.0
+ * API version: v1.19.22
  * Contact: live-control-plane-devs@wbd.com
  */
 

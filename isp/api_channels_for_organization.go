@@ -1,7 +1,7 @@
 /*
  * WBD Aventus Channels API
  *
- * API version: 0.0.0
+ * API version: v1.19.22
  * Contact: live-control-plane-devs@wbd.com
  */
 
@@ -1005,7 +1005,7 @@ type ApiPatchOrgChannelRequest struct {
 	ifNoneMatch *[]string
 	ifModifiedSince *time.Time
 	ifUnmodifiedSince *time.Time
-	patchOrgChannelRequest2Inner *[]PatchOrgChannelRequest2Inner
+	patchOrgChannelRequestInner *[]PatchOrgChannelRequestInner
 }
 
 // Validate request but do not otherwise process it
@@ -1038,8 +1038,8 @@ func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time
 	return r
 }
 
-func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequest2Inner(patchOrgChannelRequest2Inner []PatchOrgChannelRequest2Inner) ApiPatchOrgChannelRequest {
-	r.patchOrgChannelRequest2Inner = &patchOrgChannelRequest2Inner
+func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequestInner(patchOrgChannelRequestInner []PatchOrgChannelRequestInner) ApiPatchOrgChannelRequest {
+	r.patchOrgChannelRequestInner = &patchOrgChannelRequestInner
 	return r
 }
 
@@ -1123,7 +1123,7 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchOrgChannelRequest2Inner
+	localVarPostBody = r.patchOrgChannelRequestInner
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
