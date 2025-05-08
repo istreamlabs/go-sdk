@@ -32,15 +32,15 @@ echo -e "Generating ${API} SDK against ${ENV} (${OPENAPI_SPEC})\n"
 SCRIPT_DIR=${PWD}
 
 mkdir -p "$SCRIPT_DIR/spec"
-SPEC_FILE="$SCRIPT_DIR/spec/$API.yaml"
+SPEC_FILE="spec/$API.yaml"
 
 echo "Writing $OPENAPI_SPEC to $SPEC_FILE"
-curl -s "$OPENAPI_SPEC" | yq -P -o=yaml '.' > "$SPEC_FILE"
+curl -s "$OPENAPI_SPEC" | yq -P -o=yaml '.' > "$SCRIPT_DIR/$SPEC_FILE"
 
 if [[ "$API" == "isp" ]]; then
-  yq -i '.info.version = "0.0.0' "$SPEC_FILE"
+  yq -i '.info.version = "0.0.0"' "$SCRIPT_DIR/$SPEC_FILE"
 else
-  yq -i '.info.version = "1.0.0' "$SPEC_FILE"
+  yq -i '.info.version = "1.0.0"' "$SCRIPT_DIR/$SPEC_FILE"
 fi
 
 
@@ -59,7 +59,7 @@ docker run --rm \
   -v ${SCRIPT_DIR}:/go-sdk \
   "${GENERATOR_IMAGE}" generate \
     -g go -c "go-sdk/.generator.yaml" \
-    -i "${OPENAPI_SPEC}" \
+    -i "go-sdk/${SPEC_FILE}" \
     -o go-sdk/${API}
 
 # Logicless templates are dumping extra quotes around enum values, so we've
@@ -78,3 +78,6 @@ sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
+rm -rf "$SCRIPT_DIR/spec"
+
+git status -s "$API"
