@@ -30,8 +30,9 @@ type ChannelTranscode struct {
 	Id3Mode *string `json:"id3_mode,omitempty" enum:"PASSTHROUGH" doc:"Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored."`
 	// List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on.
 	Overlays []ChannelTranscodeOverlaysInner `json:"overlays,omitempty" maxItems:"1" doc:"List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on."`
-	// Resize mode specifies how to scale a video up or down to match the output dimensions.
-	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX" doc:"Resize mode specifies how to scale a video up or down to match the output dimensions."`
+	// Deprecated: Do not use. Deprecated: This field was never implemented. See resize_mode on VideoEncoder instead.
+	// Deprecated
+	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX,CENTER_CROP" deprecated:"true" doc:"Deprecated: Do not use. Deprecated: This field was never implemented. See resize_mode on VideoEncoder instead."`
 	Segmenter *ChannelTranscodeSegmenter `json:"segmenter,omitempty"`
 	// Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec.
 	SubtitleEncoders []ChannelTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty" doc:"Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec."`
@@ -254,6 +255,7 @@ func (o *ChannelTranscode) SetOverlays(v []ChannelTranscodeOverlaysInner) {
 }
 
 // GetResizeMode returns the ResizeMode field value if set, zero value otherwise.
+// Deprecated
 func (o *ChannelTranscode) GetResizeMode() string {
 	if o == nil || IsNil(o.ResizeMode) {
 		var ret string
@@ -264,6 +266,7 @@ func (o *ChannelTranscode) GetResizeMode() string {
 
 // GetResizeModeOk returns a tuple with the ResizeMode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ChannelTranscode) GetResizeModeOk() (*string, bool) {
 	if o == nil || IsNil(o.ResizeMode) {
 		return nil, false
@@ -281,6 +284,7 @@ func (o *ChannelTranscode) HasResizeMode() bool {
 }
 
 // SetResizeMode gets a reference to the given string and assigns it to the ResizeMode field.
+// Deprecated
 func (o *ChannelTranscode) SetResizeMode(v string) {
 	o.ResizeMode = &v
 }

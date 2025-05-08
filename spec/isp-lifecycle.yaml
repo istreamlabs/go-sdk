@@ -1,0 +1,445 @@
+components:
+  schemas:
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://example.com/state/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          example: Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          nullable: true
+          type: array
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          example: https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          example: 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          example: Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          example: https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    GetComponentStateResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://example.com/state/schemas/GetComponentStateResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        channel_id:
+          type: string
+        channel_revision:
+          description: The ChannelDoc's revision
+          format: int32
+          type: integer
+        component:
+          description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+          enum:
+            - CHANNEL_CONFIG
+            - TRANSCODER
+            - PUBLISHING
+          example: CHANNEL_CONFIG
+          type: string
+        component_state:
+          description: The current state of the component.
+          enum:
+            - "OFF"
+            - PROVISIONING
+            - STREAMING
+            - TERMINATING
+            - ERROR
+          example: STREAMING
+          type: string
+        org:
+          type: string
+        updated_at:
+          description: ISO 8601 timestamp when the component state was updated.
+          format: date-time
+          type: string
+      required:
+        - org
+        - channel_id
+        - component
+        - component_state
+        - updated_at
+        - channel_revision
+      type: object
+    GetStateResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://example.com/state/schemas/GetStateResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        channel_id:
+          description: The name of the channel.
+          example: channel-id
+          minLength: 1
+          type: string
+        channel_revision:
+          description: Current revision of the channel.
+          example: 123456789
+          format: int32
+          type: integer
+        channel_state:
+          description: Current state of the channel
+          enum:
+            - "OFF"
+            - PROVISIONING
+            - STREAMING
+            - TERMINATING
+            - ERROR
+          example: STREAMING
+          type: string
+        org:
+          description: The organization that owns the channel.
+          example: isp
+          minLength: 1
+          type: string
+        updated_at:
+          description: Timestamp when the lifecycle state was updated. Timestamps are in ISO 8601.
+          format: date-time
+          type: string
+      required:
+        - org
+        - channel_id
+        - channel_revision
+        - channel_state
+        - updated_at
+      type: object
+    ListComponentStatesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://example.com/state/schemas/ListComponentStatesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        channel_id:
+          type: string
+        components:
+          description: The list of components states.
+          items:
+            $ref: '#/components/schemas/ListComponentStatesResponseEntry'
+          nullable: true
+          type: array
+        org:
+          type: string
+      required:
+        - org
+        - channel_id
+        - components
+      type: object
+    ListComponentStatesResponseEntry:
+      additionalProperties: false
+      properties:
+        channel_revision:
+          description: The ChannelDoc's revision
+          format: int32
+          type: integer
+        component:
+          description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+          enum:
+            - CHANNEL_CONFIG
+            - TRANSCODER
+            - PUBLISHING
+          example: CHANNEL_CONFIG
+          type: string
+        component_state:
+          description: The current state of the component.
+          enum:
+            - "OFF"
+            - PROVISIONING
+            - STREAMING
+            - TERMINATING
+            - ERROR
+          example: STREAMING
+          type: string
+        updated_at:
+          description: ISO 8601 timestamp when the component state was updated.
+          format: date-time
+          type: string
+      required:
+        - component
+        - component_state
+        - updated_at
+        - channel_revision
+      type: object
+    PutComponentBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://example.com/state/schemas/PutComponentBody.json
+          format: uri
+          readOnly: true
+          type: string
+        channel_revision:
+          description: The ChannelDoc's revision
+          format: int32
+          type: integer
+        component_state:
+          description: The current state of the component.
+          enum:
+            - "OFF"
+            - PROVISIONING
+            - STREAMING
+            - TERMINATING
+            - ERROR
+          example: STREAMING
+          type: string
+      required:
+        - component_state
+        - channel_revision
+      type: object
+  securitySchemes:
+    authcode:
+      flows:
+        authorizationCode:
+          authorizationUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
+          scopes: null
+          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+      type: oauth2
+    m2m:
+      flows:
+        authorizationCode:
+          scopes: null
+          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+      type: oauth2
+info:
+  title: Channel Lifecycle State API
+  version: 1.0.0
+openapi: 3.0.3
+paths:
+  /v2/channels/{channel_urn}/state/components/{component}:
+    put:
+      description: Update the state of a component associated with the given channel.
+      operationId: put-lifecycle-component-state
+      parameters:
+        - description: The channel_urn (channeldoc identifier).
+          example: isp-test-123
+          in: path
+          name: channel_urn
+          required: true
+          schema:
+            description: The channel_urn (channeldoc identifier).
+            example: isp-test-123
+            minLength: 1
+            type: string
+        - description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+          example: CHANNEL_CONFIG
+          in: path
+          name: component
+          required: true
+          schema:
+            description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+            enum:
+              - CHANNEL_CONFIG
+              - TRANSCODER
+              - PUBLISHING
+            example: CHANNEL_CONFIG
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutComponentBody'
+        required: true
+      responses:
+        "204":
+          description: No Content
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      summary: Put component state
+      tags:
+        - Lifecycle
+  /v2/{org}/channels/{channel_id}/state:
+    get:
+      description: Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
+      operationId: calculate-lifecycle-state
+      parameters:
+        - description: The organization that owns the channel.
+          example: isp
+          in: path
+          name: org
+          required: true
+          schema:
+            description: The organization that owns the channel.
+            example: isp
+            minLength: 1
+            type: string
+        - description: The name of the channel.
+          example: channel-id
+          in: path
+          name: channel_id
+          required: true
+          schema:
+            description: The name of the channel.
+            example: channel-id
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetStateResponseBody'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      summary: Calculates channel lifecycle state
+      tags:
+        - Lifecycle
+  /v2/{org}/channels/{channel_id}/state/components:
+    get:
+      description: List the states of every component for the given channel ID.
+      operationId: list-lifecycle-component-states
+      parameters:
+        - description: The organization that owns the channel.
+          example: isp
+          in: path
+          name: org
+          required: true
+          schema:
+            description: The organization that owns the channel.
+            example: isp
+            minLength: 1
+            type: string
+        - description: The name of the channel.
+          example: channel-id
+          in: path
+          name: channel_id
+          required: true
+          schema:
+            description: The name of the channel.
+            example: channel-id
+            minLength: 1
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListComponentStatesResponseBody'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      summary: List component states
+      tags:
+        - Lifecycle
+  /v2/{org}/channels/{channel_id}/state/components/{component}:
+    get:
+      description: Retrieve the current state of a component for a given channel.
+      operationId: get-lifecycle-component-state
+      parameters:
+        - description: The organization that owns the channel.
+          example: isp
+          in: path
+          name: org
+          required: true
+          schema:
+            description: The organization that owns the channel.
+            example: isp
+            minLength: 1
+            type: string
+        - description: The name of the channel.
+          example: channel-id
+          in: path
+          name: channel_id
+          required: true
+          schema:
+            description: The name of the channel.
+            example: channel-id
+            minLength: 1
+            type: string
+        - description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+          example: CHANNEL_CONFIG
+          in: path
+          name: component
+          required: true
+          schema:
+            description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
+            enum:
+              - CHANNEL_CONFIG
+              - TRANSCODER
+              - PUBLISHING
+            example: CHANNEL_CONFIG
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetComponentStateResponseBody'
+          description: OK
+        default:
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Error
+      summary: Get component state
+      tags:
+        - Lifecycle
+security:
+  - authcode: []
+    m2m: []
+x-cli-config:
+  params:
+    authorize_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
+    client_id: 0oa125bj1lwLZRxjD0x8
+    redirect_url: http://auth.rest.sh:8484
+    scopes: offline_access,Groups
+    state: non-empty
+    token_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+  security: authcode
