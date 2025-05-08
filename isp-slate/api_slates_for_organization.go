@@ -1,7 +1,7 @@
 /*
  * iStreamPlanet Slate Management API
  *
- * API version: 1.0.0
+ * API version: v1.3.38
  * Contact: support@istreamplanet.com
  */
 
