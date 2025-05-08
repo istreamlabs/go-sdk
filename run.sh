@@ -7,19 +7,19 @@ ENV="${2-prod}"
 
 OPENAPI_SPEC=""
 if [[ "$API" == "isp" ]]; then
-  OPENAPI_SPEC="http://api.istreamplanet.com/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/openapi.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="http://stage.api.istreamplanet.com/openapi.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi.json"
   fi
 elif [[ "$API" == "isp-slate" ]]; then
-  OPENAPI_SPEC="http://api.istreamplanet.com/docs/slates/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="http://stage.api.istreamplanet.com/docs/slates/openapi.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/docs/slates/openapi.json"
   fi
 elif [[ "$API" == "isp-lifecycle" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="http://stage.api.istreamplanet.com/state/openapi-3.0.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/state/openapi-3.0.json"
   fi
 else
   >&2 echo "Unrecognized api $API. Valid options are: isp, isp-slate, isp-lifecycle"
@@ -30,6 +30,19 @@ fi
 echo -e "Generating ${API} SDK against ${ENV} (${OPENAPI_SPEC})\n"
 
 SCRIPT_DIR=${PWD}
+
+mkdir -p "$SCRIPT_DIR/spec"
+SPEC_FILE="$SCRIPT_DIR/spec/$API.yaml"
+
+echo "Writing $OPENAPI_SPEC to $SPEC_FILE"
+curl -s "$OPENAPI_SPEC" | yq -P -o=yaml '.' > "$SPEC_FILE"
+
+if [[ "$API" == "isp" ]]; then
+  yq -i '.info.version = "0.0.0' "$SPEC_FILE"
+else
+  yq -i '.info.version = "1.0.0' "$SPEC_FILE"
+fi
+
 
 # Recreate directory to ensure clean build
 rm -rf "${API}"
