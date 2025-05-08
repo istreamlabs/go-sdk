@@ -78,6 +78,7 @@ sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
-rm -rf "$SCRIPT_DIR/spec"
 
-git status -s "$API"
+echo ""
+echo "git status -s"
+git status -s
