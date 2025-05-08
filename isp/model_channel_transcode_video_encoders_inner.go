@@ -28,6 +28,8 @@ type ChannelTranscodeVideoEncodersInner struct {
 	Height *int32 `json:"height,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Height specifies the video height in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels."`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
+	// Indicates how to handle the case where the input aspect ratio does not match the aspect ratio of this VideoEncoder.
+	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX,CENTER_CROP" doc:"Indicates how to handle the case where the input aspect ratio does not match the aspect ratio of this VideoEncoder."`
 	// Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.
 	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels."`
 }
@@ -241,6 +243,38 @@ func (o *ChannelTranscodeVideoEncodersInner) SetId(v string) {
 	o.Id = &v
 }
 
+// GetResizeMode returns the ResizeMode field value if set, zero value otherwise.
+func (o *ChannelTranscodeVideoEncodersInner) GetResizeMode() string {
+	if o == nil || IsNil(o.ResizeMode) {
+		var ret string
+		return ret
+	}
+	return *o.ResizeMode
+}
+
+// GetResizeModeOk returns a tuple with the ResizeMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeVideoEncodersInner) GetResizeModeOk() (*string, bool) {
+	if o == nil || IsNil(o.ResizeMode) {
+		return nil, false
+	}
+	return o.ResizeMode, true
+}
+
+// HasResizeMode returns a boolean if a field has been set.
+func (o *ChannelTranscodeVideoEncodersInner) HasResizeMode() bool {
+	if o != nil && !IsNil(o.ResizeMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetResizeMode gets a reference to the given string and assigns it to the ResizeMode field.
+func (o *ChannelTranscodeVideoEncodersInner) SetResizeMode(v string) {
+	o.ResizeMode = &v
+}
+
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *ChannelTranscodeVideoEncodersInner) GetWidth() int32 {
 	if o == nil || IsNil(o.Width) {
@@ -300,6 +334,9 @@ func (o ChannelTranscodeVideoEncodersInner) ToMap() (map[string]interface{}, err
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.ResizeMode) {
+		toSerialize["resize_mode"] = o.ResizeMode
 	}
 	if !IsNil(o.Width) {
 		toSerialize["width"] = o.Width
