@@ -24,6 +24,8 @@ type ChannelTranscode struct {
 	// Deprecated
 	DebugOverlay *bool `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays."`
 	DebugOverlays *ChannelTranscodeDebugOverlays `json:"debug_overlays,omitempty"`
+	// Configures external dynamic resources which will be downloaded by the transcoder and made available for use in the dynamic state API. Each key in the map is used to identify the resource from any location wishing to reference it (e.g. the dynamic state API).
+	DynamicResources *map[string]ChannelTranscodeDynamicResourcesValue `json:"dynamic_resources,omitempty" doc:"Configures external dynamic resources which will be downloaded by the transcoder and made available for use in the dynamic state API. Each key in the map is used to identify the resource from any location wishing to reference it (e.g. the dynamic state API)."`
 	// Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper. Do not enable on customer facing channels.
 	FeatureFlags []string `json:"feature_flags,omitempty" doc:"Feature flag strings enable experimental transcode features or functionality that are not yet or never will be promoted to the channeldoc model proper. Do not enable on customer facing channels."`
 	// Specify how to process ID3 tags from the input source. If not specified, ID3 tags in the source will be ignored.
@@ -156,6 +158,38 @@ func (o *ChannelTranscode) HasDebugOverlays() bool {
 // SetDebugOverlays gets a reference to the given ChannelTranscodeDebugOverlays and assigns it to the DebugOverlays field.
 func (o *ChannelTranscode) SetDebugOverlays(v ChannelTranscodeDebugOverlays) {
 	o.DebugOverlays = &v
+}
+
+// GetDynamicResources returns the DynamicResources field value if set, zero value otherwise.
+func (o *ChannelTranscode) GetDynamicResources() map[string]ChannelTranscodeDynamicResourcesValue {
+	if o == nil || IsNil(o.DynamicResources) {
+		var ret map[string]ChannelTranscodeDynamicResourcesValue
+		return ret
+	}
+	return *o.DynamicResources
+}
+
+// GetDynamicResourcesOk returns a tuple with the DynamicResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscode) GetDynamicResourcesOk() (*map[string]ChannelTranscodeDynamicResourcesValue, bool) {
+	if o == nil || IsNil(o.DynamicResources) {
+		return nil, false
+	}
+	return o.DynamicResources, true
+}
+
+// HasDynamicResources returns a boolean if a field has been set.
+func (o *ChannelTranscode) HasDynamicResources() bool {
+	if o != nil && !IsNil(o.DynamicResources) {
+		return true
+	}
+
+	return false
+}
+
+// SetDynamicResources gets a reference to the given map[string]ChannelTranscodeDynamicResourcesValue and assigns it to the DynamicResources field.
+func (o *ChannelTranscode) SetDynamicResources(v map[string]ChannelTranscodeDynamicResourcesValue) {
+	o.DynamicResources = &v
 }
 
 // GetFeatureFlags returns the FeatureFlags field value if set, zero value otherwise.
@@ -435,6 +469,9 @@ func (o ChannelTranscode) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DebugOverlays) {
 		toSerialize["debug_overlays"] = o.DebugOverlays
+	}
+	if !IsNil(o.DynamicResources) {
+		toSerialize["dynamic_resources"] = o.DynamicResources
 	}
 	if !IsNil(o.FeatureFlags) {
 		toSerialize["feature_flags"] = o.FeatureFlags
