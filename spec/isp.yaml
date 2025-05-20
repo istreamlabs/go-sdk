@@ -5139,6 +5139,181 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/Segment'
+    SetDynamicStateRequest:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        channel_urn:
+          type: string
+          description: The channel's internal id.
+        dynamic_state:
+          type: object
+          description: The desired dynamic state configuration of the transcoder.
+          properties:
+            audio_mutes:
+              type: array
+              description: The complete list of muted audios.
+              items:
+                type: object
+                properties:
+                  audio_channel:
+                    type: string
+                    enum:
+                      - ALL
+                      - FRONT_LEFT
+                      - FRONT_RIGHT
+                      - FRONT_CENTER
+                      - LOW_FREQUENCY
+                      - SIDE_LEFT
+                      - SIDE_RIGHT
+                    example: FRONT_LEFT
+                  audio_source_id:
+                    type: string
+                    minLength: 1
+                additionalProperties: false
+            graphic_overlays:
+              type: array
+              description: The complete list of graphic overlays.
+              items:
+                type: object
+                properties:
+                  resource_id:
+                    type: string
+                    description: The key to the dynamic resource definition in the channel's transcoder configuration. This must reference a dynamic resource of type 'GRAPHIC'.
+                    example: channel-logo
+                    minLength: 1
+                  x:
+                    type: object
+                    properties:
+                      anchor:
+                        type: number
+                        description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                        format: float
+                        example: 100
+                      position:
+                        type: number
+                        description: The position of the anchor point on the video, given as a percentage of the video.
+                        format: float
+                        example: 95
+                    additionalProperties: false
+                  "y":
+                    type: object
+                    properties:
+                      anchor:
+                        type: number
+                        description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                        format: float
+                        example: 100
+                      position:
+                        type: number
+                        description: The position of the anchor point on the video, given as a percentage of the video.
+                        format: float
+                        example: 95
+                    additionalProperties: false
+                additionalProperties: false
+            text_overlays:
+              type: array
+              description: The complete list of text overlays.
+              items:
+                type: object
+                properties:
+                  background:
+                    type: string
+                    description: The background color and opacity given in RGBA hex format. Background applies to the background of both the text and the text padding.
+                    example: '#A2A2A2FF'
+                    minLength: 7
+                  font_color:
+                    type: string
+                    description: The font color to use for the text overlay. Given as an RGB hex string.
+                    example: '#FF0000'
+                  font_height:
+                    type: number
+                    description: The font height as a percentage of screen height.
+                    format: float
+                    example: 5
+                    minimum: 0
+                    exclusiveMinimum: true
+                  font_resource_id:
+                    type: string
+                    description: The font resource id to use for the text overlay. This must reference a dynamic resource of type 'FONT'.
+                    example: my-font
+                    minLength: 1
+                  padding:
+                    type: object
+                    description: The padding around the text. Used for positioning and for background.
+                    properties:
+                      bottom:
+                        type: number
+                        format: float
+                      left:
+                        type: number
+                        format: float
+                      right:
+                        type: number
+                        format: float
+                      top:
+                        type: number
+                        format: float
+                    additionalProperties: false
+                  text:
+                    type: string
+                    description: The text to overlay on the video.
+                    example: Hello World!
+                    minLength: 1
+                  x:
+                    type: object
+                    description: The horizontal position of the text overlay. Zero is the left side of the screen/overlay.
+                    properties:
+                      anchor:
+                        type: number
+                        description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                        format: float
+                        example: 100
+                      position:
+                        type: number
+                        description: The position of the anchor point on the video, given as a percentage of the video.
+                        format: float
+                        example: 95
+                    additionalProperties: false
+                  "y":
+                    type: object
+                    description: The vertical position of the text overlay. Zero is the top of the screen/overlay.
+                    properties:
+                      anchor:
+                        type: number
+                        description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                        format: float
+                        example: 100
+                      position:
+                        type: number
+                        description: The position of the anchor point on the video, given as a percentage of the video.
+                        format: float
+                        example: 95
+                    additionalProperties: false
+                additionalProperties: false
+          additionalProperties: false
+        dynamic_state_fields:
+          type: array
+          description: DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored.
+          items:
+            type: string
+            enum:
+              - TEXT_OVERLAYS
+              - GRAPHIC_OVERLAYS
+              - AUDIO_MUTES
+          minItems: 1
+        external_id:
+          type: string
+          description: The channel's user provided id.
+        organization:
+          type: string
+          description: The channel's organization.
+      additionalProperties: false
+      required:
+        - dynamic_state
     SignalingLog:
       type: object
       properties:
@@ -17132,6 +17307,202 @@ paths:
       summary: Get Channel Timeline
       tags:
         - Audit Operations for Organization
+  /v2/{org}/channels/{channel-id}/transcoder-dynamic-state:
+    put:
+      operationId: org-set-transcoder-dynamic-state
+      parameters:
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetDynamicStateRequest'
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "408":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Timeout
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "409":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "424":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Failed Dependency
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "499":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: ""
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Set the dynamic state for a transcoder.
+      tags:
+        - Channel Operations for Organization
   /v2/{org}/channels/{channel-id}/transcoder-status:
     get:
       description: Get the current status for the live transcoder powering the channel.
