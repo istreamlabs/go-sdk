@@ -20,6 +20,8 @@ var _ MappedNullable = &Status{}
 type Status struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// The transcoder's dynamic state settings.
+	DynamicStateStatus *map[string]interface{} `json:"dynamic_state_status,omitempty" doc:"The transcoder's dynamic state settings."`
 	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
 }
 
@@ -72,6 +74,38 @@ func (o *Status) SetSchema(v string) {
 	o.Schema = &v
 }
 
+// GetDynamicStateStatus returns the DynamicStateStatus field value if set, zero value otherwise.
+func (o *Status) GetDynamicStateStatus() map[string]interface{} {
+	if o == nil || IsNil(o.DynamicStateStatus) {
+		var ret map[string]interface{}
+		return ret
+	}
+	return *o.DynamicStateStatus
+}
+
+// GetDynamicStateStatusOk returns a tuple with the DynamicStateStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Status) GetDynamicStateStatusOk() (*map[string]interface{}, bool) {
+	if o == nil || IsNil(o.DynamicStateStatus) {
+		return nil, false
+	}
+	return o.DynamicStateStatus, true
+}
+
+// HasDynamicStateStatus returns a boolean if a field has been set.
+func (o *Status) HasDynamicStateStatus() bool {
+	if o != nil && !IsNil(o.DynamicStateStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetDynamicStateStatus gets a reference to the given map[string]interface{} and assigns it to the DynamicStateStatus field.
+func (o *Status) SetDynamicStateStatus(v map[string]interface{}) {
+	o.DynamicStateStatus = &v
+}
+
 // GetIngestStatus returns the IngestStatus field value if set, zero value otherwise.
 func (o *Status) GetIngestStatus() StatusIngestStatus {
 	if o == nil || IsNil(o.IngestStatus) {
@@ -116,6 +150,9 @@ func (o Status) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
+	}
+	if !IsNil(o.DynamicStateStatus) {
+		toSerialize["dynamic_state_status"] = o.DynamicStateStatus
 	}
 	if !IsNil(o.IngestStatus) {
 		toSerialize["ingest_status"] = o.IngestStatus

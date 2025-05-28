@@ -5377,6 +5377,10 @@ components:
           type: string
           description: An optional URL to a JSON Schema document describing this resource
           format: uri
+        dynamic_state_status:
+          type: object
+          description: The transcoder's dynamic state settings.
+          additionalProperties: false
         ingest_status:
           type: object
           description: Ingest components's status.
