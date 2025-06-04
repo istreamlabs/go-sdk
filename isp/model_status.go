@@ -20,8 +20,7 @@ var _ MappedNullable = &Status{}
 type Status struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	// The transcoder's dynamic state settings.
-	DynamicStateStatus *map[string]interface{} `json:"dynamic_state_status,omitempty" doc:"The transcoder's dynamic state settings."`
+	DynamicStateStatus *StatusDynamicStateStatus `json:"dynamic_state_status,omitempty"`
 	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
 }
 
@@ -75,9 +74,9 @@ func (o *Status) SetSchema(v string) {
 }
 
 // GetDynamicStateStatus returns the DynamicStateStatus field value if set, zero value otherwise.
-func (o *Status) GetDynamicStateStatus() map[string]interface{} {
+func (o *Status) GetDynamicStateStatus() StatusDynamicStateStatus {
 	if o == nil || IsNil(o.DynamicStateStatus) {
-		var ret map[string]interface{}
+		var ret StatusDynamicStateStatus
 		return ret
 	}
 	return *o.DynamicStateStatus
@@ -85,7 +84,7 @@ func (o *Status) GetDynamicStateStatus() map[string]interface{} {
 
 // GetDynamicStateStatusOk returns a tuple with the DynamicStateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetDynamicStateStatusOk() (*map[string]interface{}, bool) {
+func (o *Status) GetDynamicStateStatusOk() (*StatusDynamicStateStatus, bool) {
 	if o == nil || IsNil(o.DynamicStateStatus) {
 		return nil, false
 	}
@@ -101,8 +100,8 @@ func (o *Status) HasDynamicStateStatus() bool {
 	return false
 }
 
-// SetDynamicStateStatus gets a reference to the given map[string]interface{} and assigns it to the DynamicStateStatus field.
-func (o *Status) SetDynamicStateStatus(v map[string]interface{}) {
+// SetDynamicStateStatus gets a reference to the given StatusDynamicStateStatus and assigns it to the DynamicStateStatus field.
+func (o *Status) SetDynamicStateStatus(v StatusDynamicStateStatus) {
 	o.DynamicStateStatus = &v
 }
 

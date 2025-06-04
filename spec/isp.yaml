@@ -5380,6 +5380,157 @@ components:
         dynamic_state_status:
           type: object
           description: The transcoder's dynamic state settings.
+          properties:
+            dynamic_state:
+              type: object
+              description: The transcoder's dynamic state settings.
+              properties:
+                audio_mutes:
+                  type: array
+                  description: The complete list of muted audios.
+                  items:
+                    type: object
+                    properties:
+                      audio_channel:
+                        type: string
+                        enum:
+                          - ALL
+                          - FRONT_LEFT
+                          - FRONT_RIGHT
+                          - FRONT_CENTER
+                          - LOW_FREQUENCY
+                          - SIDE_LEFT
+                          - SIDE_RIGHT
+                        example: FRONT_LEFT
+                      audio_source_id:
+                        type: string
+                        minLength: 1
+                    additionalProperties: false
+                graphic_overlays:
+                  type: array
+                  description: The complete list of graphic overlays.
+                  items:
+                    type: object
+                    properties:
+                      resource_id:
+                        type: string
+                        description: The key to the dynamic resource definition in the channel's transcoder configuration. This must reference a dynamic resource of type 'GRAPHIC'.
+                        example: channel-logo
+                        minLength: 1
+                      x:
+                        type: object
+                        properties:
+                          anchor:
+                            type: number
+                            description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                            format: float
+                            example: 100
+                          position:
+                            type: number
+                            description: The position of the anchor point on the video, given as a percentage of the video.
+                            format: float
+                            example: 95
+                        additionalProperties: false
+                      "y":
+                        type: object
+                        properties:
+                          anchor:
+                            type: number
+                            description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                            format: float
+                            example: 100
+                          position:
+                            type: number
+                            description: The position of the anchor point on the video, given as a percentage of the video.
+                            format: float
+                            example: 95
+                        additionalProperties: false
+                    additionalProperties: false
+                text_overlays:
+                  type: array
+                  description: The complete list of text overlays.
+                  items:
+                    type: object
+                    properties:
+                      background:
+                        type: string
+                        description: The background color and opacity given in RGBA hex format. Background applies to the background of both the text and the text padding.
+                        example: '#A2A2A2FF'
+                        minLength: 7
+                      font_color:
+                        type: string
+                        description: The font color to use for the text overlay. Given as an RGB hex string.
+                        example: '#FF0000'
+                      font_height:
+                        type: number
+                        description: The font height as a percentage of screen height.
+                        format: float
+                        example: 5
+                        minimum: 0
+                        exclusiveMinimum: true
+                      font_resource_id:
+                        type: string
+                        description: The font resource id to use for the text overlay. This must reference a dynamic resource of type 'FONT'.
+                        example: my-font
+                        minLength: 1
+                      padding:
+                        type: object
+                        description: The padding around the text. Used for positioning and for background.
+                        properties:
+                          bottom:
+                            type: number
+                            format: float
+                          left:
+                            type: number
+                            format: float
+                          right:
+                            type: number
+                            format: float
+                          top:
+                            type: number
+                            format: float
+                        additionalProperties: false
+                      text:
+                        type: string
+                        description: The text to overlay on the video.
+                        example: Hello World!
+                        minLength: 1
+                      x:
+                        type: object
+                        description: The horizontal position of the text overlay. Zero is the left side of the screen/overlay.
+                        properties:
+                          anchor:
+                            type: number
+                            description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                            format: float
+                            example: 100
+                          position:
+                            type: number
+                            description: The position of the anchor point on the video, given as a percentage of the video.
+                            format: float
+                            example: 95
+                        additionalProperties: false
+                      "y":
+                        type: object
+                        description: The vertical position of the text overlay. Zero is the top of the screen/overlay.
+                        properties:
+                          anchor:
+                            type: number
+                            description: The position of the anchor point within the overlay, given as a percentage of the overlay size.
+                            format: float
+                            example: 100
+                          position:
+                            type: number
+                            description: The position of the anchor point on the video, given as a percentage of the video.
+                            format: float
+                            example: 95
+                        additionalProperties: false
+                    additionalProperties: false
+              additionalProperties: false
+            last_update:
+              type: string
+              description: The timestamp of the last update to the dynamic state.
+              format: date-time
           additionalProperties: false
         ingest_status:
           type: object
@@ -6665,33 +6816,6 @@ components:
       required:
         - desired_state
     patch-org-channel-request:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
-    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -8389,6 +8513,33 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
+    patch-org-channel-request2:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
     put-org-channel-request:
       type: object
       properties:
@@ -12705,10 +12856,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
       responses:
         "201":
           description: Created
