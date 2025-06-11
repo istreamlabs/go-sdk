@@ -124,6 +124,21 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ChannelOperationsForOrganizationApiService OrgIsBreakingChange", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var channelId string
+		var org string
+
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgIsBreakingChange(context.Background(), channelId, org).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ChannelOperationsForOrganizationApiService OrgPinIngest", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test

@@ -153,6 +153,7 @@ model_get_task_response.go
 model_get_vod_response.go
 model_insert_metadata_request.go
 model_insert_metadata_result.go
+model_is_breaking_change_return.go
 model_list_clips_for_vod_response.go
 model_list_clips_for_vod_response_channel_clips_inner.go
 model_list_clips_for_vod_response_channel_clips_inner_clips_inner.go

@@ -6815,6 +6815,34 @@ components:
       additionalProperties: false
       required:
         - desired_state
+    isBreakingChangeReturn:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        channelid:
+          type: string
+          description: Unique channel identifier
+          maxLength: 60
+          pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        currentRevision:
+          type: integer
+          description: The current revision of the channel.
+          format: int32
+        isBreakingChange:
+          type: boolean
+          description: True if the change will cause a break in user playback. False if the change will not cause a break in user playback or the channel doesn't exist
+        organization:
+          type: string
+          description: Organization name
+      additionalProperties: false
+      required:
+        - currentRevision
+        - isBreakingChange
+        - organization
+        - channelid
     patch-org-channel-request:
       type: object
       properties:
@@ -15295,6 +15323,171 @@ paths:
               schema:
                 type: string
       summary: Pin Ingest
+      tags:
+        - Channel Operations for Organization
+  /v2/{org}/channels/{channel-id}/is-breaking-change:
+    put:
+      description: Validates if a configuration change is compatible with downstream services.
+      operationId: org-is-breaking-change
+      parameters:
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Channel'
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/isBreakingChangeReturn'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "408":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Timeout
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "499":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: ""
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Validate Breaking Change
       tags:
         - Channel Operations for Organization
   /v2/{org}/channels/{channel-id}/playback:
