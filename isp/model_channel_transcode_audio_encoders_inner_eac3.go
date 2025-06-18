@@ -18,10 +18,12 @@ var _ MappedNullable = &ChannelTranscodeAudioEncodersInnerEac3{}
 
 // ChannelTranscodeAudioEncodersInnerEac3 Only one of ['eac3'] may be set.
 type ChannelTranscodeAudioEncodersInnerEac3 struct {
-	// If non-zero, configures the encoder to compute JOC metadata (i.e. Dolby Atmos) for the given logical speaker layout. The transcoder does not guarantee any particular bed layout in the JOC metadata, and this setting currently has no effect on that. It merely determines the channel layout to which all inputs are converted before encoding. Legal values are: 8 - 5.1.2 10 - 5.1.4 For sources with raw PCM input and more than 6 channels, configure this according to the expected input channel layout. For channels which expect to take a 7.1 EAC-3 input, configure to 8. For all other cases, including upmixing from 5.1 or fewer channels or any kind of Atmos input, configure to 10. This setting is mutually exclusive with ddp_joc_passthrough.
-	DdpJocLogicalChannels *int32 `json:"ddp_joc_logical_channels,omitempty" format:"int32" doc:"If non-zero, configures the encoder to compute JOC metadata (i.e. Dolby Atmos) for the given logical speaker layout. The transcoder does not guarantee any particular bed layout in the JOC metadata, and this setting currently has no effect on that. It merely determines the channel layout to which all inputs are converted before encoding. Legal values are: 8 - 5.1.2 10 - 5.1.4 For sources with raw PCM input and more than 6 channels, configure this according to the expected input channel layout. For channels which expect to take a 7.1 EAC-3 input, configure to 8. For all other cases, including upmixing from 5.1 or fewer channels or any kind of Atmos input, configure to 10. This setting is mutually exclusive with ddp_joc_passthrough."`
-	// Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence.
-	DdpJocPassthrough *bool `json:"ddp_joc_passthrough,omitempty" doc:"Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If the source is not DD+JOC, it will be replaced with silence."`
+	// Configures the maximum DD+JOC complexity index the content is expected to have. This does not configure the actual encoder, but simply indicates the value that should appear in manifests given to the player. This may only be used when 'ddp_joc_passthrough' is enabled. A legacy default of 10 applies to channels using pure passthrough which do not configure this; hybrid passthrough requires this to be configured explicitly, and additionally requires a value of at least 12 since that's what encoded output will have. When encoding DD+JOC without passthrough, the manifests reflect the actual transcoder output and manual configuration is not permitted.
+	DdpJocComplexityIndex *int32 `json:"ddp_joc_complexity_index,omitempty" format:"int32" doc:"Configures the maximum DD+JOC complexity index the content is expected to have. This does not configure the actual encoder, but simply indicates the value that should appear in manifests given to the player. This may only be used when 'ddp_joc_passthrough' is enabled. A legacy default of 10 applies to channels using pure passthrough which do not configure this; hybrid passthrough requires this to be configured explicitly, and additionally requires a value of at least 12 since that's what encoded output will have. When encoding DD+JOC without passthrough, the manifests reflect the actual transcoder output and manual configuration is not permitted."`
+	// If non-zero, configures the encoder to compute JOC metadata (i.e. Dolby Atmos) for the given logical speaker layout. The transcoder does not guarantee any particular bed layout in the JOC metadata, and this setting currently has no effect on that. It merely determines the channel layout to which all inputs are converted before encoding. Legal values are: 8 - 5.1.2 10 - 5.1.4 For sources with raw PCM input and more than 6 channels, configure this according to the expected input channel layout. For channels which expect to take a 7.1 EAC-3 input, configure to 8. For all other cases, including upmixing from 5.1 or fewer channels or any kind of Atmos input, configure to 10. This setting can be used at the same time as ddp_joc_passthrough to enable 'hybrid passthrough'. In this case, this setting only governs what is used for the case where the input is not already DD+JOC.
+	DdpJocLogicalChannels *int32 `json:"ddp_joc_logical_channels,omitempty" format:"int32" doc:"If non-zero, configures the encoder to compute JOC metadata (i.e. Dolby Atmos) for the given logical speaker layout. The transcoder does not guarantee any particular bed layout in the JOC metadata, and this setting currently has no effect on that. It merely determines the channel layout to which all inputs are converted before encoding. Legal values are: 8 - 5.1.2 10 - 5.1.4 For sources with raw PCM input and more than 6 channels, configure this according to the expected input channel layout. For channels which expect to take a 7.1 EAC-3 input, configure to 8. For all other cases, including upmixing from 5.1 or fewer channels or any kind of Atmos input, configure to 10. This setting can be used at the same time as ddp_joc_passthrough to enable 'hybrid passthrough'. In this case, this setting only governs what is used for the case where the input is not already DD+JOC."`
+	// Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If ddp_joc_logical_channels is not configured and the source is not DD+JOC, it will be replaced with silence. If ddp_joc_logical_channels is configured, the source will be reencoded if it is not DD+JOC and passed through unchanged when it is. The latter case is called 'hybrid passthrough' and also requires configuration of ddp_joc_complexity_index.
+	DdpJocPassthrough *bool `json:"ddp_joc_passthrough,omitempty" doc:"Indicates that the source will contain Joint Object Coding metadata (Dolby Atmos) and that the encoder should operate in passthrough mode. https://learning.dolby.com/hc/en-us/articles/4406039180564-Appendix-C-Dolby-Atmos-Delivery-Codecs- When the audio encoder is configured with this setting, the source audio will be repackaged without being decoded and re-encoded. If ddp_joc_logical_channels is not configured and the source is not DD+JOC, it will be replaced with silence. If ddp_joc_logical_channels is configured, the source will be reencoded if it is not DD+JOC and passed through unchanged when it is. The latter case is called 'hybrid passthrough' and also requires configuration of ddp_joc_complexity_index."`
 	// If specified, overrides the dynamic range control line mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC line mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice.
 	DrcLineMode *string `json:"drc_line_mode,omitempty" enum:"DRC_FILM_STANDARD,DRC_FILM_LIGHT,DRC_MUSIC_STANDARD,DRC_MUSIC_LIGHT,DRC_SPEECH" doc:"If specified, overrides the dynamic range control line mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC line mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice."`
 	// If specified, overrides the dynamic range control RF mode. If unspecified and the source audio is AC-3 or EAC-3, the DRC RF mode matches the input. If unspecified and the source audio is any other codec, the encoder uses an unspecified default which may change without notice.
@@ -45,6 +47,38 @@ func NewChannelTranscodeAudioEncodersInnerEac3() *ChannelTranscodeAudioEncodersI
 func NewChannelTranscodeAudioEncodersInnerEac3WithDefaults() *ChannelTranscodeAudioEncodersInnerEac3 {
 	this := ChannelTranscodeAudioEncodersInnerEac3{}
 	return &this
+}
+
+// GetDdpJocComplexityIndex returns the DdpJocComplexityIndex field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocComplexityIndex() int32 {
+	if o == nil || IsNil(o.DdpJocComplexityIndex) {
+		var ret int32
+		return ret
+	}
+	return *o.DdpJocComplexityIndex
+}
+
+// GetDdpJocComplexityIndexOk returns a tuple with the DdpJocComplexityIndex field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) GetDdpJocComplexityIndexOk() (*int32, bool) {
+	if o == nil || IsNil(o.DdpJocComplexityIndex) {
+		return nil, false
+	}
+	return o.DdpJocComplexityIndex, true
+}
+
+// HasDdpJocComplexityIndex returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) HasDdpJocComplexityIndex() bool {
+	if o != nil && !IsNil(o.DdpJocComplexityIndex) {
+		return true
+	}
+
+	return false
+}
+
+// SetDdpJocComplexityIndex gets a reference to the given int32 and assigns it to the DdpJocComplexityIndex field.
+func (o *ChannelTranscodeAudioEncodersInnerEac3) SetDdpJocComplexityIndex(v int32) {
+	o.DdpJocComplexityIndex = &v
 }
 
 // GetDdpJocLogicalChannels returns the DdpJocLogicalChannels field value if set, zero value otherwise.
@@ -217,6 +251,9 @@ func (o ChannelTranscodeAudioEncodersInnerEac3) MarshalJSON() ([]byte, error) {
 
 func (o ChannelTranscodeAudioEncodersInnerEac3) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DdpJocComplexityIndex) {
+		toSerialize["ddp_joc_complexity_index"] = o.DdpJocComplexityIndex
+	}
 	if !IsNil(o.DdpJocLogicalChannels) {
 		toSerialize["ddp_joc_logical_channels"] = o.DdpJocLogicalChannels
 	}
