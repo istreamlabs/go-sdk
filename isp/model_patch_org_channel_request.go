@@ -32,8 +32,8 @@ type PatchOrgChannelRequest struct {
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"External Channel ID provided at channel creation time"`
 	Ingest *PatchOrgChannelRequestIngest `json:"ingest,omitempty"`
-	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10.
-	Labels []string `json:"labels,omitempty" maxItems:"10" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 10."`
+	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50.
+	Labels []string `json:"labels,omitempty" maxItems:"50" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50."`
 	// Date and time the channel was last modified.
 	Modified *time.Time `json:"modified,omitempty" format:"date-time" doc:"Date and time the channel was last modified."`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
