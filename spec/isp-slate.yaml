@@ -147,6 +147,24 @@ paths:
           schema:
             type: string
             description: Organization name
+        - name: cursor
+          description: Current page cursor
+          in: query
+          schema:
+            type: string
+            description: Current page cursor
+          explode: false
+        - name: limit
+          description: Number of items to return
+          in: query
+          schema:
+            type: integer
+            description: Number of items to return
+            format: int32
+            default: 100
+            minimum: 1
+            maximum: 100
+          explode: false
       responses:
         "200":
           content:
