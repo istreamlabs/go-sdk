@@ -454,6 +454,20 @@ type ApiListOrgSlatesRequest struct {
 	ctx context.Context
 	ApiService SlatesForOrganizationApi
 	org string
+	cursor *string
+	limit *int32
+}
+
+// Current page cursor
+func (r ApiListOrgSlatesRequest) Cursor(cursor string) ApiListOrgSlatesRequest {
+	r.cursor = &cursor
+	return r
+}
+
+// Number of items to return
+func (r ApiListOrgSlatesRequest) Limit(limit int32) ApiListOrgSlatesRequest {
+	r.limit = &limit
+	return r
 }
 
 func (r ApiListOrgSlatesRequest) Execute() ([]Slate2, *http.Response, error) {
@@ -499,6 +513,12 @@ func (a *SlatesForOrganizationApiService) ListOrgSlatesExecute(r ApiListOrgSlate
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
