@@ -4615,6 +4615,90 @@ components:
       required:
         - programs
         - errors
+    ListRawSCTEHistoryByChannelResponse:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        raw_scte35:
+          type: array
+          items:
+            type: object
+            properties:
+              header:
+                type: object
+                properties:
+                  run_id:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                additionalProperties: false
+              id:
+                type: integer
+                description: id is a unique scte id assigned by the transcoder per run_id
+                format: int32
+                minimum: 0
+              in_band:
+                type: boolean
+                description: in_band denotes whether the SCTE-35 message was received in the source consumed by the transcoder (In-Band) or signaled via Transcoder API (Out-of-Band).
+              scte35:
+                type: string
+              source:
+                type: string
+                enum:
+                  - SOURCE_UNDEFINED
+                  - PRIMARY
+                  - SECONDARY
+              time:
+                type: string
+                description: time is the time at which the SCTE was received by the transcoder.
+                format: date-time
+            additionalProperties: false
+      additionalProperties: false
+    ListRawSCTEHistoryResponse:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        raw_scte35:
+          type: array
+          items:
+            type: object
+            properties:
+              header:
+                type: object
+                properties:
+                  run_id:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                additionalProperties: false
+              id:
+                type: integer
+                description: id is a unique scte id assigned by the transcoder per run_id
+                format: int32
+                minimum: 0
+              in_band:
+                type: boolean
+                description: in_band denotes whether the SCTE-35 message was received in the source consumed by the transcoder (In-Band) or signaled via Transcoder API (Out-of-Band).
+              scte35:
+                type: string
+              source:
+                type: string
+                enum:
+                  - SOURCE_UNDEFINED
+                  - PRIMARY
+                  - SECONDARY
+              time:
+                type: string
+                description: time is the time at which the SCTE was received by the transcoder.
+                format: date-time
+            additionalProperties: false
+      additionalProperties: false
     ListTasksResponse:
       type: object
       properties:
@@ -12167,6 +12251,129 @@ paths:
       summary: List organizations
       tags:
         - Organizations
+  /v2/scte-history:
+    get:
+      description: |
+        Returns SCTE-35 history for all channels.
+      operationId: list-raw-scte-history
+      parameters:
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRawSCTEHistoryResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Get SCTE-35 History
+      tags:
+        - Transcoder Telemetry
   /v2/tasks:
     get:
       description: List all L2V tasks.
@@ -16025,6 +16232,145 @@ paths:
       summary: Get Preview Streams
       tags:
         - Channel Operations for Organization
+  /v2/{org}/channels/{channel-id}/scte-history:
+    get:
+      description: |
+        Returns SCTE history for a channel.
+      operationId: list-raw-scte-history-by-channel
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListRawSCTEHistoryByChannelResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Get Channel SCTE-35 History
+      tags:
+        - Transcoder Telemetry
   /v2/{org}/channels/{channel-id}/scte35:
     post:
       description: Inserts a SCTE-35 formatted binary payload into the channel.

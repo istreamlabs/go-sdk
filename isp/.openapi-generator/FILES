@@ -7,6 +7,7 @@ api_deprecated_live2_vod.go
 api_live2_vod_for_organization.go
 api_organizations.go
 api_source_previews.go
+api_transcoder_telemetry.go
 configuration.go
 model_archive_fer_request.go
 model_archive_fer_request_notification.go
@@ -161,6 +162,10 @@ model_list_clips_response.go
 model_list_products_response.go
 model_list_programs_response.go
 model_list_programs_response_programs_inner.go
+model_list_raw_scte_history_by_channel_response.go
+model_list_raw_scte_history_by_channel_response_raw_scte35_inner.go
+model_list_raw_scte_history_by_channel_response_raw_scte35_inner_header.go
+model_list_raw_scte_history_response.go
 model_list_tasks_response.go
 model_list_tasks_response_tasks_inner.go
 model_list_vods_response.go
@@ -230,4 +235,5 @@ test/api_deprecated_live2_vod_test.go
 test/api_live2_vod_for_organization_test.go
 test/api_organizations_test.go
 test/api_source_previews_test.go
+test/api_transcoder_telemetry_test.go
 utils.go
