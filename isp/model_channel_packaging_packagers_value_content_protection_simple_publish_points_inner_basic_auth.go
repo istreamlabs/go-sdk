@@ -16,7 +16,7 @@ import (
 // checks if the ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth{}
 
-// ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth Only one of ['basic_auth'] may be set.
+// ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth Only one of ['basic_auth', 'secure_header_auth'] may be set.
 type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth struct {
 	// Plain text password for basic auth.
 	Password *string `json:"password,omitempty" doc:"Plain text password for basic auth."`

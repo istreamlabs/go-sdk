@@ -33,6 +33,7 @@ type ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner str
 	PlaybackQueryParams *string `json:"playback_query_params,omitempty" doc:"Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'"`
 	// The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
 	PublishBaseUrl *string `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
+	SecureHeaderAuth *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth `json:"secure_header_auth,omitempty"`
 }
 
 // NewChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner instantiates a new ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner object
@@ -308,6 +309,38 @@ func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner
 	o.PublishBaseUrl = &v
 }
 
+// GetSecureHeaderAuth returns the SecureHeaderAuth field value if set, zero value otherwise.
+func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetSecureHeaderAuth() ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth {
+	if o == nil || IsNil(o.SecureHeaderAuth) {
+		var ret ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth
+		return ret
+	}
+	return *o.SecureHeaderAuth
+}
+
+// GetSecureHeaderAuthOk returns a tuple with the SecureHeaderAuth field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetSecureHeaderAuthOk() (*ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth, bool) {
+	if o == nil || IsNil(o.SecureHeaderAuth) {
+		return nil, false
+	}
+	return o.SecureHeaderAuth, true
+}
+
+// HasSecureHeaderAuth returns a boolean if a field has been set.
+func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasSecureHeaderAuth() bool {
+	if o != nil && !IsNil(o.SecureHeaderAuth) {
+		return true
+	}
+
+	return false
+}
+
+// SetSecureHeaderAuth gets a reference to the given ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth and assigns it to the SecureHeaderAuth field.
+func (o *ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetSecureHeaderAuth(v ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth) {
+	o.SecureHeaderAuth = &v
+}
+
 func (o ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -341,6 +374,9 @@ func (o ChannelPackagingPackagersValueContentProtectionSimplePublishPointsInner)
 	}
 	if !IsNil(o.PublishBaseUrl) {
 		toSerialize["publish_base_url"] = o.PublishBaseUrl
+	}
+	if !IsNil(o.SecureHeaderAuth) {
+		toSerialize["secure_header_auth"] = o.SecureHeaderAuth
 	}
 	return toSerialize, nil
 }
