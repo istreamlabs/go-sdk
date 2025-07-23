@@ -404,7 +404,7 @@ components:
                               properties:
                                 basic_auth:
                                   type: object
-                                  description: Only one of ['basic_auth'] may be set.
+                                  description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                                   properties:
                                     password:
                                       type: string
@@ -441,6 +441,17 @@ components:
                                   type: string
                                   description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                                   format: uri-reference
+                                secure_header_auth:
+                                  type: object
+                                  description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                                  properties:
+                                    arn:
+                                      type: string
+                                      description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                    version_id:
+                                      type: string
+                                      description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                  additionalProperties: false
                               additionalProperties: false
                           require_publish:
                             type: string
@@ -884,7 +895,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -921,6 +932,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                         id:
                           type: string
@@ -1981,7 +2003,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -2018,6 +2040,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                       require_publish:
                         type: string
@@ -2168,7 +2201,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -2205,6 +2238,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                       require_publish:
                         type: string
@@ -2355,7 +2399,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -2392,6 +2436,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                       require_publish:
                         type: string
@@ -2656,7 +2711,7 @@ components:
                               properties:
                                 basic_auth:
                                   type: object
-                                  description: Only one of ['basic_auth'] may be set.
+                                  description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                                   properties:
                                     password:
                                       type: string
@@ -2693,6 +2748,17 @@ components:
                                   type: string
                                   description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                                   format: uri-reference
+                                secure_header_auth:
+                                  type: object
+                                  description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                                  properties:
+                                    arn:
+                                      type: string
+                                      description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                    version_id:
+                                      type: string
+                                      description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                  additionalProperties: false
                               additionalProperties: false
                           require_publish:
                             type: string
@@ -7198,7 +7264,7 @@ components:
                               properties:
                                 basic_auth:
                                   type: object
-                                  description: Only one of ['basic_auth'] may be set.
+                                  description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                                   properties:
                                     password:
                                       type: string
@@ -7235,6 +7301,17 @@ components:
                                   type: string
                                   description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                                   format: uri-reference
+                                secure_header_auth:
+                                  type: object
+                                  description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                                  properties:
+                                    arn:
+                                      type: string
+                                      description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                    version_id:
+                                      type: string
+                                      description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                  additionalProperties: false
                               additionalProperties: false
                           require_publish:
                             type: string
@@ -7678,7 +7755,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -7715,6 +7792,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                         id:
                           type: string
@@ -8932,7 +9020,7 @@ components:
                               properties:
                                 basic_auth:
                                   type: object
-                                  description: Only one of ['basic_auth'] may be set.
+                                  description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                                   properties:
                                     password:
                                       type: string
@@ -8969,6 +9057,17 @@ components:
                                   type: string
                                   description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                                   format: uri-reference
+                                secure_header_auth:
+                                  type: object
+                                  description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                                  properties:
+                                    arn:
+                                      type: string
+                                      description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                    version_id:
+                                      type: string
+                                      description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                  additionalProperties: false
                               additionalProperties: false
                           require_publish:
                             type: string
@@ -9412,7 +9511,7 @@ components:
                           properties:
                             basic_auth:
                               type: object
-                              description: Only one of ['basic_auth'] may be set.
+                              description: Only one of ['basic_auth', 'secure_header_auth'] may be set.
                               properties:
                                 password:
                                   type: string
@@ -9449,6 +9548,17 @@ components:
                               type: string
                               description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
                               format: uri-reference
+                            secure_header_auth:
+                              type: object
+                              description: SecureHeaderAuth sets up HTTP authentication using secure HTTP Headers stored in AWS Secrets Manager Only one of ['basic_auth', 'secure_header_auth'] may be set.
+                              properties:
+                                arn:
+                                  type: string
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                version_id:
+                                  type: string
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                              additionalProperties: false
                           additionalProperties: false
                         id:
                           type: string
@@ -12302,6 +12412,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
           headers:
             Content-Type:
               description: Content-Type
@@ -16299,6 +16424,21 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorModel'
           description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
           headers:
             Content-Type:
               description: Content-Type
