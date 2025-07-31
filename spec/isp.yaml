@@ -3500,7 +3500,6 @@ components:
           format: int32
           default: 0
           example: 30000
-          minimum: 1000
         event_id:
           type: integer
           description: Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
@@ -6999,6 +6998,33 @@ components:
         - organization
         - channelid
     patch-org-channel-request:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
+    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -8723,33 +8749,6 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
-    patch-org-channel-request2:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
     put-org-channel-request:
       type: object
       properties:
@@ -13231,10 +13230,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
       responses:
         "201":
           description: Created
