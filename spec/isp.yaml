@@ -1131,6 +1131,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -1171,6 +1172,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -1240,6 +1242,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -1283,6 +1286,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -1510,7 +1514,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -1541,7 +1545,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -1580,6 +1584,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
@@ -5288,6 +5301,7 @@ components:
             - SLATE
             - NOT_INDICATED
             - TIMED_METADATA
+            - TIMED_METADATA_MARKER_OVER_SLATE
       additionalProperties: false
     SegmentList:
       type: array
@@ -7990,6 +8004,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -8030,6 +8045,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -8099,6 +8115,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -8142,6 +8159,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -8369,7 +8387,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -8400,7 +8418,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -8439,6 +8457,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
@@ -9746,6 +9773,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -9786,6 +9814,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -9855,6 +9884,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -9898,6 +9928,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -10125,7 +10156,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -10156,7 +10187,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -10195,6 +10226,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
