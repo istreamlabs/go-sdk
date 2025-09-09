@@ -66,6 +66,8 @@ type APIClient struct {
 	OrganizationsApi OrganizationsApi
 
 	SourcePreviewsApi SourcePreviewsApi
+
+	TranscoderTelemetryApi TranscoderTelemetryApi
 }
 
 type service struct {
@@ -138,6 +140,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.Live2VODForOrganizationApi = (*Live2VODForOrganizationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.SourcePreviewsApi = (*SourcePreviewsApiService)(&c.common)
+	c.TranscoderTelemetryApi = (*TranscoderTelemetryApiService)(&c.common)
 
 	return c
 }
