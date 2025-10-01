@@ -26,6 +26,7 @@ type ChannelTranscodeSubtitleEncodersInner struct {
 	// Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
 	Tag *string `json:"tag,omitempty" doc:"Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus."`
 	Teletext *ChannelTranscodeSubtitleEncodersInnerTeletext `json:"teletext,omitempty"`
+	Transcription *ChannelTranscodeSubtitleEncodersInnerTranscription `json:"transcription,omitempty"`
 	// Usage indicates how this encoder should be flagged in generated manifests.
 	Usage *string `json:"usage,omitempty" enum:"CLOSED_CAPTIONS,SUBTITLES" doc:"Usage indicates how this encoder should be flagged in generated manifests."`
 }
@@ -207,6 +208,38 @@ func (o *ChannelTranscodeSubtitleEncodersInner) SetTeletext(v ChannelTranscodeSu
 	o.Teletext = &v
 }
 
+// GetTranscription returns the Transcription field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetTranscription() ChannelTranscodeSubtitleEncodersInnerTranscription {
+	if o == nil || IsNil(o.Transcription) {
+		var ret ChannelTranscodeSubtitleEncodersInnerTranscription
+		return ret
+	}
+	return *o.Transcription
+}
+
+// GetTranscriptionOk returns a tuple with the Transcription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) GetTranscriptionOk() (*ChannelTranscodeSubtitleEncodersInnerTranscription, bool) {
+	if o == nil || IsNil(o.Transcription) {
+		return nil, false
+	}
+	return o.Transcription, true
+}
+
+// HasTranscription returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInner) HasTranscription() bool {
+	if o != nil && !IsNil(o.Transcription) {
+		return true
+	}
+
+	return false
+}
+
+// SetTranscription gets a reference to the given ChannelTranscodeSubtitleEncodersInnerTranscription and assigns it to the Transcription field.
+func (o *ChannelTranscodeSubtitleEncodersInner) SetTranscription(v ChannelTranscodeSubtitleEncodersInnerTranscription) {
+	o.Transcription = &v
+}
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *ChannelTranscodeSubtitleEncodersInner) GetUsage() string {
 	if o == nil || IsNil(o.Usage) {
@@ -263,6 +296,9 @@ func (o ChannelTranscodeSubtitleEncodersInner) ToMap() (map[string]interface{}, 
 	}
 	if !IsNil(o.Teletext) {
 		toSerialize["teletext"] = o.Teletext
+	}
+	if !IsNil(o.Transcription) {
+		toSerialize["transcription"] = o.Transcription
 	}
 	if !IsNil(o.Usage) {
 		toSerialize["usage"] = o.Usage
