@@ -1131,6 +1131,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -1171,6 +1172,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -1240,6 +1242,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -1283,6 +1286,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -1510,7 +1514,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -1541,7 +1545,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -1580,6 +1584,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
@@ -4538,6 +4551,76 @@ components:
       required:
         - channel_clips
         - errors
+    ListContentSegmentHistoryResponse:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        content_segments:
+          type: array
+          items:
+            type: object
+            properties:
+              end:
+                type: string
+                description: end is the timestamp when the content segment ended.
+                format: date-time
+              segment_id:
+                type: integer
+                description: segment_id is a unique id assigned by the transcoder
+                format: int32
+                minimum: 0
+              signal_source:
+                type: string
+                description: signal_source denotes whether the content segment was initiated by an in-band signaling event or an out-of-band signaling event where in-band signals are received in the source consumed by the transcoder.
+                enum:
+                  - SIGNAL_SOURCE_UNDEFINED
+                  - SIGNAL_SOURCE_IN_BAND
+                  - SIGNAL_SOURCE_OUT_OF_BAND
+              start:
+                type: string
+                description: start is the timestamp when the content segment started.
+                format: date-time
+              type:
+                type: string
+                description: The type of content segment. Currently only supports PROGRAM, CHAPTER, or BREAK.
+                enum:
+                  - SPLICE_INSERT
+                  - CONTENT_ID
+                  - PROGRAM
+                  - PROGRAM_BLACKOUT_OVERRIDE
+                  - PROGRAM_BREAKAWAY
+                  - CHAPTER
+                  - BREAK
+                  - OPENING_CREDIT
+                  - CLOSING_CREDIT
+                  - PROVIDER_PLACEMENT_OP
+                  - DISTRIBUTOR_PLACEMENT_OP
+                  - PROVIDER_OVERLAY_OP
+                  - DISTRIBUTOR_OVERLAY_OP
+                  - PROVIDER_AD
+                  - DISTRIBUTOR_AD
+                  - UNSCHEDULED_EVENT
+                  - NETWORK
+                  - SLATE
+                  - NOT_INDICATED
+                  - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
+              upids:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    type:
+                      type: integer
+                      format: int32
+                  additionalProperties: false
+            additionalProperties: false
+      additionalProperties: false
     ListProductsResponse:
       type: object
       properties:
@@ -5288,6 +5371,7 @@ components:
             - SLATE
             - NOT_INDICATED
             - TIMED_METADATA
+            - TIMED_METADATA_MARKER_OVER_SLATE
       additionalProperties: false
     SegmentList:
       type: array
@@ -7990,6 +8074,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -8030,6 +8115,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -8099,6 +8185,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -8142,6 +8229,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -8369,7 +8457,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -8400,7 +8488,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -8439,6 +8527,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
@@ -9746,6 +9843,7 @@ components:
                       - SLATE
                       - NOT_INDICATED
                       - TIMED_METADATA
+                      - TIMED_METADATA_MARKER_OVER_SLATE
                 honor_web_delivery_restriction:
                   type: boolean
                   description: Determines whether to honor the web_delivery_allowed attribute in SCTE-35 segmentation descriptors. When this is enabled, a segmentation descriptor with web_delivery_allowed=false will trigger a blackout.
@@ -9786,6 +9884,7 @@ components:
                             - SLATE
                             - NOT_INDICATED
                             - TIMED_METADATA
+                            - TIMED_METADATA_MARKER_OVER_SLATE
                       upids:
                         type: array
                         description: Exclusive list of hex string encoded colon separated UPID Type:ID pairs (e.g. '0A:1A2B3C4D') to enable this blackout slate on.
@@ -9855,6 +9954,7 @@ components:
                         - SLATE
                         - NOT_INDICATED
                         - TIMED_METADATA
+                        - TIMED_METADATA_MARKER_OVER_SLATE
                     uniqueItems: true
                   tier_filter:
                     type: object
@@ -9898,6 +9998,7 @@ components:
                   - SLATE
                   - NOT_INDICATED
                   - TIMED_METADATA
+                  - TIMED_METADATA_MARKER_OVER_SLATE
               uniqueItems: true
           additionalProperties: false
         tags:
@@ -10125,7 +10226,7 @@ components:
                 properties:
                   atsc_captions:
                     type: object
-                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from the ATSC caption encodings. The captions themselves are first sourced according to the Source.captions_source field. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       cea608:
                         type: integer
@@ -10156,7 +10257,7 @@ components:
                     description: Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
                   teletext:
                     type: object
-                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions'] may be set.
+                    description: Extract subtitles from an embedded Teletext stream. The teletext PID is determined automatically. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
                     properties:
                       charset_set:
                         type: string
@@ -10195,6 +10296,15 @@ components:
                           - PAGE_TYPE_ADDITIONAL_INFORMATION
                           - PAGE_TYPE_PROGRAMME_SCHEDULE
                           - PAGE_TYPE_SUBTITLE_HEARING_IMPAIRED
+                    additionalProperties: false
+                  transcription:
+                    type: object
+                    description: Generate subtitles via automatic transcription of an audio source. Only one of ['teletext', 'atsc_captions', 'transcription'] may be set.
+                    properties:
+                      audio_source_id:
+                        type: string
+                        description: Identifies the 'AudioSource' to be transcribed.
+                        minLength: 1
                     additionalProperties: false
                   usage:
                     type: string
@@ -14528,6 +14638,197 @@ paths:
       summary: Get a playurl for a clip
       tags:
         - Live2VOD for Organization
+  /v2/{org}/channels/{channel-id}/content-segment-history:
+    get:
+      description: |
+        Returns content segment history for a channel.
+      operationId: list-content-segment-history
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+        - name: to
+          description: ISO 8601 UTC timestamp for end range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+          explode: false
+        - name: segment_types
+          description: Filter by segment types. If not specified, all segment types are returned. Corresponds to the ChannelProto channeldoc.SignalingSegment ENUM names.
+          in: query
+          schema:
+            type: array
+            description: Filter by segment types. If not specified, all segment types are returned. Corresponds to the ChannelProto channeldoc.SignalingSegment ENUM names.
+            items:
+              type: string
+            example:
+              - PROGRAM
+            minItems: 1
+          explode: false
+        - name: upid_type
+          description: Type part of the UPID. Required when upid_id is provided.
+          in: query
+          schema:
+            type: integer
+            description: Type part of the UPID. Required when upid_id is provided.
+            format: int32
+            example: 12
+          explode: false
+        - name: upid_id
+          description: ID part of the UPID. Accepts plain text and hex-encoded values prefixed with a 0x. Required when upid_type is provided
+          in: query
+          schema:
+            type: string
+            description: ID part of the UPID. Accepts plain text and hex-encoded values prefixed with a 0x. Required when upid_type is provided
+            example: DISC279973-169
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListContentSegmentHistoryResponse'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: List Channel Content Segments History
+      tags:
+        - Transcoder Telemetry
   /v2/{org}/channels/{channel-id}/desired-state:
     put:
       operationId: put-org-channel-desired-state
