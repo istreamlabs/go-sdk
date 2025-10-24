@@ -23,6 +23,23 @@ import (
 type TranscoderTelemetryApi interface {
 
 	/*
+	ListContentSegmentHistory List Channel Content Segments History
+
+	Returns content segment history for a channel.
+
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiListContentSegmentHistoryRequest
+	*/
+	ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest
+
+	// ListContentSegmentHistoryExecute executes the request
+	//  @return ListContentSegmentHistoryResponse
+	ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponse, *http.Response, error)
+
+	/*
 	ListRawScteHistory Get SCTE-35 History
 
 	Returns SCTE-35 history for all channels.
@@ -57,6 +74,248 @@ type TranscoderTelemetryApi interface {
 
 // TranscoderTelemetryApiService TranscoderTelemetryApi service
 type TranscoderTelemetryApiService service
+
+type ApiListContentSegmentHistoryRequest struct {
+	ctx context.Context
+	ApiService TranscoderTelemetryApi
+	org string
+	channelId string
+	from *time.Time
+	to *time.Time
+	segmentTypes *[]string
+	upidType *int32
+	upidId *string
+}
+
+// ISO 8601 UTC timestamp for start range of date filtering
+func (r ApiListContentSegmentHistoryRequest) From(from time.Time) ApiListContentSegmentHistoryRequest {
+	r.from = &from
+	return r
+}
+
+// ISO 8601 UTC timestamp for end range of date filtering
+func (r ApiListContentSegmentHistoryRequest) To(to time.Time) ApiListContentSegmentHistoryRequest {
+	r.to = &to
+	return r
+}
+
+// Filter by segment types. If not specified, all segment types are returned. Corresponds to the ChannelProto channeldoc.SignalingSegment ENUM names.
+func (r ApiListContentSegmentHistoryRequest) SegmentTypes(segmentTypes []string) ApiListContentSegmentHistoryRequest {
+	r.segmentTypes = &segmentTypes
+	return r
+}
+
+// Type part of the UPID. Required when upid_id is provided.
+func (r ApiListContentSegmentHistoryRequest) UpidType(upidType int32) ApiListContentSegmentHistoryRequest {
+	r.upidType = &upidType
+	return r
+}
+
+// ID part of the UPID. Accepts plain text and hex-encoded values prefixed with a 0x. Required when upid_type is provided
+func (r ApiListContentSegmentHistoryRequest) UpidId(upidId string) ApiListContentSegmentHistoryRequest {
+	r.upidId = &upidId
+	return r
+}
+
+func (r ApiListContentSegmentHistoryRequest) Execute() (*ListContentSegmentHistoryResponse, *http.Response, error) {
+	return r.ApiService.ListContentSegmentHistoryExecute(r)
+}
+
+/*
+ListContentSegmentHistory List Channel Content Segments History
+
+Returns content segment history for a channel.
+
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param org Organization name
+ @param channelId Unique channel identifier
+ @return ApiListContentSegmentHistoryRequest
+*/
+func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest {
+	return ApiListContentSegmentHistoryRequest{
+		ApiService: a,
+		ctx: ctx,
+		org: org,
+		channelId: channelId,
+	}
+}
+
+// Execute executes the request
+//  @return ListContentSegmentHistoryResponse
+func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListContentSegmentHistoryResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListContentSegmentHistory")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/content-segment-history"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.segmentTypes != nil {
+		localVarQueryParams.Add("segment_types", parameterToString(*r.segmentTypes, "csv"))
+	}
+	if r.upidType != nil {
+		localVarQueryParams.Add("upid_type", parameterToString(*r.upidType, ""))
+	}
+	if r.upidId != nil {
+		localVarQueryParams.Add("upid_id", parameterToString(*r.upidId, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*ListContentSegmentHistoryResponse)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
 
 type ApiListRawScteHistoryRequest struct {
 	ctx context.Context
