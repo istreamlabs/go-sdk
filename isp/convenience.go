@@ -9,6 +9,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"reflect"
+	"time"
 
 	link "github.com/tent/http-link-go"
 	"golang.org/x/oauth2/clientcredentials"
@@ -246,5 +247,16 @@ func NewWithAuthHeader(header string) *HighLevelClient {
 // TODO: remove this... for some reason it is missing in the generated output.
 // At some point we need to switch to a less wonky code generator.
 func parameterToString(v interface{}, s string) string {
-	return fmt.Sprintf("%v", v)
+	// Special-case time.Time and *time.Time to ensure RFC3339Nano formatting.
+	switch val := v.(type) {
+	case time.Time:
+		return val.UTC().Format(time.RFC3339Nano)
+	case *time.Time:
+		if val == nil {
+			return ""
+		}
+		return val.UTC().Format(time.RFC3339Nano)
+	default:
+		return fmt.Sprintf("%v", v)
+	}
 }
