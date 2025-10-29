@@ -246,7 +246,7 @@ func NewWithAuthHeader(header string) *HighLevelClient {
 
 // TODO: remove this... for some reason it is missing in the generated output.
 // At some point we need to switch to a less wonky code generator.
-func parameterToString(v interface{}, s string) string {
+func parameterToString(v interface{}, _ string) string {
 	// Special-case time.Time and *time.Time to ensure RFC3339Nano formatting.
 	switch val := v.(type) {
 	case time.Time:
