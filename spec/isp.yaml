@@ -4567,25 +4567,26 @@ components:
                 type: string
                 description: end is the timestamp when the content segment ended.
                 format: date-time
+              header:
+                type: object
+                description: header is required for all transcoder events.
+                properties:
+                  run_id:
+                    type: integer
+                    format: int64
+                    minimum: 0
+                additionalProperties: false
               segment_id:
                 type: integer
                 description: segment_id is a unique id assigned by the transcoder
-                format: int32
-                minimum: 0
-              signal_source:
-                type: string
-                description: signal_source denotes whether the content segment was initiated by an in-band signaling event or an out-of-band signaling event where in-band signals are received in the source consumed by the transcoder.
-                enum:
-                  - SIGNAL_SOURCE_UNDEFINED
-                  - SIGNAL_SOURCE_IN_BAND
-                  - SIGNAL_SOURCE_OUT_OF_BAND
+                format: int64
               start:
                 type: string
                 description: start is the timestamp when the content segment started.
                 format: date-time
               type:
                 type: string
-                description: The type of content segment. Currently only supports PROGRAM, CHAPTER, or BREAK.
+                description: 'type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK.'
                 enum:
                   - SPLICE_INSERT
                   - CONTENT_ID
@@ -7082,6 +7083,33 @@ components:
         - organization
         - channelid
     patch-org-channel-request:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
+    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -8819,33 +8847,6 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
-    patch-org-channel-request2:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
     put-org-channel-request:
       type: object
       properties:
@@ -13340,10 +13341,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
       responses:
         "201":
           description: Created
@@ -16655,6 +16656,167 @@ paths:
               schema:
                 type: string
       summary: Get Preview Streams
+      tags:
+        - Channel Operations for Organization
+  /v2/{org}/channels/{channel-id}/rotate-key:
+    put:
+      operationId: org-rotate-key
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+      responses:
+        "204":
+          description: No Content
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "409":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Conflict
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "424":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Failed Dependency
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "499":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: ""
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Rotate the keys for a channel
       tags:
         - Channel Operations for Organization
   /v2/{org}/channels/{channel-id}/scte-history:
