@@ -21,14 +21,13 @@ var _ MappedNullable = &ListContentSegmentHistoryResponseContentSegmentsInner{}
 type ListContentSegmentHistoryResponseContentSegmentsInner struct {
 	// end is the timestamp when the content segment ended.
 	End *time.Time `json:"end,omitempty" format:"date-time" doc:"end is the timestamp when the content segment ended."`
+	Header *ListContentSegmentHistoryResponseContentSegmentsInnerHeader `json:"header,omitempty"`
 	// segment_id is a unique id assigned by the transcoder
-	SegmentId *int32 `json:"segment_id,omitempty" format:"int32" minimum:"0" doc:"segment_id is a unique id assigned by the transcoder"`
-	// signal_source denotes whether the content segment was initiated by an in-band signaling event or an out-of-band signaling event where in-band signals are received in the source consumed by the transcoder.
-	SignalSource *string `json:"signal_source,omitempty" enum:"SIGNAL_SOURCE_UNDEFINED,SIGNAL_SOURCE_IN_BAND,SIGNAL_SOURCE_OUT_OF_BAND" doc:"signal_source denotes whether the content segment was initiated by an in-band signaling event or an out-of-band signaling event where in-band signals are received in the source consumed by the transcoder."`
+	SegmentId *int64 `json:"segment_id,omitempty" format:"int64" doc:"segment_id is a unique id assigned by the transcoder"`
 	// start is the timestamp when the content segment started.
 	Start *time.Time `json:"start,omitempty" format:"date-time" doc:"start is the timestamp when the content segment started."`
-	// The type of content segment. Currently only supports PROGRAM, CHAPTER, or BREAK.
-	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"The type of content segment. Currently only supports PROGRAM, CHAPTER, or BREAK."`
+	// type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK.
+	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK."`
 	Upids []ListContentSegmentHistoryResponseContentSegmentsInnerUpidsInner `json:"upids,omitempty"`
 }
 
@@ -81,10 +80,42 @@ func (o *ListContentSegmentHistoryResponseContentSegmentsInner) SetEnd(v time.Ti
 	o.End = &v
 }
 
+// GetHeader returns the Header field value if set, zero value otherwise.
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetHeader() ListContentSegmentHistoryResponseContentSegmentsInnerHeader {
+	if o == nil || IsNil(o.Header) {
+		var ret ListContentSegmentHistoryResponseContentSegmentsInnerHeader
+		return ret
+	}
+	return *o.Header
+}
+
+// GetHeaderOk returns a tuple with the Header field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetHeaderOk() (*ListContentSegmentHistoryResponseContentSegmentsInnerHeader, bool) {
+	if o == nil || IsNil(o.Header) {
+		return nil, false
+	}
+	return o.Header, true
+}
+
+// HasHeader returns a boolean if a field has been set.
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) HasHeader() bool {
+	if o != nil && !IsNil(o.Header) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeader gets a reference to the given ListContentSegmentHistoryResponseContentSegmentsInnerHeader and assigns it to the Header field.
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) SetHeader(v ListContentSegmentHistoryResponseContentSegmentsInnerHeader) {
+	o.Header = &v
+}
+
 // GetSegmentId returns the SegmentId field value if set, zero value otherwise.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSegmentId() int32 {
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSegmentId() int64 {
 	if o == nil || IsNil(o.SegmentId) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.SegmentId
@@ -92,7 +123,7 @@ func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSegmentId() i
 
 // GetSegmentIdOk returns a tuple with the SegmentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSegmentIdOk() (*int32, bool) {
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSegmentIdOk() (*int64, bool) {
 	if o == nil || IsNil(o.SegmentId) {
 		return nil, false
 	}
@@ -108,41 +139,9 @@ func (o *ListContentSegmentHistoryResponseContentSegmentsInner) HasSegmentId() b
 	return false
 }
 
-// SetSegmentId gets a reference to the given int32 and assigns it to the SegmentId field.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) SetSegmentId(v int32) {
+// SetSegmentId gets a reference to the given int64 and assigns it to the SegmentId field.
+func (o *ListContentSegmentHistoryResponseContentSegmentsInner) SetSegmentId(v int64) {
 	o.SegmentId = &v
-}
-
-// GetSignalSource returns the SignalSource field value if set, zero value otherwise.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSignalSource() string {
-	if o == nil || IsNil(o.SignalSource) {
-		var ret string
-		return ret
-	}
-	return *o.SignalSource
-}
-
-// GetSignalSourceOk returns a tuple with the SignalSource field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) GetSignalSourceOk() (*string, bool) {
-	if o == nil || IsNil(o.SignalSource) {
-		return nil, false
-	}
-	return o.SignalSource, true
-}
-
-// HasSignalSource returns a boolean if a field has been set.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) HasSignalSource() bool {
-	if o != nil && !IsNil(o.SignalSource) {
-		return true
-	}
-
-	return false
-}
-
-// SetSignalSource gets a reference to the given string and assigns it to the SignalSource field.
-func (o *ListContentSegmentHistoryResponseContentSegmentsInner) SetSignalSource(v string) {
-	o.SignalSource = &v
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
@@ -254,11 +253,11 @@ func (o ListContentSegmentHistoryResponseContentSegmentsInner) ToMap() (map[stri
 	if !IsNil(o.End) {
 		toSerialize["end"] = o.End
 	}
+	if !IsNil(o.Header) {
+		toSerialize["header"] = o.Header
+	}
 	if !IsNil(o.SegmentId) {
 		toSerialize["segment_id"] = o.SegmentId
-	}
-	if !IsNil(o.SignalSource) {
-		toSerialize["signal_source"] = o.SignalSource
 	}
 	if !IsNil(o.Start) {
 		toSerialize["start"] = o.Start

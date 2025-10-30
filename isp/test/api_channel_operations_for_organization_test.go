@@ -168,6 +168,20 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test ChannelOperationsForOrganizationApiService OrgRotateKey", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+
+		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgRotateKey(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test ChannelOperationsForOrganizationApiService OrgSetTranscoderDynamicState", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
