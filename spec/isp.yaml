@@ -7083,33 +7083,6 @@ components:
         - organization
         - channelid
     patch-org-channel-request:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
-    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -8847,6 +8820,33 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
+    patch-org-channel-request2:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
     put-org-channel-request:
       type: object
       properties:
@@ -13341,10 +13341,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
       responses:
         "201":
           description: Created
