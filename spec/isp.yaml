@@ -1312,6 +1312,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -1339,9 +1350,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -1879,6 +1891,72 @@ components:
       required:
         - ingest
         - transcode
+    ChannelCostReport:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        duration_secs:
+          type: integer
+          format: int64
+        external_id:
+          type: string
+        has_hdr:
+          type: boolean
+        has_realtime_output:
+          type: boolean
+        has_uhd:
+          type: boolean
+        labels:
+          type: array
+          items:
+            type: string
+        organization:
+          type: string
+        verbit_encoder_count:
+          type: integer
+          format: int32
+          minimum: 0
+      additionalProperties: false
+    ChannelCostReport2:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        duration_secs:
+          type: integer
+          format: int64
+        external_id:
+          type: string
+        has_hdr:
+          type: boolean
+        has_realtime_output:
+          type: boolean
+        has_uhd:
+          type: boolean
+        labels:
+          type: array
+          items:
+            type: string
+        organization:
+          type: string
+        verbit_encoder_count:
+          type: integer
+          format: int32
+          minimum: 0
+      additionalProperties: false
+    ChannelCostReportList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChannelCostReport2'
     ChannelPlayback:
       type: object
       properties:
@@ -7083,6 +7161,33 @@ components:
         - organization
         - channelid
     patch-org-channel-request:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
+    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -8256,6 +8361,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -8283,9 +8399,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -8820,33 +8937,6 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
-    patch-org-channel-request2:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
     put-org-channel-request:
       type: object
       properties:
@@ -10025,6 +10115,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -10052,9 +10153,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -12474,7 +12576,7 @@ paths:
   /v2/scte-history:
     get:
       description: |
-        Returns SCTE-35 history for all channels.
+        Returns the history of out-of-band SCTE-35 messages received by the transcoder for all channels.
       operationId: list-raw-scte-history
       parameters:
         - name: from
@@ -13341,10 +13443,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
       responses:
         "201":
           description: Created
@@ -14828,6 +14930,168 @@ paths:
               schema:
                 type: string
       summary: List Channel Content Segments History
+      tags:
+        - Transcoder Telemetry
+  /v2/{org}/channels/{channel-id}/cost-report:
+    get:
+      description: |
+        Returns a Cost Report for a channel.
+      operationId: get-channel-cost-report
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+        - name: to
+          description: ISO 8601 UTC timestamp for end range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCostReport'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Get Channel Cost Report
       tags:
         - Transcoder Telemetry
   /v2/{org}/channels/{channel-id}/desired-state:
@@ -16822,7 +17086,7 @@ paths:
   /v2/{org}/channels/{channel-id}/scte-history:
     get:
       description: |
-        Returns SCTE history for a channel.
+        Returns the history of out-of-band SCTE-35 messages received by the transcoder for a channel.
       operationId: list-raw-scte-history-by-channel
       parameters:
         - name: org
@@ -20766,6 +21030,177 @@ paths:
       summary: Collapse Vod
       tags:
         - Live2VOD for Organization
+  /v2/{org}/cost-report:
+    get:
+      description: |
+        Returns Cost Reports for channels in an organization.
+      operationId: list-organization-cost-reports
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+        - name: to
+          description: ISO 8601 UTC timestamp for end range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+          explode: false
+        - name: cursor
+          description: Current page cursor
+          in: query
+          schema:
+            type: string
+            description: Current page cursor
+          explode: false
+        - name: page_size
+          description: Number of items to return
+          in: query
+          schema:
+            type: integer
+            description: Number of items to return
+            format: int32
+            default: 100
+            minimum: 1
+            maximum: 100
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCostReportList'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: 'List Organization Cost Reports '
+      tags:
+        - Transcoder Telemetry
   /v2/{org}/products:
     get:
       description: Get all the products for a specific organization across all regions

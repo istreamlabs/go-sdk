@@ -20,6 +20,8 @@ model_archive_fer_response.go
 model_cancel_task_response.go
 model_cancel_task_response_error.go
 model_channel.go
+model_channel_cost_report.go
+model_channel_cost_report2.go
 model_channel_ingest.go
 model_channel_ingest_slate.go
 model_channel_ingest_source.go
@@ -75,6 +77,7 @@ model_channel_tags.go
 model_channel_timeline_entry.go
 model_channel_transcode.go
 model_channel_transcode_audio_encoders_inner.go
+model_channel_transcode_audio_encoders_inner_ac4.go
 model_channel_transcode_audio_encoders_inner_eac3.go
 model_channel_transcode_audio_encoders_inner_loudness.go
 model_channel_transcode_debug_overlays.go
@@ -180,9 +183,9 @@ model_make_clip_response.go
 model_make_mp4_response.go
 model_mp4_url_response.go
 model_org_summary.go
-model_patch_org_channel_request.go
-model_patch_org_channel_request2_inner.go
-model_patch_org_channel_request_ingest.go
+model_patch_org_channel_request2.go
+model_patch_org_channel_request2_ingest.go
+model_patch_org_channel_request_inner.go
 model_pin_source_request.go
 model_play_url_response.go
 model_post_clip_archive_request.go

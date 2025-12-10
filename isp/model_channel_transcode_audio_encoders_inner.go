@@ -18,6 +18,7 @@ var _ MappedNullable = &ChannelTranscodeAudioEncodersInner{}
 
 // ChannelTranscodeAudioEncodersInner struct for ChannelTranscodeAudioEncodersInner
 type ChannelTranscodeAudioEncodersInner struct {
+	Ac4 *ChannelTranscodeAudioEncodersInnerAc4 `json:"ac4,omitempty"`
 	// Audio source ID specifies which stream within the audio source to use.
 	AudioSourceId *string `json:"audio_source_id,omitempty" minLength:"1" doc:"Audio source ID specifies which stream within the audio source to use."`
 	// Bit rate specifies the constant number of bits used per second. Higher values result in better audio quality but bigger file sizes.
@@ -25,7 +26,7 @@ type ChannelTranscodeAudioEncodersInner struct {
 	// Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.
 	Channels *int32 `json:"channels,omitempty" format:"int32" exclusiveMinimum:"0" maximum:"6" doc:"Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired."`
 	// Codec specifies the audio data encoding format.
-	Codec *string `json:"codec,omitempty" enum:"AAC_LC,AC3,EAC3,HE_AAC" doc:"Codec specifies the audio data encoding format."`
+	Codec *string `json:"codec,omitempty" enum:"AAC_LC,AC3,EAC3,HE_AAC,AC4" doc:"Codec specifies the audio data encoding format."`
 	Eac3 *ChannelTranscodeAudioEncodersInnerEac3 `json:"eac3,omitempty"`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
@@ -51,6 +52,38 @@ func NewChannelTranscodeAudioEncodersInner() *ChannelTranscodeAudioEncodersInner
 func NewChannelTranscodeAudioEncodersInnerWithDefaults() *ChannelTranscodeAudioEncodersInner {
 	this := ChannelTranscodeAudioEncodersInner{}
 	return &this
+}
+
+// GetAc4 returns the Ac4 field value if set, zero value otherwise.
+func (o *ChannelTranscodeAudioEncodersInner) GetAc4() ChannelTranscodeAudioEncodersInnerAc4 {
+	if o == nil || IsNil(o.Ac4) {
+		var ret ChannelTranscodeAudioEncodersInnerAc4
+		return ret
+	}
+	return *o.Ac4
+}
+
+// GetAc4Ok returns a tuple with the Ac4 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeAudioEncodersInner) GetAc4Ok() (*ChannelTranscodeAudioEncodersInnerAc4, bool) {
+	if o == nil || IsNil(o.Ac4) {
+		return nil, false
+	}
+	return o.Ac4, true
+}
+
+// HasAc4 returns a boolean if a field has been set.
+func (o *ChannelTranscodeAudioEncodersInner) HasAc4() bool {
+	if o != nil && !IsNil(o.Ac4) {
+		return true
+	}
+
+	return false
+}
+
+// SetAc4 gets a reference to the given ChannelTranscodeAudioEncodersInnerAc4 and assigns it to the Ac4 field.
+func (o *ChannelTranscodeAudioEncodersInner) SetAc4(v ChannelTranscodeAudioEncodersInnerAc4) {
+	o.Ac4 = &v
 }
 
 // GetAudioSourceId returns the AudioSourceId field value if set, zero value otherwise.
@@ -351,6 +384,9 @@ func (o ChannelTranscodeAudioEncodersInner) MarshalJSON() ([]byte, error) {
 
 func (o ChannelTranscodeAudioEncodersInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Ac4) {
+		toSerialize["ac4"] = o.Ac4
+	}
 	if !IsNil(o.AudioSourceId) {
 		toSerialize["audio_source_id"] = o.AudioSourceId
 	}
