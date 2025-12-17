@@ -21,15 +21,3 @@
 #docs/*.md
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
-
-api/*
-docs/*
-.gitignore
-.travis.yml
-README.md
-go.mod
-go.sum
-git_push.sh
-
-convenience.go
-client.go

@@ -18,21 +18,21 @@ var _ MappedNullable = &Slate{}
 
 // Slate struct for Slate
 type Slate struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// A friendly slate description.
-	Description string `json:"description" doc:"A friendly slate description."`
+	Description interface{} `json:"description" doc:"A friendly slate description."`
 	// Unique identifier for this slate
-	Id string `json:"id" doc:"Unique identifier for this slate"`
+	Id interface{} `json:"id" doc:"Unique identifier for this slate"`
 	// The url where the slate can be accessed.
-	Url string `json:"url" doc:"The url where the slate can be accessed."`
+	Url interface{} `json:"url" doc:"The url where the slate can be accessed."`
 }
 
 // NewSlate instantiates a new Slate object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSlate(description string, id string, url string) *Slate {
+func NewSlate(description interface{}, id interface{}, url interface{}) *Slate {
 	this := Slate{}
 	this.Description = description
 	this.Id = id
@@ -48,42 +48,44 @@ func NewSlateWithDefaults() *Slate {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Slate) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Slate) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Slate) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Slate) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Slate) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Slate) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *Slate) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetDescription returns the Description field value
-func (o *Slate) GetDescription() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Slate) GetDescription() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -92,22 +94,24 @@ func (o *Slate) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *Slate) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Slate) GetDescriptionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return &o.Description, true
 }
 
 // SetDescription sets field value
-func (o *Slate) SetDescription(v string) {
+func (o *Slate) SetDescription(v interface{}) {
 	o.Description = v
 }
 
 // GetId returns the Id field value
-func (o *Slate) GetId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Slate) GetId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -116,22 +120,24 @@ func (o *Slate) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Slate) GetIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Slate) GetIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *Slate) SetId(v string) {
+func (o *Slate) SetId(v interface{}) {
 	o.Id = v
 }
 
 // GetUrl returns the Url field value
-func (o *Slate) GetUrl() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Slate) GetUrl() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -140,15 +146,16 @@ func (o *Slate) GetUrl() string {
 
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
-func (o *Slate) GetUrlOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Slate) GetUrlOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
 	return &o.Url, true
 }
 
 // SetUrl sets field value
-func (o *Slate) SetUrl(v string) {
+func (o *Slate) SetUrl(v interface{}) {
 	o.Url = v
 }
 
@@ -162,12 +169,18 @@ func (o Slate) MarshalJSON() ([]byte, error) {
 
 func (o Slate) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["description"] = o.Description
-	toSerialize["id"] = o.Id
-	toSerialize["url"] = o.Url
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Url != nil {
+		toSerialize["url"] = o.Url
+	}
 	return toSerialize, nil
 }
 
