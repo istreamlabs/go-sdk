@@ -28,11 +28,11 @@ type SlatesForOrganizationApi interface {
 Delete a slate by id.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param slateId Unique identifier for this slate
 	@param org Organization name
+	@param slateId Unique identifier for this slate
 	@return ApiDeleteOrgSlateRequest
 	*/
-	DeleteOrgSlate(ctx context.Context, slateId string, org string) ApiDeleteOrgSlateRequest
+	DeleteOrgSlate(ctx context.Context, org string, slateId string) ApiDeleteOrgSlateRequest
 
 	// DeleteOrgSlateExecute executes the request
 	DeleteOrgSlateExecute(r ApiDeleteOrgSlateRequest) (*http.Response, error)
@@ -44,11 +44,11 @@ Delete a slate by id.
 Get a slate by id.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param slateId Unique identifier for this slate
 	@param org Organization name
+	@param slateId Unique identifier for this slate
 	@return ApiGetOrgSlateRequest
 	*/
-	GetOrgSlate(ctx context.Context, slateId string, org string) ApiGetOrgSlateRequest
+	GetOrgSlate(ctx context.Context, org string, slateId string) ApiGetOrgSlateRequest
 
 	// GetOrgSlateExecute executes the request
 	//  @return Slate
@@ -93,8 +93,8 @@ type SlatesForOrganizationApiService service
 type ApiDeleteOrgSlateRequest struct {
 	ctx context.Context
 	ApiService SlatesForOrganizationApi
-	slateId string
 	org string
+	slateId string
 }
 
 func (r ApiDeleteOrgSlateRequest) Execute() (*http.Response, error) {
@@ -108,16 +108,16 @@ Delete Slate
 Delete a slate by id.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param slateId Unique identifier for this slate
  @param org Organization name
+ @param slateId Unique identifier for this slate
  @return ApiDeleteOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) DeleteOrgSlate(ctx context.Context, slateId string, org string) ApiDeleteOrgSlateRequest {
+func (a *SlatesForOrganizationApiService) DeleteOrgSlate(ctx context.Context, org string, slateId string) ApiDeleteOrgSlateRequest {
 	return ApiDeleteOrgSlateRequest{
 		ApiService: a,
 		ctx: ctx,
-		slateId: slateId,
 		org: org,
+		slateId: slateId,
 	}
 }
 
@@ -135,8 +135,8 @@ func (a *SlatesForOrganizationApiService) DeleteOrgSlateExecute(r ApiDeleteOrgSl
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/slates/{slate-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slate-id"+"}", url.PathEscape(parameterToString(r.slateId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slate-id"+"}", url.PathEscape(parameterToString(r.slateId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -269,8 +269,8 @@ func (a *SlatesForOrganizationApiService) DeleteOrgSlateExecute(r ApiDeleteOrgSl
 type ApiGetOrgSlateRequest struct {
 	ctx context.Context
 	ApiService SlatesForOrganizationApi
-	slateId string
 	org string
+	slateId string
 }
 
 func (r ApiGetOrgSlateRequest) Execute() (*Slate, *http.Response, error) {
@@ -284,16 +284,16 @@ Get Slate
 Get a slate by id.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param slateId Unique identifier for this slate
  @param org Organization name
+ @param slateId Unique identifier for this slate
  @return ApiGetOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) GetOrgSlate(ctx context.Context, slateId string, org string) ApiGetOrgSlateRequest {
+func (a *SlatesForOrganizationApiService) GetOrgSlate(ctx context.Context, org string, slateId string) ApiGetOrgSlateRequest {
 	return ApiGetOrgSlateRequest{
 		ApiService: a,
 		ctx: ctx,
-		slateId: slateId,
 		org: org,
+		slateId: slateId,
 	}
 }
 
@@ -313,8 +313,8 @@ func (a *SlatesForOrganizationApiService) GetOrgSlateExecute(r ApiGetOrgSlateReq
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/slates/{slate-id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"slate-id"+"}", url.PathEscape(parameterToString(r.slateId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"slate-id"+"}", url.PathEscape(parameterToString(r.slateId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

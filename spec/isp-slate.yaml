@@ -214,6 +214,13 @@ paths:
         Delete a slate by id.
       operationId: delete-org-slate
       parameters:
+        - description: Organization name
+          in: path
+          name: org
+          required: true
+          schema:
+            description: Organization name
+            type: string
         - description: Unique identifier for this slate
           example: slate-id-1
           in: path
@@ -222,13 +229,6 @@ paths:
           schema:
             description: Unique identifier for this slate
             example: slate-id-1
-            type: string
-        - description: Organization name
-          in: path
-          name: org
-          required: true
-          schema:
-            description: Organization name
             type: string
       responses:
         "204":
@@ -289,6 +289,13 @@ paths:
         Get a slate by id.
       operationId: get-org-slate
       parameters:
+        - description: Organization name
+          in: path
+          name: org
+          required: true
+          schema:
+            description: Organization name
+            type: string
         - description: Unique identifier for this slate
           example: slate-id-1
           in: path
@@ -297,13 +304,6 @@ paths:
           schema:
             description: Unique identifier for this slate
             example: slate-id-1
-            type: string
-        - description: Organization name
-          in: path
-          name: org
-          required: true
-          schema:
-            description: Organization name
             type: string
       responses:
         "200":
