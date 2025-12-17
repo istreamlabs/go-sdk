@@ -147,6 +147,7 @@ paths:
           schema:
             description: Organization name
             type: string
+            x-go-type: string
         - description: Current page cursor
           explode: false
           in: query
@@ -239,6 +240,7 @@ paths:
             examples:
               - slate-id-1
             type: string
+            x-go-type: string
         - description: Organization name
           in: path
           name: org
@@ -246,6 +248,7 @@ paths:
           schema:
             description: Organization name
             type: string
+            x-go-type: string
       responses:
         "204":
           description: No Content
@@ -315,6 +318,7 @@ paths:
             examples:
               - slate-id-1
             type: string
+            x-go-type: string
         - description: Organization name
           in: path
           name: org
@@ -322,6 +326,7 @@ paths:
           schema:
             description: Organization name
             type: string
+            x-go-type: string
       responses:
         "200":
           content:
@@ -402,6 +407,7 @@ paths:
             examples:
               - slate-id-1
             type: string
+            x-go-type: string
         - description: Organization name
           in: path
           name: org
@@ -409,6 +415,7 @@ paths:
           schema:
             description: Organization name
             type: string
+            x-go-type: string
       requestBody:
         content:
           application/json:

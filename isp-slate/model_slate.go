@@ -11,8 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the Slate type satisfies the MappedNullable interface at compile time

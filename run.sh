@@ -46,14 +46,28 @@ else
 fi
 
 
+# Force correct Go types for isp-slate path params when using OAS 3.1
+if [[ "$API" == "isp-slate" ]]; then
+  # Ensure org and slate-id are generated as string (not interface{})
+  yq -i '
+    (.paths."/v2/{org}/slates".get.parameters[] | select(.name=="org").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".get.parameters[] | select(.name=="org").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".get.parameters[] | select(.name=="slate-id").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".put.parameters[] | select(.name=="org").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".put.parameters[] | select(.name=="slate-id").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".delete.parameters[] | select(.name=="org").schema."x-go-type") = "string" |
+    (.paths."/v2/{org}/slates/{slate-id}".delete.parameters[] | select(.name=="slate-id").schema."x-go-type") = "string"
+  ' "$SCRIPT_DIR/$SPEC_FILE"
+fi
+
 # Recreate directory to ensure clean build
 rm -rf "${API}"
 mkdir "${API}"
 
 # Copy required files to directory
 cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
-cp ./prerequisites/convenience._go ./${API}/convenience.go
-cp ./prerequisites/${API}_client._go ./${API}/client.go
+# cp ./prerequisites/convenience._go ./${API}/convenience.go
+# cp ./prerequisites/${API}_client._go ./${API}/client.go
 
 # Generate the SDK
 docker run --rm \
@@ -73,6 +87,15 @@ sed -i.bak -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
 # Logicless templates are dumping `example:"null"` on every field, so we've
 # got to remove those.
 sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
+
+# Remove duplicate helpers added by newer generator versions (keep utils.go versions)
+# - Delete newStrictDecoder and reportError from client.go
+sed -i.bak -E '/^\/\/ A wrapper for strict JSON decoding/,/^}/d' ./${API}/client.go
+sed -i.bak -E '/^\/\/ Prevent trying to import "fmt"/,/^}/d' ./${API}/client.go
+
+# Clean up unused imports that appear in some simple models
+sed -i.bak -E '/^\t"bytes"$/d' ./${API}/model_*.go
+sed -i.bak -E '/^\t"fmt"$/d' ./${API}/model_*.go
 
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
