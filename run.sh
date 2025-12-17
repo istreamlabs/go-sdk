@@ -15,6 +15,8 @@ elif [[ "$API" == "isp-slate" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi.json"
   if [[ $ENV == "stage" ]]; then
     OPENAPI_SPEC="https://stage.api.istreamplanet.com/docs/slates/openapi.json"
+  elif [[ $ENV == "int" ]]; then
+    OPENAPI_SPEC="https://int.api.istreamplanet.com/docs/slates/openapi-3.0.json"
   fi
 elif [[ "$API" == "isp-lifecycle" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"

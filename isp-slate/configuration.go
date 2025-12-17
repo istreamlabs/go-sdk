@@ -92,8 +92,8 @@ func NewConfiguration() *Configuration {
 		Debug:            false,
 		Servers:          ServerConfigurations{
 			{
-				URL: "https://api.istreamplanet.com",
-				Description: "prod",
+				URL: "https://int.api.istreamplanet.com",
+				Description: "int",
 			},
 		},
 		OperationServers: map[string]ServerConfigurations{
