@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GENERATOR_IMAGE="openapitools/openapi-generator-cli:v6.6.0"
+GENERATOR_IMAGE="openapitools/openapi-generator-cli:v7.8.0"
 
 API="${1-isp}"
 ENV="${2-prod}"
@@ -15,6 +15,8 @@ elif [[ "$API" == "isp-slate" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi.json"
   if [[ $ENV == "stage" ]]; then
     OPENAPI_SPEC="https://stage.api.istreamplanet.com/docs/slates/openapi.json"
+  elif [[ $ENV == "int" ]]; then
+    OPENAPI_SPEC="https://int.api.istreamplanet.com/docs/slates/openapi.json"
   fi
 elif [[ "$API" == "isp-lifecycle" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"

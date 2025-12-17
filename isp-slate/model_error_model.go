@@ -18,18 +18,18 @@ var _ MappedNullable = &ErrorModel{}
 
 // ErrorModel struct for ErrorModel
 type ErrorModel struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// A human-readable explanation specific to this occurrence of the problem.
 	Detail *string `json:"detail,omitempty" doc:"A human-readable explanation specific to this occurrence of the problem."`
 	// Optional list of individual error details
-	Errors []ErrorModelErrorsInner `json:"errors,omitempty" doc:"Optional list of individual error details"`
-	// A URI reference that identifies the specific occurence of the problem.
-	Instance *string `json:"instance,omitempty" format:"uri" doc:"A URI reference that identifies the specific occurence of the problem."`
+	Errors []ErrorDetail `json:"errors,omitempty" doc:"Optional list of individual error details"`
+	// A URI reference that identifies the specific occurrence of the problem.
+	Instance *string `json:"instance,omitempty" format:"uri" doc:"A URI reference that identifies the specific occurrence of the problem."`
 	// HTTP status code
-	Status *int32 `json:"status,omitempty" format:"int32" doc:"HTTP status code"`
-	// A short, human-readable summary of the problem type. This value should not change between occurances of the error.
-	Title *string `json:"title,omitempty" doc:"A short, human-readable summary of the problem type. This value should not change between occurances of the error."`
+	Status *int64 `json:"status,omitempty" format:"int64" doc:"HTTP status code"`
+	// A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+	Title *string `json:"title,omitempty" doc:"A short, human-readable summary of the problem type. This value should not change between occurrences of the error."`
 	// A URI reference to human-readable documentation for the error.
 	Type *string `json:"type,omitempty" format:"uri" default:""about:blank"" doc:"A URI reference to human-readable documentation for the error."`
 }
@@ -120,9 +120,9 @@ func (o *ErrorModel) SetDetail(v string) {
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
-func (o *ErrorModel) GetErrors() []ErrorModelErrorsInner {
+func (o *ErrorModel) GetErrors() []ErrorDetail {
 	if o == nil || IsNil(o.Errors) {
-		var ret []ErrorModelErrorsInner
+		var ret []ErrorDetail
 		return ret
 	}
 	return o.Errors
@@ -130,7 +130,7 @@ func (o *ErrorModel) GetErrors() []ErrorModelErrorsInner {
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorModel) GetErrorsOk() ([]ErrorModelErrorsInner, bool) {
+func (o *ErrorModel) GetErrorsOk() ([]ErrorDetail, bool) {
 	if o == nil || IsNil(o.Errors) {
 		return nil, false
 	}
@@ -146,8 +146,8 @@ func (o *ErrorModel) HasErrors() bool {
 	return false
 }
 
-// SetErrors gets a reference to the given []ErrorModelErrorsInner and assigns it to the Errors field.
-func (o *ErrorModel) SetErrors(v []ErrorModelErrorsInner) {
+// SetErrors gets a reference to the given []ErrorDetail and assigns it to the Errors field.
+func (o *ErrorModel) SetErrors(v []ErrorDetail) {
 	o.Errors = v
 }
 
@@ -184,9 +184,9 @@ func (o *ErrorModel) SetInstance(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *ErrorModel) GetStatus() int32 {
+func (o *ErrorModel) GetStatus() int64 {
 	if o == nil || IsNil(o.Status) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Status
@@ -194,7 +194,7 @@ func (o *ErrorModel) GetStatus() int32 {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorModel) GetStatusOk() (*int32, bool) {
+func (o *ErrorModel) GetStatusOk() (*int64, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -210,8 +210,8 @@ func (o *ErrorModel) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given int32 and assigns it to the Status field.
-func (o *ErrorModel) SetStatus(v int32) {
+// SetStatus gets a reference to the given int64 and assigns it to the Status field.
+func (o *ErrorModel) SetStatus(v int64) {
 	o.Status = &v
 }
 

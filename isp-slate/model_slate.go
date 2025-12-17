@@ -11,6 +11,8 @@ package isp
 
 import (
 	"encoding/json"
+	"bytes"
+	"fmt"
 )
 
 // checks if the Slate type satisfies the MappedNullable interface at compile time
@@ -18,8 +20,8 @@ var _ MappedNullable = &Slate{}
 
 // Slate struct for Slate
 type Slate struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// A friendly slate description.
 	Description string `json:"description" doc:"A friendly slate description."`
 	// Unique identifier for this slate
