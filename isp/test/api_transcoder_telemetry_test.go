@@ -22,6 +22,21 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
+	t.Run("Test TranscoderTelemetryApiService GetChannelCostReport", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryApi.GetChannelCostReport(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test TranscoderTelemetryApiService ListContentSegmentHistory", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -30,6 +45,20 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 		var channelId string
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListContentSegmentHistory(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TranscoderTelemetryApiService ListOrganizationCostReports", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListOrganizationCostReports(context.Background(), org).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
