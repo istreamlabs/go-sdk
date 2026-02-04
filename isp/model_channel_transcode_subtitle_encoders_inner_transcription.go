@@ -20,6 +20,8 @@ var _ MappedNullable = &ChannelTranscodeSubtitleEncodersInnerTranscription{}
 type ChannelTranscodeSubtitleEncodersInnerTranscription struct {
 	// Identifies the 'AudioSource' to be transcribed.
 	AudioSourceId *string `json:"audio_source_id,omitempty" minLength:"1" doc:"Identifies the 'AudioSource' to be transcribed."`
+	// Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+	Preset *string `json:"preset,omitempty" enum:"CNN,NCAA" doc:"Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change."`
 }
 
 // NewChannelTranscodeSubtitleEncodersInnerTranscription instantiates a new ChannelTranscodeSubtitleEncodersInnerTranscription object
@@ -71,6 +73,38 @@ func (o *ChannelTranscodeSubtitleEncodersInnerTranscription) SetAudioSourceId(v 
 	o.AudioSourceId = &v
 }
 
+// GetPreset returns the Preset field value if set, zero value otherwise.
+func (o *ChannelTranscodeSubtitleEncodersInnerTranscription) GetPreset() string {
+	if o == nil || IsNil(o.Preset) {
+		var ret string
+		return ret
+	}
+	return *o.Preset
+}
+
+// GetPresetOk returns a tuple with the Preset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTranscription) GetPresetOk() (*string, bool) {
+	if o == nil || IsNil(o.Preset) {
+		return nil, false
+	}
+	return o.Preset, true
+}
+
+// HasPreset returns a boolean if a field has been set.
+func (o *ChannelTranscodeSubtitleEncodersInnerTranscription) HasPreset() bool {
+	if o != nil && !IsNil(o.Preset) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreset gets a reference to the given string and assigns it to the Preset field.
+func (o *ChannelTranscodeSubtitleEncodersInnerTranscription) SetPreset(v string) {
+	o.Preset = &v
+}
+
 func (o ChannelTranscodeSubtitleEncodersInnerTranscription) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -83,6 +117,9 @@ func (o ChannelTranscodeSubtitleEncodersInnerTranscription) ToMap() (map[string]
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AudioSourceId) {
 		toSerialize["audio_source_id"] = o.AudioSourceId
+	}
+	if !IsNil(o.Preset) {
+		toSerialize["preset"] = o.Preset
 	}
 	return toSerialize, nil
 }
