@@ -21,6 +21,7 @@ type GetProductConfigResponseProductConfigInnerArchiveSettings struct {
 	GlobalArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettingsGlobalArchiveSettings `json:"global_archive_settings,omitempty"`
 	NetstorageConnectionSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsNetstorageConnectionSettingsInner `json:"netstorage_connection_settings,omitempty"`
 	S3ArchiveSettings []GetProductConfigResponseProductConfigInnerArchiveSettingsS3ArchiveSettingsInner `json:"s3_archive_settings,omitempty"`
+	WorkflowId *string `json:"workflow_id,omitempty"`
 }
 
 // NewGetProductConfigResponseProductConfigInnerArchiveSettings instantiates a new GetProductConfigResponseProductConfigInnerArchiveSettings object
@@ -136,6 +137,38 @@ func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) SetS3Archive
 	o.S3ArchiveSettings = v
 }
 
+// GetWorkflowId returns the WorkflowId field value if set, zero value otherwise.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) GetWorkflowId() string {
+	if o == nil || IsNil(o.WorkflowId) {
+		var ret string
+		return ret
+	}
+	return *o.WorkflowId
+}
+
+// GetWorkflowIdOk returns a tuple with the WorkflowId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) GetWorkflowIdOk() (*string, bool) {
+	if o == nil || IsNil(o.WorkflowId) {
+		return nil, false
+	}
+	return o.WorkflowId, true
+}
+
+// HasWorkflowId returns a boolean if a field has been set.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) HasWorkflowId() bool {
+	if o != nil && !IsNil(o.WorkflowId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflowId gets a reference to the given string and assigns it to the WorkflowId field.
+func (o *GetProductConfigResponseProductConfigInnerArchiveSettings) SetWorkflowId(v string) {
+	o.WorkflowId = &v
+}
+
 func (o GetProductConfigResponseProductConfigInnerArchiveSettings) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -154,6 +187,9 @@ func (o GetProductConfigResponseProductConfigInnerArchiveSettings) ToMap() (map[
 	}
 	if !IsNil(o.S3ArchiveSettings) {
 		toSerialize["s3_archive_settings"] = o.S3ArchiveSettings
+	}
+	if !IsNil(o.WorkflowId) {
+		toSerialize["workflow_id"] = o.WorkflowId
 	}
 	return toSerialize, nil
 }

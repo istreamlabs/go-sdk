@@ -17,7 +17,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://int.api.istreamplanet.com/docs/slates/schemas/ErrorModel.json
+          example: https://api.istreamplanet.com/docs/slates/schemas/ErrorModel.json
           format: uri
           readOnly: true
           type: string
@@ -57,7 +57,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://int.api.istreamplanet.com/docs/slates/schemas/Slate.json
+          example: https://api.istreamplanet.com/docs/slates/schemas/Slate.json
           format: uri
           readOnly: true
           type: string
@@ -83,7 +83,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://int.api.istreamplanet.com/docs/slates/schemas/SlateWithoutID.json
+          example: https://api.istreamplanet.com/docs/slates/schemas/SlateWithoutID.json
           format: uri
           readOnly: true
           type: string
@@ -503,16 +503,16 @@ security:
   - authcode: []
   - m2m: []
 servers:
-  - description: int
-    url: https://int.api.istreamplanet.com
+  - description: prod
+    url: https://api.istreamplanet.com
 tags:
   - name: Slates for Organization
   - name: Slate Operations
 x-cli-config:
   params:
-    audience: https://platform.dev.dtc.istreamplanet.net/{org}
+    audience: https://platform.dtc.istreamplanet.net/{org}
     authorize_url: ""
-    client_id: TMEt4ihzsGtgHd335WcFXjp5mJ1lS6qP
+    client_id: 9joico3xz7UKKSn3HiCcI2RJWkqs1INQ
     redirect_url: http://auth.rest.sh:8484
     scopes: offline_access,Groups
     state: non-empty
