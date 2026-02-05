@@ -1,9 +1,8 @@
 api_slates_for_organization.go
 configuration.go
+model_error_detail.go
 model_error_model.go
-model_error_model_errors_inner.go
 model_slate.go
-model_slate2.go
 model_slate_without_id.go
 response.go
 test/api_slates_for_organization_test.go

@@ -13,38 +13,38 @@ import (
 	"encoding/json"
 )
 
-// checks if the ErrorModelErrorsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ErrorModelErrorsInner{}
+// checks if the ErrorDetail type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ErrorDetail{}
 
-// ErrorModelErrorsInner struct for ErrorModelErrorsInner
-type ErrorModelErrorsInner struct {
-	// Where the error occured, e.g. 'body.items[3].tags' or 'path.thing-id'
-	Location *string `json:"location,omitempty" doc:"Where the error occured, e.g. 'body.items[3].tags' or 'path.thing-id'"`
+// ErrorDetail struct for ErrorDetail
+type ErrorDetail struct {
+	// Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+	Location *string `json:"location,omitempty" doc:"Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'"`
 	// Error message text
 	Message *string `json:"message,omitempty" doc:"Error message text"`
 	// The value at the given location
 	Value interface{} `json:"value,omitempty" doc:"The value at the given location"`
 }
 
-// NewErrorModelErrorsInner instantiates a new ErrorModelErrorsInner object
+// NewErrorDetail instantiates a new ErrorDetail object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewErrorModelErrorsInner() *ErrorModelErrorsInner {
-	this := ErrorModelErrorsInner{}
+func NewErrorDetail() *ErrorDetail {
+	this := ErrorDetail{}
 	return &this
 }
 
-// NewErrorModelErrorsInnerWithDefaults instantiates a new ErrorModelErrorsInner object
+// NewErrorDetailWithDefaults instantiates a new ErrorDetail object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewErrorModelErrorsInnerWithDefaults() *ErrorModelErrorsInner {
-	this := ErrorModelErrorsInner{}
+func NewErrorDetailWithDefaults() *ErrorDetail {
+	this := ErrorDetail{}
 	return &this
 }
 
 // GetLocation returns the Location field value if set, zero value otherwise.
-func (o *ErrorModelErrorsInner) GetLocation() string {
+func (o *ErrorDetail) GetLocation() string {
 	if o == nil || IsNil(o.Location) {
 		var ret string
 		return ret
@@ -54,7 +54,7 @@ func (o *ErrorModelErrorsInner) GetLocation() string {
 
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorModelErrorsInner) GetLocationOk() (*string, bool) {
+func (o *ErrorDetail) GetLocationOk() (*string, bool) {
 	if o == nil || IsNil(o.Location) {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *ErrorModelErrorsInner) GetLocationOk() (*string, bool) {
 }
 
 // HasLocation returns a boolean if a field has been set.
-func (o *ErrorModelErrorsInner) HasLocation() bool {
+func (o *ErrorDetail) HasLocation() bool {
 	if o != nil && !IsNil(o.Location) {
 		return true
 	}
@@ -71,12 +71,12 @@ func (o *ErrorModelErrorsInner) HasLocation() bool {
 }
 
 // SetLocation gets a reference to the given string and assigns it to the Location field.
-func (o *ErrorModelErrorsInner) SetLocation(v string) {
+func (o *ErrorDetail) SetLocation(v string) {
 	o.Location = &v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *ErrorModelErrorsInner) GetMessage() string {
+func (o *ErrorDetail) GetMessage() string {
 	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
@@ -86,7 +86,7 @@ func (o *ErrorModelErrorsInner) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ErrorModelErrorsInner) GetMessageOk() (*string, bool) {
+func (o *ErrorDetail) GetMessageOk() (*string, bool) {
 	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
@@ -94,7 +94,7 @@ func (o *ErrorModelErrorsInner) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *ErrorModelErrorsInner) HasMessage() bool {
+func (o *ErrorDetail) HasMessage() bool {
 	if o != nil && !IsNil(o.Message) {
 		return true
 	}
@@ -103,12 +103,12 @@ func (o *ErrorModelErrorsInner) HasMessage() bool {
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *ErrorModelErrorsInner) SetMessage(v string) {
+func (o *ErrorDetail) SetMessage(v string) {
 	o.Message = &v
 }
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *ErrorModelErrorsInner) GetValue() interface{} {
+func (o *ErrorDetail) GetValue() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
@@ -119,7 +119,7 @@ func (o *ErrorModelErrorsInner) GetValue() interface{} {
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *ErrorModelErrorsInner) GetValueOk() (*interface{}, bool) {
+func (o *ErrorDetail) GetValueOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Value) {
 		return nil, false
 	}
@@ -127,7 +127,7 @@ func (o *ErrorModelErrorsInner) GetValueOk() (*interface{}, bool) {
 }
 
 // HasValue returns a boolean if a field has been set.
-func (o *ErrorModelErrorsInner) HasValue() bool {
+func (o *ErrorDetail) HasValue() bool {
 	if o != nil && IsNil(o.Value) {
 		return true
 	}
@@ -136,11 +136,11 @@ func (o *ErrorModelErrorsInner) HasValue() bool {
 }
 
 // SetValue gets a reference to the given interface{} and assigns it to the Value field.
-func (o *ErrorModelErrorsInner) SetValue(v interface{}) {
+func (o *ErrorDetail) SetValue(v interface{}) {
 	o.Value = v
 }
 
-func (o ErrorModelErrorsInner) MarshalJSON() ([]byte, error) {
+func (o ErrorDetail) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -148,7 +148,7 @@ func (o ErrorModelErrorsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o ErrorModelErrorsInner) ToMap() (map[string]interface{}, error) {
+func (o ErrorDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Location) {
 		toSerialize["location"] = o.Location
@@ -162,38 +162,38 @@ func (o ErrorModelErrorsInner) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableErrorModelErrorsInner struct {
-	value *ErrorModelErrorsInner
+type NullableErrorDetail struct {
+	value *ErrorDetail
 	isSet bool
 }
 
-func (v NullableErrorModelErrorsInner) Get() *ErrorModelErrorsInner {
+func (v NullableErrorDetail) Get() *ErrorDetail {
 	return v.value
 }
 
-func (v *NullableErrorModelErrorsInner) Set(val *ErrorModelErrorsInner) {
+func (v *NullableErrorDetail) Set(val *ErrorDetail) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableErrorModelErrorsInner) IsSet() bool {
+func (v NullableErrorDetail) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableErrorModelErrorsInner) Unset() {
+func (v *NullableErrorDetail) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableErrorModelErrorsInner(val *ErrorModelErrorsInner) *NullableErrorModelErrorsInner {
-	return &NullableErrorModelErrorsInner{value: val, isSet: true}
+func NewNullableErrorDetail(val *ErrorDetail) *NullableErrorDetail {
+	return &NullableErrorDetail{value: val, isSet: true}
 }
 
-func (v NullableErrorModelErrorsInner) MarshalJSON() ([]byte, error) {
+func (v NullableErrorDetail) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableErrorModelErrorsInner) UnmarshalJSON(src []byte) error {
+func (v *NullableErrorDetail) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
