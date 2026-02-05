@@ -21,7 +21,7 @@ type IsBreakingChangeReturn struct {
 	// An optional URL to a JSON Schema document describing this resource
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	// Unique channel identifier
-	Channelid string `json:"channelid" maxLength:"60" pattern:"/^([a-z0-9]+(-*[a-z0-9]+)*)$/" doc:"Unique channel identifier"`
+	Channelid string `json:"channelid" maxLength:"60" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"Unique channel identifier"`
 	// The current revision of the channel.
 	CurrentRevision int32 `json:"currentRevision" format:"int32" doc:"The current revision of the channel."`
 	// True if the change will cause a break in user playback. False if the change will not cause a break in user playback or the channel doesn't exist
