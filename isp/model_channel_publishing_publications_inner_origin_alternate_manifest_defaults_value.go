@@ -13,17 +13,21 @@ import (
 	"encoding/json"
 )
 
-// checks if the ChannelPlaybackOriginInnerFallbackManifestDefaults type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &ChannelPlaybackOriginInnerFallbackManifestDefaults{}
+// checks if the ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue{}
 
-// ChannelPlaybackOriginInnerFallbackManifestDefaults struct for ChannelPlaybackOriginInnerFallbackManifestDefaults
-type ChannelPlaybackOriginInnerFallbackManifestDefaults struct {
+// ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue struct for ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+type ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
 	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
+	// Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID
+	DrmSystemIds []string `json:"drm_system_ids,omitempty" uniqueItems:"true" doc:"Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID"`
 	// Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
 	DurationSeconds *int32 `json:"duration_seconds,omitempty" format:"int32" minimum:"0" maximum:"43200" doc:"Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds."`
 	// When true enables HLS Delta updates for this particular origin.
 	EnableHlsDeltaUpdates *bool `json:"enable_hls_delta_updates,omitempty" doc:"When true enables HLS Delta updates for this particular origin."`
+	// Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+	EncoderIds []string `json:"encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests."`
 	// HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
 	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty" uniqueItems:"true" enum:"APPLE_SCTE35,AD_SIMPLE,SCTE35" doc:"HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
@@ -40,25 +44,25 @@ type ChannelPlaybackOriginInnerFallbackManifestDefaults struct {
 	SuggestedPresentationDelaySeconds *int32 `json:"suggested_presentation_delay_seconds,omitempty" format:"int32" minimum:"0" doc:"Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration."`
 }
 
-// NewChannelPlaybackOriginInnerFallbackManifestDefaults instantiates a new ChannelPlaybackOriginInnerFallbackManifestDefaults object
+// NewChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue instantiates a new ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelPlaybackOriginInnerFallbackManifestDefaults() *ChannelPlaybackOriginInnerFallbackManifestDefaults {
-	this := ChannelPlaybackOriginInnerFallbackManifestDefaults{}
+func NewChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue() *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+	this := ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue{}
 	return &this
 }
 
-// NewChannelPlaybackOriginInnerFallbackManifestDefaultsWithDefaults instantiates a new ChannelPlaybackOriginInnerFallbackManifestDefaults object
+// NewChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValueWithDefaults instantiates a new ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewChannelPlaybackOriginInnerFallbackManifestDefaultsWithDefaults() *ChannelPlaybackOriginInnerFallbackManifestDefaults {
-	this := ChannelPlaybackOriginInnerFallbackManifestDefaults{}
+func NewChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValueWithDefaults() *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+	this := ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue{}
 	return &this
 }
 
 // GetDashSignalingFormats returns the DashSignalingFormats field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDashSignalingFormats() []string {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDashSignalingFormats() []string {
 	if o == nil || IsNil(o.DashSignalingFormats) {
 		var ret []string
 		return ret
@@ -68,7 +72,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDashSignalingFor
 
 // GetDashSignalingFormatsOk returns a tuple with the DashSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDashSignalingFormatsOk() ([]string, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDashSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DashSignalingFormats) {
 		return nil, false
 	}
@@ -76,7 +80,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDashSignalingFor
 }
 
 // HasDashSignalingFormats returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasDashSignalingFormats() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasDashSignalingFormats() bool {
 	if o != nil && !IsNil(o.DashSignalingFormats) {
 		return true
 	}
@@ -85,12 +89,44 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasDashSignalingFor
 }
 
 // SetDashSignalingFormats gets a reference to the given []string and assigns it to the DashSignalingFormats field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetDashSignalingFormats(v []string) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetDashSignalingFormats(v []string) {
 	o.DashSignalingFormats = v
 }
 
+// GetDrmSystemIds returns the DrmSystemIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDrmSystemIds() []string {
+	if o == nil || IsNil(o.DrmSystemIds) {
+		var ret []string
+		return ret
+	}
+	return o.DrmSystemIds
+}
+
+// GetDrmSystemIdsOk returns a tuple with the DrmSystemIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDrmSystemIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.DrmSystemIds) {
+		return nil, false
+	}
+	return o.DrmSystemIds, true
+}
+
+// HasDrmSystemIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasDrmSystemIds() bool {
+	if o != nil && !IsNil(o.DrmSystemIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrmSystemIds gets a reference to the given []string and assigns it to the DrmSystemIds field.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetDrmSystemIds(v []string) {
+	o.DrmSystemIds = v
+}
+
 // GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDurationSeconds() int32 {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDurationSeconds() int32 {
 	if o == nil || IsNil(o.DurationSeconds) {
 		var ret int32
 		return ret
@@ -100,7 +136,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDurationSeconds(
 
 // GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDurationSecondsOk() (*int32, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.DurationSeconds) {
 		return nil, false
 	}
@@ -108,7 +144,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetDurationSecondsO
 }
 
 // HasDurationSeconds returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasDurationSeconds() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasDurationSeconds() bool {
 	if o != nil && !IsNil(o.DurationSeconds) {
 		return true
 	}
@@ -117,12 +153,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasDurationSeconds(
 }
 
 // SetDurationSeconds gets a reference to the given int32 and assigns it to the DurationSeconds field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetDurationSeconds(v int32) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetDurationSeconds(v int32) {
 	o.DurationSeconds = &v
 }
 
 // GetEnableHlsDeltaUpdates returns the EnableHlsDeltaUpdates field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetEnableHlsDeltaUpdates() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetEnableHlsDeltaUpdates() bool {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		var ret bool
 		return ret
@@ -132,7 +168,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetEnableHlsDeltaUp
 
 // GetEnableHlsDeltaUpdatesOk returns a tuple with the EnableHlsDeltaUpdates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		return nil, false
 	}
@@ -140,7 +176,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetEnableHlsDeltaUp
 }
 
 // HasEnableHlsDeltaUpdates returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasEnableHlsDeltaUpdates() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasEnableHlsDeltaUpdates() bool {
 	if o != nil && !IsNil(o.EnableHlsDeltaUpdates) {
 		return true
 	}
@@ -149,12 +185,44 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasEnableHlsDeltaUp
 }
 
 // SetEnableHlsDeltaUpdates gets a reference to the given bool and assigns it to the EnableHlsDeltaUpdates field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetEnableHlsDeltaUpdates(v bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetEnableHlsDeltaUpdates(v bool) {
 	o.EnableHlsDeltaUpdates = &v
 }
 
+// GetEncoderIds returns the EncoderIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetEncoderIds() []string {
+	if o == nil || IsNil(o.EncoderIds) {
+		var ret []string
+		return ret
+	}
+	return o.EncoderIds
+}
+
+// GetEncoderIdsOk returns a tuple with the EncoderIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetEncoderIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.EncoderIds) {
+		return nil, false
+	}
+	return o.EncoderIds, true
+}
+
+// HasEncoderIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasEncoderIds() bool {
+	if o != nil && !IsNil(o.EncoderIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncoderIds gets a reference to the given []string and assigns it to the EncoderIds field.
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetEncoderIds(v []string) {
+	o.EncoderIds = v
+}
+
 // GetHlsSignalingFormats returns the HlsSignalingFormats field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetHlsSignalingFormats() []string {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetHlsSignalingFormats() []string {
 	if o == nil || IsNil(o.HlsSignalingFormats) {
 		var ret []string
 		return ret
@@ -164,7 +232,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetHlsSignalingForm
 
 // GetHlsSignalingFormatsOk returns a tuple with the HlsSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetHlsSignalingFormatsOk() ([]string, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetHlsSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.HlsSignalingFormats) {
 		return nil, false
 	}
@@ -172,7 +240,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetHlsSignalingForm
 }
 
 // HasHlsSignalingFormats returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasHlsSignalingFormats() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasHlsSignalingFormats() bool {
 	if o != nil && !IsNil(o.HlsSignalingFormats) {
 		return true
 	}
@@ -181,12 +249,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasHlsSignalingForm
 }
 
 // SetHlsSignalingFormats gets a reference to the given []string and assigns it to the HlsSignalingFormats field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetHlsSignalingFormats(v []string) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetHlsSignalingFormats(v []string) {
 	o.HlsSignalingFormats = v
 }
 
 // GetMediaUrlType returns the MediaUrlType field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMediaUrlType() string {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMediaUrlType() string {
 	if o == nil || IsNil(o.MediaUrlType) {
 		var ret string
 		return ret
@@ -196,7 +264,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMediaUrlType() s
 
 // GetMediaUrlTypeOk returns a tuple with the MediaUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMediaUrlTypeOk() (*string, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMediaUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MediaUrlType) {
 		return nil, false
 	}
@@ -204,7 +272,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMediaUrlTypeOk()
 }
 
 // HasMediaUrlType returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMediaUrlType() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasMediaUrlType() bool {
 	if o != nil && !IsNil(o.MediaUrlType) {
 		return true
 	}
@@ -213,12 +281,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMediaUrlType() b
 }
 
 // SetMediaUrlType gets a reference to the given string and assigns it to the MediaUrlType field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetMediaUrlType(v string) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetMediaUrlType(v string) {
 	o.MediaUrlType = &v
 }
 
 // GetMinimumUpdatePeriodSeconds returns the MinimumUpdatePeriodSeconds field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMinimumUpdatePeriodSeconds() int32 {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMinimumUpdatePeriodSeconds() int32 {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		var ret int32
 		return ret
@@ -228,7 +296,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMinimumUpdatePer
 
 // GetMinimumUpdatePeriodSecondsOk returns a tuple with the MinimumUpdatePeriodSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		return nil, false
 	}
@@ -236,7 +304,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMinimumUpdatePer
 }
 
 // HasMinimumUpdatePeriodSeconds returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMinimumUpdatePeriodSeconds() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasMinimumUpdatePeriodSeconds() bool {
 	if o != nil && !IsNil(o.MinimumUpdatePeriodSeconds) {
 		return true
 	}
@@ -245,12 +313,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMinimumUpdatePer
 }
 
 // SetMinimumUpdatePeriodSeconds gets a reference to the given int32 and assigns it to the MinimumUpdatePeriodSeconds field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetMinimumUpdatePeriodSeconds(v int32) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetMinimumUpdatePeriodSeconds(v int32) {
 	o.MinimumUpdatePeriodSeconds = &v
 }
 
 // GetMultiVariantUrlType returns the MultiVariantUrlType field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMultiVariantUrlType() string {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMultiVariantUrlType() string {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		var ret string
 		return ret
@@ -260,7 +328,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMultiVariantUrlT
 
 // GetMultiVariantUrlTypeOk returns a tuple with the MultiVariantUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMultiVariantUrlTypeOk() (*string, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetMultiVariantUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		return nil, false
 	}
@@ -268,7 +336,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetMultiVariantUrlT
 }
 
 // HasMultiVariantUrlType returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMultiVariantUrlType() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasMultiVariantUrlType() bool {
 	if o != nil && !IsNil(o.MultiVariantUrlType) {
 		return true
 	}
@@ -277,12 +345,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasMultiVariantUrlT
 }
 
 // SetMultiVariantUrlType gets a reference to the given string and assigns it to the MultiVariantUrlType field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetMultiVariantUrlType(v string) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetMultiVariantUrlType(v string) {
 	o.MultiVariantUrlType = &v
 }
 
 // GetPdtOnEverySegment returns the PdtOnEverySegment field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPdtOnEverySegment() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetPdtOnEverySegment() bool {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		var ret bool
 		return ret
@@ -292,7 +360,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPdtOnEverySegmen
 
 // GetPdtOnEverySegmentOk returns a tuple with the PdtOnEverySegment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPdtOnEverySegmentOk() (*bool, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetPdtOnEverySegmentOk() (*bool, bool) {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		return nil, false
 	}
@@ -300,7 +368,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPdtOnEverySegmen
 }
 
 // HasPdtOnEverySegment returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasPdtOnEverySegment() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasPdtOnEverySegment() bool {
 	if o != nil && !IsNil(o.PdtOnEverySegment) {
 		return true
 	}
@@ -309,12 +377,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasPdtOnEverySegmen
 }
 
 // SetPdtOnEverySegment gets a reference to the given bool and assigns it to the PdtOnEverySegment field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetPdtOnEverySegment(v bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetPdtOnEverySegment(v bool) {
 	o.PdtOnEverySegment = &v
 }
 
 // GetPreStartDurationSeconds returns the PreStartDurationSeconds field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPreStartDurationSeconds() int32 {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetPreStartDurationSeconds() int32 {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		var ret int32
 		return ret
@@ -324,7 +392,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPreStartDuration
 
 // GetPreStartDurationSecondsOk returns a tuple with the PreStartDurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPreStartDurationSecondsOk() (*int32, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetPreStartDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		return nil, false
 	}
@@ -332,7 +400,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetPreStartDuration
 }
 
 // HasPreStartDurationSeconds returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasPreStartDurationSeconds() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasPreStartDurationSeconds() bool {
 	if o != nil && !IsNil(o.PreStartDurationSeconds) {
 		return true
 	}
@@ -341,12 +409,12 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasPreStartDuration
 }
 
 // SetPreStartDurationSeconds gets a reference to the given int32 and assigns it to the PreStartDurationSeconds field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetPreStartDurationSeconds(v int32) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetPreStartDurationSeconds(v int32) {
 	o.PreStartDurationSeconds = &v
 }
 
 // GetSuggestedPresentationDelaySeconds returns the SuggestedPresentationDelaySeconds field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetSuggestedPresentationDelaySeconds() int32 {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetSuggestedPresentationDelaySeconds() int32 {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		var ret int32
 		return ret
@@ -356,7 +424,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetSuggestedPresent
 
 // GetSuggestedPresentationDelaySecondsOk returns a tuple with the SuggestedPresentationDelaySeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		return nil, false
 	}
@@ -364,7 +432,7 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) GetSuggestedPresent
 }
 
 // HasSuggestedPresentationDelaySeconds returns a boolean if a field has been set.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasSuggestedPresentationDelaySeconds() bool {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) HasSuggestedPresentationDelaySeconds() bool {
 	if o != nil && !IsNil(o.SuggestedPresentationDelaySeconds) {
 		return true
 	}
@@ -373,11 +441,11 @@ func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) HasSuggestedPresent
 }
 
 // SetSuggestedPresentationDelaySeconds gets a reference to the given int32 and assigns it to the SuggestedPresentationDelaySeconds field.
-func (o *ChannelPlaybackOriginInnerFallbackManifestDefaults) SetSuggestedPresentationDelaySeconds(v int32) {
+func (o *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) SetSuggestedPresentationDelaySeconds(v int32) {
 	o.SuggestedPresentationDelaySeconds = &v
 }
 
-func (o ChannelPlaybackOriginInnerFallbackManifestDefaults) MarshalJSON() ([]byte, error) {
+func (o ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -385,16 +453,22 @@ func (o ChannelPlaybackOriginInnerFallbackManifestDefaults) MarshalJSON() ([]byt
 	return json.Marshal(toSerialize)
 }
 
-func (o ChannelPlaybackOriginInnerFallbackManifestDefaults) ToMap() (map[string]interface{}, error) {
+func (o ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DashSignalingFormats) {
 		toSerialize["dash_signaling_formats"] = o.DashSignalingFormats
+	}
+	if !IsNil(o.DrmSystemIds) {
+		toSerialize["drm_system_ids"] = o.DrmSystemIds
 	}
 	if !IsNil(o.DurationSeconds) {
 		toSerialize["duration_seconds"] = o.DurationSeconds
 	}
 	if !IsNil(o.EnableHlsDeltaUpdates) {
 		toSerialize["enable_hls_delta_updates"] = o.EnableHlsDeltaUpdates
+	}
+	if !IsNil(o.EncoderIds) {
+		toSerialize["encoder_ids"] = o.EncoderIds
 	}
 	if !IsNil(o.HlsSignalingFormats) {
 		toSerialize["hls_signaling_formats"] = o.HlsSignalingFormats
@@ -420,38 +494,38 @@ func (o ChannelPlaybackOriginInnerFallbackManifestDefaults) ToMap() (map[string]
 	return toSerialize, nil
 }
 
-type NullableChannelPlaybackOriginInnerFallbackManifestDefaults struct {
-	value *ChannelPlaybackOriginInnerFallbackManifestDefaults
+type NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue struct {
+	value *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
 	isSet bool
 }
 
-func (v NullableChannelPlaybackOriginInnerFallbackManifestDefaults) Get() *ChannelPlaybackOriginInnerFallbackManifestDefaults {
+func (v NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) Get() *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
 	return v.value
 }
 
-func (v *NullableChannelPlaybackOriginInnerFallbackManifestDefaults) Set(val *ChannelPlaybackOriginInnerFallbackManifestDefaults) {
+func (v *NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) Set(val *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableChannelPlaybackOriginInnerFallbackManifestDefaults) IsSet() bool {
+func (v NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableChannelPlaybackOriginInnerFallbackManifestDefaults) Unset() {
+func (v *NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableChannelPlaybackOriginInnerFallbackManifestDefaults(val *ChannelPlaybackOriginInnerFallbackManifestDefaults) *NullableChannelPlaybackOriginInnerFallbackManifestDefaults {
-	return &NullableChannelPlaybackOriginInnerFallbackManifestDefaults{value: val, isSet: true}
+func NewNullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue(val *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) *NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+	return &NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue{value: val, isSet: true}
 }
 
-func (v NullableChannelPlaybackOriginInnerFallbackManifestDefaults) MarshalJSON() ([]byte, error) {
+func (v NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableChannelPlaybackOriginInnerFallbackManifestDefaults) UnmarshalJSON(src []byte) error {
+func (v *NullableChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
