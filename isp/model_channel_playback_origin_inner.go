@@ -19,12 +19,12 @@ var _ MappedNullable = &ChannelPlaybackOriginInner{}
 // ChannelPlaybackOriginInner struct for ChannelPlaybackOriginInner
 type ChannelPlaybackOriginInner struct {
 	Dash *ChannelPlaybackOriginInnerDash `json:"dash,omitempty"`
-	FallbackManifestDefaults *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"fallback_manifest_defaults,omitempty"`
+	FallbackManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"fallback_manifest_defaults,omitempty"`
 	Hls *ChannelPlaybackOriginInnerHls `json:"hls,omitempty"`
 	PackagerConfig *ChannelPackagingPackagersValue `json:"packager_config,omitempty"`
 	// packager_id is the ID used to identify the packager_config within the channel configuration.
 	PackagerId *string `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
-	PrimaryManifestDefaults *ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"primary_manifest_defaults,omitempty"`
+	PrimaryManifestDefaults *ChannelPlaybackOriginInnerFallbackManifestDefaults `json:"primary_manifest_defaults,omitempty"`
 }
 
 // NewChannelPlaybackOriginInner instantiates a new ChannelPlaybackOriginInner object
@@ -77,9 +77,9 @@ func (o *ChannelPlaybackOriginInner) SetDash(v ChannelPlaybackOriginInnerDash) {
 }
 
 // GetFallbackManifestDefaults returns the FallbackManifestDefaults field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInner) GetFallbackManifestDefaults() ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+func (o *ChannelPlaybackOriginInner) GetFallbackManifestDefaults() ChannelPlaybackOriginInnerFallbackManifestDefaults {
 	if o == nil || IsNil(o.FallbackManifestDefaults) {
-		var ret ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+		var ret ChannelPlaybackOriginInnerFallbackManifestDefaults
 		return ret
 	}
 	return *o.FallbackManifestDefaults
@@ -87,7 +87,7 @@ func (o *ChannelPlaybackOriginInner) GetFallbackManifestDefaults() ChannelPublis
 
 // GetFallbackManifestDefaultsOk returns a tuple with the FallbackManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInner) GetFallbackManifestDefaultsOk() (*ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
+func (o *ChannelPlaybackOriginInner) GetFallbackManifestDefaultsOk() (*ChannelPlaybackOriginInnerFallbackManifestDefaults, bool) {
 	if o == nil || IsNil(o.FallbackManifestDefaults) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *ChannelPlaybackOriginInner) HasFallbackManifestDefaults() bool {
 	return false
 }
 
-// SetFallbackManifestDefaults gets a reference to the given ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the FallbackManifestDefaults field.
-func (o *ChannelPlaybackOriginInner) SetFallbackManifestDefaults(v ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
+// SetFallbackManifestDefaults gets a reference to the given ChannelPlaybackOriginInnerFallbackManifestDefaults and assigns it to the FallbackManifestDefaults field.
+func (o *ChannelPlaybackOriginInner) SetFallbackManifestDefaults(v ChannelPlaybackOriginInnerFallbackManifestDefaults) {
 	o.FallbackManifestDefaults = &v
 }
 
@@ -205,9 +205,9 @@ func (o *ChannelPlaybackOriginInner) SetPackagerId(v string) {
 }
 
 // GetPrimaryManifestDefaults returns the PrimaryManifestDefaults field value if set, zero value otherwise.
-func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaults() ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaults() ChannelPlaybackOriginInnerFallbackManifestDefaults {
 	if o == nil || IsNil(o.PrimaryManifestDefaults) {
-		var ret ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+		var ret ChannelPlaybackOriginInnerFallbackManifestDefaults
 		return ret
 	}
 	return *o.PrimaryManifestDefaults
@@ -215,7 +215,7 @@ func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaults() ChannelPublish
 
 // GetPrimaryManifestDefaultsOk returns a tuple with the PrimaryManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaultsOk() (*ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
+func (o *ChannelPlaybackOriginInner) GetPrimaryManifestDefaultsOk() (*ChannelPlaybackOriginInnerFallbackManifestDefaults, bool) {
 	if o == nil || IsNil(o.PrimaryManifestDefaults) {
 		return nil, false
 	}
@@ -231,8 +231,8 @@ func (o *ChannelPlaybackOriginInner) HasPrimaryManifestDefaults() bool {
 	return false
 }
 
-// SetPrimaryManifestDefaults gets a reference to the given ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the PrimaryManifestDefaults field.
-func (o *ChannelPlaybackOriginInner) SetPrimaryManifestDefaults(v ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
+// SetPrimaryManifestDefaults gets a reference to the given ChannelPlaybackOriginInnerFallbackManifestDefaults and assigns it to the PrimaryManifestDefaults field.
+func (o *ChannelPlaybackOriginInner) SetPrimaryManifestDefaults(v ChannelPlaybackOriginInnerFallbackManifestDefaults) {
 	o.PrimaryManifestDefaults = &v
 }
 
