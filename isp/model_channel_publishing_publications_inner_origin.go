@@ -18,8 +18,6 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerOrigin{}
 
 // ChannelPublishingPublicationsInnerOrigin Configures defaults used when generating manifests or playlist using the dynamic origin. Cannot be set if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for').
 type ChannelPublishingPublicationsInnerOrigin struct {
-	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
-	AlternateManifestDefaults *map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
 	FallbackDefaults *ChannelPublishingPublicationsInnerOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
 	ManifestDefaults *ChannelPublishingPublicationsInnerOriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
@@ -42,38 +40,6 @@ func NewChannelPublishingPublicationsInnerOrigin() *ChannelPublishingPublication
 func NewChannelPublishingPublicationsInnerOriginWithDefaults() *ChannelPublishingPublicationsInnerOrigin {
 	this := ChannelPublishingPublicationsInnerOrigin{}
 	return &this
-}
-
-// GetAlternateManifestDefaults returns the AlternateManifestDefaults field value if set, zero value otherwise.
-func (o *ChannelPublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
-	if o == nil || IsNil(o.AlternateManifestDefaults) {
-		var ret map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
-		return ret
-	}
-	return *o.AlternateManifestDefaults
-}
-
-// GetAlternateManifestDefaultsOk returns a tuple with the AlternateManifestDefaults field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelPublishingPublicationsInnerOrigin) GetAlternateManifestDefaultsOk() (*map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
-	if o == nil || IsNil(o.AlternateManifestDefaults) {
-		return nil, false
-	}
-	return o.AlternateManifestDefaults, true
-}
-
-// HasAlternateManifestDefaults returns a boolean if a field has been set.
-func (o *ChannelPublishingPublicationsInnerOrigin) HasAlternateManifestDefaults() bool {
-	if o != nil && !IsNil(o.AlternateManifestDefaults) {
-		return true
-	}
-
-	return false
-}
-
-// SetAlternateManifestDefaults gets a reference to the given map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the AlternateManifestDefaults field.
-func (o *ChannelPublishingPublicationsInnerOrigin) SetAlternateManifestDefaults(v map[string]ChannelPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
-	o.AlternateManifestDefaults = &v
 }
 
 // GetFallbackDefaults returns the FallbackDefaults field value if set, zero value otherwise.
@@ -214,9 +180,6 @@ func (o ChannelPublishingPublicationsInnerOrigin) MarshalJSON() ([]byte, error) 
 
 func (o ChannelPublishingPublicationsInnerOrigin) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AlternateManifestDefaults) {
-		toSerialize["alternate_manifest_defaults"] = o.AlternateManifestDefaults
-	}
 	if !IsNil(o.FallbackDefaults) {
 		toSerialize["fallback_defaults"] = o.FallbackDefaults
 	}
