@@ -731,6 +731,86 @@ components:
                     type: object
                     description: Configures defaults used when generating manifests or playlist using the dynamic origin. Cannot be set if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for').
                     properties:
+                      alternate_manifest_defaults:
+                        type: object
+                        description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
+                        additionalProperties:
+                          type: object
+                          properties:
+                            dash_signaling_formats:
+                              type: array
+                              description: DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
+                              items:
+                                type: string
+                                enum:
+                                  - SCTE35_SPLICE_INFO_SECTION
+                                  - SCTE35_BIN
+                              uniqueItems: true
+                            drm_system_ids:
+                              type: array
+                              description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                              items:
+                                type: string
+                              uniqueItems: true
+                            duration_seconds:
+                              type: integer
+                              description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            enable_hls_delta_updates:
+                              type: boolean
+                              description: When true enables HLS Delta updates for this particular origin.
+                            encoder_ids:
+                              type: array
+                              description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                              items:
+                                type: string
+                              uniqueItems: true
+                            hls_signaling_formats:
+                              type: array
+                              description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
+                              items:
+                                type: string
+                                enum:
+                                  - APPLE_SCTE35
+                                  - AD_SIMPLE
+                                  - SCTE35
+                              uniqueItems: true
+                            media_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            minimum_update_period_seconds:
+                              type: integer
+                              description: Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
+                              format: int32
+                              minimum: 0
+                            multi_variant_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS multi-variant playlists. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            pdt_on_every_segment:
+                              type: boolean
+                              description: 'When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in HLS media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.'
+                            pre_start_duration_seconds:
+                              type: integer
+                              description: Pre Start Duration is the length of content that will be included in the manifest when the start time of a manifest is in the future. When a manifest is near the start time but does not contain 'pre_start_duration_seconds' content Manifest Origin will keep content before the start time to make the manifest length at least 'pre_start_duration_seconds'. If not specified requesting a manifest in the future will result in a 404.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            suggested_presentation_delay_seconds:
+                              type: integer
+                              description: Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration.
+                              format: int32
+                              minimum: 0
+                          additionalProperties: false
                       fallback_defaults:
                         type: object
                         description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
@@ -744,6 +824,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -753,6 +839,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -810,6 +902,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -819,6 +917,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -1312,6 +1416,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -1325,12 +1440,12 @@ components:
                     exclusiveMinimum: true
                   channels:
                     type: integer
-                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
+                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) 10 - Dolby 5.1.4 (AC4 only) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
                     format: int32
                     example: 2
                     minimum: 0
                     exclusiveMinimum: true
-                    maximum: 6
+                    maximum: 10
                   codec:
                     type: string
                     description: Codec specifies the audio data encoding format.
@@ -1339,9 +1454,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -1593,6 +1709,12 @@ components:
                         type: string
                         description: Identifies the 'AudioSource' to be transcribed.
                         minLength: 1
+                      preset:
+                        type: string
+                        description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                        enum:
+                          - CNN
+                          - NCAA
                     additionalProperties: false
                   usage:
                     type: string
@@ -1612,7 +1734,7 @@ components:
                     description: Height specifies the thumbnail image height in pixels.
                     format: int32
                     example: 180
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                   id:
                     type: string
@@ -1623,7 +1745,7 @@ components:
                     description: Width specifies the thumbnail image width in pixels.
                     format: int32
                     example: 320
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                 additionalProperties: false
             video_encoders:
@@ -1867,7 +1989,7 @@ components:
                       - CENTER_CROP
                   width:
                     type: integer
-                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.'
+                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 32x24 to 1920x1080 or 1080x1920 H.265: 130x128 to 3840x2160 or 2160x3840 The upper limit is dictated by the total number of pixels.'
                     format: int32
                     example: 1920
                     minimum: 1
@@ -1879,6 +2001,72 @@ components:
       required:
         - ingest
         - transcode
+    ChannelCostReport:
+      type: object
+      properties:
+        $schema:
+          type: string
+          description: An optional URL to a JSON Schema document describing this resource
+          format: uri
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        duration_secs:
+          type: integer
+          format: int64
+        external_id:
+          type: string
+        has_hdr:
+          type: boolean
+        has_realtime_output:
+          type: boolean
+        has_uhd:
+          type: boolean
+        labels:
+          type: array
+          items:
+            type: string
+        organization:
+          type: string
+        verbit_encoder_count:
+          type: integer
+          format: int32
+          minimum: 0
+      additionalProperties: false
+    ChannelCostReport2:
+      type: object
+      properties:
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        duration_secs:
+          type: integer
+          format: int64
+        external_id:
+          type: string
+        has_hdr:
+          type: boolean
+        has_realtime_output:
+          type: boolean
+        has_uhd:
+          type: boolean
+        labels:
+          type: array
+          items:
+            type: string
+        organization:
+          type: string
+        verbit_encoder_count:
+          type: integer
+          format: int32
+          minimum: 0
+      additionalProperties: false
+    ChannelCostReportList:
+      type: array
+      items:
+        $ref: '#/components/schemas/ChannelCostReport2'
     ChannelPlayback:
       type: object
       properties:
@@ -2521,6 +2709,12 @@ components:
                         - SCTE35_SPLICE_INFO_SECTION
                         - SCTE35_BIN
                     uniqueItems: true
+                  drm_system_ids:
+                    type: array
+                    description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                    items:
+                      type: string
+                    uniqueItems: true
                   duration_seconds:
                     type: integer
                     description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -2530,6 +2724,12 @@ components:
                   enable_hls_delta_updates:
                     type: boolean
                     description: When true enables HLS Delta updates for this particular origin.
+                  encoder_ids:
+                    type: array
+                    description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                    items:
+                      type: string
+                    uniqueItems: true
                   hls_signaling_formats:
                     type: array
                     description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -2837,6 +3037,12 @@ components:
                         - SCTE35_SPLICE_INFO_SECTION
                         - SCTE35_BIN
                     uniqueItems: true
+                  drm_system_ids:
+                    type: array
+                    description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                    items:
+                      type: string
+                    uniqueItems: true
                   duration_seconds:
                     type: integer
                     description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -2846,6 +3052,12 @@ components:
                   enable_hls_delta_updates:
                     type: boolean
                     description: When true enables HLS Delta updates for this particular origin.
+                  encoder_ids:
+                    type: array
+                    description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                    items:
+                      type: string
+                    uniqueItems: true
                   hls_signaling_formats:
                     type: array
                     description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -3903,6 +4115,8 @@ components:
                         - region
                         - bucket
                         - prefix
+                  workflow_id:
+                    type: string
                 additionalProperties: false
               collapse_config:
                 type: object
@@ -6808,6 +7022,8 @@ components:
                   - region
                   - bucket
                   - prefix
+            workflow_id:
+              type: string
           additionalProperties: false
         collapse_config:
           type: object
@@ -7083,33 +7299,6 @@ components:
         - organization
         - channelid
     patch-org-channel-request:
-      type: array
-      items:
-        type: object
-        properties:
-          from:
-            type: string
-            description: JSON Pointer for the source of a move or copy
-          op:
-            type: string
-            description: Operation name
-            enum:
-              - add
-              - remove
-              - replace
-              - move
-              - copy
-              - test
-          path:
-            type: string
-            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
-          value:
-            description: The value to set
-        additionalProperties: false
-        required:
-          - op
-          - path
-    patch-org-channel-request2:
       type: object
       properties:
         $schema:
@@ -7702,6 +7891,86 @@ components:
                     type: object
                     description: Configures defaults used when generating manifests or playlist using the dynamic origin. Cannot be set if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for').
                     properties:
+                      alternate_manifest_defaults:
+                        type: object
+                        description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
+                        additionalProperties:
+                          type: object
+                          properties:
+                            dash_signaling_formats:
+                              type: array
+                              description: DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
+                              items:
+                                type: string
+                                enum:
+                                  - SCTE35_SPLICE_INFO_SECTION
+                                  - SCTE35_BIN
+                              uniqueItems: true
+                            drm_system_ids:
+                              type: array
+                              description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                              items:
+                                type: string
+                              uniqueItems: true
+                            duration_seconds:
+                              type: integer
+                              description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            enable_hls_delta_updates:
+                              type: boolean
+                              description: When true enables HLS Delta updates for this particular origin.
+                            encoder_ids:
+                              type: array
+                              description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                              items:
+                                type: string
+                              uniqueItems: true
+                            hls_signaling_formats:
+                              type: array
+                              description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
+                              items:
+                                type: string
+                                enum:
+                                  - APPLE_SCTE35
+                                  - AD_SIMPLE
+                                  - SCTE35
+                              uniqueItems: true
+                            media_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            minimum_update_period_seconds:
+                              type: integer
+                              description: Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
+                              format: int32
+                              minimum: 0
+                            multi_variant_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS multi-variant playlists. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            pdt_on_every_segment:
+                              type: boolean
+                              description: 'When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in HLS media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.'
+                            pre_start_duration_seconds:
+                              type: integer
+                              description: Pre Start Duration is the length of content that will be included in the manifest when the start time of a manifest is in the future. When a manifest is near the start time but does not contain 'pre_start_duration_seconds' content Manifest Origin will keep content before the start time to make the manifest length at least 'pre_start_duration_seconds'. If not specified requesting a manifest in the future will result in a 404.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            suggested_presentation_delay_seconds:
+                              type: integer
+                              description: Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration.
+                              format: int32
+                              minimum: 0
+                          additionalProperties: false
                       fallback_defaults:
                         type: object
                         description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
@@ -7715,6 +7984,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -7724,6 +7999,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -7781,6 +8062,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -7790,6 +8077,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -8283,6 +8576,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -8296,12 +8600,12 @@ components:
                     exclusiveMinimum: true
                   channels:
                     type: integer
-                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
+                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) 10 - Dolby 5.1.4 (AC4 only) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
                     format: int32
                     example: 2
                     minimum: 0
                     exclusiveMinimum: true
-                    maximum: 6
+                    maximum: 10
                   codec:
                     type: string
                     description: Codec specifies the audio data encoding format.
@@ -8310,9 +8614,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -8564,6 +8869,12 @@ components:
                         type: string
                         description: Identifies the 'AudioSource' to be transcribed.
                         minLength: 1
+                      preset:
+                        type: string
+                        description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                        enum:
+                          - CNN
+                          - NCAA
                     additionalProperties: false
                   usage:
                     type: string
@@ -8583,7 +8894,7 @@ components:
                     description: Height specifies the thumbnail image height in pixels.
                     format: int32
                     example: 180
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                   id:
                     type: string
@@ -8594,7 +8905,7 @@ components:
                     description: Width specifies the thumbnail image width in pixels.
                     format: int32
                     example: 320
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                 additionalProperties: false
             video_encoders:
@@ -8838,7 +9149,7 @@ components:
                       - CENTER_CROP
                   width:
                     type: integer
-                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.'
+                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 32x24 to 1920x1080 or 1080x1920 H.265: 130x128 to 3840x2160 or 2160x3840 The upper limit is dictated by the total number of pixels.'
                     format: int32
                     example: 1920
                     minimum: 1
@@ -8847,6 +9158,33 @@ components:
               minItems: 1
           additionalProperties: false
       additionalProperties: false
+    patch-org-channel-request2:
+      type: array
+      items:
+        type: object
+        properties:
+          from:
+            type: string
+            description: JSON Pointer for the source of a move or copy
+          op:
+            type: string
+            description: Operation name
+            enum:
+              - add
+              - remove
+              - replace
+              - move
+              - copy
+              - test
+          path:
+            type: string
+            description: JSON Pointer to the field being operated on, or the destination of a move/copy operation
+          value:
+            description: The value to set
+        additionalProperties: false
+        required:
+          - op
+          - path
     put-org-channel-request:
       type: object
       properties:
@@ -9444,6 +9782,86 @@ components:
                     type: object
                     description: Configures defaults used when generating manifests or playlist using the dynamic origin. Cannot be set if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for').
                     properties:
+                      alternate_manifest_defaults:
+                        type: object
+                        description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
+                        additionalProperties:
+                          type: object
+                          properties:
+                            dash_signaling_formats:
+                              type: array
+                              description: DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
+                              items:
+                                type: string
+                                enum:
+                                  - SCTE35_SPLICE_INFO_SECTION
+                                  - SCTE35_BIN
+                              uniqueItems: true
+                            drm_system_ids:
+                              type: array
+                              description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                              items:
+                                type: string
+                              uniqueItems: true
+                            duration_seconds:
+                              type: integer
+                              description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            enable_hls_delta_updates:
+                              type: boolean
+                              description: When true enables HLS Delta updates for this particular origin.
+                            encoder_ids:
+                              type: array
+                              description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                              items:
+                                type: string
+                              uniqueItems: true
+                            hls_signaling_formats:
+                              type: array
+                              description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
+                              items:
+                                type: string
+                                enum:
+                                  - APPLE_SCTE35
+                                  - AD_SIMPLE
+                                  - SCTE35
+                              uniqueItems: true
+                            media_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            minimum_update_period_seconds:
+                              type: integer
+                              description: Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
+                              format: int32
+                              minimum: 0
+                            multi_variant_url_type:
+                              type: string
+                              description: Allows specifying url type for HLS multi-variant playlists. If not provided, playlist generation will use 'RELATIVE'.
+                              enum:
+                                - RELATIVE
+                                - ABSOLUTE
+                                - HOST_RELATIVE
+                            pdt_on_every_segment:
+                              type: boolean
+                              description: 'When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in HLS media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.'
+                            pre_start_duration_seconds:
+                              type: integer
+                              description: Pre Start Duration is the length of content that will be included in the manifest when the start time of a manifest is in the future. When a manifest is near the start time but does not contain 'pre_start_duration_seconds' content Manifest Origin will keep content before the start time to make the manifest length at least 'pre_start_duration_seconds'. If not specified requesting a manifest in the future will result in a 404.
+                              format: int32
+                              minimum: 0
+                              maximum: 43200
+                            suggested_presentation_delay_seconds:
+                              type: integer
+                              description: Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration.
+                              format: int32
+                              minimum: 0
+                          additionalProperties: false
                       fallback_defaults:
                         type: object
                         description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
@@ -9457,6 +9875,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -9466,6 +9890,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -9523,6 +9953,12 @@ components:
                                 - SCTE35_SPLICE_INFO_SECTION
                                 - SCTE35_BIN
                             uniqueItems: true
+                          drm_system_ids:
+                            type: array
+                            description: 'Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: ''81376844-f976-481e-a84e-cc25d39b0b33'' for bulk file encryption ID'
+                            items:
+                              type: string
+                            uniqueItems: true
                           duration_seconds:
                             type: integer
                             description: Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
@@ -9532,6 +9968,12 @@ components:
                           enable_hls_delta_updates:
                             type: boolean
                             description: When true enables HLS Delta updates for this particular origin.
+                          encoder_ids:
+                            type: array
+                            description: Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+                            items:
+                              type: string
+                            uniqueItems: true
                           hls_signaling_formats:
                             type: array
                             description: HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -10025,6 +10467,17 @@ components:
               items:
                 type: object
                 properties:
+                  ac4:
+                    type: object
+                    description: Only one of ['eac3', 'ac4'] may be set.
+                    properties:
+                      encoding_mode:
+                        type: string
+                        enum:
+                          - ENCODING_MODE_UNSPECIFIED
+                          - ENCODING_MODE_EMISSION
+                        example: ENCODING_MODE_EMISSION
+                    additionalProperties: false
                   audio_source_id:
                     type: string
                     description: Audio source ID specifies which stream within the audio source to use.
@@ -10038,12 +10491,12 @@ components:
                     exclusiveMinimum: true
                   channels:
                     type: integer
-                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
+                    description: 'Channels specifies the number of real audio channels to encode. The available options depend on the audio codec. The encoder supports different channel configurations based on the codec; AAC 1-2 channels, AC3 supports 2 or 6, and EAC3 supports 2 or 6. For example, for AC3 5.1 one would set 6 channels. Channel configurations are as follows: 1 - Mono (C) 2 - Stereo / Dolby 2.0 (L, R) 6 - Dolby 5.1 (L, C, R, l, r, LFE) 10 - Dolby 5.1.4 (AC4 only) Dolby Atmos layouts such as 5.1.4 are achieved by setting this field to 6 and configuring ddp_joc_logical_channels in EAC3Settings as desired.'
                     format: int32
                     example: 2
                     minimum: 0
                     exclusiveMinimum: true
-                    maximum: 6
+                    maximum: 10
                   codec:
                     type: string
                     description: Codec specifies the audio data encoding format.
@@ -10052,9 +10505,10 @@ components:
                       - AC3
                       - EAC3
                       - HE_AAC
+                      - AC4
                   eac3:
                     type: object
-                    description: Only one of ['eac3'] may be set.
+                    description: Only one of ['eac3', 'ac4'] may be set.
                     properties:
                       ddp_joc_complexity_index:
                         type: integer
@@ -10306,6 +10760,12 @@ components:
                         type: string
                         description: Identifies the 'AudioSource' to be transcribed.
                         minLength: 1
+                      preset:
+                        type: string
+                        description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                        enum:
+                          - CNN
+                          - NCAA
                     additionalProperties: false
                   usage:
                     type: string
@@ -10325,7 +10785,7 @@ components:
                     description: Height specifies the thumbnail image height in pixels.
                     format: int32
                     example: 180
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                   id:
                     type: string
@@ -10336,7 +10796,7 @@ components:
                     description: Width specifies the thumbnail image width in pixels.
                     format: int32
                     example: 320
-                    minimum: 0
+                    minimum: 31
                     exclusiveMinimum: true
                 additionalProperties: false
             video_encoders:
@@ -10580,7 +11040,7 @@ components:
                       - CENTER_CROP
                   width:
                     type: integer
-                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.'
+                    description: 'Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 32x24 to 1920x1080 or 1080x1920 H.265: 130x128 to 3840x2160 or 2160x3840 The upper limit is dictated by the total number of pixels.'
                     format: int32
                     example: 1920
                     minimum: 1
@@ -12474,7 +12934,7 @@ paths:
   /v2/scte-history:
     get:
       description: |
-        Returns SCTE-35 history for all channels.
+        Returns the history of out-of-band SCTE-35 messages received by the transcoder for all channels.
       operationId: list-raw-scte-history
       parameters:
         - name: from
@@ -13341,10 +13801,10 @@ paths:
         content:
           application/json-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request'
+              $ref: '#/components/schemas/patch-org-channel-request2'
           application/merge-patch+json:
             schema:
-              $ref: '#/components/schemas/patch-org-channel-request2'
+              $ref: '#/components/schemas/patch-org-channel-request'
       responses:
         "201":
           description: Created
@@ -14828,6 +15288,168 @@ paths:
               schema:
                 type: string
       summary: List Channel Content Segments History
+      tags:
+        - Transcoder Telemetry
+  /v2/{org}/channels/{channel-id}/cost-report:
+    get:
+      description: |
+        Returns a Cost Report for a channel.
+      operationId: get-channel-cost-report
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: channel-id
+          description: Unique channel identifier
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+        - name: to
+          description: ISO 8601 UTC timestamp for end range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCostReport'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: Get Channel Cost Report
       tags:
         - Transcoder Telemetry
   /v2/{org}/channels/{channel-id}/desired-state:
@@ -16822,7 +17444,7 @@ paths:
   /v2/{org}/channels/{channel-id}/scte-history:
     get:
       description: |
-        Returns SCTE history for a channel.
+        Returns the history of out-of-band SCTE-35 messages received by the transcoder for a channel.
       operationId: list-raw-scte-history-by-channel
       parameters:
         - name: org
@@ -20766,6 +21388,177 @@ paths:
       summary: Collapse Vod
       tags:
         - Live2VOD for Organization
+  /v2/{org}/cost-report:
+    get:
+      description: |
+        Returns Cost Reports for channels in an organization.
+      operationId: list-organization-cost-reports
+      parameters:
+        - name: org
+          description: Organization name
+          in: path
+          required: true
+          schema:
+            type: string
+            description: Organization name
+        - name: from
+          description: ISO 8601 UTC timestamp for start range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+          explode: false
+        - name: to
+          description: ISO 8601 UTC timestamp for end range of date filtering
+          in: query
+          schema:
+            type: string
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+          explode: false
+        - name: cursor
+          description: Current page cursor
+          in: query
+          schema:
+            type: string
+            description: Current page cursor
+          explode: false
+        - name: page_size
+          description: Number of items to return
+          in: query
+          schema:
+            type: integer
+            description: Number of items to return
+            format: int32
+            default: 100
+            minimum: 1
+            maximum: 100
+          explode: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChannelCostReportList'
+          description: OK
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+          headers:
+            Content-Type:
+              description: Content-Type
+              schema:
+                type: string
+            Link:
+              description: Link
+              schema:
+                type: string
+      summary: 'List Organization Cost Reports '
+      tags:
+        - Transcoder Telemetry
   /v2/{org}/products:
     get:
       description: Get all the products for a specific organization across all regions

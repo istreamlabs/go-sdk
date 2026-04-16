@@ -12,9 +12,11 @@ if [[ "$API" == "isp" ]]; then
     OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi.json"
   fi
 elif [[ "$API" == "isp-slate" ]]; then
-  OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi-3.0.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="https://stage.api.istreamplanet.com/docs/slates/openapi.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/docs/slates/openapi-3.0.json"
+  elif [[ $ENV == "int" ]]; then
+    OPENAPI_SPEC="https://int.api.istreamplanet.com/docs/slates/openapi-3.0.json"
   fi
 elif [[ "$API" == "isp-lifecycle" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/state/openapi-3.0.json"
@@ -71,6 +73,11 @@ sed -i.bak -E 's/@@@@"([^"]+)"@@@@/\1/g' ./${API}/*.go
 # Logicless templates are dumping `example:"null"` on every field, so we've
 # got to remove those.
 sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
+
+# Strip leading/trailing regex delimiters added by generator (e.g., "/^...$/")
+# Restrict to struct tag context (inside backticks) to avoid accidental matches.
+# Note: Use POSIX ERE (no \b). Tested with BSD sed (macOS).
+sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go

@@ -26,7 +26,7 @@ jobs:
         uses: actions/checkout@v4
       -
         name: Detect changes
-        uses: dorny/paths-filter@v3
+        uses: dorny/paths-filter@v4
         id: changed-paths
         with:
           filters: |
@@ -44,7 +44,7 @@ jobs:
       -
         uses: actions/checkout@v4
       -
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
       -
         name: Run tests
         run: go test ./...

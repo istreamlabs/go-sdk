@@ -30,8 +30,8 @@ type ChannelTranscodeVideoEncodersInner struct {
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	// Indicates how to handle the case where the input aspect ratio does not match the aspect ratio of this VideoEncoder.
 	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX,CENTER_CROP" doc:"Indicates how to handle the case where the input aspect ratio does not match the aspect ratio of this VideoEncoder."`
-	// Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels.
-	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 2x2 to 1920x1080 or 1080x1920 H.265: 130x34 to 3840x2160 or 2160x3840 The upper limit is dictated by the number of pixels."`
+	// Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 32x24 to 1920x1080 or 1080x1920 H.265: 130x128 to 3840x2160 or 2160x3840 The upper limit is dictated by the total number of pixels.
+	Width *int32 `json:"width,omitempty" format:"int32" exclusiveMinimum:"1" doc:"Width specifies the video width in pixels. Must be a multiple of two. Valid resolution ranges, width x height are: H.264: 32x24 to 1920x1080 or 1080x1920 H.265: 130x128 to 3840x2160 or 2160x3840 The upper limit is dictated by the total number of pixels."`
 }
 
 // NewChannelTranscodeVideoEncodersInner instantiates a new ChannelTranscodeVideoEncodersInner object
