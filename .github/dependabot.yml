@@ -1,0 +1,17 @@
+version: 2
+
+updates:
+-
+  package-ecosystem: github-actions
+  directory: /
+  open-pull-requests-limit: 5
+  schedule:
+    interval: weekly
+    day: friday
+    time: "08:00"
+    timezone: America/Los_Angeles
+  allow:
+    - dependency-type: direct
+  ignore:
+    - dependency-name: '*'
+      update-types: [version-update:semver-patch]
