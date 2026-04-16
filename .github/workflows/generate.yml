@@ -78,7 +78,7 @@ jobs:
       - name: Create Pull Request
         id: create-pr
         if: steps.changes.outputs.should-commit == 'true'
-        uses: peter-evans/create-pull-request@v6
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "re-generate sdk"
           branch: ${{ steps.pr-head.outputs.name }}
