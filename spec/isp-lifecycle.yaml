@@ -255,7 +255,6 @@ paths:
       operationId: put-lifecycle-component-state
       parameters:
         - description: The channel_urn (channeldoc identifier).
-          example: isp-test-123
           in: path
           name: channel_urn
           required: true
@@ -265,7 +264,6 @@ paths:
             minLength: 1
             type: string
         - description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
-          example: CHANNEL_CONFIG
           in: path
           name: component
           required: true
@@ -301,7 +299,6 @@ paths:
       operationId: calculate-lifecycle-state
       parameters:
         - description: The organization that owns the channel.
-          example: isp
           in: path
           name: org
           required: true
@@ -311,7 +308,6 @@ paths:
             minLength: 1
             type: string
         - description: The name of the channel.
-          example: channel-id
           in: path
           name: channel_id
           required: true
@@ -342,7 +338,6 @@ paths:
       operationId: list-lifecycle-component-states
       parameters:
         - description: The organization that owns the channel.
-          example: isp
           in: path
           name: org
           required: true
@@ -352,7 +347,6 @@ paths:
             minLength: 1
             type: string
         - description: The name of the channel.
-          example: channel-id
           in: path
           name: channel_id
           required: true
@@ -383,7 +377,6 @@ paths:
       operationId: get-lifecycle-component-state
       parameters:
         - description: The organization that owns the channel.
-          example: isp
           in: path
           name: org
           required: true
@@ -393,7 +386,6 @@ paths:
             minLength: 1
             type: string
         - description: The name of the channel.
-          example: channel-id
           in: path
           name: channel_id
           required: true
@@ -403,7 +395,6 @@ paths:
             minLength: 1
             type: string
         - description: A service or feature involved in a channel workflow/operations (ie. "what" the lifecycle system is concerned with).
-          example: CHANNEL_CONFIG
           in: path
           name: component
           required: true

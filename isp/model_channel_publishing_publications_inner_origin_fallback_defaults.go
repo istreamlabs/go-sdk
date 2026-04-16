@@ -20,10 +20,14 @@ var _ MappedNullable = &ChannelPublishingPublicationsInnerOriginFallbackDefaults
 type ChannelPublishingPublicationsInnerOriginFallbackDefaults struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
 	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
+	// Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID
+	DrmSystemIds []string `json:"drm_system_ids,omitempty" uniqueItems:"true" doc:"Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID"`
 	// Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds.
 	DurationSeconds *int32 `json:"duration_seconds,omitempty" format:"int32" minimum:"0" maximum:"43200" doc:"Duration is the length of content that will be included in the manifest, in seconds. The max supported DVR window is 12 hours. If not specified, the default duration will be 30 seconds."`
 	// When true enables HLS Delta updates for this particular origin.
 	EnableHlsDeltaUpdates *bool `json:"enable_hls_delta_updates,omitempty" doc:"When true enables HLS Delta updates for this particular origin."`
+	// Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests.
+	EncoderIds []string `json:"encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which encoders (video, audio, thumbnail) should be used for this origin manifest. If none are specified, all video encoders configured for the origin will be used. Only honored for Alternate Manifests."`
 	// HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
 	HlsSignalingFormats []string `json:"hls_signaling_formats,omitempty" uniqueItems:"true" enum:"APPLE_SCTE35,AD_SIMPLE,SCTE35" doc:"HLS signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists."`
 	// Allows specifying url type for HLS media playlists and DASH manifests. If not provided, playlist generation will use 'RELATIVE'.
@@ -89,6 +93,38 @@ func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) SetDashSignal
 	o.DashSignalingFormats = v
 }
 
+// GetDrmSystemIds returns the DrmSystemIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) GetDrmSystemIds() []string {
+	if o == nil || IsNil(o.DrmSystemIds) {
+		var ret []string
+		return ret
+	}
+	return o.DrmSystemIds
+}
+
+// GetDrmSystemIdsOk returns a tuple with the DrmSystemIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) GetDrmSystemIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.DrmSystemIds) {
+		return nil, false
+	}
+	return o.DrmSystemIds, true
+}
+
+// HasDrmSystemIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) HasDrmSystemIds() bool {
+	if o != nil && !IsNil(o.DrmSystemIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrmSystemIds gets a reference to the given []string and assigns it to the DrmSystemIds field.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) SetDrmSystemIds(v []string) {
+	o.DrmSystemIds = v
+}
+
 // GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
 func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) GetDurationSeconds() int32 {
 	if o == nil || IsNil(o.DurationSeconds) {
@@ -151,6 +187,38 @@ func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) HasEnableHlsD
 // SetEnableHlsDeltaUpdates gets a reference to the given bool and assigns it to the EnableHlsDeltaUpdates field.
 func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) SetEnableHlsDeltaUpdates(v bool) {
 	o.EnableHlsDeltaUpdates = &v
+}
+
+// GetEncoderIds returns the EncoderIds field value if set, zero value otherwise.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) GetEncoderIds() []string {
+	if o == nil || IsNil(o.EncoderIds) {
+		var ret []string
+		return ret
+	}
+	return o.EncoderIds
+}
+
+// GetEncoderIdsOk returns a tuple with the EncoderIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) GetEncoderIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.EncoderIds) {
+		return nil, false
+	}
+	return o.EncoderIds, true
+}
+
+// HasEncoderIds returns a boolean if a field has been set.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) HasEncoderIds() bool {
+	if o != nil && !IsNil(o.EncoderIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetEncoderIds gets a reference to the given []string and assigns it to the EncoderIds field.
+func (o *ChannelPublishingPublicationsInnerOriginFallbackDefaults) SetEncoderIds(v []string) {
+	o.EncoderIds = v
 }
 
 // GetHlsSignalingFormats returns the HlsSignalingFormats field value if set, zero value otherwise.
@@ -390,11 +458,17 @@ func (o ChannelPublishingPublicationsInnerOriginFallbackDefaults) ToMap() (map[s
 	if !IsNil(o.DashSignalingFormats) {
 		toSerialize["dash_signaling_formats"] = o.DashSignalingFormats
 	}
+	if !IsNil(o.DrmSystemIds) {
+		toSerialize["drm_system_ids"] = o.DrmSystemIds
+	}
 	if !IsNil(o.DurationSeconds) {
 		toSerialize["duration_seconds"] = o.DurationSeconds
 	}
 	if !IsNil(o.EnableHlsDeltaUpdates) {
 		toSerialize["enable_hls_delta_updates"] = o.EnableHlsDeltaUpdates
+	}
+	if !IsNil(o.EncoderIds) {
+		toSerialize["encoder_ids"] = o.EncoderIds
 	}
 	if !IsNil(o.HlsSignalingFormats) {
 		toSerialize["hls_signaling_formats"] = o.HlsSignalingFormats
