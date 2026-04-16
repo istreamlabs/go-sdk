@@ -44,7 +44,7 @@ jobs:
           echo "base=$baseRefName" | tee -a "$GITHUB_OUTPUT"
       
       - name: Comment on PR
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           number: ${{ github.event.issue.number }}
           recreate: true
@@ -67,7 +67,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Comment on old PR
-        uses: marocchino/sticky-pull-request-comment@v2
+        uses: marocchino/sticky-pull-request-comment@v3
         with:
           number: ${{ github.event.issue.number }}
           recreate: true
