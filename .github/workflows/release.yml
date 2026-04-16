@@ -30,7 +30,7 @@ jobs:
       -
         name: Tag new version
         id: tag
-        uses: paulhatch/semantic-version@v5.4.0
+        uses: paulhatch/semantic-version@v6.0.2
         with:
           change_path: "isp isp-slate"
           tag_prefix: v
