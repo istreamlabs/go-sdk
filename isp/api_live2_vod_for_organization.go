@@ -32,14 +32,16 @@ type Live2VODForOrganizationApi interface {
 	@param vodId ID for a VOD
 	@return ApiCollapseVodRequest
 	*/
-	CollapseVod(ctx context.Context, org string, channelId string, vodId string) ApiCollapseVodRequest
+	CollapseVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiCollapseVodRequest
 
 	// CollapseVodExecute executes the request
-	//  @return CollapseVODResponse
-	CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponse, *http.Response, error)
+	//  @return CollapseVODResponseBody
+	CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponseBody, *http.Response, error)
 
 	/*
-	GetOrgClipManifests Retrieve the manifests for a given clip id
+	GetOrgClipManifests Get manifest information for a clip
+
+	Retrieves a clip's manifest given a clip id
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
@@ -48,11 +50,11 @@ type Live2VODForOrganizationApi interface {
 	@param clipId ID for a Clip
 	@return ApiGetOrgClipManifestsRequest
 	*/
-	GetOrgClipManifests(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgClipManifestsRequest
+	GetOrgClipManifests(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgClipManifestsRequest
 
 	// GetOrgClipManifestsExecute executes the request
-	//  @return []ClipManifestResponse
-	GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) ([]ClipManifestResponse, *http.Response, error)
+	//  @return interface{}
+	GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) (interface{}, *http.Response, error)
 
 	/*
 	GetOrgClipPlayurl Get a playurl for a clip
@@ -65,11 +67,11 @@ type Live2VODForOrganizationApi interface {
 	@param clipId ID for a Clip
 	@return ApiGetOrgClipPlayurlRequest
 	*/
-	GetOrgClipPlayurl(ctx context.Context, org string, channelId string, clipId string) ApiGetOrgClipPlayurlRequest
+	GetOrgClipPlayurl(ctx context.Context, org interface{}, channelId interface{}, clipId interface{}) ApiGetOrgClipPlayurlRequest
 
 	// GetOrgClipPlayurlExecute executes the request
-	//  @return PlayURLResponse
-	GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLResponse, *http.Response, error)
+	//  @return PlayURLBody
+	GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLBody, *http.Response, error)
 
 	/*
 	GetOrgMp4Url Get Clip MP4 URL
@@ -84,11 +86,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param clipId ID for a Clip
 	@return ApiGetOrgMp4UrlRequest
 	*/
-	GetOrgMp4Url(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgMp4UrlRequest
+	GetOrgMp4Url(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgMp4UrlRequest
 
 	// GetOrgMp4UrlExecute executes the request
-	//  @return MP4URLResponse
-	GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponse, *http.Response, error)
+	//  @return MP4URLResponseBody
+	GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponseBody, *http.Response, error)
 
 	/*
 	GetOrgProduct Get product
@@ -100,14 +102,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param productId Product ID for a l2v request
 	@return ApiGetOrgProductRequest
 	*/
-	GetOrgProduct(ctx context.Context, org string, productId string) ApiGetOrgProductRequest
+	GetOrgProduct(ctx context.Context, org interface{}, productId interface{}) ApiGetOrgProductRequest
 
 	// GetOrgProductExecute executes the request
-	//  @return GetProductResponse
-	GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponse, *http.Response, error)
+	//  @return GetProductResponseBody
+	GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponseBody, *http.Response, error)
 
 	/*
-	GetOrgProductConfig Get product config 
+	GetOrgProductConfig Get product config
 
 	Get fields for product config
 
@@ -116,11 +118,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param productId Product ID for a l2v request
 	@return ApiGetOrgProductConfigRequest
 	*/
-	GetOrgProductConfig(ctx context.Context, org string, productId string) ApiGetOrgProductConfigRequest
+	GetOrgProductConfig(ctx context.Context, org interface{}, productId interface{}) ApiGetOrgProductConfigRequest
 
 	// GetOrgProductConfigExecute executes the request
-	//  @return GetProductConfigResponse
-	GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponse, *http.Response, error)
+	//  @return GetProductConfigResponseBody
+	GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponseBody, *http.Response, error)
 
 	/*
 	GetOrgProgramTasks Get Tasks for Program
@@ -132,11 +134,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param channelId Unique channel identifier
 	@return ApiGetOrgProgramTasksRequest
 	*/
-	GetOrgProgramTasks(ctx context.Context, org string, channelId string) ApiGetOrgProgramTasksRequest
+	GetOrgProgramTasks(ctx context.Context, org interface{}, channelId interface{}) ApiGetOrgProgramTasksRequest
 
 	// GetOrgProgramTasksExecute executes the request
-	//  @return TaskResponse
-	GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*TaskResponse, *http.Response, error)
+	//  @return GetTaskProgramResponseBody
+	GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*GetTaskProgramResponseBody, *http.Response, error)
 
 	/*
 	GetOrgTask Get Task
@@ -149,11 +151,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param taskId Task ID for a l2v request
 	@return ApiGetOrgTaskRequest
 	*/
-	GetOrgTask(ctx context.Context, org string, channelId string, taskId string) ApiGetOrgTaskRequest
+	GetOrgTask(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiGetOrgTaskRequest
 
 	// GetOrgTaskExecute executes the request
-	//  @return GetTaskResponse
-	GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponse, *http.Response, error)
+	//  @return GetTaskResponseBody
+	GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponseBody, *http.Response, error)
 
 	/*
 	GetOrgVod Get VOD
@@ -166,11 +168,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param vodId ID for a VOD
 	@return ApiGetOrgVodRequest
 	*/
-	GetOrgVod(ctx context.Context, org string, channelId string, vodId string) ApiGetOrgVodRequest
+	GetOrgVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiGetOrgVodRequest
 
 	// GetOrgVodExecute executes the request
-	//  @return GetVODResponse
-	GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponse, *http.Response, error)
+	//  @return GetVODResponseBody
+	GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponseBody, *http.Response, error)
 
 	/*
 	GetOrgVodClipProgramTime Get Clip Program Times
@@ -184,11 +186,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param clipId ID for a Clip
 	@return ApiGetOrgVodClipProgramTimeRequest
 	*/
-	GetOrgVodClipProgramTime(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipProgramTimeRequest
+	GetOrgVodClipProgramTime(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgVodClipProgramTimeRequest
 
 	// GetOrgVodClipProgramTimeExecute executes the request
-	//  @return GetClipProgramTimeResponse
-	GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponse, *http.Response, error)
+	//  @return GetClipProgramTimeResponseBody
+	GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponseBody, *http.Response, error)
 
 	/*
 	GetOrgVodClipScte35Markers Get Scte 35 Markers By Clip
@@ -202,11 +204,25 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param clipId ID for a Clip
 	@return ApiGetOrgVodClipScte35MarkersRequest
 	*/
-	GetOrgVodClipScte35Markers(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipScte35MarkersRequest
+	GetOrgVodClipScte35Markers(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgVodClipScte35MarkersRequest
 
 	// GetOrgVodClipScte35MarkersExecute executes the request
-	//  @return GetScte35MarkerByClipIDResponse
-	GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponse, *http.Response, error)
+	//  @return GetScte35MarkerByClipIDResponseBody
+	GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponseBody, *http.Response, error)
+
+	/*
+	ListFailedTasks List Failed Tasks
+
+	List all permanently failed L2V tasks (exhausted all retries) from the last 14 days.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListFailedTasksRequest
+	*/
+	ListFailedTasks(ctx context.Context) ApiListFailedTasksRequest
+
+	// ListFailedTasksExecute executes the request
+	//  @return ListTasksResponseBody
+	ListFailedTasksExecute(r ApiListFailedTasksRequest) (*ListTasksResponseBody, *http.Response, error)
 
 	/*
 	ListOrgClips List available clips
@@ -218,11 +234,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param channelId Unique channel identifier
 	@return ApiListOrgClipsRequest
 	*/
-	ListOrgClips(ctx context.Context, org string, channelId string) ApiListOrgClipsRequest
+	ListOrgClips(ctx context.Context, org interface{}, channelId interface{}) ApiListOrgClipsRequest
 
 	// ListOrgClipsExecute executes the request
-	//  @return ListClipsResponse
-	ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponse, *http.Response, error)
+	//  @return ListClipsResponseBody
+	ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponseBody, *http.Response, error)
 
 	/*
 	ListOrgClipsVod List available clips for a vod
@@ -235,11 +251,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param vodId ID for a VOD
 	@return ApiListOrgClipsVodRequest
 	*/
-	ListOrgClipsVod(ctx context.Context, org string, channelId string, vodId string) ApiListOrgClipsVodRequest
+	ListOrgClipsVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiListOrgClipsVodRequest
 
 	// ListOrgClipsVodExecute executes the request
-	//  @return ListClipsForVodResponse
-	ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponse, *http.Response, error)
+	//  @return ListClipsForVodResponseBody
+	ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponseBody, *http.Response, error)
 
 	/*
 	ListOrgProducts List Products
@@ -250,11 +266,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param org Organization name
 	@return ApiListOrgProductsRequest
 	*/
-	ListOrgProducts(ctx context.Context, org string) ApiListOrgProductsRequest
+	ListOrgProducts(ctx context.Context, org interface{}) ApiListOrgProductsRequest
 
 	// ListOrgProductsExecute executes the request
-	//  @return ListProductsResponse
-	ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponse, *http.Response, error)
+	//  @return ListProductsResponseBody
+	ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponseBody, *http.Response, error)
 
 	/*
 	ListOrgProductsPrograms List Programs
@@ -266,11 +282,11 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	@param productId Product ID for a l2v request
 	@return ApiListOrgProductsProgramsRequest
 	*/
-	ListOrgProductsPrograms(ctx context.Context, org string, productId string) ApiListOrgProductsProgramsRequest
+	ListOrgProductsPrograms(ctx context.Context, org interface{}, productId interface{}) ApiListOrgProductsProgramsRequest
 
 	// ListOrgProductsProgramsExecute executes the request
-	//  @return ListProgramsResponse
-	ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponse, *http.Response, error)
+	//  @return ListProgramsResponseBody
+	ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponseBody, *http.Response, error)
 
 	/*
 	ListOrgVods List VODs
@@ -283,11 +299,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param channelId Unique channel identifier
 	@return ApiListOrgVodsRequest
 	*/
-	ListOrgVods(ctx context.Context, org string, channelId string) ApiListOrgVodsRequest
+	ListOrgVods(ctx context.Context, org interface{}, channelId interface{}) ApiListOrgVodsRequest
 
 	// ListOrgVodsExecute executes the request
-	//  @return []ListVODsResponse
-	ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error)
+	//  @return interface{}
+	ListOrgVodsExecute(r ApiListOrgVodsRequest) (interface{}, *http.Response, error)
 
 	/*
 	ListTasks List Tasks
@@ -300,8 +316,8 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListTasks(ctx context.Context) ApiListTasksRequest
 
 	// ListTasksExecute executes the request
-	//  @return ListTasksResponse
-	ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponse, *http.Response, error)
+	//  @return ListTasksResponseBody
+	ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponseBody, *http.Response, error)
 
 	/*
 	PostCopyMp4 Copy mp4
@@ -315,27 +331,28 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param clipId ID for a Clip
 	@return ApiPostCopyMp4Request
 	*/
-	PostCopyMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostCopyMp4Request
+	PostCopyMp4(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiPostCopyMp4Request
 
 	// PostCopyMp4Execute executes the request
-	//  @return PostCopyMP4Response
-	PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4Response, *http.Response, error)
+	//  @return PostCopyMP4ResponseBody
+	PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4ResponseBody, *http.Response, error)
 
 	/*
-	PostOrgChannelSyndication Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
+	PostOrgChannelSyndication Dynamic Syndication
 
-	Uses archive settings from the request to archive syndication files (mp4/wav) files.
+	Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
+Uses archive settings from the request to archive syndication files (mp4/wav) files.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
 	@return ApiPostOrgChannelSyndicationRequest
 	*/
-	PostOrgChannelSyndication(ctx context.Context, org string, channelId string) ApiPostOrgChannelSyndicationRequest
+	PostOrgChannelSyndication(ctx context.Context, org interface{}, channelId interface{}) ApiPostOrgChannelSyndicationRequest
 
 	// PostOrgChannelSyndicationExecute executes the request
-	//  @return DynamicSyndicationResponse
-	PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponse, *http.Response, error)
+	//  @return DynamicSyndicationResponseBody
+	PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponseBody, *http.Response, error)
 
 	/*
 	PostOrgClip Make a clip for all VODs
@@ -347,11 +364,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param channelId Unique channel identifier
 	@return ApiPostOrgClipRequest
 	*/
-	PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest
+	PostOrgClip(ctx context.Context, org interface{}, channelId interface{}) ApiPostOrgClipRequest
 
 	// PostOrgClipExecute executes the request
-	//  @return PostClipResponse
-	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponse, *http.Response, error)
+	//  @return PostClipResponseBody
+	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponseBody, *http.Response, error)
 
 	/*
 	PostOrgClipArchive Archive a clip
@@ -364,11 +381,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param clipId ID for a Clip
 	@return ApiPostOrgClipArchiveRequest
 	*/
-	PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest
+	PostOrgClipArchive(ctx context.Context, org interface{}, channelId interface{}, clipId interface{}) ApiPostOrgClipArchiveRequest
 
 	// PostOrgClipArchiveExecute executes the request
-	//  @return PostClipArchiveResponse
-	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponse, *http.Response, error)
+	//  @return PostClipArchiveResponseBody
+	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponseBody, *http.Response, error)
 
 	/*
 	PostOrgMakeMp4 Create MP4 for Clip
@@ -382,14 +399,14 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param clipId ID for a Clip
 	@return ApiPostOrgMakeMp4Request
 	*/
-	PostOrgMakeMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostOrgMakeMp4Request
+	PostOrgMakeMp4(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiPostOrgMakeMp4Request
 
 	// PostOrgMakeMp4Execute executes the request
-	//  @return MakeMP4Response
-	PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4Response, *http.Response, error)
+	//  @return MakeMP4ResponseBody
+	PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4ResponseBody, *http.Response, error)
 
 	/*
-	PostOrgProductConfig Update config 
+	PostOrgProductConfig Update config
 
 	Update fields for product config
 
@@ -398,11 +415,10 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param productId Product ID for a l2v request
 	@return ApiPostOrgProductConfigRequest
 	*/
-	PostOrgProductConfig(ctx context.Context, org string, productId string) ApiPostOrgProductConfigRequest
+	PostOrgProductConfig(ctx context.Context, org interface{}, productId interface{}) ApiPostOrgProductConfigRequest
 
 	// PostOrgProductConfigExecute executes the request
-	//  @return map[string]interface{}
-	PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (map[string]interface{}, *http.Response, error)
+	PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (*http.Response, error)
 
 	/*
 	PostOrgTaskCancel Cancel Task
@@ -415,11 +431,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param taskId Task ID for a l2v request
 	@return ApiPostOrgTaskCancelRequest
 	*/
-	PostOrgTaskCancel(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskCancelRequest
+	PostOrgTaskCancel(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiPostOrgTaskCancelRequest
 
 	// PostOrgTaskCancelExecute executes the request
-	//  @return CancelTaskResponse
-	PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponse, *http.Response, error)
+	//  @return CancelTaskResponseBody
+	PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponseBody, *http.Response, error)
 
 	/*
 	PostOrgTaskRetry Retry Task
@@ -432,11 +448,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param taskId Task ID for a l2v request
 	@return ApiPostOrgTaskRetryRequest
 	*/
-	PostOrgTaskRetry(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskRetryRequest
+	PostOrgTaskRetry(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiPostOrgTaskRetryRequest
 
 	// PostOrgTaskRetryExecute executes the request
-	//  @return RetryTaskResponse
-	PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponse, *http.Response, error)
+	//  @return RetryTaskResponseBody
+	PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponseBody, *http.Response, error)
 
 	/*
 	PostOrgVodClip Make a clip for a single VOD
@@ -449,11 +465,11 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param vodId ID for a VOD
 	@return ApiPostOrgVodClipRequest
 	*/
-	PostOrgVodClip(ctx context.Context, org string, channelId string, vodId string) ApiPostOrgVodClipRequest
+	PostOrgVodClip(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiPostOrgVodClipRequest
 
 	// PostOrgVodClipExecute executes the request
-	//  @return MakeClipResponse
-	PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponse, *http.Response, error)
+	//  @return MakeClipResponseBody
+	PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponseBody, *http.Response, error)
 
 	/*
 	PutOrgChannelFer Archive a FER
@@ -465,7 +481,7 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	@param channelId Unique channel identifier
 	@return ApiPutOrgChannelFerRequest
 	*/
-	PutOrgChannelFer(ctx context.Context, org string, channelId string) ApiPutOrgChannelFerRequest
+	PutOrgChannelFer(ctx context.Context, org interface{}, channelId interface{}) ApiPutOrgChannelFerRequest
 
 	// PutOrgChannelFerExecute executes the request
 	//  @return ArchiveFERResponse
@@ -478,18 +494,18 @@ type Live2VODForOrganizationApiService service
 type ApiCollapseVodRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	collapseVODRequest *CollapseVODRequest
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiCollapseVodRequest) CollapseVODRequest(collapseVODRequest CollapseVODRequest) ApiCollapseVodRequest {
-	r.collapseVODRequest = &collapseVODRequest
+func (r ApiCollapseVodRequest) RequestBody(requestBody map[string]interface{}) ApiCollapseVodRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiCollapseVodRequest) Execute() (*CollapseVODResponse, *http.Response, error) {
+func (r ApiCollapseVodRequest) Execute() (*CollapseVODResponseBody, *http.Response, error) {
 	return r.ApiService.CollapseVodExecute(r)
 }
 
@@ -504,7 +520,7 @@ A vod can be collapsed to a specific filter config
  @param vodId ID for a VOD
  @return ApiCollapseVodRequest
 */
-func (a *Live2VODForOrganizationApiService) CollapseVod(ctx context.Context, org string, channelId string, vodId string) ApiCollapseVodRequest {
+func (a *Live2VODForOrganizationApiService) CollapseVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiCollapseVodRequest {
 	return ApiCollapseVodRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -515,13 +531,13 @@ func (a *Live2VODForOrganizationApiService) CollapseVod(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return CollapseVODResponse
-func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponse, *http.Response, error) {
+//  @return CollapseVODResponseBody
+func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CollapseVODResponse
+		localVarReturnValue  *CollapseVODResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.CollapseVod")
@@ -539,6 +555,9 @@ func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodR
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -559,7 +578,7 @@ func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.collapseVODRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -680,7 +699,7 @@ func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodR
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*CollapseVODResponse)
+			localVarReturnValue = items.(*CollapseVODResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -691,18 +710,20 @@ func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodR
 type ApiGetOrgClipManifestsRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
 }
 
-func (r ApiGetOrgClipManifestsRequest) Execute() ([]ClipManifestResponse, *http.Response, error) {
+func (r ApiGetOrgClipManifestsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetOrgClipManifestsExecute(r)
 }
 
 /*
-GetOrgClipManifests Retrieve the manifests for a given clip id
+GetOrgClipManifests Get manifest information for a clip
+
+Retrieves a clip's manifest given a clip id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
@@ -711,7 +732,7 @@ GetOrgClipManifests Retrieve the manifests for a given clip id
  @param clipId ID for a Clip
  @return ApiGetOrgClipManifestsRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgClipManifests(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgClipManifestsRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgClipManifests(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgClipManifestsRequest {
 	return ApiGetOrgClipManifestsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -723,13 +744,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipManifests(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return []ClipManifestResponse
-func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) ([]ClipManifestResponse, *http.Response, error) {
+//  @return interface{}
+func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ClipManifestResponse
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgClipManifests")
@@ -867,7 +888,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetO
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]ClipManifestResponse)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}
@@ -878,12 +899,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetO
 type ApiGetOrgClipPlayurlRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	clipId string
+	org interface{}
+	channelId interface{}
+	clipId interface{}
 }
 
-func (r ApiGetOrgClipPlayurlRequest) Execute() (*PlayURLResponse, *http.Response, error) {
+func (r ApiGetOrgClipPlayurlRequest) Execute() (*PlayURLBody, *http.Response, error) {
 	return r.ApiService.GetOrgClipPlayurlExecute(r)
 }
 
@@ -898,7 +919,7 @@ Searches for an organization's VODs with a given ClipID and then returns a url f
  @param clipId ID for a Clip
  @return ApiGetOrgClipPlayurlRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurl(ctx context.Context, org string, channelId string, clipId string) ApiGetOrgClipPlayurlRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurl(ctx context.Context, org interface{}, channelId interface{}, clipId interface{}) ApiGetOrgClipPlayurlRequest {
 	return ApiGetOrgClipPlayurlRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -909,13 +930,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurl(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return PlayURLResponse
-func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLResponse, *http.Response, error) {
+//  @return PlayURLBody
+func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PlayURLResponse
+		localVarReturnValue  *PlayURLBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgClipPlayurl")
@@ -1052,7 +1073,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrg
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PlayURLResponse)
+			localVarReturnValue = items.(*PlayURLBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1063,13 +1084,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrg
 type ApiGetOrgMp4UrlRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
 }
 
-func (r ApiGetOrgMp4UrlRequest) Execute() (*MP4URLResponse, *http.Response, error) {
+func (r ApiGetOrgMp4UrlRequest) Execute() (*MP4URLResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgMp4UrlExecute(r)
 }
 
@@ -1086,7 +1107,7 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
  @param clipId ID for a Clip
  @return ApiGetOrgMp4UrlRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgMp4Url(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgMp4UrlRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgMp4Url(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgMp4UrlRequest {
 	return ApiGetOrgMp4UrlRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1098,13 +1119,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgMp4Url(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return MP4URLResponse
-func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponse, *http.Response, error) {
+//  @return MP4URLResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MP4URLResponse
+		localVarReturnValue  *MP4URLResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgMp4Url")
@@ -1242,7 +1263,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4Ur
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*MP4URLResponse)
+			localVarReturnValue = items.(*MP4URLResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1253,11 +1274,11 @@ func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4Ur
 type ApiGetOrgProductRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	org interface{}
+	productId interface{}
 }
 
-func (r ApiGetOrgProductRequest) Execute() (*GetProductResponse, *http.Response, error) {
+func (r ApiGetOrgProductRequest) Execute() (*GetProductResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgProductExecute(r)
 }
 
@@ -1271,7 +1292,7 @@ Get a product with an organization and product id. This will return one from eac
  @param productId Product ID for a l2v request
  @return ApiGetOrgProductRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProduct(ctx context.Context, org string, productId string) ApiGetOrgProductRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgProduct(ctx context.Context, org interface{}, productId interface{}) ApiGetOrgProductRequest {
 	return ApiGetOrgProductRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1281,13 +1302,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgProduct(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return GetProductResponse
-func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponse, *http.Response, error) {
+//  @return GetProductResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetProductResponse
+		localVarReturnValue  *GetProductResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProduct")
@@ -1420,7 +1441,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProd
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetProductResponse)
+			localVarReturnValue = items.(*GetProductResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1431,16 +1452,16 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProd
 type ApiGetOrgProductConfigRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	org interface{}
+	productId interface{}
 }
 
-func (r ApiGetOrgProductConfigRequest) Execute() (*GetProductConfigResponse, *http.Response, error) {
+func (r ApiGetOrgProductConfigRequest) Execute() (*GetProductConfigResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgProductConfigExecute(r)
 }
 
 /*
-GetOrgProductConfig Get product config 
+GetOrgProductConfig Get product config
 
 Get fields for product config
 
@@ -1449,7 +1470,7 @@ Get fields for product config
  @param productId Product ID for a l2v request
  @return ApiGetOrgProductConfigRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProductConfig(ctx context.Context, org string, productId string) ApiGetOrgProductConfigRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgProductConfig(ctx context.Context, org interface{}, productId interface{}) ApiGetOrgProductConfigRequest {
 	return ApiGetOrgProductConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1459,13 +1480,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductConfig(ctx context.Cont
 }
 
 // Execute executes the request
-//  @return GetProductConfigResponse
-func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponse, *http.Response, error) {
+//  @return GetProductConfigResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetProductConfigResponse
+		localVarReturnValue  *GetProductConfigResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProductConfig")
@@ -1598,7 +1619,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetO
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetProductConfigResponse)
+			localVarReturnValue = items.(*GetProductConfigResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1609,25 +1630,25 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetO
 type ApiGetOrgProgramTasksRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	cursor *string
-	pageSize *int32
+	org interface{}
+	channelId interface{}
+	cursor *interface{}
+	pageSize *interface{}
 }
 
 // Current page cursor
-func (r ApiGetOrgProgramTasksRequest) Cursor(cursor string) ApiGetOrgProgramTasksRequest {
+func (r ApiGetOrgProgramTasksRequest) Cursor(cursor interface{}) ApiGetOrgProgramTasksRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiGetOrgProgramTasksRequest) PageSize(pageSize int32) ApiGetOrgProgramTasksRequest {
+func (r ApiGetOrgProgramTasksRequest) PageSize(pageSize interface{}) ApiGetOrgProgramTasksRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiGetOrgProgramTasksRequest) Execute() (*TaskResponse, *http.Response, error) {
+func (r ApiGetOrgProgramTasksRequest) Execute() (*GetTaskProgramResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgProgramTasksExecute(r)
 }
 
@@ -1641,7 +1662,7 @@ List all L2V tasks for the channel identified in the request.
  @param channelId Unique channel identifier
  @return ApiGetOrgProgramTasksRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProgramTasks(ctx context.Context, org string, channelId string) ApiGetOrgProgramTasksRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgProgramTasks(ctx context.Context, org interface{}, channelId interface{}) ApiGetOrgProgramTasksRequest {
 	return ApiGetOrgProgramTasksRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1651,13 +1672,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgProgramTasks(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return TaskResponse
-func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*TaskResponse, *http.Response, error) {
+//  @return GetTaskProgramResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*GetTaskProgramResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *TaskResponse
+		localVarReturnValue  *GetTaskProgramResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProgramTasks")
@@ -1799,7 +1820,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOr
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*TaskResponse)
+			localVarReturnValue = items.(*GetTaskProgramResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1810,12 +1831,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOr
 type ApiGetOrgTaskRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	org interface{}
+	channelId interface{}
+	taskId interface{}
 }
 
-func (r ApiGetOrgTaskRequest) Execute() (*GetTaskResponse, *http.Response, error) {
+func (r ApiGetOrgTaskRequest) Execute() (*GetTaskResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgTaskExecute(r)
 }
 
@@ -1830,7 +1851,7 @@ Get a L2V task with the taskID.
  @param taskId Task ID for a l2v request
  @return ApiGetOrgTaskRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgTask(ctx context.Context, org string, channelId string, taskId string) ApiGetOrgTaskRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgTask(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiGetOrgTaskRequest {
 	return ApiGetOrgTaskRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1841,13 +1862,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgTask(ctx context.Context, org 
 }
 
 // Execute executes the request
-//  @return GetTaskResponse
-func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponse, *http.Response, error) {
+//  @return GetTaskResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetTaskResponse
+		localVarReturnValue  *GetTaskResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgTask")
@@ -1984,7 +2005,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskReq
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetTaskResponse)
+			localVarReturnValue = items.(*GetTaskResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1995,12 +2016,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskReq
 type ApiGetOrgVodRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
+	org interface{}
+	channelId interface{}
+	vodId interface{}
 }
 
-func (r ApiGetOrgVodRequest) Execute() (*GetVODResponse, *http.Response, error) {
+func (r ApiGetOrgVodRequest) Execute() (*GetVODResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgVodExecute(r)
 }
 
@@ -2015,7 +2036,7 @@ Get a singular vod for a channel
  @param vodId ID for a VOD
  @return ApiGetOrgVodRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVod(ctx context.Context, org string, channelId string, vodId string) ApiGetOrgVodRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiGetOrgVodRequest {
 	return ApiGetOrgVodRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2026,13 +2047,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgVod(ctx context.Context, org s
 }
 
 // Execute executes the request
-//  @return GetVODResponse
-func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponse, *http.Response, error) {
+//  @return GetVODResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetVODResponse
+		localVarReturnValue  *GetVODResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVod")
@@ -2169,7 +2190,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodReque
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetVODResponse)
+			localVarReturnValue = items.(*GetVODResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2180,13 +2201,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodReque
 type ApiGetOrgVodClipProgramTimeRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
 }
 
-func (r ApiGetOrgVodClipProgramTimeRequest) Execute() (*GetClipProgramTimeResponse, *http.Response, error) {
+func (r ApiGetOrgVodClipProgramTimeRequest) Execute() (*GetClipProgramTimeResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgVodClipProgramTimeExecute(r)
 }
 
@@ -2202,7 +2223,7 @@ Get the program start and end times for a clip
  @param clipId ID for a Clip
  @return ApiGetOrgVodClipProgramTimeRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTime(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipProgramTimeRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTime(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgVodClipProgramTimeRequest {
 	return ApiGetOrgVodClipProgramTimeRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2214,13 +2235,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTime(ctx context
 }
 
 // Execute executes the request
-//  @return GetClipProgramTimeResponse
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponse, *http.Response, error) {
+//  @return GetClipProgramTimeResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetClipProgramTimeResponse
+		localVarReturnValue  *GetClipProgramTimeResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVodClipProgramTime")
@@ -2358,7 +2379,7 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r Ap
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetClipProgramTimeResponse)
+			localVarReturnValue = items.(*GetClipProgramTimeResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2369,13 +2390,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r Ap
 type ApiGetOrgVodClipScte35MarkersRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
 }
 
-func (r ApiGetOrgVodClipScte35MarkersRequest) Execute() (*GetScte35MarkerByClipIDResponse, *http.Response, error) {
+func (r ApiGetOrgVodClipScte35MarkersRequest) Execute() (*GetScte35MarkerByClipIDResponseBody, *http.Response, error) {
 	return r.ApiService.GetOrgVodClipScte35MarkersExecute(r)
 }
 
@@ -2391,7 +2412,7 @@ Get the scte markers for a clip
  @param clipId ID for a Clip
  @return ApiGetOrgVodClipScte35MarkersRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35Markers(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipScte35MarkersRequest {
+func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35Markers(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiGetOrgVodClipScte35MarkersRequest {
 	return ApiGetOrgVodClipScte35MarkersRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2403,13 +2424,13 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35Markers(ctx conte
 }
 
 // Execute executes the request
-//  @return GetScte35MarkerByClipIDResponse
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponse, *http.Response, error) {
+//  @return GetScte35MarkerByClipIDResponseBody
+func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetScte35MarkerByClipIDResponse
+		localVarReturnValue  *GetScte35MarkerByClipIDResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVodClipScte35Markers")
@@ -2547,7 +2568,187 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r 
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetScte35MarkerByClipIDResponse)
+			localVarReturnValue = items.(*GetScte35MarkerByClipIDResponseBody)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiListFailedTasksRequest struct {
+	ctx context.Context
+	ApiService Live2VODForOrganizationApi
+}
+
+func (r ApiListFailedTasksRequest) Execute() (*ListTasksResponseBody, *http.Response, error) {
+	return r.ApiService.ListFailedTasksExecute(r)
+}
+
+/*
+ListFailedTasks List Failed Tasks
+
+List all permanently failed L2V tasks (exhausted all retries) from the last 14 days.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return ApiListFailedTasksRequest
+*/
+func (a *Live2VODForOrganizationApiService) ListFailedTasks(ctx context.Context) ApiListFailedTasksRequest {
+	return ApiListFailedTasksRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ListTasksResponseBody
+func (a *Live2VODForOrganizationApiService) ListFailedTasksExecute(r ApiListFailedTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ListTasksResponseBody
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListFailedTasks")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/tasks/failed"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 401 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*ListTasksResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2558,11 +2759,11 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r 
 type ApiListOrgClipsRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	org interface{}
+	channelId interface{}
 }
 
-func (r ApiListOrgClipsRequest) Execute() (*ListClipsResponse, *http.Response, error) {
+func (r ApiListOrgClipsRequest) Execute() (*ListClipsResponseBody, *http.Response, error) {
 	return r.ApiService.ListOrgClipsExecute(r)
 }
 
@@ -2576,7 +2777,7 @@ List all clips for all VODs of the channel identified in the request.
  @param channelId Unique channel identifier
  @return ApiListOrgClipsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgClips(ctx context.Context, org string, channelId string) ApiListOrgClipsRequest {
+func (a *Live2VODForOrganizationApiService) ListOrgClips(ctx context.Context, org interface{}, channelId interface{}) ApiListOrgClipsRequest {
 	return ApiListOrgClipsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2586,13 +2787,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgClips(ctx context.Context, or
 }
 
 // Execute executes the request
-//  @return ListClipsResponse
-func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponse, *http.Response, error) {
+//  @return ListClipsResponseBody
+func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListClipsResponse
+		localVarReturnValue  *ListClipsResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgClips")
@@ -2728,7 +2929,7 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClip
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListClipsResponse)
+			localVarReturnValue = items.(*ListClipsResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2739,26 +2940,26 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClip
 type ApiListOrgClipsVodRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	cursor *string
-	pageSize *int32
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	cursor *interface{}
+	pageSize *interface{}
 }
 
 // Current page cursor
-func (r ApiListOrgClipsVodRequest) Cursor(cursor string) ApiListOrgClipsVodRequest {
+func (r ApiListOrgClipsVodRequest) Cursor(cursor interface{}) ApiListOrgClipsVodRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiListOrgClipsVodRequest) PageSize(pageSize int32) ApiListOrgClipsVodRequest {
+func (r ApiListOrgClipsVodRequest) PageSize(pageSize interface{}) ApiListOrgClipsVodRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiListOrgClipsVodRequest) Execute() (*ListClipsForVodResponse, *http.Response, error) {
+func (r ApiListOrgClipsVodRequest) Execute() (*ListClipsForVodResponseBody, *http.Response, error) {
 	return r.ApiService.ListOrgClipsVodExecute(r)
 }
 
@@ -2773,7 +2974,7 @@ List all clips for a single VOD in the channel identified in the request.
  @param vodId ID for a VOD
  @return ApiListOrgClipsVodRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgClipsVod(ctx context.Context, org string, channelId string, vodId string) ApiListOrgClipsVodRequest {
+func (a *Live2VODForOrganizationApiService) ListOrgClipsVod(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiListOrgClipsVodRequest {
 	return ApiListOrgClipsVodRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2784,13 +2985,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsVod(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ListClipsForVodResponse
-func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponse, *http.Response, error) {
+//  @return ListClipsForVodResponseBody
+func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListClipsForVodResponse
+		localVarReturnValue  *ListClipsForVodResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgClipsVod")
@@ -2933,7 +3134,7 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgC
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListClipsForVodResponse)
+			localVarReturnValue = items.(*ListClipsForVodResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2944,10 +3145,10 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgC
 type ApiListOrgProductsRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
+	org interface{}
 }
 
-func (r ApiListOrgProductsRequest) Execute() (*ListProductsResponse, *http.Response, error) {
+func (r ApiListOrgProductsRequest) Execute() (*ListProductsResponseBody, *http.Response, error) {
 	return r.ApiService.ListOrgProductsExecute(r)
 }
 
@@ -2960,7 +3161,7 @@ Get all the products for a specific organization across all regions
  @param org Organization name
  @return ApiListOrgProductsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgProducts(ctx context.Context, org string) ApiListOrgProductsRequest {
+func (a *Live2VODForOrganizationApiService) ListOrgProducts(ctx context.Context, org interface{}) ApiListOrgProductsRequest {
 	return ApiListOrgProductsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -2969,13 +3170,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgProducts(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return ListProductsResponse
-func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponse, *http.Response, error) {
+//  @return ListProductsResponseBody
+func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListProductsResponse
+		localVarReturnValue  *ListProductsResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgProducts")
@@ -3107,7 +3308,7 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgP
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListProductsResponse)
+			localVarReturnValue = items.(*ListProductsResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -3118,11 +3319,11 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgP
 type ApiListOrgProductsProgramsRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	org interface{}
+	productId interface{}
 }
 
-func (r ApiListOrgProductsProgramsRequest) Execute() (*ListProgramsResponse, *http.Response, error) {
+func (r ApiListOrgProductsProgramsRequest) Execute() (*ListProgramsResponseBody, *http.Response, error) {
 	return r.ApiService.ListOrgProductsProgramsExecute(r)
 }
 
@@ -3136,7 +3337,7 @@ Get all the programs for a specific organization and product
  @param productId Product ID for a l2v request
  @return ApiListOrgProductsProgramsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgProductsPrograms(ctx context.Context, org string, productId string) ApiListOrgProductsProgramsRequest {
+func (a *Live2VODForOrganizationApiService) ListOrgProductsPrograms(ctx context.Context, org interface{}, productId interface{}) ApiListOrgProductsProgramsRequest {
 	return ApiListOrgProductsProgramsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3146,13 +3347,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsPrograms(ctx context.
 }
 
 // Execute executes the request
-//  @return ListProgramsResponse
-func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponse, *http.Response, error) {
+//  @return ListProgramsResponseBody
+func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListProgramsResponse
+		localVarReturnValue  *ListProgramsResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgProductsPrograms")
@@ -3285,7 +3486,7 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListProgramsResponse)
+			localVarReturnValue = items.(*ListProgramsResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -3296,11 +3497,11 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r Api
 type ApiListOrgVodsRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	org interface{}
+	channelId interface{}
 }
 
-func (r ApiListOrgVodsRequest) Execute() ([]ListVODsResponse, *http.Response, error) {
+func (r ApiListOrgVodsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.ListOrgVodsExecute(r)
 }
 
@@ -3315,7 +3516,7 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
  @param channelId Unique channel identifier
  @return ApiListOrgVodsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgVods(ctx context.Context, org string, channelId string) ApiListOrgVodsRequest {
+func (a *Live2VODForOrganizationApiService) ListOrgVods(ctx context.Context, org interface{}, channelId interface{}) ApiListOrgVodsRequest {
 	return ApiListOrgVodsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3325,13 +3526,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgVods(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return []ListVODsResponse
-func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error) {
+//  @return interface{}
+func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ListVODsResponse
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgVods")
@@ -3467,7 +3668,7 @@ func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsR
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]ListVODsResponse)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}
@@ -3480,7 +3681,7 @@ type ApiListTasksRequest struct {
 	ApiService Live2VODForOrganizationApi
 }
 
-func (r ApiListTasksRequest) Execute() (*ListTasksResponse, *http.Response, error) {
+func (r ApiListTasksRequest) Execute() (*ListTasksResponseBody, *http.Response, error) {
 	return r.ApiService.ListTasksExecute(r)
 }
 
@@ -3500,13 +3701,13 @@ func (a *Live2VODForOrganizationApiService) ListTasks(ctx context.Context) ApiLi
 }
 
 // Execute executes the request
-//  @return ListTasksResponse
-func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponse, *http.Response, error) {
+//  @return ListTasksResponseBody
+func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListTasksResponse
+		localVarReturnValue  *ListTasksResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListTasks")
@@ -3647,7 +3848,7 @@ func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksReque
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListTasksResponse)
+			localVarReturnValue = items.(*ListTasksResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -3658,19 +3859,19 @@ func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksReque
 type ApiPostCopyMp4Request struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
-	postCopyMP4Request *PostCopyMP4Request
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostCopyMp4Request) PostCopyMP4Request(postCopyMP4Request PostCopyMP4Request) ApiPostCopyMp4Request {
-	r.postCopyMP4Request = &postCopyMP4Request
+func (r ApiPostCopyMp4Request) RequestBody(requestBody map[string]interface{}) ApiPostCopyMp4Request {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostCopyMp4Request) Execute() (*PostCopyMP4Response, *http.Response, error) {
+func (r ApiPostCopyMp4Request) Execute() (*PostCopyMP4ResponseBody, *http.Response, error) {
 	return r.ApiService.PostCopyMp4Execute(r)
 }
 
@@ -3686,7 +3887,7 @@ Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
  @param clipId ID for a Clip
  @return ApiPostCopyMp4Request
 */
-func (a *Live2VODForOrganizationApiService) PostCopyMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostCopyMp4Request {
+func (a *Live2VODForOrganizationApiService) PostCopyMp4(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiPostCopyMp4Request {
 	return ApiPostCopyMp4Request{
 		ApiService: a,
 		ctx: ctx,
@@ -3698,13 +3899,13 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return PostCopyMP4Response
-func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4Response, *http.Response, error) {
+//  @return PostCopyMP4ResponseBody
+func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4ResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PostCopyMP4Response
+		localVarReturnValue  *PostCopyMP4ResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostCopyMp4")
@@ -3724,6 +3925,9 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4R
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -3743,7 +3947,7 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.postCopyMP4Request
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -3864,7 +4068,7 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4R
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PostCopyMP4Response)
+			localVarReturnValue = items.(*PostCopyMP4ResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -3875,23 +4079,24 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4R
 type ApiPostOrgChannelSyndicationRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	dynamicSyndicationRequest *DynamicSyndicationRequest
+	org interface{}
+	channelId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgChannelSyndicationRequest) DynamicSyndicationRequest(dynamicSyndicationRequest DynamicSyndicationRequest) ApiPostOrgChannelSyndicationRequest {
-	r.dynamicSyndicationRequest = &dynamicSyndicationRequest
+func (r ApiPostOrgChannelSyndicationRequest) RequestBody(requestBody map[string]interface{}) ApiPostOrgChannelSyndicationRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgChannelSyndicationRequest) Execute() (*DynamicSyndicationResponse, *http.Response, error) {
+func (r ApiPostOrgChannelSyndicationRequest) Execute() (*DynamicSyndicationResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgChannelSyndicationExecute(r)
 }
 
 /*
-PostOrgChannelSyndication Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
+PostOrgChannelSyndication Dynamic Syndication
 
+Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
 Uses archive settings from the request to archive syndication files (mp4/wav) files.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3899,7 +4104,7 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
  @param channelId Unique channel identifier
  @return ApiPostOrgChannelSyndicationRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndication(ctx context.Context, org string, channelId string) ApiPostOrgChannelSyndicationRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndication(ctx context.Context, org interface{}, channelId interface{}) ApiPostOrgChannelSyndicationRequest {
 	return ApiPostOrgChannelSyndicationRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -3909,13 +4114,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndication(ctx contex
 }
 
 // Execute executes the request
-//  @return DynamicSyndicationResponse
-func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponse, *http.Response, error) {
+//  @return DynamicSyndicationResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DynamicSyndicationResponse
+		localVarReturnValue  *DynamicSyndicationResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgChannelSyndication")
@@ -3933,6 +4138,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r A
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -3952,7 +4160,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.dynamicSyndicationRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4073,7 +4281,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r A
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DynamicSyndicationResponse)
+			localVarReturnValue = items.(*DynamicSyndicationResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -4084,17 +4292,17 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r A
 type ApiPostOrgClipRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	postClipRequest *PostClipRequest
+	org interface{}
+	channelId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgClipRequest) PostClipRequest(postClipRequest PostClipRequest) ApiPostOrgClipRequest {
-	r.postClipRequest = &postClipRequest
+func (r ApiPostOrgClipRequest) RequestBody(requestBody map[string]interface{}) ApiPostOrgClipRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgClipRequest) Execute() (*PostClipResponse, *http.Response, error) {
+func (r ApiPostOrgClipRequest) Execute() (*PostClipResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgClipExecute(r)
 }
 
@@ -4108,7 +4316,7 @@ Starts a job to create a clip for all VODs for the channel identified in the req
  @param channelId Unique channel identifier
  @return ApiPostOrgClipRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org interface{}, channelId interface{}) ApiPostOrgClipRequest {
 	return ApiPostOrgClipRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4118,13 +4326,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org
 }
 
 // Execute executes the request
-//  @return PostClipResponse
-func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponse, *http.Response, error) {
+//  @return PostClipResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PostClipResponse
+		localVarReturnValue  *PostClipResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClip")
@@ -4142,6 +4350,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -4161,7 +4372,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.postClipRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4282,7 +4493,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PostClipResponse)
+			localVarReturnValue = items.(*PostClipResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -4293,18 +4504,18 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 type ApiPostOrgClipArchiveRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	clipId string
-	postClipArchiveRequest *PostClipArchiveRequest
+	org interface{}
+	channelId interface{}
+	clipId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgClipArchiveRequest) PostClipArchiveRequest(postClipArchiveRequest PostClipArchiveRequest) ApiPostOrgClipArchiveRequest {
-	r.postClipArchiveRequest = &postClipArchiveRequest
+func (r ApiPostOrgClipArchiveRequest) RequestBody(requestBody map[string]interface{}) ApiPostOrgClipArchiveRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgClipArchiveRequest) Execute() (*PostClipArchiveResponse, *http.Response, error) {
+func (r ApiPostOrgClipArchiveRequest) Execute() (*PostClipArchiveResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgClipArchiveExecute(r)
 }
 
@@ -4319,7 +4530,7 @@ Uses archive settings configured in Live2VOD for the organization and on the cha
  @param clipId ID for a Clip
  @return ApiPostOrgClipArchiveRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Context, org interface{}, channelId interface{}, clipId interface{}) ApiPostOrgClipArchiveRequest {
 	return ApiPostOrgClipArchiveRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4330,13 +4541,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Conte
 }
 
 // Execute executes the request
-//  @return PostClipArchiveResponse
-func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponse, *http.Response, error) {
+//  @return PostClipArchiveResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *PostClipArchiveResponse
+		localVarReturnValue  *PostClipArchiveResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClipArchive")
@@ -4355,6 +4566,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -4374,7 +4588,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.postClipArchiveRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4495,7 +4709,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*PostClipArchiveResponse)
+			localVarReturnValue = items.(*PostClipArchiveResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -4506,19 +4720,19 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 type ApiPostOrgMakeMp4Request struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
-	postMakeMP4Request *PostMakeMP4Request
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	clipId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgMakeMp4Request) PostMakeMP4Request(postMakeMP4Request PostMakeMP4Request) ApiPostOrgMakeMp4Request {
-	r.postMakeMP4Request = &postMakeMP4Request
+func (r ApiPostOrgMakeMp4Request) RequestBody(requestBody map[string]interface{}) ApiPostOrgMakeMp4Request {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgMakeMp4Request) Execute() (*MakeMP4Response, *http.Response, error) {
+func (r ApiPostOrgMakeMp4Request) Execute() (*MakeMP4ResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgMakeMp4Execute(r)
 }
 
@@ -4534,7 +4748,7 @@ Create a mp4 entity for the clip within a vod
  @param clipId ID for a Clip
  @return ApiPostOrgMakeMp4Request
 */
-func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostOrgMakeMp4Request {
+func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}, clipId interface{}) ApiPostOrgMakeMp4Request {
 	return ApiPostOrgMakeMp4Request{
 		ApiService: a,
 		ctx: ctx,
@@ -4546,13 +4760,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return MakeMP4Response
-func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4Response, *http.Response, error) {
+//  @return MakeMP4ResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4ResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MakeMP4Response
+		localVarReturnValue  *MakeMP4ResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgMakeMp4")
@@ -4572,6 +4786,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMa
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -4591,7 +4808,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.postMakeMP4Request
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -4712,7 +4929,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMa
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*MakeMP4Response)
+			localVarReturnValue = items.(*MakeMP4ResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -4723,22 +4940,22 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMa
 type ApiPostOrgProductConfigRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
-	updateProductConfigRequest *UpdateProductConfigRequest
+	org interface{}
+	productId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgProductConfigRequest) UpdateProductConfigRequest(updateProductConfigRequest UpdateProductConfigRequest) ApiPostOrgProductConfigRequest {
-	r.updateProductConfigRequest = &updateProductConfigRequest
+func (r ApiPostOrgProductConfigRequest) RequestBody(requestBody map[string]interface{}) ApiPostOrgProductConfigRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgProductConfigRequest) Execute() (map[string]interface{}, *http.Response, error) {
+func (r ApiPostOrgProductConfigRequest) Execute() (*http.Response, error) {
 	return r.ApiService.PostOrgProductConfigExecute(r)
 }
 
 /*
-PostOrgProductConfig Update config 
+PostOrgProductConfig Update config
 
 Update fields for product config
 
@@ -4747,7 +4964,7 @@ Update fields for product config
  @param productId Product ID for a l2v request
  @return ApiPostOrgProductConfigRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgProductConfig(ctx context.Context, org string, productId string) ApiPostOrgProductConfigRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgProductConfig(ctx context.Context, org interface{}, productId interface{}) ApiPostOrgProductConfigRequest {
 	return ApiPostOrgProductConfigRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4757,18 +4974,16 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfig(ctx context.Con
 }
 
 // Execute executes the request
-//  @return map[string]interface{}
-func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (map[string]interface{}, *http.Response, error) {
+func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgProductConfig")
 	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/products/{product-id}/config"
@@ -4778,6 +4993,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPos
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -4789,7 +5007,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPos
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4797,22 +5015,22 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPos
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.updateProductConfigRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return localVarReturnValue, nil, err
+		return nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
+		return localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -4825,116 +5043,95 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPos
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 408 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 413 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 501 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
+			return localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
+		return localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
-		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
-			// This response is paginated. Read all the pages and append the items.
-			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
-			if err.Error() != "" {
-				return localVarReturnValue, localVarHTTPResponse, err
-			}
-			localVarReturnValue = items.(map[string]interface{})
-			localVarHTTPResponse = resp
-		}
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
+	return localVarHTTPResponse, nil
 }
 
 type ApiPostOrgTaskCancelRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	org interface{}
+	channelId interface{}
+	taskId interface{}
 }
 
-func (r ApiPostOrgTaskCancelRequest) Execute() (*CancelTaskResponse, *http.Response, error) {
+func (r ApiPostOrgTaskCancelRequest) Execute() (*CancelTaskResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgTaskCancelExecute(r)
 }
 
@@ -4949,7 +5146,7 @@ Cancel a L2V task with the taskID
  @param taskId Task ID for a l2v request
  @return ApiPostOrgTaskCancelRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgTaskCancel(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskCancelRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgTaskCancel(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiPostOrgTaskCancelRequest {
 	return ApiPostOrgTaskCancelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -4960,13 +5157,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskCancel(ctx context.Contex
 }
 
 // Execute executes the request
-//  @return CancelTaskResponse
-func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponse, *http.Response, error) {
+//  @return CancelTaskResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *CancelTaskResponse
+		localVarReturnValue  *CancelTaskResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgTaskCancel")
@@ -5103,7 +5300,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOr
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*CancelTaskResponse)
+			localVarReturnValue = items.(*CancelTaskResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -5114,12 +5311,12 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOr
 type ApiPostOrgTaskRetryRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	org interface{}
+	channelId interface{}
+	taskId interface{}
 }
 
-func (r ApiPostOrgTaskRetryRequest) Execute() (*RetryTaskResponse, *http.Response, error) {
+func (r ApiPostOrgTaskRetryRequest) Execute() (*RetryTaskResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgTaskRetryExecute(r)
 }
 
@@ -5134,7 +5331,7 @@ Retry a L2V task with the taskID.
  @param taskId Task ID for a l2v request
  @return ApiPostOrgTaskRetryRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgTaskRetry(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskRetryRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgTaskRetry(ctx context.Context, org interface{}, channelId interface{}, taskId interface{}) ApiPostOrgTaskRetryRequest {
 	return ApiPostOrgTaskRetryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5145,13 +5342,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskRetry(ctx context.Context
 }
 
 // Execute executes the request
-//  @return RetryTaskResponse
-func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponse, *http.Response, error) {
+//  @return RetryTaskResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *RetryTaskResponse
+		localVarReturnValue  *RetryTaskResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgTaskRetry")
@@ -5288,7 +5485,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrg
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*RetryTaskResponse)
+			localVarReturnValue = items.(*RetryTaskResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -5299,18 +5496,18 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrg
 type ApiPostOrgVodClipRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	makeClipRequest *MakeClipRequest
+	org interface{}
+	channelId interface{}
+	vodId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPostOrgVodClipRequest) MakeClipRequest(makeClipRequest MakeClipRequest) ApiPostOrgVodClipRequest {
-	r.makeClipRequest = &makeClipRequest
+func (r ApiPostOrgVodClipRequest) RequestBody(requestBody map[string]interface{}) ApiPostOrgVodClipRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
-func (r ApiPostOrgVodClipRequest) Execute() (*MakeClipResponse, *http.Response, error) {
+func (r ApiPostOrgVodClipRequest) Execute() (*MakeClipResponseBody, *http.Response, error) {
 	return r.ApiService.PostOrgVodClipExecute(r)
 }
 
@@ -5325,7 +5522,7 @@ Starts a job to create a clip for a VOD on the channel identified in the request
  @param vodId ID for a VOD
  @return ApiPostOrgVodClipRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgVodClip(ctx context.Context, org string, channelId string, vodId string) ApiPostOrgVodClipRequest {
+func (a *Live2VODForOrganizationApiService) PostOrgVodClip(ctx context.Context, org interface{}, channelId interface{}, vodId interface{}) ApiPostOrgVodClipRequest {
 	return ApiPostOrgVodClipRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5336,13 +5533,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClip(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return MakeClipResponse
-func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponse, *http.Response, error) {
+//  @return MakeClipResponseBody
+func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *MakeClipResponse
+		localVarReturnValue  *MakeClipResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgVodClip")
@@ -5360,6 +5557,9 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -5380,7 +5580,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.makeClipRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -5501,7 +5701,7 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*MakeClipResponse)
+			localVarReturnValue = items.(*MakeClipResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -5512,13 +5712,13 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 type ApiPutOrgChannelFerRequest struct {
 	ctx context.Context
 	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	archiveFERRequest *ArchiveFERRequest
+	org interface{}
+	channelId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiPutOrgChannelFerRequest) ArchiveFERRequest(archiveFERRequest ArchiveFERRequest) ApiPutOrgChannelFerRequest {
-	r.archiveFERRequest = &archiveFERRequest
+func (r ApiPutOrgChannelFerRequest) RequestBody(requestBody map[string]interface{}) ApiPutOrgChannelFerRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
@@ -5536,7 +5736,7 @@ Uses archive settings from the request to archive a FER
  @param channelId Unique channel identifier
  @return ApiPutOrgChannelFerRequest
 */
-func (a *Live2VODForOrganizationApiService) PutOrgChannelFer(ctx context.Context, org string, channelId string) ApiPutOrgChannelFerRequest {
+func (a *Live2VODForOrganizationApiService) PutOrgChannelFer(ctx context.Context, org interface{}, channelId interface{}) ApiPutOrgChannelFerRequest {
 	return ApiPutOrgChannelFerRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -5570,6 +5770,9 @@ func (a *Live2VODForOrganizationApiService) PutOrgChannelFerExecute(r ApiPutOrgC
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.requestBody == nil {
+		return localVarReturnValue, nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -5589,7 +5792,7 @@ func (a *Live2VODForOrganizationApiService) PutOrgChannelFerExecute(r ApiPutOrgC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.archiveFERRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

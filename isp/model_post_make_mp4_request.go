@@ -18,10 +18,10 @@ var _ MappedNullable = &PostMakeMP4Request{}
 
 // PostMakeMP4Request struct for PostMakeMP4Request
 type PostMakeMP4Request struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// override path for writing an mp4 to destination.
-	OverrideMp4Path *string `json:"override_mp4_path,omitempty" maxLength:"1024" doc:"override path for writing an mp4 to destination."`
+	OverrideMp4Path interface{} `json:"override_mp4_path,omitempty" maxLength:"1024" doc:"override path for writing an mp4 to destination."`
 }
 
 // NewPostMakeMP4Request instantiates a new PostMakeMP4Request object
@@ -41,68 +41,70 @@ func NewPostMakeMP4RequestWithDefaults() *PostMakeMP4Request {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PostMakeMP4Request) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostMakeMP4Request) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostMakeMP4Request) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostMakeMP4Request) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PostMakeMP4Request) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PostMakeMP4Request) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *PostMakeMP4Request) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetOverrideMp4Path returns the OverrideMp4Path field value if set, zero value otherwise.
-func (o *PostMakeMP4Request) GetOverrideMp4Path() string {
-	if o == nil || IsNil(o.OverrideMp4Path) {
-		var ret string
+// GetOverrideMp4Path returns the OverrideMp4Path field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostMakeMP4Request) GetOverrideMp4Path() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.OverrideMp4Path
+	return o.OverrideMp4Path
 }
 
 // GetOverrideMp4PathOk returns a tuple with the OverrideMp4Path field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostMakeMP4Request) GetOverrideMp4PathOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostMakeMP4Request) GetOverrideMp4PathOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.OverrideMp4Path) {
 		return nil, false
 	}
-	return o.OverrideMp4Path, true
+	return &o.OverrideMp4Path, true
 }
 
 // HasOverrideMp4Path returns a boolean if a field has been set.
 func (o *PostMakeMP4Request) HasOverrideMp4Path() bool {
-	if o != nil && !IsNil(o.OverrideMp4Path) {
+	if o != nil && IsNil(o.OverrideMp4Path) {
 		return true
 	}
 
 	return false
 }
 
-// SetOverrideMp4Path gets a reference to the given string and assigns it to the OverrideMp4Path field.
-func (o *PostMakeMP4Request) SetOverrideMp4Path(v string) {
-	o.OverrideMp4Path = &v
+// SetOverrideMp4Path gets a reference to the given interface{} and assigns it to the OverrideMp4Path field.
+func (o *PostMakeMP4Request) SetOverrideMp4Path(v interface{}) {
+	o.OverrideMp4Path = v
 }
 
 func (o PostMakeMP4Request) MarshalJSON() ([]byte, error) {
@@ -115,10 +117,10 @@ func (o PostMakeMP4Request) MarshalJSON() ([]byte, error) {
 
 func (o PostMakeMP4Request) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.OverrideMp4Path) {
+	if o.OverrideMp4Path != nil {
 		toSerialize["override_mp4_path"] = o.OverrideMp4Path
 	}
 	return toSerialize, nil

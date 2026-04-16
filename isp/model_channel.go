@@ -11,7 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the Channel type satisfies the MappedNullable interface at compile time
@@ -19,44 +18,50 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Date and time the channel was created.
-	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
+	Created interface{} `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
 	// A human-readable description of the channel.
-	Description *string `json:"description,omitempty" doc:"A human-readable description of the channel."`
+	Description interface{} `json:"description,omitempty" doc:"A human-readable description of the channel."`
 	// Desired running state for a channel.
-	DesiredState *string `json:"desired_state,omitempty" enum:"ON,OFF" doc:"Desired running state for a channel."`
+	DesiredState interface{} `json:"desired_state,omitempty" enum:"ON,OFF" doc:"Desired running state for a channel."`
 	// Indicates whether the channel's transcoder needs to run in a designated IP range.
-	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
+	EnableByoip interface{} `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
-	Id *string `json:"id,omitempty" minLength:"1" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"External Channel ID provided at channel creation time"`
-	Ingest ChannelIngest `json:"ingest"`
+	Id interface{} `json:"id,omitempty" minLength:"1" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"External Channel ID provided at channel creation time"`
+	// Ingest configures inputs for the transcoder.
+	Ingest Ingest `json:"ingest" doc:"Ingest configures inputs for the transcoder."`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50.
-	Labels []string `json:"labels,omitempty" maxItems:"50" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50."`
+	Labels interface{} `json:"labels,omitempty" maxItems:"50" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50."`
 	// Date and time the channel was last modified.
-	Modified *time.Time `json:"modified,omitempty" format:"date-time" doc:"Date and time the channel was last modified."`
+	Modified interface{} `json:"modified,omitempty" format:"date-time" doc:"Date and time the channel was last modified."`
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
-	Name *string `json:"name,omitempty" doc:"A friendly human-readable name for the channel. This will get displayed in user interfaces."`
-	Organization *string `json:"organization,omitempty" minLength:"1"`
-	Packaging *ChannelPackaging `json:"packaging,omitempty"`
-	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	Name interface{} `json:"name,omitempty" doc:"A friendly human-readable name for the channel. This will get displayed in user interfaces."`
+	Organization interface{} `json:"organization,omitempty" minLength:"1"`
+	// Packaging configures media format and content protection settings.
+	Packaging *Packaging `json:"packaging,omitempty" doc:"Packaging configures media format and content protection settings."`
+	// Publishing configures playlist formats and where to send video and playlist data.
+	Publishing *Publishing `json:"publishing,omitempty" doc:"Publishing configures playlist formats and where to send video and playlist data."`
 	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
-	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used."`
+	Region interface{} `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used."`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
-	ResourceClass *string `json:"resource_class,omitempty" enum:"DYNAMIC,STATIC" doc:"If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime."`
+	ResourceClass interface{} `json:"resource_class,omitempty" enum:"DYNAMIC,STATIC" doc:"If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime."`
 	// Self link for the channel.
-	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the channel."`
-	Signaling *ChannelSignaling `json:"signaling,omitempty"`
-	Tags *ChannelTags `json:"tags,omitempty"`
-	Transcode ChannelTranscode `json:"transcode"`
+	Self interface{} `json:"self,omitempty" format:"uri-reference" doc:"Self link for the channel."`
+	// Signaling configures in-band signaling (i.e. SCTE-35).
+	Signaling *Signaling `json:"signaling,omitempty" doc:"Signaling configures in-band signaling (i.e. SCTE-35)."`
+	// Use ChannelMetadata when possible instead of tags.
+	Tags *Tags `json:"tags,omitempty" doc:"Use ChannelMetadata when possible instead of tags."`
+	// Transcode configures audio/video conversion settings.
+	Transcode Transcode `json:"transcode" doc:"Transcode configures audio/video conversion settings."`
 }
 
 // NewChannel instantiates a new Channel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannel(ingest ChannelIngest, transcode ChannelTranscode) *Channel {
+func NewChannel(ingest Ingest, transcode Transcode) *Channel {
 	this := Channel{}
 	this.Ingest = ingest
 	this.Transcode = transcode
@@ -71,202 +76,208 @@ func NewChannelWithDefaults() *Channel {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Channel) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Channel) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Channel) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *Channel) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetCreated returns the Created field value if set, zero value otherwise.
-func (o *Channel) GetCreated() time.Time {
-	if o == nil || IsNil(o.Created) {
-		var ret time.Time
+// GetCreated returns the Created field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetCreated() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Created
+	return o.Created
 }
 
 // GetCreatedOk returns a tuple with the Created field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetCreatedOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetCreatedOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Created) {
 		return nil, false
 	}
-	return o.Created, true
+	return &o.Created, true
 }
 
 // HasCreated returns a boolean if a field has been set.
 func (o *Channel) HasCreated() bool {
-	if o != nil && !IsNil(o.Created) {
+	if o != nil && IsNil(o.Created) {
 		return true
 	}
 
 	return false
 }
 
-// SetCreated gets a reference to the given time.Time and assigns it to the Created field.
-func (o *Channel) SetCreated(v time.Time) {
-	o.Created = &v
+// SetCreated gets a reference to the given interface{} and assigns it to the Created field.
+func (o *Channel) SetCreated(v interface{}) {
+	o.Created = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *Channel) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetDescription() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetDescriptionOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetDescriptionOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *Channel) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *Channel) SetDescription(v string) {
-	o.Description = &v
+// SetDescription gets a reference to the given interface{} and assigns it to the Description field.
+func (o *Channel) SetDescription(v interface{}) {
+	o.Description = v
 }
 
-// GetDesiredState returns the DesiredState field value if set, zero value otherwise.
-func (o *Channel) GetDesiredState() string {
-	if o == nil || IsNil(o.DesiredState) {
-		var ret string
+// GetDesiredState returns the DesiredState field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetDesiredState() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.DesiredState
+	return o.DesiredState
 }
 
 // GetDesiredStateOk returns a tuple with the DesiredState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetDesiredStateOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetDesiredStateOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DesiredState) {
 		return nil, false
 	}
-	return o.DesiredState, true
+	return &o.DesiredState, true
 }
 
 // HasDesiredState returns a boolean if a field has been set.
 func (o *Channel) HasDesiredState() bool {
-	if o != nil && !IsNil(o.DesiredState) {
+	if o != nil && IsNil(o.DesiredState) {
 		return true
 	}
 
 	return false
 }
 
-// SetDesiredState gets a reference to the given string and assigns it to the DesiredState field.
-func (o *Channel) SetDesiredState(v string) {
-	o.DesiredState = &v
+// SetDesiredState gets a reference to the given interface{} and assigns it to the DesiredState field.
+func (o *Channel) SetDesiredState(v interface{}) {
+	o.DesiredState = v
 }
 
-// GetEnableByoip returns the EnableByoip field value if set, zero value otherwise.
-func (o *Channel) GetEnableByoip() bool {
-	if o == nil || IsNil(o.EnableByoip) {
-		var ret bool
+// GetEnableByoip returns the EnableByoip field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetEnableByoip() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.EnableByoip
+	return o.EnableByoip
 }
 
 // GetEnableByoipOk returns a tuple with the EnableByoip field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetEnableByoipOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetEnableByoipOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.EnableByoip) {
 		return nil, false
 	}
-	return o.EnableByoip, true
+	return &o.EnableByoip, true
 }
 
 // HasEnableByoip returns a boolean if a field has been set.
 func (o *Channel) HasEnableByoip() bool {
-	if o != nil && !IsNil(o.EnableByoip) {
+	if o != nil && IsNil(o.EnableByoip) {
 		return true
 	}
 
 	return false
 }
 
-// SetEnableByoip gets a reference to the given bool and assigns it to the EnableByoip field.
-func (o *Channel) SetEnableByoip(v bool) {
-	o.EnableByoip = &v
+// SetEnableByoip gets a reference to the given interface{} and assigns it to the EnableByoip field.
+func (o *Channel) SetEnableByoip(v interface{}) {
+	o.EnableByoip = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *Channel) GetId() string {
-	if o == nil || IsNil(o.Id) {
-		var ret string
+// GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
 // HasId returns a boolean if a field has been set.
 func (o *Channel) HasId() bool {
-	if o != nil && !IsNil(o.Id) {
+	if o != nil && IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Channel) SetId(v string) {
-	o.Id = &v
+// SetId gets a reference to the given interface{} and assigns it to the Id field.
+func (o *Channel) SetId(v interface{}) {
+	o.Id = v
 }
 
 // GetIngest returns the Ingest field value
-func (o *Channel) GetIngest() ChannelIngest {
+func (o *Channel) GetIngest() Ingest {
 	if o == nil {
-		var ret ChannelIngest
+		var ret Ingest
 		return ret
 	}
 
@@ -275,7 +286,7 @@ func (o *Channel) GetIngest() ChannelIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value
 // and a boolean to check if the value has been set.
-func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
+func (o *Channel) GetIngestOk() (*Ingest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -283,14 +294,14 @@ func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
 }
 
 // SetIngest sets field value
-func (o *Channel) SetIngest(v ChannelIngest) {
+func (o *Channel) SetIngest(v Ingest) {
 	o.Ingest = v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *Channel) GetLabels() []string {
-	if o == nil || IsNil(o.Labels) {
-		var ret []string
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetLabels() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Labels
@@ -298,127 +309,131 @@ func (o *Channel) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetLabelsOk() ([]string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetLabelsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
-	return o.Labels, true
+	return &o.Labels, true
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Channel) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && IsNil(o.Labels) {
 		return true
 	}
 
 	return false
 }
 
-// SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *Channel) SetLabels(v []string) {
+// SetLabels gets a reference to the given interface{} and assigns it to the Labels field.
+func (o *Channel) SetLabels(v interface{}) {
 	o.Labels = v
 }
 
-// GetModified returns the Modified field value if set, zero value otherwise.
-func (o *Channel) GetModified() time.Time {
-	if o == nil || IsNil(o.Modified) {
-		var ret time.Time
+// GetModified returns the Modified field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetModified() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Modified
+	return o.Modified
 }
 
 // GetModifiedOk returns a tuple with the Modified field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetModifiedOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetModifiedOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Modified) {
 		return nil, false
 	}
-	return o.Modified, true
+	return &o.Modified, true
 }
 
 // HasModified returns a boolean if a field has been set.
 func (o *Channel) HasModified() bool {
-	if o != nil && !IsNil(o.Modified) {
+	if o != nil && IsNil(o.Modified) {
 		return true
 	}
 
 	return false
 }
 
-// SetModified gets a reference to the given time.Time and assigns it to the Modified field.
-func (o *Channel) SetModified(v time.Time) {
-	o.Modified = &v
+// SetModified gets a reference to the given interface{} and assigns it to the Modified field.
+func (o *Channel) SetModified(v interface{}) {
+	o.Modified = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Channel) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetName() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Name
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetNameOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Channel) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Channel) SetName(v string) {
-	o.Name = &v
+// SetName gets a reference to the given interface{} and assigns it to the Name field.
+func (o *Channel) SetName(v interface{}) {
+	o.Name = v
 }
 
-// GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *Channel) GetOrganization() string {
-	if o == nil || IsNil(o.Organization) {
-		var ret string
+// GetOrganization returns the Organization field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetOrganization() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Organization
+	return o.Organization
 }
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetOrganizationOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetOrganizationOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
-	return o.Organization, true
+	return &o.Organization, true
 }
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *Channel) HasOrganization() bool {
-	if o != nil && !IsNil(o.Organization) {
+	if o != nil && IsNil(o.Organization) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganization gets a reference to the given string and assigns it to the Organization field.
-func (o *Channel) SetOrganization(v string) {
-	o.Organization = &v
+// SetOrganization gets a reference to the given interface{} and assigns it to the Organization field.
+func (o *Channel) SetOrganization(v interface{}) {
+	o.Organization = v
 }
 
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
-func (o *Channel) GetPackaging() ChannelPackaging {
+func (o *Channel) GetPackaging() Packaging {
 	if o == nil || IsNil(o.Packaging) {
-		var ret ChannelPackaging
+		var ret Packaging
 		return ret
 	}
 	return *o.Packaging
@@ -426,7 +441,7 @@ func (o *Channel) GetPackaging() ChannelPackaging {
 
 // GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetPackagingOk() (*ChannelPackaging, bool) {
+func (o *Channel) GetPackagingOk() (*Packaging, bool) {
 	if o == nil || IsNil(o.Packaging) {
 		return nil, false
 	}
@@ -442,15 +457,15 @@ func (o *Channel) HasPackaging() bool {
 	return false
 }
 
-// SetPackaging gets a reference to the given ChannelPackaging and assigns it to the Packaging field.
-func (o *Channel) SetPackaging(v ChannelPackaging) {
+// SetPackaging gets a reference to the given Packaging and assigns it to the Packaging field.
+func (o *Channel) SetPackaging(v Packaging) {
 	o.Packaging = &v
 }
 
 // GetPublishing returns the Publishing field value if set, zero value otherwise.
-func (o *Channel) GetPublishing() ChannelPublishing {
+func (o *Channel) GetPublishing() Publishing {
 	if o == nil || IsNil(o.Publishing) {
-		var ret ChannelPublishing
+		var ret Publishing
 		return ret
 	}
 	return *o.Publishing
@@ -458,7 +473,7 @@ func (o *Channel) GetPublishing() ChannelPublishing {
 
 // GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetPublishingOk() (*ChannelPublishing, bool) {
+func (o *Channel) GetPublishingOk() (*Publishing, bool) {
 	if o == nil || IsNil(o.Publishing) {
 		return nil, false
 	}
@@ -474,111 +489,114 @@ func (o *Channel) HasPublishing() bool {
 	return false
 }
 
-// SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
-func (o *Channel) SetPublishing(v ChannelPublishing) {
+// SetPublishing gets a reference to the given Publishing and assigns it to the Publishing field.
+func (o *Channel) SetPublishing(v Publishing) {
 	o.Publishing = &v
 }
 
-// GetRegion returns the Region field value if set, zero value otherwise.
-func (o *Channel) GetRegion() string {
-	if o == nil || IsNil(o.Region) {
-		var ret string
+// GetRegion returns the Region field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetRegion() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Region
+	return o.Region
 }
 
 // GetRegionOk returns a tuple with the Region field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetRegionOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetRegionOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Region) {
 		return nil, false
 	}
-	return o.Region, true
+	return &o.Region, true
 }
 
 // HasRegion returns a boolean if a field has been set.
 func (o *Channel) HasRegion() bool {
-	if o != nil && !IsNil(o.Region) {
+	if o != nil && IsNil(o.Region) {
 		return true
 	}
 
 	return false
 }
 
-// SetRegion gets a reference to the given string and assigns it to the Region field.
-func (o *Channel) SetRegion(v string) {
-	o.Region = &v
+// SetRegion gets a reference to the given interface{} and assigns it to the Region field.
+func (o *Channel) SetRegion(v interface{}) {
+	o.Region = v
 }
 
-// GetResourceClass returns the ResourceClass field value if set, zero value otherwise.
-func (o *Channel) GetResourceClass() string {
-	if o == nil || IsNil(o.ResourceClass) {
-		var ret string
+// GetResourceClass returns the ResourceClass field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetResourceClass() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ResourceClass
+	return o.ResourceClass
 }
 
 // GetResourceClassOk returns a tuple with the ResourceClass field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetResourceClassOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetResourceClassOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ResourceClass) {
 		return nil, false
 	}
-	return o.ResourceClass, true
+	return &o.ResourceClass, true
 }
 
 // HasResourceClass returns a boolean if a field has been set.
 func (o *Channel) HasResourceClass() bool {
-	if o != nil && !IsNil(o.ResourceClass) {
+	if o != nil && IsNil(o.ResourceClass) {
 		return true
 	}
 
 	return false
 }
 
-// SetResourceClass gets a reference to the given string and assigns it to the ResourceClass field.
-func (o *Channel) SetResourceClass(v string) {
-	o.ResourceClass = &v
+// SetResourceClass gets a reference to the given interface{} and assigns it to the ResourceClass field.
+func (o *Channel) SetResourceClass(v interface{}) {
+	o.ResourceClass = v
 }
 
-// GetSelf returns the Self field value if set, zero value otherwise.
-func (o *Channel) GetSelf() string {
-	if o == nil || IsNil(o.Self) {
-		var ret string
+// GetSelf returns the Self field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Channel) GetSelf() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Self
+	return o.Self
 }
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSelfOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Channel) GetSelfOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
-	return o.Self, true
+	return &o.Self, true
 }
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Channel) HasSelf() bool {
-	if o != nil && !IsNil(o.Self) {
+	if o != nil && IsNil(o.Self) {
 		return true
 	}
 
 	return false
 }
 
-// SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *Channel) SetSelf(v string) {
-	o.Self = &v
+// SetSelf gets a reference to the given interface{} and assigns it to the Self field.
+func (o *Channel) SetSelf(v interface{}) {
+	o.Self = v
 }
 
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
-func (o *Channel) GetSignaling() ChannelSignaling {
+func (o *Channel) GetSignaling() Signaling {
 	if o == nil || IsNil(o.Signaling) {
-		var ret ChannelSignaling
+		var ret Signaling
 		return ret
 	}
 	return *o.Signaling
@@ -586,7 +604,7 @@ func (o *Channel) GetSignaling() ChannelSignaling {
 
 // GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSignalingOk() (*ChannelSignaling, bool) {
+func (o *Channel) GetSignalingOk() (*Signaling, bool) {
 	if o == nil || IsNil(o.Signaling) {
 		return nil, false
 	}
@@ -602,15 +620,15 @@ func (o *Channel) HasSignaling() bool {
 	return false
 }
 
-// SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
-func (o *Channel) SetSignaling(v ChannelSignaling) {
+// SetSignaling gets a reference to the given Signaling and assigns it to the Signaling field.
+func (o *Channel) SetSignaling(v Signaling) {
 	o.Signaling = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Channel) GetTags() ChannelTags {
+func (o *Channel) GetTags() Tags {
 	if o == nil || IsNil(o.Tags) {
-		var ret ChannelTags
+		var ret Tags
 		return ret
 	}
 	return *o.Tags
@@ -618,7 +636,7 @@ func (o *Channel) GetTags() ChannelTags {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetTagsOk() (*ChannelTags, bool) {
+func (o *Channel) GetTagsOk() (*Tags, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -634,15 +652,15 @@ func (o *Channel) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
-func (o *Channel) SetTags(v ChannelTags) {
+// SetTags gets a reference to the given Tags and assigns it to the Tags field.
+func (o *Channel) SetTags(v Tags) {
 	o.Tags = &v
 }
 
 // GetTranscode returns the Transcode field value
-func (o *Channel) GetTranscode() ChannelTranscode {
+func (o *Channel) GetTranscode() Transcode {
 	if o == nil {
-		var ret ChannelTranscode
+		var ret Transcode
 		return ret
 	}
 
@@ -651,7 +669,7 @@ func (o *Channel) GetTranscode() ChannelTranscode {
 
 // GetTranscodeOk returns a tuple with the Transcode field value
 // and a boolean to check if the value has been set.
-func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
+func (o *Channel) GetTranscodeOk() (*Transcode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -659,7 +677,7 @@ func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
 }
 
 // SetTranscode sets field value
-func (o *Channel) SetTranscode(v ChannelTranscode) {
+func (o *Channel) SetTranscode(v Transcode) {
 	o.Transcode = v
 }
 
@@ -673,35 +691,35 @@ func (o Channel) MarshalJSON() ([]byte, error) {
 
 func (o Channel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.Created) {
+	if o.Created != nil {
 		toSerialize["created"] = o.Created
 	}
-	if !IsNil(o.Description) {
+	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if !IsNil(o.DesiredState) {
+	if o.DesiredState != nil {
 		toSerialize["desired_state"] = o.DesiredState
 	}
-	if !IsNil(o.EnableByoip) {
+	if o.EnableByoip != nil {
 		toSerialize["enable_byoip"] = o.EnableByoip
 	}
-	if !IsNil(o.Id) {
+	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
 	toSerialize["ingest"] = o.Ingest
-	if !IsNil(o.Labels) {
+	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if !IsNil(o.Modified) {
+	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified
 	}
-	if !IsNil(o.Name) {
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Organization) {
+	if o.Organization != nil {
 		toSerialize["organization"] = o.Organization
 	}
 	if !IsNil(o.Packaging) {
@@ -710,13 +728,13 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Publishing) {
 		toSerialize["publishing"] = o.Publishing
 	}
-	if !IsNil(o.Region) {
+	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
-	if !IsNil(o.ResourceClass) {
+	if o.ResourceClass != nil {
 		toSerialize["resource_class"] = o.ResourceClass
 	}
-	if !IsNil(o.Self) {
+	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
 	if !IsNil(o.Signaling) {

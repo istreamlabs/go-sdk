@@ -18,17 +18,17 @@ var _ MappedNullable = &Scte35{}
 
 // Scte35 struct for Scte35
 type Scte35 struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// The SCTE-35 payload, encoded as base-64 in JSON or binary data in CBOR
-	Payload string `json:"payload" doc:"The SCTE-35 payload, encoded as base-64 in JSON or binary data in CBOR"`
+	Payload interface{} `json:"payload" doc:"The SCTE-35 payload, encoded as base-64 in JSON or binary data in CBOR"`
 }
 
 // NewScte35 instantiates a new Scte35 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScte35(payload string) *Scte35 {
+func NewScte35(payload interface{}) *Scte35 {
 	this := Scte35{}
 	this.Payload = payload
 	return &this
@@ -42,42 +42,44 @@ func NewScte35WithDefaults() *Scte35 {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Scte35) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Scte35) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Scte35) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Scte35) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Scte35) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Scte35) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *Scte35) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetPayload returns the Payload field value
-func (o *Scte35) GetPayload() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Scte35) GetPayload() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -86,15 +88,16 @@ func (o *Scte35) GetPayload() string {
 
 // GetPayloadOk returns a tuple with the Payload field value
 // and a boolean to check if the value has been set.
-func (o *Scte35) GetPayloadOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Scte35) GetPayloadOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Payload) {
 		return nil, false
 	}
 	return &o.Payload, true
 }
 
 // SetPayload sets field value
-func (o *Scte35) SetPayload(v string) {
+func (o *Scte35) SetPayload(v interface{}) {
 	o.Payload = v
 }
 
@@ -108,10 +111,12 @@ func (o Scte35) MarshalJSON() ([]byte, error) {
 
 func (o Scte35) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["payload"] = o.Payload
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
 	return toSerialize, nil
 }
 

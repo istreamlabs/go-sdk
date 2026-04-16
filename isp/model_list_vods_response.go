@@ -11,7 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the ListVODsResponse type satisfies the MappedNullable interface at compile time
@@ -19,22 +18,22 @@ var _ MappedNullable = &ListVODsResponse{}
 
 // ListVODsResponse struct for ListVODsResponse
 type ListVODsResponse struct {
-	Description string `json:"description"`
-	FileCount int64 `json:"file_count" format:"int64"`
-	Id string `json:"id"`
-	LastPublished *time.Time `json:"last_published,omitempty" format:"date-time"`
-	PackagingFormat *string `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF"`
-	Store string `json:"store"`
-	StorePrefix string `json:"store_prefix"`
-	TotalBytes int64 `json:"total_bytes" format:"int64"`
-	Version string `json:"version"`
+	Description interface{} `json:"description"`
+	FileCount interface{} `json:"file_count" format:"int64"`
+	Id interface{} `json:"id"`
+	LastPublished interface{} `json:"last_published,omitempty" format:"date-time"`
+	PackagingFormat interface{} `json:"packaging_format,omitempty" enum:"HLS,DASH,CMAF"`
+	Store interface{} `json:"store"`
+	StorePrefix interface{} `json:"store_prefix"`
+	TotalBytes interface{} `json:"total_bytes" format:"int64"`
+	Version interface{} `json:"version"`
 }
 
 // NewListVODsResponse instantiates a new ListVODsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewListVODsResponse(description string, fileCount int64, id string, store string, storePrefix string, totalBytes int64, version string) *ListVODsResponse {
+func NewListVODsResponse(description interface{}, fileCount interface{}, id interface{}, store interface{}, storePrefix interface{}, totalBytes interface{}, version interface{}) *ListVODsResponse {
 	this := ListVODsResponse{}
 	this.Description = description
 	this.FileCount = fileCount
@@ -55,9 +54,10 @@ func NewListVODsResponseWithDefaults() *ListVODsResponse {
 }
 
 // GetDescription returns the Description field value
-func (o *ListVODsResponse) GetDescription() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetDescription() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -66,22 +66,24 @@ func (o *ListVODsResponse) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetDescriptionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
 	return &o.Description, true
 }
 
 // SetDescription sets field value
-func (o *ListVODsResponse) SetDescription(v string) {
+func (o *ListVODsResponse) SetDescription(v interface{}) {
 	o.Description = v
 }
 
 // GetFileCount returns the FileCount field value
-func (o *ListVODsResponse) GetFileCount() int64 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetFileCount() interface{} {
 	if o == nil {
-		var ret int64
+		var ret interface{}
 		return ret
 	}
 
@@ -90,22 +92,24 @@ func (o *ListVODsResponse) GetFileCount() int64 {
 
 // GetFileCountOk returns a tuple with the FileCount field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetFileCountOk() (*int64, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetFileCountOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.FileCount) {
 		return nil, false
 	}
 	return &o.FileCount, true
 }
 
 // SetFileCount sets field value
-func (o *ListVODsResponse) SetFileCount(v int64) {
+func (o *ListVODsResponse) SetFileCount(v interface{}) {
 	o.FileCount = v
 }
 
 // GetId returns the Id field value
-func (o *ListVODsResponse) GetId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -114,86 +118,90 @@ func (o *ListVODsResponse) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *ListVODsResponse) SetId(v string) {
+func (o *ListVODsResponse) SetId(v interface{}) {
 	o.Id = v
 }
 
-// GetLastPublished returns the LastPublished field value if set, zero value otherwise.
-func (o *ListVODsResponse) GetLastPublished() time.Time {
-	if o == nil || IsNil(o.LastPublished) {
-		var ret time.Time
+// GetLastPublished returns the LastPublished field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListVODsResponse) GetLastPublished() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.LastPublished
+	return o.LastPublished
 }
 
 // GetLastPublishedOk returns a tuple with the LastPublished field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetLastPublishedOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetLastPublishedOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.LastPublished) {
 		return nil, false
 	}
-	return o.LastPublished, true
+	return &o.LastPublished, true
 }
 
 // HasLastPublished returns a boolean if a field has been set.
 func (o *ListVODsResponse) HasLastPublished() bool {
-	if o != nil && !IsNil(o.LastPublished) {
+	if o != nil && IsNil(o.LastPublished) {
 		return true
 	}
 
 	return false
 }
 
-// SetLastPublished gets a reference to the given time.Time and assigns it to the LastPublished field.
-func (o *ListVODsResponse) SetLastPublished(v time.Time) {
-	o.LastPublished = &v
+// SetLastPublished gets a reference to the given interface{} and assigns it to the LastPublished field.
+func (o *ListVODsResponse) SetLastPublished(v interface{}) {
+	o.LastPublished = v
 }
 
-// GetPackagingFormat returns the PackagingFormat field value if set, zero value otherwise.
-func (o *ListVODsResponse) GetPackagingFormat() string {
-	if o == nil || IsNil(o.PackagingFormat) {
-		var ret string
+// GetPackagingFormat returns the PackagingFormat field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ListVODsResponse) GetPackagingFormat() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.PackagingFormat
+	return o.PackagingFormat
 }
 
 // GetPackagingFormatOk returns a tuple with the PackagingFormat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetPackagingFormatOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetPackagingFormatOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.PackagingFormat) {
 		return nil, false
 	}
-	return o.PackagingFormat, true
+	return &o.PackagingFormat, true
 }
 
 // HasPackagingFormat returns a boolean if a field has been set.
 func (o *ListVODsResponse) HasPackagingFormat() bool {
-	if o != nil && !IsNil(o.PackagingFormat) {
+	if o != nil && IsNil(o.PackagingFormat) {
 		return true
 	}
 
 	return false
 }
 
-// SetPackagingFormat gets a reference to the given string and assigns it to the PackagingFormat field.
-func (o *ListVODsResponse) SetPackagingFormat(v string) {
-	o.PackagingFormat = &v
+// SetPackagingFormat gets a reference to the given interface{} and assigns it to the PackagingFormat field.
+func (o *ListVODsResponse) SetPackagingFormat(v interface{}) {
+	o.PackagingFormat = v
 }
 
 // GetStore returns the Store field value
-func (o *ListVODsResponse) GetStore() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetStore() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -202,22 +210,24 @@ func (o *ListVODsResponse) GetStore() string {
 
 // GetStoreOk returns a tuple with the Store field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetStoreOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetStoreOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Store) {
 		return nil, false
 	}
 	return &o.Store, true
 }
 
 // SetStore sets field value
-func (o *ListVODsResponse) SetStore(v string) {
+func (o *ListVODsResponse) SetStore(v interface{}) {
 	o.Store = v
 }
 
 // GetStorePrefix returns the StorePrefix field value
-func (o *ListVODsResponse) GetStorePrefix() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetStorePrefix() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -226,22 +236,24 @@ func (o *ListVODsResponse) GetStorePrefix() string {
 
 // GetStorePrefixOk returns a tuple with the StorePrefix field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetStorePrefixOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetStorePrefixOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.StorePrefix) {
 		return nil, false
 	}
 	return &o.StorePrefix, true
 }
 
 // SetStorePrefix sets field value
-func (o *ListVODsResponse) SetStorePrefix(v string) {
+func (o *ListVODsResponse) SetStorePrefix(v interface{}) {
 	o.StorePrefix = v
 }
 
 // GetTotalBytes returns the TotalBytes field value
-func (o *ListVODsResponse) GetTotalBytes() int64 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetTotalBytes() interface{} {
 	if o == nil {
-		var ret int64
+		var ret interface{}
 		return ret
 	}
 
@@ -250,22 +262,24 @@ func (o *ListVODsResponse) GetTotalBytes() int64 {
 
 // GetTotalBytesOk returns a tuple with the TotalBytes field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetTotalBytesOk() (*int64, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetTotalBytesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.TotalBytes) {
 		return nil, false
 	}
 	return &o.TotalBytes, true
 }
 
 // SetTotalBytes sets field value
-func (o *ListVODsResponse) SetTotalBytes(v int64) {
+func (o *ListVODsResponse) SetTotalBytes(v interface{}) {
 	o.TotalBytes = v
 }
 
 // GetVersion returns the Version field value
-func (o *ListVODsResponse) GetVersion() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ListVODsResponse) GetVersion() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -274,15 +288,16 @@ func (o *ListVODsResponse) GetVersion() string {
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *ListVODsResponse) GetVersionOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ListVODsResponse) GetVersionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Version) {
 		return nil, false
 	}
 	return &o.Version, true
 }
 
 // SetVersion sets field value
-func (o *ListVODsResponse) SetVersion(v string) {
+func (o *ListVODsResponse) SetVersion(v interface{}) {
 	o.Version = v
 }
 
@@ -296,19 +311,33 @@ func (o ListVODsResponse) MarshalJSON() ([]byte, error) {
 
 func (o ListVODsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["description"] = o.Description
-	toSerialize["file_count"] = o.FileCount
-	toSerialize["id"] = o.Id
-	if !IsNil(o.LastPublished) {
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.FileCount != nil {
+		toSerialize["file_count"] = o.FileCount
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.LastPublished != nil {
 		toSerialize["last_published"] = o.LastPublished
 	}
-	if !IsNil(o.PackagingFormat) {
+	if o.PackagingFormat != nil {
 		toSerialize["packaging_format"] = o.PackagingFormat
 	}
-	toSerialize["store"] = o.Store
-	toSerialize["store_prefix"] = o.StorePrefix
-	toSerialize["total_bytes"] = o.TotalBytes
-	toSerialize["version"] = o.Version
+	if o.Store != nil {
+		toSerialize["store"] = o.Store
+	}
+	if o.StorePrefix != nil {
+		toSerialize["store_prefix"] = o.StorePrefix
+	}
+	if o.TotalBytes != nil {
+		toSerialize["total_bytes"] = o.TotalBytes
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
 	return toSerialize, nil
 }
 

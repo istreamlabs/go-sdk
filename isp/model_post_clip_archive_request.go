@@ -18,10 +18,10 @@ var _ MappedNullable = &PostClipArchiveRequest{}
 
 // PostClipArchiveRequest struct for PostClipArchiveRequest
 type PostClipArchiveRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifer that is carried through the archive request
-	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through the archive request"`
+	CorrelationId interface{} `json:"correlation_id,omitempty" doc:"Identifer that is carried through the archive request"`
 }
 
 // NewPostClipArchiveRequest instantiates a new PostClipArchiveRequest object
@@ -41,68 +41,70 @@ func NewPostClipArchiveRequestWithDefaults() *PostClipArchiveRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PostClipArchiveRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipArchiveRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipArchiveRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipArchiveRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PostClipArchiveRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PostClipArchiveRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *PostClipArchiveRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
-func (o *PostClipArchiveRequest) GetCorrelationId() string {
-	if o == nil || IsNil(o.CorrelationId) {
-		var ret string
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipArchiveRequest) GetCorrelationId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.CorrelationId
+	return o.CorrelationId
 }
 
 // GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipArchiveRequest) GetCorrelationIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipArchiveRequest) GetCorrelationIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.CorrelationId) {
 		return nil, false
 	}
-	return o.CorrelationId, true
+	return &o.CorrelationId, true
 }
 
 // HasCorrelationId returns a boolean if a field has been set.
 func (o *PostClipArchiveRequest) HasCorrelationId() bool {
-	if o != nil && !IsNil(o.CorrelationId) {
+	if o != nil && IsNil(o.CorrelationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
-func (o *PostClipArchiveRequest) SetCorrelationId(v string) {
-	o.CorrelationId = &v
+// SetCorrelationId gets a reference to the given interface{} and assigns it to the CorrelationId field.
+func (o *PostClipArchiveRequest) SetCorrelationId(v interface{}) {
+	o.CorrelationId = v
 }
 
 func (o PostClipArchiveRequest) MarshalJSON() ([]byte, error) {
@@ -115,10 +117,10 @@ func (o PostClipArchiveRequest) MarshalJSON() ([]byte, error) {
 
 func (o PostClipArchiveRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.CorrelationId) {
+	if o.CorrelationId != nil {
 		toSerialize["correlation_id"] = o.CorrelationId
 	}
 	return toSerialize, nil

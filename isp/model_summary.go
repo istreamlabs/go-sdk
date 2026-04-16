@@ -18,21 +18,35 @@ var _ MappedNullable = &Summary{}
 
 // Summary struct for Summary
 type Summary struct {
-	// Station source ID
-	Id string `json:"id" doc:"Station source ID"`
-	// Source name
-	Name *string `json:"name,omitempty" doc:"Source name"`
+	// Desired state of channel
+	DesiredState interface{} `json:"desired_state" enum:"ON,OFF" doc:"Desired state of channel"`
+	// Content hash
+	Etag interface{} `json:"etag" doc:"Content hash"`
+	// Unique channel ID
+	Id interface{} `json:"id" doc:"Unique channel ID"`
+	// Channel Labels
+	Labels interface{} `json:"labels,omitempty" doc:"Channel Labels"`
+	// Friendly channel description
+	Name interface{} `json:"name,omitempty" doc:"Friendly channel description"`
+	// Organization
+	Org interface{} `json:"org" doc:"Organization"`
 	// Link to this resource
-	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	Self interface{} `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	// Channel source
+	Source SourceSummary `json:"source" doc:"Channel source"`
 }
 
 // NewSummary instantiates a new Summary object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSummary(id string) *Summary {
+func NewSummary(desiredState interface{}, etag interface{}, id interface{}, org interface{}, source SourceSummary) *Summary {
 	this := Summary{}
+	this.DesiredState = desiredState
+	this.Etag = etag
 	this.Id = id
+	this.Org = org
+	this.Source = source
 	return &this
 }
 
@@ -44,10 +58,63 @@ func NewSummaryWithDefaults() *Summary {
 	return &this
 }
 
-// GetId returns the Id field value
-func (o *Summary) GetId() string {
+// GetDesiredState returns the DesiredState field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Summary) GetDesiredState() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
+		return ret
+	}
+
+	return o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetDesiredStateOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.DesiredState) {
+		return nil, false
+	}
+	return &o.DesiredState, true
+}
+
+// SetDesiredState sets field value
+func (o *Summary) SetDesiredState(v interface{}) {
+	o.DesiredState = v
+}
+
+// GetEtag returns the Etag field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Summary) GetEtag() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+
+	return o.Etag
+}
+
+// GetEtagOk returns a tuple with the Etag field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetEtagOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Etag) {
+		return nil, false
+	}
+	return &o.Etag, true
+}
+
+// SetEtag sets field value
+func (o *Summary) SetEtag(v interface{}) {
+	o.Etag = v
+}
+
+// GetId returns the Id field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Summary) GetId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 
@@ -56,80 +123,166 @@ func (o *Summary) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *Summary) GetIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *Summary) SetId(v string) {
+func (o *Summary) SetId(v interface{}) {
 	o.Id = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *Summary) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Summary) GetLabels() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Name
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetLabelsOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return &o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Summary) HasLabels() bool {
+	if o != nil && IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given interface{} and assigns it to the Labels field.
+func (o *Summary) SetLabels(v interface{}) {
+	o.Labels = v
+}
+
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Summary) GetName() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Name
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Summary) GetNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetNameOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *Summary) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
+	if o != nil && IsNil(o.Name) {
 		return true
 	}
 
 	return false
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *Summary) SetName(v string) {
-	o.Name = &v
+// SetName gets a reference to the given interface{} and assigns it to the Name field.
+func (o *Summary) SetName(v interface{}) {
+	o.Name = v
 }
 
-// GetSelf returns the Self field value if set, zero value otherwise.
-func (o *Summary) GetSelf() string {
-	if o == nil || IsNil(o.Self) {
-		var ret string
+// GetOrg returns the Org field value
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *Summary) GetOrg() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Self
+
+	return o.Org
+}
+
+// GetOrgOk returns a tuple with the Org field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetOrgOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Org) {
+		return nil, false
+	}
+	return &o.Org, true
+}
+
+// SetOrg sets field value
+func (o *Summary) SetOrg(v interface{}) {
+	o.Org = v
+}
+
+// GetSelf returns the Self field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Summary) GetSelf() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Self
 }
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Summary) GetSelfOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetSelfOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
-	return o.Self, true
+	return &o.Self, true
 }
 
 // HasSelf returns a boolean if a field has been set.
 func (o *Summary) HasSelf() bool {
-	if o != nil && !IsNil(o.Self) {
+	if o != nil && IsNil(o.Self) {
 		return true
 	}
 
 	return false
 }
 
-// SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *Summary) SetSelf(v string) {
-	o.Self = &v
+// SetSelf gets a reference to the given interface{} and assigns it to the Self field.
+func (o *Summary) SetSelf(v interface{}) {
+	o.Self = v
+}
+
+// GetSource returns the Source field value
+func (o *Summary) GetSource() SourceSummary {
+	if o == nil {
+		var ret SourceSummary
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *Summary) GetSourceOk() (*SourceSummary, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *Summary) SetSource(v SourceSummary) {
+	o.Source = v
 }
 
 func (o Summary) MarshalJSON() ([]byte, error) {
@@ -142,13 +295,28 @@ func (o Summary) MarshalJSON() ([]byte, error) {
 
 func (o Summary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	if !IsNil(o.Name) {
+	if o.DesiredState != nil {
+		toSerialize["desired_state"] = o.DesiredState
+	}
+	if o.Etag != nil {
+		toSerialize["etag"] = o.Etag
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
+	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Self) {
+	if o.Org != nil {
+		toSerialize["org"] = o.Org
+	}
+	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
+	toSerialize["source"] = o.Source
 	return toSerialize, nil
 }
 

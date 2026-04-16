@@ -33,11 +33,11 @@ type SourcePreviewsApi interface {
 	@param sourceId Unique source identifier
 	@return ApiGetSourcePreviewStreamRequest
 	*/
-	GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest
+	GetSourcePreviewStream(ctx context.Context, org interface{}, sourceId interface{}) ApiGetSourcePreviewStreamRequest
 
 	// GetSourcePreviewStreamExecute executes the request
-	//  @return GetPreviewStreamsResponse
-	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error)
+	//  @return GetSourcePreviewStreamResponseBody
+	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetSourcePreviewStreamResponseBody, *http.Response, error)
 
 	/*
 	GetSourcePreviewTranscoderStatus Get Transcoder Status
@@ -49,11 +49,11 @@ type SourcePreviewsApi interface {
 	@param sourceId Unique source identifier
 	@return ApiGetSourcePreviewTranscoderStatusRequest
 	*/
-	GetSourcePreviewTranscoderStatus(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewTranscoderStatusRequest
+	GetSourcePreviewTranscoderStatus(ctx context.Context, org interface{}, sourceId interface{}) ApiGetSourcePreviewTranscoderStatusRequest
 
 	// GetSourcePreviewTranscoderStatusExecute executes the request
-	//  @return Status
-	GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error)
+	//  @return GetSourcePreviewTranscoderStatusResponseBody
+	GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error)
 
 	/*
 	PutSourcePreview Create Source Preview
@@ -70,7 +70,7 @@ A response status code of 204 NoContent indicates the requisite Source Preview r
 	@param sourceId Unique source identifier
 	@return ApiPutSourcePreviewRequest
 	*/
-	PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest
+	PutSourcePreview(ctx context.Context, org interface{}, sourceId interface{}) ApiPutSourcePreviewRequest
 
 	// PutSourcePreviewExecute executes the request
 	PutSourcePreviewExecute(r ApiPutSourcePreviewRequest) (*http.Response, error)
@@ -87,7 +87,7 @@ Note that this will disable some automated ingest failover that is based on the 
 	@param sourceId Unique source identifier
 	@return ApiSourcePreviewPinIngestRequest
 	*/
-	SourcePreviewPinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewPinIngestRequest
+	SourcePreviewPinIngest(ctx context.Context, org interface{}, sourceId interface{}) ApiSourcePreviewPinIngestRequest
 
 	// SourcePreviewPinIngestExecute executes the request
 	SourcePreviewPinIngestExecute(r ApiSourcePreviewPinIngestRequest) (*http.Response, error)
@@ -103,7 +103,7 @@ Automated source failover based on feed quality will be resumed.
 	@param sourceId Unique source identifier
 	@return ApiSourcePreviewUnpinIngestRequest
 	*/
-	SourcePreviewUnpinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewUnpinIngestRequest
+	SourcePreviewUnpinIngest(ctx context.Context, org interface{}, sourceId interface{}) ApiSourcePreviewUnpinIngestRequest
 
 	// SourcePreviewUnpinIngestExecute executes the request
 	SourcePreviewUnpinIngestExecute(r ApiSourcePreviewUnpinIngestRequest) (*http.Response, error)
@@ -115,11 +115,11 @@ type SourcePreviewsApiService service
 type ApiGetSourcePreviewStreamRequest struct {
 	ctx context.Context
 	ApiService SourcePreviewsApi
-	org string
-	sourceId string
+	org interface{}
+	sourceId interface{}
 }
 
-func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
+func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetSourcePreviewStreamResponseBody, *http.Response, error) {
 	return r.ApiService.GetSourcePreviewStreamExecute(r)
 }
 
@@ -135,7 +135,7 @@ Gets the information required for the Low Latency Preview Player to enable playb
  @param sourceId Unique source identifier
  @return ApiGetSourcePreviewStreamRequest
 */
-func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest {
+func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, org interface{}, sourceId interface{}) ApiGetSourcePreviewStreamRequest {
 	return ApiGetSourcePreviewStreamRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -145,13 +145,13 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return GetPreviewStreamsResponse
-func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
+//  @return GetSourcePreviewStreamResponseBody
+func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetSourcePreviewStreamResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetPreviewStreamsResponse
+		localVarReturnValue  *GetSourcePreviewStreamResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewStream")
@@ -304,7 +304,7 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourceP
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetPreviewStreamsResponse)
+			localVarReturnValue = items.(*GetSourcePreviewStreamResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -315,11 +315,11 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourceP
 type ApiGetSourcePreviewTranscoderStatusRequest struct {
 	ctx context.Context
 	ApiService SourcePreviewsApi
-	org string
-	sourceId string
+	org interface{}
+	sourceId interface{}
 }
 
-func (r ApiGetSourcePreviewTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
+func (r ApiGetSourcePreviewTranscoderStatusRequest) Execute() (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error) {
 	return r.ApiService.GetSourcePreviewTranscoderStatusExecute(r)
 }
 
@@ -333,7 +333,7 @@ Get the current status for the live transcoder powering the Source Preview.
  @param sourceId Unique source identifier
  @return ApiGetSourcePreviewTranscoderStatusRequest
 */
-func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatus(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewTranscoderStatusRequest {
+func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatus(ctx context.Context, org interface{}, sourceId interface{}) ApiGetSourcePreviewTranscoderStatusRequest {
 	return ApiGetSourcePreviewTranscoderStatusRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -343,13 +343,13 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatus(ctx context.
 }
 
 // Execute executes the request
-//  @return Status
-func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error) {
+//  @return GetSourcePreviewTranscoderStatusResponseBody
+func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Status
+		localVarReturnValue  *GetSourcePreviewTranscoderStatusResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewTranscoderStatus")
@@ -492,7 +492,7 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*Status)
+			localVarReturnValue = items.(*GetSourcePreviewTranscoderStatusResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -503,8 +503,8 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r Api
 type ApiPutSourcePreviewRequest struct {
 	ctx context.Context
 	ApiService SourcePreviewsApi
-	org string
-	sourceId string
+	org interface{}
+	sourceId interface{}
 }
 
 func (r ApiPutSourcePreviewRequest) Execute() (*http.Response, error) {
@@ -526,7 +526,7 @@ A response status code of 204 NoContent indicates the requisite Source Preview r
  @param sourceId Unique source identifier
  @return ApiPutSourcePreviewRequest
 */
-func (a *SourcePreviewsApiService) PutSourcePreview(ctx context.Context, org string, sourceId string) ApiPutSourcePreviewRequest {
+func (a *SourcePreviewsApiService) PutSourcePreview(ctx context.Context, org interface{}, sourceId interface{}) ApiPutSourcePreviewRequest {
 	return ApiPutSourcePreviewRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -703,13 +703,13 @@ func (a *SourcePreviewsApiService) PutSourcePreviewExecute(r ApiPutSourcePreview
 type ApiSourcePreviewPinIngestRequest struct {
 	ctx context.Context
 	ApiService SourcePreviewsApi
-	org string
-	sourceId string
-	pinSourceRequest *PinSourceRequest
+	org interface{}
+	sourceId interface{}
+	requestBody *map[string]interface{}
 }
 
-func (r ApiSourcePreviewPinIngestRequest) PinSourceRequest(pinSourceRequest PinSourceRequest) ApiSourcePreviewPinIngestRequest {
-	r.pinSourceRequest = &pinSourceRequest
+func (r ApiSourcePreviewPinIngestRequest) RequestBody(requestBody map[string]interface{}) ApiSourcePreviewPinIngestRequest {
+	r.requestBody = &requestBody
 	return r
 }
 
@@ -729,7 +729,7 @@ Note that this will disable some automated ingest failover that is based on the 
  @param sourceId Unique source identifier
  @return ApiSourcePreviewPinIngestRequest
 */
-func (a *SourcePreviewsApiService) SourcePreviewPinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewPinIngestRequest {
+func (a *SourcePreviewsApiService) SourcePreviewPinIngest(ctx context.Context, org interface{}, sourceId interface{}) ApiSourcePreviewPinIngestRequest {
 	return ApiSourcePreviewPinIngestRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -758,6 +758,9 @@ func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePrev
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.requestBody == nil {
+		return nil, reportError("requestBody is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
@@ -777,7 +780,7 @@ func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePrev
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	// body params
-	localVarPostBody = r.pinSourceRequest
+	localVarPostBody = r.requestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -908,8 +911,8 @@ func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePrev
 type ApiSourcePreviewUnpinIngestRequest struct {
 	ctx context.Context
 	ApiService SourcePreviewsApi
-	org string
-	sourceId string
+	org interface{}
+	sourceId interface{}
 }
 
 func (r ApiSourcePreviewUnpinIngestRequest) Execute() (*http.Response, error) {
@@ -927,7 +930,7 @@ Automated source failover based on feed quality will be resumed.
  @param sourceId Unique source identifier
  @return ApiSourcePreviewUnpinIngestRequest
 */
-func (a *SourcePreviewsApiService) SourcePreviewUnpinIngest(ctx context.Context, org string, sourceId string) ApiSourcePreviewUnpinIngestRequest {
+func (a *SourcePreviewsApiService) SourcePreviewUnpinIngest(ctx context.Context, org interface{}, sourceId interface{}) ApiSourcePreviewUnpinIngestRequest {
 	return ApiSourcePreviewUnpinIngestRequest{
 		ApiService: a,
 		ctx: ctx,

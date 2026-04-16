@@ -19,16 +19,16 @@ var _ MappedNullable = &GenericSignalResult{}
 // GenericSignalResult struct for GenericSignalResult
 type GenericSignalResult struct {
 	// Error details from the signaling subsystem
-	ErrorMessage string `json:"error_message" doc:"Error details from the signaling subsystem"`
+	ErrorMessage interface{} `json:"error_message" doc:"Error details from the signaling subsystem"`
 	// Result of signal; 'accepted' means no error
-	ResultCode string `json:"result_code" enum:"accepted,not_found,already_exists,invalid_argument,internal_error" doc:"Result of signal; 'accepted' means no error"`
+	ResultCode interface{} `json:"result_code" enum:"accepted,not_found,already_exists,invalid_argument,internal_error" doc:"Result of signal; 'accepted' means no error"`
 }
 
 // NewGenericSignalResult instantiates a new GenericSignalResult object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericSignalResult(errorMessage string, resultCode string) *GenericSignalResult {
+func NewGenericSignalResult(errorMessage interface{}, resultCode interface{}) *GenericSignalResult {
 	this := GenericSignalResult{}
 	this.ErrorMessage = errorMessage
 	this.ResultCode = resultCode
@@ -44,9 +44,10 @@ func NewGenericSignalResultWithDefaults() *GenericSignalResult {
 }
 
 // GetErrorMessage returns the ErrorMessage field value
-func (o *GenericSignalResult) GetErrorMessage() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *GenericSignalResult) GetErrorMessage() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -55,22 +56,24 @@ func (o *GenericSignalResult) GetErrorMessage() string {
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value
 // and a boolean to check if the value has been set.
-func (o *GenericSignalResult) GetErrorMessageOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignalResult) GetErrorMessageOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ErrorMessage) {
 		return nil, false
 	}
 	return &o.ErrorMessage, true
 }
 
 // SetErrorMessage sets field value
-func (o *GenericSignalResult) SetErrorMessage(v string) {
+func (o *GenericSignalResult) SetErrorMessage(v interface{}) {
 	o.ErrorMessage = v
 }
 
 // GetResultCode returns the ResultCode field value
-func (o *GenericSignalResult) GetResultCode() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *GenericSignalResult) GetResultCode() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -79,15 +82,16 @@ func (o *GenericSignalResult) GetResultCode() string {
 
 // GetResultCodeOk returns a tuple with the ResultCode field value
 // and a boolean to check if the value has been set.
-func (o *GenericSignalResult) GetResultCodeOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignalResult) GetResultCodeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ResultCode) {
 		return nil, false
 	}
 	return &o.ResultCode, true
 }
 
 // SetResultCode sets field value
-func (o *GenericSignalResult) SetResultCode(v string) {
+func (o *GenericSignalResult) SetResultCode(v interface{}) {
 	o.ResultCode = v
 }
 
@@ -101,8 +105,12 @@ func (o GenericSignalResult) MarshalJSON() ([]byte, error) {
 
 func (o GenericSignalResult) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["error_message"] = o.ErrorMessage
-	toSerialize["result_code"] = o.ResultCode
+	if o.ErrorMessage != nil {
+		toSerialize["error_message"] = o.ErrorMessage
+	}
+	if o.ResultCode != nil {
+		toSerialize["result_code"] = o.ResultCode
+	}
 	return toSerialize, nil
 }
 

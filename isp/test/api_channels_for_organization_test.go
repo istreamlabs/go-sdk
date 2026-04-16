@@ -26,8 +26,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		httpRes, err := apiClient.ChannelsForOrganizationApi.DeleteOrgChannel(context.Background(), org, channelId).Execute()
 
@@ -40,8 +40,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.GetOrgChannel(context.Background(), org, channelId).Execute()
 
@@ -55,8 +55,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.GetOrgPlaybackConfig(context.Background(), org, channelId).Execute()
 
@@ -70,7 +70,7 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
+		var org interface{}
 
 		resp, httpRes, err := apiClient.ChannelsForOrganizationApi.ListOrgChannels(context.Background(), org).Execute()
 
@@ -84,8 +84,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		httpRes, err := apiClient.ChannelsForOrganizationApi.PatchOrgChannel(context.Background(), org, channelId).Execute()
 
@@ -98,8 +98,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		httpRes, err := apiClient.ChannelsForOrganizationApi.PutOrgChannel(context.Background(), org, channelId).Execute()
 
@@ -112,8 +112,8 @@ func Test_isp_ChannelsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		httpRes, err := apiClient.ChannelsForOrganizationApi.PutOrgChannelDesiredState(context.Background(), org, channelId).Execute()
 

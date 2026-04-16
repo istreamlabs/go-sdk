@@ -18,22 +18,23 @@ var _ MappedNullable = &ArchiveFERRequest{}
 
 // ArchiveFERRequest struct for ArchiveFERRequest
 type ArchiveFERRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Correlation ID for this FER archive request
-	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
+	CorrelationId interface{} `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// Portion of the query string that applies to all packages
-	GlobalQueryString string `json:"global_query_string" doc:"Portion of the query string that applies to all packages"`
-	Notification ArchiveFERRequestNotification `json:"notification"`
+	GlobalQueryString interface{} `json:"global_query_string" doc:"Portion of the query string that applies to all packages"`
+	// Notification settings
+	Notification DynamicNotification `json:"notification" doc:"Notification settings"`
 	// Packages to be archived as FERs
-	Packages []ArchiveFERRequestPackagesInner `json:"packages" doc:"Packages to be archived as FERs"`
+	Packages interface{} `json:"packages" doc:"Packages to be archived as FERs"`
 }
 
 // NewArchiveFERRequest instantiates a new ArchiveFERRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewArchiveFERRequest(correlationId string, globalQueryString string, notification ArchiveFERRequestNotification, packages []ArchiveFERRequestPackagesInner) *ArchiveFERRequest {
+func NewArchiveFERRequest(correlationId interface{}, globalQueryString interface{}, notification DynamicNotification, packages interface{}) *ArchiveFERRequest {
 	this := ArchiveFERRequest{}
 	this.CorrelationId = correlationId
 	this.GlobalQueryString = globalQueryString
@@ -50,42 +51,44 @@ func NewArchiveFERRequestWithDefaults() *ArchiveFERRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *ArchiveFERRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ArchiveFERRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ArchiveFERRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *ArchiveFERRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *ArchiveFERRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *ArchiveFERRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetCorrelationId returns the CorrelationId field value
-func (o *ArchiveFERRequest) GetCorrelationId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ArchiveFERRequest) GetCorrelationId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -94,22 +97,24 @@ func (o *ArchiveFERRequest) GetCorrelationId() string {
 
 // GetCorrelationIdOk returns a tuple with the CorrelationId field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetCorrelationIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ArchiveFERRequest) GetCorrelationIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
 		return nil, false
 	}
 	return &o.CorrelationId, true
 }
 
 // SetCorrelationId sets field value
-func (o *ArchiveFERRequest) SetCorrelationId(v string) {
+func (o *ArchiveFERRequest) SetCorrelationId(v interface{}) {
 	o.CorrelationId = v
 }
 
 // GetGlobalQueryString returns the GlobalQueryString field value
-func (o *ArchiveFERRequest) GetGlobalQueryString() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ArchiveFERRequest) GetGlobalQueryString() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -118,22 +123,23 @@ func (o *ArchiveFERRequest) GetGlobalQueryString() string {
 
 // GetGlobalQueryStringOk returns a tuple with the GlobalQueryString field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetGlobalQueryStringOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ArchiveFERRequest) GetGlobalQueryStringOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.GlobalQueryString) {
 		return nil, false
 	}
 	return &o.GlobalQueryString, true
 }
 
 // SetGlobalQueryString sets field value
-func (o *ArchiveFERRequest) SetGlobalQueryString(v string) {
+func (o *ArchiveFERRequest) SetGlobalQueryString(v interface{}) {
 	o.GlobalQueryString = v
 }
 
 // GetNotification returns the Notification field value
-func (o *ArchiveFERRequest) GetNotification() ArchiveFERRequestNotification {
+func (o *ArchiveFERRequest) GetNotification() DynamicNotification {
 	if o == nil {
-		var ret ArchiveFERRequestNotification
+		var ret DynamicNotification
 		return ret
 	}
 
@@ -142,7 +148,7 @@ func (o *ArchiveFERRequest) GetNotification() ArchiveFERRequestNotification {
 
 // GetNotificationOk returns a tuple with the Notification field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetNotificationOk() (*ArchiveFERRequestNotification, bool) {
+func (o *ArchiveFERRequest) GetNotificationOk() (*DynamicNotification, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -150,14 +156,15 @@ func (o *ArchiveFERRequest) GetNotificationOk() (*ArchiveFERRequestNotification,
 }
 
 // SetNotification sets field value
-func (o *ArchiveFERRequest) SetNotification(v ArchiveFERRequestNotification) {
+func (o *ArchiveFERRequest) SetNotification(v DynamicNotification) {
 	o.Notification = v
 }
 
 // GetPackages returns the Packages field value
-func (o *ArchiveFERRequest) GetPackages() []ArchiveFERRequestPackagesInner {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ArchiveFERRequest) GetPackages() interface{} {
 	if o == nil {
-		var ret []ArchiveFERRequestPackagesInner
+		var ret interface{}
 		return ret
 	}
 
@@ -166,15 +173,16 @@ func (o *ArchiveFERRequest) GetPackages() []ArchiveFERRequestPackagesInner {
 
 // GetPackagesOk returns a tuple with the Packages field value
 // and a boolean to check if the value has been set.
-func (o *ArchiveFERRequest) GetPackagesOk() ([]ArchiveFERRequestPackagesInner, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ArchiveFERRequest) GetPackagesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Packages) {
 		return nil, false
 	}
-	return o.Packages, true
+	return &o.Packages, true
 }
 
 // SetPackages sets field value
-func (o *ArchiveFERRequest) SetPackages(v []ArchiveFERRequestPackagesInner) {
+func (o *ArchiveFERRequest) SetPackages(v interface{}) {
 	o.Packages = v
 }
 
@@ -188,13 +196,19 @@ func (o ArchiveFERRequest) MarshalJSON() ([]byte, error) {
 
 func (o ArchiveFERRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["correlation_id"] = o.CorrelationId
-	toSerialize["global_query_string"] = o.GlobalQueryString
+	if o.CorrelationId != nil {
+		toSerialize["correlation_id"] = o.CorrelationId
+	}
+	if o.GlobalQueryString != nil {
+		toSerialize["global_query_string"] = o.GlobalQueryString
+	}
 	toSerialize["notification"] = o.Notification
-	toSerialize["packages"] = o.Packages
+	if o.Packages != nil {
+		toSerialize["packages"] = o.Packages
+	}
 	return toSerialize, nil
 }
 

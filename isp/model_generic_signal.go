@@ -19,33 +19,31 @@ var _ MappedNullable = &GenericSignal{}
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
 	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
-	Duration *int32 `json:"duration,omitempty" format:"int32" default:"0" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
+	Duration interface{} `json:"duration,omitempty" format:"int64" default:"0" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
 	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
-	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id."`
+	EventId interface{} `json:"event_id" format:"int32" minimum:"0" doc:"Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id."`
 	// The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc.
-	SegmentType string `json:"segment_type" enum:"splice_insert,content_id,program,program_breakaway,chapter,break,opening_credit,closing_credit,provider_placement,distributor_placement,provider_overlay,distributor_overlay,provider_ad,distributor_ad,unscheduled_event,network,slate,timed_metadata" doc:"The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc."`
+	SegmentType interface{} `json:"segment_type" enum:"splice_insert,content_id,program,program_breakaway,chapter,break,opening_credit,closing_credit,provider_placement,distributor_placement,provider_overlay,distributor_overlay,provider_ad,distributor_ad,unscheduled_event,network,slate,timed_metadata" doc:"The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc."`
 	// Whether this signal will start/end/etc a signaling segment
-	SignalType string `json:"signal_type" enum:"start,end,breakaway,resumption" doc:"Whether this signal will start/end/etc a signaling segment"`
+	SignalType interface{} `json:"signal_type" enum:"start,end,breakaway,resumption" doc:"Whether this signal will start/end/etc a signaling segment"`
 	// Slate url
-	SlateUri *string `json:"slate_uri,omitempty" format:"uri" doc:"Slate url"`
+	SlateUri interface{} `json:"slate_uri,omitempty" format:"uri" doc:"Slate url"`
 	// Timed metadata opaque payload data
-	TimedMetadataPayload *string `json:"timed_metadata_payload,omitempty" doc:"Timed metadata opaque payload data"`
+	TimedMetadataPayload interface{} `json:"timed_metadata_payload,omitempty" doc:"Timed metadata opaque payload data"`
 	// The timed metadata signal's type
-	TimedMetadataType *string `json:"timed_metadata_type,omitempty" doc:"The timed metadata signal's type"`
+	TimedMetadataType interface{} `json:"timed_metadata_type,omitempty" doc:"The timed metadata signal's type"`
 	// Qualifier type
-	Type *string `json:"type,omitempty" enum:"none,overlap,in_progress" doc:"Qualifier type"`
+	Type interface{} `json:"type,omitempty" enum:"none,overlap,in_progress" doc:"Qualifier type"`
 	// UPIDs
-	Upids []string `json:"upids,omitempty" doc:"UPIDs"`
+	Upids interface{} `json:"upids,omitempty" doc:"UPIDs"`
 }
 
 // NewGenericSignal instantiates a new GenericSignal object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGenericSignal(eventId int32, segmentType string, signalType string) *GenericSignal {
+func NewGenericSignal(eventId interface{}, segmentType interface{}, signalType interface{}) *GenericSignal {
 	this := GenericSignal{}
-	var duration int32 = 0
-	this.Duration = &duration
 	this.EventId = eventId
 	this.SegmentType = segmentType
 	this.SignalType = signalType
@@ -57,47 +55,47 @@ func NewGenericSignal(eventId int32, segmentType string, signalType string) *Gen
 // but it doesn't guarantee that properties required by API are set
 func NewGenericSignalWithDefaults() *GenericSignal {
 	this := GenericSignal{}
-	var duration int32 = 0
-	this.Duration = &duration
 	return &this
 }
 
-// GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *GenericSignal) GetDuration() int32 {
-	if o == nil || IsNil(o.Duration) {
-		var ret int32
+// GetDuration returns the Duration field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetDuration() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Duration
+	return o.Duration
 }
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetDurationOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetDurationOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
-	return o.Duration, true
+	return &o.Duration, true
 }
 
 // HasDuration returns a boolean if a field has been set.
 func (o *GenericSignal) HasDuration() bool {
-	if o != nil && !IsNil(o.Duration) {
+	if o != nil && IsNil(o.Duration) {
 		return true
 	}
 
 	return false
 }
 
-// SetDuration gets a reference to the given int32 and assigns it to the Duration field.
-func (o *GenericSignal) SetDuration(v int32) {
-	o.Duration = &v
+// SetDuration gets a reference to the given interface{} and assigns it to the Duration field.
+func (o *GenericSignal) SetDuration(v interface{}) {
+	o.Duration = v
 }
 
 // GetEventId returns the EventId field value
-func (o *GenericSignal) GetEventId() int32 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *GenericSignal) GetEventId() interface{} {
 	if o == nil {
-		var ret int32
+		var ret interface{}
 		return ret
 	}
 
@@ -106,22 +104,24 @@ func (o *GenericSignal) GetEventId() int32 {
 
 // GetEventIdOk returns a tuple with the EventId field value
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetEventIdOk() (*int32, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetEventIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.EventId) {
 		return nil, false
 	}
 	return &o.EventId, true
 }
 
 // SetEventId sets field value
-func (o *GenericSignal) SetEventId(v int32) {
+func (o *GenericSignal) SetEventId(v interface{}) {
 	o.EventId = v
 }
 
 // GetSegmentType returns the SegmentType field value
-func (o *GenericSignal) GetSegmentType() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *GenericSignal) GetSegmentType() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -130,22 +130,24 @@ func (o *GenericSignal) GetSegmentType() string {
 
 // GetSegmentTypeOk returns a tuple with the SegmentType field value
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetSegmentTypeOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetSegmentTypeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.SegmentType) {
 		return nil, false
 	}
 	return &o.SegmentType, true
 }
 
 // SetSegmentType sets field value
-func (o *GenericSignal) SetSegmentType(v string) {
+func (o *GenericSignal) SetSegmentType(v interface{}) {
 	o.SegmentType = v
 }
 
 // GetSignalType returns the SignalType field value
-func (o *GenericSignal) GetSignalType() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *GenericSignal) GetSignalType() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -154,150 +156,155 @@ func (o *GenericSignal) GetSignalType() string {
 
 // GetSignalTypeOk returns a tuple with the SignalType field value
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetSignalTypeOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetSignalTypeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.SignalType) {
 		return nil, false
 	}
 	return &o.SignalType, true
 }
 
 // SetSignalType sets field value
-func (o *GenericSignal) SetSignalType(v string) {
+func (o *GenericSignal) SetSignalType(v interface{}) {
 	o.SignalType = v
 }
 
-// GetSlateUri returns the SlateUri field value if set, zero value otherwise.
-func (o *GenericSignal) GetSlateUri() string {
-	if o == nil || IsNil(o.SlateUri) {
-		var ret string
+// GetSlateUri returns the SlateUri field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetSlateUri() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.SlateUri
+	return o.SlateUri
 }
 
 // GetSlateUriOk returns a tuple with the SlateUri field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetSlateUriOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetSlateUriOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.SlateUri) {
 		return nil, false
 	}
-	return o.SlateUri, true
+	return &o.SlateUri, true
 }
 
 // HasSlateUri returns a boolean if a field has been set.
 func (o *GenericSignal) HasSlateUri() bool {
-	if o != nil && !IsNil(o.SlateUri) {
+	if o != nil && IsNil(o.SlateUri) {
 		return true
 	}
 
 	return false
 }
 
-// SetSlateUri gets a reference to the given string and assigns it to the SlateUri field.
-func (o *GenericSignal) SetSlateUri(v string) {
-	o.SlateUri = &v
+// SetSlateUri gets a reference to the given interface{} and assigns it to the SlateUri field.
+func (o *GenericSignal) SetSlateUri(v interface{}) {
+	o.SlateUri = v
 }
 
-// GetTimedMetadataPayload returns the TimedMetadataPayload field value if set, zero value otherwise.
-func (o *GenericSignal) GetTimedMetadataPayload() string {
-	if o == nil || IsNil(o.TimedMetadataPayload) {
-		var ret string
+// GetTimedMetadataPayload returns the TimedMetadataPayload field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetTimedMetadataPayload() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.TimedMetadataPayload
+	return o.TimedMetadataPayload
 }
 
 // GetTimedMetadataPayloadOk returns a tuple with the TimedMetadataPayload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetTimedMetadataPayloadOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetTimedMetadataPayloadOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TimedMetadataPayload) {
 		return nil, false
 	}
-	return o.TimedMetadataPayload, true
+	return &o.TimedMetadataPayload, true
 }
 
 // HasTimedMetadataPayload returns a boolean if a field has been set.
 func (o *GenericSignal) HasTimedMetadataPayload() bool {
-	if o != nil && !IsNil(o.TimedMetadataPayload) {
+	if o != nil && IsNil(o.TimedMetadataPayload) {
 		return true
 	}
 
 	return false
 }
 
-// SetTimedMetadataPayload gets a reference to the given string and assigns it to the TimedMetadataPayload field.
-func (o *GenericSignal) SetTimedMetadataPayload(v string) {
-	o.TimedMetadataPayload = &v
+// SetTimedMetadataPayload gets a reference to the given interface{} and assigns it to the TimedMetadataPayload field.
+func (o *GenericSignal) SetTimedMetadataPayload(v interface{}) {
+	o.TimedMetadataPayload = v
 }
 
-// GetTimedMetadataType returns the TimedMetadataType field value if set, zero value otherwise.
-func (o *GenericSignal) GetTimedMetadataType() string {
-	if o == nil || IsNil(o.TimedMetadataType) {
-		var ret string
+// GetTimedMetadataType returns the TimedMetadataType field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetTimedMetadataType() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.TimedMetadataType
+	return o.TimedMetadataType
 }
 
 // GetTimedMetadataTypeOk returns a tuple with the TimedMetadataType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetTimedMetadataTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetTimedMetadataTypeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.TimedMetadataType) {
 		return nil, false
 	}
-	return o.TimedMetadataType, true
+	return &o.TimedMetadataType, true
 }
 
 // HasTimedMetadataType returns a boolean if a field has been set.
 func (o *GenericSignal) HasTimedMetadataType() bool {
-	if o != nil && !IsNil(o.TimedMetadataType) {
+	if o != nil && IsNil(o.TimedMetadataType) {
 		return true
 	}
 
 	return false
 }
 
-// SetTimedMetadataType gets a reference to the given string and assigns it to the TimedMetadataType field.
-func (o *GenericSignal) SetTimedMetadataType(v string) {
-	o.TimedMetadataType = &v
+// SetTimedMetadataType gets a reference to the given interface{} and assigns it to the TimedMetadataType field.
+func (o *GenericSignal) SetTimedMetadataType(v interface{}) {
+	o.TimedMetadataType = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *GenericSignal) GetType() string {
-	if o == nil || IsNil(o.Type) {
-		var ret string
+// GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetType() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetTypeOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetTypeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
 // HasType returns a boolean if a field has been set.
 func (o *GenericSignal) HasType() bool {
-	if o != nil && !IsNil(o.Type) {
+	if o != nil && IsNil(o.Type) {
 		return true
 	}
 
 	return false
 }
 
-// SetType gets a reference to the given string and assigns it to the Type field.
-func (o *GenericSignal) SetType(v string) {
-	o.Type = &v
+// SetType gets a reference to the given interface{} and assigns it to the Type field.
+func (o *GenericSignal) SetType(v interface{}) {
+	o.Type = v
 }
 
-// GetUpids returns the Upids field value if set, zero value otherwise.
-func (o *GenericSignal) GetUpids() []string {
-	if o == nil || IsNil(o.Upids) {
-		var ret []string
+// GetUpids returns the Upids field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GenericSignal) GetUpids() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Upids
@@ -305,24 +312,25 @@ func (o *GenericSignal) GetUpids() []string {
 
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GenericSignal) GetUpidsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Upids) {
 		return nil, false
 	}
-	return o.Upids, true
+	return &o.Upids, true
 }
 
 // HasUpids returns a boolean if a field has been set.
 func (o *GenericSignal) HasUpids() bool {
-	if o != nil && !IsNil(o.Upids) {
+	if o != nil && IsNil(o.Upids) {
 		return true
 	}
 
 	return false
 }
 
-// SetUpids gets a reference to the given []string and assigns it to the Upids field.
-func (o *GenericSignal) SetUpids(v []string) {
+// SetUpids gets a reference to the given interface{} and assigns it to the Upids field.
+func (o *GenericSignal) SetUpids(v interface{}) {
 	o.Upids = v
 }
 
@@ -336,25 +344,31 @@ func (o GenericSignal) MarshalJSON() ([]byte, error) {
 
 func (o GenericSignal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Duration) {
+	if o.Duration != nil {
 		toSerialize["duration"] = o.Duration
 	}
-	toSerialize["event_id"] = o.EventId
-	toSerialize["segment_type"] = o.SegmentType
-	toSerialize["signal_type"] = o.SignalType
-	if !IsNil(o.SlateUri) {
+	if o.EventId != nil {
+		toSerialize["event_id"] = o.EventId
+	}
+	if o.SegmentType != nil {
+		toSerialize["segment_type"] = o.SegmentType
+	}
+	if o.SignalType != nil {
+		toSerialize["signal_type"] = o.SignalType
+	}
+	if o.SlateUri != nil {
 		toSerialize["slate_uri"] = o.SlateUri
 	}
-	if !IsNil(o.TimedMetadataPayload) {
+	if o.TimedMetadataPayload != nil {
 		toSerialize["timed_metadata_payload"] = o.TimedMetadataPayload
 	}
-	if !IsNil(o.TimedMetadataType) {
+	if o.TimedMetadataType != nil {
 		toSerialize["timed_metadata_type"] = o.TimedMetadataType
 	}
-	if !IsNil(o.Type) {
+	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
-	if !IsNil(o.Upids) {
+	if o.Upids != nil {
 		toSerialize["upids"] = o.Upids
 	}
 	return toSerialize, nil

@@ -18,25 +18,25 @@ var _ MappedNullable = &MakeClipRequest{}
 
 // MakeClipRequest struct for MakeClipRequest
 type MakeClipRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifer that is carried through archive and collapse notifications for the clip creation
-	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
+	CorrelationId interface{} `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
 	// Description of the clip being created
-	Description *string `json:"description,omitempty" maxLength:"80" doc:"Description of the clip being created"`
+	Description interface{} `json:"description,omitempty" maxLength:"80" doc:"Description of the clip being created"`
 	// End timestamp in RFC3339Nano format
-	End string `json:"end" doc:"End timestamp in RFC3339Nano format"`
+	End interface{} `json:"end" doc:"End timestamp in RFC3339Nano format"`
 	// Overwrite existing clip. Default: false
-	Overwrite *bool `json:"overwrite,omitempty" doc:"Overwrite existing clip. Default: false"`
+	Overwrite interface{} `json:"overwrite,omitempty" doc:"Overwrite existing clip. Default: false"`
 	// Start timestamp in RFC3339Nano format
-	Start string `json:"start" doc:"Start timestamp in RFC3339Nano format"`
+	Start interface{} `json:"start" doc:"Start timestamp in RFC3339Nano format"`
 }
 
 // NewMakeClipRequest instantiates a new MakeClipRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMakeClipRequest(end string, start string) *MakeClipRequest {
+func NewMakeClipRequest(end interface{}, start interface{}) *MakeClipRequest {
 	this := MakeClipRequest{}
 	this.End = end
 	this.Start = start
@@ -51,106 +51,110 @@ func NewMakeClipRequestWithDefaults() *MakeClipRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *MakeClipRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MakeClipRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *MakeClipRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *MakeClipRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *MakeClipRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
-func (o *MakeClipRequest) GetCorrelationId() string {
-	if o == nil || IsNil(o.CorrelationId) {
-		var ret string
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MakeClipRequest) GetCorrelationId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.CorrelationId
+	return o.CorrelationId
 }
 
 // GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetCorrelationIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetCorrelationIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.CorrelationId) {
 		return nil, false
 	}
-	return o.CorrelationId, true
+	return &o.CorrelationId, true
 }
 
 // HasCorrelationId returns a boolean if a field has been set.
 func (o *MakeClipRequest) HasCorrelationId() bool {
-	if o != nil && !IsNil(o.CorrelationId) {
+	if o != nil && IsNil(o.CorrelationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
-func (o *MakeClipRequest) SetCorrelationId(v string) {
-	o.CorrelationId = &v
+// SetCorrelationId gets a reference to the given interface{} and assigns it to the CorrelationId field.
+func (o *MakeClipRequest) SetCorrelationId(v interface{}) {
+	o.CorrelationId = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *MakeClipRequest) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MakeClipRequest) GetDescription() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetDescriptionOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetDescriptionOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *MakeClipRequest) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *MakeClipRequest) SetDescription(v string) {
-	o.Description = &v
+// SetDescription gets a reference to the given interface{} and assigns it to the Description field.
+func (o *MakeClipRequest) SetDescription(v interface{}) {
+	o.Description = v
 }
 
 // GetEnd returns the End field value
-func (o *MakeClipRequest) GetEnd() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *MakeClipRequest) GetEnd() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -159,54 +163,57 @@ func (o *MakeClipRequest) GetEnd() string {
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetEndOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetEndOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
 	return &o.End, true
 }
 
 // SetEnd sets field value
-func (o *MakeClipRequest) SetEnd(v string) {
+func (o *MakeClipRequest) SetEnd(v interface{}) {
 	o.End = v
 }
 
-// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
-func (o *MakeClipRequest) GetOverwrite() bool {
-	if o == nil || IsNil(o.Overwrite) {
-		var ret bool
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *MakeClipRequest) GetOverwrite() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Overwrite
+	return o.Overwrite
 }
 
 // GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetOverwriteOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetOverwriteOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Overwrite) {
 		return nil, false
 	}
-	return o.Overwrite, true
+	return &o.Overwrite, true
 }
 
 // HasOverwrite returns a boolean if a field has been set.
 func (o *MakeClipRequest) HasOverwrite() bool {
-	if o != nil && !IsNil(o.Overwrite) {
+	if o != nil && IsNil(o.Overwrite) {
 		return true
 	}
 
 	return false
 }
 
-// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
-func (o *MakeClipRequest) SetOverwrite(v bool) {
-	o.Overwrite = &v
+// SetOverwrite gets a reference to the given interface{} and assigns it to the Overwrite field.
+func (o *MakeClipRequest) SetOverwrite(v interface{}) {
+	o.Overwrite = v
 }
 
 // GetStart returns the Start field value
-func (o *MakeClipRequest) GetStart() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *MakeClipRequest) GetStart() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -215,15 +222,16 @@ func (o *MakeClipRequest) GetStart() string {
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *MakeClipRequest) GetStartOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *MakeClipRequest) GetStartOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
 	return &o.Start, true
 }
 
 // SetStart sets field value
-func (o *MakeClipRequest) SetStart(v string) {
+func (o *MakeClipRequest) SetStart(v interface{}) {
 	o.Start = v
 }
 
@@ -237,20 +245,24 @@ func (o MakeClipRequest) MarshalJSON() ([]byte, error) {
 
 func (o MakeClipRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.CorrelationId) {
+	if o.CorrelationId != nil {
 		toSerialize["correlation_id"] = o.CorrelationId
 	}
-	if !IsNil(o.Description) {
+	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["end"] = o.End
-	if !IsNil(o.Overwrite) {
+	if o.End != nil {
+		toSerialize["end"] = o.End
+	}
+	if o.Overwrite != nil {
 		toSerialize["overwrite"] = o.Overwrite
 	}
-	toSerialize["start"] = o.Start
+	if o.Start != nil {
+		toSerialize["start"] = o.Start
+	}
 	return toSerialize, nil
 }
 

@@ -18,10 +18,10 @@ var _ MappedNullable = &DeprecatedMakeMP4Request{}
 
 // DeprecatedMakeMP4Request struct for DeprecatedMakeMP4Request
 type DeprecatedMakeMP4Request struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// if true, forces recreation of the mp4 if already created.
-	Force *bool `json:"force,omitempty" doc:"if true, forces recreation of the mp4 if already created."`
+	Force interface{} `json:"force,omitempty" doc:"if true, forces recreation of the mp4 if already created."`
 }
 
 // NewDeprecatedMakeMP4Request instantiates a new DeprecatedMakeMP4Request object
@@ -41,68 +41,70 @@ func NewDeprecatedMakeMP4RequestWithDefaults() *DeprecatedMakeMP4Request {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *DeprecatedMakeMP4Request) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeprecatedMakeMP4Request) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeprecatedMakeMP4Request) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeprecatedMakeMP4Request) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *DeprecatedMakeMP4Request) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *DeprecatedMakeMP4Request) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *DeprecatedMakeMP4Request) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetForce returns the Force field value if set, zero value otherwise.
-func (o *DeprecatedMakeMP4Request) GetForce() bool {
-	if o == nil || IsNil(o.Force) {
-		var ret bool
+// GetForce returns the Force field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DeprecatedMakeMP4Request) GetForce() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Force
+	return o.Force
 }
 
 // GetForceOk returns a tuple with the Force field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeprecatedMakeMP4Request) GetForceOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DeprecatedMakeMP4Request) GetForceOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Force) {
 		return nil, false
 	}
-	return o.Force, true
+	return &o.Force, true
 }
 
 // HasForce returns a boolean if a field has been set.
 func (o *DeprecatedMakeMP4Request) HasForce() bool {
-	if o != nil && !IsNil(o.Force) {
+	if o != nil && IsNil(o.Force) {
 		return true
 	}
 
 	return false
 }
 
-// SetForce gets a reference to the given bool and assigns it to the Force field.
-func (o *DeprecatedMakeMP4Request) SetForce(v bool) {
-	o.Force = &v
+// SetForce gets a reference to the given interface{} and assigns it to the Force field.
+func (o *DeprecatedMakeMP4Request) SetForce(v interface{}) {
+	o.Force = v
 }
 
 func (o DeprecatedMakeMP4Request) MarshalJSON() ([]byte, error) {
@@ -115,10 +117,10 @@ func (o DeprecatedMakeMP4Request) MarshalJSON() ([]byte, error) {
 
 func (o DeprecatedMakeMP4Request) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.Force) {
+	if o.Force != nil {
 		toSerialize["force"] = o.Force
 	}
 	return toSerialize, nil

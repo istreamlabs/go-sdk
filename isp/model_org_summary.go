@@ -19,16 +19,16 @@ var _ MappedNullable = &OrgSummary{}
 // OrgSummary struct for OrgSummary
 type OrgSummary struct {
 	// ID of the organization
-	Id string `json:"id" doc:"ID of the organization"`
+	Id interface{} `json:"id" doc:"ID of the organization"`
 	// Link to this resource
-	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	Self interface{} `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 }
 
 // NewOrgSummary instantiates a new OrgSummary object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOrgSummary(id string) *OrgSummary {
+func NewOrgSummary(id interface{}) *OrgSummary {
 	this := OrgSummary{}
 	this.Id = id
 	return &this
@@ -43,9 +43,10 @@ func NewOrgSummaryWithDefaults() *OrgSummary {
 }
 
 // GetId returns the Id field value
-func (o *OrgSummary) GetId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *OrgSummary) GetId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -54,48 +55,50 @@ func (o *OrgSummary) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *OrgSummary) GetIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrgSummary) GetIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
 // SetId sets field value
-func (o *OrgSummary) SetId(v string) {
+func (o *OrgSummary) SetId(v interface{}) {
 	o.Id = v
 }
 
-// GetSelf returns the Self field value if set, zero value otherwise.
-func (o *OrgSummary) GetSelf() string {
-	if o == nil || IsNil(o.Self) {
-		var ret string
+// GetSelf returns the Self field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *OrgSummary) GetSelf() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Self
+	return o.Self
 }
 
 // GetSelfOk returns a tuple with the Self field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OrgSummary) GetSelfOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *OrgSummary) GetSelfOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Self) {
 		return nil, false
 	}
-	return o.Self, true
+	return &o.Self, true
 }
 
 // HasSelf returns a boolean if a field has been set.
 func (o *OrgSummary) HasSelf() bool {
-	if o != nil && !IsNil(o.Self) {
+	if o != nil && IsNil(o.Self) {
 		return true
 	}
 
 	return false
 }
 
-// SetSelf gets a reference to the given string and assigns it to the Self field.
-func (o *OrgSummary) SetSelf(v string) {
-	o.Self = &v
+// SetSelf gets a reference to the given interface{} and assigns it to the Self field.
+func (o *OrgSummary) SetSelf(v interface{}) {
+	o.Self = v
 }
 
 func (o OrgSummary) MarshalJSON() ([]byte, error) {
@@ -108,8 +111,10 @@ func (o OrgSummary) MarshalJSON() ([]byte, error) {
 
 func (o OrgSummary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	if !IsNil(o.Self) {
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Self != nil {
 		toSerialize["self"] = o.Self
 	}
 	return toSerialize, nil

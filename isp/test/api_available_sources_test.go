@@ -26,8 +26,8 @@ func Test_isp_AvailableSourcesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		resp, httpRes, err := apiClient.AvailableSourcesApi.GetOrgSource(context.Background(), org, sourceId).Execute()
 
@@ -41,7 +41,7 @@ func Test_isp_AvailableSourcesApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
+		var org interface{}
 
 		resp, httpRes, err := apiClient.AvailableSourcesApi.ListOrgSources(context.Background(), org).Execute()
 

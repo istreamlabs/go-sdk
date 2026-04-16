@@ -11,7 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the SignalingLog type satisfies the MappedNullable interface at compile time
@@ -19,16 +18,16 @@ var _ MappedNullable = &SignalingLog{}
 
 // SignalingLog struct for SignalingLog
 type SignalingLog struct {
-	Log SignalingLogLog `json:"log"`
-	Status string `json:"status"`
-	Timestamp time.Time `json:"timestamp" format:"date-time"`
+	Log LogData `json:"log"`
+	Status interface{} `json:"status"`
+	Timestamp interface{} `json:"timestamp" format:"date-time"`
 }
 
 // NewSignalingLog instantiates a new SignalingLog object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignalingLog(log SignalingLogLog, status string, timestamp time.Time) *SignalingLog {
+func NewSignalingLog(log LogData, status interface{}, timestamp interface{}) *SignalingLog {
 	this := SignalingLog{}
 	this.Log = log
 	this.Status = status
@@ -45,9 +44,9 @@ func NewSignalingLogWithDefaults() *SignalingLog {
 }
 
 // GetLog returns the Log field value
-func (o *SignalingLog) GetLog() SignalingLogLog {
+func (o *SignalingLog) GetLog() LogData {
 	if o == nil {
-		var ret SignalingLogLog
+		var ret LogData
 		return ret
 	}
 
@@ -56,7 +55,7 @@ func (o *SignalingLog) GetLog() SignalingLogLog {
 
 // GetLogOk returns a tuple with the Log field value
 // and a boolean to check if the value has been set.
-func (o *SignalingLog) GetLogOk() (*SignalingLogLog, bool) {
+func (o *SignalingLog) GetLogOk() (*LogData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,14 +63,15 @@ func (o *SignalingLog) GetLogOk() (*SignalingLogLog, bool) {
 }
 
 // SetLog sets field value
-func (o *SignalingLog) SetLog(v SignalingLogLog) {
+func (o *SignalingLog) SetLog(v LogData) {
 	o.Log = v
 }
 
 // GetStatus returns the Status field value
-func (o *SignalingLog) GetStatus() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *SignalingLog) GetStatus() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -80,22 +80,24 @@ func (o *SignalingLog) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
-func (o *SignalingLog) GetStatusOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SignalingLog) GetStatusOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
 	return &o.Status, true
 }
 
 // SetStatus sets field value
-func (o *SignalingLog) SetStatus(v string) {
+func (o *SignalingLog) SetStatus(v interface{}) {
 	o.Status = v
 }
 
 // GetTimestamp returns the Timestamp field value
-func (o *SignalingLog) GetTimestamp() time.Time {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *SignalingLog) GetTimestamp() interface{} {
 	if o == nil {
-		var ret time.Time
+		var ret interface{}
 		return ret
 	}
 
@@ -104,15 +106,16 @@ func (o *SignalingLog) GetTimestamp() time.Time {
 
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
-func (o *SignalingLog) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SignalingLog) GetTimestampOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return &o.Timestamp, true
 }
 
 // SetTimestamp sets field value
-func (o *SignalingLog) SetTimestamp(v time.Time) {
+func (o *SignalingLog) SetTimestamp(v interface{}) {
 	o.Timestamp = v
 }
 
@@ -127,8 +130,12 @@ func (o SignalingLog) MarshalJSON() ([]byte, error) {
 func (o SignalingLog) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["log"] = o.Log
-	toSerialize["status"] = o.Status
-	toSerialize["timestamp"] = o.Timestamp
+	if o.Status != nil {
+		toSerialize["status"] = o.Status
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
 	return toSerialize, nil
 }
 

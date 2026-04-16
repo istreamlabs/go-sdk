@@ -26,8 +26,8 @@ func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		resp, httpRes, err := apiClient.SourcePreviewsApi.GetSourcePreviewStream(context.Background(), org, sourceId).Execute()
 
@@ -41,8 +41,8 @@ func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		resp, httpRes, err := apiClient.SourcePreviewsApi.GetSourcePreviewTranscoderStatus(context.Background(), org, sourceId).Execute()
 
@@ -56,8 +56,8 @@ func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		httpRes, err := apiClient.SourcePreviewsApi.PutSourcePreview(context.Background(), org, sourceId).Execute()
 
@@ -70,8 +70,8 @@ func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		httpRes, err := apiClient.SourcePreviewsApi.SourcePreviewPinIngest(context.Background(), org, sourceId).Execute()
 
@@ -84,8 +84,8 @@ func Test_isp_SourcePreviewsApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var sourceId string
+		var org interface{}
+		var sourceId interface{}
 
 		httpRes, err := apiClient.SourcePreviewsApi.SourcePreviewUnpinIngest(context.Background(), org, sourceId).Execute()
 

@@ -26,11 +26,11 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
-		var clipId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
+		var clipId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipGetMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
@@ -44,11 +44,11 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
-		var clipId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
+		var clipId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipGetProgramTime(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
@@ -62,11 +62,11 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
-		var clipId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
+		var clipId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipMakeMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
@@ -80,11 +80,11 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
-		var clipId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
+		var clipId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedGetClipManifest(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
@@ -98,11 +98,11 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
-		var clipId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
+		var clipId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.GetDeprecatedClip(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
@@ -116,9 +116,9 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.GetDeprecatedProgram(context.Background(), customerId, productId, programId).Execute()
 
@@ -132,10 +132,10 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
-		var vodId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
+		var vodId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.ListDeprecatedClips(context.Background(), customerId, productId, programId, vodId).Execute()
 
@@ -149,9 +149,9 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var customerId string
-		var productId string
-		var programId string
+		var customerId interface{}
+		var productId interface{}
+		var programId interface{}
 
 		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.ListDeprecatedVods(context.Background(), customerId, productId, programId).Execute()
 
