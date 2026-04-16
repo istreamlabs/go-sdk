@@ -25,7 +25,7 @@ jobs:
       pr-base: ${{ steps.pr-details.outputs.base }}
     steps:
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Determine PR details
         id: pr-details
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Comment on old PR
         uses: marocchino/sticky-pull-request-comment@v3
