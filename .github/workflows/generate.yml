@@ -33,7 +33,7 @@ jobs:
       pr-number: ${{ steps.create-pr.outputs.pull-request-number }}
     steps:
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           submodules: recursive
 

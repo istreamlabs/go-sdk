@@ -23,7 +23,7 @@ jobs:
       changed-go: ${{ steps.changed-paths.outputs.go == 'true' }}
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         name: Detect changes
         uses: dorny/paths-filter@v4
@@ -42,7 +42,7 @@ jobs:
     if: needs.setup.outputs.changed-go
     steps:
       -
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       -
         uses: actions/setup-go@v6
       -
