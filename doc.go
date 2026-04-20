@@ -8,7 +8,7 @@ Getting Started
 The best way to get started working with the SDK is to use `go get` to add the
 SDK:
 
-	go get github.com/istreamlabs/go-sdk/isp
+	go get github.com/istreamlabs/go-sdk/v2/isp
 
 Hello iStreamPlanet
 
@@ -21,7 +21,7 @@ sources available to you.
 		"context"
 		"fmt"
 
-		"github.com/istreamlabs/go-sdk/isp"
+		"github.com/istreamlabs/go-sdk/v2/isp"
 	)
 
 	func main() {

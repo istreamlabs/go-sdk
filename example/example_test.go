@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/istreamlabs/go-sdk/isp"
+	"github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/oauth2"
 )
