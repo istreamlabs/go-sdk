@@ -18,10 +18,10 @@ import (
 // original OpenAPI Generator Go template to facilitate this new behavior.
 func TestSerializeEmptyMap(t *testing.T) {
 	ch := isp.Channel{
-		Publishing: &isp.ChannelPublishing{
-			Publications: []isp.ChannelPublishingPublicationsInner{
+		Publishing: &isp.Publishing{
+			Publications: []isp.PublishingPublicationsInner{
 				{
-					Startover: &isp.ChannelPublishingPublicationsInnerStartover{
+					Startover: &isp.PatchOrgChannelRequestPublishingPublicationsInnerStartover{
 						FirstProgramStart: &map[string]interface{}{},
 					},
 				},

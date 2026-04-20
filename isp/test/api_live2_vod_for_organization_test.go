@@ -199,6 +199,18 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
+	t.Run("Test Live2VODForOrganizationApiService ListFailedTasks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListFailedTasks(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test Live2VODForOrganizationApiService ListOrgClips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
@@ -373,10 +385,9 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var org string
 		var productId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgProductConfig(context.Background(), org, productId).Execute()
+		httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgProductConfig(context.Background(), org, productId).Execute()
 
 		require.Nil(t, err)
-		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})

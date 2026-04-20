@@ -21,7 +21,7 @@ import (
 type OrganizationsApi interface {
 
 	/*
-	ListOrgs List organizations
+	ListOrgs List Organizations
 
 	Get a list of organizations that you can access.
 
@@ -48,7 +48,7 @@ func (r ApiListOrgsRequest) Execute() ([]OrgSummary, *http.Response, error) {
 }
 
 /*
-ListOrgs List organizations
+ListOrgs List Organizations
 
 Get a list of organizations that you can access.
 

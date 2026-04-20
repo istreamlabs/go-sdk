@@ -18,25 +18,25 @@ var _ MappedNullable = &DynamicSyndicationRequest{}
 
 // DynamicSyndicationRequest struct for DynamicSyndicationRequest
 type DynamicSyndicationRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Archive DynamicSyndicationRequestArchive `json:"archive"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Archive Archive `json:"archive"`
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// URL of the main manifest to reference for the mp4
 	ManifestUrl string `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
-	Notification DynamicSyndicationRequestNotification `json:"notification"`
+	Notification DynamicNotification `json:"notification"`
 	// Query string containing params for the manifest url
 	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
 	// List of files to be created by Syndication
-	SyndicationFiles []DynamicSyndicationRequestSyndicationFilesInner `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
+	SyndicationFiles []SyndicationMediaFile `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
 }
 
 // NewDynamicSyndicationRequest instantiates a new DynamicSyndicationRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDynamicSyndicationRequest(archive DynamicSyndicationRequestArchive, correlationId string, manifestUrl string, notification DynamicSyndicationRequestNotification, queryString string, syndicationFiles []DynamicSyndicationRequestSyndicationFilesInner) *DynamicSyndicationRequest {
+func NewDynamicSyndicationRequest(archive Archive, correlationId string, manifestUrl string, notification DynamicNotification, queryString string, syndicationFiles []SyndicationMediaFile) *DynamicSyndicationRequest {
 	this := DynamicSyndicationRequest{}
 	this.Archive = archive
 	this.CorrelationId = correlationId
@@ -88,9 +88,9 @@ func (o *DynamicSyndicationRequest) SetSchema(v string) {
 }
 
 // GetArchive returns the Archive field value
-func (o *DynamicSyndicationRequest) GetArchive() DynamicSyndicationRequestArchive {
+func (o *DynamicSyndicationRequest) GetArchive() Archive {
 	if o == nil {
-		var ret DynamicSyndicationRequestArchive
+		var ret Archive
 		return ret
 	}
 
@@ -99,7 +99,7 @@ func (o *DynamicSyndicationRequest) GetArchive() DynamicSyndicationRequestArchiv
 
 // GetArchiveOk returns a tuple with the Archive field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetArchiveOk() (*DynamicSyndicationRequestArchive, bool) {
+func (o *DynamicSyndicationRequest) GetArchiveOk() (*Archive, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,7 +107,7 @@ func (o *DynamicSyndicationRequest) GetArchiveOk() (*DynamicSyndicationRequestAr
 }
 
 // SetArchive sets field value
-func (o *DynamicSyndicationRequest) SetArchive(v DynamicSyndicationRequestArchive) {
+func (o *DynamicSyndicationRequest) SetArchive(v Archive) {
 	o.Archive = v
 }
 
@@ -160,9 +160,9 @@ func (o *DynamicSyndicationRequest) SetManifestUrl(v string) {
 }
 
 // GetNotification returns the Notification field value
-func (o *DynamicSyndicationRequest) GetNotification() DynamicSyndicationRequestNotification {
+func (o *DynamicSyndicationRequest) GetNotification() DynamicNotification {
 	if o == nil {
-		var ret DynamicSyndicationRequestNotification
+		var ret DynamicNotification
 		return ret
 	}
 
@@ -171,7 +171,7 @@ func (o *DynamicSyndicationRequest) GetNotification() DynamicSyndicationRequestN
 
 // GetNotificationOk returns a tuple with the Notification field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicSyndicationRequestNotification, bool) {
+func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicNotification, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,7 +179,7 @@ func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicSyndicationRequ
 }
 
 // SetNotification sets field value
-func (o *DynamicSyndicationRequest) SetNotification(v DynamicSyndicationRequestNotification) {
+func (o *DynamicSyndicationRequest) SetNotification(v DynamicNotification) {
 	o.Notification = v
 }
 
@@ -208,9 +208,10 @@ func (o *DynamicSyndicationRequest) SetQueryString(v string) {
 }
 
 // GetSyndicationFiles returns the SyndicationFiles field value
-func (o *DynamicSyndicationRequest) GetSyndicationFiles() []DynamicSyndicationRequestSyndicationFilesInner {
+// If the value is explicit nil, the zero value for []SyndicationMediaFile will be returned
+func (o *DynamicSyndicationRequest) GetSyndicationFiles() []SyndicationMediaFile {
 	if o == nil {
-		var ret []DynamicSyndicationRequestSyndicationFilesInner
+		var ret []SyndicationMediaFile
 		return ret
 	}
 
@@ -219,15 +220,16 @@ func (o *DynamicSyndicationRequest) GetSyndicationFiles() []DynamicSyndicationRe
 
 // GetSyndicationFilesOk returns a tuple with the SyndicationFiles field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetSyndicationFilesOk() ([]DynamicSyndicationRequestSyndicationFilesInner, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetSyndicationFilesOk() ([]SyndicationMediaFile, bool) {
+	if o == nil || IsNil(o.SyndicationFiles) {
 		return nil, false
 	}
 	return o.SyndicationFiles, true
 }
 
 // SetSyndicationFiles sets field value
-func (o *DynamicSyndicationRequest) SetSyndicationFiles(v []DynamicSyndicationRequestSyndicationFilesInner) {
+func (o *DynamicSyndicationRequest) SetSyndicationFiles(v []SyndicationMediaFile) {
 	o.SyndicationFiles = v
 }
 
@@ -249,7 +251,9 @@ func (o DynamicSyndicationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["manifest_url"] = o.ManifestUrl
 	toSerialize["notification"] = o.Notification
 	toSerialize["query_string"] = o.QueryString
-	toSerialize["syndication_files"] = o.SyndicationFiles
+	if o.SyndicationFiles != nil {
+		toSerialize["syndication_files"] = o.SyndicationFiles
+	}
 	return toSerialize, nil
 }
 

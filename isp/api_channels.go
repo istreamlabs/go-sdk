@@ -31,8 +31,8 @@ type ChannelsApi interface {
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
 	// ListChannelsExecute executes the request
-	//  @return []Summary2
-	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
+	//  @return []Summary
+	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary, *http.Response, error)
 }
 
 // ChannelsApiService ChannelsApi service
@@ -71,7 +71,7 @@ func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannel
 	return r
 }
 
-func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
+func (r ApiListChannelsRequest) Execute() ([]Summary, *http.Response, error) {
 	return r.ApiService.ListChannelsExecute(r)
 }
 
@@ -91,13 +91,13 @@ func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRe
 }
 
 // Execute executes the request
-//  @return []Summary2
-func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
+//  @return []Summary
+func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Summary2
+		localVarReturnValue  []Summary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.ListChannels")
@@ -240,7 +240,7 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]Summary2)
+			localVarReturnValue = items.([]Summary)
 			localVarHTTPResponse = resp
 		}
 	}

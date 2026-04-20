@@ -18,21 +18,34 @@ var _ MappedNullable = &Summary{}
 
 // Summary struct for Summary
 type Summary struct {
-	// Station source ID
-	Id string `json:"id" doc:"Station source ID"`
-	// Source name
-	Name *string `json:"name,omitempty" doc:"Source name"`
+	// Desired state of channel
+	DesiredState string `json:"desired_state" enum:"ON,OFF" doc:"Desired state of channel"`
+	// Content hash
+	Etag string `json:"etag" doc:"Content hash"`
+	// Unique channel ID
+	Id string `json:"id" doc:"Unique channel ID"`
+	// Channel Labels
+	Labels []string `json:"labels,omitempty" doc:"Channel Labels"`
+	// Friendly channel description
+	Name *string `json:"name,omitempty" doc:"Friendly channel description"`
+	// Organization
+	Org string `json:"org" doc:"Organization"`
 	// Link to this resource
 	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	Source SourceSummary `json:"source"`
 }
 
 // NewSummary instantiates a new Summary object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSummary(id string) *Summary {
+func NewSummary(desiredState string, etag string, id string, org string, source SourceSummary) *Summary {
 	this := Summary{}
+	this.DesiredState = desiredState
+	this.Etag = etag
 	this.Id = id
+	this.Org = org
+	this.Source = source
 	return &this
 }
 
@@ -42,6 +55,54 @@ func NewSummary(id string) *Summary {
 func NewSummaryWithDefaults() *Summary {
 	this := Summary{}
 	return &this
+}
+
+// GetDesiredState returns the DesiredState field value
+func (o *Summary) GetDesiredState() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.DesiredState
+}
+
+// GetDesiredStateOk returns a tuple with the DesiredState field value
+// and a boolean to check if the value has been set.
+func (o *Summary) GetDesiredStateOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.DesiredState, true
+}
+
+// SetDesiredState sets field value
+func (o *Summary) SetDesiredState(v string) {
+	o.DesiredState = v
+}
+
+// GetEtag returns the Etag field value
+func (o *Summary) GetEtag() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Etag
+}
+
+// GetEtagOk returns a tuple with the Etag field value
+// and a boolean to check if the value has been set.
+func (o *Summary) GetEtagOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Etag, true
+}
+
+// SetEtag sets field value
+func (o *Summary) SetEtag(v string) {
+	o.Etag = v
 }
 
 // GetId returns the Id field value
@@ -66,6 +127,39 @@ func (o *Summary) GetIdOk() (*string, bool) {
 // SetId sets field value
 func (o *Summary) SetId(v string) {
 	o.Id = v
+}
+
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Summary) GetLabels() []string {
+	if o == nil {
+		var ret []string
+		return ret
+	}
+	return o.Labels
+}
+
+// GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Summary) GetLabelsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Labels) {
+		return nil, false
+	}
+	return o.Labels, true
+}
+
+// HasLabels returns a boolean if a field has been set.
+func (o *Summary) HasLabels() bool {
+	if o != nil && IsNil(o.Labels) {
+		return true
+	}
+
+	return false
+}
+
+// SetLabels gets a reference to the given []string and assigns it to the Labels field.
+func (o *Summary) SetLabels(v []string) {
+	o.Labels = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -100,6 +194,30 @@ func (o *Summary) SetName(v string) {
 	o.Name = &v
 }
 
+// GetOrg returns the Org field value
+func (o *Summary) GetOrg() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Org
+}
+
+// GetOrgOk returns a tuple with the Org field value
+// and a boolean to check if the value has been set.
+func (o *Summary) GetOrgOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Org, true
+}
+
+// SetOrg sets field value
+func (o *Summary) SetOrg(v string) {
+	o.Org = v
+}
+
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *Summary) GetSelf() string {
 	if o == nil || IsNil(o.Self) {
@@ -132,6 +250,30 @@ func (o *Summary) SetSelf(v string) {
 	o.Self = &v
 }
 
+// GetSource returns the Source field value
+func (o *Summary) GetSource() SourceSummary {
+	if o == nil {
+		var ret SourceSummary
+		return ret
+	}
+
+	return o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value
+// and a boolean to check if the value has been set.
+func (o *Summary) GetSourceOk() (*SourceSummary, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Source, true
+}
+
+// SetSource sets field value
+func (o *Summary) SetSource(v SourceSummary) {
+	o.Source = v
+}
+
 func (o Summary) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -142,13 +284,20 @@ func (o Summary) MarshalJSON() ([]byte, error) {
 
 func (o Summary) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	toSerialize["desired_state"] = o.DesiredState
+	toSerialize["etag"] = o.Etag
 	toSerialize["id"] = o.Id
+	if o.Labels != nil {
+		toSerialize["labels"] = o.Labels
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	toSerialize["org"] = o.Org
 	if !IsNil(o.Self) {
 		toSerialize["self"] = o.Self
 	}
+	toSerialize["source"] = o.Source
 	return toSerialize, nil
 }
 

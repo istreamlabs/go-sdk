@@ -18,11 +18,11 @@ var _ MappedNullable = &SetDynamicStateRequest{}
 
 // SetDynamicStateRequest struct for SetDynamicStateRequest
 type SetDynamicStateRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// The channel's internal id.
 	ChannelUrn *string `json:"channel_urn,omitempty" doc:"The channel's internal id."`
-	DynamicState SetDynamicStateRequestDynamicState `json:"dynamic_state"`
+	DynamicState DynamicState `json:"dynamic_state"`
 	// DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored.
 	DynamicStateFields []string `json:"dynamic_state_fields,omitempty" minItems:"1" enum:"TEXT_OVERLAYS,GRAPHIC_OVERLAYS,AUDIO_MUTES" doc:"DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored."`
 	// The channel's user provided id.
@@ -35,7 +35,7 @@ type SetDynamicStateRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetDynamicStateRequest(dynamicState SetDynamicStateRequestDynamicState) *SetDynamicStateRequest {
+func NewSetDynamicStateRequest(dynamicState DynamicState) *SetDynamicStateRequest {
 	this := SetDynamicStateRequest{}
 	this.DynamicState = dynamicState
 	return &this
@@ -114,9 +114,9 @@ func (o *SetDynamicStateRequest) SetChannelUrn(v string) {
 }
 
 // GetDynamicState returns the DynamicState field value
-func (o *SetDynamicStateRequest) GetDynamicState() SetDynamicStateRequestDynamicState {
+func (o *SetDynamicStateRequest) GetDynamicState() DynamicState {
 	if o == nil {
-		var ret SetDynamicStateRequestDynamicState
+		var ret DynamicState
 		return ret
 	}
 
@@ -125,7 +125,7 @@ func (o *SetDynamicStateRequest) GetDynamicState() SetDynamicStateRequestDynamic
 
 // GetDynamicStateOk returns a tuple with the DynamicState field value
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetDynamicStateOk() (*SetDynamicStateRequestDynamicState, bool) {
+func (o *SetDynamicStateRequest) GetDynamicStateOk() (*DynamicState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,13 +133,13 @@ func (o *SetDynamicStateRequest) GetDynamicStateOk() (*SetDynamicStateRequestDyn
 }
 
 // SetDynamicState sets field value
-func (o *SetDynamicStateRequest) SetDynamicState(v SetDynamicStateRequestDynamicState) {
+func (o *SetDynamicStateRequest) SetDynamicState(v DynamicState) {
 	o.DynamicState = v
 }
 
-// GetDynamicStateFields returns the DynamicStateFields field value if set, zero value otherwise.
+// GetDynamicStateFields returns the DynamicStateFields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SetDynamicStateRequest) GetDynamicStateFields() []string {
-	if o == nil || IsNil(o.DynamicStateFields) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -148,6 +148,7 @@ func (o *SetDynamicStateRequest) GetDynamicStateFields() []string {
 
 // GetDynamicStateFieldsOk returns a tuple with the DynamicStateFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SetDynamicStateRequest) GetDynamicStateFieldsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DynamicStateFields) {
 		return nil, false
@@ -157,7 +158,7 @@ func (o *SetDynamicStateRequest) GetDynamicStateFieldsOk() ([]string, bool) {
 
 // HasDynamicStateFields returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasDynamicStateFields() bool {
-	if o != nil && !IsNil(o.DynamicStateFields) {
+	if o != nil && IsNil(o.DynamicStateFields) {
 		return true
 	}
 
@@ -250,7 +251,7 @@ func (o SetDynamicStateRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["channel_urn"] = o.ChannelUrn
 	}
 	toSerialize["dynamic_state"] = o.DynamicState
-	if !IsNil(o.DynamicStateFields) {
+	if o.DynamicStateFields != nil {
 		toSerialize["dynamic_state_fields"] = o.DynamicStateFields
 	}
 	if !IsNil(o.ExternalId) {

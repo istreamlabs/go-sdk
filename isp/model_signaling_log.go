@@ -19,7 +19,7 @@ var _ MappedNullable = &SignalingLog{}
 
 // SignalingLog struct for SignalingLog
 type SignalingLog struct {
-	Log SignalingLogLog `json:"log"`
+	Log LogData `json:"log"`
 	Status string `json:"status"`
 	Timestamp time.Time `json:"timestamp" format:"date-time"`
 }
@@ -28,7 +28,7 @@ type SignalingLog struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSignalingLog(log SignalingLogLog, status string, timestamp time.Time) *SignalingLog {
+func NewSignalingLog(log LogData, status string, timestamp time.Time) *SignalingLog {
 	this := SignalingLog{}
 	this.Log = log
 	this.Status = status
@@ -45,9 +45,9 @@ func NewSignalingLogWithDefaults() *SignalingLog {
 }
 
 // GetLog returns the Log field value
-func (o *SignalingLog) GetLog() SignalingLogLog {
+func (o *SignalingLog) GetLog() LogData {
 	if o == nil {
-		var ret SignalingLogLog
+		var ret LogData
 		return ret
 	}
 
@@ -56,7 +56,7 @@ func (o *SignalingLog) GetLog() SignalingLogLog {
 
 // GetLogOk returns a tuple with the Log field value
 // and a boolean to check if the value has been set.
-func (o *SignalingLog) GetLogOk() (*SignalingLogLog, bool) {
+func (o *SignalingLog) GetLogOk() (*LogData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *SignalingLog) GetLogOk() (*SignalingLogLog, bool) {
 }
 
 // SetLog sets field value
-func (o *SignalingLog) SetLog(v SignalingLogLog) {
+func (o *SignalingLog) SetLog(v LogData) {
 	o.Log = v
 }
 

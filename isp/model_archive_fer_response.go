@@ -18,8 +18,8 @@ var _ MappedNullable = &ArchiveFERResponse{}
 
 // ArchiveFERResponse struct for ArchiveFERResponse
 type ArchiveFERResponse struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifier that is carried through the archive request
 	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifier that is carried through the archive request"`
 	// Task ID for the archive task started by the L2V service

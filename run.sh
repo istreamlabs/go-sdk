@@ -7,9 +7,9 @@ ENV="${2-prod}"
 
 OPENAPI_SPEC=""
 if [[ "$API" == "isp" ]]; then
-  OPENAPI_SPEC="https://api.istreamplanet.com/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/openapi-3.0.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi-3.0.json"
   fi
 elif [[ "$API" == "isp-slate" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi-3.0.json"
@@ -41,6 +41,10 @@ curl -s "$OPENAPI_SPEC" | yq -P -o=yaml '.' > "$SCRIPT_DIR/$SPEC_FILE"
 
 if [[ "$API" == "isp" ]]; then
   yq -i '.info.version = "0.0.0"' "$SCRIPT_DIR/$SPEC_FILE"
+  # The upstream spec defines components.schemas.BasicAuth, which collides with the
+  # generator's built-in BasicAuth in configuration.go. The schema is not referenced
+  # anywhere (basic_auth fields are inline); drop it so we do not emit model_basic_auth.go.
+  yq -i 'del(.components.schemas.BasicAuth)' "$SCRIPT_DIR/$SPEC_FILE"
 else
   yq -i '.info.version = "1.0.0"' "$SCRIPT_DIR/$SPEC_FILE"
 fi

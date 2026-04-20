@@ -43,9 +43,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.GetOrgPreviewImage(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.GetOrgPreviewImage(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
+		require.NotNil(t, resp)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
@@ -113,10 +114,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var channelId string
 		var org string
+		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgGetTranscoderStatus(context.Background(), channelId, org).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgGetTranscoderStatus(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -128,10 +129,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var channelId string
 		var org string
+		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgIsBreakingChange(context.Background(), channelId, org).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgIsBreakingChange(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -143,10 +144,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var channelId string
 		var org string
+		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgPinIngest(context.Background(), channelId, org).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgPinIngest(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -186,10 +187,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var channelId string
 		var org string
+		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgSetTranscoderDynamicState(context.Background(), channelId, org).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgSetTranscoderDynamicState(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
@@ -200,10 +201,10 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var channelId string
 		var org string
+		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgUnpinIngest(context.Background(), channelId, org).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgUnpinIngest(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)

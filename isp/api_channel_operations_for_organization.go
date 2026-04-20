@@ -50,7 +50,8 @@ type ChannelOperationsForOrganizationApi interface {
 	GetOrgPreviewImage(ctx context.Context, org string, channelId string) ApiGetOrgPreviewImageRequest
 
 	// GetOrgPreviewImageExecute executes the request
-	GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error)
+	//  @return string
+	GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (string, *http.Response, error)
 
 	/*
 	GetOrgSignalLogs Signal Logs
@@ -99,8 +100,8 @@ Returns the signalling history for a channel.
 	InsertOrgId3(ctx context.Context, org string, channelId string) ApiInsertOrgId3Request
 
 	// InsertOrgId3Execute executes the request
-	//  @return InsertMetadataResult
-	InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error)
+	//  @return InsertMetadataBody
+	InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataBody, *http.Response, error)
 
 	/*
 	InsertOrgScte35 Insert SCTE-35
@@ -123,11 +124,11 @@ Returns the signalling history for a channel.
 	Get the current status for the live transcoder powering the channel.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiOrgGetTranscoderStatusRequest
 	*/
-	OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest
+	OrgGetTranscoderStatus(ctx context.Context, org string, channelId string) ApiOrgGetTranscoderStatusRequest
 
 	// OrgGetTranscoderStatusExecute executes the request
 	//  @return Status
@@ -139,15 +140,15 @@ Returns the signalling history for a channel.
 	Validates if a configuration change is compatible with downstream services.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiOrgIsBreakingChangeRequest
 	*/
-	OrgIsBreakingChange(ctx context.Context, channelId string, org string) ApiOrgIsBreakingChangeRequest
+	OrgIsBreakingChange(ctx context.Context, org string, channelId string) ApiOrgIsBreakingChangeRequest
 
 	// OrgIsBreakingChangeExecute executes the request
-	//  @return IsBreakingChangeReturn
-	OrgIsBreakingChangeExecute(r ApiOrgIsBreakingChangeRequest) (*IsBreakingChangeReturn, *http.Response, error)
+	//  @return IsBreakingChangeResponseBody
+	OrgIsBreakingChangeExecute(r ApiOrgIsBreakingChangeRequest) (*IsBreakingChangeResponseBody, *http.Response, error)
 
 	/*
 	OrgPinIngest Pin Ingest
@@ -157,11 +158,11 @@ Note that this will disable some automated ingest failover that is based on the 
 
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiOrgPinIngestRequest
 	*/
-	OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest
+	OrgPinIngest(ctx context.Context, org string, channelId string) ApiOrgPinIngestRequest
 
 	// OrgPinIngestExecute executes the request
 	OrgPinIngestExecute(r ApiOrgPinIngestRequest) (*http.Response, error)
@@ -184,7 +185,9 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	OrgPreviewStreamsExecute(r ApiOrgPreviewStreamsRequest) (*GetPreviewStreamsResponse, *http.Response, error)
 
 	/*
-	OrgRotateKey Rotate the keys for a channel
+	OrgRotateKey Rotate Key
+
+	Rotate the keys for a channel
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
@@ -197,14 +200,16 @@ video and audio tracks are provided back and can be interchanged in the given ur
 	OrgRotateKeyExecute(r ApiOrgRotateKeyRequest) (*http.Response, error)
 
 	/*
-	OrgSetTranscoderDynamicState Set the dynamic state for a transcoder.
+	OrgSetTranscoderDynamicState Set Dynamic State
+
+	Set the dynamic state for a transcoder.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiOrgSetTranscoderDynamicStateRequest
 	*/
-	OrgSetTranscoderDynamicState(ctx context.Context, channelId string, org string) ApiOrgSetTranscoderDynamicStateRequest
+	OrgSetTranscoderDynamicState(ctx context.Context, org string, channelId string) ApiOrgSetTranscoderDynamicStateRequest
 
 	// OrgSetTranscoderDynamicStateExecute executes the request
 	OrgSetTranscoderDynamicStateExecute(r ApiOrgSetTranscoderDynamicStateRequest) (*http.Response, error)
@@ -216,11 +221,11 @@ video and audio tracks are provided back and can be interchanged in the given ur
 Automated source failover based on feed quality will be resumed.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelId Unique channel identifier
 	@param org Organization name
+	@param channelId Unique channel identifier
 	@return ApiOrgUnpinIngestRequest
 	*/
-	OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest
+	OrgUnpinIngest(ctx context.Context, org string, channelId string) ApiOrgUnpinIngestRequest
 
 	// OrgUnpinIngestExecute executes the request
 	OrgUnpinIngestExecute(r ApiOrgUnpinIngestRequest) (*http.Response, error)
@@ -275,9 +280,9 @@ The following table describes how video slates are supported and recommended att
 
 <table>
 	<tr>
-		<th>Attribute</td>
-		<th>Supported</td>
-		<th>Recommended</td>
+		<th>Attribute</th>
+		<th>Supported</th>
+		<th>Recommended</th>
 	</tr>
 	<tr>
 		<td>Max File Size</td>
@@ -603,7 +608,7 @@ func (r ApiGetOrgPreviewImageRequest) Accept(accept string) ApiGetOrgPreviewImag
 	return r
 }
 
-func (r ApiGetOrgPreviewImageRequest) Execute() (*http.Response, error) {
+func (r ApiGetOrgPreviewImageRequest) Execute() (string, *http.Response, error) {
 	return r.ApiService.GetOrgPreviewImageExecute(r)
 }
 
@@ -627,16 +632,18 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImage(ctx cont
 }
 
 // Execute executes the request
-func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (*http.Response, error) {
+//  @return string
+func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r ApiGetOrgPreviewImageRequest) (string, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
+		localVarReturnValue  string
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.GetOrgPreviewImage")
 	if err != nil {
-		return nil, &GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/preview-image"
@@ -647,7 +654,7 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
-		return nil, reportError("channelId must have less than 60 elements")
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
 	}
 
 	// to determine the Content-Type header
@@ -660,7 +667,7 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -672,19 +679,19 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
-		return nil, err
+		return localVarReturnValue, nil, err
 	}
 
 	localVarHTTPResponse, err := a.client.callAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
 	localVarHTTPResponse.Body.Close()
 	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
 	if err != nil {
-		return localVarHTTPResponse, err
+		return localVarReturnValue, localVarHTTPResponse, err
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
@@ -697,104 +704,125 @@ func (a *ChannelOperationsForOrganizationApiService) GetOrgPreviewImageExecute(r
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 406 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 409 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 424 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 499 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 501 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
-			return localVarHTTPResponse, newErr
+			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 503 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
+				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
 			newErr.model = v
 		}
-		return localVarHTTPResponse, newErr
+		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	return localVarHTTPResponse, nil
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(string)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 type ApiGetOrgSignalLogsRequest struct {
@@ -1246,8 +1274,13 @@ type ApiInsertOrgId3Request struct {
 	ApiService ChannelOperationsForOrganizationApi
 	org string
 	channelId string
-	accept *string
 	insertMetadataRequest *InsertMetadataRequest
+	accept *string
+}
+
+func (r ApiInsertOrgId3Request) InsertMetadataRequest(insertMetadataRequest InsertMetadataRequest) ApiInsertOrgId3Request {
+	r.insertMetadataRequest = &insertMetadataRequest
+	return r
 }
 
 // List of accepted Content-Type headers
@@ -1256,12 +1289,7 @@ func (r ApiInsertOrgId3Request) Accept(accept string) ApiInsertOrgId3Request {
 	return r
 }
 
-func (r ApiInsertOrgId3Request) InsertMetadataRequest(insertMetadataRequest InsertMetadataRequest) ApiInsertOrgId3Request {
-	r.insertMetadataRequest = &insertMetadataRequest
-	return r
-}
-
-func (r ApiInsertOrgId3Request) Execute() (*InsertMetadataResult, *http.Response, error) {
+func (r ApiInsertOrgId3Request) Execute() (*InsertMetadataBody, *http.Response, error) {
 	return r.ApiService.InsertOrgId3Execute(r)
 }
 
@@ -1285,13 +1313,13 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3(ctx context.Co
 }
 
 // Execute executes the request
-//  @return InsertMetadataResult
-func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataResult, *http.Response, error) {
+//  @return InsertMetadataBody
+func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiInsertOrgId3Request) (*InsertMetadataBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *InsertMetadataResult
+		localVarReturnValue  *InsertMetadataBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.InsertOrgId3")
@@ -1308,6 +1336,9 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiIn
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.insertMetadataRequest == nil {
+		return localVarReturnValue, nil, reportError("insertMetadataRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1472,7 +1503,7 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgId3Execute(r ApiIn
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*InsertMetadataResult)
+			localVarReturnValue = items.(*InsertMetadataBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1538,6 +1569,9 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r Ap
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.scte35 == nil {
+		return nil, reportError("scte35 is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -1699,8 +1733,8 @@ func (a *ChannelOperationsForOrganizationApiService) InsertOrgScte35Execute(r Ap
 type ApiOrgGetTranscoderStatusRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 }
 
 func (r ApiOrgGetTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
@@ -1713,16 +1747,16 @@ OrgGetTranscoderStatus Get Transcoder Status
 Get the current status for the live transcoder powering the channel.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiOrgGetTranscoderStatusRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatus(ctx context.Context, channelId string, org string) ApiOrgGetTranscoderStatusRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatus(ctx context.Context, org string, channelId string) ApiOrgGetTranscoderStatusRequest {
 	return ApiOrgGetTranscoderStatusRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -1742,8 +1776,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecu
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/transcoder-status"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1910,8 +1944,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgGetTranscoderStatusExecu
 type ApiOrgIsBreakingChangeRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	channel *Channel
 }
 
@@ -1920,7 +1954,7 @@ func (r ApiOrgIsBreakingChangeRequest) Channel(channel Channel) ApiOrgIsBreaking
 	return r
 }
 
-func (r ApiOrgIsBreakingChangeRequest) Execute() (*IsBreakingChangeReturn, *http.Response, error) {
+func (r ApiOrgIsBreakingChangeRequest) Execute() (*IsBreakingChangeResponseBody, *http.Response, error) {
 	return r.ApiService.OrgIsBreakingChangeExecute(r)
 }
 
@@ -1930,27 +1964,27 @@ OrgIsBreakingChange Validate Breaking Change
 Validates if a configuration change is compatible with downstream services.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiOrgIsBreakingChangeRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChange(ctx context.Context, channelId string, org string) ApiOrgIsBreakingChangeRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChange(ctx context.Context, org string, channelId string) ApiOrgIsBreakingChangeRequest {
 	return ApiOrgIsBreakingChangeRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
 // Execute executes the request
-//  @return IsBreakingChangeReturn
-func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChangeExecute(r ApiOrgIsBreakingChangeRequest) (*IsBreakingChangeReturn, *http.Response, error) {
+//  @return IsBreakingChangeResponseBody
+func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChangeExecute(r ApiOrgIsBreakingChangeRequest) (*IsBreakingChangeResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *IsBreakingChangeReturn
+		localVarReturnValue  *IsBreakingChangeResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelOperationsForOrganizationApiService.OrgIsBreakingChange")
@@ -1959,14 +1993,17 @@ func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChangeExecute(
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/is-breaking-change"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.channel == nil {
+		return localVarReturnValue, nil, reportError("channel is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2108,7 +2145,7 @@ func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChangeExecute(
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*IsBreakingChangeReturn)
+			localVarReturnValue = items.(*IsBreakingChangeResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -2119,8 +2156,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgIsBreakingChangeExecute(
 type ApiOrgPinIngestRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	pinSourceRequest *PinSourceRequest
 }
 
@@ -2141,16 +2178,16 @@ Note that this will disable some automated ingest failover that is based on the 
 
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiOrgPinIngestRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) OrgPinIngest(ctx context.Context, channelId string, org string) ApiOrgPinIngestRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgPinIngest(ctx context.Context, org string, channelId string) ApiOrgPinIngestRequest {
 	return ApiOrgPinIngestRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -2168,14 +2205,17 @@ func (a *ChannelOperationsForOrganizationApiService) OrgPinIngestExecute(r ApiOr
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/ingest-pin"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.pinSourceRequest == nil {
+		return nil, reportError("pinSourceRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2578,7 +2618,9 @@ func (r ApiOrgRotateKeyRequest) Execute() (*http.Response, error) {
 }
 
 /*
-OrgRotateKey Rotate the keys for a channel
+OrgRotateKey Rotate Key
+
+Rotate the keys for a channel
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
@@ -2755,8 +2797,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgRotateKeyExecute(r ApiOr
 type ApiOrgSetTranscoderDynamicStateRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 	setDynamicStateRequest *SetDynamicStateRequest
 }
 
@@ -2770,19 +2812,21 @@ func (r ApiOrgSetTranscoderDynamicStateRequest) Execute() (*http.Response, error
 }
 
 /*
-OrgSetTranscoderDynamicState Set the dynamic state for a transcoder.
+OrgSetTranscoderDynamicState Set Dynamic State
+
+Set the dynamic state for a transcoder.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiOrgSetTranscoderDynamicStateRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) OrgSetTranscoderDynamicState(ctx context.Context, channelId string, org string) ApiOrgSetTranscoderDynamicStateRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgSetTranscoderDynamicState(ctx context.Context, org string, channelId string) ApiOrgSetTranscoderDynamicStateRequest {
 	return ApiOrgSetTranscoderDynamicStateRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -2800,14 +2844,17 @@ func (a *ChannelOperationsForOrganizationApiService) OrgSetTranscoderDynamicStat
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/transcoder-dynamic-state"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.setDynamicStateRequest == nil {
+		return nil, reportError("setDynamicStateRequest is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -2969,8 +3016,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgSetTranscoderDynamicStat
 type ApiOrgUnpinIngestRequest struct {
 	ctx context.Context
 	ApiService ChannelOperationsForOrganizationApi
-	channelId string
 	org string
+	channelId string
 }
 
 func (r ApiOrgUnpinIngestRequest) Execute() (*http.Response, error) {
@@ -2984,16 +3031,16 @@ Remove the preferrence for primary or secondary ingest feed from the channel's t
 Automated source failover based on feed quality will be resumed.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelId Unique channel identifier
  @param org Organization name
+ @param channelId Unique channel identifier
  @return ApiOrgUnpinIngestRequest
 */
-func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngest(ctx context.Context, channelId string, org string) ApiOrgUnpinIngestRequest {
+func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngest(ctx context.Context, org string, channelId string) ApiOrgUnpinIngestRequest {
 	return ApiOrgUnpinIngestRequest{
 		ApiService: a,
 		ctx: ctx,
-		channelId: channelId,
 		org: org,
+		channelId: channelId,
 	}
 }
 
@@ -3011,8 +3058,8 @@ func (a *ChannelOperationsForOrganizationApiService) OrgUnpinIngestExecute(r Api
 	}
 
 	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/ingest-pin"
-	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -3232,9 +3279,9 @@ The following table describes how video slates are supported and recommended att
 
 <table>
 	<tr>
-		<th>Attribute</td>
-		<th>Supported</td>
-		<th>Recommended</td>
+		<th>Attribute</th>
+		<th>Supported</th>
+		<th>Recommended</th>
 	</tr>
 	<tr>
 		<td>Max File Size</td>
@@ -3401,6 +3448,9 @@ func (a *ChannelOperationsForOrganizationApiService) PostOrgSignalsExecute(r Api
 	localVarFormParams := url.Values{}
 	if strlen(r.channelId) > 60 {
 		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+	if r.genericSignal == nil {
+		return localVarReturnValue, nil, reportError("genericSignal is required and must be specified")
 	}
 
 	// to determine the Content-Type header

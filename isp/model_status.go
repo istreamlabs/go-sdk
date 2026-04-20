@@ -18,10 +18,10 @@ var _ MappedNullable = &Status{}
 
 // Status struct for Status
 type Status struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	DynamicStateStatus *StatusDynamicStateStatus `json:"dynamic_state_status,omitempty"`
-	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	DynamicStateStatus *DynamicStateStatus `json:"dynamic_state_status,omitempty"`
+	IngestStatus *IngestStatus `json:"ingest_status,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -74,9 +74,9 @@ func (o *Status) SetSchema(v string) {
 }
 
 // GetDynamicStateStatus returns the DynamicStateStatus field value if set, zero value otherwise.
-func (o *Status) GetDynamicStateStatus() StatusDynamicStateStatus {
+func (o *Status) GetDynamicStateStatus() DynamicStateStatus {
 	if o == nil || IsNil(o.DynamicStateStatus) {
-		var ret StatusDynamicStateStatus
+		var ret DynamicStateStatus
 		return ret
 	}
 	return *o.DynamicStateStatus
@@ -84,7 +84,7 @@ func (o *Status) GetDynamicStateStatus() StatusDynamicStateStatus {
 
 // GetDynamicStateStatusOk returns a tuple with the DynamicStateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetDynamicStateStatusOk() (*StatusDynamicStateStatus, bool) {
+func (o *Status) GetDynamicStateStatusOk() (*DynamicStateStatus, bool) {
 	if o == nil || IsNil(o.DynamicStateStatus) {
 		return nil, false
 	}
@@ -100,15 +100,15 @@ func (o *Status) HasDynamicStateStatus() bool {
 	return false
 }
 
-// SetDynamicStateStatus gets a reference to the given StatusDynamicStateStatus and assigns it to the DynamicStateStatus field.
-func (o *Status) SetDynamicStateStatus(v StatusDynamicStateStatus) {
+// SetDynamicStateStatus gets a reference to the given DynamicStateStatus and assigns it to the DynamicStateStatus field.
+func (o *Status) SetDynamicStateStatus(v DynamicStateStatus) {
 	o.DynamicStateStatus = &v
 }
 
 // GetIngestStatus returns the IngestStatus field value if set, zero value otherwise.
-func (o *Status) GetIngestStatus() StatusIngestStatus {
+func (o *Status) GetIngestStatus() IngestStatus {
 	if o == nil || IsNil(o.IngestStatus) {
-		var ret StatusIngestStatus
+		var ret IngestStatus
 		return ret
 	}
 	return *o.IngestStatus
@@ -116,7 +116,7 @@ func (o *Status) GetIngestStatus() StatusIngestStatus {
 
 // GetIngestStatusOk returns a tuple with the IngestStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetIngestStatusOk() (*StatusIngestStatus, bool) {
+func (o *Status) GetIngestStatusOk() (*IngestStatus, bool) {
 	if o == nil || IsNil(o.IngestStatus) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *Status) HasIngestStatus() bool {
 	return false
 }
 
-// SetIngestStatus gets a reference to the given StatusIngestStatus and assigns it to the IngestStatus field.
-func (o *Status) SetIngestStatus(v StatusIngestStatus) {
+// SetIngestStatus gets a reference to the given IngestStatus and assigns it to the IngestStatus field.
+func (o *Status) SetIngestStatus(v IngestStatus) {
 	o.IngestStatus = &v
 }
 

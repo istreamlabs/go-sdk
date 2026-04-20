@@ -19,8 +19,8 @@ var _ MappedNullable = &PatchOrgChannelRequest{}
 
 // PatchOrgChannelRequest struct for PatchOrgChannelRequest
 type PatchOrgChannelRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Date and time the channel was created.
 	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
 	// A human-readable description of the channel.
@@ -39,17 +39,17 @@ type PatchOrgChannelRequest struct {
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty" doc:"A friendly human-readable name for the channel. This will get displayed in user interfaces."`
 	Organization *string `json:"organization,omitempty" minLength:"1"`
-	Packaging *ChannelPackaging `json:"packaging,omitempty"`
-	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	Packaging *PatchOrgChannelRequestPackaging `json:"packaging,omitempty"`
+	Publishing *PatchOrgChannelRequestPublishing `json:"publishing,omitempty"`
 	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
 	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used."`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
 	ResourceClass *string `json:"resource_class,omitempty" enum:"DYNAMIC,STATIC" doc:"If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime."`
 	// Self link for the channel.
 	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the channel."`
-	Signaling *ChannelSignaling `json:"signaling,omitempty"`
-	Tags *ChannelTags `json:"tags,omitempty"`
-	Transcode *ChannelTranscode `json:"transcode,omitempty"`
+	Signaling *PatchOrgChannelRequestSignaling `json:"signaling,omitempty"`
+	Tags *PatchOrgChannelRequestTags `json:"tags,omitempty"`
+	Transcode *PatchOrgChannelRequestTranscode `json:"transcode,omitempty"`
 }
 
 // NewPatchOrgChannelRequest instantiates a new PatchOrgChannelRequest object
@@ -422,9 +422,9 @@ func (o *PatchOrgChannelRequest) SetOrganization(v string) {
 }
 
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetPackaging() ChannelPackaging {
+func (o *PatchOrgChannelRequest) GetPackaging() PatchOrgChannelRequestPackaging {
 	if o == nil || IsNil(o.Packaging) {
-		var ret ChannelPackaging
+		var ret PatchOrgChannelRequestPackaging
 		return ret
 	}
 	return *o.Packaging
@@ -432,7 +432,7 @@ func (o *PatchOrgChannelRequest) GetPackaging() ChannelPackaging {
 
 // GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetPackagingOk() (*ChannelPackaging, bool) {
+func (o *PatchOrgChannelRequest) GetPackagingOk() (*PatchOrgChannelRequestPackaging, bool) {
 	if o == nil || IsNil(o.Packaging) {
 		return nil, false
 	}
@@ -448,15 +448,15 @@ func (o *PatchOrgChannelRequest) HasPackaging() bool {
 	return false
 }
 
-// SetPackaging gets a reference to the given ChannelPackaging and assigns it to the Packaging field.
-func (o *PatchOrgChannelRequest) SetPackaging(v ChannelPackaging) {
+// SetPackaging gets a reference to the given PatchOrgChannelRequestPackaging and assigns it to the Packaging field.
+func (o *PatchOrgChannelRequest) SetPackaging(v PatchOrgChannelRequestPackaging) {
 	o.Packaging = &v
 }
 
 // GetPublishing returns the Publishing field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetPublishing() ChannelPublishing {
+func (o *PatchOrgChannelRequest) GetPublishing() PatchOrgChannelRequestPublishing {
 	if o == nil || IsNil(o.Publishing) {
-		var ret ChannelPublishing
+		var ret PatchOrgChannelRequestPublishing
 		return ret
 	}
 	return *o.Publishing
@@ -464,7 +464,7 @@ func (o *PatchOrgChannelRequest) GetPublishing() ChannelPublishing {
 
 // GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetPublishingOk() (*ChannelPublishing, bool) {
+func (o *PatchOrgChannelRequest) GetPublishingOk() (*PatchOrgChannelRequestPublishing, bool) {
 	if o == nil || IsNil(o.Publishing) {
 		return nil, false
 	}
@@ -480,8 +480,8 @@ func (o *PatchOrgChannelRequest) HasPublishing() bool {
 	return false
 }
 
-// SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
-func (o *PatchOrgChannelRequest) SetPublishing(v ChannelPublishing) {
+// SetPublishing gets a reference to the given PatchOrgChannelRequestPublishing and assigns it to the Publishing field.
+func (o *PatchOrgChannelRequest) SetPublishing(v PatchOrgChannelRequestPublishing) {
 	o.Publishing = &v
 }
 
@@ -582,9 +582,9 @@ func (o *PatchOrgChannelRequest) SetSelf(v string) {
 }
 
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetSignaling() ChannelSignaling {
+func (o *PatchOrgChannelRequest) GetSignaling() PatchOrgChannelRequestSignaling {
 	if o == nil || IsNil(o.Signaling) {
-		var ret ChannelSignaling
+		var ret PatchOrgChannelRequestSignaling
 		return ret
 	}
 	return *o.Signaling
@@ -592,7 +592,7 @@ func (o *PatchOrgChannelRequest) GetSignaling() ChannelSignaling {
 
 // GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetSignalingOk() (*ChannelSignaling, bool) {
+func (o *PatchOrgChannelRequest) GetSignalingOk() (*PatchOrgChannelRequestSignaling, bool) {
 	if o == nil || IsNil(o.Signaling) {
 		return nil, false
 	}
@@ -608,15 +608,15 @@ func (o *PatchOrgChannelRequest) HasSignaling() bool {
 	return false
 }
 
-// SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
-func (o *PatchOrgChannelRequest) SetSignaling(v ChannelSignaling) {
+// SetSignaling gets a reference to the given PatchOrgChannelRequestSignaling and assigns it to the Signaling field.
+func (o *PatchOrgChannelRequest) SetSignaling(v PatchOrgChannelRequestSignaling) {
 	o.Signaling = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetTags() ChannelTags {
+func (o *PatchOrgChannelRequest) GetTags() PatchOrgChannelRequestTags {
 	if o == nil || IsNil(o.Tags) {
-		var ret ChannelTags
+		var ret PatchOrgChannelRequestTags
 		return ret
 	}
 	return *o.Tags
@@ -624,7 +624,7 @@ func (o *PatchOrgChannelRequest) GetTags() ChannelTags {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetTagsOk() (*ChannelTags, bool) {
+func (o *PatchOrgChannelRequest) GetTagsOk() (*PatchOrgChannelRequestTags, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -640,15 +640,15 @@ func (o *PatchOrgChannelRequest) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
-func (o *PatchOrgChannelRequest) SetTags(v ChannelTags) {
+// SetTags gets a reference to the given PatchOrgChannelRequestTags and assigns it to the Tags field.
+func (o *PatchOrgChannelRequest) SetTags(v PatchOrgChannelRequestTags) {
 	o.Tags = &v
 }
 
 // GetTranscode returns the Transcode field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequest) GetTranscode() ChannelTranscode {
+func (o *PatchOrgChannelRequest) GetTranscode() PatchOrgChannelRequestTranscode {
 	if o == nil || IsNil(o.Transcode) {
-		var ret ChannelTranscode
+		var ret PatchOrgChannelRequestTranscode
 		return ret
 	}
 	return *o.Transcode
@@ -656,7 +656,7 @@ func (o *PatchOrgChannelRequest) GetTranscode() ChannelTranscode {
 
 // GetTranscodeOk returns a tuple with the Transcode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequest) GetTranscodeOk() (*ChannelTranscode, bool) {
+func (o *PatchOrgChannelRequest) GetTranscodeOk() (*PatchOrgChannelRequestTranscode, bool) {
 	if o == nil || IsNil(o.Transcode) {
 		return nil, false
 	}
@@ -672,8 +672,8 @@ func (o *PatchOrgChannelRequest) HasTranscode() bool {
 	return false
 }
 
-// SetTranscode gets a reference to the given ChannelTranscode and assigns it to the Transcode field.
-func (o *PatchOrgChannelRequest) SetTranscode(v ChannelTranscode) {
+// SetTranscode gets a reference to the given PatchOrgChannelRequestTranscode and assigns it to the Transcode field.
+func (o *PatchOrgChannelRequest) SetTranscode(v PatchOrgChannelRequestTranscode) {
 	o.Transcode = &v
 }
 

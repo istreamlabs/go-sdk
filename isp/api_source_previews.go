@@ -36,8 +36,8 @@ type SourcePreviewsApi interface {
 	GetSourcePreviewStream(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewStreamRequest
 
 	// GetSourcePreviewStreamExecute executes the request
-	//  @return GetPreviewStreamsResponse
-	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error)
+	//  @return GetSourcePreviewStreamResponseBody
+	GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetSourcePreviewStreamResponseBody, *http.Response, error)
 
 	/*
 	GetSourcePreviewTranscoderStatus Get Transcoder Status
@@ -52,8 +52,8 @@ type SourcePreviewsApi interface {
 	GetSourcePreviewTranscoderStatus(ctx context.Context, org string, sourceId string) ApiGetSourcePreviewTranscoderStatusRequest
 
 	// GetSourcePreviewTranscoderStatusExecute executes the request
-	//  @return Status
-	GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error)
+	//  @return GetSourcePreviewTranscoderStatusResponseBody
+	GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error)
 
 	/*
 	PutSourcePreview Create Source Preview
@@ -119,7 +119,7 @@ type ApiGetSourcePreviewStreamRequest struct {
 	sourceId string
 }
 
-func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetPreviewStreamsResponse, *http.Response, error) {
+func (r ApiGetSourcePreviewStreamRequest) Execute() (*GetSourcePreviewStreamResponseBody, *http.Response, error) {
 	return r.ApiService.GetSourcePreviewStreamExecute(r)
 }
 
@@ -145,13 +145,13 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStream(ctx context.Context, o
 }
 
 // Execute executes the request
-//  @return GetPreviewStreamsResponse
-func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetPreviewStreamsResponse, *http.Response, error) {
+//  @return GetSourcePreviewStreamResponseBody
+func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourcePreviewStreamRequest) (*GetSourcePreviewStreamResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *GetPreviewStreamsResponse
+		localVarReturnValue  *GetSourcePreviewStreamResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewStream")
@@ -304,7 +304,7 @@ func (a *SourcePreviewsApiService) GetSourcePreviewStreamExecute(r ApiGetSourceP
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*GetPreviewStreamsResponse)
+			localVarReturnValue = items.(*GetSourcePreviewStreamResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -319,7 +319,7 @@ type ApiGetSourcePreviewTranscoderStatusRequest struct {
 	sourceId string
 }
 
-func (r ApiGetSourcePreviewTranscoderStatusRequest) Execute() (*Status, *http.Response, error) {
+func (r ApiGetSourcePreviewTranscoderStatusRequest) Execute() (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error) {
 	return r.ApiService.GetSourcePreviewTranscoderStatusExecute(r)
 }
 
@@ -343,13 +343,13 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatus(ctx context.
 }
 
 // Execute executes the request
-//  @return Status
-func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*Status, *http.Response, error) {
+//  @return GetSourcePreviewTranscoderStatusResponseBody
+func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r ApiGetSourcePreviewTranscoderStatusRequest) (*GetSourcePreviewTranscoderStatusResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Status
+		localVarReturnValue  *GetSourcePreviewTranscoderStatusResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SourcePreviewsApiService.GetSourcePreviewTranscoderStatus")
@@ -492,7 +492,7 @@ func (a *SourcePreviewsApiService) GetSourcePreviewTranscoderStatusExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*Status)
+			localVarReturnValue = items.(*GetSourcePreviewTranscoderStatusResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -758,6 +758,9 @@ func (a *SourcePreviewsApiService) SourcePreviewPinIngestExecute(r ApiSourcePrev
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.pinSourceRequest == nil {
+		return nil, reportError("pinSourceRequest is required and must be specified")
+	}
 
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
