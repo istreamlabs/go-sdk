@@ -18,8 +18,8 @@ var _ MappedNullable = &PostCopyMP4Request{}
 
 // PostCopyMP4Request struct for PostCopyMP4Request
 type PostCopyMP4Request struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// override path for writing an mp4 to destination.
 	OverrideMp4Path *string `json:"override_mp4_path,omitempty" maxLength:"1024" doc:"override path for writing an mp4 to destination."`
 }

@@ -18,8 +18,8 @@ var _ MappedNullable = &PostClipArchiveRequest{}
 
 // PostClipArchiveRequest struct for PostClipArchiveRequest
 type PostClipArchiveRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifer that is carried through the archive request
 	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through the archive request"`
 }

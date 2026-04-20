@@ -19,8 +19,8 @@ var _ MappedNullable = &Channel{}
 
 // Channel struct for Channel
 type Channel struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Date and time the channel was created.
 	Created *time.Time `json:"created,omitempty" format:"date-time" doc:"Date and time the channel was created."`
 	// A human-readable description of the channel.
@@ -31,7 +31,7 @@ type Channel struct {
 	EnableByoip *bool `json:"enable_byoip,omitempty" doc:"Indicates whether the channel's transcoder needs to run in a designated IP range."`
 	// External Channel ID provided at channel creation time
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"External Channel ID provided at channel creation time"`
-	Ingest ChannelIngest `json:"ingest"`
+	Ingest Ingest `json:"ingest"`
 	// Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50.
 	Labels []string `json:"labels,omitempty" maxItems:"50" doc:"Optional labels for a channel. Any included labels must be at least 1 character long, but no greater than 256 characters. The maximum number of labels is 50."`
 	// Date and time the channel was last modified.
@@ -39,24 +39,24 @@ type Channel struct {
 	// A friendly human-readable name for the channel. This will get displayed in user interfaces.
 	Name *string `json:"name,omitempty" doc:"A friendly human-readable name for the channel. This will get displayed in user interfaces."`
 	Organization *string `json:"organization,omitempty" minLength:"1"`
-	Packaging *ChannelPackaging `json:"packaging,omitempty"`
-	Publishing *ChannelPublishing `json:"publishing,omitempty"`
+	Packaging *Packaging `json:"packaging,omitempty"`
+	Publishing *Publishing `json:"publishing,omitempty"`
 	// Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used.
 	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation for transcoding and stream egress from iStreamPlanet. If no region is provided at channel creation time, then 'US_WEST' is used."`
 	// If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime.
 	ResourceClass *string `json:"resource_class,omitempty" enum:"DYNAMIC,STATIC" doc:"If the ResourceClass is unspecified the channel will default to run in the 'DYNAMIC' ResourceClass. Note that changing the ResourceClass for a running channel is supported and will be performed with no downtime."`
 	// Self link for the channel.
 	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the channel."`
-	Signaling *ChannelSignaling `json:"signaling,omitempty"`
-	Tags *ChannelTags `json:"tags,omitempty"`
-	Transcode ChannelTranscode `json:"transcode"`
+	Signaling *Signaling `json:"signaling,omitempty"`
+	Tags *Tags `json:"tags,omitempty"`
+	Transcode Transcode `json:"transcode"`
 }
 
 // NewChannel instantiates a new Channel object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannel(ingest ChannelIngest, transcode ChannelTranscode) *Channel {
+func NewChannel(ingest Ingest, transcode Transcode) *Channel {
 	this := Channel{}
 	this.Ingest = ingest
 	this.Transcode = transcode
@@ -264,9 +264,9 @@ func (o *Channel) SetId(v string) {
 }
 
 // GetIngest returns the Ingest field value
-func (o *Channel) GetIngest() ChannelIngest {
+func (o *Channel) GetIngest() Ingest {
 	if o == nil {
-		var ret ChannelIngest
+		var ret Ingest
 		return ret
 	}
 
@@ -275,7 +275,7 @@ func (o *Channel) GetIngest() ChannelIngest {
 
 // GetIngestOk returns a tuple with the Ingest field value
 // and a boolean to check if the value has been set.
-func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
+func (o *Channel) GetIngestOk() (*Ingest, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -283,13 +283,13 @@ func (o *Channel) GetIngestOk() (*ChannelIngest, bool) {
 }
 
 // SetIngest sets field value
-func (o *Channel) SetIngest(v ChannelIngest) {
+func (o *Channel) SetIngest(v Ingest) {
 	o.Ingest = v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Channel) GetLabels() []string {
-	if o == nil || IsNil(o.Labels) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -298,6 +298,7 @@ func (o *Channel) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Channel) GetLabelsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
@@ -307,7 +308,7 @@ func (o *Channel) GetLabelsOk() ([]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *Channel) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && IsNil(o.Labels) {
 		return true
 	}
 
@@ -416,9 +417,9 @@ func (o *Channel) SetOrganization(v string) {
 }
 
 // GetPackaging returns the Packaging field value if set, zero value otherwise.
-func (o *Channel) GetPackaging() ChannelPackaging {
+func (o *Channel) GetPackaging() Packaging {
 	if o == nil || IsNil(o.Packaging) {
-		var ret ChannelPackaging
+		var ret Packaging
 		return ret
 	}
 	return *o.Packaging
@@ -426,7 +427,7 @@ func (o *Channel) GetPackaging() ChannelPackaging {
 
 // GetPackagingOk returns a tuple with the Packaging field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetPackagingOk() (*ChannelPackaging, bool) {
+func (o *Channel) GetPackagingOk() (*Packaging, bool) {
 	if o == nil || IsNil(o.Packaging) {
 		return nil, false
 	}
@@ -442,15 +443,15 @@ func (o *Channel) HasPackaging() bool {
 	return false
 }
 
-// SetPackaging gets a reference to the given ChannelPackaging and assigns it to the Packaging field.
-func (o *Channel) SetPackaging(v ChannelPackaging) {
+// SetPackaging gets a reference to the given Packaging and assigns it to the Packaging field.
+func (o *Channel) SetPackaging(v Packaging) {
 	o.Packaging = &v
 }
 
 // GetPublishing returns the Publishing field value if set, zero value otherwise.
-func (o *Channel) GetPublishing() ChannelPublishing {
+func (o *Channel) GetPublishing() Publishing {
 	if o == nil || IsNil(o.Publishing) {
-		var ret ChannelPublishing
+		var ret Publishing
 		return ret
 	}
 	return *o.Publishing
@@ -458,7 +459,7 @@ func (o *Channel) GetPublishing() ChannelPublishing {
 
 // GetPublishingOk returns a tuple with the Publishing field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetPublishingOk() (*ChannelPublishing, bool) {
+func (o *Channel) GetPublishingOk() (*Publishing, bool) {
 	if o == nil || IsNil(o.Publishing) {
 		return nil, false
 	}
@@ -474,8 +475,8 @@ func (o *Channel) HasPublishing() bool {
 	return false
 }
 
-// SetPublishing gets a reference to the given ChannelPublishing and assigns it to the Publishing field.
-func (o *Channel) SetPublishing(v ChannelPublishing) {
+// SetPublishing gets a reference to the given Publishing and assigns it to the Publishing field.
+func (o *Channel) SetPublishing(v Publishing) {
 	o.Publishing = &v
 }
 
@@ -576,9 +577,9 @@ func (o *Channel) SetSelf(v string) {
 }
 
 // GetSignaling returns the Signaling field value if set, zero value otherwise.
-func (o *Channel) GetSignaling() ChannelSignaling {
+func (o *Channel) GetSignaling() Signaling {
 	if o == nil || IsNil(o.Signaling) {
-		var ret ChannelSignaling
+		var ret Signaling
 		return ret
 	}
 	return *o.Signaling
@@ -586,7 +587,7 @@ func (o *Channel) GetSignaling() ChannelSignaling {
 
 // GetSignalingOk returns a tuple with the Signaling field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetSignalingOk() (*ChannelSignaling, bool) {
+func (o *Channel) GetSignalingOk() (*Signaling, bool) {
 	if o == nil || IsNil(o.Signaling) {
 		return nil, false
 	}
@@ -602,15 +603,15 @@ func (o *Channel) HasSignaling() bool {
 	return false
 }
 
-// SetSignaling gets a reference to the given ChannelSignaling and assigns it to the Signaling field.
-func (o *Channel) SetSignaling(v ChannelSignaling) {
+// SetSignaling gets a reference to the given Signaling and assigns it to the Signaling field.
+func (o *Channel) SetSignaling(v Signaling) {
 	o.Signaling = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *Channel) GetTags() ChannelTags {
+func (o *Channel) GetTags() Tags {
 	if o == nil || IsNil(o.Tags) {
-		var ret ChannelTags
+		var ret Tags
 		return ret
 	}
 	return *o.Tags
@@ -618,7 +619,7 @@ func (o *Channel) GetTags() ChannelTags {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Channel) GetTagsOk() (*ChannelTags, bool) {
+func (o *Channel) GetTagsOk() (*Tags, bool) {
 	if o == nil || IsNil(o.Tags) {
 		return nil, false
 	}
@@ -634,15 +635,15 @@ func (o *Channel) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given ChannelTags and assigns it to the Tags field.
-func (o *Channel) SetTags(v ChannelTags) {
+// SetTags gets a reference to the given Tags and assigns it to the Tags field.
+func (o *Channel) SetTags(v Tags) {
 	o.Tags = &v
 }
 
 // GetTranscode returns the Transcode field value
-func (o *Channel) GetTranscode() ChannelTranscode {
+func (o *Channel) GetTranscode() Transcode {
 	if o == nil {
-		var ret ChannelTranscode
+		var ret Transcode
 		return ret
 	}
 
@@ -651,7 +652,7 @@ func (o *Channel) GetTranscode() ChannelTranscode {
 
 // GetTranscodeOk returns a tuple with the Transcode field value
 // and a boolean to check if the value has been set.
-func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
+func (o *Channel) GetTranscodeOk() (*Transcode, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -659,7 +660,7 @@ func (o *Channel) GetTranscodeOk() (*ChannelTranscode, bool) {
 }
 
 // SetTranscode sets field value
-func (o *Channel) SetTranscode(v ChannelTranscode) {
+func (o *Channel) SetTranscode(v Transcode) {
 	o.Transcode = v
 }
 
@@ -692,7 +693,7 @@ func (o Channel) ToMap() (map[string]interface{}, error) {
 		toSerialize["id"] = o.Id
 	}
 	toSerialize["ingest"] = o.Ingest
-	if !IsNil(o.Labels) {
+	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
 	if !IsNil(o.Modified) {

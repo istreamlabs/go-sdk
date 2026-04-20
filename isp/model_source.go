@@ -18,24 +18,22 @@ var _ MappedNullable = &Source{}
 
 // Source struct for Source
 type Source struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	// Unique source ID
-	Id string `json:"id" doc:"Unique source ID"`
-	// Source name
-	Name string `json:"name" doc:"Source name"`
-	// Link to this resource
-	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	AudioSources []PatchOrgChannelRequestIngestSourceAudioSourcesInner `json:"audio_sources,omitempty" minItems:"1"`
+	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
+	CaptionsSource *string `json:"captions_source,omitempty" enum:"ATSC_A53,SMPTE_2038" doc:"Closed captions source embedding. If unspecified, defaults to ATSC_A53."`
+	// Unique identifier for this source.
+	Id *string `json:"id,omitempty" doc:"Unique identifier for this source."`
+	// Self link for the source.
+	Self *string `json:"self,omitempty" format:"uri-reference" doc:"Self link for the source."`
+	VideoSource *PatchOrgChannelRequestIngestSourceVideoSource `json:"video_source,omitempty"`
 }
 
 // NewSource instantiates a new Source object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSource(id string, name string) *Source {
+func NewSource() *Source {
 	this := Source{}
-	this.Id = id
-	this.Name = name
 	return &this
 }
 
@@ -47,84 +45,101 @@ func NewSourceWithDefaults() *Source {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Source) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetAudioSources returns the AudioSources field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Source) GetAudioSources() []PatchOrgChannelRequestIngestSourceAudioSourcesInner {
+	if o == nil {
+		var ret []PatchOrgChannelRequestIngestSourceAudioSourcesInner
 		return ret
 	}
-	return *o.Schema
+	return o.AudioSources
 }
 
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
+// GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Source) GetSchemaOk() (*string, bool) {
-	if o == nil || IsNil(o.Schema) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Source) GetAudioSourcesOk() ([]PatchOrgChannelRequestIngestSourceAudioSourcesInner, bool) {
+	if o == nil || IsNil(o.AudioSources) {
 		return nil, false
 	}
-	return o.Schema, true
+	return o.AudioSources, true
 }
 
-// HasSchema returns a boolean if a field has been set.
-func (o *Source) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+// HasAudioSources returns a boolean if a field has been set.
+func (o *Source) HasAudioSources() bool {
+	if o != nil && IsNil(o.AudioSources) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Source) SetSchema(v string) {
-	o.Schema = &v
+// SetAudioSources gets a reference to the given []PatchOrgChannelRequestIngestSourceAudioSourcesInner and assigns it to the AudioSources field.
+func (o *Source) SetAudioSources(v []PatchOrgChannelRequestIngestSourceAudioSourcesInner) {
+	o.AudioSources = v
 }
 
-// GetId returns the Id field value
-func (o *Source) GetId() string {
-	if o == nil {
+// GetCaptionsSource returns the CaptionsSource field value if set, zero value otherwise.
+func (o *Source) GetCaptionsSource() string {
+	if o == nil || IsNil(o.CaptionsSource) {
 		var ret string
 		return ret
 	}
-
-	return o.Id
+	return *o.CaptionsSource
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetCaptionsSourceOk returns a tuple with the CaptionsSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Source) GetCaptionsSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.CaptionsSource) {
+		return nil, false
+	}
+	return o.CaptionsSource, true
+}
+
+// HasCaptionsSource returns a boolean if a field has been set.
+func (o *Source) HasCaptionsSource() bool {
+	if o != nil && !IsNil(o.CaptionsSource) {
+		return true
+	}
+
+	return false
+}
+
+// SetCaptionsSource gets a reference to the given string and assigns it to the CaptionsSource field.
+func (o *Source) SetCaptionsSource(v string) {
+	o.CaptionsSource = &v
+}
+
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *Source) GetId() string {
+	if o == nil || IsNil(o.Id) {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Source) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *Source) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *Source) SetId(v string) {
-	o.Id = v
-}
-
-// GetName returns the Name field value
-func (o *Source) GetName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value
-// and a boolean to check if the value has been set.
-func (o *Source) GetNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Name, true
-}
-
-// SetName sets field value
-func (o *Source) SetName(v string) {
-	o.Name = v
+	o.Id = &v
 }
 
 // GetSelf returns the Self field value if set, zero value otherwise.
@@ -159,6 +174,38 @@ func (o *Source) SetSelf(v string) {
 	o.Self = &v
 }
 
+// GetVideoSource returns the VideoSource field value if set, zero value otherwise.
+func (o *Source) GetVideoSource() PatchOrgChannelRequestIngestSourceVideoSource {
+	if o == nil || IsNil(o.VideoSource) {
+		var ret PatchOrgChannelRequestIngestSourceVideoSource
+		return ret
+	}
+	return *o.VideoSource
+}
+
+// GetVideoSourceOk returns a tuple with the VideoSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Source) GetVideoSourceOk() (*PatchOrgChannelRequestIngestSourceVideoSource, bool) {
+	if o == nil || IsNil(o.VideoSource) {
+		return nil, false
+	}
+	return o.VideoSource, true
+}
+
+// HasVideoSource returns a boolean if a field has been set.
+func (o *Source) HasVideoSource() bool {
+	if o != nil && !IsNil(o.VideoSource) {
+		return true
+	}
+
+	return false
+}
+
+// SetVideoSource gets a reference to the given PatchOrgChannelRequestIngestSourceVideoSource and assigns it to the VideoSource field.
+func (o *Source) SetVideoSource(v PatchOrgChannelRequestIngestSourceVideoSource) {
+	o.VideoSource = &v
+}
+
 func (o Source) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -169,13 +216,20 @@ func (o Source) MarshalJSON() ([]byte, error) {
 
 func (o Source) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
-		toSerialize["$schema"] = o.Schema
+	if o.AudioSources != nil {
+		toSerialize["audio_sources"] = o.AudioSources
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["name"] = o.Name
+	if !IsNil(o.CaptionsSource) {
+		toSerialize["captions_source"] = o.CaptionsSource
+	}
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
 	if !IsNil(o.Self) {
 		toSerialize["self"] = o.Self
+	}
+	if !IsNil(o.VideoSource) {
+		toSerialize["video_source"] = o.VideoSource
 	}
 	return toSerialize, nil
 }

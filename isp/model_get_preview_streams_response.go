@@ -18,17 +18,17 @@ var _ MappedNullable = &GetPreviewStreamsResponse{}
 
 // GetPreviewStreamsResponse struct for GetPreviewStreamsResponse
 type GetPreviewStreamsResponse struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here.
-	AudioTracks []GetPreviewStreamsResponseAudioTracksInner `json:"audio_tracks,omitempty" doc:"Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here."`
-	DefaultAudioTrack *GetPreviewStreamsResponseDefaultAudioTrack `json:"default_audio_track,omitempty"`
+	AudioTracks []AudioTrackInfo `json:"audio_tracks,omitempty" doc:"Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here."`
+	DefaultAudioTrack *AudioTrackInfo `json:"default_audio_track,omitempty"`
 	// default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations.
 	DefaultUrl *string `json:"default_url,omitempty" doc:"default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations."`
-	DefaultVideoTrack *GetPreviewStreamsResponseDefaultVideoTrack `json:"default_video_track,omitempty"`
+	DefaultVideoTrack *VideoTrackInfo `json:"default_video_track,omitempty"`
 	// JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server.
 	Token *string `json:"token,omitempty" doc:"JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server."`
-	VideoTracks []GetPreviewStreamsResponseDefaultVideoTrack `json:"video_tracks,omitempty"`
+	VideoTracks []VideoTrackInfo `json:"video_tracks,omitempty"`
 }
 
 // NewGetPreviewStreamsResponse instantiates a new GetPreviewStreamsResponse object
@@ -80,10 +80,10 @@ func (o *GetPreviewStreamsResponse) SetSchema(v string) {
 	o.Schema = &v
 }
 
-// GetAudioTracks returns the AudioTracks field value if set, zero value otherwise.
-func (o *GetPreviewStreamsResponse) GetAudioTracks() []GetPreviewStreamsResponseAudioTracksInner {
-	if o == nil || IsNil(o.AudioTracks) {
-		var ret []GetPreviewStreamsResponseAudioTracksInner
+// GetAudioTracks returns the AudioTracks field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPreviewStreamsResponse) GetAudioTracks() []AudioTrackInfo {
+	if o == nil {
+		var ret []AudioTrackInfo
 		return ret
 	}
 	return o.AudioTracks
@@ -91,7 +91,8 @@ func (o *GetPreviewStreamsResponse) GetAudioTracks() []GetPreviewStreamsResponse
 
 // GetAudioTracksOk returns a tuple with the AudioTracks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPreviewStreamsResponse) GetAudioTracksOk() ([]GetPreviewStreamsResponseAudioTracksInner, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPreviewStreamsResponse) GetAudioTracksOk() ([]AudioTrackInfo, bool) {
 	if o == nil || IsNil(o.AudioTracks) {
 		return nil, false
 	}
@@ -100,22 +101,22 @@ func (o *GetPreviewStreamsResponse) GetAudioTracksOk() ([]GetPreviewStreamsRespo
 
 // HasAudioTracks returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponse) HasAudioTracks() bool {
-	if o != nil && !IsNil(o.AudioTracks) {
+	if o != nil && IsNil(o.AudioTracks) {
 		return true
 	}
 
 	return false
 }
 
-// SetAudioTracks gets a reference to the given []GetPreviewStreamsResponseAudioTracksInner and assigns it to the AudioTracks field.
-func (o *GetPreviewStreamsResponse) SetAudioTracks(v []GetPreviewStreamsResponseAudioTracksInner) {
+// SetAudioTracks gets a reference to the given []AudioTrackInfo and assigns it to the AudioTracks field.
+func (o *GetPreviewStreamsResponse) SetAudioTracks(v []AudioTrackInfo) {
 	o.AudioTracks = v
 }
 
 // GetDefaultAudioTrack returns the DefaultAudioTrack field value if set, zero value otherwise.
-func (o *GetPreviewStreamsResponse) GetDefaultAudioTrack() GetPreviewStreamsResponseDefaultAudioTrack {
+func (o *GetPreviewStreamsResponse) GetDefaultAudioTrack() AudioTrackInfo {
 	if o == nil || IsNil(o.DefaultAudioTrack) {
-		var ret GetPreviewStreamsResponseDefaultAudioTrack
+		var ret AudioTrackInfo
 		return ret
 	}
 	return *o.DefaultAudioTrack
@@ -123,7 +124,7 @@ func (o *GetPreviewStreamsResponse) GetDefaultAudioTrack() GetPreviewStreamsResp
 
 // GetDefaultAudioTrackOk returns a tuple with the DefaultAudioTrack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPreviewStreamsResponse) GetDefaultAudioTrackOk() (*GetPreviewStreamsResponseDefaultAudioTrack, bool) {
+func (o *GetPreviewStreamsResponse) GetDefaultAudioTrackOk() (*AudioTrackInfo, bool) {
 	if o == nil || IsNil(o.DefaultAudioTrack) {
 		return nil, false
 	}
@@ -139,8 +140,8 @@ func (o *GetPreviewStreamsResponse) HasDefaultAudioTrack() bool {
 	return false
 }
 
-// SetDefaultAudioTrack gets a reference to the given GetPreviewStreamsResponseDefaultAudioTrack and assigns it to the DefaultAudioTrack field.
-func (o *GetPreviewStreamsResponse) SetDefaultAudioTrack(v GetPreviewStreamsResponseDefaultAudioTrack) {
+// SetDefaultAudioTrack gets a reference to the given AudioTrackInfo and assigns it to the DefaultAudioTrack field.
+func (o *GetPreviewStreamsResponse) SetDefaultAudioTrack(v AudioTrackInfo) {
 	o.DefaultAudioTrack = &v
 }
 
@@ -177,9 +178,9 @@ func (o *GetPreviewStreamsResponse) SetDefaultUrl(v string) {
 }
 
 // GetDefaultVideoTrack returns the DefaultVideoTrack field value if set, zero value otherwise.
-func (o *GetPreviewStreamsResponse) GetDefaultVideoTrack() GetPreviewStreamsResponseDefaultVideoTrack {
+func (o *GetPreviewStreamsResponse) GetDefaultVideoTrack() VideoTrackInfo {
 	if o == nil || IsNil(o.DefaultVideoTrack) {
-		var ret GetPreviewStreamsResponseDefaultVideoTrack
+		var ret VideoTrackInfo
 		return ret
 	}
 	return *o.DefaultVideoTrack
@@ -187,7 +188,7 @@ func (o *GetPreviewStreamsResponse) GetDefaultVideoTrack() GetPreviewStreamsResp
 
 // GetDefaultVideoTrackOk returns a tuple with the DefaultVideoTrack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPreviewStreamsResponse) GetDefaultVideoTrackOk() (*GetPreviewStreamsResponseDefaultVideoTrack, bool) {
+func (o *GetPreviewStreamsResponse) GetDefaultVideoTrackOk() (*VideoTrackInfo, bool) {
 	if o == nil || IsNil(o.DefaultVideoTrack) {
 		return nil, false
 	}
@@ -203,8 +204,8 @@ func (o *GetPreviewStreamsResponse) HasDefaultVideoTrack() bool {
 	return false
 }
 
-// SetDefaultVideoTrack gets a reference to the given GetPreviewStreamsResponseDefaultVideoTrack and assigns it to the DefaultVideoTrack field.
-func (o *GetPreviewStreamsResponse) SetDefaultVideoTrack(v GetPreviewStreamsResponseDefaultVideoTrack) {
+// SetDefaultVideoTrack gets a reference to the given VideoTrackInfo and assigns it to the DefaultVideoTrack field.
+func (o *GetPreviewStreamsResponse) SetDefaultVideoTrack(v VideoTrackInfo) {
 	o.DefaultVideoTrack = &v
 }
 
@@ -240,10 +241,10 @@ func (o *GetPreviewStreamsResponse) SetToken(v string) {
 	o.Token = &v
 }
 
-// GetVideoTracks returns the VideoTracks field value if set, zero value otherwise.
-func (o *GetPreviewStreamsResponse) GetVideoTracks() []GetPreviewStreamsResponseDefaultVideoTrack {
-	if o == nil || IsNil(o.VideoTracks) {
-		var ret []GetPreviewStreamsResponseDefaultVideoTrack
+// GetVideoTracks returns the VideoTracks field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *GetPreviewStreamsResponse) GetVideoTracks() []VideoTrackInfo {
+	if o == nil {
+		var ret []VideoTrackInfo
 		return ret
 	}
 	return o.VideoTracks
@@ -251,7 +252,8 @@ func (o *GetPreviewStreamsResponse) GetVideoTracks() []GetPreviewStreamsResponse
 
 // GetVideoTracksOk returns a tuple with the VideoTracks field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GetPreviewStreamsResponse) GetVideoTracksOk() ([]GetPreviewStreamsResponseDefaultVideoTrack, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *GetPreviewStreamsResponse) GetVideoTracksOk() ([]VideoTrackInfo, bool) {
 	if o == nil || IsNil(o.VideoTracks) {
 		return nil, false
 	}
@@ -260,15 +262,15 @@ func (o *GetPreviewStreamsResponse) GetVideoTracksOk() ([]GetPreviewStreamsRespo
 
 // HasVideoTracks returns a boolean if a field has been set.
 func (o *GetPreviewStreamsResponse) HasVideoTracks() bool {
-	if o != nil && !IsNil(o.VideoTracks) {
+	if o != nil && IsNil(o.VideoTracks) {
 		return true
 	}
 
 	return false
 }
 
-// SetVideoTracks gets a reference to the given []GetPreviewStreamsResponseDefaultVideoTrack and assigns it to the VideoTracks field.
-func (o *GetPreviewStreamsResponse) SetVideoTracks(v []GetPreviewStreamsResponseDefaultVideoTrack) {
+// SetVideoTracks gets a reference to the given []VideoTrackInfo and assigns it to the VideoTracks field.
+func (o *GetPreviewStreamsResponse) SetVideoTracks(v []VideoTrackInfo) {
 	o.VideoTracks = v
 }
 
@@ -285,7 +287,7 @@ func (o GetPreviewStreamsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Schema) {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.AudioTracks) {
+	if o.AudioTracks != nil {
 		toSerialize["audio_tracks"] = o.AudioTracks
 	}
 	if !IsNil(o.DefaultAudioTrack) {
@@ -300,7 +302,7 @@ func (o GetPreviewStreamsResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Token) {
 		toSerialize["token"] = o.Token
 	}
-	if !IsNil(o.VideoTracks) {
+	if o.VideoTracks != nil {
 		toSerialize["video_tracks"] = o.VideoTracks
 	}
 	return toSerialize, nil

@@ -16,10 +16,10 @@ import (
 // checks if the PatchOrgChannelRequestIngest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &PatchOrgChannelRequestIngest{}
 
-// PatchOrgChannelRequestIngest Ingest configures inputs for the transcoder.
+// PatchOrgChannelRequestIngest struct for PatchOrgChannelRequestIngest
 type PatchOrgChannelRequestIngest struct {
-	Slate *ChannelIngestSlate `json:"slate,omitempty"`
-	Source *ChannelIngestSource `json:"source,omitempty"`
+	Slate *PatchOrgChannelRequestIngestSlate `json:"slate,omitempty"`
+	Source *PatchOrgChannelRequestIngestSource `json:"source,omitempty"`
 }
 
 // NewPatchOrgChannelRequestIngest instantiates a new PatchOrgChannelRequestIngest object
@@ -40,9 +40,9 @@ func NewPatchOrgChannelRequestIngestWithDefaults() *PatchOrgChannelRequestIngest
 }
 
 // GetSlate returns the Slate field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngest) GetSlate() ChannelIngestSlate {
+func (o *PatchOrgChannelRequestIngest) GetSlate() PatchOrgChannelRequestIngestSlate {
 	if o == nil || IsNil(o.Slate) {
-		var ret ChannelIngestSlate
+		var ret PatchOrgChannelRequestIngestSlate
 		return ret
 	}
 	return *o.Slate
@@ -50,7 +50,7 @@ func (o *PatchOrgChannelRequestIngest) GetSlate() ChannelIngestSlate {
 
 // GetSlateOk returns a tuple with the Slate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngest) GetSlateOk() (*ChannelIngestSlate, bool) {
+func (o *PatchOrgChannelRequestIngest) GetSlateOk() (*PatchOrgChannelRequestIngestSlate, bool) {
 	if o == nil || IsNil(o.Slate) {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *PatchOrgChannelRequestIngest) HasSlate() bool {
 	return false
 }
 
-// SetSlate gets a reference to the given ChannelIngestSlate and assigns it to the Slate field.
-func (o *PatchOrgChannelRequestIngest) SetSlate(v ChannelIngestSlate) {
+// SetSlate gets a reference to the given PatchOrgChannelRequestIngestSlate and assigns it to the Slate field.
+func (o *PatchOrgChannelRequestIngest) SetSlate(v PatchOrgChannelRequestIngestSlate) {
 	o.Slate = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngest) GetSource() ChannelIngestSource {
+func (o *PatchOrgChannelRequestIngest) GetSource() PatchOrgChannelRequestIngestSource {
 	if o == nil || IsNil(o.Source) {
-		var ret ChannelIngestSource
+		var ret PatchOrgChannelRequestIngestSource
 		return ret
 	}
 	return *o.Source
@@ -82,7 +82,7 @@ func (o *PatchOrgChannelRequestIngest) GetSource() ChannelIngestSource {
 
 // GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngest) GetSourceOk() (*ChannelIngestSource, bool) {
+func (o *PatchOrgChannelRequestIngest) GetSourceOk() (*PatchOrgChannelRequestIngestSource, bool) {
 	if o == nil || IsNil(o.Source) {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *PatchOrgChannelRequestIngest) HasSource() bool {
 	return false
 }
 
-// SetSource gets a reference to the given ChannelIngestSource and assigns it to the Source field.
-func (o *PatchOrgChannelRequestIngest) SetSource(v ChannelIngestSource) {
+// SetSource gets a reference to the given PatchOrgChannelRequestIngestSource and assigns it to the Source field.
+func (o *PatchOrgChannelRequestIngest) SetSource(v PatchOrgChannelRequestIngestSource) {
 	o.Source = &v
 }
 

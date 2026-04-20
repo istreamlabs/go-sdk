@@ -7,9 +7,9 @@ ENV="${2-prod}"
 
 OPENAPI_SPEC=""
 if [[ "$API" == "isp" ]]; then
-  OPENAPI_SPEC="https://api.istreamplanet.com/openapi.json"
+  OPENAPI_SPEC="https://api.istreamplanet.com/openapi-3.0.json"
   if [[ $ENV == "stage" ]]; then
-    OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi.json"
+    OPENAPI_SPEC="https://stage.api.istreamplanet.com/openapi-3.0.json"
   fi
 elif [[ "$API" == "isp-slate" ]]; then
   OPENAPI_SPEC="https://api.istreamplanet.com/docs/slates/openapi-3.0.json"

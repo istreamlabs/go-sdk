@@ -18,21 +18,21 @@ var _ MappedNullable = &UpdateProductConfigRequest{}
 
 // UpdateProductConfigRequest struct for UpdateProductConfigRequest
 type UpdateProductConfigRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	ArchiveSettings *GetProductConfigResponseProductConfigInnerArchiveSettings `json:"archive_settings,omitempty"`
-	CollapseConfig *GetProductConfigResponseProductConfigInnerCollapseConfig `json:"collapse_config,omitempty"`
-	CollapseTriggerConfig *GetProductConfigResponseProductConfigInnerCollapseTriggerConfig `json:"collapse_trigger_config,omitempty"`
-	EdcPartialPresentations *GetProductConfigResponseProductConfigInnerEdcPartialPresentations `json:"edc_partial_presentations,omitempty"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ArchiveSettings *ArchiveSettings `json:"archive_settings,omitempty"`
+	CollapseConfig *CollapseConfig `json:"collapse_config,omitempty"`
+	CollapseTriggerConfig *CollapseTriggerConfig `json:"collapse_trigger_config,omitempty"`
+	EdcPartialPresentations *EDCPartialPresentations `json:"edc_partial_presentations,omitempty"`
 	// Template to transcode mp4 to hls
 	EdcTranscodeTemplate *map[string]interface{} `json:"edc_transcode_template,omitempty" doc:"Template to transcode mp4 to hls"`
 	// Notifiaction settings for collapses
-	Notifications []GetProductConfigResponseProductConfigInnerNotificationsInner `json:"notifications,omitempty" doc:"Notifiaction settings for collapses"`
+	Notifications []NotificationConfigByEventType `json:"notifications,omitempty" doc:"Notifiaction settings for collapses"`
 	// Region represents the general geolocation the product is in.
 	Region *string `json:"region,omitempty" enum:"US_WEST,US_EAST" doc:"Region represents the general geolocation the product is in."`
 	// store for product
 	Store *string `json:"store,omitempty" doc:"store for product"`
-	WorkflowConfig *GetProductConfigResponseProductConfigInnerWorkflowConfig `json:"workflow_config,omitempty"`
+	WorkflowConfig *WorkflowConfig `json:"workflow_config,omitempty"`
 }
 
 // NewUpdateProductConfigRequest instantiates a new UpdateProductConfigRequest object
@@ -85,9 +85,9 @@ func (o *UpdateProductConfigRequest) SetSchema(v string) {
 }
 
 // GetArchiveSettings returns the ArchiveSettings field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetArchiveSettings() GetProductConfigResponseProductConfigInnerArchiveSettings {
+func (o *UpdateProductConfigRequest) GetArchiveSettings() ArchiveSettings {
 	if o == nil || IsNil(o.ArchiveSettings) {
-		var ret GetProductConfigResponseProductConfigInnerArchiveSettings
+		var ret ArchiveSettings
 		return ret
 	}
 	return *o.ArchiveSettings
@@ -95,7 +95,7 @@ func (o *UpdateProductConfigRequest) GetArchiveSettings() GetProductConfigRespon
 
 // GetArchiveSettingsOk returns a tuple with the ArchiveSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetArchiveSettingsOk() (*GetProductConfigResponseProductConfigInnerArchiveSettings, bool) {
+func (o *UpdateProductConfigRequest) GetArchiveSettingsOk() (*ArchiveSettings, bool) {
 	if o == nil || IsNil(o.ArchiveSettings) {
 		return nil, false
 	}
@@ -111,15 +111,15 @@ func (o *UpdateProductConfigRequest) HasArchiveSettings() bool {
 	return false
 }
 
-// SetArchiveSettings gets a reference to the given GetProductConfigResponseProductConfigInnerArchiveSettings and assigns it to the ArchiveSettings field.
-func (o *UpdateProductConfigRequest) SetArchiveSettings(v GetProductConfigResponseProductConfigInnerArchiveSettings) {
+// SetArchiveSettings gets a reference to the given ArchiveSettings and assigns it to the ArchiveSettings field.
+func (o *UpdateProductConfigRequest) SetArchiveSettings(v ArchiveSettings) {
 	o.ArchiveSettings = &v
 }
 
 // GetCollapseConfig returns the CollapseConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetCollapseConfig() GetProductConfigResponseProductConfigInnerCollapseConfig {
+func (o *UpdateProductConfigRequest) GetCollapseConfig() CollapseConfig {
 	if o == nil || IsNil(o.CollapseConfig) {
-		var ret GetProductConfigResponseProductConfigInnerCollapseConfig
+		var ret CollapseConfig
 		return ret
 	}
 	return *o.CollapseConfig
@@ -127,7 +127,7 @@ func (o *UpdateProductConfigRequest) GetCollapseConfig() GetProductConfigRespons
 
 // GetCollapseConfigOk returns a tuple with the CollapseConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetCollapseConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseConfig, bool) {
+func (o *UpdateProductConfigRequest) GetCollapseConfigOk() (*CollapseConfig, bool) {
 	if o == nil || IsNil(o.CollapseConfig) {
 		return nil, false
 	}
@@ -143,15 +143,15 @@ func (o *UpdateProductConfigRequest) HasCollapseConfig() bool {
 	return false
 }
 
-// SetCollapseConfig gets a reference to the given GetProductConfigResponseProductConfigInnerCollapseConfig and assigns it to the CollapseConfig field.
-func (o *UpdateProductConfigRequest) SetCollapseConfig(v GetProductConfigResponseProductConfigInnerCollapseConfig) {
+// SetCollapseConfig gets a reference to the given CollapseConfig and assigns it to the CollapseConfig field.
+func (o *UpdateProductConfigRequest) SetCollapseConfig(v CollapseConfig) {
 	o.CollapseConfig = &v
 }
 
 // GetCollapseTriggerConfig returns the CollapseTriggerConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetCollapseTriggerConfig() GetProductConfigResponseProductConfigInnerCollapseTriggerConfig {
+func (o *UpdateProductConfigRequest) GetCollapseTriggerConfig() CollapseTriggerConfig {
 	if o == nil || IsNil(o.CollapseTriggerConfig) {
-		var ret GetProductConfigResponseProductConfigInnerCollapseTriggerConfig
+		var ret CollapseTriggerConfig
 		return ret
 	}
 	return *o.CollapseTriggerConfig
@@ -159,7 +159,7 @@ func (o *UpdateProductConfigRequest) GetCollapseTriggerConfig() GetProductConfig
 
 // GetCollapseTriggerConfigOk returns a tuple with the CollapseTriggerConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetCollapseTriggerConfigOk() (*GetProductConfigResponseProductConfigInnerCollapseTriggerConfig, bool) {
+func (o *UpdateProductConfigRequest) GetCollapseTriggerConfigOk() (*CollapseTriggerConfig, bool) {
 	if o == nil || IsNil(o.CollapseTriggerConfig) {
 		return nil, false
 	}
@@ -175,15 +175,15 @@ func (o *UpdateProductConfigRequest) HasCollapseTriggerConfig() bool {
 	return false
 }
 
-// SetCollapseTriggerConfig gets a reference to the given GetProductConfigResponseProductConfigInnerCollapseTriggerConfig and assigns it to the CollapseTriggerConfig field.
-func (o *UpdateProductConfigRequest) SetCollapseTriggerConfig(v GetProductConfigResponseProductConfigInnerCollapseTriggerConfig) {
+// SetCollapseTriggerConfig gets a reference to the given CollapseTriggerConfig and assigns it to the CollapseTriggerConfig field.
+func (o *UpdateProductConfigRequest) SetCollapseTriggerConfig(v CollapseTriggerConfig) {
 	o.CollapseTriggerConfig = &v
 }
 
 // GetEdcPartialPresentations returns the EdcPartialPresentations field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetEdcPartialPresentations() GetProductConfigResponseProductConfigInnerEdcPartialPresentations {
+func (o *UpdateProductConfigRequest) GetEdcPartialPresentations() EDCPartialPresentations {
 	if o == nil || IsNil(o.EdcPartialPresentations) {
-		var ret GetProductConfigResponseProductConfigInnerEdcPartialPresentations
+		var ret EDCPartialPresentations
 		return ret
 	}
 	return *o.EdcPartialPresentations
@@ -191,7 +191,7 @@ func (o *UpdateProductConfigRequest) GetEdcPartialPresentations() GetProductConf
 
 // GetEdcPartialPresentationsOk returns a tuple with the EdcPartialPresentations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetEdcPartialPresentationsOk() (*GetProductConfigResponseProductConfigInnerEdcPartialPresentations, bool) {
+func (o *UpdateProductConfigRequest) GetEdcPartialPresentationsOk() (*EDCPartialPresentations, bool) {
 	if o == nil || IsNil(o.EdcPartialPresentations) {
 		return nil, false
 	}
@@ -207,8 +207,8 @@ func (o *UpdateProductConfigRequest) HasEdcPartialPresentations() bool {
 	return false
 }
 
-// SetEdcPartialPresentations gets a reference to the given GetProductConfigResponseProductConfigInnerEdcPartialPresentations and assigns it to the EdcPartialPresentations field.
-func (o *UpdateProductConfigRequest) SetEdcPartialPresentations(v GetProductConfigResponseProductConfigInnerEdcPartialPresentations) {
+// SetEdcPartialPresentations gets a reference to the given EDCPartialPresentations and assigns it to the EdcPartialPresentations field.
+func (o *UpdateProductConfigRequest) SetEdcPartialPresentations(v EDCPartialPresentations) {
 	o.EdcPartialPresentations = &v
 }
 
@@ -244,10 +244,10 @@ func (o *UpdateProductConfigRequest) SetEdcTranscodeTemplate(v map[string]interf
 	o.EdcTranscodeTemplate = &v
 }
 
-// GetNotifications returns the Notifications field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetNotifications() []GetProductConfigResponseProductConfigInnerNotificationsInner {
-	if o == nil || IsNil(o.Notifications) {
-		var ret []GetProductConfigResponseProductConfigInnerNotificationsInner
+// GetNotifications returns the Notifications field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UpdateProductConfigRequest) GetNotifications() []NotificationConfigByEventType {
+	if o == nil {
+		var ret []NotificationConfigByEventType
 		return ret
 	}
 	return o.Notifications
@@ -255,7 +255,8 @@ func (o *UpdateProductConfigRequest) GetNotifications() []GetProductConfigRespon
 
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetNotificationsOk() ([]GetProductConfigResponseProductConfigInnerNotificationsInner, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *UpdateProductConfigRequest) GetNotificationsOk() ([]NotificationConfigByEventType, bool) {
 	if o == nil || IsNil(o.Notifications) {
 		return nil, false
 	}
@@ -264,15 +265,15 @@ func (o *UpdateProductConfigRequest) GetNotificationsOk() ([]GetProductConfigRes
 
 // HasNotifications returns a boolean if a field has been set.
 func (o *UpdateProductConfigRequest) HasNotifications() bool {
-	if o != nil && !IsNil(o.Notifications) {
+	if o != nil && IsNil(o.Notifications) {
 		return true
 	}
 
 	return false
 }
 
-// SetNotifications gets a reference to the given []GetProductConfigResponseProductConfigInnerNotificationsInner and assigns it to the Notifications field.
-func (o *UpdateProductConfigRequest) SetNotifications(v []GetProductConfigResponseProductConfigInnerNotificationsInner) {
+// SetNotifications gets a reference to the given []NotificationConfigByEventType and assigns it to the Notifications field.
+func (o *UpdateProductConfigRequest) SetNotifications(v []NotificationConfigByEventType) {
 	o.Notifications = v
 }
 
@@ -341,9 +342,9 @@ func (o *UpdateProductConfigRequest) SetStore(v string) {
 }
 
 // GetWorkflowConfig returns the WorkflowConfig field value if set, zero value otherwise.
-func (o *UpdateProductConfigRequest) GetWorkflowConfig() GetProductConfigResponseProductConfigInnerWorkflowConfig {
+func (o *UpdateProductConfigRequest) GetWorkflowConfig() WorkflowConfig {
 	if o == nil || IsNil(o.WorkflowConfig) {
-		var ret GetProductConfigResponseProductConfigInnerWorkflowConfig
+		var ret WorkflowConfig
 		return ret
 	}
 	return *o.WorkflowConfig
@@ -351,7 +352,7 @@ func (o *UpdateProductConfigRequest) GetWorkflowConfig() GetProductConfigRespons
 
 // GetWorkflowConfigOk returns a tuple with the WorkflowConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UpdateProductConfigRequest) GetWorkflowConfigOk() (*GetProductConfigResponseProductConfigInnerWorkflowConfig, bool) {
+func (o *UpdateProductConfigRequest) GetWorkflowConfigOk() (*WorkflowConfig, bool) {
 	if o == nil || IsNil(o.WorkflowConfig) {
 		return nil, false
 	}
@@ -367,8 +368,8 @@ func (o *UpdateProductConfigRequest) HasWorkflowConfig() bool {
 	return false
 }
 
-// SetWorkflowConfig gets a reference to the given GetProductConfigResponseProductConfigInnerWorkflowConfig and assigns it to the WorkflowConfig field.
-func (o *UpdateProductConfigRequest) SetWorkflowConfig(v GetProductConfigResponseProductConfigInnerWorkflowConfig) {
+// SetWorkflowConfig gets a reference to the given WorkflowConfig and assigns it to the WorkflowConfig field.
+func (o *UpdateProductConfigRequest) SetWorkflowConfig(v WorkflowConfig) {
 	o.WorkflowConfig = &v
 }
 
@@ -400,7 +401,7 @@ func (o UpdateProductConfigRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EdcTranscodeTemplate) {
 		toSerialize["edc_transcode_template"] = o.EdcTranscodeTemplate
 	}
-	if !IsNil(o.Notifications) {
+	if o.Notifications != nil {
 		toSerialize["notifications"] = o.Notifications
 	}
 	if !IsNil(o.Region) {

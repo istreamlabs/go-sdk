@@ -16,7 +16,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 )
 
 
@@ -71,8 +70,8 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	GetOrgPlaybackConfig(ctx context.Context, org string, channelId string) ApiGetOrgPlaybackConfigRequest
 
 	// GetOrgPlaybackConfigExecute executes the request
-	//  @return ChannelPlayback
-	GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error)
+	//  @return ChannelPlaybackBody
+	GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlaybackBody, *http.Response, error)
 
 	/*
 	ListOrgChannels List channels
@@ -86,8 +85,8 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	ListOrgChannels(ctx context.Context, org string) ApiListOrgChannelsRequest
 
 	// ListOrgChannelsExecute executes the request
-	//  @return []Summary2
-	ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error)
+	//  @return []Summary
+	ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary, *http.Response, error)
 
 	/*
 	PatchOrgChannel Patch org-channel
@@ -120,7 +119,9 @@ End distributions are automatically sent when attempting to delete an `ON` chann
 	PutOrgChannelExecute(r ApiPutOrgChannelRequest) (*http.Response, error)
 
 	/*
-	PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
+	PutOrgChannelDesiredState Update Desired State
+
+	Update Channel DesiredState to ON/OFF
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
@@ -143,8 +144,8 @@ type ApiDeleteOrgChannelRequest struct {
 	channelId string
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
+	ifModifiedSince *string
+	ifUnmodifiedSince *string
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -160,13 +161,13 @@ func (r ApiDeleteOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiDeleteO
 }
 
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiDeleteOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiDeleteOrgChannelRequest {
+func (r ApiDeleteOrgChannelRequest) IfModifiedSince(ifModifiedSince string) ApiDeleteOrgChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiDeleteOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiDeleteOrgChannelRequest {
+func (r ApiDeleteOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince string) ApiDeleteOrgChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
 	return r
 }
@@ -366,8 +367,8 @@ type ApiGetOrgChannelRequest struct {
 	channelId string
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
+	ifModifiedSince *string
+	ifUnmodifiedSince *string
 }
 
 // Succeeds if the server&#39;s resource matches one of the passed values.
@@ -383,13 +384,13 @@ func (r ApiGetOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiGetOrgChan
 }
 
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiGetOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiGetOrgChannelRequest {
+func (r ApiGetOrgChannelRequest) IfModifiedSince(ifModifiedSince string) ApiGetOrgChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiGetOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiGetOrgChannelRequest {
+func (r ApiGetOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince string) ApiGetOrgChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
 	return r
 }
@@ -597,7 +598,7 @@ type ApiGetOrgPlaybackConfigRequest struct {
 	channelId string
 }
 
-func (r ApiGetOrgPlaybackConfigRequest) Execute() (*ChannelPlayback, *http.Response, error) {
+func (r ApiGetOrgPlaybackConfigRequest) Execute() (*ChannelPlaybackBody, *http.Response, error) {
 	return r.ApiService.GetOrgPlaybackConfigExecute(r)
 }
 
@@ -621,13 +622,13 @@ func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfig(ctx context.Con
 }
 
 // Execute executes the request
-//  @return ChannelPlayback
-func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlayback, *http.Response, error) {
+//  @return ChannelPlaybackBody
+func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGetOrgPlaybackConfigRequest) (*ChannelPlaybackBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChannelPlayback
+		localVarReturnValue  *ChannelPlaybackBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.GetOrgPlaybackConfig")
@@ -773,7 +774,7 @@ func (a *ChannelsForOrganizationApiService) GetOrgPlaybackConfigExecute(r ApiGet
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ChannelPlayback)
+			localVarReturnValue = items.(*ChannelPlaybackBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -815,7 +816,7 @@ func (r ApiListOrgChannelsRequest) DesiredState(desiredState string) ApiListOrgC
 	return r
 }
 
-func (r ApiListOrgChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
+func (r ApiListOrgChannelsRequest) Execute() ([]Summary, *http.Response, error) {
 	return r.ApiService.ListOrgChannelsExecute(r)
 }
 
@@ -837,13 +838,13 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannels(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return []Summary2
-func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary2, *http.Response, error) {
+//  @return []Summary
+func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgChannelsRequest) ([]Summary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Summary2
+		localVarReturnValue  []Summary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsForOrganizationApiService.ListOrgChannels")
@@ -987,7 +988,7 @@ func (a *ChannelsForOrganizationApiService) ListOrgChannelsExecute(r ApiListOrgC
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]Summary2)
+			localVarReturnValue = items.([]Summary)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1000,12 +1001,17 @@ type ApiPatchOrgChannelRequest struct {
 	ApiService ChannelsForOrganizationApi
 	org string
 	channelId string
+	jsonPatchOp *[]JsonPatchOp
 	validateOnly *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
-	patchOrgChannelRequest2Inner *[]PatchOrgChannelRequest2Inner
+	ifModifiedSince *string
+	ifUnmodifiedSince *string
+}
+
+func (r ApiPatchOrgChannelRequest) JsonPatchOp(jsonPatchOp []JsonPatchOp) ApiPatchOrgChannelRequest {
+	r.jsonPatchOp = &jsonPatchOp
+	return r
 }
 
 // Validate request but do not otherwise process it
@@ -1027,19 +1033,14 @@ func (r ApiPatchOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPatchOrg
 }
 
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiPatchOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPatchOrgChannelRequest {
+func (r ApiPatchOrgChannelRequest) IfModifiedSince(ifModifiedSince string) ApiPatchOrgChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPatchOrgChannelRequest {
+func (r ApiPatchOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince string) ApiPatchOrgChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-func (r ApiPatchOrgChannelRequest) PatchOrgChannelRequest2Inner(patchOrgChannelRequest2Inner []PatchOrgChannelRequest2Inner) ApiPatchOrgChannelRequest {
-	r.patchOrgChannelRequest2Inner = &patchOrgChannelRequest2Inner
 	return r
 }
 
@@ -1089,12 +1090,15 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.jsonPatchOp == nil {
+		return nil, reportError("jsonPatchOp is required and must be specified")
+	}
 
 	if r.validateOnly != nil {
 		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json"}
+	localVarHTTPContentTypes := []string{"application/json-patch+json", "application/merge-patch+json", "application/merge-patch+shorthand"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -1123,7 +1127,7 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.patchOrgChannelRequest2Inner
+	localVarPostBody = r.jsonPatchOp
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -1216,16 +1220,6 @@ func (a *ChannelsForOrganizationApiService) PatchOrgChannelExecute(r ApiPatchOrg
 			newErr.model = v
 			return localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 415 {
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
-			return localVarHTTPResponse, newErr
-		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v ErrorModel
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -1276,12 +1270,17 @@ type ApiPutOrgChannelRequest struct {
 	ApiService ChannelsForOrganizationApi
 	org string
 	channelId string
+	putChannelRequestBody *PutChannelRequestBody
 	validateOnly *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
-	putOrgChannelRequest *PutOrgChannelRequest
+	ifModifiedSince *string
+	ifUnmodifiedSince *string
+}
+
+func (r ApiPutOrgChannelRequest) PutChannelRequestBody(putChannelRequestBody PutChannelRequestBody) ApiPutOrgChannelRequest {
+	r.putChannelRequestBody = &putChannelRequestBody
+	return r
 }
 
 // Validate request but do not otherwise process it
@@ -1303,19 +1302,14 @@ func (r ApiPutOrgChannelRequest) IfNoneMatch(ifNoneMatch []string) ApiPutOrgChan
 }
 
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiPutOrgChannelRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutOrgChannelRequest {
+func (r ApiPutOrgChannelRequest) IfModifiedSince(ifModifiedSince string) ApiPutOrgChannelRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiPutOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutOrgChannelRequest {
+func (r ApiPutOrgChannelRequest) IfUnmodifiedSince(ifUnmodifiedSince string) ApiPutOrgChannelRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-func (r ApiPutOrgChannelRequest) PutOrgChannelRequest(putOrgChannelRequest PutOrgChannelRequest) ApiPutOrgChannelRequest {
-	r.putOrgChannelRequest = &putOrgChannelRequest
 	return r
 }
 
@@ -1365,6 +1359,9 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.putChannelRequestBody == nil {
+		return nil, reportError("putChannelRequestBody is required and must be specified")
+	}
 
 	if r.validateOnly != nil {
 		localVarQueryParams.Add("validate_only", parameterToString(*r.validateOnly, ""))
@@ -1399,7 +1396,7 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelExecute(r ApiPutOrgChan
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.putOrgChannelRequest
+	localVarPostBody = r.putChannelRequestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -1542,12 +1539,17 @@ type ApiPutOrgChannelDesiredStateRequest struct {
 	ApiService ChannelsForOrganizationApi
 	org string
 	channelId string
+	desiredStateRequestBody *DesiredStateRequestBody
 	endPlaylist *bool
 	ifMatch *[]string
 	ifNoneMatch *[]string
-	ifModifiedSince *time.Time
-	ifUnmodifiedSince *time.Time
-	desiredStateBody *DesiredStateBody
+	ifModifiedSince *string
+	ifUnmodifiedSince *string
+}
+
+func (r ApiPutOrgChannelDesiredStateRequest) DesiredStateRequestBody(desiredStateRequestBody DesiredStateRequestBody) ApiPutOrgChannelDesiredStateRequest {
+	r.desiredStateRequestBody = &desiredStateRequestBody
+	return r
 }
 
 // Deprecated, server ignores all values. Will be removed from API once all clients are confirmed to not break.
@@ -1569,19 +1571,14 @@ func (r ApiPutOrgChannelDesiredStateRequest) IfNoneMatch(ifNoneMatch []string) A
 }
 
 // Succeeds if the server&#39;s resource date is more recent than the passed date.
-func (r ApiPutOrgChannelDesiredStateRequest) IfModifiedSince(ifModifiedSince time.Time) ApiPutOrgChannelDesiredStateRequest {
+func (r ApiPutOrgChannelDesiredStateRequest) IfModifiedSince(ifModifiedSince string) ApiPutOrgChannelDesiredStateRequest {
 	r.ifModifiedSince = &ifModifiedSince
 	return r
 }
 
 // Succeeds if the server&#39;s resource date is older or the same as the passed date.
-func (r ApiPutOrgChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince time.Time) ApiPutOrgChannelDesiredStateRequest {
+func (r ApiPutOrgChannelDesiredStateRequest) IfUnmodifiedSince(ifUnmodifiedSince string) ApiPutOrgChannelDesiredStateRequest {
 	r.ifUnmodifiedSince = &ifUnmodifiedSince
-	return r
-}
-
-func (r ApiPutOrgChannelDesiredStateRequest) DesiredStateBody(desiredStateBody DesiredStateBody) ApiPutOrgChannelDesiredStateRequest {
-	r.desiredStateBody = &desiredStateBody
 	return r
 }
 
@@ -1590,7 +1587,9 @@ func (r ApiPutOrgChannelDesiredStateRequest) Execute() (*http.Response, error) {
 }
 
 /*
-PutOrgChannelDesiredState Update Channel DesiredState to ON/OFF
+PutOrgChannelDesiredState Update Desired State
+
+Update Channel DesiredState to ON/OFF
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
@@ -1629,6 +1628,9 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	if strlen(r.channelId) > 60 {
 		return nil, reportError("channelId must have less than 60 elements")
 	}
+	if r.desiredStateRequestBody == nil {
+		return nil, reportError("desiredStateRequestBody is required and must be specified")
+	}
 
 	if r.endPlaylist != nil {
 		localVarQueryParams.Add("end_playlist", parameterToString(*r.endPlaylist, ""))
@@ -1643,7 +1645,7 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/problem+json", "text/plain"}
+	localVarHTTPHeaderAccepts := []string{"application/problem+json"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1663,7 +1665,7 @@ func (a *ChannelsForOrganizationApiService) PutOrgChannelDesiredStateExecute(r A
 		localVarHeaderParams["If-Unmodified-Since"] = parameterToString(*r.ifUnmodifiedSince, "")
 	}
 	// body params
-	localVarPostBody = r.desiredStateBody
+	localVarPostBody = r.desiredStateRequestBody
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err

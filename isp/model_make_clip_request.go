@@ -18,8 +18,8 @@ var _ MappedNullable = &MakeClipRequest{}
 
 // MakeClipRequest struct for MakeClipRequest
 type MakeClipRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifer that is carried through archive and collapse notifications for the clip creation
 	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
 	// Description of the clip being created
