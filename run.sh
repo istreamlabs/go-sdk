@@ -84,8 +84,8 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
 # Correct an error in the unit tests
-sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-slate",g' ./isp-slate/**/*.go
-sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/isp","github.com/istreamlabs/go-sdk/isp-lifecycle",g' ./isp-lifecycle/**/*.go
+sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
+sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-lifecycle",g' ./isp-lifecycle/**/*.go
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete

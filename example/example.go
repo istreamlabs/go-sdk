@@ -14,7 +14,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/istreamlabs/go-sdk/isp"
+	"github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func main() {

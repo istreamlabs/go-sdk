@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp-lifecycle"
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp-lifecycle"
 )
 
 func Test_isp_LifecycleApiService(t *testing.T) {

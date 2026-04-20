@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/isp"
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func Test_isp_AvailableSourcesApiService(t *testing.T) {
