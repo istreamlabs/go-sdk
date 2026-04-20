@@ -292,16 +292,6 @@ components:
           format: int32
           type: integer
       type: object
-    BasicAuth:
-      additionalProperties: false
-      properties:
-        password:
-          description: Plain text password for basic auth.
-          type: string
-        username:
-          description: Username for basic auth.
-          type: string
-      type: object
     BulkFileEncryption:
       additionalProperties: false
       properties:
