@@ -31,11 +31,11 @@ type AvailableSourcesApi interface {
 	@param sourceId Unique source identifier
 	@return ApiGetOrgSourceRequest
 	*/
-	GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest
+	GetOrgSource(ctx context.Context, org interface{}, sourceId interface{}) ApiGetOrgSourceRequest
 
 	// GetOrgSourceExecute executes the request
-	//  @return Source
-	GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*Source, *http.Response, error)
+	//  @return SourceDetail
+	GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error)
 
 	/*
 	ListOrgSources List Sources
@@ -46,11 +46,11 @@ type AvailableSourcesApi interface {
 	@param org Organization name
 	@return ApiListOrgSourcesRequest
 	*/
-	ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest
+	ListOrgSources(ctx context.Context, org interface{}) ApiListOrgSourcesRequest
 
 	// ListOrgSourcesExecute executes the request
-	//  @return []Summary
-	ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]Summary, *http.Response, error)
+	//  @return interface{}
+	ListOrgSourcesExecute(r ApiListOrgSourcesRequest) (interface{}, *http.Response, error)
 }
 
 // AvailableSourcesApiService AvailableSourcesApi service
@@ -59,11 +59,11 @@ type AvailableSourcesApiService service
 type ApiGetOrgSourceRequest struct {
 	ctx context.Context
 	ApiService AvailableSourcesApi
-	org string
-	sourceId string
+	org interface{}
+	sourceId interface{}
 }
 
-func (r ApiGetOrgSourceRequest) Execute() (*Source, *http.Response, error) {
+func (r ApiGetOrgSourceRequest) Execute() (*SourceDetail, *http.Response, error) {
 	return r.ApiService.GetOrgSourceExecute(r)
 }
 
@@ -77,7 +77,7 @@ Get a source's configuration
  @param sourceId Unique source identifier
  @return ApiGetOrgSourceRequest
 */
-func (a *AvailableSourcesApiService) GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest {
+func (a *AvailableSourcesApiService) GetOrgSource(ctx context.Context, org interface{}, sourceId interface{}) ApiGetOrgSourceRequest {
 	return ApiGetOrgSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -87,13 +87,13 @@ func (a *AvailableSourcesApiService) GetOrgSource(ctx context.Context, org strin
 }
 
 // Execute executes the request
-//  @return Source
-func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*Source, *http.Response, error) {
+//  @return SourceDetail
+func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *Source
+		localVarReturnValue  *SourceDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesApiService.GetOrgSource")
@@ -226,7 +226,7 @@ func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceReques
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*Source)
+			localVarReturnValue = items.(*SourceDetail)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -237,24 +237,24 @@ func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceReques
 type ApiListOrgSourcesRequest struct {
 	ctx context.Context
 	ApiService AvailableSourcesApi
-	org string
-	cursor *string
-	pageSize *int32
+	org interface{}
+	cursor *interface{}
+	pageSize *interface{}
 }
 
 // Current page cursor
-func (r ApiListOrgSourcesRequest) Cursor(cursor string) ApiListOrgSourcesRequest {
+func (r ApiListOrgSourcesRequest) Cursor(cursor interface{}) ApiListOrgSourcesRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiListOrgSourcesRequest) PageSize(pageSize int32) ApiListOrgSourcesRequest {
+func (r ApiListOrgSourcesRequest) PageSize(pageSize interface{}) ApiListOrgSourcesRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiListOrgSourcesRequest) Execute() ([]Summary, *http.Response, error) {
+func (r ApiListOrgSourcesRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.ListOrgSourcesExecute(r)
 }
 
@@ -267,7 +267,7 @@ Get a list of sources that are used to create channels.
  @param org Organization name
  @return ApiListOrgSourcesRequest
 */
-func (a *AvailableSourcesApiService) ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest {
+func (a *AvailableSourcesApiService) ListOrgSources(ctx context.Context, org interface{}) ApiListOrgSourcesRequest {
 	return ApiListOrgSourcesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -276,13 +276,13 @@ func (a *AvailableSourcesApiService) ListOrgSources(ctx context.Context, org str
 }
 
 // Execute executes the request
-//  @return []Summary
-func (a *AvailableSourcesApiService) ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]Summary, *http.Response, error) {
+//  @return interface{}
+func (a *AvailableSourcesApiService) ListOrgSourcesExecute(r ApiListOrgSourcesRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Summary
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesApiService.ListOrgSources")
@@ -420,7 +420,7 @@ func (a *AvailableSourcesApiService) ListOrgSourcesExecute(r ApiListOrgSourcesRe
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]Summary)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}

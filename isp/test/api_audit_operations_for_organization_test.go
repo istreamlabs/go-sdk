@@ -26,8 +26,8 @@ func Test_isp_AuditOperationsForOrganizationApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.AuditOperationsForOrganizationApi.GetOrgChannelTimeline(context.Background(), org, channelId).Execute()
 

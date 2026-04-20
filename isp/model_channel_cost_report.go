@@ -18,18 +18,16 @@ var _ MappedNullable = &ChannelCostReport{}
 
 // ChannelCostReport struct for ChannelCostReport
 type ChannelCostReport struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	ChannelName *string `json:"channel_name,omitempty"`
-	ChannelUrn *string `json:"channel_urn,omitempty"`
-	DurationSecs *int64 `json:"duration_secs,omitempty" format:"int64"`
-	ExternalId *string `json:"external_id,omitempty"`
-	HasHdr *bool `json:"has_hdr,omitempty"`
-	HasRealtimeOutput *bool `json:"has_realtime_output,omitempty"`
-	HasUhd *bool `json:"has_uhd,omitempty"`
-	Labels []string `json:"labels,omitempty"`
-	Organization *string `json:"organization,omitempty"`
-	VerbitEncoderCount *int32 `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
+	ChannelName interface{} `json:"channel_name,omitempty"`
+	ChannelUrn interface{} `json:"channel_urn,omitempty"`
+	DurationSecs interface{} `json:"duration_secs,omitempty" format:"int64"`
+	ExternalId interface{} `json:"external_id,omitempty"`
+	HasHdr interface{} `json:"has_hdr,omitempty"`
+	HasRealtimeOutput interface{} `json:"has_realtime_output,omitempty"`
+	HasUhd interface{} `json:"has_uhd,omitempty"`
+	Labels interface{} `json:"labels,omitempty"`
+	Organization interface{} `json:"organization,omitempty"`
+	VerbitEncoderCount interface{} `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
 }
 
 // NewChannelCostReport instantiates a new ChannelCostReport object
@@ -49,266 +47,241 @@ func NewChannelCostReportWithDefaults() *ChannelCostReport {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetChannelName returns the ChannelName field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetChannelName() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
-}
-
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetSchemaOk() (*string, bool) {
-	if o == nil || IsNil(o.Schema) {
-		return nil, false
-	}
-	return o.Schema, true
-}
-
-// HasSchema returns a boolean if a field has been set.
-func (o *ChannelCostReport) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
-		return true
-	}
-
-	return false
-}
-
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *ChannelCostReport) SetSchema(v string) {
-	o.Schema = &v
-}
-
-// GetChannelName returns the ChannelName field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetChannelName() string {
-	if o == nil || IsNil(o.ChannelName) {
-		var ret string
-		return ret
-	}
-	return *o.ChannelName
+	return o.ChannelName
 }
 
 // GetChannelNameOk returns a tuple with the ChannelName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetChannelNameOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetChannelNameOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ChannelName) {
 		return nil, false
 	}
-	return o.ChannelName, true
+	return &o.ChannelName, true
 }
 
 // HasChannelName returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasChannelName() bool {
-	if o != nil && !IsNil(o.ChannelName) {
+	if o != nil && IsNil(o.ChannelName) {
 		return true
 	}
 
 	return false
 }
 
-// SetChannelName gets a reference to the given string and assigns it to the ChannelName field.
-func (o *ChannelCostReport) SetChannelName(v string) {
-	o.ChannelName = &v
+// SetChannelName gets a reference to the given interface{} and assigns it to the ChannelName field.
+func (o *ChannelCostReport) SetChannelName(v interface{}) {
+	o.ChannelName = v
 }
 
-// GetChannelUrn returns the ChannelUrn field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetChannelUrn() string {
-	if o == nil || IsNil(o.ChannelUrn) {
-		var ret string
+// GetChannelUrn returns the ChannelUrn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetChannelUrn() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ChannelUrn
+	return o.ChannelUrn
 }
 
 // GetChannelUrnOk returns a tuple with the ChannelUrn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetChannelUrnOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetChannelUrnOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ChannelUrn) {
 		return nil, false
 	}
-	return o.ChannelUrn, true
+	return &o.ChannelUrn, true
 }
 
 // HasChannelUrn returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasChannelUrn() bool {
-	if o != nil && !IsNil(o.ChannelUrn) {
+	if o != nil && IsNil(o.ChannelUrn) {
 		return true
 	}
 
 	return false
 }
 
-// SetChannelUrn gets a reference to the given string and assigns it to the ChannelUrn field.
-func (o *ChannelCostReport) SetChannelUrn(v string) {
-	o.ChannelUrn = &v
+// SetChannelUrn gets a reference to the given interface{} and assigns it to the ChannelUrn field.
+func (o *ChannelCostReport) SetChannelUrn(v interface{}) {
+	o.ChannelUrn = v
 }
 
-// GetDurationSecs returns the DurationSecs field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetDurationSecs() int64 {
-	if o == nil || IsNil(o.DurationSecs) {
-		var ret int64
+// GetDurationSecs returns the DurationSecs field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetDurationSecs() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.DurationSecs
+	return o.DurationSecs
 }
 
 // GetDurationSecsOk returns a tuple with the DurationSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetDurationSecsOk() (*int64, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetDurationSecsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DurationSecs) {
 		return nil, false
 	}
-	return o.DurationSecs, true
+	return &o.DurationSecs, true
 }
 
 // HasDurationSecs returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasDurationSecs() bool {
-	if o != nil && !IsNil(o.DurationSecs) {
+	if o != nil && IsNil(o.DurationSecs) {
 		return true
 	}
 
 	return false
 }
 
-// SetDurationSecs gets a reference to the given int64 and assigns it to the DurationSecs field.
-func (o *ChannelCostReport) SetDurationSecs(v int64) {
-	o.DurationSecs = &v
+// SetDurationSecs gets a reference to the given interface{} and assigns it to the DurationSecs field.
+func (o *ChannelCostReport) SetDurationSecs(v interface{}) {
+	o.DurationSecs = v
 }
 
-// GetExternalId returns the ExternalId field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId) {
-		var ret string
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetExternalId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ExternalId
+	return o.ExternalId
 }
 
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetExternalIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetExternalIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ExternalId) {
 		return nil, false
 	}
-	return o.ExternalId, true
+	return &o.ExternalId, true
 }
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasExternalId() bool {
-	if o != nil && !IsNil(o.ExternalId) {
+	if o != nil && IsNil(o.ExternalId) {
 		return true
 	}
 
 	return false
 }
 
-// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
-func (o *ChannelCostReport) SetExternalId(v string) {
-	o.ExternalId = &v
+// SetExternalId gets a reference to the given interface{} and assigns it to the ExternalId field.
+func (o *ChannelCostReport) SetExternalId(v interface{}) {
+	o.ExternalId = v
 }
 
-// GetHasHdr returns the HasHdr field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetHasHdr() bool {
-	if o == nil || IsNil(o.HasHdr) {
-		var ret bool
+// GetHasHdr returns the HasHdr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetHasHdr() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.HasHdr
+	return o.HasHdr
 }
 
 // GetHasHdrOk returns a tuple with the HasHdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetHasHdrOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetHasHdrOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.HasHdr) {
 		return nil, false
 	}
-	return o.HasHdr, true
+	return &o.HasHdr, true
 }
 
 // HasHasHdr returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasHasHdr() bool {
-	if o != nil && !IsNil(o.HasHdr) {
+	if o != nil && IsNil(o.HasHdr) {
 		return true
 	}
 
 	return false
 }
 
-// SetHasHdr gets a reference to the given bool and assigns it to the HasHdr field.
-func (o *ChannelCostReport) SetHasHdr(v bool) {
-	o.HasHdr = &v
+// SetHasHdr gets a reference to the given interface{} and assigns it to the HasHdr field.
+func (o *ChannelCostReport) SetHasHdr(v interface{}) {
+	o.HasHdr = v
 }
 
-// GetHasRealtimeOutput returns the HasRealtimeOutput field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetHasRealtimeOutput() bool {
-	if o == nil || IsNil(o.HasRealtimeOutput) {
-		var ret bool
+// GetHasRealtimeOutput returns the HasRealtimeOutput field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetHasRealtimeOutput() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.HasRealtimeOutput
+	return o.HasRealtimeOutput
 }
 
 // GetHasRealtimeOutputOk returns a tuple with the HasRealtimeOutput field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetHasRealtimeOutputOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetHasRealtimeOutputOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.HasRealtimeOutput) {
 		return nil, false
 	}
-	return o.HasRealtimeOutput, true
+	return &o.HasRealtimeOutput, true
 }
 
 // HasHasRealtimeOutput returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasHasRealtimeOutput() bool {
-	if o != nil && !IsNil(o.HasRealtimeOutput) {
+	if o != nil && IsNil(o.HasRealtimeOutput) {
 		return true
 	}
 
 	return false
 }
 
-// SetHasRealtimeOutput gets a reference to the given bool and assigns it to the HasRealtimeOutput field.
-func (o *ChannelCostReport) SetHasRealtimeOutput(v bool) {
-	o.HasRealtimeOutput = &v
+// SetHasRealtimeOutput gets a reference to the given interface{} and assigns it to the HasRealtimeOutput field.
+func (o *ChannelCostReport) SetHasRealtimeOutput(v interface{}) {
+	o.HasRealtimeOutput = v
 }
 
-// GetHasUhd returns the HasUhd field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetHasUhd() bool {
-	if o == nil || IsNil(o.HasUhd) {
-		var ret bool
+// GetHasUhd returns the HasUhd field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetHasUhd() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.HasUhd
+	return o.HasUhd
 }
 
 // GetHasUhdOk returns a tuple with the HasUhd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetHasUhdOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetHasUhdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.HasUhd) {
 		return nil, false
 	}
-	return o.HasUhd, true
+	return &o.HasUhd, true
 }
 
 // HasHasUhd returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasHasUhd() bool {
-	if o != nil && !IsNil(o.HasUhd) {
+	if o != nil && IsNil(o.HasUhd) {
 		return true
 	}
 
 	return false
 }
 
-// SetHasUhd gets a reference to the given bool and assigns it to the HasUhd field.
-func (o *ChannelCostReport) SetHasUhd(v bool) {
-	o.HasUhd = &v
+// SetHasUhd gets a reference to the given interface{} and assigns it to the HasUhd field.
+func (o *ChannelCostReport) SetHasUhd(v interface{}) {
+	o.HasUhd = v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetLabels() []string {
-	if o == nil || IsNil(o.Labels) {
-		var ret []string
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetLabels() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.Labels
@@ -316,89 +289,92 @@ func (o *ChannelCostReport) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetLabelsOk() ([]string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetLabelsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
 	}
-	return o.Labels, true
+	return &o.Labels, true
 }
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && IsNil(o.Labels) {
 		return true
 	}
 
 	return false
 }
 
-// SetLabels gets a reference to the given []string and assigns it to the Labels field.
-func (o *ChannelCostReport) SetLabels(v []string) {
+// SetLabels gets a reference to the given interface{} and assigns it to the Labels field.
+func (o *ChannelCostReport) SetLabels(v interface{}) {
 	o.Labels = v
 }
 
-// GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetOrganization() string {
-	if o == nil || IsNil(o.Organization) {
-		var ret string
+// GetOrganization returns the Organization field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetOrganization() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Organization
+	return o.Organization
 }
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetOrganizationOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetOrganizationOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
-	return o.Organization, true
+	return &o.Organization, true
 }
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasOrganization() bool {
-	if o != nil && !IsNil(o.Organization) {
+	if o != nil && IsNil(o.Organization) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganization gets a reference to the given string and assigns it to the Organization field.
-func (o *ChannelCostReport) SetOrganization(v string) {
-	o.Organization = &v
+// SetOrganization gets a reference to the given interface{} and assigns it to the Organization field.
+func (o *ChannelCostReport) SetOrganization(v interface{}) {
+	o.Organization = v
 }
 
-// GetVerbitEncoderCount returns the VerbitEncoderCount field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetVerbitEncoderCount() int32 {
-	if o == nil || IsNil(o.VerbitEncoderCount) {
-		var ret int32
+// GetVerbitEncoderCount returns the VerbitEncoderCount field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelCostReport) GetVerbitEncoderCount() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.VerbitEncoderCount
+	return o.VerbitEncoderCount
 }
 
 // GetVerbitEncoderCountOk returns a tuple with the VerbitEncoderCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetVerbitEncoderCountOk() (*int32, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelCostReport) GetVerbitEncoderCountOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.VerbitEncoderCount) {
 		return nil, false
 	}
-	return o.VerbitEncoderCount, true
+	return &o.VerbitEncoderCount, true
 }
 
 // HasVerbitEncoderCount returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasVerbitEncoderCount() bool {
-	if o != nil && !IsNil(o.VerbitEncoderCount) {
+	if o != nil && IsNil(o.VerbitEncoderCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetVerbitEncoderCount gets a reference to the given int32 and assigns it to the VerbitEncoderCount field.
-func (o *ChannelCostReport) SetVerbitEncoderCount(v int32) {
-	o.VerbitEncoderCount = &v
+// SetVerbitEncoderCount gets a reference to the given interface{} and assigns it to the VerbitEncoderCount field.
+func (o *ChannelCostReport) SetVerbitEncoderCount(v interface{}) {
+	o.VerbitEncoderCount = v
 }
 
 func (o ChannelCostReport) MarshalJSON() ([]byte, error) {
@@ -411,37 +387,34 @@ func (o ChannelCostReport) MarshalJSON() ([]byte, error) {
 
 func (o ChannelCostReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
-		toSerialize["$schema"] = o.Schema
-	}
-	if !IsNil(o.ChannelName) {
+	if o.ChannelName != nil {
 		toSerialize["channel_name"] = o.ChannelName
 	}
-	if !IsNil(o.ChannelUrn) {
+	if o.ChannelUrn != nil {
 		toSerialize["channel_urn"] = o.ChannelUrn
 	}
-	if !IsNil(o.DurationSecs) {
+	if o.DurationSecs != nil {
 		toSerialize["duration_secs"] = o.DurationSecs
 	}
-	if !IsNil(o.ExternalId) {
+	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
 	}
-	if !IsNil(o.HasHdr) {
+	if o.HasHdr != nil {
 		toSerialize["has_hdr"] = o.HasHdr
 	}
-	if !IsNil(o.HasRealtimeOutput) {
+	if o.HasRealtimeOutput != nil {
 		toSerialize["has_realtime_output"] = o.HasRealtimeOutput
 	}
-	if !IsNil(o.HasUhd) {
+	if o.HasUhd != nil {
 		toSerialize["has_uhd"] = o.HasUhd
 	}
-	if !IsNil(o.Labels) {
+	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
-	if !IsNil(o.Organization) {
+	if o.Organization != nil {
 		toSerialize["organization"] = o.Organization
 	}
-	if !IsNil(o.VerbitEncoderCount) {
+	if o.VerbitEncoderCount != nil {
 		toSerialize["verbit_encoder_count"] = o.VerbitEncoderCount
 	}
 	return toSerialize, nil

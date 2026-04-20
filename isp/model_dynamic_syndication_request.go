@@ -18,25 +18,27 @@ var _ MappedNullable = &DynamicSyndicationRequest{}
 
 // DynamicSyndicationRequest struct for DynamicSyndicationRequest
 type DynamicSyndicationRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	Archive DynamicSyndicationRequestArchive `json:"archive"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	// Archive settings
+	Archive Archive `json:"archive" doc:"Archive settings"`
 	// Correlation ID for this FER archive request
-	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
+	CorrelationId interface{} `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// URL of the main manifest to reference for the mp4
-	ManifestUrl string `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
-	Notification DynamicSyndicationRequestNotification `json:"notification"`
+	ManifestUrl interface{} `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
+	// Notification Settings
+	Notification DynamicNotification `json:"notification" doc:"Notification Settings"`
 	// Query string containing params for the manifest url
-	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
+	QueryString interface{} `json:"query_string" doc:"Query string containing params for the manifest url"`
 	// List of files to be created by Syndication
-	SyndicationFiles []DynamicSyndicationRequestSyndicationFilesInner `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
+	SyndicationFiles interface{} `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
 }
 
 // NewDynamicSyndicationRequest instantiates a new DynamicSyndicationRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDynamicSyndicationRequest(archive DynamicSyndicationRequestArchive, correlationId string, manifestUrl string, notification DynamicSyndicationRequestNotification, queryString string, syndicationFiles []DynamicSyndicationRequestSyndicationFilesInner) *DynamicSyndicationRequest {
+func NewDynamicSyndicationRequest(archive Archive, correlationId interface{}, manifestUrl interface{}, notification DynamicNotification, queryString interface{}, syndicationFiles interface{}) *DynamicSyndicationRequest {
 	this := DynamicSyndicationRequest{}
 	this.Archive = archive
 	this.CorrelationId = correlationId
@@ -55,42 +57,43 @@ func NewDynamicSyndicationRequestWithDefaults() *DynamicSyndicationRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *DynamicSyndicationRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *DynamicSyndicationRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *DynamicSyndicationRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *DynamicSyndicationRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *DynamicSyndicationRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetArchive returns the Archive field value
-func (o *DynamicSyndicationRequest) GetArchive() DynamicSyndicationRequestArchive {
+func (o *DynamicSyndicationRequest) GetArchive() Archive {
 	if o == nil {
-		var ret DynamicSyndicationRequestArchive
+		var ret Archive
 		return ret
 	}
 
@@ -99,7 +102,7 @@ func (o *DynamicSyndicationRequest) GetArchive() DynamicSyndicationRequestArchiv
 
 // GetArchiveOk returns a tuple with the Archive field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetArchiveOk() (*DynamicSyndicationRequestArchive, bool) {
+func (o *DynamicSyndicationRequest) GetArchiveOk() (*Archive, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -107,14 +110,15 @@ func (o *DynamicSyndicationRequest) GetArchiveOk() (*DynamicSyndicationRequestAr
 }
 
 // SetArchive sets field value
-func (o *DynamicSyndicationRequest) SetArchive(v DynamicSyndicationRequestArchive) {
+func (o *DynamicSyndicationRequest) SetArchive(v Archive) {
 	o.Archive = v
 }
 
 // GetCorrelationId returns the CorrelationId field value
-func (o *DynamicSyndicationRequest) GetCorrelationId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *DynamicSyndicationRequest) GetCorrelationId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -123,22 +127,24 @@ func (o *DynamicSyndicationRequest) GetCorrelationId() string {
 
 // GetCorrelationIdOk returns a tuple with the CorrelationId field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetCorrelationIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetCorrelationIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.CorrelationId) {
 		return nil, false
 	}
 	return &o.CorrelationId, true
 }
 
 // SetCorrelationId sets field value
-func (o *DynamicSyndicationRequest) SetCorrelationId(v string) {
+func (o *DynamicSyndicationRequest) SetCorrelationId(v interface{}) {
 	o.CorrelationId = v
 }
 
 // GetManifestUrl returns the ManifestUrl field value
-func (o *DynamicSyndicationRequest) GetManifestUrl() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *DynamicSyndicationRequest) GetManifestUrl() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -147,22 +153,23 @@ func (o *DynamicSyndicationRequest) GetManifestUrl() string {
 
 // GetManifestUrlOk returns a tuple with the ManifestUrl field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetManifestUrlOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetManifestUrlOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ManifestUrl) {
 		return nil, false
 	}
 	return &o.ManifestUrl, true
 }
 
 // SetManifestUrl sets field value
-func (o *DynamicSyndicationRequest) SetManifestUrl(v string) {
+func (o *DynamicSyndicationRequest) SetManifestUrl(v interface{}) {
 	o.ManifestUrl = v
 }
 
 // GetNotification returns the Notification field value
-func (o *DynamicSyndicationRequest) GetNotification() DynamicSyndicationRequestNotification {
+func (o *DynamicSyndicationRequest) GetNotification() DynamicNotification {
 	if o == nil {
-		var ret DynamicSyndicationRequestNotification
+		var ret DynamicNotification
 		return ret
 	}
 
@@ -171,7 +178,7 @@ func (o *DynamicSyndicationRequest) GetNotification() DynamicSyndicationRequestN
 
 // GetNotificationOk returns a tuple with the Notification field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicSyndicationRequestNotification, bool) {
+func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicNotification, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -179,14 +186,15 @@ func (o *DynamicSyndicationRequest) GetNotificationOk() (*DynamicSyndicationRequ
 }
 
 // SetNotification sets field value
-func (o *DynamicSyndicationRequest) SetNotification(v DynamicSyndicationRequestNotification) {
+func (o *DynamicSyndicationRequest) SetNotification(v DynamicNotification) {
 	o.Notification = v
 }
 
 // GetQueryString returns the QueryString field value
-func (o *DynamicSyndicationRequest) GetQueryString() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *DynamicSyndicationRequest) GetQueryString() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -195,22 +203,24 @@ func (o *DynamicSyndicationRequest) GetQueryString() string {
 
 // GetQueryStringOk returns a tuple with the QueryString field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetQueryStringOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetQueryStringOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.QueryString) {
 		return nil, false
 	}
 	return &o.QueryString, true
 }
 
 // SetQueryString sets field value
-func (o *DynamicSyndicationRequest) SetQueryString(v string) {
+func (o *DynamicSyndicationRequest) SetQueryString(v interface{}) {
 	o.QueryString = v
 }
 
 // GetSyndicationFiles returns the SyndicationFiles field value
-func (o *DynamicSyndicationRequest) GetSyndicationFiles() []DynamicSyndicationRequestSyndicationFilesInner {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *DynamicSyndicationRequest) GetSyndicationFiles() interface{} {
 	if o == nil {
-		var ret []DynamicSyndicationRequestSyndicationFilesInner
+		var ret interface{}
 		return ret
 	}
 
@@ -219,15 +229,16 @@ func (o *DynamicSyndicationRequest) GetSyndicationFiles() []DynamicSyndicationRe
 
 // GetSyndicationFilesOk returns a tuple with the SyndicationFiles field value
 // and a boolean to check if the value has been set.
-func (o *DynamicSyndicationRequest) GetSyndicationFilesOk() ([]DynamicSyndicationRequestSyndicationFilesInner, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *DynamicSyndicationRequest) GetSyndicationFilesOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.SyndicationFiles) {
 		return nil, false
 	}
-	return o.SyndicationFiles, true
+	return &o.SyndicationFiles, true
 }
 
 // SetSyndicationFiles sets field value
-func (o *DynamicSyndicationRequest) SetSyndicationFiles(v []DynamicSyndicationRequestSyndicationFilesInner) {
+func (o *DynamicSyndicationRequest) SetSyndicationFiles(v interface{}) {
 	o.SyndicationFiles = v
 }
 
@@ -241,15 +252,23 @@ func (o DynamicSyndicationRequest) MarshalJSON() ([]byte, error) {
 
 func (o DynamicSyndicationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
 	toSerialize["archive"] = o.Archive
-	toSerialize["correlation_id"] = o.CorrelationId
-	toSerialize["manifest_url"] = o.ManifestUrl
+	if o.CorrelationId != nil {
+		toSerialize["correlation_id"] = o.CorrelationId
+	}
+	if o.ManifestUrl != nil {
+		toSerialize["manifest_url"] = o.ManifestUrl
+	}
 	toSerialize["notification"] = o.Notification
-	toSerialize["query_string"] = o.QueryString
-	toSerialize["syndication_files"] = o.SyndicationFiles
+	if o.QueryString != nil {
+		toSerialize["query_string"] = o.QueryString
+	}
+	if o.SyndicationFiles != nil {
+		toSerialize["syndication_files"] = o.SyndicationFiles
+	}
 	return toSerialize, nil
 }
 

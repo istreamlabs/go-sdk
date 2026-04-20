@@ -31,8 +31,8 @@ type ChannelsApi interface {
 	ListChannels(ctx context.Context) ApiListChannelsRequest
 
 	// ListChannelsExecute executes the request
-	//  @return []Summary2
-	ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error)
+	//  @return interface{}
+	ListChannelsExecute(r ApiListChannelsRequest) (interface{}, *http.Response, error)
 }
 
 // ChannelsApiService ChannelsApi service
@@ -41,37 +41,37 @@ type ChannelsApiService service
 type ApiListChannelsRequest struct {
 	ctx context.Context
 	ApiService ChannelsApi
-	cursor *string
-	pageSize *int32
-	q *string
-	desiredState *string
+	cursor *interface{}
+	pageSize *interface{}
+	q *interface{}
+	desiredState *interface{}
 }
 
 // Current page cursor
-func (r ApiListChannelsRequest) Cursor(cursor string) ApiListChannelsRequest {
+func (r ApiListChannelsRequest) Cursor(cursor interface{}) ApiListChannelsRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiListChannelsRequest) PageSize(pageSize int32) ApiListChannelsRequest {
+func (r ApiListChannelsRequest) PageSize(pageSize interface{}) ApiListChannelsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
 // Search query to match against for filtering a list of channels. This searches the channel ID, name, labels, and source ID.
-func (r ApiListChannelsRequest) Q(q string) ApiListChannelsRequest {
+func (r ApiListChannelsRequest) Q(q interface{}) ApiListChannelsRequest {
 	r.q = &q
 	return r
 }
 
 // List channels that are ON or OFF
-func (r ApiListChannelsRequest) DesiredState(desiredState string) ApiListChannelsRequest {
+func (r ApiListChannelsRequest) DesiredState(desiredState interface{}) ApiListChannelsRequest {
 	r.desiredState = &desiredState
 	return r
 }
 
-func (r ApiListChannelsRequest) Execute() ([]Summary2, *http.Response, error) {
+func (r ApiListChannelsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.ListChannelsExecute(r)
 }
 
@@ -91,13 +91,13 @@ func (a *ChannelsApiService) ListChannels(ctx context.Context) ApiListChannelsRe
 }
 
 // Execute executes the request
-//  @return []Summary2
-func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Summary2, *http.Response, error) {
+//  @return interface{}
+func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []Summary2
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ChannelsApiService.ListChannels")
@@ -240,7 +240,7 @@ func (a *ChannelsApiService) ListChannelsExecute(r ApiListChannelsRequest) ([]Su
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]Summary2)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}

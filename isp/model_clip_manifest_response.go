@@ -19,20 +19,20 @@ var _ MappedNullable = &ClipManifestResponse{}
 // ClipManifestResponse struct for ClipManifestResponse
 type ClipManifestResponse struct {
 	// CDN Url for manifest
-	CdnURL string `json:"cdnURL" doc:"CDN Url for manifest"`
+	CdnURL interface{} `json:"cdnURL" doc:"CDN Url for manifest"`
 	// Manifest ID for clip
-	ManifestID int64 `json:"manifestID" format:"int64" doc:"Manifest ID for clip"`
+	ManifestID interface{} `json:"manifestID" format:"int64" doc:"Manifest ID for clip"`
 	// Manifest path
-	Path string `json:"path" doc:"Manifest path"`
+	Path interface{} `json:"path" doc:"Manifest path"`
 	// VOD storepath for manifest
-	Storepath string `json:"storepath" doc:"VOD storepath for manifest"`
+	Storepath interface{} `json:"storepath" doc:"VOD storepath for manifest"`
 }
 
 // NewClipManifestResponse instantiates a new ClipManifestResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewClipManifestResponse(cdnURL string, manifestID int64, path string, storepath string) *ClipManifestResponse {
+func NewClipManifestResponse(cdnURL interface{}, manifestID interface{}, path interface{}, storepath interface{}) *ClipManifestResponse {
 	this := ClipManifestResponse{}
 	this.CdnURL = cdnURL
 	this.ManifestID = manifestID
@@ -50,9 +50,10 @@ func NewClipManifestResponseWithDefaults() *ClipManifestResponse {
 }
 
 // GetCdnURL returns the CdnURL field value
-func (o *ClipManifestResponse) GetCdnURL() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ClipManifestResponse) GetCdnURL() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -61,22 +62,24 @@ func (o *ClipManifestResponse) GetCdnURL() string {
 
 // GetCdnURLOk returns a tuple with the CdnURL field value
 // and a boolean to check if the value has been set.
-func (o *ClipManifestResponse) GetCdnURLOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ClipManifestResponse) GetCdnURLOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.CdnURL) {
 		return nil, false
 	}
 	return &o.CdnURL, true
 }
 
 // SetCdnURL sets field value
-func (o *ClipManifestResponse) SetCdnURL(v string) {
+func (o *ClipManifestResponse) SetCdnURL(v interface{}) {
 	o.CdnURL = v
 }
 
 // GetManifestID returns the ManifestID field value
-func (o *ClipManifestResponse) GetManifestID() int64 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ClipManifestResponse) GetManifestID() interface{} {
 	if o == nil {
-		var ret int64
+		var ret interface{}
 		return ret
 	}
 
@@ -85,22 +88,24 @@ func (o *ClipManifestResponse) GetManifestID() int64 {
 
 // GetManifestIDOk returns a tuple with the ManifestID field value
 // and a boolean to check if the value has been set.
-func (o *ClipManifestResponse) GetManifestIDOk() (*int64, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ClipManifestResponse) GetManifestIDOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.ManifestID) {
 		return nil, false
 	}
 	return &o.ManifestID, true
 }
 
 // SetManifestID sets field value
-func (o *ClipManifestResponse) SetManifestID(v int64) {
+func (o *ClipManifestResponse) SetManifestID(v interface{}) {
 	o.ManifestID = v
 }
 
 // GetPath returns the Path field value
-func (o *ClipManifestResponse) GetPath() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ClipManifestResponse) GetPath() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -109,22 +114,24 @@ func (o *ClipManifestResponse) GetPath() string {
 
 // GetPathOk returns a tuple with the Path field value
 // and a boolean to check if the value has been set.
-func (o *ClipManifestResponse) GetPathOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ClipManifestResponse) GetPathOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Path) {
 		return nil, false
 	}
 	return &o.Path, true
 }
 
 // SetPath sets field value
-func (o *ClipManifestResponse) SetPath(v string) {
+func (o *ClipManifestResponse) SetPath(v interface{}) {
 	o.Path = v
 }
 
 // GetStorepath returns the Storepath field value
-func (o *ClipManifestResponse) GetStorepath() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ClipManifestResponse) GetStorepath() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -133,15 +140,16 @@ func (o *ClipManifestResponse) GetStorepath() string {
 
 // GetStorepathOk returns a tuple with the Storepath field value
 // and a boolean to check if the value has been set.
-func (o *ClipManifestResponse) GetStorepathOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ClipManifestResponse) GetStorepathOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Storepath) {
 		return nil, false
 	}
 	return &o.Storepath, true
 }
 
 // SetStorepath sets field value
-func (o *ClipManifestResponse) SetStorepath(v string) {
+func (o *ClipManifestResponse) SetStorepath(v interface{}) {
 	o.Storepath = v
 }
 
@@ -155,10 +163,18 @@ func (o ClipManifestResponse) MarshalJSON() ([]byte, error) {
 
 func (o ClipManifestResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["cdnURL"] = o.CdnURL
-	toSerialize["manifestID"] = o.ManifestID
-	toSerialize["path"] = o.Path
-	toSerialize["storepath"] = o.Storepath
+	if o.CdnURL != nil {
+		toSerialize["cdnURL"] = o.CdnURL
+	}
+	if o.ManifestID != nil {
+		toSerialize["manifestID"] = o.ManifestID
+	}
+	if o.Path != nil {
+		toSerialize["path"] = o.Path
+	}
+	if o.Storepath != nil {
+		toSerialize["storepath"] = o.Storepath
+	}
 	return toSerialize, nil
 }
 

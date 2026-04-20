@@ -18,24 +18,25 @@ var _ MappedNullable = &SetDynamicStateRequest{}
 
 // SetDynamicStateRequest struct for SetDynamicStateRequest
 type SetDynamicStateRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// The channel's internal id.
-	ChannelUrn *string `json:"channel_urn,omitempty" doc:"The channel's internal id."`
-	DynamicState SetDynamicStateRequestDynamicState `json:"dynamic_state"`
+	ChannelUrn interface{} `json:"channel_urn,omitempty" doc:"The channel's internal id."`
+	// The desired dynamic state configuration of the transcoder.
+	DynamicState DynamicState `json:"dynamic_state" doc:"The desired dynamic state configuration of the transcoder."`
 	// DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored.
-	DynamicStateFields []string `json:"dynamic_state_fields,omitempty" minItems:"1" enum:"TEXT_OVERLAYS,GRAPHIC_OVERLAYS,AUDIO_MUTES" doc:"DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored."`
+	DynamicStateFields interface{} `json:"dynamic_state_fields,omitempty" minItems:"1" doc:"DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored."`
 	// The channel's user provided id.
-	ExternalId *string `json:"external_id,omitempty" doc:"The channel's user provided id."`
+	ExternalId interface{} `json:"external_id,omitempty" doc:"The channel's user provided id."`
 	// The channel's organization.
-	Organization *string `json:"organization,omitempty" doc:"The channel's organization."`
+	Organization interface{} `json:"organization,omitempty" doc:"The channel's organization."`
 }
 
 // NewSetDynamicStateRequest instantiates a new SetDynamicStateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSetDynamicStateRequest(dynamicState SetDynamicStateRequestDynamicState) *SetDynamicStateRequest {
+func NewSetDynamicStateRequest(dynamicState DynamicState) *SetDynamicStateRequest {
 	this := SetDynamicStateRequest{}
 	this.DynamicState = dynamicState
 	return &this
@@ -49,74 +50,76 @@ func NewSetDynamicStateRequestWithDefaults() *SetDynamicStateRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *SetDynamicStateRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SetDynamicStateRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SetDynamicStateRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *SetDynamicStateRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *SetDynamicStateRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetChannelUrn returns the ChannelUrn field value if set, zero value otherwise.
-func (o *SetDynamicStateRequest) GetChannelUrn() string {
-	if o == nil || IsNil(o.ChannelUrn) {
-		var ret string
+// GetChannelUrn returns the ChannelUrn field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SetDynamicStateRequest) GetChannelUrn() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ChannelUrn
+	return o.ChannelUrn
 }
 
 // GetChannelUrnOk returns a tuple with the ChannelUrn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetChannelUrnOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SetDynamicStateRequest) GetChannelUrnOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ChannelUrn) {
 		return nil, false
 	}
-	return o.ChannelUrn, true
+	return &o.ChannelUrn, true
 }
 
 // HasChannelUrn returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasChannelUrn() bool {
-	if o != nil && !IsNil(o.ChannelUrn) {
+	if o != nil && IsNil(o.ChannelUrn) {
 		return true
 	}
 
 	return false
 }
 
-// SetChannelUrn gets a reference to the given string and assigns it to the ChannelUrn field.
-func (o *SetDynamicStateRequest) SetChannelUrn(v string) {
-	o.ChannelUrn = &v
+// SetChannelUrn gets a reference to the given interface{} and assigns it to the ChannelUrn field.
+func (o *SetDynamicStateRequest) SetChannelUrn(v interface{}) {
+	o.ChannelUrn = v
 }
 
 // GetDynamicState returns the DynamicState field value
-func (o *SetDynamicStateRequest) GetDynamicState() SetDynamicStateRequestDynamicState {
+func (o *SetDynamicStateRequest) GetDynamicState() DynamicState {
 	if o == nil {
-		var ret SetDynamicStateRequestDynamicState
+		var ret DynamicState
 		return ret
 	}
 
@@ -125,7 +128,7 @@ func (o *SetDynamicStateRequest) GetDynamicState() SetDynamicStateRequestDynamic
 
 // GetDynamicStateOk returns a tuple with the DynamicState field value
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetDynamicStateOk() (*SetDynamicStateRequestDynamicState, bool) {
+func (o *SetDynamicStateRequest) GetDynamicStateOk() (*DynamicState, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -133,14 +136,14 @@ func (o *SetDynamicStateRequest) GetDynamicStateOk() (*SetDynamicStateRequestDyn
 }
 
 // SetDynamicState sets field value
-func (o *SetDynamicStateRequest) SetDynamicState(v SetDynamicStateRequestDynamicState) {
+func (o *SetDynamicStateRequest) SetDynamicState(v DynamicState) {
 	o.DynamicState = v
 }
 
-// GetDynamicStateFields returns the DynamicStateFields field value if set, zero value otherwise.
-func (o *SetDynamicStateRequest) GetDynamicStateFields() []string {
-	if o == nil || IsNil(o.DynamicStateFields) {
-		var ret []string
+// GetDynamicStateFields returns the DynamicStateFields field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SetDynamicStateRequest) GetDynamicStateFields() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
 	return o.DynamicStateFields
@@ -148,89 +151,92 @@ func (o *SetDynamicStateRequest) GetDynamicStateFields() []string {
 
 // GetDynamicStateFieldsOk returns a tuple with the DynamicStateFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetDynamicStateFieldsOk() ([]string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SetDynamicStateRequest) GetDynamicStateFieldsOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DynamicStateFields) {
 		return nil, false
 	}
-	return o.DynamicStateFields, true
+	return &o.DynamicStateFields, true
 }
 
 // HasDynamicStateFields returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasDynamicStateFields() bool {
-	if o != nil && !IsNil(o.DynamicStateFields) {
+	if o != nil && IsNil(o.DynamicStateFields) {
 		return true
 	}
 
 	return false
 }
 
-// SetDynamicStateFields gets a reference to the given []string and assigns it to the DynamicStateFields field.
-func (o *SetDynamicStateRequest) SetDynamicStateFields(v []string) {
+// SetDynamicStateFields gets a reference to the given interface{} and assigns it to the DynamicStateFields field.
+func (o *SetDynamicStateRequest) SetDynamicStateFields(v interface{}) {
 	o.DynamicStateFields = v
 }
 
-// GetExternalId returns the ExternalId field value if set, zero value otherwise.
-func (o *SetDynamicStateRequest) GetExternalId() string {
-	if o == nil || IsNil(o.ExternalId) {
-		var ret string
+// GetExternalId returns the ExternalId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SetDynamicStateRequest) GetExternalId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ExternalId
+	return o.ExternalId
 }
 
 // GetExternalIdOk returns a tuple with the ExternalId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetExternalIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SetDynamicStateRequest) GetExternalIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ExternalId) {
 		return nil, false
 	}
-	return o.ExternalId, true
+	return &o.ExternalId, true
 }
 
 // HasExternalId returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasExternalId() bool {
-	if o != nil && !IsNil(o.ExternalId) {
+	if o != nil && IsNil(o.ExternalId) {
 		return true
 	}
 
 	return false
 }
 
-// SetExternalId gets a reference to the given string and assigns it to the ExternalId field.
-func (o *SetDynamicStateRequest) SetExternalId(v string) {
-	o.ExternalId = &v
+// SetExternalId gets a reference to the given interface{} and assigns it to the ExternalId field.
+func (o *SetDynamicStateRequest) SetExternalId(v interface{}) {
+	o.ExternalId = v
 }
 
-// GetOrganization returns the Organization field value if set, zero value otherwise.
-func (o *SetDynamicStateRequest) GetOrganization() string {
-	if o == nil || IsNil(o.Organization) {
-		var ret string
+// GetOrganization returns the Organization field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *SetDynamicStateRequest) GetOrganization() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Organization
+	return o.Organization
 }
 
 // GetOrganizationOk returns a tuple with the Organization field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SetDynamicStateRequest) GetOrganizationOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *SetDynamicStateRequest) GetOrganizationOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Organization) {
 		return nil, false
 	}
-	return o.Organization, true
+	return &o.Organization, true
 }
 
 // HasOrganization returns a boolean if a field has been set.
 func (o *SetDynamicStateRequest) HasOrganization() bool {
-	if o != nil && !IsNil(o.Organization) {
+	if o != nil && IsNil(o.Organization) {
 		return true
 	}
 
 	return false
 }
 
-// SetOrganization gets a reference to the given string and assigns it to the Organization field.
-func (o *SetDynamicStateRequest) SetOrganization(v string) {
-	o.Organization = &v
+// SetOrganization gets a reference to the given interface{} and assigns it to the Organization field.
+func (o *SetDynamicStateRequest) SetOrganization(v interface{}) {
+	o.Organization = v
 }
 
 func (o SetDynamicStateRequest) MarshalJSON() ([]byte, error) {
@@ -243,20 +249,20 @@ func (o SetDynamicStateRequest) MarshalJSON() ([]byte, error) {
 
 func (o SetDynamicStateRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.ChannelUrn) {
+	if o.ChannelUrn != nil {
 		toSerialize["channel_urn"] = o.ChannelUrn
 	}
 	toSerialize["dynamic_state"] = o.DynamicState
-	if !IsNil(o.DynamicStateFields) {
+	if o.DynamicStateFields != nil {
 		toSerialize["dynamic_state_fields"] = o.DynamicStateFields
 	}
-	if !IsNil(o.ExternalId) {
+	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
 	}
-	if !IsNil(o.Organization) {
+	if o.Organization != nil {
 		toSerialize["organization"] = o.Organization
 	}
 	return toSerialize, nil

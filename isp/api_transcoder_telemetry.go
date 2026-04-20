@@ -16,7 +16,6 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
-	"time"
 )
 
 
@@ -27,56 +26,52 @@ type TranscoderTelemetryApi interface {
 
 	Returns a Cost Report for a channel.
 
-
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
 	@return ApiGetChannelCostReportRequest
 	*/
-	GetChannelCostReport(ctx context.Context, org string, channelId string) ApiGetChannelCostReportRequest
+	GetChannelCostReport(ctx context.Context, org interface{}, channelId interface{}) ApiGetChannelCostReportRequest
 
 	// GetChannelCostReportExecute executes the request
-	//  @return ChannelCostReport
-	GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*ChannelCostReport, *http.Response, error)
+	//  @return GetChannelCostReportResponseBody
+	GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*GetChannelCostReportResponseBody, *http.Response, error)
 
 	/*
 	ListContentSegmentHistory List Channel Content Segments History
 
 	Returns content segment history for a channel.
 
-
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
 	@return ApiListContentSegmentHistoryRequest
 	*/
-	ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest
+	ListContentSegmentHistory(ctx context.Context, org interface{}, channelId interface{}) ApiListContentSegmentHistoryRequest
 
 	// ListContentSegmentHistoryExecute executes the request
-	//  @return ListContentSegmentHistoryResponse
-	ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponse, *http.Response, error)
+	//  @return ListContentSegmentHistoryResponseBody
+	ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponseBody, *http.Response, error)
 
 	/*
-	ListOrganizationCostReports List Organization Cost Reports 
+	ListOrganizationCostReports List Organization Cost Reports
 
 	Returns Cost Reports for channels in an organization.
-
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@return ApiListOrganizationCostReportsRequest
 	*/
-	ListOrganizationCostReports(ctx context.Context, org string) ApiListOrganizationCostReportsRequest
+	ListOrganizationCostReports(ctx context.Context, org interface{}) ApiListOrganizationCostReportsRequest
 
 	// ListOrganizationCostReportsExecute executes the request
-	//  @return []ChannelCostReport2
-	ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) ([]ChannelCostReport2, *http.Response, error)
+	//  @return interface{}
+	ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) (interface{}, *http.Response, error)
 
 	/*
 	ListRawScteHistory Get SCTE-35 History
 
 	Returns the history of out-of-band SCTE-35 messages received by the transcoder for all channels.
-
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@return ApiListRawScteHistoryRequest
@@ -84,25 +79,24 @@ type TranscoderTelemetryApi interface {
 	ListRawScteHistory(ctx context.Context) ApiListRawScteHistoryRequest
 
 	// ListRawScteHistoryExecute executes the request
-	//  @return ListRawSCTEHistoryResponse
-	ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponse, *http.Response, error)
+	//  @return ListRawSCTEHistoryResponseBody
+	ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponseBody, *http.Response, error)
 
 	/*
 	ListRawScteHistoryByChannel Get Channel SCTE-35 History
 
 	Returns the history of out-of-band SCTE-35 messages received by the transcoder for a channel.
 
-
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 	@param org Organization name
 	@param channelId Unique channel identifier
 	@return ApiListRawScteHistoryByChannelRequest
 	*/
-	ListRawScteHistoryByChannel(ctx context.Context, org string, channelId string) ApiListRawScteHistoryByChannelRequest
+	ListRawScteHistoryByChannel(ctx context.Context, org interface{}, channelId interface{}) ApiListRawScteHistoryByChannelRequest
 
 	// ListRawScteHistoryByChannelExecute executes the request
-	//  @return ListRawSCTEHistoryByChannelResponse
-	ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponse, *http.Response, error)
+	//  @return ListRawSCTEHistoryByChannelResponseBody
+	ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error)
 }
 
 // TranscoderTelemetryApiService TranscoderTelemetryApi service
@@ -111,25 +105,25 @@ type TranscoderTelemetryApiService service
 type ApiGetChannelCostReportRequest struct {
 	ctx context.Context
 	ApiService TranscoderTelemetryApi
-	org string
-	channelId string
-	from *time.Time
-	to *time.Time
+	org interface{}
+	channelId interface{}
+	from *interface{}
+	to *interface{}
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
-func (r ApiGetChannelCostReportRequest) From(from time.Time) ApiGetChannelCostReportRequest {
+func (r ApiGetChannelCostReportRequest) From(from interface{}) ApiGetChannelCostReportRequest {
 	r.from = &from
 	return r
 }
 
 // ISO 8601 UTC timestamp for end range of date filtering
-func (r ApiGetChannelCostReportRequest) To(to time.Time) ApiGetChannelCostReportRequest {
+func (r ApiGetChannelCostReportRequest) To(to interface{}) ApiGetChannelCostReportRequest {
 	r.to = &to
 	return r
 }
 
-func (r ApiGetChannelCostReportRequest) Execute() (*ChannelCostReport, *http.Response, error) {
+func (r ApiGetChannelCostReportRequest) Execute() (*GetChannelCostReportResponseBody, *http.Response, error) {
 	return r.ApiService.GetChannelCostReportExecute(r)
 }
 
@@ -138,13 +132,12 @@ GetChannelCostReport Get Channel Cost Report
 
 Returns a Cost Report for a channel.
 
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
  @param channelId Unique channel identifier
  @return ApiGetChannelCostReportRequest
 */
-func (a *TranscoderTelemetryApiService) GetChannelCostReport(ctx context.Context, org string, channelId string) ApiGetChannelCostReportRequest {
+func (a *TranscoderTelemetryApiService) GetChannelCostReport(ctx context.Context, org interface{}, channelId interface{}) ApiGetChannelCostReportRequest {
 	return ApiGetChannelCostReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -154,13 +147,13 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReport(ctx context.Context
 }
 
 // Execute executes the request
-//  @return ChannelCostReport
-func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*ChannelCostReport, *http.Response, error) {
+//  @return GetChannelCostReportResponseBody
+func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*GetChannelCostReportResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ChannelCostReport
+		localVarReturnValue  *GetChannelCostReportResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.GetChannelCostReport")
@@ -312,7 +305,7 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChan
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ChannelCostReport)
+			localVarReturnValue = items.(*GetChannelCostReportResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -323,46 +316,46 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChan
 type ApiListContentSegmentHistoryRequest struct {
 	ctx context.Context
 	ApiService TranscoderTelemetryApi
-	org string
-	channelId string
-	from *time.Time
-	to *time.Time
-	segmentTypes *[]string
-	upidType *int32
-	upidId *string
+	org interface{}
+	channelId interface{}
+	from *interface{}
+	to *interface{}
+	segmentTypes *interface{}
+	upidType *interface{}
+	upidId *interface{}
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
-func (r ApiListContentSegmentHistoryRequest) From(from time.Time) ApiListContentSegmentHistoryRequest {
+func (r ApiListContentSegmentHistoryRequest) From(from interface{}) ApiListContentSegmentHistoryRequest {
 	r.from = &from
 	return r
 }
 
 // ISO 8601 UTC timestamp for end range of date filtering
-func (r ApiListContentSegmentHistoryRequest) To(to time.Time) ApiListContentSegmentHistoryRequest {
+func (r ApiListContentSegmentHistoryRequest) To(to interface{}) ApiListContentSegmentHistoryRequest {
 	r.to = &to
 	return r
 }
 
 // Filter by segment types. If not specified, all segment types are returned. Corresponds to the ChannelProto channeldoc.SignalingSegment ENUM names.
-func (r ApiListContentSegmentHistoryRequest) SegmentTypes(segmentTypes []string) ApiListContentSegmentHistoryRequest {
+func (r ApiListContentSegmentHistoryRequest) SegmentTypes(segmentTypes interface{}) ApiListContentSegmentHistoryRequest {
 	r.segmentTypes = &segmentTypes
 	return r
 }
 
 // Type part of the UPID. Required when upid_id is provided.
-func (r ApiListContentSegmentHistoryRequest) UpidType(upidType int32) ApiListContentSegmentHistoryRequest {
+func (r ApiListContentSegmentHistoryRequest) UpidType(upidType interface{}) ApiListContentSegmentHistoryRequest {
 	r.upidType = &upidType
 	return r
 }
 
 // ID part of the UPID. Accepts plain text and hex-encoded values prefixed with a 0x. Required when upid_type is provided
-func (r ApiListContentSegmentHistoryRequest) UpidId(upidId string) ApiListContentSegmentHistoryRequest {
+func (r ApiListContentSegmentHistoryRequest) UpidId(upidId interface{}) ApiListContentSegmentHistoryRequest {
 	r.upidId = &upidId
 	return r
 }
 
-func (r ApiListContentSegmentHistoryRequest) Execute() (*ListContentSegmentHistoryResponse, *http.Response, error) {
+func (r ApiListContentSegmentHistoryRequest) Execute() (*ListContentSegmentHistoryResponseBody, *http.Response, error) {
 	return r.ApiService.ListContentSegmentHistoryExecute(r)
 }
 
@@ -371,13 +364,12 @@ ListContentSegmentHistory List Channel Content Segments History
 
 Returns content segment history for a channel.
 
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
  @param channelId Unique channel identifier
  @return ApiListContentSegmentHistoryRequest
 */
-func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest {
+func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Context, org interface{}, channelId interface{}) ApiListContentSegmentHistoryRequest {
 	return ApiListContentSegmentHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -387,13 +379,13 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Co
 }
 
 // Execute executes the request
-//  @return ListContentSegmentHistoryResponse
-func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponse, *http.Response, error) {
+//  @return ListContentSegmentHistoryResponseBody
+func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListContentSegmentHistoryResponse
+		localVarReturnValue  *ListContentSegmentHistoryResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListContentSegmentHistory")
@@ -419,7 +411,7 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiLi
 		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
 	}
 	if r.segmentTypes != nil {
-		localVarQueryParams.Add("segment_types", parameterToString(*r.segmentTypes, "csv"))
+		localVarQueryParams.Add("segment_types", parameterToString(*r.segmentTypes, ""))
 	}
 	if r.upidType != nil {
 		localVarQueryParams.Add("upid_type", parameterToString(*r.upidType, ""))
@@ -554,7 +546,7 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiLi
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListContentSegmentHistoryResponse)
+			localVarReturnValue = items.(*ListContentSegmentHistoryResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -565,52 +557,51 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiLi
 type ApiListOrganizationCostReportsRequest struct {
 	ctx context.Context
 	ApiService TranscoderTelemetryApi
-	org string
-	from *time.Time
-	to *time.Time
-	cursor *string
-	pageSize *int32
+	org interface{}
+	from *interface{}
+	to *interface{}
+	cursor *interface{}
+	pageSize *interface{}
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
-func (r ApiListOrganizationCostReportsRequest) From(from time.Time) ApiListOrganizationCostReportsRequest {
+func (r ApiListOrganizationCostReportsRequest) From(from interface{}) ApiListOrganizationCostReportsRequest {
 	r.from = &from
 	return r
 }
 
 // ISO 8601 UTC timestamp for end range of date filtering
-func (r ApiListOrganizationCostReportsRequest) To(to time.Time) ApiListOrganizationCostReportsRequest {
+func (r ApiListOrganizationCostReportsRequest) To(to interface{}) ApiListOrganizationCostReportsRequest {
 	r.to = &to
 	return r
 }
 
 // Current page cursor
-func (r ApiListOrganizationCostReportsRequest) Cursor(cursor string) ApiListOrganizationCostReportsRequest {
+func (r ApiListOrganizationCostReportsRequest) Cursor(cursor interface{}) ApiListOrganizationCostReportsRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiListOrganizationCostReportsRequest) PageSize(pageSize int32) ApiListOrganizationCostReportsRequest {
+func (r ApiListOrganizationCostReportsRequest) PageSize(pageSize interface{}) ApiListOrganizationCostReportsRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiListOrganizationCostReportsRequest) Execute() ([]ChannelCostReport2, *http.Response, error) {
+func (r ApiListOrganizationCostReportsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.ListOrganizationCostReportsExecute(r)
 }
 
 /*
-ListOrganizationCostReports List Organization Cost Reports 
+ListOrganizationCostReports List Organization Cost Reports
 
 Returns Cost Reports for channels in an organization.
-
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
  @return ApiListOrganizationCostReportsRequest
 */
-func (a *TranscoderTelemetryApiService) ListOrganizationCostReports(ctx context.Context, org string) ApiListOrganizationCostReportsRequest {
+func (a *TranscoderTelemetryApiService) ListOrganizationCostReports(ctx context.Context, org interface{}) ApiListOrganizationCostReportsRequest {
 	return ApiListOrganizationCostReportsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -619,13 +610,13 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReports(ctx context.
 }
 
 // Execute executes the request
-//  @return []ChannelCostReport2
-func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) ([]ChannelCostReport2, *http.Response, error) {
+//  @return interface{}
+func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ChannelCostReport2
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListOrganizationCostReports")
@@ -779,7 +770,7 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]ChannelCostReport2)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}
@@ -790,16 +781,16 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r Api
 type ApiListRawScteHistoryRequest struct {
 	ctx context.Context
 	ApiService TranscoderTelemetryApi
-	from *time.Time
+	from *interface{}
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
-func (r ApiListRawScteHistoryRequest) From(from time.Time) ApiListRawScteHistoryRequest {
+func (r ApiListRawScteHistoryRequest) From(from interface{}) ApiListRawScteHistoryRequest {
 	r.from = &from
 	return r
 }
 
-func (r ApiListRawScteHistoryRequest) Execute() (*ListRawSCTEHistoryResponse, *http.Response, error) {
+func (r ApiListRawScteHistoryRequest) Execute() (*ListRawSCTEHistoryResponseBody, *http.Response, error) {
 	return r.ApiService.ListRawScteHistoryExecute(r)
 }
 
@@ -807,7 +798,6 @@ func (r ApiListRawScteHistoryRequest) Execute() (*ListRawSCTEHistoryResponse, *h
 ListRawScteHistory Get SCTE-35 History
 
 Returns the history of out-of-band SCTE-35 messages received by the transcoder for all channels.
-
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListRawScteHistoryRequest
@@ -820,13 +810,13 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistory(ctx context.Context) 
 }
 
 // Execute executes the request
-//  @return ListRawSCTEHistoryResponse
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponse, *http.Response, error) {
+//  @return ListRawSCTEHistoryResponseBody
+func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListRawSCTEHistoryResponse
+		localVarReturnValue  *ListRawSCTEHistoryResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListRawScteHistory")
@@ -970,7 +960,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawSc
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListRawSCTEHistoryResponse)
+			localVarReturnValue = items.(*ListRawSCTEHistoryResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -981,18 +971,18 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawSc
 type ApiListRawScteHistoryByChannelRequest struct {
 	ctx context.Context
 	ApiService TranscoderTelemetryApi
-	org string
-	channelId string
-	from *time.Time
+	org interface{}
+	channelId interface{}
+	from *interface{}
 }
 
 // ISO 8601 UTC timestamp for start range of date filtering
-func (r ApiListRawScteHistoryByChannelRequest) From(from time.Time) ApiListRawScteHistoryByChannelRequest {
+func (r ApiListRawScteHistoryByChannelRequest) From(from interface{}) ApiListRawScteHistoryByChannelRequest {
 	r.from = &from
 	return r
 }
 
-func (r ApiListRawScteHistoryByChannelRequest) Execute() (*ListRawSCTEHistoryByChannelResponse, *http.Response, error) {
+func (r ApiListRawScteHistoryByChannelRequest) Execute() (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error) {
 	return r.ApiService.ListRawScteHistoryByChannelExecute(r)
 }
 
@@ -1001,13 +991,12 @@ ListRawScteHistoryByChannel Get Channel SCTE-35 History
 
 Returns the history of out-of-band SCTE-35 messages received by the transcoder for a channel.
 
-
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param org Organization name
  @param channelId Unique channel identifier
  @return ApiListRawScteHistoryByChannelRequest
 */
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannel(ctx context.Context, org string, channelId string) ApiListRawScteHistoryByChannelRequest {
+func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannel(ctx context.Context, org interface{}, channelId interface{}) ApiListRawScteHistoryByChannelRequest {
 	return ApiListRawScteHistoryByChannelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1017,13 +1006,13 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannel(ctx context.
 }
 
 // Execute executes the request
-//  @return ListRawSCTEHistoryByChannelResponse
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponse, *http.Response, error) {
+//  @return ListRawSCTEHistoryByChannelResponseBody
+func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *ListRawSCTEHistoryByChannelResponse
+		localVarReturnValue  *ListRawSCTEHistoryByChannelResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListRawScteHistoryByChannel")
@@ -1172,7 +1161,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannelExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*ListRawSCTEHistoryByChannelResponse)
+			localVarReturnValue = items.(*ListRawSCTEHistoryByChannelResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}

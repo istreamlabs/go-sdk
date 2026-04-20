@@ -18,29 +18,29 @@ var _ MappedNullable = &PostClipRequest{}
 
 // PostClipRequest struct for PostClipRequest
 type PostClipRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Identifer that is carried through archive and collapse notifications for the clip creation
-	CorrelationId *string `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
+	CorrelationId interface{} `json:"correlation_id,omitempty" doc:"Identifer that is carried through archive and collapse notifications for the clip creation"`
 	// If true, creates the mp4. Default: false
-	CreateMp4 *bool `json:"create_mp4,omitempty" doc:"If true, creates the mp4. Default: false"`
+	CreateMp4 interface{} `json:"create_mp4,omitempty" doc:"If true, creates the mp4. Default: false"`
 	// Description of the clip being created
-	Description *string `json:"description,omitempty" maxLength:"80" doc:"Description of the clip being created"`
+	Description interface{} `json:"description,omitempty" maxLength:"80" doc:"Description of the clip being created"`
 	// End timestamp in RFC3339Nano format
-	End string `json:"end" doc:"End timestamp in RFC3339Nano format"`
+	End interface{} `json:"end" doc:"End timestamp in RFC3339Nano format"`
 	// If set, overrides the mp4 file path for archiving.
-	Mp4FilePath *string `json:"mp4_file_path,omitempty" maxLength:"1024" doc:"If set, overrides the mp4 file path for archiving."`
+	Mp4FilePath interface{} `json:"mp4_file_path,omitempty" maxLength:"1024" doc:"If set, overrides the mp4 file path for archiving."`
 	// Overwrite existing clip. Default: false
-	Overwrite *bool `json:"overwrite,omitempty" doc:"Overwrite existing clip. Default: false"`
+	Overwrite interface{} `json:"overwrite,omitempty" doc:"Overwrite existing clip. Default: false"`
 	// Start timestamp in RFC3339Nano format
-	Start string `json:"start" doc:"Start timestamp in RFC3339Nano format"`
+	Start interface{} `json:"start" doc:"Start timestamp in RFC3339Nano format"`
 }
 
 // NewPostClipRequest instantiates a new PostClipRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPostClipRequest(end string, start string) *PostClipRequest {
+func NewPostClipRequest(end interface{}, start interface{}) *PostClipRequest {
 	this := PostClipRequest{}
 	this.End = end
 	this.Start = start
@@ -55,138 +55,143 @@ func NewPostClipRequestWithDefaults() *PostClipRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PostClipRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PostClipRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PostClipRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *PostClipRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise.
-func (o *PostClipRequest) GetCorrelationId() string {
-	if o == nil || IsNil(o.CorrelationId) {
-		var ret string
+// GetCorrelationId returns the CorrelationId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetCorrelationId() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.CorrelationId
+	return o.CorrelationId
 }
 
 // GetCorrelationIdOk returns a tuple with the CorrelationId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetCorrelationIdOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetCorrelationIdOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.CorrelationId) {
 		return nil, false
 	}
-	return o.CorrelationId, true
+	return &o.CorrelationId, true
 }
 
 // HasCorrelationId returns a boolean if a field has been set.
 func (o *PostClipRequest) HasCorrelationId() bool {
-	if o != nil && !IsNil(o.CorrelationId) {
+	if o != nil && IsNil(o.CorrelationId) {
 		return true
 	}
 
 	return false
 }
 
-// SetCorrelationId gets a reference to the given string and assigns it to the CorrelationId field.
-func (o *PostClipRequest) SetCorrelationId(v string) {
-	o.CorrelationId = &v
+// SetCorrelationId gets a reference to the given interface{} and assigns it to the CorrelationId field.
+func (o *PostClipRequest) SetCorrelationId(v interface{}) {
+	o.CorrelationId = v
 }
 
-// GetCreateMp4 returns the CreateMp4 field value if set, zero value otherwise.
-func (o *PostClipRequest) GetCreateMp4() bool {
-	if o == nil || IsNil(o.CreateMp4) {
-		var ret bool
+// GetCreateMp4 returns the CreateMp4 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetCreateMp4() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.CreateMp4
+	return o.CreateMp4
 }
 
 // GetCreateMp4Ok returns a tuple with the CreateMp4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetCreateMp4Ok() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetCreateMp4Ok() (*interface{}, bool) {
 	if o == nil || IsNil(o.CreateMp4) {
 		return nil, false
 	}
-	return o.CreateMp4, true
+	return &o.CreateMp4, true
 }
 
 // HasCreateMp4 returns a boolean if a field has been set.
 func (o *PostClipRequest) HasCreateMp4() bool {
-	if o != nil && !IsNil(o.CreateMp4) {
+	if o != nil && IsNil(o.CreateMp4) {
 		return true
 	}
 
 	return false
 }
 
-// SetCreateMp4 gets a reference to the given bool and assigns it to the CreateMp4 field.
-func (o *PostClipRequest) SetCreateMp4(v bool) {
-	o.CreateMp4 = &v
+// SetCreateMp4 gets a reference to the given interface{} and assigns it to the CreateMp4 field.
+func (o *PostClipRequest) SetCreateMp4(v interface{}) {
+	o.CreateMp4 = v
 }
 
-// GetDescription returns the Description field value if set, zero value otherwise.
-func (o *PostClipRequest) GetDescription() string {
-	if o == nil || IsNil(o.Description) {
-		var ret string
+// GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetDescription() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetDescriptionOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetDescriptionOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
 // HasDescription returns a boolean if a field has been set.
 func (o *PostClipRequest) HasDescription() bool {
-	if o != nil && !IsNil(o.Description) {
+	if o != nil && IsNil(o.Description) {
 		return true
 	}
 
 	return false
 }
 
-// SetDescription gets a reference to the given string and assigns it to the Description field.
-func (o *PostClipRequest) SetDescription(v string) {
-	o.Description = &v
+// SetDescription gets a reference to the given interface{} and assigns it to the Description field.
+func (o *PostClipRequest) SetDescription(v interface{}) {
+	o.Description = v
 }
 
 // GetEnd returns the End field value
-func (o *PostClipRequest) GetEnd() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PostClipRequest) GetEnd() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -195,86 +200,90 @@ func (o *PostClipRequest) GetEnd() string {
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetEndOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetEndOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.End) {
 		return nil, false
 	}
 	return &o.End, true
 }
 
 // SetEnd sets field value
-func (o *PostClipRequest) SetEnd(v string) {
+func (o *PostClipRequest) SetEnd(v interface{}) {
 	o.End = v
 }
 
-// GetMp4FilePath returns the Mp4FilePath field value if set, zero value otherwise.
-func (o *PostClipRequest) GetMp4FilePath() string {
-	if o == nil || IsNil(o.Mp4FilePath) {
-		var ret string
+// GetMp4FilePath returns the Mp4FilePath field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetMp4FilePath() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Mp4FilePath
+	return o.Mp4FilePath
 }
 
 // GetMp4FilePathOk returns a tuple with the Mp4FilePath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetMp4FilePathOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetMp4FilePathOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Mp4FilePath) {
 		return nil, false
 	}
-	return o.Mp4FilePath, true
+	return &o.Mp4FilePath, true
 }
 
 // HasMp4FilePath returns a boolean if a field has been set.
 func (o *PostClipRequest) HasMp4FilePath() bool {
-	if o != nil && !IsNil(o.Mp4FilePath) {
+	if o != nil && IsNil(o.Mp4FilePath) {
 		return true
 	}
 
 	return false
 }
 
-// SetMp4FilePath gets a reference to the given string and assigns it to the Mp4FilePath field.
-func (o *PostClipRequest) SetMp4FilePath(v string) {
-	o.Mp4FilePath = &v
+// SetMp4FilePath gets a reference to the given interface{} and assigns it to the Mp4FilePath field.
+func (o *PostClipRequest) SetMp4FilePath(v interface{}) {
+	o.Mp4FilePath = v
 }
 
-// GetOverwrite returns the Overwrite field value if set, zero value otherwise.
-func (o *PostClipRequest) GetOverwrite() bool {
-	if o == nil || IsNil(o.Overwrite) {
-		var ret bool
+// GetOverwrite returns the Overwrite field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PostClipRequest) GetOverwrite() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Overwrite
+	return o.Overwrite
 }
 
 // GetOverwriteOk returns a tuple with the Overwrite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetOverwriteOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetOverwriteOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Overwrite) {
 		return nil, false
 	}
-	return o.Overwrite, true
+	return &o.Overwrite, true
 }
 
 // HasOverwrite returns a boolean if a field has been set.
 func (o *PostClipRequest) HasOverwrite() bool {
-	if o != nil && !IsNil(o.Overwrite) {
+	if o != nil && IsNil(o.Overwrite) {
 		return true
 	}
 
 	return false
 }
 
-// SetOverwrite gets a reference to the given bool and assigns it to the Overwrite field.
-func (o *PostClipRequest) SetOverwrite(v bool) {
-	o.Overwrite = &v
+// SetOverwrite gets a reference to the given interface{} and assigns it to the Overwrite field.
+func (o *PostClipRequest) SetOverwrite(v interface{}) {
+	o.Overwrite = v
 }
 
 // GetStart returns the Start field value
-func (o *PostClipRequest) GetStart() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *PostClipRequest) GetStart() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -283,15 +292,16 @@ func (o *PostClipRequest) GetStart() string {
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *PostClipRequest) GetStartOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PostClipRequest) GetStartOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Start) {
 		return nil, false
 	}
 	return &o.Start, true
 }
 
 // SetStart sets field value
-func (o *PostClipRequest) SetStart(v string) {
+func (o *PostClipRequest) SetStart(v interface{}) {
 	o.Start = v
 }
 
@@ -305,26 +315,30 @@ func (o PostClipRequest) MarshalJSON() ([]byte, error) {
 
 func (o PostClipRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.CorrelationId) {
+	if o.CorrelationId != nil {
 		toSerialize["correlation_id"] = o.CorrelationId
 	}
-	if !IsNil(o.CreateMp4) {
+	if o.CreateMp4 != nil {
 		toSerialize["create_mp4"] = o.CreateMp4
 	}
-	if !IsNil(o.Description) {
+	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	toSerialize["end"] = o.End
-	if !IsNil(o.Mp4FilePath) {
+	if o.End != nil {
+		toSerialize["end"] = o.End
+	}
+	if o.Mp4FilePath != nil {
 		toSerialize["mp4_file_path"] = o.Mp4FilePath
 	}
-	if !IsNil(o.Overwrite) {
+	if o.Overwrite != nil {
 		toSerialize["overwrite"] = o.Overwrite
 	}
-	toSerialize["start"] = o.Start
+	if o.Start != nil {
+		toSerialize["start"] = o.Start
+	}
 	return toSerialize, nil
 }
 

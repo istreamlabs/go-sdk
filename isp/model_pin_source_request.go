@@ -18,10 +18,10 @@ var _ MappedNullable = &PinSourceRequest{}
 
 // PinSourceRequest struct for PinSourceRequest
 type PinSourceRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Which ingest origin to pin the transcoder to.
-	IngestOrigin *string `json:"ingest_origin,omitempty" enum:"PRIMARY,SECONDARY" doc:"Which ingest origin to pin the transcoder to."`
+	IngestOrigin interface{} `json:"ingest_origin,omitempty" enum:"PRIMARY,SECONDARY" doc:"Which ingest origin to pin the transcoder to."`
 }
 
 // NewPinSourceRequest instantiates a new PinSourceRequest object
@@ -41,68 +41,70 @@ func NewPinSourceRequestWithDefaults() *PinSourceRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *PinSourceRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PinSourceRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PinSourceRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PinSourceRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *PinSourceRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *PinSourceRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *PinSourceRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetIngestOrigin returns the IngestOrigin field value if set, zero value otherwise.
-func (o *PinSourceRequest) GetIngestOrigin() string {
-	if o == nil || IsNil(o.IngestOrigin) {
-		var ret string
+// GetIngestOrigin returns the IngestOrigin field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PinSourceRequest) GetIngestOrigin() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.IngestOrigin
+	return o.IngestOrigin
 }
 
 // GetIngestOriginOk returns a tuple with the IngestOrigin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PinSourceRequest) GetIngestOriginOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PinSourceRequest) GetIngestOriginOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.IngestOrigin) {
 		return nil, false
 	}
-	return o.IngestOrigin, true
+	return &o.IngestOrigin, true
 }
 
 // HasIngestOrigin returns a boolean if a field has been set.
 func (o *PinSourceRequest) HasIngestOrigin() bool {
-	if o != nil && !IsNil(o.IngestOrigin) {
+	if o != nil && IsNil(o.IngestOrigin) {
 		return true
 	}
 
 	return false
 }
 
-// SetIngestOrigin gets a reference to the given string and assigns it to the IngestOrigin field.
-func (o *PinSourceRequest) SetIngestOrigin(v string) {
-	o.IngestOrigin = &v
+// SetIngestOrigin gets a reference to the given interface{} and assigns it to the IngestOrigin field.
+func (o *PinSourceRequest) SetIngestOrigin(v interface{}) {
+	o.IngestOrigin = v
 }
 
 func (o PinSourceRequest) MarshalJSON() ([]byte, error) {
@@ -115,10 +117,10 @@ func (o PinSourceRequest) MarshalJSON() ([]byte, error) {
 
 func (o PinSourceRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.IngestOrigin) {
+	if o.IngestOrigin != nil {
 		toSerialize["ingest_origin"] = o.IngestOrigin
 	}
 	return toSerialize, nil

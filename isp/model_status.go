@@ -18,10 +18,12 @@ var _ MappedNullable = &Status{}
 
 // Status struct for Status
 type Status struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
-	DynamicStateStatus *StatusDynamicStateStatus `json:"dynamic_state_status,omitempty"`
-	IngestStatus *StatusIngestStatus `json:"ingest_status,omitempty"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	// The transcoder's dynamic state settings.
+	DynamicStateStatus *DynamicStateStatus `json:"dynamic_state_status,omitempty" doc:"The transcoder's dynamic state settings."`
+	// Ingest components's status.
+	IngestStatus *IngestStatus `json:"ingest_status,omitempty" doc:"Ingest components's status."`
 }
 
 // NewStatus instantiates a new Status object
@@ -41,42 +43,43 @@ func NewStatusWithDefaults() *Status {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *Status) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Status) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *Status) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *Status) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *Status) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *Status) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetDynamicStateStatus returns the DynamicStateStatus field value if set, zero value otherwise.
-func (o *Status) GetDynamicStateStatus() StatusDynamicStateStatus {
+func (o *Status) GetDynamicStateStatus() DynamicStateStatus {
 	if o == nil || IsNil(o.DynamicStateStatus) {
-		var ret StatusDynamicStateStatus
+		var ret DynamicStateStatus
 		return ret
 	}
 	return *o.DynamicStateStatus
@@ -84,7 +87,7 @@ func (o *Status) GetDynamicStateStatus() StatusDynamicStateStatus {
 
 // GetDynamicStateStatusOk returns a tuple with the DynamicStateStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetDynamicStateStatusOk() (*StatusDynamicStateStatus, bool) {
+func (o *Status) GetDynamicStateStatusOk() (*DynamicStateStatus, bool) {
 	if o == nil || IsNil(o.DynamicStateStatus) {
 		return nil, false
 	}
@@ -100,15 +103,15 @@ func (o *Status) HasDynamicStateStatus() bool {
 	return false
 }
 
-// SetDynamicStateStatus gets a reference to the given StatusDynamicStateStatus and assigns it to the DynamicStateStatus field.
-func (o *Status) SetDynamicStateStatus(v StatusDynamicStateStatus) {
+// SetDynamicStateStatus gets a reference to the given DynamicStateStatus and assigns it to the DynamicStateStatus field.
+func (o *Status) SetDynamicStateStatus(v DynamicStateStatus) {
 	o.DynamicStateStatus = &v
 }
 
 // GetIngestStatus returns the IngestStatus field value if set, zero value otherwise.
-func (o *Status) GetIngestStatus() StatusIngestStatus {
+func (o *Status) GetIngestStatus() IngestStatus {
 	if o == nil || IsNil(o.IngestStatus) {
-		var ret StatusIngestStatus
+		var ret IngestStatus
 		return ret
 	}
 	return *o.IngestStatus
@@ -116,7 +119,7 @@ func (o *Status) GetIngestStatus() StatusIngestStatus {
 
 // GetIngestStatusOk returns a tuple with the IngestStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Status) GetIngestStatusOk() (*StatusIngestStatus, bool) {
+func (o *Status) GetIngestStatusOk() (*IngestStatus, bool) {
 	if o == nil || IsNil(o.IngestStatus) {
 		return nil, false
 	}
@@ -132,8 +135,8 @@ func (o *Status) HasIngestStatus() bool {
 	return false
 }
 
-// SetIngestStatus gets a reference to the given StatusIngestStatus and assigns it to the IngestStatus field.
-func (o *Status) SetIngestStatus(v StatusIngestStatus) {
+// SetIngestStatus gets a reference to the given IngestStatus and assigns it to the IngestStatus field.
+func (o *Status) SetIngestStatus(v IngestStatus) {
 	o.IngestStatus = &v
 }
 
@@ -147,7 +150,7 @@ func (o Status) MarshalJSON() ([]byte, error) {
 
 func (o Status) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
 	if !IsNil(o.DynamicStateStatus) {

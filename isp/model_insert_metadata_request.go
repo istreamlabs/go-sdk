@@ -18,17 +18,17 @@ var _ MappedNullable = &InsertMetadataRequest{}
 
 // InsertMetadataRequest struct for InsertMetadataRequest
 type InsertMetadataRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// ID3 payload as UTF-8 text
-	Payload string `json:"payload" doc:"ID3 payload as UTF-8 text"`
+	Payload interface{} `json:"payload" doc:"ID3 payload as UTF-8 text"`
 }
 
 // NewInsertMetadataRequest instantiates a new InsertMetadataRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewInsertMetadataRequest(payload string) *InsertMetadataRequest {
+func NewInsertMetadataRequest(payload interface{}) *InsertMetadataRequest {
 	this := InsertMetadataRequest{}
 	this.Payload = payload
 	return &this
@@ -42,42 +42,44 @@ func NewInsertMetadataRequestWithDefaults() *InsertMetadataRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *InsertMetadataRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *InsertMetadataRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InsertMetadataRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertMetadataRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *InsertMetadataRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *InsertMetadataRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *InsertMetadataRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
 // GetPayload returns the Payload field value
-func (o *InsertMetadataRequest) GetPayload() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *InsertMetadataRequest) GetPayload() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -86,15 +88,16 @@ func (o *InsertMetadataRequest) GetPayload() string {
 
 // GetPayloadOk returns a tuple with the Payload field value
 // and a boolean to check if the value has been set.
-func (o *InsertMetadataRequest) GetPayloadOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *InsertMetadataRequest) GetPayloadOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Payload) {
 		return nil, false
 	}
 	return &o.Payload, true
 }
 
 // SetPayload sets field value
-func (o *InsertMetadataRequest) SetPayload(v string) {
+func (o *InsertMetadataRequest) SetPayload(v interface{}) {
 	o.Payload = v
 }
 
@@ -108,10 +111,12 @@ func (o InsertMetadataRequest) MarshalJSON() ([]byte, error) {
 
 func (o InsertMetadataRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	toSerialize["payload"] = o.Payload
+	if o.Payload != nil {
+		toSerialize["payload"] = o.Payload
+	}
 	return toSerialize, nil
 }
 

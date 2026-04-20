@@ -31,11 +31,11 @@ type AuditOperationsForOrganizationApi interface {
 	@param channelId Unique channel identifier
 	@return ApiGetOrgChannelTimelineRequest
 	*/
-	GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest
+	GetOrgChannelTimeline(ctx context.Context, org interface{}, channelId interface{}) ApiGetOrgChannelTimelineRequest
 
 	// GetOrgChannelTimelineExecute executes the request
-	//  @return []ChannelTimelineEntry
-	GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error)
+	//  @return interface{}
+	GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) (interface{}, *http.Response, error)
 }
 
 // AuditOperationsForOrganizationApiService AuditOperationsForOrganizationApi service
@@ -44,25 +44,25 @@ type AuditOperationsForOrganizationApiService service
 type ApiGetOrgChannelTimelineRequest struct {
 	ctx context.Context
 	ApiService AuditOperationsForOrganizationApi
-	org string
-	channelId string
-	cursor *string
-	pageSize *int32
+	org interface{}
+	channelId interface{}
+	cursor *interface{}
+	pageSize *interface{}
 }
 
 // Current page cursor
-func (r ApiGetOrgChannelTimelineRequest) Cursor(cursor string) ApiGetOrgChannelTimelineRequest {
+func (r ApiGetOrgChannelTimelineRequest) Cursor(cursor interface{}) ApiGetOrgChannelTimelineRequest {
 	r.cursor = &cursor
 	return r
 }
 
 // Number of items to return
-func (r ApiGetOrgChannelTimelineRequest) PageSize(pageSize int32) ApiGetOrgChannelTimelineRequest {
+func (r ApiGetOrgChannelTimelineRequest) PageSize(pageSize interface{}) ApiGetOrgChannelTimelineRequest {
 	r.pageSize = &pageSize
 	return r
 }
 
-func (r ApiGetOrgChannelTimelineRequest) Execute() ([]ChannelTimelineEntry, *http.Response, error) {
+func (r ApiGetOrgChannelTimelineRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.GetOrgChannelTimelineExecute(r)
 }
 
@@ -76,7 +76,7 @@ Returns up to twenty items from the event timeline for a channel, sorted in reve
  @param channelId Unique channel identifier
  @return ApiGetOrgChannelTimelineRequest
 */
-func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest {
+func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx context.Context, org interface{}, channelId interface{}) ApiGetOrgChannelTimelineRequest {
 	return ApiGetOrgChannelTimelineRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -86,13 +86,13 @@ func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimeline(ctx con
 }
 
 // Execute executes the request
-//  @return []ChannelTimelineEntry
-func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
+//  @return interface{}
+func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []ChannelTimelineEntry
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditOperationsForOrganizationApiService.GetOrgChannelTimeline")
@@ -234,7 +234,7 @@ func (a *AuditOperationsForOrganizationApiService) GetOrgChannelTimelineExecute(
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]ChannelTimelineEntry)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}

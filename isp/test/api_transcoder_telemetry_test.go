@@ -26,8 +26,8 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryApi.GetChannelCostReport(context.Background(), org, channelId).Execute()
 
@@ -41,8 +41,8 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListContentSegmentHistory(context.Background(), org, channelId).Execute()
 
@@ -56,7 +56,7 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
+		var org interface{}
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListOrganizationCostReports(context.Background(), org).Execute()
 
@@ -82,8 +82,8 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		var org string
-		var channelId string
+		var org interface{}
+		var channelId interface{}
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListRawScteHistoryByChannel(context.Background(), org, channelId).Execute()
 

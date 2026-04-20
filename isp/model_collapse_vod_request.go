@@ -11,7 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the CollapseVODRequest type satisfies the MappedNullable interface at compile time
@@ -19,34 +18,35 @@ var _ MappedNullable = &CollapseVODRequest{}
 
 // CollapseVODRequest struct for CollapseVODRequest
 type CollapseVODRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema interface{} `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Prefix for clip
-	ClipPrefix *string `json:"clip_prefix,omitempty" doc:"Prefix for clip"`
+	ClipPrefix interface{} `json:"clip_prefix,omitempty" doc:"Prefix for clip"`
 	// Suffix for clip
-	ClipSuffix *string `json:"clip_suffix,omitempty" doc:"Suffix for clip"`
+	ClipSuffix interface{} `json:"clip_suffix,omitempty" doc:"Suffix for clip"`
 	// Disable any autoprefix
-	DisableAutoPrefix *bool `json:"disable_auto_prefix,omitempty" doc:"Disable any autoprefix"`
+	DisableAutoPrefix interface{} `json:"disable_auto_prefix,omitempty" doc:"Disable any autoprefix"`
 	// EndTime of VOD
-	EndTime *time.Time `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
-	Filterconfig *CollapseVODRequestFilterconfig `json:"filterconfig,omitempty"`
+	EndTime interface{} `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
+	// SCTE/TIME based filtering on collapses
+	Filterconfig *VODFilterConfig `json:"filterconfig,omitempty" doc:"SCTE/TIME based filtering on collapses"`
 	// Description for new collapsed clip
-	NewClipDescription string `json:"new_clip_description" doc:"Description for new collapsed clip"`
+	NewClipDescription interface{} `json:"new_clip_description" doc:"Description for new collapsed clip"`
 	// New Clip ID for collapsed clip
-	NewClipId int64 `json:"new_clip_id" format:"int64" doc:"New Clip ID for collapsed clip"`
+	NewClipId interface{} `json:"new_clip_id" format:"int64" doc:"New Clip ID for collapsed clip"`
 	// Publish newly created VOD
-	PublishVod *bool `json:"publish_vod,omitempty" doc:"Publish newly created VOD"`
+	PublishVod interface{} `json:"publish_vod,omitempty" doc:"Publish newly created VOD"`
 	// StartTime of VOD
-	StartTime *time.Time `json:"start_time,omitempty" format:"date-time" doc:"StartTime of VOD"`
+	StartTime interface{} `json:"start_time,omitempty" format:"date-time" doc:"StartTime of VOD"`
 	// UPID for VOD
-	Upid *string `json:"upid,omitempty" doc:"UPID for VOD"`
+	Upid interface{} `json:"upid,omitempty" doc:"UPID for VOD"`
 }
 
 // NewCollapseVODRequest instantiates a new CollapseVODRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCollapseVODRequest(newClipDescription string, newClipId int64) *CollapseVODRequest {
+func NewCollapseVODRequest(newClipDescription interface{}, newClipId interface{}) *CollapseVODRequest {
 	this := CollapseVODRequest{}
 	this.NewClipDescription = newClipDescription
 	this.NewClipId = newClipId
@@ -61,170 +61,175 @@ func NewCollapseVODRequestWithDefaults() *CollapseVODRequest {
 	return &this
 }
 
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
+// GetSchema returns the Schema field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetSchema() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Schema
+	return o.Schema
 }
 
 // GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetSchemaOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetSchemaOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Schema) {
 		return nil, false
 	}
-	return o.Schema, true
+	return &o.Schema, true
 }
 
 // HasSchema returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
+	if o != nil && IsNil(o.Schema) {
 		return true
 	}
 
 	return false
 }
 
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *CollapseVODRequest) SetSchema(v string) {
-	o.Schema = &v
+// SetSchema gets a reference to the given interface{} and assigns it to the Schema field.
+func (o *CollapseVODRequest) SetSchema(v interface{}) {
+	o.Schema = v
 }
 
-// GetClipPrefix returns the ClipPrefix field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetClipPrefix() string {
-	if o == nil || IsNil(o.ClipPrefix) {
-		var ret string
+// GetClipPrefix returns the ClipPrefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetClipPrefix() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ClipPrefix
+	return o.ClipPrefix
 }
 
 // GetClipPrefixOk returns a tuple with the ClipPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetClipPrefixOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetClipPrefixOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ClipPrefix) {
 		return nil, false
 	}
-	return o.ClipPrefix, true
+	return &o.ClipPrefix, true
 }
 
 // HasClipPrefix returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasClipPrefix() bool {
-	if o != nil && !IsNil(o.ClipPrefix) {
+	if o != nil && IsNil(o.ClipPrefix) {
 		return true
 	}
 
 	return false
 }
 
-// SetClipPrefix gets a reference to the given string and assigns it to the ClipPrefix field.
-func (o *CollapseVODRequest) SetClipPrefix(v string) {
-	o.ClipPrefix = &v
+// SetClipPrefix gets a reference to the given interface{} and assigns it to the ClipPrefix field.
+func (o *CollapseVODRequest) SetClipPrefix(v interface{}) {
+	o.ClipPrefix = v
 }
 
-// GetClipSuffix returns the ClipSuffix field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetClipSuffix() string {
-	if o == nil || IsNil(o.ClipSuffix) {
-		var ret string
+// GetClipSuffix returns the ClipSuffix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetClipSuffix() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.ClipSuffix
+	return o.ClipSuffix
 }
 
 // GetClipSuffixOk returns a tuple with the ClipSuffix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetClipSuffixOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetClipSuffixOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.ClipSuffix) {
 		return nil, false
 	}
-	return o.ClipSuffix, true
+	return &o.ClipSuffix, true
 }
 
 // HasClipSuffix returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasClipSuffix() bool {
-	if o != nil && !IsNil(o.ClipSuffix) {
+	if o != nil && IsNil(o.ClipSuffix) {
 		return true
 	}
 
 	return false
 }
 
-// SetClipSuffix gets a reference to the given string and assigns it to the ClipSuffix field.
-func (o *CollapseVODRequest) SetClipSuffix(v string) {
-	o.ClipSuffix = &v
+// SetClipSuffix gets a reference to the given interface{} and assigns it to the ClipSuffix field.
+func (o *CollapseVODRequest) SetClipSuffix(v interface{}) {
+	o.ClipSuffix = v
 }
 
-// GetDisableAutoPrefix returns the DisableAutoPrefix field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetDisableAutoPrefix() bool {
-	if o == nil || IsNil(o.DisableAutoPrefix) {
-		var ret bool
+// GetDisableAutoPrefix returns the DisableAutoPrefix field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetDisableAutoPrefix() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.DisableAutoPrefix
+	return o.DisableAutoPrefix
 }
 
 // GetDisableAutoPrefixOk returns a tuple with the DisableAutoPrefix field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetDisableAutoPrefixOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetDisableAutoPrefixOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.DisableAutoPrefix) {
 		return nil, false
 	}
-	return o.DisableAutoPrefix, true
+	return &o.DisableAutoPrefix, true
 }
 
 // HasDisableAutoPrefix returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasDisableAutoPrefix() bool {
-	if o != nil && !IsNil(o.DisableAutoPrefix) {
+	if o != nil && IsNil(o.DisableAutoPrefix) {
 		return true
 	}
 
 	return false
 }
 
-// SetDisableAutoPrefix gets a reference to the given bool and assigns it to the DisableAutoPrefix field.
-func (o *CollapseVODRequest) SetDisableAutoPrefix(v bool) {
-	o.DisableAutoPrefix = &v
+// SetDisableAutoPrefix gets a reference to the given interface{} and assigns it to the DisableAutoPrefix field.
+func (o *CollapseVODRequest) SetDisableAutoPrefix(v interface{}) {
+	o.DisableAutoPrefix = v
 }
 
-// GetEndTime returns the EndTime field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetEndTime() time.Time {
-	if o == nil || IsNil(o.EndTime) {
-		var ret time.Time
+// GetEndTime returns the EndTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetEndTime() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.EndTime
+	return o.EndTime
 }
 
 // GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetEndTimeOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetEndTimeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.EndTime) {
 		return nil, false
 	}
-	return o.EndTime, true
+	return &o.EndTime, true
 }
 
 // HasEndTime returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasEndTime() bool {
-	if o != nil && !IsNil(o.EndTime) {
+	if o != nil && IsNil(o.EndTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetEndTime gets a reference to the given time.Time and assigns it to the EndTime field.
-func (o *CollapseVODRequest) SetEndTime(v time.Time) {
-	o.EndTime = &v
+// SetEndTime gets a reference to the given interface{} and assigns it to the EndTime field.
+func (o *CollapseVODRequest) SetEndTime(v interface{}) {
+	o.EndTime = v
 }
 
 // GetFilterconfig returns the Filterconfig field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetFilterconfig() CollapseVODRequestFilterconfig {
+func (o *CollapseVODRequest) GetFilterconfig() VODFilterConfig {
 	if o == nil || IsNil(o.Filterconfig) {
-		var ret CollapseVODRequestFilterconfig
+		var ret VODFilterConfig
 		return ret
 	}
 	return *o.Filterconfig
@@ -232,7 +237,7 @@ func (o *CollapseVODRequest) GetFilterconfig() CollapseVODRequestFilterconfig {
 
 // GetFilterconfigOk returns a tuple with the Filterconfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetFilterconfigOk() (*CollapseVODRequestFilterconfig, bool) {
+func (o *CollapseVODRequest) GetFilterconfigOk() (*VODFilterConfig, bool) {
 	if o == nil || IsNil(o.Filterconfig) {
 		return nil, false
 	}
@@ -248,15 +253,16 @@ func (o *CollapseVODRequest) HasFilterconfig() bool {
 	return false
 }
 
-// SetFilterconfig gets a reference to the given CollapseVODRequestFilterconfig and assigns it to the Filterconfig field.
-func (o *CollapseVODRequest) SetFilterconfig(v CollapseVODRequestFilterconfig) {
+// SetFilterconfig gets a reference to the given VODFilterConfig and assigns it to the Filterconfig field.
+func (o *CollapseVODRequest) SetFilterconfig(v VODFilterConfig) {
 	o.Filterconfig = &v
 }
 
 // GetNewClipDescription returns the NewClipDescription field value
-func (o *CollapseVODRequest) GetNewClipDescription() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CollapseVODRequest) GetNewClipDescription() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -265,22 +271,24 @@ func (o *CollapseVODRequest) GetNewClipDescription() string {
 
 // GetNewClipDescriptionOk returns a tuple with the NewClipDescription field value
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetNewClipDescriptionOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetNewClipDescriptionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.NewClipDescription) {
 		return nil, false
 	}
 	return &o.NewClipDescription, true
 }
 
 // SetNewClipDescription sets field value
-func (o *CollapseVODRequest) SetNewClipDescription(v string) {
+func (o *CollapseVODRequest) SetNewClipDescription(v interface{}) {
 	o.NewClipDescription = v
 }
 
 // GetNewClipId returns the NewClipId field value
-func (o *CollapseVODRequest) GetNewClipId() int64 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *CollapseVODRequest) GetNewClipId() interface{} {
 	if o == nil {
-		var ret int64
+		var ret interface{}
 		return ret
 	}
 
@@ -289,112 +297,116 @@ func (o *CollapseVODRequest) GetNewClipId() int64 {
 
 // GetNewClipIdOk returns a tuple with the NewClipId field value
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetNewClipIdOk() (*int64, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetNewClipIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.NewClipId) {
 		return nil, false
 	}
 	return &o.NewClipId, true
 }
 
 // SetNewClipId sets field value
-func (o *CollapseVODRequest) SetNewClipId(v int64) {
+func (o *CollapseVODRequest) SetNewClipId(v interface{}) {
 	o.NewClipId = v
 }
 
-// GetPublishVod returns the PublishVod field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetPublishVod() bool {
-	if o == nil || IsNil(o.PublishVod) {
-		var ret bool
+// GetPublishVod returns the PublishVod field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetPublishVod() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.PublishVod
+	return o.PublishVod
 }
 
 // GetPublishVodOk returns a tuple with the PublishVod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetPublishVodOk() (*bool, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetPublishVodOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.PublishVod) {
 		return nil, false
 	}
-	return o.PublishVod, true
+	return &o.PublishVod, true
 }
 
 // HasPublishVod returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasPublishVod() bool {
-	if o != nil && !IsNil(o.PublishVod) {
+	if o != nil && IsNil(o.PublishVod) {
 		return true
 	}
 
 	return false
 }
 
-// SetPublishVod gets a reference to the given bool and assigns it to the PublishVod field.
-func (o *CollapseVODRequest) SetPublishVod(v bool) {
-	o.PublishVod = &v
+// SetPublishVod gets a reference to the given interface{} and assigns it to the PublishVod field.
+func (o *CollapseVODRequest) SetPublishVod(v interface{}) {
+	o.PublishVod = v
 }
 
-// GetStartTime returns the StartTime field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetStartTime() time.Time {
-	if o == nil || IsNil(o.StartTime) {
-		var ret time.Time
+// GetStartTime returns the StartTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetStartTime() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.StartTime
+	return o.StartTime
 }
 
 // GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetStartTimeOk() (*time.Time, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetStartTimeOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.StartTime) {
 		return nil, false
 	}
-	return o.StartTime, true
+	return &o.StartTime, true
 }
 
 // HasStartTime returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasStartTime() bool {
-	if o != nil && !IsNil(o.StartTime) {
+	if o != nil && IsNil(o.StartTime) {
 		return true
 	}
 
 	return false
 }
 
-// SetStartTime gets a reference to the given time.Time and assigns it to the StartTime field.
-func (o *CollapseVODRequest) SetStartTime(v time.Time) {
-	o.StartTime = &v
+// SetStartTime gets a reference to the given interface{} and assigns it to the StartTime field.
+func (o *CollapseVODRequest) SetStartTime(v interface{}) {
+	o.StartTime = v
 }
 
-// GetUpid returns the Upid field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetUpid() string {
-	if o == nil || IsNil(o.Upid) {
-		var ret string
+// GetUpid returns the Upid field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CollapseVODRequest) GetUpid() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Upid
+	return o.Upid
 }
 
 // GetUpidOk returns a tuple with the Upid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetUpidOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *CollapseVODRequest) GetUpidOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Upid) {
 		return nil, false
 	}
-	return o.Upid, true
+	return &o.Upid, true
 }
 
 // HasUpid returns a boolean if a field has been set.
 func (o *CollapseVODRequest) HasUpid() bool {
-	if o != nil && !IsNil(o.Upid) {
+	if o != nil && IsNil(o.Upid) {
 		return true
 	}
 
 	return false
 }
 
-// SetUpid gets a reference to the given string and assigns it to the Upid field.
-func (o *CollapseVODRequest) SetUpid(v string) {
-	o.Upid = &v
+// SetUpid gets a reference to the given interface{} and assigns it to the Upid field.
+func (o *CollapseVODRequest) SetUpid(v interface{}) {
+	o.Upid = v
 }
 
 func (o CollapseVODRequest) MarshalJSON() ([]byte, error) {
@@ -407,33 +419,37 @@ func (o CollapseVODRequest) MarshalJSON() ([]byte, error) {
 
 func (o CollapseVODRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
+	if o.Schema != nil {
 		toSerialize["$schema"] = o.Schema
 	}
-	if !IsNil(o.ClipPrefix) {
+	if o.ClipPrefix != nil {
 		toSerialize["clip_prefix"] = o.ClipPrefix
 	}
-	if !IsNil(o.ClipSuffix) {
+	if o.ClipSuffix != nil {
 		toSerialize["clip_suffix"] = o.ClipSuffix
 	}
-	if !IsNil(o.DisableAutoPrefix) {
+	if o.DisableAutoPrefix != nil {
 		toSerialize["disable_auto_prefix"] = o.DisableAutoPrefix
 	}
-	if !IsNil(o.EndTime) {
+	if o.EndTime != nil {
 		toSerialize["end_time"] = o.EndTime
 	}
 	if !IsNil(o.Filterconfig) {
 		toSerialize["filterconfig"] = o.Filterconfig
 	}
-	toSerialize["new_clip_description"] = o.NewClipDescription
-	toSerialize["new_clip_id"] = o.NewClipId
-	if !IsNil(o.PublishVod) {
+	if o.NewClipDescription != nil {
+		toSerialize["new_clip_description"] = o.NewClipDescription
+	}
+	if o.NewClipId != nil {
+		toSerialize["new_clip_id"] = o.NewClipId
+	}
+	if o.PublishVod != nil {
 		toSerialize["publish_vod"] = o.PublishVod
 	}
-	if !IsNil(o.StartTime) {
+	if o.StartTime != nil {
 		toSerialize["start_time"] = o.StartTime
 	}
-	if !IsNil(o.Upid) {
+	if o.Upid != nil {
 		toSerialize["upid"] = o.Upid
 	}
 	return toSerialize, nil

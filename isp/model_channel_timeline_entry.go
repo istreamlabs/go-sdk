@@ -11,7 +11,6 @@ package isp
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // checks if the ChannelTimelineEntry type satisfies the MappedNullable interface at compile time
@@ -20,25 +19,25 @@ var _ MappedNullable = &ChannelTimelineEntry{}
 // ChannelTimelineEntry struct for ChannelTimelineEntry
 type ChannelTimelineEntry struct {
 	// Shortcode indicating what action was taken
-	Action string `json:"action" doc:"Shortcode indicating what action was taken"`
+	Action interface{} `json:"action" doc:"Shortcode indicating what action was taken"`
 	// Agent responsible for the action taken
-	Agent string `json:"agent" doc:"Agent responsible for the action taken"`
-	Query *string `json:"query,omitempty"`
+	Agent interface{} `json:"agent" doc:"Agent responsible for the action taken"`
+	Query interface{} `json:"query,omitempty"`
 	// The request body, if any, of the original action
-	RequestBody string `json:"request_body" doc:"The request body, if any, of the original action"`
+	RequestBody interface{} `json:"request_body" doc:"The request body, if any, of the original action"`
 	// HTTP Status code indicating outcome of the action.
-	StatusCode int32 `json:"status_code" format:"int32" doc:"HTTP Status code indicating outcome of the action."`
+	StatusCode interface{} `json:"status_code" format:"int64" doc:"HTTP Status code indicating outcome of the action."`
 	// Timestamp of the action in UTC
-	Timestamp time.Time `json:"timestamp" format:"date-time" doc:"Timestamp of the action in UTC"`
+	Timestamp interface{} `json:"timestamp" format:"date-time" doc:"Timestamp of the action in UTC"`
 	// Correlation identifier for tracing
-	TraceId string `json:"trace_id" doc:"Correlation identifier for tracing"`
+	TraceId interface{} `json:"trace_id" doc:"Correlation identifier for tracing"`
 }
 
 // NewChannelTimelineEntry instantiates a new ChannelTimelineEntry object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelTimelineEntry(action string, agent string, requestBody string, statusCode int32, timestamp time.Time, traceId string) *ChannelTimelineEntry {
+func NewChannelTimelineEntry(action interface{}, agent interface{}, requestBody interface{}, statusCode interface{}, timestamp interface{}, traceId interface{}) *ChannelTimelineEntry {
 	this := ChannelTimelineEntry{}
 	this.Action = action
 	this.Agent = agent
@@ -58,9 +57,10 @@ func NewChannelTimelineEntryWithDefaults() *ChannelTimelineEntry {
 }
 
 // GetAction returns the Action field value
-func (o *ChannelTimelineEntry) GetAction() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetAction() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -69,22 +69,24 @@ func (o *ChannelTimelineEntry) GetAction() string {
 
 // GetActionOk returns a tuple with the Action field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetActionOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetActionOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Action) {
 		return nil, false
 	}
 	return &o.Action, true
 }
 
 // SetAction sets field value
-func (o *ChannelTimelineEntry) SetAction(v string) {
+func (o *ChannelTimelineEntry) SetAction(v interface{}) {
 	o.Action = v
 }
 
 // GetAgent returns the Agent field value
-func (o *ChannelTimelineEntry) GetAgent() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetAgent() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -93,54 +95,57 @@ func (o *ChannelTimelineEntry) GetAgent() string {
 
 // GetAgentOk returns a tuple with the Agent field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetAgentOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetAgentOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Agent) {
 		return nil, false
 	}
 	return &o.Agent, true
 }
 
 // SetAgent sets field value
-func (o *ChannelTimelineEntry) SetAgent(v string) {
+func (o *ChannelTimelineEntry) SetAgent(v interface{}) {
 	o.Agent = v
 }
 
-// GetQuery returns the Query field value if set, zero value otherwise.
-func (o *ChannelTimelineEntry) GetQuery() string {
-	if o == nil || IsNil(o.Query) {
-		var ret string
+// GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ChannelTimelineEntry) GetQuery() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Query
+	return o.Query
 }
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetQueryOk() (*string, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetQueryOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Query) {
 		return nil, false
 	}
-	return o.Query, true
+	return &o.Query, true
 }
 
 // HasQuery returns a boolean if a field has been set.
 func (o *ChannelTimelineEntry) HasQuery() bool {
-	if o != nil && !IsNil(o.Query) {
+	if o != nil && IsNil(o.Query) {
 		return true
 	}
 
 	return false
 }
 
-// SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *ChannelTimelineEntry) SetQuery(v string) {
-	o.Query = &v
+// SetQuery gets a reference to the given interface{} and assigns it to the Query field.
+func (o *ChannelTimelineEntry) SetQuery(v interface{}) {
+	o.Query = v
 }
 
 // GetRequestBody returns the RequestBody field value
-func (o *ChannelTimelineEntry) GetRequestBody() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetRequestBody() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -149,22 +154,24 @@ func (o *ChannelTimelineEntry) GetRequestBody() string {
 
 // GetRequestBodyOk returns a tuple with the RequestBody field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetRequestBodyOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetRequestBodyOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.RequestBody) {
 		return nil, false
 	}
 	return &o.RequestBody, true
 }
 
 // SetRequestBody sets field value
-func (o *ChannelTimelineEntry) SetRequestBody(v string) {
+func (o *ChannelTimelineEntry) SetRequestBody(v interface{}) {
 	o.RequestBody = v
 }
 
 // GetStatusCode returns the StatusCode field value
-func (o *ChannelTimelineEntry) GetStatusCode() int32 {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetStatusCode() interface{} {
 	if o == nil {
-		var ret int32
+		var ret interface{}
 		return ret
 	}
 
@@ -173,22 +180,24 @@ func (o *ChannelTimelineEntry) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetStatusCodeOk() (*int32, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetStatusCodeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.StatusCode) {
 		return nil, false
 	}
 	return &o.StatusCode, true
 }
 
 // SetStatusCode sets field value
-func (o *ChannelTimelineEntry) SetStatusCode(v int32) {
+func (o *ChannelTimelineEntry) SetStatusCode(v interface{}) {
 	o.StatusCode = v
 }
 
 // GetTimestamp returns the Timestamp field value
-func (o *ChannelTimelineEntry) GetTimestamp() time.Time {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetTimestamp() interface{} {
 	if o == nil {
-		var ret time.Time
+		var ret interface{}
 		return ret
 	}
 
@@ -197,22 +206,24 @@ func (o *ChannelTimelineEntry) GetTimestamp() time.Time {
 
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetTimestampOk() (*time.Time, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetTimestampOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
 	return &o.Timestamp, true
 }
 
 // SetTimestamp sets field value
-func (o *ChannelTimelineEntry) SetTimestamp(v time.Time) {
+func (o *ChannelTimelineEntry) SetTimestamp(v interface{}) {
 	o.Timestamp = v
 }
 
 // GetTraceId returns the TraceId field value
-func (o *ChannelTimelineEntry) GetTraceId() string {
+// If the value is explicit nil, the zero value for interface{} will be returned
+func (o *ChannelTimelineEntry) GetTraceId() interface{} {
 	if o == nil {
-		var ret string
+		var ret interface{}
 		return ret
 	}
 
@@ -221,15 +232,16 @@ func (o *ChannelTimelineEntry) GetTraceId() string {
 
 // GetTraceIdOk returns a tuple with the TraceId field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetTraceIdOk() (*string, bool) {
-	if o == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *ChannelTimelineEntry) GetTraceIdOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.TraceId) {
 		return nil, false
 	}
 	return &o.TraceId, true
 }
 
 // SetTraceId sets field value
-func (o *ChannelTimelineEntry) SetTraceId(v string) {
+func (o *ChannelTimelineEntry) SetTraceId(v interface{}) {
 	o.TraceId = v
 }
 
@@ -243,15 +255,27 @@ func (o ChannelTimelineEntry) MarshalJSON() ([]byte, error) {
 
 func (o ChannelTimelineEntry) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["action"] = o.Action
-	toSerialize["agent"] = o.Agent
-	if !IsNil(o.Query) {
+	if o.Action != nil {
+		toSerialize["action"] = o.Action
+	}
+	if o.Agent != nil {
+		toSerialize["agent"] = o.Agent
+	}
+	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
-	toSerialize["request_body"] = o.RequestBody
-	toSerialize["status_code"] = o.StatusCode
-	toSerialize["timestamp"] = o.Timestamp
-	toSerialize["trace_id"] = o.TraceId
+	if o.RequestBody != nil {
+		toSerialize["request_body"] = o.RequestBody
+	}
+	if o.StatusCode != nil {
+		toSerialize["status_code"] = o.StatusCode
+	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+	if o.TraceId != nil {
+		toSerialize["trace_id"] = o.TraceId
+	}
 	return toSerialize, nil
 }
 

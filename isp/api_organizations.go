@@ -21,7 +21,7 @@ import (
 type OrganizationsApi interface {
 
 	/*
-	ListOrgs List organizations
+	ListOrgs List Organizations
 
 	Get a list of organizations that you can access.
 
@@ -31,8 +31,8 @@ type OrganizationsApi interface {
 	ListOrgs(ctx context.Context) ApiListOrgsRequest
 
 	// ListOrgsExecute executes the request
-	//  @return []OrgSummary
-	ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error)
+	//  @return interface{}
+	ListOrgsExecute(r ApiListOrgsRequest) (interface{}, *http.Response, error)
 }
 
 // OrganizationsApiService OrganizationsApi service
@@ -43,12 +43,12 @@ type ApiListOrgsRequest struct {
 	ApiService OrganizationsApi
 }
 
-func (r ApiListOrgsRequest) Execute() ([]OrgSummary, *http.Response, error) {
+func (r ApiListOrgsRequest) Execute() (interface{}, *http.Response, error) {
 	return r.ApiService.ListOrgsExecute(r)
 }
 
 /*
-ListOrgs List organizations
+ListOrgs List Organizations
 
 Get a list of organizations that you can access.
 
@@ -63,13 +63,13 @@ func (a *OrganizationsApiService) ListOrgs(ctx context.Context) ApiListOrgsReque
 }
 
 // Execute executes the request
-//  @return []OrgSummary
-func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error) {
+//  @return interface{}
+func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) (interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []OrgSummary
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.ListOrgs")
@@ -180,7 +180,7 @@ func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSu
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]OrgSummary)
+			localVarReturnValue = items.(interface{})
 			localVarHTTPResponse = resp
 		}
 	}
