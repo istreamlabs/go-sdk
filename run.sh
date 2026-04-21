@@ -83,6 +83,11 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 # Note: Use POSIX ERE (no \b). Tested with BSD sed (macOS).
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
+# OpenAPI Generator emits PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner
+# for srt_publications[].video_encoders but never generates that model; the spec uses
+# components/schemas/SrtPublicationEncoder (same as audio_encoders).
+sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-lifecycle",g' ./isp-lifecycle/**/*.go
