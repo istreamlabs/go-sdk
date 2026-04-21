@@ -293,4 +293,3 @@ func (v *NullableChannelTimelineEntry) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

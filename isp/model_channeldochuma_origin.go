@@ -19,8 +19,8 @@ var _ MappedNullable = &ChanneldochumaOrigin{}
 // ChanneldochumaOrigin struct for ChanneldochumaOrigin
 type ChanneldochumaOrigin struct {
 	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
-	AlternateManifestDefaults *map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
-	FallbackDefaults *OriginManifestDefaults `json:"fallback_defaults,omitempty"`
+	AlternateManifestDefaults *map[string]OriginManifestDefaults `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
+	FallbackDefaults *PublicationOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
 	ManifestDefaults *OriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
 	RetentionMinutes *int32 `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
@@ -45,9 +45,9 @@ func NewChanneldochumaOriginWithDefaults() *ChanneldochumaOrigin {
 }
 
 // GetAlternateManifestDefaults returns the AlternateManifestDefaults field value if set, zero value otherwise.
-func (o *ChanneldochumaOrigin) GetAlternateManifestDefaults() map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+func (o *ChanneldochumaOrigin) GetAlternateManifestDefaults() map[string]OriginManifestDefaults {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
-		var ret map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+		var ret map[string]OriginManifestDefaults
 		return ret
 	}
 	return *o.AlternateManifestDefaults
@@ -55,7 +55,7 @@ func (o *ChanneldochumaOrigin) GetAlternateManifestDefaults() map[string]PatchOr
 
 // GetAlternateManifestDefaultsOk returns a tuple with the AlternateManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChanneldochumaOrigin) GetAlternateManifestDefaultsOk() (*map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
+func (o *ChanneldochumaOrigin) GetAlternateManifestDefaultsOk() (*map[string]OriginManifestDefaults, bool) {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *ChanneldochumaOrigin) HasAlternateManifestDefaults() bool {
 	return false
 }
 
-// SetAlternateManifestDefaults gets a reference to the given map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the AlternateManifestDefaults field.
-func (o *ChanneldochumaOrigin) SetAlternateManifestDefaults(v map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
+// SetAlternateManifestDefaults gets a reference to the given map[string]OriginManifestDefaults and assigns it to the AlternateManifestDefaults field.
+func (o *ChanneldochumaOrigin) SetAlternateManifestDefaults(v map[string]OriginManifestDefaults) {
 	o.AlternateManifestDefaults = &v
 }
 
 // GetFallbackDefaults returns the FallbackDefaults field value if set, zero value otherwise.
-func (o *ChanneldochumaOrigin) GetFallbackDefaults() OriginManifestDefaults {
+func (o *ChanneldochumaOrigin) GetFallbackDefaults() PublicationOriginFallbackDefaults {
 	if o == nil || IsNil(o.FallbackDefaults) {
-		var ret OriginManifestDefaults
+		var ret PublicationOriginFallbackDefaults
 		return ret
 	}
 	return *o.FallbackDefaults
@@ -87,7 +87,7 @@ func (o *ChanneldochumaOrigin) GetFallbackDefaults() OriginManifestDefaults {
 
 // GetFallbackDefaultsOk returns a tuple with the FallbackDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChanneldochumaOrigin) GetFallbackDefaultsOk() (*OriginManifestDefaults, bool) {
+func (o *ChanneldochumaOrigin) GetFallbackDefaultsOk() (*PublicationOriginFallbackDefaults, bool) {
 	if o == nil || IsNil(o.FallbackDefaults) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *ChanneldochumaOrigin) HasFallbackDefaults() bool {
 	return false
 }
 
-// SetFallbackDefaults gets a reference to the given OriginManifestDefaults and assigns it to the FallbackDefaults field.
-func (o *ChanneldochumaOrigin) SetFallbackDefaults(v OriginManifestDefaults) {
+// SetFallbackDefaults gets a reference to the given PublicationOriginFallbackDefaults and assigns it to the FallbackDefaults field.
+func (o *ChanneldochumaOrigin) SetFallbackDefaults(v PublicationOriginFallbackDefaults) {
 	o.FallbackDefaults = &v
 }
 
@@ -267,5 +267,4 @@ func (v *NullableChanneldochumaOrigin) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

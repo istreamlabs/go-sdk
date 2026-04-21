@@ -2133,7 +2133,21 @@ components:
                   additionalProperties: false
                   properties:
                     clli:
-                      $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                      additionalProperties: false
+                      properties:
+                        max_cll:
+                          description: Maximum Content Light Level (nits).
+                          format: double
+                          maximum: 10000
+                          minimum: 0
+                          type: number
+                        max_fall:
+                          description: Maximum Frame-Average Light Level (nits).
+                          format: double
+                          maximum: 10000
+                          minimum: 0
+                          type: number
+                      type: object
                     level8:
                       description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                       items:
@@ -2199,7 +2213,28 @@ components:
                       nullable: true
                       type: array
                     mdcv:
-                      $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                      additionalProperties: false
+                      properties:
+                        color_profile:
+                          description: Identifies color primaries and white point.
+                          enum:
+                            - BT2020
+                            - P3_D65
+                            - BT709
+                          type: string
+                        max_dml:
+                          description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                          format: double
+                          maximum: 10000
+                          minimum: 0
+                          type: number
+                        min_dml:
+                          description: Minimum display mastering luminance (nits).
+                          format: double
+                          maximum: 10000
+                          minimum: 0
+                          type: number
+                      type: object
                   type: object
                 profile84:
                   additionalProperties: false
@@ -2209,44 +2244,9 @@ components:
               additionalProperties: false
               properties:
                 clli:
-                  additionalProperties: false
-                  properties:
-                    max_cll:
-                      description: Maximum Content Light Level (nits).
-                      format: double
-                      maximum: 10000
-                      minimum: 0
-                      type: number
-                    max_fall:
-                      description: Maximum Frame-Average Light Level (nits).
-                      format: double
-                      maximum: 10000
-                      minimum: 0
-                      type: number
-                  type: object
+                  $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                 mdcv:
-                  additionalProperties: false
-                  properties:
-                    color_profile:
-                      description: Identifies color primaries and white point.
-                      enum:
-                        - BT2020
-                        - P3_D65
-                        - BT709
-                      type: string
-                    max_dml:
-                      description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                      format: double
-                      maximum: 10000
-                      minimum: 0
-                      type: number
-                    min_dml:
-                      description: Minimum display mastering luminance (nits).
-                      format: double
-                      maximum: 10000
-                      minimum: 0
-                      type: number
-                  type: object
+                  $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
               type: object
           type: object
         profile:
@@ -2411,7 +2411,21 @@ components:
               additionalProperties: false
               properties:
                 clli:
-                  $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                  additionalProperties: false
+                  properties:
+                    max_cll:
+                      description: Maximum Content Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    max_fall:
+                      description: Maximum Frame-Average Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
                 level8:
                   description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                   items:
@@ -2477,7 +2491,28 @@ components:
                   nullable: true
                   type: array
                 mdcv:
-                  $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                  additionalProperties: false
+                  properties:
+                    color_profile:
+                      description: Identifies color primaries and white point.
+                      enum:
+                        - BT2020
+                        - P3_D65
+                        - BT709
+                      type: string
+                    max_dml:
+                      description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    min_dml:
+                      description: Minimum display mastering luminance (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
               type: object
             profile84:
               additionalProperties: false
@@ -2487,44 +2522,9 @@ components:
           additionalProperties: false
           properties:
             clli:
-              additionalProperties: false
-              properties:
-                max_cll:
-                  description: Maximum Content Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                max_fall:
-                  description: Maximum Frame-Average Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
             mdcv:
-              additionalProperties: false
-              properties:
-                color_profile:
-                  description: Identifies color primaries and white point.
-                  enum:
-                    - BT2020
-                    - P3_D65
-                    - BT709
-                  type: string
-                max_dml:
-                  description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                min_dml:
-                  description: Minimum display mastering luminance (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
           type: object
       type: object
     HdrSettingsContentLightLevelInfo:
@@ -2553,7 +2553,21 @@ components:
           additionalProperties: false
           properties:
             clli:
-              $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+              additionalProperties: false
+              properties:
+                max_cll:
+                  description: Maximum Content Light Level (nits).
+                  format: double
+                  maximum: 10000
+                  minimum: 0
+                  type: number
+                max_fall:
+                  description: Maximum Frame-Average Light Level (nits).
+                  format: double
+                  maximum: 10000
+                  minimum: 0
+                  type: number
+              type: object
             level8:
               description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
               items:
@@ -2619,7 +2633,28 @@ components:
               nullable: true
               type: array
             mdcv:
-              $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+              additionalProperties: false
+              properties:
+                color_profile:
+                  description: Identifies color primaries and white point.
+                  enum:
+                    - BT2020
+                    - P3_D65
+                    - BT709
+                  type: string
+                max_dml:
+                  description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                  format: double
+                  maximum: 10000
+                  minimum: 0
+                  type: number
+                min_dml:
+                  description: Minimum display mastering luminance (nits).
+                  format: double
+                  maximum: 10000
+                  minimum: 0
+                  type: number
+              type: object
           type: object
         profile84:
           additionalProperties: false
@@ -2632,7 +2667,21 @@ components:
       additionalProperties: false
       properties:
         clli:
-          $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+          additionalProperties: false
+          properties:
+            max_cll:
+              description: Maximum Content Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+            max_fall:
+              description: Maximum Frame-Average Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+          type: object
         level8:
           description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
           items:
@@ -2698,31 +2747,6 @@ components:
           nullable: true
           type: array
         mdcv:
-          $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
-      type: object
-    HdrSettingsDolbyVisionProfile84:
-      additionalProperties: false
-      type: object
-    HdrSettingsHdr10Format:
-      additionalProperties: false
-      properties:
-        clli:
-          additionalProperties: false
-          properties:
-            max_cll:
-              description: Maximum Content Light Level (nits).
-              format: double
-              maximum: 10000
-              minimum: 0
-              type: number
-            max_fall:
-              description: Maximum Frame-Average Light Level (nits).
-              format: double
-              maximum: 10000
-              minimum: 0
-              type: number
-          type: object
-        mdcv:
           additionalProperties: false
           properties:
             color_profile:
@@ -2745,6 +2769,17 @@ components:
               minimum: 0
               type: number
           type: object
+      type: object
+    HdrSettingsDolbyVisionProfile84:
+      additionalProperties: false
+      type: object
+    HdrSettingsHdr10Format:
+      additionalProperties: false
+      properties:
+        clli:
+          $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+        mdcv:
+          $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
       type: object
     HdrSettingsLevel8:
       additionalProperties: false
@@ -4642,9 +4677,6 @@ components:
               description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
               type: object
             fallback_defaults:
-              $ref: '#/components/schemas/OriginManifestDefaults'
-              description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-            manifest_defaults:
               additionalProperties: false
               properties:
                 dash_signaling_formats:
@@ -4725,6 +4757,9 @@ components:
                   minimum: 0
                   type: integer
               type: object
+            manifest_defaults:
+              $ref: '#/components/schemas/OriginManifestDefaults'
+              description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
             retention_minutes:
               description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
               format: int32
@@ -5104,9 +5139,6 @@ components:
                     description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                     type: object
                   fallback_defaults:
-                    $ref: '#/components/schemas/OriginManifestDefaults'
-                    description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                  manifest_defaults:
                     additionalProperties: false
                     properties:
                       dash_signaling_formats:
@@ -5187,6 +5219,9 @@ components:
                         minimum: 0
                         type: integer
                     type: object
+                  manifest_defaults:
+                    $ref: '#/components/schemas/OriginManifestDefaults'
+                    description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                   retention_minutes:
                     description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                     format: int32
@@ -5294,18 +5329,7 @@ components:
             properties:
               audio_encoders:
                 items:
-                  additionalProperties: false
-                  properties:
-                    id:
-                      minLength: 1
-                      type: string
-                    pid:
-                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                      exclusiveMaximum: true
-                      format: int32
-                      maximum: 8191
-                      type: integer
-                  type: object
+                  $ref: '#/components/schemas/SrtPublicationEncoder'
                 minItems: 1
                 nullable: true
                 type: array
@@ -5333,7 +5357,18 @@ components:
                 type: string
               video_encoders:
                 items:
-                  $ref: '#/components/schemas/SrtPublicationEncoder'
+                  additionalProperties: false
+                  properties:
+                    id:
+                      minLength: 1
+                      type: string
+                    pid:
+                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                      exclusiveMaximum: true
+                      format: int32
+                      maximum: 8191
+                      type: integer
+                  type: object
                 minItems: 1
                 nullable: true
                 type: array
@@ -5936,9 +5971,6 @@ components:
                         description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                         type: object
                       fallback_defaults:
-                        $ref: '#/components/schemas/OriginManifestDefaults'
-                        description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                      manifest_defaults:
                         additionalProperties: false
                         properties:
                           dash_signaling_formats:
@@ -6019,6 +6051,9 @@ components:
                             minimum: 0
                             type: integer
                         type: object
+                      manifest_defaults:
+                        $ref: '#/components/schemas/OriginManifestDefaults'
+                        description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                       retention_minutes:
                         description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                         format: int32
@@ -6126,18 +6161,7 @@ components:
                 properties:
                   audio_encoders:
                     items:
-                      additionalProperties: false
-                      properties:
-                        id:
-                          minLength: 1
-                          type: string
-                        pid:
-                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                          exclusiveMaximum: true
-                          format: int32
-                          maximum: 8191
-                          type: integer
-                      type: object
+                      $ref: '#/components/schemas/SrtPublicationEncoder'
                     minItems: 1
                     nullable: true
                     type: array
@@ -6165,7 +6189,18 @@ components:
                     type: string
                   video_encoders:
                     items:
-                      $ref: '#/components/schemas/SrtPublicationEncoder'
+                      additionalProperties: false
+                      properties:
+                        id:
+                          minLength: 1
+                          type: string
+                        pid:
+                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                          exclusiveMaximum: true
+                          format: int32
+                          maximum: 8191
+                          type: integer
+                      type: object
                     minItems: 1
                     nullable: true
                     type: array
@@ -6794,7 +6829,21 @@ components:
                                 additionalProperties: false
                                 properties:
                                   clli:
-                                    $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                    additionalProperties: false
+                                    properties:
+                                      max_cll:
+                                        description: Maximum Content Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      max_fall:
+                                        description: Maximum Frame-Average Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                   level8:
                                     description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                     items:
@@ -6860,7 +6909,28 @@ components:
                                     nullable: true
                                     type: array
                                   mdcv:
-                                    $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                    additionalProperties: false
+                                    properties:
+                                      color_profile:
+                                        description: Identifies color primaries and white point.
+                                        enum:
+                                          - BT2020
+                                          - P3_D65
+                                          - BT709
+                                        type: string
+                                      max_dml:
+                                        description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      min_dml:
+                                        description: Minimum display mastering luminance (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                 type: object
                               profile84:
                                 additionalProperties: false
@@ -6870,44 +6940,9 @@ components:
                             additionalProperties: false
                             properties:
                               clli:
-                                additionalProperties: false
-                                properties:
-                                  max_cll:
-                                    description: Maximum Content Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  max_fall:
-                                    description: Maximum Frame-Average Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                               mdcv:
-                                additionalProperties: false
-                                properties:
-                                  color_profile:
-                                    description: Identifies color primaries and white point.
-                                    enum:
-                                      - BT2020
-                                      - P3_D65
-                                      - BT709
-                                    type: string
-                                  max_dml:
-                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  min_dml:
-                                    description: Minimum display mastering luminance (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                             type: object
                         type: object
                       profile:
@@ -8004,18 +8039,7 @@ components:
       properties:
         audio_encoders:
           items:
-            additionalProperties: false
-            properties:
-              id:
-                minLength: 1
-                type: string
-              pid:
-                description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                exclusiveMaximum: true
-                format: int32
-                maximum: 8191
-                type: integer
-            type: object
+            $ref: '#/components/schemas/SrtPublicationEncoder'
           minItems: 1
           nullable: true
           type: array
@@ -8043,7 +8067,18 @@ components:
           type: string
         video_encoders:
           items:
-            $ref: '#/components/schemas/SrtPublicationEncoder'
+            additionalProperties: false
+            properties:
+              id:
+                minLength: 1
+                type: string
+              pid:
+                description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                exclusiveMaximum: true
+                format: int32
+                maximum: 8191
+                type: integer
+            type: object
           minItems: 1
           nullable: true
           type: array
@@ -8989,7 +9024,21 @@ components:
                             additionalProperties: false
                             properties:
                               clli:
-                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                additionalProperties: false
+                                properties:
+                                  max_cll:
+                                    description: Maximum Content Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  max_fall:
+                                    description: Maximum Frame-Average Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                               level8:
                                 description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                 items:
@@ -9055,7 +9104,28 @@ components:
                                 nullable: true
                                 type: array
                               mdcv:
-                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                additionalProperties: false
+                                properties:
+                                  color_profile:
+                                    description: Identifies color primaries and white point.
+                                    enum:
+                                      - BT2020
+                                      - P3_D65
+                                      - BT709
+                                    type: string
+                                  max_dml:
+                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  min_dml:
+                                    description: Minimum display mastering luminance (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                             type: object
                           profile84:
                             additionalProperties: false
@@ -9065,44 +9135,9 @@ components:
                         additionalProperties: false
                         properties:
                           clli:
-                            additionalProperties: false
-                            properties:
-                              max_cll:
-                                description: Maximum Content Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              max_fall:
-                                description: Maximum Frame-Average Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                           mdcv:
-                            additionalProperties: false
-                            properties:
-                              color_profile:
-                                description: Identifies color primaries and white point.
-                                enum:
-                                  - BT2020
-                                  - P3_D65
-                                  - BT709
-                                type: string
-                              max_dml:
-                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              min_dml:
-                                description: Minimum display mastering luminance (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                         type: object
                     type: object
                   profile:
@@ -9391,7 +9426,21 @@ components:
                       additionalProperties: false
                       properties:
                         clli:
-                          $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                          additionalProperties: false
+                          properties:
+                            max_cll:
+                              description: Maximum Content Light Level (nits).
+                              format: double
+                              maximum: 10000
+                              minimum: 0
+                              type: number
+                            max_fall:
+                              description: Maximum Frame-Average Light Level (nits).
+                              format: double
+                              maximum: 10000
+                              minimum: 0
+                              type: number
+                          type: object
                         level8:
                           description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                           items:
@@ -9457,7 +9506,28 @@ components:
                           nullable: true
                           type: array
                         mdcv:
-                          $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                          additionalProperties: false
+                          properties:
+                            color_profile:
+                              description: Identifies color primaries and white point.
+                              enum:
+                                - BT2020
+                                - P3_D65
+                                - BT709
+                              type: string
+                            max_dml:
+                              description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                              format: double
+                              maximum: 10000
+                              minimum: 0
+                              type: number
+                            min_dml:
+                              description: Minimum display mastering luminance (nits).
+                              format: double
+                              maximum: 10000
+                              minimum: 0
+                              type: number
+                          type: object
                       type: object
                     profile84:
                       additionalProperties: false
@@ -9467,44 +9537,9 @@ components:
                   additionalProperties: false
                   properties:
                     clli:
-                      additionalProperties: false
-                      properties:
-                        max_cll:
-                          description: Maximum Content Light Level (nits).
-                          format: double
-                          maximum: 10000
-                          minimum: 0
-                          type: number
-                        max_fall:
-                          description: Maximum Frame-Average Light Level (nits).
-                          format: double
-                          maximum: 10000
-                          minimum: 0
-                          type: number
-                      type: object
+                      $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                     mdcv:
-                      additionalProperties: false
-                      properties:
-                        color_profile:
-                          description: Identifies color primaries and white point.
-                          enum:
-                            - BT2020
-                            - P3_D65
-                            - BT709
-                          type: string
-                        max_dml:
-                          description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                          format: double
-                          maximum: 10000
-                          minimum: 0
-                          type: number
-                        min_dml:
-                          description: Minimum display mastering luminance (nits).
-                          format: double
-                          maximum: 10000
-                          minimum: 0
-                          type: number
-                      type: object
+                      $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                   type: object
               type: object
             profile:
@@ -9649,9 +9684,6 @@ components:
           description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
           type: object
         fallback_defaults:
-          $ref: '#/components/schemas/OriginManifestDefaults'
-          description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-        manifest_defaults:
           additionalProperties: false
           properties:
             dash_signaling_formats:
@@ -9732,6 +9764,9 @@ components:
               minimum: 0
               type: integer
           type: object
+        manifest_defaults:
+          $ref: '#/components/schemas/OriginManifestDefaults'
+          description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
         retention_minutes:
           description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
           format: int32
@@ -11947,8 +11982,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -12025,6 +12058,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -12125,19 +12160,7 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                           id:
@@ -12163,7 +12186,19 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                         type: object
@@ -12776,7 +12811,22 @@ paths:
                                       profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -12840,7 +12890,29 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
                                       profile84:
                                         additionalProperties: false
@@ -12849,45 +12921,8 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
                               profile:
@@ -13504,8 +13539,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -13582,6 +13615,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -13682,19 +13717,7 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                           id:
@@ -13720,7 +13743,19 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                         type: object
@@ -14333,7 +14368,22 @@ paths:
                                       profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -14397,7 +14447,29 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
                                       profile84:
                                         additionalProperties: false
@@ -14406,45 +14478,8 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
                               profile:

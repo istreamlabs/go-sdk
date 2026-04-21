@@ -342,4 +342,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSubtitleEncodersInner) Unmarshal
 	return json.Unmarshal(src, &v.value)
 }
 
-

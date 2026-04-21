@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing DeprecatedLive2VODApiService
+Testing DeprecatedLive2VODAPIService
 
 */
 
@@ -17,12 +17,12 @@ import (
 	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
-func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
+func Test_isp_DeprecatedLive2VODAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipGetMp4", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService DeprecatedClipGetMp4", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -32,7 +32,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipGetMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.DeprecatedClipGetMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -40,7 +40,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipGetProgramTime", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService DeprecatedClipGetProgramTime", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -50,7 +50,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipGetProgramTime(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.DeprecatedClipGetProgramTime(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -58,7 +58,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService DeprecatedClipMakeMp4", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService DeprecatedClipMakeMp4", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -68,7 +68,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedClipMakeMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.DeprecatedClipMakeMp4(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -76,7 +76,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService DeprecatedGetClipManifest", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService DeprecatedGetClipManifest", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -86,7 +86,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.DeprecatedGetClipManifest(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.DeprecatedGetClipManifest(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -94,7 +94,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService GetDeprecatedClip", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService GetDeprecatedClip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -104,7 +104,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.GetDeprecatedClip(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.GetDeprecatedClip(context.Background(), customerId, productId, programId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -112,7 +112,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService GetDeprecatedProgram", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService GetDeprecatedProgram", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -120,7 +120,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var productId string
 		var programId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.GetDeprecatedProgram(context.Background(), customerId, productId, programId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.GetDeprecatedProgram(context.Background(), customerId, productId, programId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -128,7 +128,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService ListDeprecatedClips", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService ListDeprecatedClips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -137,7 +137,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var programId string
 		var vodId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.ListDeprecatedClips(context.Background(), customerId, productId, programId, vodId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.ListDeprecatedClips(context.Background(), customerId, productId, programId, vodId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -145,7 +145,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test DeprecatedLive2VODApiService ListDeprecatedVods", func(t *testing.T) {
+	t.Run("Test DeprecatedLive2VODAPIService ListDeprecatedVods", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -153,7 +153,7 @@ func Test_isp_DeprecatedLive2VODApiService(t *testing.T) {
 		var productId string
 		var programId string
 
-		resp, httpRes, err := apiClient.DeprecatedLive2VODApi.ListDeprecatedVods(context.Background(), customerId, productId, programId).Execute()
+		resp, httpRes, err := apiClient.DeprecatedLive2VODAPI.ListDeprecatedVods(context.Background(), customerId, productId, programId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

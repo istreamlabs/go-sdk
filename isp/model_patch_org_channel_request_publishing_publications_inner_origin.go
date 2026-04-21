@@ -19,9 +19,8 @@ var _ MappedNullable = &PatchOrgChannelRequestPublishingPublicationsInnerOrigin{
 // PatchOrgChannelRequestPublishingPublicationsInnerOrigin struct for PatchOrgChannelRequestPublishingPublicationsInnerOrigin
 type PatchOrgChannelRequestPublishingPublicationsInnerOrigin struct {
 	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
-	AlternateManifestDefaults *map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
-	// FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-	FallbackDefaults interface{} `json:"fallback_defaults,omitempty" doc:"FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest."`
+	AlternateManifestDefaults *map[string]OriginManifestDefaults `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
+	FallbackDefaults *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
 	// ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
 	ManifestDefaults interface{} `json:"manifest_defaults,omitempty" doc:"ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest."`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
@@ -47,9 +46,9 @@ func NewPatchOrgChannelRequestPublishingPublicationsInnerOriginWithDefaults() *P
 }
 
 // GetAlternateManifestDefaults returns the AlternateManifestDefaults field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[string]OriginManifestDefaults {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
-		var ret map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+		var ret map[string]OriginManifestDefaults
 		return ret
 	}
 	return *o.AlternateManifestDefaults
@@ -57,7 +56,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetAlternateMa
 
 // GetAlternateManifestDefaultsOk returns a tuple with the AlternateManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetAlternateManifestDefaultsOk() (*map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetAlternateManifestDefaultsOk() (*map[string]OriginManifestDefaults, bool) {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
 		return nil, false
 	}
@@ -73,42 +72,41 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) HasAlternateMa
 	return false
 }
 
-// SetAlternateManifestDefaults gets a reference to the given map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the AlternateManifestDefaults field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) SetAlternateManifestDefaults(v map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
+// SetAlternateManifestDefaults gets a reference to the given map[string]OriginManifestDefaults and assigns it to the AlternateManifestDefaults field.
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) SetAlternateManifestDefaults(v map[string]OriginManifestDefaults) {
 	o.AlternateManifestDefaults = &v
 }
 
-// GetFallbackDefaults returns the FallbackDefaults field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetFallbackDefaults() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetFallbackDefaults returns the FallbackDefaults field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetFallbackDefaults() PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults {
+	if o == nil || IsNil(o.FallbackDefaults) {
+		var ret PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults
 		return ret
 	}
-	return o.FallbackDefaults
+	return *o.FallbackDefaults
 }
 
 // GetFallbackDefaultsOk returns a tuple with the FallbackDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetFallbackDefaultsOk() (*interface{}, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) GetFallbackDefaultsOk() (*PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults, bool) {
 	if o == nil || IsNil(o.FallbackDefaults) {
 		return nil, false
 	}
-	return &o.FallbackDefaults, true
+	return o.FallbackDefaults, true
 }
 
 // HasFallbackDefaults returns a boolean if a field has been set.
 func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) HasFallbackDefaults() bool {
-	if o != nil && IsNil(o.FallbackDefaults) {
+	if o != nil && !IsNil(o.FallbackDefaults) {
 		return true
 	}
 
 	return false
 }
 
-// SetFallbackDefaults gets a reference to the given interface{} and assigns it to the FallbackDefaults field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) SetFallbackDefaults(v interface{}) {
-	o.FallbackDefaults = v
+// SetFallbackDefaults gets a reference to the given PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults and assigns it to the FallbackDefaults field.
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOrigin) SetFallbackDefaults(v PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) {
+	o.FallbackDefaults = &v
 }
 
 // GetManifestDefaults returns the ManifestDefaults field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -221,7 +219,7 @@ func (o PatchOrgChannelRequestPublishingPublicationsInnerOrigin) ToMap() (map[st
 	if !IsNil(o.AlternateManifestDefaults) {
 		toSerialize["alternate_manifest_defaults"] = o.AlternateManifestDefaults
 	}
-	if o.FallbackDefaults != nil {
+	if !IsNil(o.FallbackDefaults) {
 		toSerialize["fallback_defaults"] = o.FallbackDefaults
 	}
 	if o.ManifestDefaults != nil {
@@ -271,5 +269,4 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOrigin) Unmars
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

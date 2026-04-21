@@ -122,4 +122,3 @@ func (v *NullablePutChannelRequestBodySignalingSegmentSettingsInnerTierFilter) U
 	return json.Unmarshal(src, &v.value)
 }
 
-

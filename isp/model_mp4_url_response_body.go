@@ -151,4 +151,3 @@ func (v *NullableMP4URLResponseBody) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

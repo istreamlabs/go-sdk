@@ -197,4 +197,3 @@ func (v *NullablePatchOrgChannelRequestSignalingBlackoutSettingsSlatesInner) Unm
 	return json.Unmarshal(src, &v.value)
 }
 
-

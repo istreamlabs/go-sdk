@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing ChannelsApiService
+Testing ChannelsAPIService
 
 */
 
@@ -17,16 +17,16 @@ import (
 	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
-func Test_isp_ChannelsApiService(t *testing.T) {
+func Test_isp_ChannelsAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ChannelsApiService ListChannels", func(t *testing.T) {
+	t.Run("Test ChannelsAPIService ListChannels", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.ChannelsApi.ListChannels(context.Background()).Execute()
+		resp, httpRes, err := apiClient.ChannelsAPI.ListChannels(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

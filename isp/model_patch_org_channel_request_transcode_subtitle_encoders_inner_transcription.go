@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscripti
 	return json.Unmarshal(src, &v.value)
 }
 
-

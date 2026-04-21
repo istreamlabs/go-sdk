@@ -234,4 +234,3 @@ func (v *NullablePatchOrgChannelRequestPublishingClosedCaptionStreamsInner) Unma
 	return json.Unmarshal(src, &v.value)
 }
 
-

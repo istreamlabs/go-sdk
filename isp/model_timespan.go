@@ -171,4 +171,3 @@ func (v *NullableTimespan) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

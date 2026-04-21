@@ -276,4 +276,3 @@ func (v *NullableScte35Marker) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

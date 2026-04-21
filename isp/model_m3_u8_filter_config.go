@@ -117,4 +117,3 @@ func (v *NullableM3U8FilterConfig) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

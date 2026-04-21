@@ -20,7 +20,7 @@ import (
 )
 
 
-type TranscoderTelemetryApi interface {
+type TranscoderTelemetryAPI interface {
 
 	/*
 	GetChannelCostReport Get Channel Cost Report
@@ -100,12 +100,12 @@ type TranscoderTelemetryApi interface {
 	ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error)
 }
 
-// TranscoderTelemetryApiService TranscoderTelemetryApi service
-type TranscoderTelemetryApiService service
+// TranscoderTelemetryAPIService TranscoderTelemetryAPI service
+type TranscoderTelemetryAPIService service
 
 type ApiGetChannelCostReportRequest struct {
 	ctx context.Context
-	ApiService TranscoderTelemetryApi
+	ApiService TranscoderTelemetryAPI
 	org string
 	channelId string
 	from *time.Time
@@ -138,7 +138,7 @@ Returns a Cost Report for a channel.
  @param channelId Unique channel identifier
  @return ApiGetChannelCostReportRequest
 */
-func (a *TranscoderTelemetryApiService) GetChannelCostReport(ctx context.Context, org string, channelId string) ApiGetChannelCostReportRequest {
+func (a *TranscoderTelemetryAPIService) GetChannelCostReport(ctx context.Context, org string, channelId string) ApiGetChannelCostReportRequest {
 	return ApiGetChannelCostReportRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -149,7 +149,7 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReport(ctx context.Context
 
 // Execute executes the request
 //  @return GetChannelCostReportResponseBody
-func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*GetChannelCostReportResponseBody, *http.Response, error) {
+func (a *TranscoderTelemetryAPIService) GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*GetChannelCostReportResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -157,7 +157,7 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChan
 		localVarReturnValue  *GetChannelCostReportResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.GetChannelCostReport")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.GetChannelCostReport")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -316,7 +316,7 @@ func (a *TranscoderTelemetryApiService) GetChannelCostReportExecute(r ApiGetChan
 
 type ApiListContentSegmentHistoryRequest struct {
 	ctx context.Context
-	ApiService TranscoderTelemetryApi
+	ApiService TranscoderTelemetryAPI
 	org string
 	channelId string
 	from *time.Time
@@ -370,7 +370,7 @@ Returns content segment history for a channel.
  @param channelId Unique channel identifier
  @return ApiListContentSegmentHistoryRequest
 */
-func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest {
+func (a *TranscoderTelemetryAPIService) ListContentSegmentHistory(ctx context.Context, org string, channelId string) ApiListContentSegmentHistoryRequest {
 	return ApiListContentSegmentHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -381,7 +381,7 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistory(ctx context.Co
 
 // Execute executes the request
 //  @return ListContentSegmentHistoryResponseBody
-func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponseBody, *http.Response, error) {
+func (a *TranscoderTelemetryAPIService) ListContentSegmentHistoryExecute(r ApiListContentSegmentHistoryRequest) (*ListContentSegmentHistoryResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -389,7 +389,7 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiLi
 		localVarReturnValue  *ListContentSegmentHistoryResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListContentSegmentHistory")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.ListContentSegmentHistory")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -557,7 +557,7 @@ func (a *TranscoderTelemetryApiService) ListContentSegmentHistoryExecute(r ApiLi
 
 type ApiListOrganizationCostReportsRequest struct {
 	ctx context.Context
-	ApiService TranscoderTelemetryApi
+	ApiService TranscoderTelemetryAPI
 	org string
 	from *time.Time
 	to *time.Time
@@ -602,7 +602,7 @@ Returns Cost Reports for channels in an organization.
  @param org Organization name
  @return ApiListOrganizationCostReportsRequest
 */
-func (a *TranscoderTelemetryApiService) ListOrganizationCostReports(ctx context.Context, org string) ApiListOrganizationCostReportsRequest {
+func (a *TranscoderTelemetryAPIService) ListOrganizationCostReports(ctx context.Context, org string) ApiListOrganizationCostReportsRequest {
 	return ApiListOrganizationCostReportsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -612,7 +612,7 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReports(ctx context.
 
 // Execute executes the request
 //  @return []ChannelCostReport
-func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) ([]ChannelCostReport, *http.Response, error) {
+func (a *TranscoderTelemetryAPIService) ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) ([]ChannelCostReport, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -620,7 +620,7 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r Api
 		localVarReturnValue  []ChannelCostReport
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListOrganizationCostReports")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.ListOrganizationCostReports")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -781,7 +781,7 @@ func (a *TranscoderTelemetryApiService) ListOrganizationCostReportsExecute(r Api
 
 type ApiListRawScteHistoryRequest struct {
 	ctx context.Context
-	ApiService TranscoderTelemetryApi
+	ApiService TranscoderTelemetryAPI
 	from *time.Time
 }
 
@@ -803,7 +803,7 @@ Returns the history of out-of-band SCTE-35 messages received by the transcoder f
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListRawScteHistoryRequest
 */
-func (a *TranscoderTelemetryApiService) ListRawScteHistory(ctx context.Context) ApiListRawScteHistoryRequest {
+func (a *TranscoderTelemetryAPIService) ListRawScteHistory(ctx context.Context) ApiListRawScteHistoryRequest {
 	return ApiListRawScteHistoryRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -812,7 +812,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistory(ctx context.Context) 
 
 // Execute executes the request
 //  @return ListRawSCTEHistoryResponseBody
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponseBody, *http.Response, error) {
+func (a *TranscoderTelemetryAPIService) ListRawScteHistoryExecute(r ApiListRawScteHistoryRequest) (*ListRawSCTEHistoryResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -820,7 +820,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawSc
 		localVarReturnValue  *ListRawSCTEHistoryResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListRawScteHistory")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.ListRawScteHistory")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -971,7 +971,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryExecute(r ApiListRawSc
 
 type ApiListRawScteHistoryByChannelRequest struct {
 	ctx context.Context
-	ApiService TranscoderTelemetryApi
+	ApiService TranscoderTelemetryAPI
 	org string
 	channelId string
 	from *time.Time
@@ -997,7 +997,7 @@ Returns the history of out-of-band SCTE-35 messages received by the transcoder f
  @param channelId Unique channel identifier
  @return ApiListRawScteHistoryByChannelRequest
 */
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannel(ctx context.Context, org string, channelId string) ApiListRawScteHistoryByChannelRequest {
+func (a *TranscoderTelemetryAPIService) ListRawScteHistoryByChannel(ctx context.Context, org string, channelId string) ApiListRawScteHistoryByChannelRequest {
 	return ApiListRawScteHistoryByChannelRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -1008,7 +1008,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannel(ctx context.
 
 // Execute executes the request
 //  @return ListRawSCTEHistoryByChannelResponseBody
-func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error) {
+func (a *TranscoderTelemetryAPIService) ListRawScteHistoryByChannelExecute(r ApiListRawScteHistoryByChannelRequest) (*ListRawSCTEHistoryByChannelResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -1016,7 +1016,7 @@ func (a *TranscoderTelemetryApiService) ListRawScteHistoryByChannelExecute(r Api
 		localVarReturnValue  *ListRawSCTEHistoryByChannelResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryApiService.ListRawScteHistoryByChannel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.ListRawScteHistoryByChannel")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

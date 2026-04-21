@@ -123,4 +123,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeOverlaysInner) UnmarshalJSON(src
 	return json.Unmarshal(src, &v.value)
 }
 
-

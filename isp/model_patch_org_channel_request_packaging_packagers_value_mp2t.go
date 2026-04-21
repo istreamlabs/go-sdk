@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueMp2t) UnmarshalJSO
 	return json.Unmarshal(src, &v.value)
 }
 
-

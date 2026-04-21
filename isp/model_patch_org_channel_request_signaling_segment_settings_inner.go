@@ -307,4 +307,3 @@ func (v *NullablePatchOrgChannelRequestSignalingSegmentSettingsInner) UnmarshalJ
 	return json.Unmarshal(src, &v.value)
 }
 
-

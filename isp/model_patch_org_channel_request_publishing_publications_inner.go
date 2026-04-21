@@ -711,4 +711,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInner) UnmarshalJSO
 	return json.Unmarshal(src, &v.value)
 }
 
-

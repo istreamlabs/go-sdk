@@ -123,4 +123,3 @@ func (v *NullableH264Settings) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

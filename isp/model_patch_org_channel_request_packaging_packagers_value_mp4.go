@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueMp4) UnmarshalJSON
 	return json.Unmarshal(src, &v.value)
 }
 
-

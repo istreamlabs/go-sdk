@@ -195,4 +195,3 @@ func (v *NullableGetSourcePreviewTranscoderStatusResponseBody) UnmarshalJSON(src
 	return json.Unmarshal(src, &v.value)
 }
 
-

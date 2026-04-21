@@ -122,4 +122,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) Unmarshal
 	return json.Unmarshal(src, &v.value)
 }
 
-

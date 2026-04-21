@@ -171,4 +171,3 @@ func (v *NullableNotificationConfigByEventType) UnmarshalJSON(src []byte) error 
 	return json.Unmarshal(src, &v.value)
 }
 
-

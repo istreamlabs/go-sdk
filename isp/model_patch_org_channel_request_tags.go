@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestTags) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

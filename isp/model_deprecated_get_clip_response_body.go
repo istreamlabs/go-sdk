@@ -348,4 +348,3 @@ func (v *NullableDeprecatedGetClipResponseBody) UnmarshalJSON(src []byte) error 
 	return json.Unmarshal(src, &v.value)
 }
 
-

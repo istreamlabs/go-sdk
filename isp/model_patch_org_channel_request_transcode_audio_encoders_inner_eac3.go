@@ -308,4 +308,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeAudioEncodersInnerEac3) Unmarsha
 	return json.Unmarshal(src, &v.value)
 }
 
-

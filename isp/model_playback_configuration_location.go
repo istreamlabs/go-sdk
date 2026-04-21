@@ -308,4 +308,3 @@ func (v *NullablePlaybackConfigurationLocation) UnmarshalJSON(src []byte) error 
 	return json.Unmarshal(src, &v.value)
 }
 
-

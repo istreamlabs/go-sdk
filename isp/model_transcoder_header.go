@@ -122,4 +122,3 @@ func (v *NullableTranscoderHeader) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

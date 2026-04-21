@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing Live2VODForOrganizationApiService
+Testing Live2VODForOrganizationAPIService
 
 */
 
@@ -17,12 +17,12 @@ import (
 	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
-func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
+func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test Live2VODForOrganizationApiService CollapseVod", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService CollapseVod", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -30,7 +30,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var vodId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.CollapseVod(context.Background(), org, channelId, vodId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.CollapseVod(context.Background(), org, channelId, vodId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -38,40 +38,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgClipManifests", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-		var vodId string
-		var clipId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgClipManifests(context.Background(), org, channelId, vodId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService GetOrgClipPlayurl", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-		var clipId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgClipPlayurl(context.Background(), org, channelId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService GetOrgMp4Url", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgClipManifests", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -80,7 +47,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgMp4Url(context.Background(), org, channelId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgClipManifests(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -88,14 +55,47 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgProduct", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgClipPlayurl", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgClipPlayurl(context.Background(), org, channelId, clipId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgMp4Url", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var vodId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgMp4Url(context.Background(), org, channelId, vodId, clipId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgProduct", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var productId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgProduct(context.Background(), org, productId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgProduct(context.Background(), org, productId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -103,14 +103,14 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgProductConfig", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgProductConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var productId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgProductConfig(context.Background(), org, productId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgProductConfig(context.Background(), org, productId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -118,14 +118,14 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgProgramTasks", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgProgramTasks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgProgramTasks(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgProgramTasks(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -133,7 +133,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgTask", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgTask", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -141,7 +141,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var taskId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgTask(context.Background(), org, channelId, taskId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgTask(context.Background(), org, channelId, taskId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -149,7 +149,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgVod", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgVod", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -157,7 +157,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var vodId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgVod(context.Background(), org, channelId, vodId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgVod(context.Background(), org, channelId, vodId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -165,24 +165,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService GetOrgVodClipProgramTime", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-		var vodId string
-		var clipId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgVodClipProgramTime(context.Background(), org, channelId, vodId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService GetOrgVodClipScte35Markers", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgVodClipProgramTime", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -191,7 +174,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.GetOrgVodClipScte35Markers(context.Background(), org, channelId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgVodClipProgramTime(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -199,11 +182,16 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListFailedTasks", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService GetOrgVodClipScte35Markers", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListFailedTasks(context.Background()).Execute()
+		var org string
+		var channelId string
+		var vodId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.GetOrgVodClipScte35Markers(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -211,14 +199,26 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListOrgClips", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListFailedTasks", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListFailedTasks(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService ListOrgClips", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgClips(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListOrgClips(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -226,7 +226,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListOrgClipsVod", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListOrgClipsVod", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -234,7 +234,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var vodId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgClipsVod(context.Background(), org, channelId, vodId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListOrgClipsVod(context.Background(), org, channelId, vodId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -242,13 +242,13 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListOrgProducts", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListOrgProducts", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgProducts(context.Background(), org).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListOrgProducts(context.Background(), org).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -256,14 +256,14 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListOrgProductsPrograms", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListOrgProductsPrograms", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var productId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgProductsPrograms(context.Background(), org, productId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListOrgProductsPrograms(context.Background(), org, productId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -271,14 +271,14 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListOrgVods", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListOrgVods", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListOrgVods(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListOrgVods(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -286,11 +286,11 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService ListTasks", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService ListTasks", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.ListTasks(context.Background()).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListTasks(context.Background()).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -298,70 +298,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PostCopyMp4", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-		var vodId string
-		var clipId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostCopyMp4(context.Background(), org, channelId, vodId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService PostOrgChannelSyndication", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgChannelSyndication(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService PostOrgClip", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgClip(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService PostOrgClipArchive", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-		var clipId string
-
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgClipArchive(context.Background(), org, channelId, clipId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test Live2VODForOrganizationApiService PostOrgMakeMp4", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PostCopyMp4", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -370,7 +307,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var vodId string
 		var clipId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgMakeMp4(context.Background(), org, channelId, vodId, clipId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostCopyMp4(context.Background(), org, channelId, vodId, clipId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -378,21 +315,84 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PostOrgProductConfig", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgChannelSyndication", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgChannelSyndication(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgClip", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgClip(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgClipArchive", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgClipArchive(context.Background(), org, channelId, clipId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgMakeMp4", func(t *testing.T) {
+
+		t.Skip("skip test")  // remove to run test
+
+		var org string
+		var channelId string
+		var vodId string
+		var clipId string
+
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgMakeMp4(context.Background(), org, channelId, vodId, clipId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgProductConfig", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var productId string
 
-		httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgProductConfig(context.Background(), org, productId).Execute()
+		httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgProductConfig(context.Background(), org, productId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PostOrgTaskCancel", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgTaskCancel", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -400,7 +400,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var taskId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgTaskCancel(context.Background(), org, channelId, taskId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgTaskCancel(context.Background(), org, channelId, taskId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -408,7 +408,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PostOrgTaskRetry", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgTaskRetry", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -416,7 +416,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var taskId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgTaskRetry(context.Background(), org, channelId, taskId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgTaskRetry(context.Background(), org, channelId, taskId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -424,7 +424,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PostOrgVodClip", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PostOrgVodClip", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
@@ -432,7 +432,7 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 		var channelId string
 		var vodId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PostOrgVodClip(context.Background(), org, channelId, vodId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PostOrgVodClip(context.Background(), org, channelId, vodId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -440,14 +440,14 @@ func Test_isp_Live2VODForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test Live2VODForOrganizationApiService PutOrgChannelFer", func(t *testing.T) {
+	t.Run("Test Live2VODForOrganizationAPIService PutOrgChannelFer", func(t *testing.T) {
 
 		t.Skip("skip test")  // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.Live2VODForOrganizationApi.PutOrgChannelFer(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.PutOrgChannelFer(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

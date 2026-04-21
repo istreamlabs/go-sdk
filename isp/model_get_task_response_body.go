@@ -553,4 +553,3 @@ func (v *NullableGetTaskResponseBody) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

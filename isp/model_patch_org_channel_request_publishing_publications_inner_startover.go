@@ -158,4 +158,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerStartover) Unm
 	return json.Unmarshal(src, &v.value)
 }
 
-

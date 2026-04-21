@@ -18,8 +18,8 @@ var _ MappedNullable = &HdrSettingsHdr10Format{}
 
 // HdrSettingsHdr10Format struct for HdrSettingsHdr10Format
 type HdrSettingsHdr10Format struct {
-	Clli *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli `json:"clli,omitempty"`
-	Mdcv *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv `json:"mdcv,omitempty"`
+	Clli *HdrSettingsContentLightLevelInfo `json:"clli,omitempty"`
+	Mdcv *HdrSettingsMasteringDisplayColorVolume `json:"mdcv,omitempty"`
 }
 
 // NewHdrSettingsHdr10Format instantiates a new HdrSettingsHdr10Format object
@@ -40,9 +40,9 @@ func NewHdrSettingsHdr10FormatWithDefaults() *HdrSettingsHdr10Format {
 }
 
 // GetClli returns the Clli field value if set, zero value otherwise.
-func (o *HdrSettingsHdr10Format) GetClli() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli {
+func (o *HdrSettingsHdr10Format) GetClli() HdrSettingsContentLightLevelInfo {
 	if o == nil || IsNil(o.Clli) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli
+		var ret HdrSettingsContentLightLevelInfo
 		return ret
 	}
 	return *o.Clli
@@ -50,7 +50,7 @@ func (o *HdrSettingsHdr10Format) GetClli() PatchOrgChannelRequestTranscodeVideoE
 
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsHdr10Format) GetClliOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli, bool) {
+func (o *HdrSettingsHdr10Format) GetClliOk() (*HdrSettingsContentLightLevelInfo, bool) {
 	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
@@ -66,15 +66,15 @@ func (o *HdrSettingsHdr10Format) HasClli() bool {
 	return false
 }
 
-// SetClli gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli and assigns it to the Clli field.
-func (o *HdrSettingsHdr10Format) SetClli(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Clli) {
+// SetClli gets a reference to the given HdrSettingsContentLightLevelInfo and assigns it to the Clli field.
+func (o *HdrSettingsHdr10Format) SetClli(v HdrSettingsContentLightLevelInfo) {
 	o.Clli = &v
 }
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
-func (o *HdrSettingsHdr10Format) GetMdcv() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv {
+func (o *HdrSettingsHdr10Format) GetMdcv() HdrSettingsMasteringDisplayColorVolume {
 	if o == nil || IsNil(o.Mdcv) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv
+		var ret HdrSettingsMasteringDisplayColorVolume
 		return ret
 	}
 	return *o.Mdcv
@@ -82,7 +82,7 @@ func (o *HdrSettingsHdr10Format) GetMdcv() PatchOrgChannelRequestTranscodeVideoE
 
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsHdr10Format) GetMdcvOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv, bool) {
+func (o *HdrSettingsHdr10Format) GetMdcvOk() (*HdrSettingsMasteringDisplayColorVolume, bool) {
 	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *HdrSettingsHdr10Format) HasMdcv() bool {
 	return false
 }
 
-// SetMdcv gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv and assigns it to the Mdcv field.
-func (o *HdrSettingsHdr10Format) SetMdcv(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10Mdcv) {
+// SetMdcv gets a reference to the given HdrSettingsMasteringDisplayColorVolume and assigns it to the Mdcv field.
+func (o *HdrSettingsHdr10Format) SetMdcv(v HdrSettingsMasteringDisplayColorVolume) {
 	o.Mdcv = &v
 }
 
@@ -157,5 +157,4 @@ func (v *NullableHdrSettingsHdr10Format) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

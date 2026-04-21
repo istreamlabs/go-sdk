@@ -197,4 +197,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionK
 	return json.Unmarshal(src, &v.value)
 }
 
-

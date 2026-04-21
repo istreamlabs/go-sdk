@@ -194,4 +194,3 @@ func (v *NullableH265SettingsHdrDolbyVision) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

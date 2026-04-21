@@ -19,7 +19,7 @@ var _ MappedNullable = &SimpleProvider{}
 // SimpleProvider struct for SimpleProvider
 type SimpleProvider struct {
 	// Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
-	PublishPoints []PublishPointHTTP `json:"publish_points,omitempty" doc:"Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published."`
+	PublishPoints []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner `json:"publish_points,omitempty" doc:"Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published."`
 	// Indicates which publish points must succeed for segment publishing to use the keys.
 	RequirePublish *string `json:"require_publish,omitempty" enum:"ANY,ALL" doc:"Indicates which publish points must succeed for segment publishing to use the keys."`
 }
@@ -42,9 +42,9 @@ func NewSimpleProviderWithDefaults() *SimpleProvider {
 }
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SimpleProvider) GetPublishPoints() []PublishPointHTTP {
+func (o *SimpleProvider) GetPublishPoints() []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
 	if o == nil {
-		var ret []PublishPointHTTP
+		var ret []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner
 		return ret
 	}
 	return o.PublishPoints
@@ -53,7 +53,7 @@ func (o *SimpleProvider) GetPublishPoints() []PublishPointHTTP {
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SimpleProvider) GetPublishPointsOk() ([]PublishPointHTTP, bool) {
+func (o *SimpleProvider) GetPublishPointsOk() ([]PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner, bool) {
 	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *SimpleProvider) HasPublishPoints() bool {
 	return false
 }
 
-// SetPublishPoints gets a reference to the given []PublishPointHTTP and assigns it to the PublishPoints field.
-func (o *SimpleProvider) SetPublishPoints(v []PublishPointHTTP) {
+// SetPublishPoints gets a reference to the given []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner and assigns it to the PublishPoints field.
+func (o *SimpleProvider) SetPublishPoints(v []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) {
 	o.PublishPoints = v
 }
 
@@ -160,5 +160,4 @@ func (v *NullableSimpleProvider) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

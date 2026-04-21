@@ -308,4 +308,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerHlsPartialPres
 	return json.Unmarshal(src, &v.value)
 }
 
-

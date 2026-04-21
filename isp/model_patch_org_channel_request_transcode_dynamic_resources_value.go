@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeDynamicResourcesValue) Unmarshal
 	return json.Unmarshal(src, &v.value)
 }
 
-

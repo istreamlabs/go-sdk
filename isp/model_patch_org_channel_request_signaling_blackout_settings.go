@@ -234,4 +234,3 @@ func (v *NullablePatchOrgChannelRequestSignalingBlackoutSettings) UnmarshalJSON(
 	return json.Unmarshal(src, &v.value)
 }
 
-

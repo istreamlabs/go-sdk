@@ -38,7 +38,7 @@ type PublishingPublicationsInner struct {
 	// Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for.
 	PackagerId *string `json:"packager_id,omitempty" doc:"Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for."`
 	// Publish points specify where to output.
-	PublishPoints []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner `json:"publish_points,omitempty" doc:"Publish points specify where to output."`
+	PublishPoints []PublicationPublishPointsInner `json:"publish_points,omitempty" doc:"Publish points specify where to output."`
 	// When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication.
 	RedundantPublishing *bool `json:"redundant_publishing,omitempty" doc:"When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication."`
 	Startover *PatchOrgChannelRequestPublishingPublicationsInnerStartover `json:"startover,omitempty"`
@@ -424,9 +424,9 @@ func (o *PublishingPublicationsInner) SetPackagerId(v string) {
 }
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublishingPublicationsInner) GetPublishPoints() []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner {
+func (o *PublishingPublicationsInner) GetPublishPoints() []PublicationPublishPointsInner {
 	if o == nil {
-		var ret []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner
+		var ret []PublicationPublishPointsInner
 		return ret
 	}
 	return o.PublishPoints
@@ -435,7 +435,7 @@ func (o *PublishingPublicationsInner) GetPublishPoints() []PatchOrgChannelReques
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublishingPublicationsInner) GetPublishPointsOk() ([]PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner, bool) {
+func (o *PublishingPublicationsInner) GetPublishPointsOk() ([]PublicationPublishPointsInner, bool) {
 	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
@@ -451,8 +451,8 @@ func (o *PublishingPublicationsInner) HasPublishPoints() bool {
 	return false
 }
 
-// SetPublishPoints gets a reference to the given []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner and assigns it to the PublishPoints field.
-func (o *PublishingPublicationsInner) SetPublishPoints(v []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) {
+// SetPublishPoints gets a reference to the given []PublicationPublishPointsInner and assigns it to the PublishPoints field.
+func (o *PublishingPublicationsInner) SetPublishPoints(v []PublicationPublishPointsInner) {
 	o.PublishPoints = v
 }
 
@@ -717,5 +717,4 @@ func (v *NullablePublishingPublicationsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
 

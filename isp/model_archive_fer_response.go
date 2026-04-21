@@ -188,4 +188,3 @@ func (v *NullableArchiveFERResponse) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

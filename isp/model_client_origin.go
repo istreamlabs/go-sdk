@@ -140,4 +140,3 @@ func (v *NullableClientOrigin) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

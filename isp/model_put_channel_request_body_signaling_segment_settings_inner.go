@@ -308,4 +308,3 @@ func (v *NullablePutChannelRequestBodySignalingSegmentSettingsInner) UnmarshalJS
 	return json.Unmarshal(src, &v.value)
 }
 
-

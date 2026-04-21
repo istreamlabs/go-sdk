@@ -151,4 +151,3 @@ func (v *NullableScte35) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

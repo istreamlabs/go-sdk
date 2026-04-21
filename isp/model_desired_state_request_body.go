@@ -151,4 +151,3 @@ func (v *NullableDesiredStateRequestBody) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

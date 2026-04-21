@@ -256,4 +256,3 @@ func (v *NullablePostClipResponseBody) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

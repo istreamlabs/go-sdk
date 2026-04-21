@@ -342,4 +342,3 @@ func (v *NullableSubtitleEncoder) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

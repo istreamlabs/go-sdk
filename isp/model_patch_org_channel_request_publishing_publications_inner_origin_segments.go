@@ -122,4 +122,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginSegments
 	return json.Unmarshal(src, &v.value)
 }
 
-

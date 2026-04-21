@@ -380,4 +380,3 @@ func (v *NullablePutChannelRequestBodyTranscodeVideoEncodersInner) UnmarshalJSON
 	return json.Unmarshal(src, &v.value)
 }
 
-

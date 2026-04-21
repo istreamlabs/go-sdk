@@ -197,4 +197,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSegmenter) UnmarshalJSON(src []b
 	return json.Unmarshal(src, &v.value)
 }
 
-

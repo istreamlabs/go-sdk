@@ -199,4 +199,3 @@ func (v *NullablePutChannelRequestBodySignalingBlackoutSettingsSlatesInner) Unma
 	return json.Unmarshal(src, &v.value)
 }
 
-

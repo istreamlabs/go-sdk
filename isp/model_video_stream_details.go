@@ -302,4 +302,3 @@ func (v *NullableVideoStreamDetails) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

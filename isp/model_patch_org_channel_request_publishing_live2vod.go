@@ -197,4 +197,3 @@ func (v *NullablePatchOrgChannelRequestPublishingLive2vod) UnmarshalJSON(src []b
 	return json.Unmarshal(src, &v.value)
 }
 
-

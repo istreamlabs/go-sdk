@@ -217,4 +217,3 @@ func (v *NullableJsonPatchOp) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

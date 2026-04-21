@@ -18,7 +18,7 @@ import (
 )
 
 
-type OrganizationsApi interface {
+type OrganizationsAPI interface {
 
 	/*
 	ListOrgs List Organizations
@@ -35,12 +35,12 @@ type OrganizationsApi interface {
 	ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error)
 }
 
-// OrganizationsApiService OrganizationsApi service
-type OrganizationsApiService service
+// OrganizationsAPIService OrganizationsAPI service
+type OrganizationsAPIService service
 
 type ApiListOrgsRequest struct {
 	ctx context.Context
-	ApiService OrganizationsApi
+	ApiService OrganizationsAPI
 }
 
 func (r ApiListOrgsRequest) Execute() ([]OrgSummary, *http.Response, error) {
@@ -55,7 +55,7 @@ Get a list of organizations that you can access.
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return ApiListOrgsRequest
 */
-func (a *OrganizationsApiService) ListOrgs(ctx context.Context) ApiListOrgsRequest {
+func (a *OrganizationsAPIService) ListOrgs(ctx context.Context) ApiListOrgsRequest {
 	return ApiListOrgsRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -64,7 +64,7 @@ func (a *OrganizationsApiService) ListOrgs(ctx context.Context) ApiListOrgsReque
 
 // Execute executes the request
 //  @return []OrgSummary
-func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error) {
+func (a *OrganizationsAPIService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -72,7 +72,7 @@ func (a *OrganizationsApiService) ListOrgsExecute(r ApiListOrgsRequest) ([]OrgSu
 		localVarReturnValue  []OrgSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.ListOrgs")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsAPIService.ListOrgs")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

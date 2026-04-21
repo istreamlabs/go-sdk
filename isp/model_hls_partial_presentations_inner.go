@@ -313,4 +313,3 @@ func (v *NullableHLSPartialPresentationsInner) UnmarshalJSON(src []byte) error {
 	return json.Unmarshal(src, &v.value)
 }
 
-

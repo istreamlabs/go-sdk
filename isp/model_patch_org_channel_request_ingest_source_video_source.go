@@ -160,4 +160,3 @@ func (v *NullablePatchOrgChannelRequestIngestSourceVideoSource) UnmarshalJSON(sr
 	return json.Unmarshal(src, &v.value)
 }
 
-

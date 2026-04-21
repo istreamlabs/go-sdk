@@ -19,7 +19,7 @@ import (
 )
 
 
-type AvailableSourcesApi interface {
+type AvailableSourcesAPI interface {
 
 	/*
 	GetOrgSource Get Source
@@ -53,12 +53,12 @@ type AvailableSourcesApi interface {
 	ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]SourceSummary, *http.Response, error)
 }
 
-// AvailableSourcesApiService AvailableSourcesApi service
-type AvailableSourcesApiService service
+// AvailableSourcesAPIService AvailableSourcesAPI service
+type AvailableSourcesAPIService service
 
 type ApiGetOrgSourceRequest struct {
 	ctx context.Context
-	ApiService AvailableSourcesApi
+	ApiService AvailableSourcesAPI
 	org string
 	sourceId string
 }
@@ -77,7 +77,7 @@ Get a source's configuration
  @param sourceId Unique source identifier
  @return ApiGetOrgSourceRequest
 */
-func (a *AvailableSourcesApiService) GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest {
+func (a *AvailableSourcesAPIService) GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest {
 	return ApiGetOrgSourceRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -88,7 +88,7 @@ func (a *AvailableSourcesApiService) GetOrgSource(ctx context.Context, org strin
 
 // Execute executes the request
 //  @return SourceDetail
-func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error) {
+func (a *AvailableSourcesAPIService) GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -96,7 +96,7 @@ func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceReques
 		localVarReturnValue  *SourceDetail
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesApiService.GetOrgSource")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesAPIService.GetOrgSource")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -236,7 +236,7 @@ func (a *AvailableSourcesApiService) GetOrgSourceExecute(r ApiGetOrgSourceReques
 
 type ApiListOrgSourcesRequest struct {
 	ctx context.Context
-	ApiService AvailableSourcesApi
+	ApiService AvailableSourcesAPI
 	org string
 	cursor *string
 	pageSize *int32
@@ -267,7 +267,7 @@ Get a list of sources that are used to create channels.
  @param org Organization name
  @return ApiListOrgSourcesRequest
 */
-func (a *AvailableSourcesApiService) ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest {
+func (a *AvailableSourcesAPIService) ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest {
 	return ApiListOrgSourcesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -277,7 +277,7 @@ func (a *AvailableSourcesApiService) ListOrgSources(ctx context.Context, org str
 
 // Execute executes the request
 //  @return []SourceSummary
-func (a *AvailableSourcesApiService) ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]SourceSummary, *http.Response, error) {
+func (a *AvailableSourcesAPIService) ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]SourceSummary, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -285,7 +285,7 @@ func (a *AvailableSourcesApiService) ListOrgSourcesExecute(r ApiListOrgSourcesRe
 		localVarReturnValue  []SourceSummary
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesApiService.ListOrgSources")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesAPIService.ListOrgSources")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

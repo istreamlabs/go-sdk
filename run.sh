@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GENERATOR_IMAGE="openapitools/openapi-generator-cli:v6.6.0"
+GENERATOR_IMAGE="openapitools/openapi-generator-cli:v7.21.0"
 
 API="${1-isp}"
 ENV="${2-prod}"
@@ -83,10 +83,27 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 # Note: Use POSIX ERE (no \b). Tested with BSD sed (macOS).
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
-# OpenAPI Generator emits PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner
-# for srt_publications[].video_encoders but never generates that model. The spec uses
-# components/schemas/SrtPublicationEncoder (same as audio_encoders).
-sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+# The spec's srt_publications.video_encoders uses an inline schema that is
+# structurally identical to components/schemas/SrtPublicationEncoder (the
+# audio_encoders sibling uses a $ref for the same shape). The generator
+# therefore synthesises a duplicate model. Drop the synthetic file and
+# rewrite references back to the canonical type; wire format is unchanged.
+if [[ "$API" == "isp" ]]; then
+  rm -f ./${API}/model_patch_org_channel_request_publishing_srt_publications_inner_video_encoders_inner.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+fi
+
+# v7.21 templates unconditionally emit `"bytes"` and `"fmt"` imports for some
+# model files that do not actually reference them. Strip any such unused
+# imports before compilation rejects them.
+for f in ./${API}/model_*.go; do
+  if ! grep -qE '\bbytes\.' "$f"; then
+    sed -i.bak -E '/^[[:space:]]*"bytes"[[:space:]]*$/d' "$f"
+  fi
+  if ! grep -qE '\bfmt\.' "$f"; then
+    sed -i.bak -E '/^[[:space:]]*"fmt"[[:space:]]*$/d' "$f"
+  fi
+done
 
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go

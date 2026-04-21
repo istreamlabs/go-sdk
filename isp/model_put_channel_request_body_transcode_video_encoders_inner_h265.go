@@ -159,4 +159,3 @@ func (v *NullablePutChannelRequestBodyTranscodeVideoEncodersInnerH265) Unmarshal
 	return json.Unmarshal(src, &v.value)
 }
 
-

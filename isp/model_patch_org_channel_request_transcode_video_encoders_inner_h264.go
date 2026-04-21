@@ -123,4 +123,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH264) Unmarsha
 	return json.Unmarshal(src, &v.value)
 }
 
-

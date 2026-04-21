@@ -155,4 +155,3 @@ func (v *NullableGetScte35MarkerByClipIDResponseBody) UnmarshalJSON(src []byte) 
 	return json.Unmarshal(src, &v.value)
 }
 
-

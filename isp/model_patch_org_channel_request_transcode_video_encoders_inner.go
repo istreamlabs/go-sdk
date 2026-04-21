@@ -380,4 +380,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInner) UnmarshalJSO
 	return json.Unmarshal(src, &v.value)
 }
 
-

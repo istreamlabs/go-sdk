@@ -197,4 +197,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeThumbnailEncodersInner) Unmarsha
 	return json.Unmarshal(src, &v.value)
 }
 
-

@@ -18,7 +18,7 @@ import (
 )
 
 
-type LifecycleApi interface {
+type LifecycleAPI interface {
 
 	/*
 	CalculateLifecycleState Calculates channel lifecycle state
@@ -85,12 +85,12 @@ type LifecycleApi interface {
 	PutLifecycleComponentStateExecute(r ApiPutLifecycleComponentStateRequest) (*http.Response, error)
 }
 
-// LifecycleApiService LifecycleApi service
-type LifecycleApiService service
+// LifecycleAPIService LifecycleAPI service
+type LifecycleAPIService service
 
 type ApiCalculateLifecycleStateRequest struct {
 	ctx context.Context
-	ApiService LifecycleApi
+	ApiService LifecycleAPI
 	org string
 	channelId string
 }
@@ -109,7 +109,7 @@ Calculates the current lifecycle state of the given channel. The Channel Lifecyc
  @param channelId The name of the channel.
  @return ApiCalculateLifecycleStateRequest
 */
-func (a *LifecycleApiService) CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest {
+func (a *LifecycleAPIService) CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest {
 	return ApiCalculateLifecycleStateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -120,7 +120,7 @@ func (a *LifecycleApiService) CalculateLifecycleState(ctx context.Context, org s
 
 // Execute executes the request
 //  @return GetStateResponseBody
-func (a *LifecycleApiService) CalculateLifecycleStateExecute(r ApiCalculateLifecycleStateRequest) (*GetStateResponseBody, *http.Response, error) {
+func (a *LifecycleAPIService) CalculateLifecycleStateExecute(r ApiCalculateLifecycleStateRequest) (*GetStateResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -128,7 +128,7 @@ func (a *LifecycleApiService) CalculateLifecycleStateExecute(r ApiCalculateLifec
 		localVarReturnValue  *GetStateResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleApiService.CalculateLifecycleState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.CalculateLifecycleState")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -222,7 +222,7 @@ func (a *LifecycleApiService) CalculateLifecycleStateExecute(r ApiCalculateLifec
 
 type ApiGetLifecycleComponentStateRequest struct {
 	ctx context.Context
-	ApiService LifecycleApi
+	ApiService LifecycleAPI
 	org string
 	channelId string
 	component string
@@ -243,7 +243,7 @@ Retrieve the current state of a component for a given channel.
  @param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
  @return ApiGetLifecycleComponentStateRequest
 */
-func (a *LifecycleApiService) GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest {
+func (a *LifecycleAPIService) GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest {
 	return ApiGetLifecycleComponentStateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -255,7 +255,7 @@ func (a *LifecycleApiService) GetLifecycleComponentState(ctx context.Context, or
 
 // Execute executes the request
 //  @return GetComponentStateResponseBody
-func (a *LifecycleApiService) GetLifecycleComponentStateExecute(r ApiGetLifecycleComponentStateRequest) (*GetComponentStateResponseBody, *http.Response, error) {
+func (a *LifecycleAPIService) GetLifecycleComponentStateExecute(r ApiGetLifecycleComponentStateRequest) (*GetComponentStateResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -263,7 +263,7 @@ func (a *LifecycleApiService) GetLifecycleComponentStateExecute(r ApiGetLifecycl
 		localVarReturnValue  *GetComponentStateResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleApiService.GetLifecycleComponentState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.GetLifecycleComponentState")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -358,7 +358,7 @@ func (a *LifecycleApiService) GetLifecycleComponentStateExecute(r ApiGetLifecycl
 
 type ApiListLifecycleComponentStatesRequest struct {
 	ctx context.Context
-	ApiService LifecycleApi
+	ApiService LifecycleAPI
 	org string
 	channelId string
 }
@@ -377,7 +377,7 @@ List the states of every component for the given channel ID.
  @param channelId The name of the channel.
  @return ApiListLifecycleComponentStatesRequest
 */
-func (a *LifecycleApiService) ListLifecycleComponentStates(ctx context.Context, org string, channelId string) ApiListLifecycleComponentStatesRequest {
+func (a *LifecycleAPIService) ListLifecycleComponentStates(ctx context.Context, org string, channelId string) ApiListLifecycleComponentStatesRequest {
 	return ApiListLifecycleComponentStatesRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -388,7 +388,7 @@ func (a *LifecycleApiService) ListLifecycleComponentStates(ctx context.Context, 
 
 // Execute executes the request
 //  @return ListComponentStatesResponseBody
-func (a *LifecycleApiService) ListLifecycleComponentStatesExecute(r ApiListLifecycleComponentStatesRequest) (*ListComponentStatesResponseBody, *http.Response, error) {
+func (a *LifecycleAPIService) ListLifecycleComponentStatesExecute(r ApiListLifecycleComponentStatesRequest) (*ListComponentStatesResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
@@ -396,7 +396,7 @@ func (a *LifecycleApiService) ListLifecycleComponentStatesExecute(r ApiListLifec
 		localVarReturnValue  *ListComponentStatesResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleApiService.ListLifecycleComponentStates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.ListLifecycleComponentStates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -490,7 +490,7 @@ func (a *LifecycleApiService) ListLifecycleComponentStatesExecute(r ApiListLifec
 
 type ApiPutLifecycleComponentStateRequest struct {
 	ctx context.Context
-	ApiService LifecycleApi
+	ApiService LifecycleAPI
 	channelUrn string
 	component string
 	putComponentBody *PutComponentBody
@@ -515,7 +515,7 @@ Update the state of a component associated with the given channel.
  @param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
  @return ApiPutLifecycleComponentStateRequest
 */
-func (a *LifecycleApiService) PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest {
+func (a *LifecycleAPIService) PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest {
 	return ApiPutLifecycleComponentStateRequest{
 		ApiService: a,
 		ctx: ctx,
@@ -525,14 +525,14 @@ func (a *LifecycleApiService) PutLifecycleComponentState(ctx context.Context, ch
 }
 
 // Execute executes the request
-func (a *LifecycleApiService) PutLifecycleComponentStateExecute(r ApiPutLifecycleComponentStateRequest) (*http.Response, error) {
+func (a *LifecycleAPIService) PutLifecycleComponentStateExecute(r ApiPutLifecycleComponentStateRequest) (*http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleApiService.PutLifecycleComponentState")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.PutLifecycleComponentState")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
