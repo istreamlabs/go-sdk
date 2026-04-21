@@ -18,8 +18,8 @@ var _ MappedNullable = &PatchOrgChannelRequestPublishingPublicationsInnerStartov
 
 // PatchOrgChannelRequestPublishingPublicationsInnerStartover struct for PatchOrgChannelRequestPublishingPublicationsInnerStartover
 type PatchOrgChannelRequestPublishingPublicationsInnerStartover struct {
-	FirstProgramStart *map[string]interface{} `json:"first_program_start,omitempty"`
-	OnAiringId *PatchOrgChannelRequestPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
+	FirstProgramStart *map[string]interface{}                                               `json:"first_program_start,omitempty"`
+	OnAiringId        *PatchOrgChannelRequestPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
 }
 
 // NewPatchOrgChannelRequestPublishingPublicationsInnerStartover instantiates a new PatchOrgChannelRequestPublishingPublicationsInnerStartover object
@@ -104,7 +104,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerStartover) SetOnAiring
 }
 
 func (o PatchOrgChannelRequestPublishingPublicationsInnerStartover) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,4 +157,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerStartover) Unm
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

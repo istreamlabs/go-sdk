@@ -20,11 +20,11 @@ var _ MappedNullable = &ChanneldochumaOrigin{}
 type ChanneldochumaOrigin struct {
 	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
 	AlternateManifestDefaults *map[string]OriginManifestDefaults `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
-	FallbackDefaults *PublicationOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
-	ManifestDefaults *OriginManifestDefaults `json:"manifest_defaults,omitempty"`
+	FallbackDefaults          *PublicationOriginFallbackDefaults `json:"fallback_defaults,omitempty"`
+	ManifestDefaults          *OriginManifestDefaults            `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
-	RetentionMinutes *int32 `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
-	Segments *PatchOrgChannelRequestPublishingPublicationsInnerOriginSegments `json:"segments,omitempty"`
+	RetentionMinutes *int32                                                           `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
+	Segments         *PatchOrgChannelRequestPublishingPublicationsInnerOriginSegments `json:"segments,omitempty"`
 }
 
 // NewChanneldochumaOrigin instantiates a new ChanneldochumaOrigin object
@@ -205,7 +205,7 @@ func (o *ChanneldochumaOrigin) SetSegments(v PatchOrgChannelRequestPublishingPub
 }
 
 func (o ChanneldochumaOrigin) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,4 +267,3 @@ func (v *NullableChanneldochumaOrigin) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

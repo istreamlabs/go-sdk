@@ -174,7 +174,7 @@ func (o *PatchOrgChannelRequestPublishingClosedCaptionStreamsInner) SetName(v st
 }
 
 func (o PatchOrgChannelRequestPublishingClosedCaptionStreamsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -233,4 +233,3 @@ func (v *NullablePatchOrgChannelRequestPublishingClosedCaptionStreamsInner) Unma
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -18,10 +18,10 @@ var _ MappedNullable = &DeprecatedGetClipManifestsBodyItem{}
 
 // DeprecatedGetClipManifestsBodyItem struct for DeprecatedGetClipManifestsBodyItem
 type DeprecatedGetClipManifestsBodyItem struct {
-	CdnURL string `json:"cdnURL"`
-	ManifestID int64 `json:"manifestID" format:"int64"`
-	Path string `json:"path"`
-	Storepath string `json:"storepath"`
+	CdnURL     string `json:"cdnURL"`
+	ManifestID int64  `json:"manifestID" format:"int64"`
+	Path       string `json:"path"`
+	Storepath  string `json:"storepath"`
 }
 
 // NewDeprecatedGetClipManifestsBodyItem instantiates a new DeprecatedGetClipManifestsBodyItem object
@@ -142,7 +142,7 @@ func (o *DeprecatedGetClipManifestsBodyItem) SetStorepath(v string) {
 }
 
 func (o DeprecatedGetClipManifestsBodyItem) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,4 +193,3 @@ func (v *NullableDeprecatedGetClipManifestsBodyItem) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -19,9 +19,9 @@ var _ MappedNullable = &TextOverlayPadding{}
 // TextOverlayPadding struct for TextOverlayPadding
 type TextOverlayPadding struct {
 	Bottom *float32 `json:"bottom,omitempty" format:"float"`
-	Left *float32 `json:"left,omitempty" format:"float"`
-	Right *float32 `json:"right,omitempty" format:"float"`
-	Top *float32 `json:"top,omitempty" format:"float"`
+	Left   *float32 `json:"left,omitempty" format:"float"`
+	Right  *float32 `json:"right,omitempty" format:"float"`
+	Top    *float32 `json:"top,omitempty" format:"float"`
 }
 
 // NewTextOverlayPadding instantiates a new TextOverlayPadding object
@@ -170,7 +170,7 @@ func (o *TextOverlayPadding) SetTop(v float32) {
 }
 
 func (o TextOverlayPadding) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -229,4 +229,3 @@ func (v *NullableTextOverlayPadding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

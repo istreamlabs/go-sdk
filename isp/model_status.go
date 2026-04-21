@@ -19,9 +19,9 @@ var _ MappedNullable = &Status{}
 // Status struct for Status
 type Status struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema             *string             `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	DynamicStateStatus *DynamicStateStatus `json:"dynamic_state_status,omitempty"`
-	IngestStatus *IngestStatus `json:"ingest_status,omitempty"`
+	IngestStatus       *IngestStatus       `json:"ingest_status,omitempty"`
 }
 
 // NewStatus instantiates a new Status object
@@ -138,7 +138,7 @@ func (o *Status) SetIngestStatus(v IngestStatus) {
 }
 
 func (o Status) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,4 +194,3 @@ func (v *NullableStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

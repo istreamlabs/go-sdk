@@ -19,10 +19,10 @@ var _ MappedNullable = &PatchOrgChannelRequestPackagingPackagersValue{}
 // PatchOrgChannelRequestPackagingPackagersValue struct for PatchOrgChannelRequestPackagingPackagersValue
 type PatchOrgChannelRequestPackagingPackagersValue struct {
 	ContentProtection *PatchOrgChannelRequestPackagingPackagersValueContentProtection `json:"content_protection,omitempty"`
-	Mp2t *PatchOrgChannelRequestPackagingPackagersValueMp2t `json:"mp2t,omitempty"`
-	Mp4 *PatchOrgChannelRequestPackagingPackagersValueMp4 `json:"mp4,omitempty"`
-	Ttml *map[string]interface{} `json:"ttml,omitempty"`
-	WebVtt *PatchOrgChannelRequestPackagingPackagersValueWebVtt `json:"web_vtt,omitempty"`
+	Mp2t              *PatchOrgChannelRequestPackagingPackagersValueMp2t              `json:"mp2t,omitempty"`
+	Mp4               *PatchOrgChannelRequestPackagingPackagersValueMp4               `json:"mp4,omitempty"`
+	Ttml              *map[string]interface{}                                         `json:"ttml,omitempty"`
+	WebVtt            *PatchOrgChannelRequestPackagingPackagersValueWebVtt            `json:"web_vtt,omitempty"`
 }
 
 // NewPatchOrgChannelRequestPackagingPackagersValue instantiates a new PatchOrgChannelRequestPackagingPackagersValue object
@@ -203,7 +203,7 @@ func (o *PatchOrgChannelRequestPackagingPackagersValue) SetWebVtt(v PatchOrgChan
 }
 
 func (o PatchOrgChannelRequestPackagingPackagersValue) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,4 +265,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValue) UnmarshalJSON(sr
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

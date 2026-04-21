@@ -18,10 +18,10 @@ var _ MappedNullable = &LinkConfig{}
 
 // LinkConfig struct for LinkConfig
 type LinkConfig struct {
-	Filtertypes []string `json:"filtertypes"`
-	Include bool `json:"include"`
-	MaintainMarkers *bool `json:"maintain_markers,omitempty"`
-	Timespan []FilterTimespan `json:"timespan,omitempty"`
+	Filtertypes     []string         `json:"filtertypes"`
+	Include         bool             `json:"include"`
+	MaintainMarkers *bool            `json:"maintain_markers,omitempty"`
+	Timespan        []FilterTimespan `json:"timespan,omitempty"`
 }
 
 // NewLinkConfig instantiates a new LinkConfig object
@@ -159,7 +159,7 @@ func (o *LinkConfig) SetTimespan(v []FilterTimespan) {
 }
 
 func (o LinkConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -216,4 +216,3 @@ func (v *NullableLinkConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

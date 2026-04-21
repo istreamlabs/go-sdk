@@ -18,9 +18,9 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
 
 // PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision
 type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision struct {
-	Profile5 *map[string]interface{} `json:"profile5,omitempty"`
+	Profile5  *map[string]interface{}                                                       `json:"profile5,omitempty"`
 	Profile81 *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 `json:"profile81,omitempty"`
-	Profile84 *map[string]interface{} `json:"profile84,omitempty"`
+	Profile84 *map[string]interface{}                                                       `json:"profile84,omitempty"`
 }
 
 // NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision object
@@ -137,7 +137,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) Se
 }
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,4 +193,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVi
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

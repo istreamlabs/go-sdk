@@ -139,7 +139,7 @@ func (o *PublicationPublishPointsInner) SetPlaylistOnlyFor(v string) {
 }
 
 func (o PublicationPublishPointsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,4 +195,3 @@ func (v *NullablePublicationPublishPointsInner) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

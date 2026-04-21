@@ -27,7 +27,7 @@ type SignalingSegmentSetting struct {
 	// Determines which Segment End signaling mode to use for the provided segments. If unspecified, defaults to MATCH_END_EVENT_ID.
 	SegmentEndMode *string `json:"segment_end_mode,omitempty" enum:"MATCH_END_EVENT_ID,IGNORE_END_EVENT_ID,IGNORE_END_SIGNAL" doc:"Determines which Segment End signaling mode to use for the provided segments. If unspecified, defaults to MATCH_END_EVENT_ID."`
 	// Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration.
-	Segments []string `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration."`
+	Segments   []string                                                      `json:"segments,omitempty" uniqueItems:"true" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"Specifies the list of which segment types this setting applies to. Any segment type defined here _must_ also be present in the parent signaling configuration."`
 	TierFilter *PutChannelRequestBodySignalingSegmentSettingsInnerTierFilter `json:"tier_filter,omitempty"`
 }
 
@@ -242,7 +242,7 @@ func (o *SignalingSegmentSetting) SetTierFilter(v PutChannelRequestBodySignaling
 }
 
 func (o SignalingSegmentSetting) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -307,4 +307,3 @@ func (v *NullableSignalingSegmentSetting) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

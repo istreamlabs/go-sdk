@@ -18,9 +18,9 @@ var _ MappedNullable = &SyndicationMediaFile{}
 
 // SyndicationMediaFile struct for SyndicationMediaFile
 type SyndicationMediaFile struct {
-	AudioEncoderId string `json:"audio_encoder_id"`
-	FilePath string `json:"file_path"`
-	ManifestPath *string `json:"manifest_path,omitempty"`
+	AudioEncoderId string  `json:"audio_encoder_id"`
+	FilePath       string  `json:"file_path"`
+	ManifestPath   *string `json:"manifest_path,omitempty"`
 	VideoEncoderId *string `json:"video_encoder_id,omitempty"`
 }
 
@@ -156,7 +156,7 @@ func (o *SyndicationMediaFile) SetVideoEncoderId(v string) {
 }
 
 func (o SyndicationMediaFile) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -211,4 +211,3 @@ func (v *NullableSyndicationMediaFile) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

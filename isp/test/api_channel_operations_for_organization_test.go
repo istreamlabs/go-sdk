@@ -11,10 +11,11 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService ClearOrgDvrWindow", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -38,7 +39,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgPreviewImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -53,7 +54,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgSignalLogs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -68,7 +69,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgSignals", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -83,7 +84,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService InsertOrgId3", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -98,7 +99,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService InsertOrgScte35", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -112,7 +113,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgGetTranscoderStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -127,7 +128,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgIsBreakingChange", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -142,7 +143,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgPinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -156,7 +157,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgPreviewStreams", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -171,7 +172,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgRotateKey", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -185,7 +186,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgSetTranscoderDynamicState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -199,7 +200,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService OrgUnpinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -213,7 +214,7 @@ func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test ChannelOperationsForOrganizationAPIService PostOrgSignals", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string

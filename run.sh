@@ -93,24 +93,20 @@ if [[ "$API" == "isp" ]]; then
   sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
 fi
 
-# v7.21 templates unconditionally emit `"bytes"` and `"fmt"` imports for some
-# model files that do not actually reference them. Strip any such unused
-# imports before compilation rejects them.
-for f in ./${API}/model_*.go; do
-  if ! grep -qE '\bbytes\.' "$f"; then
-    sed -i.bak -E '/^[[:space:]]*"bytes"[[:space:]]*$/d' "$f"
-  fi
-  if ! grep -qE '\bfmt\.' "$f"; then
-    sed -i.bak -E '/^[[:space:]]*"fmt"[[:space:]]*$/d' "$f"
-  fi
-done
-
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-lifecycle",g' ./isp-lifecycle/**/*.go
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
+
+# Our custom model_simple.mustache never references "bytes" or "fmt", but the
+# stock model.mustache pessimistically imports them for any model with required
+# fields, so generated output ships with unused imports that break `go build`.
+# goimports drops unused imports and tidies formatting; this is what the
+# generator's own GO_POST_PROCESS_FILE info log nudges you toward.
+# Version is pinned so the toolchain is reproducible across machines / CI.
+go run golang.org/x/tools/cmd/goimports@v0.24.0 -w ./${API}
 
 echo ""
 echo "git status -s"

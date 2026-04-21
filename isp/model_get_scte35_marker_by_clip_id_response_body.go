@@ -101,7 +101,7 @@ func (o *GetScte35MarkerByClipIDResponseBody) SetScte35Markers(v []Scte35Marker)
 }
 
 func (o GetScte35MarkerByClipIDResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -154,4 +154,3 @@ func (v *NullableGetScte35MarkerByClipIDResponseBody) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

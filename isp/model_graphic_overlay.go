@@ -19,9 +19,9 @@ var _ MappedNullable = &GraphicOverlay{}
 // GraphicOverlay struct for GraphicOverlay
 type GraphicOverlay struct {
 	// The key to the dynamic resource definition in the channel's transcoder configuration. This must reference a dynamic resource of type 'GRAPHIC'.
-	ResourceId *string `json:"resource_id,omitempty" minLength:"1" doc:"The key to the dynamic resource definition in the channel's transcoder configuration. This must reference a dynamic resource of type 'GRAPHIC'."`
-	X *Position `json:"x,omitempty"`
-	Y *Position `json:"y,omitempty"`
+	ResourceId *string   `json:"resource_id,omitempty" minLength:"1" doc:"The key to the dynamic resource definition in the channel's transcoder configuration. This must reference a dynamic resource of type 'GRAPHIC'."`
+	X          *Position `json:"x,omitempty"`
+	Y          *Position `json:"y,omitempty"`
 }
 
 // NewGraphicOverlay instantiates a new GraphicOverlay object
@@ -138,7 +138,7 @@ func (o *GraphicOverlay) SetY(v Position) {
 }
 
 func (o GraphicOverlay) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,4 +194,3 @@ func (v *NullableGraphicOverlay) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

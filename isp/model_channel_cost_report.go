@@ -18,16 +18,16 @@ var _ MappedNullable = &ChannelCostReport{}
 
 // ChannelCostReport struct for ChannelCostReport
 type ChannelCostReport struct {
-	ChannelName *string `json:"channel_name,omitempty"`
-	ChannelUrn *string `json:"channel_urn,omitempty"`
-	DurationSecs *int64 `json:"duration_secs,omitempty" format:"int64"`
-	ExternalId *string `json:"external_id,omitempty"`
-	HasHdr *bool `json:"has_hdr,omitempty"`
-	HasRealtimeOutput *bool `json:"has_realtime_output,omitempty"`
-	HasUhd *bool `json:"has_uhd,omitempty"`
-	Labels []string `json:"labels,omitempty"`
-	Organization *string `json:"organization,omitempty"`
-	VerbitEncoderCount *int32 `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
+	ChannelName        *string  `json:"channel_name,omitempty"`
+	ChannelUrn         *string  `json:"channel_urn,omitempty"`
+	DurationSecs       *int64   `json:"duration_secs,omitempty" format:"int64"`
+	ExternalId         *string  `json:"external_id,omitempty"`
+	HasHdr             *bool    `json:"has_hdr,omitempty"`
+	HasRealtimeOutput  *bool    `json:"has_realtime_output,omitempty"`
+	HasUhd             *bool    `json:"has_uhd,omitempty"`
+	Labels             []string `json:"labels,omitempty"`
+	Organization       *string  `json:"organization,omitempty"`
+	VerbitEncoderCount *int32   `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
 }
 
 // NewChannelCostReport instantiates a new ChannelCostReport object
@@ -369,7 +369,7 @@ func (o *ChannelCostReport) SetVerbitEncoderCount(v int32) {
 }
 
 func (o ChannelCostReport) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -446,4 +446,3 @@ func (v *NullableChannelCostReport) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

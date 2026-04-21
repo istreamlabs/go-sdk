@@ -18,18 +18,17 @@ import (
 	"strings"
 )
 
-
 type AvailableSourcesAPI interface {
 
 	/*
-	GetOrgSource Get Source
+		GetOrgSource Get Source
 
-	Get a source's configuration
+		Get a source's configuration
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param sourceId Unique source identifier
-	@return ApiGetOrgSourceRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param sourceId Unique source identifier
+		@return ApiGetOrgSourceRequest
 	*/
 	GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest
 
@@ -38,13 +37,13 @@ type AvailableSourcesAPI interface {
 	GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error)
 
 	/*
-	ListOrgSources List Sources
+		ListOrgSources List Sources
 
-	Get a list of sources that are used to create channels.
+		Get a list of sources that are used to create channels.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@return ApiListOrgSourcesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@return ApiListOrgSourcesRequest
 	*/
 	ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest
 
@@ -57,10 +56,10 @@ type AvailableSourcesAPI interface {
 type AvailableSourcesAPIService service
 
 type ApiGetOrgSourceRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService AvailableSourcesAPI
-	org string
-	sourceId string
+	org        string
+	sourceId   string
 }
 
 func (r ApiGetOrgSourceRequest) Execute() (*SourceDetail, *http.Response, error) {
@@ -72,28 +71,29 @@ GetOrgSource Get Source
 
 Get a source's configuration
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param sourceId Unique source identifier
- @return ApiGetOrgSourceRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param sourceId Unique source identifier
+	@return ApiGetOrgSourceRequest
 */
 func (a *AvailableSourcesAPIService) GetOrgSource(ctx context.Context, org string, sourceId string) ApiGetOrgSourceRequest {
 	return ApiGetOrgSourceRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		sourceId: sourceId,
+		ctx:        ctx,
+		org:        org,
+		sourceId:   sourceId,
 	}
 }
 
 // Execute executes the request
-//  @return SourceDetail
+//
+//	@return SourceDetail
 func (a *AvailableSourcesAPIService) GetOrgSourceExecute(r ApiGetOrgSourceRequest) (*SourceDetail, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *SourceDetail
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *SourceDetail
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesAPIService.GetOrgSource")
@@ -235,11 +235,11 @@ func (a *AvailableSourcesAPIService) GetOrgSourceExecute(r ApiGetOrgSourceReques
 }
 
 type ApiListOrgSourcesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService AvailableSourcesAPI
-	org string
-	cursor *string
-	pageSize *int32
+	org        string
+	cursor     *string
+	pageSize   *int32
 }
 
 // Current page cursor
@@ -263,26 +263,27 @@ ListOrgSources List Sources
 
 Get a list of sources that are used to create channels.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @return ApiListOrgSourcesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@return ApiListOrgSourcesRequest
 */
 func (a *AvailableSourcesAPIService) ListOrgSources(ctx context.Context, org string) ApiListOrgSourcesRequest {
 	return ApiListOrgSourcesRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
+		ctx:        ctx,
+		org:        org,
 	}
 }
 
 // Execute executes the request
-//  @return []SourceSummary
+//
+//	@return []SourceSummary
 func (a *AvailableSourcesAPIService) ListOrgSourcesExecute(r ApiListOrgSourcesRequest) ([]SourceSummary, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []SourceSummary
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []SourceSummary
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AvailableSourcesAPIService.ListOrgSources")

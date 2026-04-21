@@ -106,7 +106,7 @@ func (o *V2FilterConfig) SetTime(v []Timespan) {
 }
 
 func (o V2FilterConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,4 +159,3 @@ func (v *NullableV2FilterConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

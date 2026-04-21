@@ -11,10 +11,11 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService CollapseVod", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -40,7 +41,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgClipManifests", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -57,7 +58,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgClipPlayurl", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -73,7 +74,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgMp4Url", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -90,7 +91,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgProduct", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var productId string
@@ -105,7 +106,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgProductConfig", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var productId string
@@ -120,7 +121,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgProgramTasks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -135,7 +136,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgTask", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -151,7 +152,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgVod", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -167,7 +168,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgVodClipProgramTime", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -184,7 +185,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService GetOrgVodClipScte35Markers", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -201,7 +202,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListFailedTasks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListFailedTasks(context.Background()).Execute()
 
@@ -213,7 +214,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListOrgClips", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -228,7 +229,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListOrgClipsVod", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -244,7 +245,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListOrgProducts", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 
@@ -258,7 +259,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListOrgProductsPrograms", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var productId string
@@ -273,7 +274,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListOrgVods", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -288,7 +289,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService ListTasks", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.Live2VODForOrganizationAPI.ListTasks(context.Background()).Execute()
 
@@ -300,7 +301,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostCopyMp4", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -317,7 +318,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgChannelSyndication", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -332,7 +333,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgClip", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -347,7 +348,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgClipArchive", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -363,7 +364,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgMakeMp4", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -380,7 +381,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgProductConfig", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var productId string
@@ -394,7 +395,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgTaskCancel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -410,7 +411,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgTaskRetry", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -426,7 +427,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PostOrgVodClip", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -442,7 +443,7 @@ func Test_isp_Live2VODForOrganizationAPIService(t *testing.T) {
 
 	t.Run("Test Live2VODForOrganizationAPIService PutOrgChannelFer", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string

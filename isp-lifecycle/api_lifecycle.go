@@ -17,18 +17,17 @@ import (
 	"strings"
 )
 
-
 type LifecycleAPI interface {
 
 	/*
-	CalculateLifecycleState Calculates channel lifecycle state
+		CalculateLifecycleState Calculates channel lifecycle state
 
-	Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
+		Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org The organization that owns the channel.
-	@param channelId The name of the channel.
-	@return ApiCalculateLifecycleStateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org The organization that owns the channel.
+		@param channelId The name of the channel.
+		@return ApiCalculateLifecycleStateRequest
 	*/
 	CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest
 
@@ -37,15 +36,15 @@ type LifecycleAPI interface {
 	CalculateLifecycleStateExecute(r ApiCalculateLifecycleStateRequest) (*GetStateResponseBody, *http.Response, error)
 
 	/*
-	GetLifecycleComponentState Get component state
+		GetLifecycleComponentState Get component state
 
-	Retrieve the current state of a component for a given channel.
+		Retrieve the current state of a component for a given channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org The organization that owns the channel.
-	@param channelId The name of the channel.
-	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
-	@return ApiGetLifecycleComponentStateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org The organization that owns the channel.
+		@param channelId The name of the channel.
+		@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+		@return ApiGetLifecycleComponentStateRequest
 	*/
 	GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest
 
@@ -54,14 +53,14 @@ type LifecycleAPI interface {
 	GetLifecycleComponentStateExecute(r ApiGetLifecycleComponentStateRequest) (*GetComponentStateResponseBody, *http.Response, error)
 
 	/*
-	ListLifecycleComponentStates List component states
+		ListLifecycleComponentStates List component states
 
-	List the states of every component for the given channel ID.
+		List the states of every component for the given channel ID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org The organization that owns the channel.
-	@param channelId The name of the channel.
-	@return ApiListLifecycleComponentStatesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org The organization that owns the channel.
+		@param channelId The name of the channel.
+		@return ApiListLifecycleComponentStatesRequest
 	*/
 	ListLifecycleComponentStates(ctx context.Context, org string, channelId string) ApiListLifecycleComponentStatesRequest
 
@@ -70,14 +69,14 @@ type LifecycleAPI interface {
 	ListLifecycleComponentStatesExecute(r ApiListLifecycleComponentStatesRequest) (*ListComponentStatesResponseBody, *http.Response, error)
 
 	/*
-	PutLifecycleComponentState Put component state
+		PutLifecycleComponentState Put component state
 
-	Update the state of a component associated with the given channel.
+		Update the state of a component associated with the given channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param channelUrn The channel_urn (channeldoc identifier).
-	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
-	@return ApiPutLifecycleComponentStateRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param channelUrn The channel_urn (channeldoc identifier).
+		@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+		@return ApiPutLifecycleComponentStateRequest
 	*/
 	PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest
 
@@ -89,10 +88,10 @@ type LifecycleAPI interface {
 type LifecycleAPIService service
 
 type ApiCalculateLifecycleStateRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LifecycleAPI
-	org string
-	channelId string
+	org        string
+	channelId  string
 }
 
 func (r ApiCalculateLifecycleStateRequest) Execute() (*GetStateResponseBody, *http.Response, error) {
@@ -104,28 +103,29 @@ CalculateLifecycleState Calculates channel lifecycle state
 
 Calculates the current lifecycle state of the given channel. The Channel Lifecycle State is determined by evaluating the state of individual components.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org The organization that owns the channel.
- @param channelId The name of the channel.
- @return ApiCalculateLifecycleStateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org The organization that owns the channel.
+	@param channelId The name of the channel.
+	@return ApiCalculateLifecycleStateRequest
 */
 func (a *LifecycleAPIService) CalculateLifecycleState(ctx context.Context, org string, channelId string) ApiCalculateLifecycleStateRequest {
 	return ApiCalculateLifecycleStateRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return GetStateResponseBody
+//
+//	@return GetStateResponseBody
 func (a *LifecycleAPIService) CalculateLifecycleStateExecute(r ApiCalculateLifecycleStateRequest) (*GetStateResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetStateResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetStateResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.CalculateLifecycleState")
@@ -186,13 +186,13 @@ func (a *LifecycleAPIService) CalculateLifecycleStateExecute(r ApiCalculateLifec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v ErrorModel
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -221,11 +221,11 @@ func (a *LifecycleAPIService) CalculateLifecycleStateExecute(r ApiCalculateLifec
 }
 
 type ApiGetLifecycleComponentStateRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LifecycleAPI
-	org string
-	channelId string
-	component string
+	org        string
+	channelId  string
+	component  string
 }
 
 func (r ApiGetLifecycleComponentStateRequest) Execute() (*GetComponentStateResponseBody, *http.Response, error) {
@@ -237,30 +237,31 @@ GetLifecycleComponentState Get component state
 
 Retrieve the current state of a component for a given channel.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org The organization that owns the channel.
- @param channelId The name of the channel.
- @param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
- @return ApiGetLifecycleComponentStateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org The organization that owns the channel.
+	@param channelId The name of the channel.
+	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+	@return ApiGetLifecycleComponentStateRequest
 */
 func (a *LifecycleAPIService) GetLifecycleComponentState(ctx context.Context, org string, channelId string, component string) ApiGetLifecycleComponentStateRequest {
 	return ApiGetLifecycleComponentStateRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		component: component,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		component:  component,
 	}
 }
 
 // Execute executes the request
-//  @return GetComponentStateResponseBody
+//
+//	@return GetComponentStateResponseBody
 func (a *LifecycleAPIService) GetLifecycleComponentStateExecute(r ApiGetLifecycleComponentStateRequest) (*GetComponentStateResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetComponentStateResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetComponentStateResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.GetLifecycleComponentState")
@@ -322,13 +323,13 @@ func (a *LifecycleAPIService) GetLifecycleComponentStateExecute(r ApiGetLifecycl
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v ErrorModel
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -357,10 +358,10 @@ func (a *LifecycleAPIService) GetLifecycleComponentStateExecute(r ApiGetLifecycl
 }
 
 type ApiListLifecycleComponentStatesRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService LifecycleAPI
-	org string
-	channelId string
+	org        string
+	channelId  string
 }
 
 func (r ApiListLifecycleComponentStatesRequest) Execute() (*ListComponentStatesResponseBody, *http.Response, error) {
@@ -372,28 +373,29 @@ ListLifecycleComponentStates List component states
 
 List the states of every component for the given channel ID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org The organization that owns the channel.
- @param channelId The name of the channel.
- @return ApiListLifecycleComponentStatesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org The organization that owns the channel.
+	@param channelId The name of the channel.
+	@return ApiListLifecycleComponentStatesRequest
 */
 func (a *LifecycleAPIService) ListLifecycleComponentStates(ctx context.Context, org string, channelId string) ApiListLifecycleComponentStatesRequest {
 	return ApiListLifecycleComponentStatesRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return ListComponentStatesResponseBody
+//
+//	@return ListComponentStatesResponseBody
 func (a *LifecycleAPIService) ListLifecycleComponentStatesExecute(r ApiListLifecycleComponentStatesRequest) (*ListComponentStatesResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListComponentStatesResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListComponentStatesResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.ListLifecycleComponentStates")
@@ -454,13 +456,13 @@ func (a *LifecycleAPIService) ListLifecycleComponentStatesExecute(r ApiListLifec
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v ErrorModel
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
@@ -489,10 +491,10 @@ func (a *LifecycleAPIService) ListLifecycleComponentStatesExecute(r ApiListLifec
 }
 
 type ApiPutLifecycleComponentStateRequest struct {
-	ctx context.Context
-	ApiService LifecycleAPI
-	channelUrn string
-	component string
+	ctx              context.Context
+	ApiService       LifecycleAPI
+	channelUrn       string
+	component        string
 	putComponentBody *PutComponentBody
 }
 
@@ -510,26 +512,26 @@ PutLifecycleComponentState Put component state
 
 Update the state of a component associated with the given channel.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param channelUrn The channel_urn (channeldoc identifier).
- @param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
- @return ApiPutLifecycleComponentStateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param channelUrn The channel_urn (channeldoc identifier).
+	@param component A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
+	@return ApiPutLifecycleComponentStateRequest
 */
 func (a *LifecycleAPIService) PutLifecycleComponentState(ctx context.Context, channelUrn string, component string) ApiPutLifecycleComponentStateRequest {
 	return ApiPutLifecycleComponentStateRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 		channelUrn: channelUrn,
-		component: component,
+		component:  component,
 	}
 }
 
 // Execute executes the request
 func (a *LifecycleAPIService) PutLifecycleComponentStateExecute(r ApiPutLifecycleComponentStateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPut
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LifecycleAPIService.PutLifecycleComponentState")
@@ -592,13 +594,13 @@ func (a *LifecycleAPIService) PutLifecycleComponentStateExecute(r ApiPutLifecycl
 			body:  localVarBody,
 			error: localVarHTTPResponse.Status,
 		}
-			var v ErrorModel
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarHTTPResponse, newErr
-			}
-			newErr.model = v
+		var v ErrorModel
+		err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+		if err != nil {
+			newErr.error = err.Error()
+			return localVarHTTPResponse, newErr
+		}
+		newErr.model = v
 		return localVarHTTPResponse, newErr
 	}
 

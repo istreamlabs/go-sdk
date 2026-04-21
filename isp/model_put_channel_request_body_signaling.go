@@ -209,7 +209,7 @@ func (o *PutChannelRequestBodySignaling) SetSegments(v []string) {
 }
 
 func (o PutChannelRequestBodySignaling) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -271,4 +271,3 @@ func (v *NullablePutChannelRequestBodySignaling) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -19,7 +19,7 @@ var _ MappedNullable = &Location{}
 // Location struct for Location
 type Location struct {
 	FallbackUrl string `json:"fallback_url"`
-	PrimaryUrl string `json:"primary_url"`
+	PrimaryUrl  string `json:"primary_url"`
 	QueryString string `json:"query_string"`
 }
 
@@ -116,7 +116,7 @@ func (o *Location) SetQueryString(v string) {
 }
 
 func (o Location) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,4 +166,3 @@ func (v *NullableLocation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

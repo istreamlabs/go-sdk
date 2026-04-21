@@ -11,10 +11,11 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	t.Run("Test TranscoderTelemetryAPIService GetChannelCostReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -39,7 +40,7 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	t.Run("Test TranscoderTelemetryAPIService ListContentSegmentHistory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -54,7 +55,7 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	t.Run("Test TranscoderTelemetryAPIService ListOrganizationCostReports", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 
@@ -68,7 +69,7 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	t.Run("Test TranscoderTelemetryAPIService ListRawScteHistory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListRawScteHistory(context.Background()).Execute()
 
@@ -80,7 +81,7 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	t.Run("Test TranscoderTelemetryAPIService ListRawScteHistoryByChannel", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string

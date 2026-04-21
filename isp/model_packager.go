@@ -19,10 +19,10 @@ var _ MappedNullable = &Packager{}
 // Packager struct for Packager
 type Packager struct {
 	ContentProtection *PatchOrgChannelRequestPackagingPackagersValueContentProtection `json:"content_protection,omitempty"`
-	Mp2t *PatchOrgChannelRequestPackagingPackagersValueMp2t `json:"mp2t,omitempty"`
-	Mp4 *PatchOrgChannelRequestPackagingPackagersValueMp4 `json:"mp4,omitempty"`
-	Ttml *map[string]interface{} `json:"ttml,omitempty"`
-	WebVtt *PatchOrgChannelRequestPackagingPackagersValueWebVtt `json:"web_vtt,omitempty"`
+	Mp2t              *PatchOrgChannelRequestPackagingPackagersValueMp2t              `json:"mp2t,omitempty"`
+	Mp4               *PatchOrgChannelRequestPackagingPackagersValueMp4               `json:"mp4,omitempty"`
+	Ttml              *map[string]interface{}                                         `json:"ttml,omitempty"`
+	WebVtt            *PatchOrgChannelRequestPackagingPackagersValueWebVtt            `json:"web_vtt,omitempty"`
 }
 
 // NewPackager instantiates a new Packager object
@@ -203,7 +203,7 @@ func (o *Packager) SetWebVtt(v PatchOrgChannelRequestPackagingPackagersValueWebV
 }
 
 func (o Packager) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,4 +265,3 @@ func (v *NullablePackager) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

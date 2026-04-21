@@ -11,10 +11,11 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp-lifecycle"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp-lifecycle"
 )
 
 func Test_isp_LifecycleAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_isp_LifecycleAPIService(t *testing.T) {
 
 	t.Run("Test LifecycleAPIService CalculateLifecycleState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -39,7 +40,7 @@ func Test_isp_LifecycleAPIService(t *testing.T) {
 
 	t.Run("Test LifecycleAPIService GetLifecycleComponentState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -55,7 +56,7 @@ func Test_isp_LifecycleAPIService(t *testing.T) {
 
 	t.Run("Test LifecycleAPIService ListLifecycleComponentStates", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
@@ -70,7 +71,7 @@ func Test_isp_LifecycleAPIService(t *testing.T) {
 
 	t.Run("Test LifecycleAPIService PutLifecycleComponentState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var channelUrn string
 		var component string

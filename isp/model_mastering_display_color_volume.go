@@ -18,12 +18,12 @@ var _ MappedNullable = &MasteringDisplayColorVolume{}
 
 // MasteringDisplayColorVolume struct for MasteringDisplayColorVolume
 type MasteringDisplayColorVolume struct {
-	Blue *Cie1931P `json:"blue,omitempty"`
-	Green *Cie1931P `json:"green,omitempty"`
-	MaxDisplayMasteringLuminance *float64 `json:"max_display_mastering_luminance,omitempty" format:"double"`
-	MinDisplayMasteringLuminance *float64 `json:"min_display_mastering_luminance,omitempty" format:"double"`
-	Red *Cie1931P `json:"red,omitempty"`
-	WhitePoint *Cie1931P `json:"white_point,omitempty"`
+	Blue                         *Cie1931P `json:"blue,omitempty"`
+	Green                        *Cie1931P `json:"green,omitempty"`
+	MaxDisplayMasteringLuminance *float64  `json:"max_display_mastering_luminance,omitempty" format:"double"`
+	MinDisplayMasteringLuminance *float64  `json:"min_display_mastering_luminance,omitempty" format:"double"`
+	Red                          *Cie1931P `json:"red,omitempty"`
+	WhitePoint                   *Cie1931P `json:"white_point,omitempty"`
 }
 
 // NewMasteringDisplayColorVolume instantiates a new MasteringDisplayColorVolume object
@@ -236,7 +236,7 @@ func (o *MasteringDisplayColorVolume) SetWhitePoint(v Cie1931P) {
 }
 
 func (o MasteringDisplayColorVolume) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -301,4 +301,3 @@ func (v *NullableMasteringDisplayColorVolume) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

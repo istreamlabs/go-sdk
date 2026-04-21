@@ -21,7 +21,7 @@ type H265SettingsHdrDolbyVisionProfile81 struct {
 	Clli *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
 	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
 	Level8 []PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
-	Mdcv *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv `json:"mdcv,omitempty"`
+	Mdcv   *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv         `json:"mdcv,omitempty"`
 }
 
 // NewH265SettingsHdrDolbyVisionProfile81 instantiates a new H265SettingsHdrDolbyVisionProfile81 object
@@ -139,7 +139,7 @@ func (o *H265SettingsHdrDolbyVisionProfile81) SetMdcv(v PatchOrgChannelRequestTr
 }
 
 func (o H265SettingsHdrDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,4 +195,3 @@ func (v *NullableH265SettingsHdrDolbyVisionProfile81) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

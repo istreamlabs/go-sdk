@@ -18,9 +18,9 @@ var _ MappedNullable = &LogData{}
 
 // LogData struct for LogData
 type LogData struct {
-	Base64 string `json:"base64"`
+	Base64  string `json:"base64"`
 	Message string `json:"message"`
-	Pretty string `json:"pretty"`
+	Pretty  string `json:"pretty"`
 }
 
 // NewLogData instantiates a new LogData object
@@ -116,7 +116,7 @@ func (o *LogData) SetPretty(v string) {
 }
 
 func (o LogData) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,4 +166,3 @@ func (v *NullableLogData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

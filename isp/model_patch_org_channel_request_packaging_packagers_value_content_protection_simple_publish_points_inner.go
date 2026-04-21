@@ -32,7 +32,7 @@ type PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublish
 	// Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'
 	PlaybackQueryParams *string `json:"playback_query_params,omitempty" doc:"Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'"`
 	// The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-	PublishBaseUrl *string `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
+	PublishBaseUrl   *string                                                                                                 `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
 	SecureHeaderAuth *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth `json:"secure_header_auth,omitempty"`
 }
 
@@ -342,7 +342,7 @@ func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePub
 }
 
 func (o PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -416,4 +416,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionS
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

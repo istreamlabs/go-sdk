@@ -106,7 +106,7 @@ func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaptions) SetCt
 }
 
 func (o PatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaptions) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,4 +159,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaption
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

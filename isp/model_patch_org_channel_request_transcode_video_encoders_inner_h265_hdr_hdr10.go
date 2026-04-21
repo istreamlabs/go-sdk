@@ -106,7 +106,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10) SetMdcv(
 }
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,4 +159,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

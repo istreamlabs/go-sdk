@@ -140,7 +140,7 @@ func (o *PatchOrgChannelRequestTranscodeThumbnailEncodersInner) SetWidth(v int32
 }
 
 func (o PatchOrgChannelRequestTranscodeThumbnailEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -196,4 +196,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeThumbnailEncodersInner) Unmarsha
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

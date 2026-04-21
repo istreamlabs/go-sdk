@@ -18,18 +18,17 @@ import (
 	"strings"
 )
 
-
 type AuditOperationsForOrganizationAPI interface {
 
 	/*
-	GetOrgChannelTimeline Get Channel Timeline
+		GetOrgChannelTimeline Get Channel Timeline
 
-	Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
+		Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgChannelTimelineRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiGetOrgChannelTimelineRequest
 	*/
 	GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest
 
@@ -42,12 +41,12 @@ type AuditOperationsForOrganizationAPI interface {
 type AuditOperationsForOrganizationAPIService service
 
 type ApiGetOrgChannelTimelineRequest struct {
-	ctx context.Context
+	ctx        context.Context
 	ApiService AuditOperationsForOrganizationAPI
-	org string
-	channelId string
-	cursor *string
-	pageSize *int32
+	org        string
+	channelId  string
+	cursor     *string
+	pageSize   *int32
 }
 
 // Current page cursor
@@ -71,28 +70,29 @@ GetOrgChannelTimeline Get Channel Timeline
 
 Returns up to twenty items from the event timeline for a channel, sorted in reverse-chronological order.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiGetOrgChannelTimelineRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgChannelTimelineRequest
 */
 func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimeline(ctx context.Context, org string, channelId string) ApiGetOrgChannelTimelineRequest {
 	return ApiGetOrgChannelTimelineRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return []ChannelTimelineEntry
+//
+//	@return []ChannelTimelineEntry
 func (a *AuditOperationsForOrganizationAPIService) GetOrgChannelTimelineExecute(r ApiGetOrgChannelTimelineRequest) ([]ChannelTimelineEntry, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ChannelTimelineEntry
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []ChannelTimelineEntry
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditOperationsForOrganizationAPIService.GetOrgChannelTimeline")

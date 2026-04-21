@@ -19,7 +19,7 @@ var _ MappedNullable = &ManifestUpdates{}
 // ManifestUpdates struct for ManifestUpdates
 type ManifestUpdates struct {
 	PlaybackAbsoluteBaseUrl *string `json:"playback_absolute_base_url,omitempty"`
-	RemoveCrossPlaybackUrls bool `json:"remove_cross_playback_urls"`
+	RemoveCrossPlaybackUrls bool    `json:"remove_cross_playback_urls"`
 }
 
 // NewManifestUpdates instantiates a new ManifestUpdates object
@@ -97,7 +97,7 @@ func (o *ManifestUpdates) SetRemoveCrossPlaybackUrls(v bool) {
 }
 
 func (o ManifestUpdates) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -148,4 +148,3 @@ func (v *NullableManifestUpdates) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

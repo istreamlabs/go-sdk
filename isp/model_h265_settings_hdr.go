@@ -19,7 +19,7 @@ var _ MappedNullable = &H265SettingsHdr{}
 // H265SettingsHdr struct for H265SettingsHdr
 type H265SettingsHdr struct {
 	DolbyVision *H265SettingsHdrDolbyVision `json:"dolby_vision,omitempty"`
-	Hdr10 *H265SettingsHdrHdr10 `json:"hdr10,omitempty"`
+	Hdr10       *H265SettingsHdrHdr10       `json:"hdr10,omitempty"`
 }
 
 // NewH265SettingsHdr instantiates a new H265SettingsHdr object
@@ -104,7 +104,7 @@ func (o *H265SettingsHdr) SetHdr10(v H265SettingsHdrHdr10) {
 }
 
 func (o H265SettingsHdr) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,4 +157,3 @@ func (v *NullableH265SettingsHdr) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

@@ -21,7 +21,7 @@ type SetDynamicStateRequest struct {
 	// A URL to the JSON Schema for this object.
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// The channel's internal id.
-	ChannelUrn *string `json:"channel_urn,omitempty" doc:"The channel's internal id."`
+	ChannelUrn   *string      `json:"channel_urn,omitempty" doc:"The channel's internal id."`
 	DynamicState DynamicState `json:"dynamic_state"`
 	// DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored.
 	DynamicStateFields []string `json:"dynamic_state_fields,omitempty" minItems:"1" enum:"TEXT_OVERLAYS,GRAPHIC_OVERLAYS,AUDIO_MUTES" doc:"DynamicStateFields specifies the fields to update in the dynamic state. Any fields not specified will be ignored."`
@@ -235,7 +235,7 @@ func (o *SetDynamicStateRequest) SetOrganization(v string) {
 }
 
 func (o SetDynamicStateRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -298,4 +298,3 @@ func (v *NullableSetDynamicStateRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

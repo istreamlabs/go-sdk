@@ -242,7 +242,7 @@ func (o *PatchOrgChannelRequestTranscodeAudioEncodersInnerEac3) SetSurroundPhase
 }
 
 func (o PatchOrgChannelRequestTranscodeAudioEncodersInnerEac3) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -307,4 +307,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeAudioEncodersInnerEac3) Unmarsha
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

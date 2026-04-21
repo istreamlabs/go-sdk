@@ -18,8 +18,8 @@ var _ MappedNullable = &ClientOrigin{}
 
 // ClientOrigin struct for ClientOrigin
 type ClientOrigin struct {
-	Headers map[string]string `json:"headers"`
-	Hostname string `json:"hostname"`
+	Headers  map[string]string `json:"headers"`
+	Hostname string            `json:"hostname"`
 }
 
 // NewClientOrigin instantiates a new ClientOrigin object
@@ -90,7 +90,7 @@ func (o *ClientOrigin) SetHostname(v string) {
 }
 
 func (o ClientOrigin) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -139,4 +139,3 @@ func (v *NullableClientOrigin) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

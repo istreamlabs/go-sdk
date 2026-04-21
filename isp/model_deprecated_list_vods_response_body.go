@@ -296,7 +296,7 @@ func (o *DeprecatedListVODsResponseBody) SetVodid(v int64) {
 }
 
 func (o DeprecatedListVODsResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -356,4 +356,3 @@ func (v *NullableDeprecatedListVODsResponseBody) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

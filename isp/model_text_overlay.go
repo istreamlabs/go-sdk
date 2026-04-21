@@ -25,12 +25,12 @@ type TextOverlay struct {
 	// The font height as a percentage of screen height.
 	FontHeight *float32 `json:"font_height,omitempty" format:"float" exclusiveMinimum:"0" doc:"The font height as a percentage of screen height."`
 	// The font resource id to use for the text overlay. This must reference a dynamic resource of type 'FONT'.
-	FontResourceId *string `json:"font_resource_id,omitempty" minLength:"1" doc:"The font resource id to use for the text overlay. This must reference a dynamic resource of type 'FONT'."`
-	Padding *TextOverlayPadding `json:"padding,omitempty"`
+	FontResourceId *string             `json:"font_resource_id,omitempty" minLength:"1" doc:"The font resource id to use for the text overlay. This must reference a dynamic resource of type 'FONT'."`
+	Padding        *TextOverlayPadding `json:"padding,omitempty"`
 	// The text to overlay on the video.
-	Text *string `json:"text,omitempty" minLength:"1" doc:"The text to overlay on the video."`
-	X *Position `json:"x,omitempty"`
-	Y *Position `json:"y,omitempty"`
+	Text *string   `json:"text,omitempty" minLength:"1" doc:"The text to overlay on the video."`
+	X    *Position `json:"x,omitempty"`
+	Y    *Position `json:"y,omitempty"`
 }
 
 // NewTextOverlay instantiates a new TextOverlay object
@@ -307,7 +307,7 @@ func (o *TextOverlay) SetY(v Position) {
 }
 
 func (o TextOverlay) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -378,4 +378,3 @@ func (v *NullableTextOverlay) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

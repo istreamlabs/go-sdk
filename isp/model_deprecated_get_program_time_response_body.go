@@ -19,10 +19,10 @@ var _ MappedNullable = &DeprecatedGetProgramTimeResponseBody{}
 // DeprecatedGetProgramTimeResponseBody struct for DeprecatedGetProgramTimeResponseBody
 type DeprecatedGetProgramTimeResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
-	Duration int64 `json:"duration" format:"int64"`
-	ProgramEnd string `json:"program_end"`
-	ProgramStart string `json:"program_start"`
+	Schema       *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Duration     int64   `json:"duration" format:"int64"`
+	ProgramEnd   string  `json:"program_end"`
+	ProgramStart string  `json:"program_start"`
 }
 
 // NewDeprecatedGetProgramTimeResponseBody instantiates a new DeprecatedGetProgramTimeResponseBody object
@@ -150,7 +150,7 @@ func (o *DeprecatedGetProgramTimeResponseBody) SetProgramStart(v string) {
 }
 
 func (o DeprecatedGetProgramTimeResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -203,4 +203,3 @@ func (v *NullableDeprecatedGetProgramTimeResponseBody) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

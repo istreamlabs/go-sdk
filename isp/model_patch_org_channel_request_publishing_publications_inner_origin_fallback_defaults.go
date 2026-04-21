@@ -446,7 +446,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults
 }
 
 func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -529,4 +529,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallback
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

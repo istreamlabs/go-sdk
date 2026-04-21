@@ -18,7 +18,7 @@ var _ MappedNullable = &AudioMute{}
 
 // AudioMute struct for AudioMute
 type AudioMute struct {
-	AudioChannel *string `json:"audio_channel,omitempty" enum:"ALL,FRONT_LEFT,FRONT_RIGHT,FRONT_CENTER,LOW_FREQUENCY,SIDE_LEFT,SIDE_RIGHT"`
+	AudioChannel  *string `json:"audio_channel,omitempty" enum:"ALL,FRONT_LEFT,FRONT_RIGHT,FRONT_CENTER,LOW_FREQUENCY,SIDE_LEFT,SIDE_RIGHT"`
 	AudioSourceId *string `json:"audio_source_id,omitempty" minLength:"1"`
 }
 
@@ -104,7 +104,7 @@ func (o *AudioMute) SetAudioSourceId(v string) {
 }
 
 func (o AudioMute) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,4 +157,3 @@ func (v *NullableAudioMute) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

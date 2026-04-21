@@ -18,9 +18,9 @@ var _ MappedNullable = &CollapseTrigger{}
 
 // CollapseTrigger struct for CollapseTrigger
 type CollapseTrigger struct {
-	Scte35Upid *string `json:"scte35_upid,omitempty"`
-	SegmentationEventId *int32 `json:"segmentation_event_id,omitempty" format:"int32" minimum:"0"`
-	SegmentationTypeId int32 `json:"segmentation_type_id" format:"int32"`
+	Scte35Upid          *string `json:"scte35_upid,omitempty"`
+	SegmentationEventId *int32  `json:"segmentation_event_id,omitempty" format:"int32" minimum:"0"`
+	SegmentationTypeId  int32   `json:"segmentation_type_id" format:"int32"`
 }
 
 // NewCollapseTrigger instantiates a new CollapseTrigger object
@@ -130,7 +130,7 @@ func (o *CollapseTrigger) SetSegmentationTypeId(v int32) {
 }
 
 func (o CollapseTrigger) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -184,4 +184,3 @@ func (v *NullableCollapseTrigger) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-

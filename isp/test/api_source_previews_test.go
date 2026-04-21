@@ -11,10 +11,11 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
 func Test_isp_SourcePreviewsAPIService(t *testing.T) {
@@ -24,7 +25,7 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	t.Run("Test SourcePreviewsAPIService GetSourcePreviewStream", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
@@ -39,7 +40,7 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	t.Run("Test SourcePreviewsAPIService GetSourcePreviewTranscoderStatus", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
@@ -54,7 +55,7 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	t.Run("Test SourcePreviewsAPIService PutSourcePreview", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
@@ -68,7 +69,7 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	t.Run("Test SourcePreviewsAPIService SourcePreviewPinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string
@@ -82,7 +83,7 @@ func Test_isp_SourcePreviewsAPIService(t *testing.T) {
 
 	t.Run("Test SourcePreviewsAPIService SourcePreviewUnpinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var sourceId string

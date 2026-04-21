@@ -106,7 +106,7 @@ func (o *Mp2TFormat) SetInsertId3UtcTime(v bool) {
 }
 
 func (o Mp2TFormat) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,4 +159,3 @@ func (v *NullableMp2TFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
