@@ -84,7 +84,7 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
 # OpenAPI Generator emits PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner
-# for srt_publications[].video_encoders but never generates that model; the spec uses
+# for srt_publications[].video_encoders but never generates that model. The spec uses
 # components/schemas/SrtPublicationEncoder (same as audio_encoders).
 sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
 
