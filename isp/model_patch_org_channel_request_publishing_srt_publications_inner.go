@@ -18,7 +18,7 @@ var _ MappedNullable = &PatchOrgChannelRequestPublishingSrtPublicationsInner{}
 
 // PatchOrgChannelRequestPublishingSrtPublicationsInner struct for PatchOrgChannelRequestPublishingSrtPublicationsInner
 type PatchOrgChannelRequestPublishingSrtPublicationsInner struct {
-	AudioEncoders []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1"`
+	AudioEncoders []interface{} `json:"audio_encoders,omitempty" minItems:"1"`
 	// SRT publication ID. Must be unique.
 	Id *string `json:"id,omitempty" minLength:"1" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"SRT publication ID. Must be unique."`
 	// MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
@@ -26,7 +26,7 @@ type PatchOrgChannelRequestPublishingSrtPublicationsInner struct {
 	// MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
 	Scte35Pid *int32 `json:"scte35_pid,omitempty" format:"int32" exclusiveMaximum:"8191" doc:"MPEG-TS SCTE-35 PID. PIDs should be set on the PMT, SCTE-35, and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically."`
 	Url *string `json:"url,omitempty" format:"uri" minLength:"1" pattern:"^srt:\/\/"`
-	VideoEncoders []interface{} `json:"video_encoders,omitempty" minItems:"1"`
+	VideoEncoders []PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner `json:"video_encoders,omitempty" minItems:"1"`
 }
 
 // NewPatchOrgChannelRequestPublishingSrtPublicationsInner instantiates a new PatchOrgChannelRequestPublishingSrtPublicationsInner object
@@ -47,9 +47,9 @@ func NewPatchOrgChannelRequestPublishingSrtPublicationsInnerWithDefaults() *Patc
 }
 
 // GetAudioEncoders returns the AudioEncoders field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetAudioEncoders() []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner {
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetAudioEncoders() []interface{} {
 	if o == nil || IsNil(o.AudioEncoders) {
-		var ret []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner
+		var ret []interface{}
 		return ret
 	}
 	return o.AudioEncoders
@@ -57,7 +57,7 @@ func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetAudioEncoders(
 
 // GetAudioEncodersOk returns a tuple with the AudioEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetAudioEncodersOk() ([]PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner, bool) {
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetAudioEncodersOk() ([]interface{}, bool) {
 	if o == nil || IsNil(o.AudioEncoders) {
 		return nil, false
 	}
@@ -73,8 +73,8 @@ func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) HasAudioEncoders(
 	return false
 }
 
-// SetAudioEncoders gets a reference to the given []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner and assigns it to the AudioEncoders field.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) SetAudioEncoders(v []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner) {
+// SetAudioEncoders gets a reference to the given []interface{} and assigns it to the AudioEncoders field.
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) SetAudioEncoders(v []interface{}) {
 	o.AudioEncoders = v
 }
 
@@ -207,9 +207,9 @@ func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) SetUrl(v string) 
 }
 
 // GetVideoEncoders returns the VideoEncoders field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetVideoEncoders() []interface{} {
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetVideoEncoders() []PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner {
 	if o == nil || IsNil(o.VideoEncoders) {
-		var ret []interface{}
+		var ret []PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner
 		return ret
 	}
 	return o.VideoEncoders
@@ -217,7 +217,7 @@ func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetVideoEncoders(
 
 // GetVideoEncodersOk returns a tuple with the VideoEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetVideoEncodersOk() ([]interface{}, bool) {
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) GetVideoEncodersOk() ([]PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner, bool) {
 	if o == nil || IsNil(o.VideoEncoders) {
 		return nil, false
 	}
@@ -233,8 +233,8 @@ func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) HasVideoEncoders(
 	return false
 }
 
-// SetVideoEncoders gets a reference to the given []interface{} and assigns it to the VideoEncoders field.
-func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) SetVideoEncoders(v []interface{}) {
+// SetVideoEncoders gets a reference to the given []PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner and assigns it to the VideoEncoders field.
+func (o *PatchOrgChannelRequestPublishingSrtPublicationsInner) SetVideoEncoders(v []PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner) {
 	o.VideoEncoders = v
 }
 
