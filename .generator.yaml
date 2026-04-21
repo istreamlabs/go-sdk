@@ -4,5 +4,5 @@ generateInterfaces: true
 isGoSubmodule: true
 packageName: isp
 gitUserId: istreamlabs
-gitRepoId: go-sdk
+gitRepoId: go-sdk/v2
 validateSpec: false

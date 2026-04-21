@@ -18,8 +18,6 @@ var _ MappedNullable = &ChannelCostReport{}
 
 // ChannelCostReport struct for ChannelCostReport
 type ChannelCostReport struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
 	ChannelName *string `json:"channel_name,omitempty"`
 	ChannelUrn *string `json:"channel_urn,omitempty"`
 	DurationSecs *int64 `json:"duration_secs,omitempty" format:"int64"`
@@ -47,38 +45,6 @@ func NewChannelCostReport() *ChannelCostReport {
 func NewChannelCostReportWithDefaults() *ChannelCostReport {
 	this := ChannelCostReport{}
 	return &this
-}
-
-// GetSchema returns the Schema field value if set, zero value otherwise.
-func (o *ChannelCostReport) GetSchema() string {
-	if o == nil || IsNil(o.Schema) {
-		var ret string
-		return ret
-	}
-	return *o.Schema
-}
-
-// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ChannelCostReport) GetSchemaOk() (*string, bool) {
-	if o == nil || IsNil(o.Schema) {
-		return nil, false
-	}
-	return o.Schema, true
-}
-
-// HasSchema returns a boolean if a field has been set.
-func (o *ChannelCostReport) HasSchema() bool {
-	if o != nil && !IsNil(o.Schema) {
-		return true
-	}
-
-	return false
-}
-
-// SetSchema gets a reference to the given string and assigns it to the Schema field.
-func (o *ChannelCostReport) SetSchema(v string) {
-	o.Schema = &v
 }
 
 // GetChannelName returns the ChannelName field value if set, zero value otherwise.
@@ -305,9 +271,9 @@ func (o *ChannelCostReport) SetHasUhd(v bool) {
 	o.HasUhd = &v
 }
 
-// GetLabels returns the Labels field value if set, zero value otherwise.
+// GetLabels returns the Labels field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ChannelCostReport) GetLabels() []string {
-	if o == nil || IsNil(o.Labels) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -316,6 +282,7 @@ func (o *ChannelCostReport) GetLabels() []string {
 
 // GetLabelsOk returns a tuple with the Labels field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChannelCostReport) GetLabelsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Labels) {
 		return nil, false
@@ -325,7 +292,7 @@ func (o *ChannelCostReport) GetLabelsOk() ([]string, bool) {
 
 // HasLabels returns a boolean if a field has been set.
 func (o *ChannelCostReport) HasLabels() bool {
-	if o != nil && !IsNil(o.Labels) {
+	if o != nil && IsNil(o.Labels) {
 		return true
 	}
 
@@ -411,9 +378,6 @@ func (o ChannelCostReport) MarshalJSON() ([]byte, error) {
 
 func (o ChannelCostReport) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Schema) {
-		toSerialize["$schema"] = o.Schema
-	}
 	if !IsNil(o.ChannelName) {
 		toSerialize["channel_name"] = o.ChannelName
 	}
@@ -435,7 +399,7 @@ func (o ChannelCostReport) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.HasUhd) {
 		toSerialize["has_uhd"] = o.HasUhd
 	}
-	if !IsNil(o.Labels) {
+	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
 	if !IsNil(o.Organization) {

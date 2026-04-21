@@ -18,8 +18,8 @@ var _ MappedNullable = &InsertMetadataRequest{}
 
 // InsertMetadataRequest struct for InsertMetadataRequest
 type InsertMetadataRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// ID3 payload as UTF-8 text
 	Payload string `json:"payload" doc:"ID3 payload as UTF-8 text"`
 }

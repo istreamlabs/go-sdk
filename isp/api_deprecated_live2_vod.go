@@ -25,7 +25,6 @@ type DeprecatedLive2VODApi interface {
 	DeprecatedClipGetMp4 Get MP4 URL
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-mp4-url](#get-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/mp4url) instead.</b>
-
 Retrieves a playback URL for the MP4 playback for a clip if available.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -41,15 +40,14 @@ Retrieves a playback URL for the MP4 playback for a clip if available.
 	DeprecatedClipGetMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetMp4Request
 
 	// DeprecatedClipGetMp4Execute executes the request
-	//  @return DeprecatedGetMp4UrlResponse
+	//  @return DeprecatedGetMp4UrlResponseBody
 	// Deprecated
-	DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponse, *http.Response, error)
+	DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponseBody, *http.Response, error)
 
 	/*
 	DeprecatedClipGetProgramTime Get Program Time
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-vod-clip-program-time](#get-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/programtime) instead.</b>
-
 Retrieves Program Time for a given Clip
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -65,15 +63,14 @@ Retrieves Program Time for a given Clip
 	DeprecatedClipGetProgramTime(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipGetProgramTimeRequest
 
 	// DeprecatedClipGetProgramTimeExecute executes the request
-	//  @return DeprecatedGetProgramTimeResponse
+	//  @return DeprecatedGetProgramTimeResponseBody
 	// Deprecated
-	DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponse, *http.Response, error)
+	DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponseBody, *http.Response, error)
 
 	/*
 	DeprecatedClipMakeMp4 Create MP4 for Clip
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-make-mp4](#post-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/makemp4) instead.</b>
-
 Create a mp4 entity for the clip within a vod
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -89,15 +86,14 @@ Create a mp4 entity for the clip within a vod
 	DeprecatedClipMakeMp4(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedClipMakeMp4Request
 
 	// DeprecatedClipMakeMp4Execute executes the request
-	//  @return DeprecatedMakeMP4Response
+	//  @return DeprecatedMakeMP4ResponseBody
 	// Deprecated
-	DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4Response, *http.Response, error)
+	DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4ResponseBody, *http.Response, error)
 
 	/*
 	DeprecatedGetClipManifest Get Manifests for Clip
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Retrieve List of Manifests for a given Clip
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -113,15 +109,14 @@ Retrieve List of Manifests for a given Clip
 	DeprecatedGetClipManifest(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiDeprecatedGetClipManifestRequest
 
 	// DeprecatedGetClipManifestExecute executes the request
-	//  @return []DeprecatedGetClipManifestsResponseItem
+	//  @return []DeprecatedGetClipManifestsBodyItem
 	// Deprecated
-	DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsResponseItem, *http.Response, error)
+	DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsBodyItem, *http.Response, error)
 
 	/*
 	GetDeprecatedClip Get clip
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Get the clip with the clip id sent in the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -137,15 +132,14 @@ Get the clip with the clip id sent in the request.
 	GetDeprecatedClip(ctx context.Context, customerId string, productId string, programId string, vodId string, clipId string) ApiGetDeprecatedClipRequest
 
 	// GetDeprecatedClipExecute executes the request
-	//  @return DeprecatedGetClipResponse
+	//  @return DeprecatedGetClipResponseBody
 	// Deprecated
-	GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponse, *http.Response, error)
+	GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponseBody, *http.Response, error)
 
 	/*
 	GetDeprecatedProgram Get program
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Get a program with an customer, product and program id. This API is deprecated, and it only returns
 the program from the west region.
 
@@ -160,15 +154,14 @@ the program from the west region.
 	GetDeprecatedProgram(ctx context.Context, customerId string, productId string, programId string) ApiGetDeprecatedProgramRequest
 
 	// GetDeprecatedProgramExecute executes the request
-	//  @return DeprecatedGetProgramResponse
+	//  @return DeprecatedGetProgramResponseBody
 	// Deprecated
-	GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponse, *http.Response, error)
+	GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponseBody, *http.Response, error)
 
 	/*
 	ListDeprecatedClips List available clips
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-clips](#get-/v2/-org-/channels/-channel-id-/clips) instead.</b>
-
 List all clips for the vod identified in the request.
 
 	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -183,15 +176,14 @@ List all clips for the vod identified in the request.
 	ListDeprecatedClips(ctx context.Context, customerId string, productId string, programId string, vodId string) ApiListDeprecatedClipsRequest
 
 	// ListDeprecatedClipsExecute executes the request
-	//  @return []DeprecatedListClipsResponse
+	//  @return []DeprecatedListClipsResponseBody
 	// Deprecated
-	ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponse, *http.Response, error)
+	ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponseBody, *http.Response, error)
 
 	/*
 	ListDeprecatedVods List VODs
 
 	<b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-vods](#get-/v2/-org-/channels/-channel-id-/vods) instead.</b>
-
 VODs can be listed after an appropriately configured channel is turned on for the first time.
 If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
@@ -206,9 +198,9 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListDeprecatedVods(ctx context.Context, customerId string, productId string, programId string) ApiListDeprecatedVodsRequest
 
 	// ListDeprecatedVodsExecute executes the request
-	//  @return []DeprecatedListVODsResponse
+	//  @return []DeprecatedListVODsResponseBody
 	// Deprecated
-	ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponse, *http.Response, error)
+	ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponseBody, *http.Response, error)
 }
 
 // DeprecatedLive2VODApiService DeprecatedLive2VODApi service
@@ -224,7 +216,7 @@ type ApiDeprecatedClipGetMp4Request struct {
 	clipId string
 }
 
-func (r ApiDeprecatedClipGetMp4Request) Execute() (*DeprecatedGetMp4UrlResponse, *http.Response, error) {
+func (r ApiDeprecatedClipGetMp4Request) Execute() (*DeprecatedGetMp4UrlResponseBody, *http.Response, error) {
 	return r.ApiService.DeprecatedClipGetMp4Execute(r)
 }
 
@@ -232,7 +224,6 @@ func (r ApiDeprecatedClipGetMp4Request) Execute() (*DeprecatedGetMp4UrlResponse,
 DeprecatedClipGetMp4 Get MP4 URL
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-mp4-url](#get-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/mp4url) instead.</b>
-
 Retrieves a playback URL for the MP4 playback for a clip if available.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -258,14 +249,14 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return DeprecatedGetMp4UrlResponse
+//  @return DeprecatedGetMp4UrlResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4Execute(r ApiDeprecatedClipGetMp4Request) (*DeprecatedGetMp4UrlResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeprecatedGetMp4UrlResponse
+		localVarReturnValue  *DeprecatedGetMp4UrlResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipGetMp4")
@@ -404,7 +395,7 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipGetMp4Execute(r ApiDeprecat
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DeprecatedGetMp4UrlResponse)
+			localVarReturnValue = items.(*DeprecatedGetMp4UrlResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -422,7 +413,7 @@ type ApiDeprecatedClipGetProgramTimeRequest struct {
 	clipId string
 }
 
-func (r ApiDeprecatedClipGetProgramTimeRequest) Execute() (*DeprecatedGetProgramTimeResponse, *http.Response, error) {
+func (r ApiDeprecatedClipGetProgramTimeRequest) Execute() (*DeprecatedGetProgramTimeResponseBody, *http.Response, error) {
 	return r.ApiService.DeprecatedClipGetProgramTimeExecute(r)
 }
 
@@ -430,7 +421,6 @@ func (r ApiDeprecatedClipGetProgramTimeRequest) Execute() (*DeprecatedGetProgram
 DeprecatedClipGetProgramTime Get Program Time
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [get-org-vod-clip-program-time](#get-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/programtime) instead.</b>
-
 Retrieves Program Time for a given Clip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -456,14 +446,14 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTime(ctx context.
 }
 
 // Execute executes the request
-//  @return DeprecatedGetProgramTimeResponse
+//  @return DeprecatedGetProgramTimeResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTimeExecute(r ApiDeprecatedClipGetProgramTimeRequest) (*DeprecatedGetProgramTimeResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeprecatedGetProgramTimeResponse
+		localVarReturnValue  *DeprecatedGetProgramTimeResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipGetProgramTime")
@@ -602,7 +592,7 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipGetProgramTimeExecute(r Api
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DeprecatedGetProgramTimeResponse)
+			localVarReturnValue = items.(*DeprecatedGetProgramTimeResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -626,7 +616,7 @@ func (r ApiDeprecatedClipMakeMp4Request) DeprecatedMakeMP4Request(deprecatedMake
 	return r
 }
 
-func (r ApiDeprecatedClipMakeMp4Request) Execute() (*DeprecatedMakeMP4Response, *http.Response, error) {
+func (r ApiDeprecatedClipMakeMp4Request) Execute() (*DeprecatedMakeMP4ResponseBody, *http.Response, error) {
 	return r.ApiService.DeprecatedClipMakeMp4Execute(r)
 }
 
@@ -634,7 +624,6 @@ func (r ApiDeprecatedClipMakeMp4Request) Execute() (*DeprecatedMakeMP4Response, 
 DeprecatedClipMakeMp4 Create MP4 for Clip
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [post-org-make-mp4](#post-/v2/-org-/channels/-channel-id-/vods/-vod_id-/clips/-clip-id-/makemp4) instead.</b>
-
 Create a mp4 entity for the clip within a vod
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -660,14 +649,14 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4(ctx context.Context
 }
 
 // Execute executes the request
-//  @return DeprecatedMakeMP4Response
+//  @return DeprecatedMakeMP4ResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4Response, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4Execute(r ApiDeprecatedClipMakeMp4Request) (*DeprecatedMakeMP4ResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeprecatedMakeMP4Response
+		localVarReturnValue  *DeprecatedMakeMP4ResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedClipMakeMp4")
@@ -687,6 +676,9 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4Execute(r ApiDepreca
 	localVarFormParams := url.Values{}
 	if strlen(r.programId) > 60 {
 		return localVarReturnValue, nil, reportError("programId must have less than 60 elements")
+	}
+	if r.deprecatedMakeMP4Request == nil {
+		return localVarReturnValue, nil, reportError("deprecatedMakeMP4Request is required and must be specified")
 	}
 
 	// to determine the Content-Type header
@@ -828,7 +820,7 @@ func (a *DeprecatedLive2VODApiService) DeprecatedClipMakeMp4Execute(r ApiDepreca
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DeprecatedMakeMP4Response)
+			localVarReturnValue = items.(*DeprecatedMakeMP4ResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -846,7 +838,7 @@ type ApiDeprecatedGetClipManifestRequest struct {
 	clipId string
 }
 
-func (r ApiDeprecatedGetClipManifestRequest) Execute() ([]DeprecatedGetClipManifestsResponseItem, *http.Response, error) {
+func (r ApiDeprecatedGetClipManifestRequest) Execute() ([]DeprecatedGetClipManifestsBodyItem, *http.Response, error) {
 	return r.ApiService.DeprecatedGetClipManifestExecute(r)
 }
 
@@ -854,7 +846,6 @@ func (r ApiDeprecatedGetClipManifestRequest) Execute() ([]DeprecatedGetClipManif
 DeprecatedGetClipManifest Get Manifests for Clip
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Retrieve List of Manifests for a given Clip
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -880,14 +871,14 @@ func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifest(ctx context.Con
 }
 
 // Execute executes the request
-//  @return []DeprecatedGetClipManifestsResponseItem
+//  @return []DeprecatedGetClipManifestsBodyItem
 // Deprecated
-func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsResponseItem, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifestExecute(r ApiDeprecatedGetClipManifestRequest) ([]DeprecatedGetClipManifestsBodyItem, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []DeprecatedGetClipManifestsResponseItem
+		localVarReturnValue  []DeprecatedGetClipManifestsBodyItem
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.DeprecatedGetClipManifest")
@@ -1026,7 +1017,7 @@ func (a *DeprecatedLive2VODApiService) DeprecatedGetClipManifestExecute(r ApiDep
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]DeprecatedGetClipManifestsResponseItem)
+			localVarReturnValue = items.([]DeprecatedGetClipManifestsBodyItem)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1044,7 +1035,7 @@ type ApiGetDeprecatedClipRequest struct {
 	clipId string
 }
 
-func (r ApiGetDeprecatedClipRequest) Execute() (*DeprecatedGetClipResponse, *http.Response, error) {
+func (r ApiGetDeprecatedClipRequest) Execute() (*DeprecatedGetClipResponseBody, *http.Response, error) {
 	return r.ApiService.GetDeprecatedClipExecute(r)
 }
 
@@ -1052,7 +1043,6 @@ func (r ApiGetDeprecatedClipRequest) Execute() (*DeprecatedGetClipResponse, *htt
 GetDeprecatedClip Get clip
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Get the clip with the clip id sent in the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1078,14 +1068,14 @@ func (a *DeprecatedLive2VODApiService) GetDeprecatedClip(ctx context.Context, cu
 }
 
 // Execute executes the request
-//  @return DeprecatedGetClipResponse
+//  @return DeprecatedGetClipResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedClipExecute(r ApiGetDeprecatedClipRequest) (*DeprecatedGetClipResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeprecatedGetClipResponse
+		localVarReturnValue  *DeprecatedGetClipResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.GetDeprecatedClip")
@@ -1224,7 +1214,7 @@ func (a *DeprecatedLive2VODApiService) GetDeprecatedClipExecute(r ApiGetDeprecat
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DeprecatedGetClipResponse)
+			localVarReturnValue = items.(*DeprecatedGetClipResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1240,7 +1230,7 @@ type ApiGetDeprecatedProgramRequest struct {
 	programId string
 }
 
-func (r ApiGetDeprecatedProgramRequest) Execute() (*DeprecatedGetProgramResponse, *http.Response, error) {
+func (r ApiGetDeprecatedProgramRequest) Execute() (*DeprecatedGetProgramResponseBody, *http.Response, error) {
 	return r.ApiService.GetDeprecatedProgramExecute(r)
 }
 
@@ -1248,7 +1238,6 @@ func (r ApiGetDeprecatedProgramRequest) Execute() (*DeprecatedGetProgramResponse
 GetDeprecatedProgram Get program
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`.</b>
-
 Get a program with an customer, product and program id. This API is deprecated, and it only returns
 the program from the west region.
 
@@ -1271,14 +1260,14 @@ func (a *DeprecatedLive2VODApiService) GetDeprecatedProgram(ctx context.Context,
 }
 
 // Execute executes the request
-//  @return DeprecatedGetProgramResponse
+//  @return DeprecatedGetProgramResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) GetDeprecatedProgramExecute(r ApiGetDeprecatedProgramRequest) (*DeprecatedGetProgramResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DeprecatedGetProgramResponse
+		localVarReturnValue  *DeprecatedGetProgramResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.GetDeprecatedProgram")
@@ -1415,7 +1404,7 @@ func (a *DeprecatedLive2VODApiService) GetDeprecatedProgramExecute(r ApiGetDepre
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.(*DeprecatedGetProgramResponse)
+			localVarReturnValue = items.(*DeprecatedGetProgramResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1432,7 +1421,7 @@ type ApiListDeprecatedClipsRequest struct {
 	vodId string
 }
 
-func (r ApiListDeprecatedClipsRequest) Execute() ([]DeprecatedListClipsResponse, *http.Response, error) {
+func (r ApiListDeprecatedClipsRequest) Execute() ([]DeprecatedListClipsResponseBody, *http.Response, error) {
 	return r.ApiService.ListDeprecatedClipsExecute(r)
 }
 
@@ -1440,7 +1429,6 @@ func (r ApiListDeprecatedClipsRequest) Execute() ([]DeprecatedListClipsResponse,
 ListDeprecatedClips List available clips
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-clips](#get-/v2/-org-/channels/-channel-id-/clips) instead.</b>
-
 List all clips for the vod identified in the request.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -1464,14 +1452,14 @@ func (a *DeprecatedLive2VODApiService) ListDeprecatedClips(ctx context.Context, 
 }
 
 // Execute executes the request
-//  @return []DeprecatedListClipsResponse
+//  @return []DeprecatedListClipsResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedClipsExecute(r ApiListDeprecatedClipsRequest) ([]DeprecatedListClipsResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []DeprecatedListClipsResponse
+		localVarReturnValue  []DeprecatedListClipsResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.ListDeprecatedClips")
@@ -1609,7 +1597,7 @@ func (a *DeprecatedLive2VODApiService) ListDeprecatedClipsExecute(r ApiListDepre
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]DeprecatedListClipsResponse)
+			localVarReturnValue = items.([]DeprecatedListClipsResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -1625,7 +1613,7 @@ type ApiListDeprecatedVodsRequest struct {
 	programId string
 }
 
-func (r ApiListDeprecatedVodsRequest) Execute() ([]DeprecatedListVODsResponse, *http.Response, error) {
+func (r ApiListDeprecatedVodsRequest) Execute() ([]DeprecatedListVODsResponseBody, *http.Response, error) {
 	return r.ApiService.ListDeprecatedVodsExecute(r)
 }
 
@@ -1633,7 +1621,6 @@ func (r ApiListDeprecatedVodsRequest) Execute() ([]DeprecatedListVODsResponse, *
 ListDeprecatedVods List VODs
 
 <b>This route is deprecated and is subject to removal any time after `Thu, 06 Apr 2023 19:00:00 UTC`. Use [list-org-vods](#get-/v2/-org-/channels/-channel-id-/vods) instead.</b>
-
 VODs can be listed after an appropriately configured channel is turned on for the first time.
 If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
@@ -1656,14 +1643,14 @@ func (a *DeprecatedLive2VODApiService) ListDeprecatedVods(ctx context.Context, c
 }
 
 // Execute executes the request
-//  @return []DeprecatedListVODsResponse
+//  @return []DeprecatedListVODsResponseBody
 // Deprecated
-func (a *DeprecatedLive2VODApiService) ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponse, *http.Response, error) {
+func (a *DeprecatedLive2VODApiService) ListDeprecatedVodsExecute(r ApiListDeprecatedVodsRequest) ([]DeprecatedListVODsResponseBody, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []DeprecatedListVODsResponse
+		localVarReturnValue  []DeprecatedListVODsResponseBody
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DeprecatedLive2VODApiService.ListDeprecatedVods")
@@ -1800,7 +1787,7 @@ func (a *DeprecatedLive2VODApiService) ListDeprecatedVodsExecute(r ApiListDeprec
 			if err.Error() != "" {
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
-			localVarReturnValue = items.([]DeprecatedListVODsResponse)
+			localVarReturnValue = items.([]DeprecatedListVODsResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}

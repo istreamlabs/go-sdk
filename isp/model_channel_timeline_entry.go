@@ -27,9 +27,9 @@ type ChannelTimelineEntry struct {
 	// The request body, if any, of the original action
 	RequestBody string `json:"request_body" doc:"The request body, if any, of the original action"`
 	// HTTP Status code indicating outcome of the action.
-	StatusCode int32 `json:"status_code" format:"int32" doc:"HTTP Status code indicating outcome of the action."`
+	StatusCode int64 `json:"status_code" format:"int64" doc:"HTTP Status code indicating outcome of the action."`
 	// Timestamp of the action in UTC
-	Timestamp time.Time `json:"timestamp" format:"date-time" doc:"Timestamp of the action in UTC"`
+	Timestamp NullableTime `json:"timestamp" format:"date-time" doc:"Timestamp of the action in UTC"`
 	// Correlation identifier for tracing
 	TraceId string `json:"trace_id" doc:"Correlation identifier for tracing"`
 }
@@ -38,7 +38,7 @@ type ChannelTimelineEntry struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewChannelTimelineEntry(action string, agent string, requestBody string, statusCode int32, timestamp time.Time, traceId string) *ChannelTimelineEntry {
+func NewChannelTimelineEntry(action string, agent string, requestBody string, statusCode int64, timestamp NullableTime, traceId string) *ChannelTimelineEntry {
 	this := ChannelTimelineEntry{}
 	this.Action = action
 	this.Agent = agent
@@ -162,9 +162,9 @@ func (o *ChannelTimelineEntry) SetRequestBody(v string) {
 }
 
 // GetStatusCode returns the StatusCode field value
-func (o *ChannelTimelineEntry) GetStatusCode() int32 {
+func (o *ChannelTimelineEntry) GetStatusCode() int64 {
 	if o == nil {
-		var ret int32
+		var ret int64
 		return ret
 	}
 
@@ -173,7 +173,7 @@ func (o *ChannelTimelineEntry) GetStatusCode() int32 {
 
 // GetStatusCodeOk returns a tuple with the StatusCode field value
 // and a boolean to check if the value has been set.
-func (o *ChannelTimelineEntry) GetStatusCodeOk() (*int32, bool) {
+func (o *ChannelTimelineEntry) GetStatusCodeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -181,32 +181,34 @@ func (o *ChannelTimelineEntry) GetStatusCodeOk() (*int32, bool) {
 }
 
 // SetStatusCode sets field value
-func (o *ChannelTimelineEntry) SetStatusCode(v int32) {
+func (o *ChannelTimelineEntry) SetStatusCode(v int64) {
 	o.StatusCode = v
 }
 
 // GetTimestamp returns the Timestamp field value
+// If the value is explicit nil, the zero value for time.Time will be returned
 func (o *ChannelTimelineEntry) GetTimestamp() time.Time {
-	if o == nil {
+	if o == nil || o.Timestamp.Get() == nil {
 		var ret time.Time
 		return ret
 	}
 
-	return o.Timestamp
+	return *o.Timestamp.Get()
 }
 
 // GetTimestampOk returns a tuple with the Timestamp field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ChannelTimelineEntry) GetTimestampOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp.Get(), o.Timestamp.IsSet()
 }
 
 // SetTimestamp sets field value
 func (o *ChannelTimelineEntry) SetTimestamp(v time.Time) {
-	o.Timestamp = v
+	o.Timestamp.Set(&v)
 }
 
 // GetTraceId returns the TraceId field value
@@ -250,7 +252,7 @@ func (o ChannelTimelineEntry) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["request_body"] = o.RequestBody
 	toSerialize["status_code"] = o.StatusCode
-	toSerialize["timestamp"] = o.Timestamp
+	toSerialize["timestamp"] = o.Timestamp.Get()
 	toSerialize["trace_id"] = o.TraceId
 	return toSerialize, nil
 }

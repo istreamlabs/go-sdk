@@ -19,8 +19,8 @@ var _ MappedNullable = &CollapseVODRequest{}
 
 // CollapseVODRequest struct for CollapseVODRequest
 type CollapseVODRequest struct {
-	// An optional URL to a JSON Schema document describing this resource
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"An optional URL to a JSON Schema document describing this resource"`
+	// A URL to the JSON Schema for this object.
+	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Prefix for clip
 	ClipPrefix *string `json:"clip_prefix,omitempty" doc:"Prefix for clip"`
 	// Suffix for clip
@@ -29,7 +29,7 @@ type CollapseVODRequest struct {
 	DisableAutoPrefix *bool `json:"disable_auto_prefix,omitempty" doc:"Disable any autoprefix"`
 	// EndTime of VOD
 	EndTime *time.Time `json:"end_time,omitempty" format:"date-time" doc:"EndTime of VOD"`
-	Filterconfig *CollapseVODRequestFilterconfig `json:"filterconfig,omitempty"`
+	Filterconfig *VODFilterConfig `json:"filterconfig,omitempty"`
 	// Description for new collapsed clip
 	NewClipDescription string `json:"new_clip_description" doc:"Description for new collapsed clip"`
 	// New Clip ID for collapsed clip
@@ -222,9 +222,9 @@ func (o *CollapseVODRequest) SetEndTime(v time.Time) {
 }
 
 // GetFilterconfig returns the Filterconfig field value if set, zero value otherwise.
-func (o *CollapseVODRequest) GetFilterconfig() CollapseVODRequestFilterconfig {
+func (o *CollapseVODRequest) GetFilterconfig() VODFilterConfig {
 	if o == nil || IsNil(o.Filterconfig) {
-		var ret CollapseVODRequestFilterconfig
+		var ret VODFilterConfig
 		return ret
 	}
 	return *o.Filterconfig
@@ -232,7 +232,7 @@ func (o *CollapseVODRequest) GetFilterconfig() CollapseVODRequestFilterconfig {
 
 // GetFilterconfigOk returns a tuple with the Filterconfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CollapseVODRequest) GetFilterconfigOk() (*CollapseVODRequestFilterconfig, bool) {
+func (o *CollapseVODRequest) GetFilterconfigOk() (*VODFilterConfig, bool) {
 	if o == nil || IsNil(o.Filterconfig) {
 		return nil, false
 	}
@@ -248,8 +248,8 @@ func (o *CollapseVODRequest) HasFilterconfig() bool {
 	return false
 }
 
-// SetFilterconfig gets a reference to the given CollapseVODRequestFilterconfig and assigns it to the Filterconfig field.
-func (o *CollapseVODRequest) SetFilterconfig(v CollapseVODRequestFilterconfig) {
+// SetFilterconfig gets a reference to the given VODFilterConfig and assigns it to the Filterconfig field.
+func (o *CollapseVODRequest) SetFilterconfig(v VODFilterConfig) {
 	o.Filterconfig = &v
 }
 

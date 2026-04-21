@@ -19,7 +19,7 @@ var _ MappedNullable = &GenericSignal{}
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
 	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
-	Duration *int32 `json:"duration,omitempty" format:"int32" default:"0" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
+	Duration *int64 `json:"duration,omitempty" format:"int64" default:"0" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
 	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
 	EventId int32 `json:"event_id" format:"int32" minimum:"0" doc:"Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id."`
 	// The signaling segment type which is going to start/end/etc. This is used to mark programs, chapters, ad insertion points, video slating, etc.
@@ -44,7 +44,7 @@ type GenericSignal struct {
 // will change when the set of required properties is changed
 func NewGenericSignal(eventId int32, segmentType string, signalType string) *GenericSignal {
 	this := GenericSignal{}
-	var duration int32 = 0
+	var duration int64 = 0
 	this.Duration = &duration
 	this.EventId = eventId
 	this.SegmentType = segmentType
@@ -57,15 +57,15 @@ func NewGenericSignal(eventId int32, segmentType string, signalType string) *Gen
 // but it doesn't guarantee that properties required by API are set
 func NewGenericSignalWithDefaults() *GenericSignal {
 	this := GenericSignal{}
-	var duration int32 = 0
+	var duration int64 = 0
 	this.Duration = &duration
 	return &this
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *GenericSignal) GetDuration() int32 {
+func (o *GenericSignal) GetDuration() int64 {
 	if o == nil || IsNil(o.Duration) {
-		var ret int32
+		var ret int64
 		return ret
 	}
 	return *o.Duration
@@ -73,7 +73,7 @@ func (o *GenericSignal) GetDuration() int32 {
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GenericSignal) GetDurationOk() (*int32, bool) {
+func (o *GenericSignal) GetDurationOk() (*int64, bool) {
 	if o == nil || IsNil(o.Duration) {
 		return nil, false
 	}
@@ -89,8 +89,8 @@ func (o *GenericSignal) HasDuration() bool {
 	return false
 }
 
-// SetDuration gets a reference to the given int32 and assigns it to the Duration field.
-func (o *GenericSignal) SetDuration(v int32) {
+// SetDuration gets a reference to the given int64 and assigns it to the Duration field.
+func (o *GenericSignal) SetDuration(v int64) {
 	o.Duration = &v
 }
 
@@ -294,9 +294,9 @@ func (o *GenericSignal) SetType(v string) {
 	o.Type = &v
 }
 
-// GetUpids returns the Upids field value if set, zero value otherwise.
+// GetUpids returns the Upids field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GenericSignal) GetUpids() []string {
-	if o == nil || IsNil(o.Upids) {
+	if o == nil {
 		var ret []string
 		return ret
 	}
@@ -305,6 +305,7 @@ func (o *GenericSignal) GetUpids() []string {
 
 // GetUpidsOk returns a tuple with the Upids field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
 	if o == nil || IsNil(o.Upids) {
 		return nil, false
@@ -314,7 +315,7 @@ func (o *GenericSignal) GetUpidsOk() ([]string, bool) {
 
 // HasUpids returns a boolean if a field has been set.
 func (o *GenericSignal) HasUpids() bool {
-	if o != nil && !IsNil(o.Upids) {
+	if o != nil && IsNil(o.Upids) {
 		return true
 	}
 
@@ -354,7 +355,7 @@ func (o GenericSignal) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type
 	}
-	if !IsNil(o.Upids) {
+	if o.Upids != nil {
 		toSerialize["upids"] = o.Upids
 	}
 	return toSerialize, nil
