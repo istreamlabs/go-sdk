@@ -54,10 +54,19 @@ fi
 rm -rf "${API}"
 mkdir "${API}"
 
-# Copy required files to directory
-cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
-cp ./prerequisites/convenience._go ./${API}/convenience.go
-cp ./prerequisites/${API}_client._go ./${API}/client.go
+if [[ "$API" == "isp" ]]; then
+  # Copy required files to directory
+  cp ./prerequisites/.openapi-generator-ignore.isp ./${API}/.openapi-generator-ignore
+  cp ./prerequisites/convenience._go ./${API}/convenience.go
+  cp ./prerequisites/closeable_transport._go ./${API}/closeable_transport.go
+  cp ./prerequisites/isp_client._go ./${API}/client.go
+else
+  # Copy required files to directory
+  cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
+  cp ./prerequisites/convenience._go ./${API}/convenience.go
+fi
+
+
 
 # Generate the SDK
 docker run --rm \
