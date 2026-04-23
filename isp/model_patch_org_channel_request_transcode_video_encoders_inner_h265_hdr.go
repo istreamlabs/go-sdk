@@ -19,7 +19,7 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
 // PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
 type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr struct {
 	DolbyVision *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision `json:"dolby_vision,omitempty"`
-	Hdr10 *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
+	Hdr10       *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10       `json:"hdr10,omitempty"`
 }
 
 // NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr object
@@ -104,7 +104,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr) SetHdr10(v Pa
 }
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,5 +157,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr) Unmar
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

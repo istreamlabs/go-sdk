@@ -19,8 +19,8 @@ var _ MappedNullable = &S3{}
 // S3 struct for S3
 type S3 struct {
 	BucketName string `json:"bucket_name"`
-	Key string `json:"key"`
-	Region string `json:"region"`
+	Key        string `json:"key"`
+	Region     string `json:"region"`
 }
 
 // NewS3 instantiates a new S3 object
@@ -116,7 +116,7 @@ func (o *S3) SetRegion(v string) {
 }
 
 func (o S3) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -166,5 +166,3 @@ func (v *NullableS3) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

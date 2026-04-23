@@ -18,10 +18,10 @@ var _ MappedNullable = &ArchiveSettings{}
 
 // ArchiveSettings struct for ArchiveSettings
 type ArchiveSettings struct {
-	GlobalArchiveSettings *GlobalArchiveSettings `json:"global_archive_settings,omitempty"`
-	NetstorageConnectionSettings []NetStorageSettings `json:"netstorage_connection_settings,omitempty"`
-	S3ArchiveSettings []S3ArchiveSettings `json:"s3_archive_settings,omitempty"`
-	WorkflowId *string `json:"workflow_id,omitempty"`
+	GlobalArchiveSettings        *GlobalArchiveSettings `json:"global_archive_settings,omitempty"`
+	NetstorageConnectionSettings []NetStorageSettings   `json:"netstorage_connection_settings,omitempty"`
+	S3ArchiveSettings            []S3ArchiveSettings    `json:"s3_archive_settings,omitempty"`
+	WorkflowId                   *string                `json:"workflow_id,omitempty"`
 }
 
 // NewArchiveSettings instantiates a new ArchiveSettings object
@@ -172,7 +172,7 @@ func (o *ArchiveSettings) SetWorkflowId(v string) {
 }
 
 func (o ArchiveSettings) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -231,5 +231,3 @@ func (v *NullableArchiveSettings) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

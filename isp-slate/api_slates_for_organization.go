@@ -18,19 +18,18 @@ import (
 	"strings"
 )
 
-
-type SlatesForOrganizationApi interface {
+type SlatesForOrganizationAPI interface {
 
 	/*
-	DeleteOrgSlate Delete Slate
+			DeleteOrgSlate Delete Slate
 
-	Delete Slate
-Delete a slate by id.
+			Delete Slate
+		Delete a slate by id.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param slateId Unique identifier for this slate
-	@return ApiDeleteOrgSlateRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param slateId Unique identifier for this slate
+			@return ApiDeleteOrgSlateRequest
 	*/
 	DeleteOrgSlate(ctx context.Context, org string, slateId string) ApiDeleteOrgSlateRequest
 
@@ -38,15 +37,15 @@ Delete a slate by id.
 	DeleteOrgSlateExecute(r ApiDeleteOrgSlateRequest) (*http.Response, error)
 
 	/*
-	GetOrgSlate Get Slate
+			GetOrgSlate Get Slate
 
-	Get Slate
-Get a slate by id.
+			Get Slate
+		Get a slate by id.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param slateId Unique identifier for this slate
-	@return ApiGetOrgSlateRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param slateId Unique identifier for this slate
+			@return ApiGetOrgSlateRequest
 	*/
 	GetOrgSlate(ctx context.Context, org string, slateId string) ApiGetOrgSlateRequest
 
@@ -55,13 +54,13 @@ Get a slate by id.
 	GetOrgSlateExecute(r ApiGetOrgSlateRequest) (*Slate, *http.Response, error)
 
 	/*
-	ListOrgSlates List Slates
+		ListOrgSlates List Slates
 
-	List all slates
+		List all slates
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@return ApiListOrgSlatesRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@return ApiListOrgSlatesRequest
 	*/
 	ListOrgSlates(ctx context.Context, org string) ApiListOrgSlatesRequest
 
@@ -70,15 +69,15 @@ Get a slate by id.
 	ListOrgSlatesExecute(r ApiListOrgSlatesRequest) ([]Slate, *http.Response, error)
 
 	/*
-	PutOrgSlate Create/Update Slate
+			PutOrgSlate Create/Update Slate
 
-	Create/Update Slate
-Create or update a slate by id.  The URL of the slate must already exist.
+			Create/Update Slate
+		Create or update a slate by id.  The URL of the slate must already exist.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param slateId Unique identifier for this slate
-	@param org Organization name
-	@return ApiPutOrgSlateRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param slateId Unique identifier for this slate
+			@param org Organization name
+			@return ApiPutOrgSlateRequest
 	*/
 	PutOrgSlate(ctx context.Context, slateId string, org string) ApiPutOrgSlateRequest
 
@@ -87,14 +86,14 @@ Create or update a slate by id.  The URL of the slate must already exist.
 	PutOrgSlateExecute(r ApiPutOrgSlateRequest) (*Slate, *http.Response, error)
 }
 
-// SlatesForOrganizationApiService SlatesForOrganizationApi service
-type SlatesForOrganizationApiService service
+// SlatesForOrganizationAPIService SlatesForOrganizationAPI service
+type SlatesForOrganizationAPIService service
 
 type ApiDeleteOrgSlateRequest struct {
-	ctx context.Context
-	ApiService SlatesForOrganizationApi
-	org string
-	slateId string
+	ctx        context.Context
+	ApiService SlatesForOrganizationAPI
+	org        string
+	slateId    string
 }
 
 func (r ApiDeleteOrgSlateRequest) Execute() (*http.Response, error) {
@@ -107,29 +106,29 @@ DeleteOrgSlate Delete Slate
 Delete Slate
 Delete a slate by id.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param slateId Unique identifier for this slate
- @return ApiDeleteOrgSlateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param slateId Unique identifier for this slate
+	@return ApiDeleteOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) DeleteOrgSlate(ctx context.Context, org string, slateId string) ApiDeleteOrgSlateRequest {
+func (a *SlatesForOrganizationAPIService) DeleteOrgSlate(ctx context.Context, org string, slateId string) ApiDeleteOrgSlateRequest {
 	return ApiDeleteOrgSlateRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		slateId: slateId,
+		ctx:        ctx,
+		org:        org,
+		slateId:    slateId,
 	}
 }
 
 // Execute executes the request
-func (a *SlatesForOrganizationApiService) DeleteOrgSlateExecute(r ApiDeleteOrgSlateRequest) (*http.Response, error) {
+func (a *SlatesForOrganizationAPIService) DeleteOrgSlateExecute(r ApiDeleteOrgSlateRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodDelete
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodDelete
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationApiService.DeleteOrgSlate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationAPIService.DeleteOrgSlate")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -267,10 +266,10 @@ func (a *SlatesForOrganizationApiService) DeleteOrgSlateExecute(r ApiDeleteOrgSl
 }
 
 type ApiGetOrgSlateRequest struct {
-	ctx context.Context
-	ApiService SlatesForOrganizationApi
-	org string
-	slateId string
+	ctx        context.Context
+	ApiService SlatesForOrganizationAPI
+	org        string
+	slateId    string
 }
 
 func (r ApiGetOrgSlateRequest) Execute() (*Slate, *http.Response, error) {
@@ -283,31 +282,32 @@ GetOrgSlate Get Slate
 Get Slate
 Get a slate by id.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param slateId Unique identifier for this slate
- @return ApiGetOrgSlateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param slateId Unique identifier for this slate
+	@return ApiGetOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) GetOrgSlate(ctx context.Context, org string, slateId string) ApiGetOrgSlateRequest {
+func (a *SlatesForOrganizationAPIService) GetOrgSlate(ctx context.Context, org string, slateId string) ApiGetOrgSlateRequest {
 	return ApiGetOrgSlateRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		slateId: slateId,
+		ctx:        ctx,
+		org:        org,
+		slateId:    slateId,
 	}
 }
 
 // Execute executes the request
-//  @return Slate
-func (a *SlatesForOrganizationApiService) GetOrgSlateExecute(r ApiGetOrgSlateRequest) (*Slate, *http.Response, error) {
+//
+//	@return Slate
+func (a *SlatesForOrganizationAPIService) GetOrgSlateExecute(r ApiGetOrgSlateRequest) (*Slate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Slate
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Slate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationApiService.GetOrgSlate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationAPIService.GetOrgSlate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -456,11 +456,11 @@ func (a *SlatesForOrganizationApiService) GetOrgSlateExecute(r ApiGetOrgSlateReq
 }
 
 type ApiListOrgSlatesRequest struct {
-	ctx context.Context
-	ApiService SlatesForOrganizationApi
-	org string
-	cursor *string
-	limit *int32
+	ctx        context.Context
+	ApiService SlatesForOrganizationAPI
+	org        string
+	cursor     *string
+	limit      *int32
 }
 
 // Current page cursor
@@ -484,29 +484,30 @@ ListOrgSlates List Slates
 
 List all slates
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @return ApiListOrgSlatesRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@return ApiListOrgSlatesRequest
 */
-func (a *SlatesForOrganizationApiService) ListOrgSlates(ctx context.Context, org string) ApiListOrgSlatesRequest {
+func (a *SlatesForOrganizationAPIService) ListOrgSlates(ctx context.Context, org string) ApiListOrgSlatesRequest {
 	return ApiListOrgSlatesRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
+		ctx:        ctx,
+		org:        org,
 	}
 }
 
 // Execute executes the request
-//  @return []Slate
-func (a *SlatesForOrganizationApiService) ListOrgSlatesExecute(r ApiListOrgSlatesRequest) ([]Slate, *http.Response, error) {
+//
+//	@return []Slate
+func (a *SlatesForOrganizationAPIService) ListOrgSlatesExecute(r ApiListOrgSlatesRequest) ([]Slate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []Slate
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []Slate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationApiService.ListOrgSlates")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationAPIService.ListOrgSlates")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -650,10 +651,10 @@ func (a *SlatesForOrganizationApiService) ListOrgSlatesExecute(r ApiListOrgSlate
 }
 
 type ApiPutOrgSlateRequest struct {
-	ctx context.Context
-	ApiService SlatesForOrganizationApi
-	slateId string
-	org string
+	ctx            context.Context
+	ApiService     SlatesForOrganizationAPI
+	slateId        string
+	org            string
 	slateWithoutID *SlateWithoutID
 }
 
@@ -672,31 +673,32 @@ PutOrgSlate Create/Update Slate
 Create/Update Slate
 Create or update a slate by id.  The URL of the slate must already exist.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param slateId Unique identifier for this slate
- @param org Organization name
- @return ApiPutOrgSlateRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param slateId Unique identifier for this slate
+	@param org Organization name
+	@return ApiPutOrgSlateRequest
 */
-func (a *SlatesForOrganizationApiService) PutOrgSlate(ctx context.Context, slateId string, org string) ApiPutOrgSlateRequest {
+func (a *SlatesForOrganizationAPIService) PutOrgSlate(ctx context.Context, slateId string, org string) ApiPutOrgSlateRequest {
 	return ApiPutOrgSlateRequest{
 		ApiService: a,
-		ctx: ctx,
-		slateId: slateId,
-		org: org,
+		ctx:        ctx,
+		slateId:    slateId,
+		org:        org,
 	}
 }
 
 // Execute executes the request
-//  @return Slate
-func (a *SlatesForOrganizationApiService) PutOrgSlateExecute(r ApiPutOrgSlateRequest) (*Slate, *http.Response, error) {
+//
+//	@return Slate
+func (a *SlatesForOrganizationAPIService) PutOrgSlateExecute(r ApiPutOrgSlateRequest) (*Slate, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *Slate
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *Slate
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationApiService.PutOrgSlate")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlatesForOrganizationAPIService.PutOrgSlate")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

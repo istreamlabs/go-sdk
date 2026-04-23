@@ -18,13 +18,13 @@ var _ MappedNullable = &PatchOrgChannelRequestPackagingPackagersValueContentProt
 
 // PatchOrgChannelRequestPackagingPackagersValueContentProtection struct for PatchOrgChannelRequestPackagingPackagersValueContentProtection
 type PatchOrgChannelRequestPackagingPackagersValueContentProtection struct {
-	Atlas *PatchOrgChannelRequestPackagingPackagersValueContentProtectionAtlas `json:"atlas,omitempty"`
-	BulkFile *PatchOrgChannelRequestPackagingPackagersValueContentProtectionBulkFile `json:"bulk_file,omitempty"`
-	Common *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCommon `json:"common,omitempty"`
-	Cpix *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCpix `json:"cpix,omitempty"`
+	Atlas       *PatchOrgChannelRequestPackagingPackagersValueContentProtectionAtlas       `json:"atlas,omitempty"`
+	BulkFile    *PatchOrgChannelRequestPackagingPackagersValueContentProtectionBulkFile    `json:"bulk_file,omitempty"`
+	Common      *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCommon      `json:"common,omitempty"`
+	Cpix        *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCpix        `json:"cpix,omitempty"`
 	KeyRotation *PatchOrgChannelRequestPackagingPackagersValueContentProtectionKeyRotation `json:"key_rotation,omitempty"`
-	SampleAes *map[string]interface{} `json:"sample_aes,omitempty"`
-	Simple *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
+	SampleAes   *map[string]interface{}                                                    `json:"sample_aes,omitempty"`
+	Simple      *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple      `json:"simple,omitempty"`
 }
 
 // NewPatchOrgChannelRequestPackagingPackagersValueContentProtection instantiates a new PatchOrgChannelRequestPackagingPackagersValueContentProtection object
@@ -269,7 +269,7 @@ func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtection) SetSimp
 }
 
 func (o PatchOrgChannelRequestPackagingPackagersValueContentProtection) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -337,5 +337,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtection)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

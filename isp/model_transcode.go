@@ -22,7 +22,7 @@ type Transcode struct {
 	AudioEncoders []PatchOrgChannelRequestTranscodeAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1" doc:"Audio encoders specify audio conversion settings, e.g. channels, samples, codec, bitrate, etc."`
 	// Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays.
 	// Deprecated
-	DebugOverlay *bool `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays."`
+	DebugOverlay  *bool                                         `json:"debug_overlay,omitempty" deprecated:"true" doc:"Deprecated: Do not use. Debug_overlay overlays debugging information from the transcoder into the top right of the video output. The overlay is burned into the video and will be visible to end-users if enabled. Do not enable on customer facing channels. Requires a transcoder restart if the state is changed. The default value is false, which disables the overlay. This setting is deprecated in favour of debug_overlays."`
 	DebugOverlays *PatchOrgChannelRequestTranscodeDebugOverlays `json:"debug_overlays,omitempty"`
 	// Configures external dynamic resources which will be downloaded by the transcoder and made available for use in the dynamic state API. Each key in the map is used to identify the resource from any location wishing to reference it (e.g. the dynamic state API).
 	DynamicResources *map[string]PatchOrgChannelRequestTranscodeDynamicResourcesValue `json:"dynamic_resources,omitempty" doc:"Configures external dynamic resources which will be downloaded by the transcoder and made available for use in the dynamic state API. Each key in the map is used to identify the resource from any location wishing to reference it (e.g. the dynamic state API)."`
@@ -34,8 +34,8 @@ type Transcode struct {
 	Overlays []PatchOrgChannelRequestTranscodeOverlaysInner `json:"overlays,omitempty" maxItems:"1" doc:"List of overlays. An overlay is an image that will be rendered on top of the source video. Only one overlay is supported at the moment. If specified, the overlay will be always rendered unless a video slate is on."`
 	// Deprecated: Do not use. Deprecated: This field was never implemented. See resize_mode on VideoEncoder instead.
 	// Deprecated
-	ResizeMode *string `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX,CENTER_CROP" deprecated:"true" doc:"Deprecated: Do not use. Deprecated: This field was never implemented. See resize_mode on VideoEncoder instead."`
-	Segmenter *PatchOrgChannelRequestTranscodeSegmenter `json:"segmenter,omitempty"`
+	ResizeMode *string                                   `json:"resize_mode,omitempty" enum:"STRETCH,LETTERBOX,CENTER_CROP" deprecated:"true" doc:"Deprecated: Do not use. Deprecated: This field was never implemented. See resize_mode on VideoEncoder instead."`
+	Segmenter  *PatchOrgChannelRequestTranscodeSegmenter `json:"segmenter,omitempty"`
 	// Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec.
 	SubtitleEncoders []PatchOrgChannelRequestTranscodeSubtitleEncodersInner `json:"subtitle_encoders,omitempty" doc:"Subtitle encoders specify how text-based subtitles are extracted into separate segments. They are not used to describe CEA 608 captions, which remain part of the video codec."`
 	// Thumbnail encoders specify how to create image snapshots of the video stream.
@@ -458,7 +458,7 @@ func (o *Transcode) SetVideoEncoders(v []PutChannelRequestBodyTranscodeVideoEnco
 }
 
 func (o Transcode) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -541,5 +541,3 @@ func (v *NullableTranscode) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

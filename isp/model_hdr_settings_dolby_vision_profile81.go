@@ -21,7 +21,7 @@ type HdrSettingsDolbyVisionProfile81 struct {
 	Clli *HdrSettingsContentLightLevelInfo `json:"clli,omitempty"`
 	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
 	Level8 []PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
-	Mdcv *HdrSettingsMasteringDisplayColorVolume `json:"mdcv,omitempty"`
+	Mdcv   *HdrSettingsMasteringDisplayColorVolume                                                   `json:"mdcv,omitempty"`
 }
 
 // NewHdrSettingsDolbyVisionProfile81 instantiates a new HdrSettingsDolbyVisionProfile81 object
@@ -139,7 +139,7 @@ func (o *HdrSettingsDolbyVisionProfile81) SetMdcv(v HdrSettingsMasteringDisplayC
 }
 
 func (o HdrSettingsDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -195,5 +195,3 @@ func (v *NullableHdrSettingsDolbyVisionProfile81) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

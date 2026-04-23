@@ -23,7 +23,7 @@ type TranscoderRawSCTE35 struct {
 	// id is a unique scte id assigned by the transcoder per run_id
 	Id *int32 `json:"id,omitempty" format:"int32" minimum:"0" doc:"id is a unique scte id assigned by the transcoder per run_id"`
 	// in_band denotes whether the SCTE-35 message was received in the source consumed by the transcoder (In-Band) or signaled via Transcoder API (Out-of-Band).
-	InBand *bool `json:"in_band,omitempty" doc:"in_band denotes whether the SCTE-35 message was received in the source consumed by the transcoder (In-Band) or signaled via Transcoder API (Out-of-Band)."`
+	InBand *bool   `json:"in_band,omitempty" doc:"in_band denotes whether the SCTE-35 message was received in the source consumed by the transcoder (In-Band) or signaled via Transcoder API (Out-of-Band)."`
 	Scte35 *string `json:"scte35,omitempty" format:"base64"`
 	Source *string `json:"source,omitempty" enum:"SOURCE_UNDEFINED,PRIMARY,SECONDARY"`
 	// time is the time at which the SCTE was received by the transcoder.
@@ -240,7 +240,7 @@ func (o *TranscoderRawSCTE35) SetTime(v time.Time) {
 }
 
 func (o TranscoderRawSCTE35) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -305,5 +305,3 @@ func (v *NullableTranscoderRawSCTE35) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

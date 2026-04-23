@@ -450,7 +450,7 @@ func (o *PublicationOriginManifestDefaults) SetSuggestedPresentationDelaySeconds
 }
 
 func (o PublicationOriginManifestDefaults) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -533,5 +533,3 @@ func (v *NullablePublicationOriginManifestDefaults) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

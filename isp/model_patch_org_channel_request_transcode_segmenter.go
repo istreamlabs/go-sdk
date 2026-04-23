@@ -140,7 +140,7 @@ func (o *PatchOrgChannelRequestTranscodeSegmenter) SetTemi(v bool) {
 }
 
 func (o PatchOrgChannelRequestTranscodeSegmenter) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -196,5 +196,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSegmenter) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

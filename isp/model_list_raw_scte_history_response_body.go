@@ -19,7 +19,7 @@ var _ MappedNullable = &ListRawSCTEHistoryResponseBody{}
 // ListRawSCTEHistoryResponseBody struct for ListRawSCTEHistoryResponseBody
 type ListRawSCTEHistoryResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema    *string               `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	RawScte35 []TranscoderRawSCTE35 `json:"raw_scte35,omitempty"`
 }
 
@@ -106,7 +106,7 @@ func (o *ListRawSCTEHistoryResponseBody) SetRawScte35(v []TranscoderRawSCTE35) {
 }
 
 func (o ListRawSCTEHistoryResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullableListRawSCTEHistoryResponseBody) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

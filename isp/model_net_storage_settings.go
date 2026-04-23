@@ -18,17 +18,17 @@ var _ MappedNullable = &NetStorageSettings{}
 
 // NetStorageSettings struct for NetStorageSettings
 type NetStorageSettings struct {
-	ArchiveTargetTypes []string `json:"archive_target_types,omitempty"`
-	AutoArchiveOnCollapseTypes []string `json:"auto_archive_on_collapse_types,omitempty"`
-	AutoCopyToNetstorage bool `json:"auto_copy_to_netstorage"`
-	Basedir *string `json:"basedir,omitempty"`
-	CopyCollapsedArchive bool `json:"copy_collapsed_archive"`
-	CopyRawArchive bool `json:"copy_raw_archive"`
-	Cpcode string `json:"cpcode"`
-	Hostname string `json:"hostname"`
-	Key string `json:"key"`
-	Keyname string `json:"keyname"`
-	ManifestUpdates *ManifestUpdates `json:"manifest_updates,omitempty"`
+	ArchiveTargetTypes         []string         `json:"archive_target_types,omitempty"`
+	AutoArchiveOnCollapseTypes []string         `json:"auto_archive_on_collapse_types,omitempty"`
+	AutoCopyToNetstorage       bool             `json:"auto_copy_to_netstorage"`
+	Basedir                    *string          `json:"basedir,omitempty"`
+	CopyCollapsedArchive       bool             `json:"copy_collapsed_archive"`
+	CopyRawArchive             bool             `json:"copy_raw_archive"`
+	Cpcode                     string           `json:"cpcode"`
+	Hostname                   string           `json:"hostname"`
+	Key                        string           `json:"key"`
+	Keyname                    string           `json:"keyname"`
+	ManifestUpdates            *ManifestUpdates `json:"manifest_updates,omitempty"`
 }
 
 // NewNetStorageSettings instantiates a new NetStorageSettings object
@@ -354,7 +354,7 @@ func (o *NetStorageSettings) SetManifestUpdates(v ManifestUpdates) {
 }
 
 func (o NetStorageSettings) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -420,5 +420,3 @@ func (v *NullableNetStorageSettings) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

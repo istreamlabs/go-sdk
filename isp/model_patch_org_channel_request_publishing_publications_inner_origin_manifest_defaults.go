@@ -446,7 +446,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -529,5 +529,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifest
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

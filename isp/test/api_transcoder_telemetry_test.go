@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing TranscoderTelemetryApiService
+Testing TranscoderTelemetryAPIService
 
 */
 
@@ -11,40 +11,26 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
-func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
+func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test TranscoderTelemetryApiService GetChannelCostReport", func(t *testing.T) {
+	t.Run("Test TranscoderTelemetryAPIService GetChannelCostReport", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.TranscoderTelemetryApi.GetChannelCostReport(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TranscoderTelemetryApiService ListContentSegmentHistory", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListContentSegmentHistory(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.GetChannelCostReport(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -52,40 +38,55 @@ func Test_isp_TranscoderTelemetryApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test TranscoderTelemetryApiService ListOrganizationCostReports", func(t *testing.T) {
+	t.Run("Test TranscoderTelemetryAPIService ListContentSegmentHistory", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-
-		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListOrganizationCostReports(context.Background(), org).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TranscoderTelemetryApiService ListRawScteHistory", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
-
-		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListRawScteHistory(context.Background()).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test TranscoderTelemetryApiService ListRawScteHistoryByChannel", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.TranscoderTelemetryApi.ListRawScteHistoryByChannel(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListContentSegmentHistory(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TranscoderTelemetryAPIService ListOrganizationCostReports", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListOrganizationCostReports(context.Background(), org).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TranscoderTelemetryAPIService ListRawScteHistory", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListRawScteHistory(context.Background()).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TranscoderTelemetryAPIService ListRawScteHistoryByChannel", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListRawScteHistoryByChannel(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

@@ -18,8 +18,8 @@ var _ MappedNullable = &NotificationConfigByEventType{}
 
 // NotificationConfigByEventType struct for NotificationConfigByEventType
 type NotificationConfigByEventType struct {
-	EventTypes []string `json:"event_types"`
-	Name string `json:"name"`
+	EventTypes   []string           `json:"event_types"`
+	Name         string             `json:"name"`
 	Notification NotificationConfig `json:"notification"`
 }
 
@@ -118,7 +118,7 @@ func (o *NotificationConfigByEventType) SetNotification(v NotificationConfig) {
 }
 
 func (o NotificationConfigByEventType) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -170,5 +170,3 @@ func (v *NullableNotificationConfigByEventType) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

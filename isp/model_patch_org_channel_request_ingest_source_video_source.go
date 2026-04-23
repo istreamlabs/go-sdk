@@ -106,7 +106,7 @@ func (o *PatchOrgChannelRequestIngestSourceVideoSource) SetMaxResolution(v strin
 }
 
 func (o PatchOrgChannelRequestIngestSourceVideoSource) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullablePatchOrgChannelRequestIngestSourceVideoSource) UnmarshalJSON(sr
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

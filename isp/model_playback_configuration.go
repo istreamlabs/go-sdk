@@ -18,12 +18,12 @@ var _ MappedNullable = &PlaybackConfiguration{}
 
 // PlaybackConfiguration struct for PlaybackConfiguration
 type PlaybackConfiguration struct {
-	Dash *PlaybackConfigurationLocation `json:"dash,omitempty"`
-	FallbackManifestDefaults *OriginManifestDefaults `json:"fallback_manifest_defaults,omitempty"`
-	Hls *PlaybackConfigurationLocation `json:"hls,omitempty"`
-	PackagerConfig *Packager `json:"packager_config,omitempty"`
+	Dash                     *PlaybackConfigurationLocation `json:"dash,omitempty"`
+	FallbackManifestDefaults *OriginManifestDefaults        `json:"fallback_manifest_defaults,omitempty"`
+	Hls                      *PlaybackConfigurationLocation `json:"hls,omitempty"`
+	PackagerConfig           *Packager                      `json:"packager_config,omitempty"`
 	// packager_id is the ID used to identify the packager_config within the channel configuration.
-	PackagerId *string `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
+	PackagerId              *string                 `json:"packager_id,omitempty" doc:"packager_id is the ID used to identify the packager_config within the channel configuration."`
 	PrimaryManifestDefaults *OriginManifestDefaults `json:"primary_manifest_defaults,omitempty"`
 }
 
@@ -237,7 +237,7 @@ func (o *PlaybackConfiguration) SetPrimaryManifestDefaults(v OriginManifestDefau
 }
 
 func (o PlaybackConfiguration) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -302,5 +302,3 @@ func (v *NullablePlaybackConfiguration) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

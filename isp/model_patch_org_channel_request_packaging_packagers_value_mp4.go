@@ -106,7 +106,7 @@ func (o *PatchOrgChannelRequestPackagingPackagersValueMp4) SetInsertPsshBox(v bo
 }
 
 func (o PatchOrgChannelRequestPackagingPackagersValueMp4) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -159,5 +159,3 @@ func (v *NullablePatchOrgChannelRequestPackagingPackagersValueMp4) UnmarshalJSON
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

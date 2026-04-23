@@ -20,14 +20,14 @@ var _ MappedNullable = &TranscoderContentSegment{}
 // TranscoderContentSegment struct for TranscoderContentSegment
 type TranscoderContentSegment struct {
 	// end is the timestamp when the content segment ended.
-	End *time.Time `json:"end,omitempty" format:"date-time" doc:"end is the timestamp when the content segment ended."`
+	End    *time.Time        `json:"end,omitempty" format:"date-time" doc:"end is the timestamp when the content segment ended."`
 	Header *TranscoderHeader `json:"header,omitempty"`
 	// segment_id is a unique id assigned by the transcoder
 	SegmentId *int64 `json:"segment_id,omitempty" format:"int64" doc:"segment_id is a unique id assigned by the transcoder"`
 	// start is the timestamp when the content segment started.
 	Start *time.Time `json:"start,omitempty" format:"date-time" doc:"start is the timestamp when the content segment started."`
 	// type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK.
-	Type *string `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK."`
+	Type  *string          `json:"type,omitempty" enum:"SPLICE_INSERT,CONTENT_ID,PROGRAM,PROGRAM_BLACKOUT_OVERRIDE,PROGRAM_BREAKAWAY,CHAPTER,BREAK,OPENING_CREDIT,CLOSING_CREDIT,PROVIDER_PLACEMENT_OP,DISTRIBUTOR_PLACEMENT_OP,PROVIDER_OVERLAY_OP,DISTRIBUTOR_OVERLAY_OP,PROVIDER_AD,DISTRIBUTOR_AD,UNSCHEDULED_EVENT,NETWORK,SLATE,NOT_INDICATED,TIMED_METADATA,TIMED_METADATA_MARKER_OVER_SLATE" doc:"type is the type of content segment. Example: PROGRAM, CHAPTER, or BREAK."`
 	Upids []TranscoderUPID `json:"upids,omitempty"`
 }
 
@@ -242,7 +242,7 @@ func (o *TranscoderContentSegment) SetUpids(v []TranscoderUPID) {
 }
 
 func (o TranscoderContentSegment) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -307,5 +307,3 @@ func (v *NullableTranscoderContentSegment) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

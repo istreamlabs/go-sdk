@@ -18,8 +18,8 @@ var _ MappedNullable = &PutChannelRequestBodyIngest{}
 
 // PutChannelRequestBodyIngest struct for PutChannelRequestBodyIngest
 type PutChannelRequestBodyIngest struct {
-	Slate *PatchOrgChannelRequestIngestSlate `json:"slate,omitempty"`
-	Source IngestSource `json:"source"`
+	Slate  *PatchOrgChannelRequestIngestSlate `json:"slate,omitempty"`
+	Source IngestSource                       `json:"source"`
 }
 
 // NewPutChannelRequestBodyIngest instantiates a new PutChannelRequestBodyIngest object
@@ -97,7 +97,7 @@ func (o *PutChannelRequestBodyIngest) SetSource(v IngestSource) {
 }
 
 func (o PutChannelRequestBodyIngest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -148,5 +148,3 @@ func (v *NullablePutChannelRequestBodyIngest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

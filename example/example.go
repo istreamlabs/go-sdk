@@ -32,7 +32,7 @@ func main() {
 	ctx := context.Background()
 
 	fmt.Println("Listing sources:")
-	sourceSummaries, _, err := client.AvailableSourcesApi.ListOrgSources(ctx, org).Execute()
+	sourceSummaries, _, err := client.AvailableSourcesAPI.ListOrgSources(ctx, org).Execute()
 	if err != nil {
 		panic(err)
 	}
@@ -46,7 +46,7 @@ func main() {
 
 	fmt.Println("Listing channels:")
 	// List channels with a custom optional argument (page size).
-	reqChannels := client.ChannelsForOrganizationApi.ListOrgChannels(ctx, org).PageSize(2)
+	reqChannels := client.ChannelsForOrganizationAPI.ListOrgChannels(ctx, org).PageSize(2)
 	chanSummaries, _, err := reqChannels.Execute()
 	if err != nil {
 		panic(err)

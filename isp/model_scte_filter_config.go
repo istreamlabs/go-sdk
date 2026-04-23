@@ -23,8 +23,8 @@ type ScteFilterConfig struct {
 	// Filter out chapters
 	Chapter bool `json:"chapter" doc:"Filter out chapters"`
 	// Filter out distributor ads
-	DistributorAds bool `json:"distributor_ads" doc:"Filter out distributor ads"`
-	Options *ScteFilterOptions `json:"options,omitempty"`
+	DistributorAds bool               `json:"distributor_ads" doc:"Filter out distributor ads"`
+	Options        *ScteFilterOptions `json:"options,omitempty"`
 	// Filter out provider ads
 	ProviderAds bool `json:"provider_ads" doc:"Filter out provider ads"`
 	// Filter out SCTE-35 message upid
@@ -206,7 +206,7 @@ func (o *ScteFilterConfig) SetUpid(v string) {
 }
 
 func (o ScteFilterConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -261,5 +261,3 @@ func (v *NullableScteFilterConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

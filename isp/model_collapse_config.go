@@ -18,11 +18,11 @@ var _ MappedNullable = &CollapseConfig{}
 
 // CollapseConfig struct for CollapseConfig
 type CollapseConfig struct {
-	AutoCopyMp4 *bool `json:"auto_copy_mp4,omitempty"`
-	AutoCreateMp4 *bool `json:"auto_create_mp4,omitempty"`
-	M3u8FiltersConfig *M3U8FilterConfig `json:"m3u8_filters_config,omitempty"`
-	UsePerUrlCollapseNotification *bool `json:"use_per_url_collapse_notification,omitempty"`
-	V2FiltersConfig *V2FilterConfig `json:"v2_filters_config,omitempty"`
+	AutoCopyMp4                   *bool             `json:"auto_copy_mp4,omitempty"`
+	AutoCreateMp4                 *bool             `json:"auto_create_mp4,omitempty"`
+	M3u8FiltersConfig             *M3U8FilterConfig `json:"m3u8_filters_config,omitempty"`
+	UsePerUrlCollapseNotification *bool             `json:"use_per_url_collapse_notification,omitempty"`
+	V2FiltersConfig               *V2FilterConfig   `json:"v2_filters_config,omitempty"`
 }
 
 // NewCollapseConfig instantiates a new CollapseConfig object
@@ -203,7 +203,7 @@ func (o *CollapseConfig) SetV2FiltersConfig(v V2FilterConfig) {
 }
 
 func (o CollapseConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -265,5 +265,3 @@ func (v *NullableCollapseConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

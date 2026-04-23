@@ -34,7 +34,7 @@ sources available to you.
 
 		// Get a list of all source summaries. Pagination is handled
 		// automatically and all source summaries are returned in one list.
-		summaries, _, err := client.SourcesApi.ListSources(ctx).Execute()
+		summaries, _, err := client.SourcesAPI.ListSources(ctx).Execute()
 		if err.Error() != "" {
 			panic(err)
 		}

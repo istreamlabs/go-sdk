@@ -19,9 +19,9 @@ var _ MappedNullable = &GetSourcePreviewTranscoderStatusResponseBody{}
 // GetSourcePreviewTranscoderStatusResponseBody struct for GetSourcePreviewTranscoderStatusResponseBody
 type GetSourcePreviewTranscoderStatusResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema             *string             `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	DynamicStateStatus *DynamicStateStatus `json:"dynamic_state_status,omitempty"`
-	IngestStatus *IngestStatus `json:"ingest_status,omitempty"`
+	IngestStatus       *IngestStatus       `json:"ingest_status,omitempty"`
 }
 
 // NewGetSourcePreviewTranscoderStatusResponseBody instantiates a new GetSourcePreviewTranscoderStatusResponseBody object
@@ -138,7 +138,7 @@ func (o *GetSourcePreviewTranscoderStatusResponseBody) SetIngestStatus(v IngestS
 }
 
 func (o GetSourcePreviewTranscoderStatusResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -194,5 +194,3 @@ func (v *NullableGetSourcePreviewTranscoderStatusResponseBody) UnmarshalJSON(src
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

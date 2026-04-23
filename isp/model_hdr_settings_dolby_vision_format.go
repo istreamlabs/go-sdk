@@ -18,9 +18,9 @@ var _ MappedNullable = &HdrSettingsDolbyVisionFormat{}
 
 // HdrSettingsDolbyVisionFormat struct for HdrSettingsDolbyVisionFormat
 type HdrSettingsDolbyVisionFormat struct {
-	Profile5 *map[string]interface{} `json:"profile5,omitempty"`
+	Profile5  *map[string]interface{}              `json:"profile5,omitempty"`
 	Profile81 *H265SettingsHdrDolbyVisionProfile81 `json:"profile81,omitempty"`
-	Profile84 *map[string]interface{} `json:"profile84,omitempty"`
+	Profile84 *map[string]interface{}              `json:"profile84,omitempty"`
 }
 
 // NewHdrSettingsDolbyVisionFormat instantiates a new HdrSettingsDolbyVisionFormat object
@@ -137,7 +137,7 @@ func (o *HdrSettingsDolbyVisionFormat) SetProfile84(v map[string]interface{}) {
 }
 
 func (o HdrSettingsDolbyVisionFormat) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,5 +193,3 @@ func (v *NullableHdrSettingsDolbyVisionFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

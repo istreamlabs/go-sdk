@@ -20,7 +20,7 @@ var _ MappedNullable = &DeprecatedGetProgramResponseBody{}
 // DeprecatedGetProgramResponseBody struct for DeprecatedGetProgramResponseBody
 type DeprecatedGetProgramResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema             *string            `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	ClearSegmentConfig ClearSegmentConfig `json:"clear_segment_config"`
 	// description of the program
 	Description string `json:"description" doc:"description of the program"`
@@ -315,7 +315,7 @@ func (o *DeprecatedGetProgramResponseBody) SetTotalBytes(v int64) {
 }
 
 func (o DeprecatedGetProgramResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -374,5 +374,3 @@ func (v *NullableDeprecatedGetProgramResponseBody) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

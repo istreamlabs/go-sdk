@@ -18,11 +18,11 @@ var _ MappedNullable = &ListComponentStatesResponseBody{}
 // ListComponentStatesResponseBody struct for ListComponentStatesResponseBody
 type ListComponentStatesResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
-	ChannelId string `json:"channel_id"`
+	Schema    *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ChannelId string  `json:"channel_id"`
 	// The list of components states.
 	Components []ListComponentStatesResponseEntry `json:"components" doc:"The list of components states."`
-	Org string `json:"org"`
+	Org        string                             `json:"org"`
 }
 
 // NewListComponentStatesResponseBody instantiates a new ListComponentStatesResponseBody object
@@ -152,7 +152,7 @@ func (o *ListComponentStatesResponseBody) SetOrg(v string) {
 }
 
 func (o ListComponentStatesResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -207,5 +207,3 @@ func (v *NullableListComponentStatesResponseBody) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -21,13 +21,13 @@ type GetPreviewStreamsResponse struct {
 	// A URL to the JSON Schema for this object.
 	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	// Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here.
-	AudioTracks []AudioTrackInfo `json:"audio_tracks,omitempty" doc:"Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here."`
-	DefaultAudioTrack *AudioTrackInfo `json:"default_audio_track,omitempty"`
+	AudioTracks       []AudioTrackInfo `json:"audio_tracks,omitempty" doc:"Lists of all audio and video tracks that are available. Note: the default audio and video track info will also appear here."`
+	DefaultAudioTrack *AudioTrackInfo  `json:"default_audio_track,omitempty"`
 	// default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations.
-	DefaultUrl *string `json:"default_url,omitempty" doc:"default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations."`
+	DefaultUrl        *string         `json:"default_url,omitempty" doc:"default_url contains the default URL that can be used to start playback. Ex: https://example.com/cluster/org/isp/ext_id/foo/play?vid_id=2&aud_id=6 The vid_id and aud_id can be changed utilizing the ones provided by the 'audio_tracks' and 'video_tracks' fields to see different combinations."`
 	DefaultVideoTrack *VideoTrackInfo `json:"default_video_track,omitempty"`
 	// JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server.
-	Token *string `json:"token,omitempty" doc:"JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server."`
+	Token       *string          `json:"token,omitempty" doc:"JWT Bearer token that shall be supplied with a 'pre-flight' to myriapod.js to send the auth token to the server."`
 	VideoTracks []VideoTrackInfo `json:"video_tracks,omitempty"`
 }
 
@@ -275,7 +275,7 @@ func (o *GetPreviewStreamsResponse) SetVideoTracks(v []VideoTrackInfo) {
 }
 
 func (o GetPreviewStreamsResponse) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -343,5 +343,3 @@ func (v *NullableGetPreviewStreamsResponse) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

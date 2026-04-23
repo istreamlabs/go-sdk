@@ -19,8 +19,8 @@ var _ MappedNullable = &FilterTimespan{}
 
 // FilterTimespan struct for FilterTimespan
 type FilterTimespan struct {
-	Endtime *time.Time `json:"endtime,omitempty" format:"date-time"`
-	Starttime time.Time `json:"starttime" format:"date-time"`
+	Endtime   *time.Time `json:"endtime,omitempty" format:"date-time"`
+	Starttime time.Time  `json:"starttime" format:"date-time"`
 }
 
 // NewFilterTimespan instantiates a new FilterTimespan object
@@ -98,7 +98,7 @@ func (o *FilterTimespan) SetStarttime(v time.Time) {
 }
 
 func (o FilterTimespan) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -149,5 +149,3 @@ func (v *NullableFilterTimespan) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

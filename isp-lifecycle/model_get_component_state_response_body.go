@@ -19,15 +19,15 @@ var _ MappedNullable = &GetComponentStateResponseBody{}
 // GetComponentStateResponseBody struct for GetComponentStateResponseBody
 type GetComponentStateResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
-	ChannelId string `json:"channel_id"`
+	Schema    *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ChannelId string  `json:"channel_id"`
 	// The ChannelDoc's revision
 	ChannelRevision int32 `json:"channel_revision" format:"int32" doc:"The ChannelDoc's revision"`
 	// A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with).
 	Component string `json:"component" enum:"CHANNEL_CONFIG,TRANSCODER,PUBLISHING" doc:"A service or feature involved in a channel workflow/operations (ie. \"what\" the lifecycle system is concerned with)."`
 	// The current state of the component.
 	ComponentState string `json:"component_state" enum:"OFF,PROVISIONING,STREAMING,TERMINATING,ERROR" doc:"The current state of the component."`
-	Org string `json:"org"`
+	Org            string `json:"org"`
 	// ISO 8601 timestamp when the component state was updated.
 	UpdatedAt time.Time `json:"updated_at" format:"date-time" doc:"ISO 8601 timestamp when the component state was updated."`
 }
@@ -232,7 +232,7 @@ func (o *GetComponentStateResponseBody) SetUpdatedAt(v time.Time) {
 }
 
 func (o GetComponentStateResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -288,5 +288,3 @@ func (v *NullableGetComponentStateResponseBody) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

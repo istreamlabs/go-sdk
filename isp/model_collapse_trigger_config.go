@@ -18,11 +18,11 @@ var _ MappedNullable = &CollapseTriggerConfig{}
 
 // CollapseTriggerConfig struct for CollapseTriggerConfig
 type CollapseTriggerConfig struct {
-	AllowMultiple bool `json:"allow_multiple"`
-	CollapseProgram bool `json:"collapse_program"`
-	CollapseStream bool `json:"collapse_stream"`
-	Scte35Upid *string `json:"scte35_upid,omitempty"`
-	Triggers []CollapseTrigger `json:"triggers,omitempty"`
+	AllowMultiple   bool              `json:"allow_multiple"`
+	CollapseProgram bool              `json:"collapse_program"`
+	CollapseStream  bool              `json:"collapse_stream"`
+	Scte35Upid      *string           `json:"scte35_upid,omitempty"`
+	Triggers        []CollapseTrigger `json:"triggers,omitempty"`
 }
 
 // NewCollapseTriggerConfig instantiates a new CollapseTriggerConfig object
@@ -183,7 +183,7 @@ func (o *CollapseTriggerConfig) SetTriggers(v []CollapseTrigger) {
 }
 
 func (o CollapseTriggerConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -239,5 +239,3 @@ func (v *NullableCollapseTriggerConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

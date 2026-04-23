@@ -1,7 +1,7 @@
 /*
 WBD Aventus Channels API
 
-Testing ChannelOperationsForOrganizationApiService
+Testing ChannelOperationsForOrganizationAPIService
 
 */
 
@@ -11,54 +11,40 @@ package isp
 
 import (
 	"context"
+	"testing"
+
+	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
-	openapiclient "github.com/istreamlabs/go-sdk/v2/isp"
 )
 
-func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
+func Test_isp_ChannelOperationsForOrganizationAPIService(t *testing.T) {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
 
-	t.Run("Test ChannelOperationsForOrganizationApiService ClearOrgDvrWindow", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService ClearOrgDvrWindow", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.ClearOrgDvrWindow(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.ClearOrgDvrWindow(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService GetOrgPreviewImage", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgPreviewImage", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.GetOrgPreviewImage(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		require.NotNil(t, resp)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelOperationsForOrganizationApiService GetOrgSignalLogs", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.GetOrgSignalLogs(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.GetOrgPreviewImage(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -66,14 +52,14 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService GetOrgSignals", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgSignalLogs", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.GetOrgSignals(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.GetOrgSignalLogs(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -81,14 +67,14 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService InsertOrgId3", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService GetOrgSignals", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.InsertOrgId3(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.GetOrgSignals(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -96,28 +82,14 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService InsertOrgScte35", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService InsertOrgId3", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.InsertOrgScte35(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgGetTranscoderStatus", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgGetTranscoderStatus(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.InsertOrgId3(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -125,14 +97,28 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgIsBreakingChange", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService InsertOrgScte35", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgIsBreakingChange(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.InsertOrgScte35(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgGetTranscoderStatus", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgGetTranscoderStatus(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -140,28 +126,14 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgPinIngest", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgIsBreakingChange", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
-
-		var org string
-		var channelId string
-
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgPinIngest(context.Background(), org, channelId).Execute()
-
-		require.Nil(t, err)
-		assert.Equal(t, 200, httpRes.StatusCode)
-
-	})
-
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgPreviewStreams", func(t *testing.T) {
-
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgPreviewStreams(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgIsBreakingChange(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)
@@ -169,56 +141,85 @@ func Test_isp_ChannelOperationsForOrganizationApiService(t *testing.T) {
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgRotateKey", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgPinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgRotateKey(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgPinIngest(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgSetTranscoderDynamicState", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgPreviewStreams", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgSetTranscoderDynamicState(context.Background(), org, channelId).Execute()
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgPreviewStreams(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgRotateKey", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+		var channelId string
+
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgRotateKey(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService OrgUnpinIngest", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgSetTranscoderDynamicState", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		httpRes, err := apiClient.ChannelOperationsForOrganizationApi.OrgUnpinIngest(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgSetTranscoderDynamicState(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		assert.Equal(t, 200, httpRes.StatusCode)
 
 	})
 
-	t.Run("Test ChannelOperationsForOrganizationApiService PostOrgSignals", func(t *testing.T) {
+	t.Run("Test ChannelOperationsForOrganizationAPIService OrgUnpinIngest", func(t *testing.T) {
 
-		t.Skip("skip test")  // remove to run test
+		t.Skip("skip test") // remove to run test
 
 		var org string
 		var channelId string
 
-		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationApi.PostOrgSignals(context.Background(), org, channelId).Execute()
+		httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.OrgUnpinIngest(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test ChannelOperationsForOrganizationAPIService PostOrgSignals", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.ChannelOperationsForOrganizationAPI.PostOrgSignals(context.Background(), org, channelId).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

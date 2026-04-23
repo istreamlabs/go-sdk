@@ -18,8 +18,7 @@ var _ MappedNullable = &PatchOrgChannelRequestPublishingPublicationsInnerPublish
 
 // PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner struct for PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner
 type PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner struct {
-	// HTTP destination where media segments and playlists will be published.
-	Http interface{} `json:"http,omitempty" doc:"HTTP destination where media segments and playlists will be published."`
+	Http *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp `json:"http,omitempty"`
 	// uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
 	Id *string `json:"id,omitempty" doc:"uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field."`
 	// playlist_only_for identifies the id of the publish_point that has the segments for this publish_point, which is only publishing a playlist for those segments. All publish_points within a publication must either have 'playlist_only_for' all set or all not set.
@@ -43,37 +42,36 @@ func NewPatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerWithD
 	return &this
 }
 
-// GetHttp returns the Http field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) GetHttp() interface{} {
-	if o == nil {
-		var ret interface{}
+// GetHttp returns the Http field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) GetHttp() PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp {
+	if o == nil || IsNil(o.Http) {
+		var ret PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp
 		return ret
 	}
-	return o.Http
+	return *o.Http
 }
 
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) GetHttpOk() (*interface{}, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) GetHttpOk() (*PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp, bool) {
 	if o == nil || IsNil(o.Http) {
 		return nil, false
 	}
-	return &o.Http, true
+	return o.Http, true
 }
 
 // HasHttp returns a boolean if a field has been set.
 func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) HasHttp() bool {
-	if o != nil && IsNil(o.Http) {
+	if o != nil && !IsNil(o.Http) {
 		return true
 	}
 
 	return false
 }
 
-// SetHttp gets a reference to the given interface{} and assigns it to the Http field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) SetHttp(v interface{}) {
-	o.Http = v
+// SetHttp gets a reference to the given PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp and assigns it to the Http field.
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) SetHttp(v PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp) {
+	o.Http = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -141,7 +139,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) Se
 }
 
 func (o PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -150,7 +148,7 @@ func (o PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) Mar
 
 func (o PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if o.Http != nil {
+	if !IsNil(o.Http) {
 		toSerialize["http"] = o.Http
 	}
 	if !IsNil(o.Id) {
@@ -197,5 +195,3 @@ func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerPublishPointsI
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

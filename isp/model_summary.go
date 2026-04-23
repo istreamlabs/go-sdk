@@ -31,7 +31,7 @@ type Summary struct {
 	// Organization
 	Org string `json:"org" doc:"Organization"`
 	// Link to this resource
-	Self *string `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
+	Self   *string       `json:"self,omitempty" format:"uri" doc:"Link to this resource"`
 	Source SourceSummary `json:"source"`
 }
 
@@ -275,7 +275,7 @@ func (o *Summary) SetSource(v SourceSummary) {
 }
 
 func (o Summary) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -336,5 +336,3 @@ func (v *NullableSummary) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

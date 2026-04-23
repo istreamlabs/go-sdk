@@ -346,7 +346,7 @@ func (o *PublicationHls) SetUtcInSegmentTitle(v bool) {
 }
 
 func (o PublicationHls) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -420,5 +420,3 @@ func (v *NullablePublicationHls) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GENERATOR_IMAGE="openapitools/openapi-generator-cli:v6.6.0"
+GENERATOR_IMAGE="openapitools/openapi-generator-cli:v7.21.0"
 
 API="${1-isp}"
 ENV="${2-prod}"
@@ -54,10 +54,19 @@ fi
 rm -rf "${API}"
 mkdir "${API}"
 
-# Copy required files to directory
-cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
-cp ./prerequisites/convenience._go ./${API}/convenience.go
-cp ./prerequisites/${API}_client._go ./${API}/client.go
+if [[ "$API" == "isp" ]]; then
+  # Copy required files to directory
+  cp ./prerequisites/.openapi-generator-ignore.isp ./${API}/.openapi-generator-ignore
+  cp ./prerequisites/convenience._go ./${API}/convenience.go
+  cp ./prerequisites/closeable_transport._go ./${API}/closeable_transport.go
+  cp ./prerequisites/isp_client._go ./${API}/client.go
+else
+  # Copy required files to directory
+  cp ./prerequisites/.openapi-generator-ignore ./${API}/.openapi-generator-ignore
+  cp ./prerequisites/convenience._go ./${API}/convenience.go
+fi
+
+
 
 # Generate the SDK
 docker run --rm \
@@ -83,10 +92,15 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 # Note: Use POSIX ERE (no \b). Tested with BSD sed (macOS).
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
-# OpenAPI Generator emits PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner
-# for srt_publications[].video_encoders but never generates that model. The spec uses
-# components/schemas/SrtPublicationEncoder (same as audio_encoders).
-sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+# The spec's srt_publications.video_encoders uses an inline schema that is
+# structurally identical to components/schemas/SrtPublicationEncoder (the
+# audio_encoders sibling uses a $ref for the same shape). The generator
+# therefore synthesises a duplicate model. Drop the synthetic file and
+# rewrite references back to the canonical type; wire format is unchanged.
+if [[ "$API" == "isp" ]]; then
+  rm -f ./${API}/model_patch_org_channel_request_publishing_srt_publications_inner_video_encoders_inner.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+fi
 
 # Correct an error in the unit tests
 sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
@@ -94,6 +108,14 @@ sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
+
+# Our custom model_simple.mustache never references "bytes" or "fmt", but the
+# stock model.mustache pessimistically imports them for any model with required
+# fields, so generated output ships with unused imports that break `go build`.
+# goimports drops unused imports and tidies formatting; this is what the
+# generator's own GO_POST_PROCESS_FILE info log nudges you toward.
+# Version is pinned so the toolchain is reproducible across machines / CI.
+go run golang.org/x/tools/cmd/goimports@v0.24.0 -w ./${API}
 
 echo ""
 echo "git status -s"

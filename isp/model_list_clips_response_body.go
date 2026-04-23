@@ -130,7 +130,7 @@ func (o *ListClipsResponseBody) SetErrors(v []string) {
 }
 
 func (o ListClipsResponseBody) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -186,5 +186,3 @@ func (v *NullableListClipsResponseBody) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

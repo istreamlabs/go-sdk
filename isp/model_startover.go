@@ -18,8 +18,8 @@ var _ MappedNullable = &Startover{}
 
 // Startover struct for Startover
 type Startover struct {
-	FirstProgramStart *map[string]interface{} `json:"first_program_start,omitempty"`
-	OnAiringId *PatchOrgChannelRequestPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
+	FirstProgramStart *map[string]interface{}                                               `json:"first_program_start,omitempty"`
+	OnAiringId        *PatchOrgChannelRequestPublishingPublicationsInnerStartoverOnAiringId `json:"on_airing_id,omitempty"`
 }
 
 // NewStartover instantiates a new Startover object
@@ -104,7 +104,7 @@ func (o *Startover) SetOnAiringId(v PatchOrgChannelRequestPublishingPublications
 }
 
 func (o Startover) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -157,5 +157,3 @@ func (v *NullableStartover) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

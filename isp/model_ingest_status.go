@@ -18,8 +18,8 @@ var _ MappedNullable = &IngestStatus{}
 
 // IngestStatus struct for IngestStatus
 type IngestStatus struct {
-	PrimaryStatus *SourceStatus `json:"primary_status,omitempty"`
-	SecondaryStatus *SourceStatus `json:"secondary_status,omitempty"`
+	PrimaryStatus         *SourceStatus `json:"primary_status,omitempty"`
+	SecondaryStatus       *SourceStatus `json:"secondary_status,omitempty"`
 	SourceLossSlateStatus *SourceStatus `json:"source_loss_slate_status,omitempty"`
 	// Reports whether source merging is currently active i.e. that the transcoder is merging samples from primary and secondary sources to conceal errors.
 	SourceMergingActive *bool `json:"source_merging_active,omitempty" doc:"Reports whether source merging is currently active i.e. that the transcoder is merging samples from primary and secondary sources to conceal errors."`
@@ -205,7 +205,7 @@ func (o *IngestStatus) SetSourceMergingDisabled(v bool) {
 }
 
 func (o IngestStatus) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -267,5 +267,3 @@ func (v *NullableIngestStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

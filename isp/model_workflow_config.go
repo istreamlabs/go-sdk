@@ -18,9 +18,9 @@ var _ MappedNullable = &WorkflowConfig{}
 
 // WorkflowConfig struct for WorkflowConfig
 type WorkflowConfig struct {
-	CutprogramPaddingInSeconds *int64 `json:"cutprogram_padding_in_seconds,omitempty" format:"int64"`
-	MakeMp4 *bool `json:"make_mp4,omitempty"`
-	Mp4FeatureFlag *string `json:"mp4-feature-flag,omitempty"`
+	CutprogramPaddingInSeconds *int64  `json:"cutprogram_padding_in_seconds,omitempty" format:"int64"`
+	MakeMp4                    *bool   `json:"make_mp4,omitempty"`
+	Mp4FeatureFlag             *string `json:"mp4-feature-flag,omitempty"`
 }
 
 // NewWorkflowConfig instantiates a new WorkflowConfig object
@@ -137,7 +137,7 @@ func (o *WorkflowConfig) SetMp4FeatureFlag(v string) {
 }
 
 func (o WorkflowConfig) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -193,5 +193,3 @@ func (v *NullableWorkflowConfig) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

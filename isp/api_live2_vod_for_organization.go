@@ -18,19 +18,18 @@ import (
 	"strings"
 )
 
-
-type Live2VODForOrganizationApi interface {
+type Live2VODForOrganizationAPI interface {
 
 	/*
-	CollapseVod Collapse Vod
+		CollapseVod Collapse Vod
 
-	A vod can be collapsed to a specific filter config
+		A vod can be collapsed to a specific filter config
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@return ApiCollapseVodRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@return ApiCollapseVodRequest
 	*/
 	CollapseVod(ctx context.Context, org string, channelId string, vodId string) ApiCollapseVodRequest
 
@@ -39,16 +38,16 @@ type Live2VODForOrganizationApi interface {
 	CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponseBody, *http.Response, error)
 
 	/*
-	GetOrgClipManifests Get manifest information for a clip
+		GetOrgClipManifests Get manifest information for a clip
 
-	Retrieves a clip's manifest given a clip id
+		Retrieves a clip's manifest given a clip id
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiGetOrgClipManifestsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@param clipId ID for a Clip
+		@return ApiGetOrgClipManifestsRequest
 	*/
 	GetOrgClipManifests(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgClipManifestsRequest
 
@@ -57,15 +56,15 @@ type Live2VODForOrganizationApi interface {
 	GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) ([]ClipManifestResponse, *http.Response, error)
 
 	/*
-	GetOrgClipPlayurl Get a playurl for a clip
+		GetOrgClipPlayurl Get a playurl for a clip
 
-	Searches for an organization's VODs with a given ClipID and then returns a url for playback.
+		Searches for an organization's VODs with a given ClipID and then returns a url for playback.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param clipId ID for a Clip
-	@return ApiGetOrgClipPlayurlRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param clipId ID for a Clip
+		@return ApiGetOrgClipPlayurlRequest
 	*/
 	GetOrgClipPlayurl(ctx context.Context, org string, channelId string, clipId string) ApiGetOrgClipPlayurlRequest
 
@@ -74,17 +73,17 @@ type Live2VODForOrganizationApi interface {
 	GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLBody, *http.Response, error)
 
 	/*
-	GetOrgMp4Url Get Clip MP4 URL
+			GetOrgMp4Url Get Clip MP4 URL
 
-	Get the mp4url for downloading a mp4 file for a clip
-Takes in a vodid and clipid and returns the url to download the mp4 asset.
+			Get the mp4url for downloading a mp4 file for a clip
+		Takes in a vodid and clipid and returns the url to download the mp4 asset.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiGetOrgMp4UrlRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param channelId Unique channel identifier
+			@param vodId ID for a VOD
+			@param clipId ID for a Clip
+			@return ApiGetOrgMp4UrlRequest
 	*/
 	GetOrgMp4Url(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgMp4UrlRequest
 
@@ -93,14 +92,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponseBody, *http.Response, error)
 
 	/*
-	GetOrgProduct Get product
+		GetOrgProduct Get product
 
-	Get a product with an organization and product id. This will return one from each region if that product id is in multiple regions.
+		Get a product with an organization and product id. This will return one from each region if that product id is in multiple regions.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param productId Product ID for a l2v request
-	@return ApiGetOrgProductRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param productId Product ID for a l2v request
+		@return ApiGetOrgProductRequest
 	*/
 	GetOrgProduct(ctx context.Context, org string, productId string) ApiGetOrgProductRequest
 
@@ -109,14 +108,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponseBody, *http.Response, error)
 
 	/*
-	GetOrgProductConfig Get product config
+		GetOrgProductConfig Get product config
 
-	Get fields for product config
+		Get fields for product config
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param productId Product ID for a l2v request
-	@return ApiGetOrgProductConfigRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param productId Product ID for a l2v request
+		@return ApiGetOrgProductConfigRequest
 	*/
 	GetOrgProductConfig(ctx context.Context, org string, productId string) ApiGetOrgProductConfigRequest
 
@@ -125,14 +124,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponseBody, *http.Response, error)
 
 	/*
-	GetOrgProgramTasks Get Tasks for Program
+		GetOrgProgramTasks Get Tasks for Program
 
-	List all L2V tasks for the channel identified in the request.
+		List all L2V tasks for the channel identified in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiGetOrgProgramTasksRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiGetOrgProgramTasksRequest
 	*/
 	GetOrgProgramTasks(ctx context.Context, org string, channelId string) ApiGetOrgProgramTasksRequest
 
@@ -141,15 +140,15 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*GetTaskProgramResponseBody, *http.Response, error)
 
 	/*
-	GetOrgTask Get Task
+		GetOrgTask Get Task
 
-	Get a L2V task with the taskID.
+		Get a L2V task with the taskID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param taskId Task ID for a l2v request
-	@return ApiGetOrgTaskRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param taskId Task ID for a l2v request
+		@return ApiGetOrgTaskRequest
 	*/
 	GetOrgTask(ctx context.Context, org string, channelId string, taskId string) ApiGetOrgTaskRequest
 
@@ -158,15 +157,15 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponseBody, *http.Response, error)
 
 	/*
-	GetOrgVod Get VOD
+		GetOrgVod Get VOD
 
-	Get a singular vod for a channel
+		Get a singular vod for a channel
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@return ApiGetOrgVodRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@return ApiGetOrgVodRequest
 	*/
 	GetOrgVod(ctx context.Context, org string, channelId string, vodId string) ApiGetOrgVodRequest
 
@@ -175,16 +174,16 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponseBody, *http.Response, error)
 
 	/*
-	GetOrgVodClipProgramTime Get Clip Program Times
+		GetOrgVodClipProgramTime Get Clip Program Times
 
-	Get the program start and end times for a clip
+		Get the program start and end times for a clip
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiGetOrgVodClipProgramTimeRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@param clipId ID for a Clip
+		@return ApiGetOrgVodClipProgramTimeRequest
 	*/
 	GetOrgVodClipProgramTime(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipProgramTimeRequest
 
@@ -193,16 +192,16 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponseBody, *http.Response, error)
 
 	/*
-	GetOrgVodClipScte35Markers Get Scte 35 Markers By Clip
+		GetOrgVodClipScte35Markers Get Scte 35 Markers By Clip
 
-	Get the scte markers for a clip
+		Get the scte markers for a clip
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiGetOrgVodClipScte35MarkersRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@param clipId ID for a Clip
+		@return ApiGetOrgVodClipScte35MarkersRequest
 	*/
 	GetOrgVodClipScte35Markers(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipScte35MarkersRequest
 
@@ -211,12 +210,12 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponseBody, *http.Response, error)
 
 	/*
-	ListFailedTasks List Failed Tasks
+		ListFailedTasks List Failed Tasks
 
-	List all permanently failed L2V tasks (exhausted all retries) from the last 14 days.
+		List all permanently failed L2V tasks (exhausted all retries) from the last 14 days.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListFailedTasksRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListFailedTasksRequest
 	*/
 	ListFailedTasks(ctx context.Context) ApiListFailedTasksRequest
 
@@ -225,14 +224,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	ListFailedTasksExecute(r ApiListFailedTasksRequest) (*ListTasksResponseBody, *http.Response, error)
 
 	/*
-	ListOrgClips List available clips
+		ListOrgClips List available clips
 
-	List all clips for all VODs of the channel identified in the request.
+		List all clips for all VODs of the channel identified in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiListOrgClipsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiListOrgClipsRequest
 	*/
 	ListOrgClips(ctx context.Context, org string, channelId string) ApiListOrgClipsRequest
 
@@ -241,15 +240,15 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponseBody, *http.Response, error)
 
 	/*
-	ListOrgClipsVod List available clips for a vod
+		ListOrgClipsVod List available clips for a vod
 
-	List all clips for a single VOD in the channel identified in the request.
+		List all clips for a single VOD in the channel identified in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@return ApiListOrgClipsVodRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@return ApiListOrgClipsVodRequest
 	*/
 	ListOrgClipsVod(ctx context.Context, org string, channelId string, vodId string) ApiListOrgClipsVodRequest
 
@@ -258,13 +257,13 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponseBody, *http.Response, error)
 
 	/*
-	ListOrgProducts List Products
+		ListOrgProducts List Products
 
-	Get all the products for a specific organization across all regions
+		Get all the products for a specific organization across all regions
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@return ApiListOrgProductsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@return ApiListOrgProductsRequest
 	*/
 	ListOrgProducts(ctx context.Context, org string) ApiListOrgProductsRequest
 
@@ -273,14 +272,14 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponseBody, *http.Response, error)
 
 	/*
-	ListOrgProductsPrograms List Programs
+		ListOrgProductsPrograms List Programs
 
-	Get all the programs for a specific organization and product
+		Get all the programs for a specific organization and product
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param productId Product ID for a l2v request
-	@return ApiListOrgProductsProgramsRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param productId Product ID for a l2v request
+		@return ApiListOrgProductsProgramsRequest
 	*/
 	ListOrgProductsPrograms(ctx context.Context, org string, productId string) ApiListOrgProductsProgramsRequest
 
@@ -289,15 +288,15 @@ Takes in a vodid and clipid and returns the url to download the mp4 asset.
 	ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponseBody, *http.Response, error)
 
 	/*
-	ListOrgVods List VODs
+			ListOrgVods List VODs
 
-	VODs can be listed after an appropriately configured channel is turned on for the first time.
-If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
+			VODs can be listed after an appropriately configured channel is turned on for the first time.
+		If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiListOrgVodsRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param channelId Unique channel identifier
+			@return ApiListOrgVodsRequest
 	*/
 	ListOrgVods(ctx context.Context, org string, channelId string) ApiListOrgVodsRequest
 
@@ -306,12 +305,12 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error)
 
 	/*
-	ListTasks List Tasks
+		ListTasks List Tasks
 
-	List all L2V tasks.
+		List all L2V tasks.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@return ApiListTasksRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@return ApiListTasksRequest
 	*/
 	ListTasks(ctx context.Context) ApiListTasksRequest
 
@@ -320,16 +319,16 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponseBody, *http.Response, error)
 
 	/*
-	PostCopyMp4 Copy mp4
+		PostCopyMp4 Copy mp4
 
-	Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
+		Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiPostCopyMp4Request
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@param clipId ID for a Clip
+		@return ApiPostCopyMp4Request
 	*/
 	PostCopyMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostCopyMp4Request
 
@@ -338,15 +337,15 @@ If a channel with existing VODs is turned off or deleted, the VODs will still be
 	PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4ResponseBody, *http.Response, error)
 
 	/*
-	PostOrgChannelSyndication Dynamic Syndication
+			PostOrgChannelSyndication Dynamic Syndication
 
-	Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
-Uses archive settings from the request to archive syndication files (mp4/wav) files.
+			Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
+		Uses archive settings from the request to archive syndication files (mp4/wav) files.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPostOrgChannelSyndicationRequest
+			@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+			@param org Organization name
+			@param channelId Unique channel identifier
+			@return ApiPostOrgChannelSyndicationRequest
 	*/
 	PostOrgChannelSyndication(ctx context.Context, org string, channelId string) ApiPostOrgChannelSyndicationRequest
 
@@ -355,14 +354,14 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponseBody, *http.Response, error)
 
 	/*
-	PostOrgClip Make a clip for all VODs
+		PostOrgClip Make a clip for all VODs
 
-	Starts a job to create a clip for all VODs for the channel identified in the request.
+		Starts a job to create a clip for all VODs for the channel identified in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPostOrgClipRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiPostOrgClipRequest
 	*/
 	PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest
 
@@ -371,15 +370,15 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponseBody, *http.Response, error)
 
 	/*
-	PostOrgClipArchive Archive a clip
+		PostOrgClipArchive Archive a clip
 
-	Uses archive settings configured in Live2VOD for the organization and on the channel.
+		Uses archive settings configured in Live2VOD for the organization and on the channel.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param clipId ID for a Clip
-	@return ApiPostOrgClipArchiveRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param clipId ID for a Clip
+		@return ApiPostOrgClipArchiveRequest
 	*/
 	PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest
 
@@ -388,16 +387,16 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponseBody, *http.Response, error)
 
 	/*
-	PostOrgMakeMp4 Create MP4 for Clip
+		PostOrgMakeMp4 Create MP4 for Clip
 
-	Create a mp4 entity for the clip within a vod
+		Create a mp4 entity for the clip within a vod
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@param clipId ID for a Clip
-	@return ApiPostOrgMakeMp4Request
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@param clipId ID for a Clip
+		@return ApiPostOrgMakeMp4Request
 	*/
 	PostOrgMakeMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostOrgMakeMp4Request
 
@@ -406,14 +405,14 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4ResponseBody, *http.Response, error)
 
 	/*
-	PostOrgProductConfig Update config
+		PostOrgProductConfig Update config
 
-	Update fields for product config
+		Update fields for product config
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param productId Product ID for a l2v request
-	@return ApiPostOrgProductConfigRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param productId Product ID for a l2v request
+		@return ApiPostOrgProductConfigRequest
 	*/
 	PostOrgProductConfig(ctx context.Context, org string, productId string) ApiPostOrgProductConfigRequest
 
@@ -421,15 +420,15 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (*http.Response, error)
 
 	/*
-	PostOrgTaskCancel Cancel Task
+		PostOrgTaskCancel Cancel Task
 
-	Cancel a L2V task with the taskID
+		Cancel a L2V task with the taskID
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param taskId Task ID for a l2v request
-	@return ApiPostOrgTaskCancelRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param taskId Task ID for a l2v request
+		@return ApiPostOrgTaskCancelRequest
 	*/
 	PostOrgTaskCancel(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskCancelRequest
 
@@ -438,15 +437,15 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponseBody, *http.Response, error)
 
 	/*
-	PostOrgTaskRetry Retry Task
+		PostOrgTaskRetry Retry Task
 
-	Retry a L2V task with the taskID.
+		Retry a L2V task with the taskID.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param taskId Task ID for a l2v request
-	@return ApiPostOrgTaskRetryRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param taskId Task ID for a l2v request
+		@return ApiPostOrgTaskRetryRequest
 	*/
 	PostOrgTaskRetry(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskRetryRequest
 
@@ -455,15 +454,15 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponseBody, *http.Response, error)
 
 	/*
-	PostOrgVodClip Make a clip for a single VOD
+		PostOrgVodClip Make a clip for a single VOD
 
-	Starts a job to create a clip for a VOD on the channel identified in the request.
+		Starts a job to create a clip for a VOD on the channel identified in the request.
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@param vodId ID for a VOD
-	@return ApiPostOrgVodClipRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@param vodId ID for a VOD
+		@return ApiPostOrgVodClipRequest
 	*/
 	PostOrgVodClip(ctx context.Context, org string, channelId string, vodId string) ApiPostOrgVodClipRequest
 
@@ -472,14 +471,14 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponseBody, *http.Response, error)
 
 	/*
-	PutOrgChannelFer Archive a FER
+		PutOrgChannelFer Archive a FER
 
-	Uses archive settings from the request to archive a FER
+		Uses archive settings from the request to archive a FER
 
-	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
-	@param org Organization name
-	@param channelId Unique channel identifier
-	@return ApiPutOrgChannelFerRequest
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiPutOrgChannelFerRequest
 	*/
 	PutOrgChannelFer(ctx context.Context, org string, channelId string) ApiPutOrgChannelFerRequest
 
@@ -488,15 +487,15 @@ Uses archive settings from the request to archive syndication files (mp4/wav) fi
 	PutOrgChannelFerExecute(r ApiPutOrgChannelFerRequest) (*ArchiveFERResponse, *http.Response, error)
 }
 
-// Live2VODForOrganizationApiService Live2VODForOrganizationApi service
-type Live2VODForOrganizationApiService service
+// Live2VODForOrganizationAPIService Live2VODForOrganizationAPI service
+type Live2VODForOrganizationAPIService service
 
 type ApiCollapseVodRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
+	ctx                context.Context
+	ApiService         Live2VODForOrganizationAPI
+	org                string
+	channelId          string
+	vodId              string
 	collapseVODRequest *CollapseVODRequest
 }
 
@@ -514,33 +513,34 @@ CollapseVod Collapse Vod
 
 A vod can be collapsed to a specific filter config
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @return ApiCollapseVodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@return ApiCollapseVodRequest
 */
-func (a *Live2VODForOrganizationApiService) CollapseVod(ctx context.Context, org string, channelId string, vodId string) ApiCollapseVodRequest {
+func (a *Live2VODForOrganizationAPIService) CollapseVod(ctx context.Context, org string, channelId string, vodId string) ApiCollapseVodRequest {
 	return ApiCollapseVodRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
 	}
 }
 
 // Execute executes the request
-//  @return CollapseVODResponseBody
-func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponseBody, *http.Response, error) {
+//
+//	@return CollapseVODResponseBody
+func (a *Live2VODForOrganizationAPIService) CollapseVodExecute(r ApiCollapseVodRequest) (*CollapseVODResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CollapseVODResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CollapseVODResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.CollapseVod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.CollapseVod")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -708,12 +708,12 @@ func (a *Live2VODForOrganizationApiService) CollapseVodExecute(r ApiCollapseVodR
 }
 
 type ApiGetOrgClipManifestsRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
+	clipId     string
 }
 
 func (r ApiGetOrgClipManifestsRequest) Execute() ([]ClipManifestResponse, *http.Response, error) {
@@ -725,35 +725,36 @@ GetOrgClipManifests Get manifest information for a clip
 
 Retrieves a clip's manifest given a clip id
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiGetOrgClipManifestsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiGetOrgClipManifestsRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgClipManifests(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgClipManifestsRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgClipManifests(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgClipManifestsRequest {
 	return ApiGetOrgClipManifestsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return []ClipManifestResponse
-func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) ([]ClipManifestResponse, *http.Response, error) {
+//
+//	@return []ClipManifestResponse
+func (a *Live2VODForOrganizationAPIService) GetOrgClipManifestsExecute(r ApiGetOrgClipManifestsRequest) ([]ClipManifestResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ClipManifestResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []ClipManifestResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgClipManifests")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgClipManifests")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -897,11 +898,11 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipManifestsExecute(r ApiGetO
 }
 
 type ApiGetOrgClipPlayurlRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	clipId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	clipId     string
 }
 
 func (r ApiGetOrgClipPlayurlRequest) Execute() (*PlayURLBody, *http.Response, error) {
@@ -913,33 +914,34 @@ GetOrgClipPlayurl Get a playurl for a clip
 
 Searches for an organization's VODs with a given ClipID and then returns a url for playback.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param clipId ID for a Clip
- @return ApiGetOrgClipPlayurlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param clipId ID for a Clip
+	@return ApiGetOrgClipPlayurlRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurl(ctx context.Context, org string, channelId string, clipId string) ApiGetOrgClipPlayurlRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgClipPlayurl(ctx context.Context, org string, channelId string, clipId string) ApiGetOrgClipPlayurlRequest {
 	return ApiGetOrgClipPlayurlRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return PlayURLBody
-func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLBody, *http.Response, error) {
+//
+//	@return PlayURLBody
+func (a *Live2VODForOrganizationAPIService) GetOrgClipPlayurlExecute(r ApiGetOrgClipPlayurlRequest) (*PlayURLBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PlayURLBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PlayURLBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgClipPlayurl")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgClipPlayurl")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1082,12 +1084,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgClipPlayurlExecute(r ApiGetOrg
 }
 
 type ApiGetOrgMp4UrlRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
+	clipId     string
 }
 
 func (r ApiGetOrgMp4UrlRequest) Execute() (*MP4URLResponseBody, *http.Response, error) {
@@ -1100,35 +1102,36 @@ GetOrgMp4Url Get Clip MP4 URL
 Get the mp4url for downloading a mp4 file for a clip
 Takes in a vodid and clipid and returns the url to download the mp4 asset.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiGetOrgMp4UrlRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiGetOrgMp4UrlRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgMp4Url(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgMp4UrlRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgMp4Url(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgMp4UrlRequest {
 	return ApiGetOrgMp4UrlRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return MP4URLResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponseBody, *http.Response, error) {
+//
+//	@return MP4URLResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgMp4UrlExecute(r ApiGetOrgMp4UrlRequest) (*MP4URLResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MP4URLResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MP4URLResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgMp4Url")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgMp4Url")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1272,10 +1275,10 @@ func (a *Live2VODForOrganizationApiService) GetOrgMp4UrlExecute(r ApiGetOrgMp4Ur
 }
 
 type ApiGetOrgProductRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	productId  string
 }
 
 func (r ApiGetOrgProductRequest) Execute() (*GetProductResponseBody, *http.Response, error) {
@@ -1287,31 +1290,32 @@ GetOrgProduct Get product
 
 Get a product with an organization and product id. This will return one from each region if that product id is in multiple regions.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param productId Product ID for a l2v request
- @return ApiGetOrgProductRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param productId Product ID for a l2v request
+	@return ApiGetOrgProductRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProduct(ctx context.Context, org string, productId string) ApiGetOrgProductRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgProduct(ctx context.Context, org string, productId string) ApiGetOrgProductRequest {
 	return ApiGetOrgProductRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		productId: productId,
+		ctx:        ctx,
+		org:        org,
+		productId:  productId,
 	}
 }
 
 // Execute executes the request
-//  @return GetProductResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponseBody, *http.Response, error) {
+//
+//	@return GetProductResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgProductExecute(r ApiGetOrgProductRequest) (*GetProductResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetProductResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetProductResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProduct")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgProduct")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1450,10 +1454,10 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductExecute(r ApiGetOrgProd
 }
 
 type ApiGetOrgProductConfigRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	productId  string
 }
 
 func (r ApiGetOrgProductConfigRequest) Execute() (*GetProductConfigResponseBody, *http.Response, error) {
@@ -1465,31 +1469,32 @@ GetOrgProductConfig Get product config
 
 Get fields for product config
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param productId Product ID for a l2v request
- @return ApiGetOrgProductConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param productId Product ID for a l2v request
+	@return ApiGetOrgProductConfigRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProductConfig(ctx context.Context, org string, productId string) ApiGetOrgProductConfigRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgProductConfig(ctx context.Context, org string, productId string) ApiGetOrgProductConfigRequest {
 	return ApiGetOrgProductConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		productId: productId,
+		ctx:        ctx,
+		org:        org,
+		productId:  productId,
 	}
 }
 
 // Execute executes the request
-//  @return GetProductConfigResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponseBody, *http.Response, error) {
+//
+//	@return GetProductConfigResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgProductConfigExecute(r ApiGetOrgProductConfigRequest) (*GetProductConfigResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetProductConfigResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetProductConfigResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProductConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgProductConfig")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1628,12 +1633,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgProductConfigExecute(r ApiGetO
 }
 
 type ApiGetOrgProgramTasksRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	cursor *string
-	pageSize *int32
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	cursor     *string
+	pageSize   *int32
 }
 
 // Current page cursor
@@ -1657,31 +1662,32 @@ GetOrgProgramTasks Get Tasks for Program
 
 List all L2V tasks for the channel identified in the request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiGetOrgProgramTasksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetOrgProgramTasksRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgProgramTasks(ctx context.Context, org string, channelId string) ApiGetOrgProgramTasksRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgProgramTasks(ctx context.Context, org string, channelId string) ApiGetOrgProgramTasksRequest {
 	return ApiGetOrgProgramTasksRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return GetTaskProgramResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*GetTaskProgramResponseBody, *http.Response, error) {
+//
+//	@return GetTaskProgramResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgProgramTasksExecute(r ApiGetOrgProgramTasksRequest) (*GetTaskProgramResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetTaskProgramResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetTaskProgramResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgProgramTasks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgProgramTasks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1829,11 +1835,11 @@ func (a *Live2VODForOrganizationApiService) GetOrgProgramTasksExecute(r ApiGetOr
 }
 
 type ApiGetOrgTaskRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	taskId     string
 }
 
 func (r ApiGetOrgTaskRequest) Execute() (*GetTaskResponseBody, *http.Response, error) {
@@ -1845,33 +1851,34 @@ GetOrgTask Get Task
 
 Get a L2V task with the taskID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param taskId Task ID for a l2v request
- @return ApiGetOrgTaskRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param taskId Task ID for a l2v request
+	@return ApiGetOrgTaskRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgTask(ctx context.Context, org string, channelId string, taskId string) ApiGetOrgTaskRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgTask(ctx context.Context, org string, channelId string, taskId string) ApiGetOrgTaskRequest {
 	return ApiGetOrgTaskRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		taskId: taskId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
-//  @return GetTaskResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponseBody, *http.Response, error) {
+//
+//	@return GetTaskResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgTaskExecute(r ApiGetOrgTaskRequest) (*GetTaskResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetTaskResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetTaskResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgTask")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgTask")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2014,11 +2021,11 @@ func (a *Live2VODForOrganizationApiService) GetOrgTaskExecute(r ApiGetOrgTaskReq
 }
 
 type ApiGetOrgVodRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
 }
 
 func (r ApiGetOrgVodRequest) Execute() (*GetVODResponseBody, *http.Response, error) {
@@ -2030,33 +2037,34 @@ GetOrgVod Get VOD
 
 Get a singular vod for a channel
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @return ApiGetOrgVodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@return ApiGetOrgVodRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVod(ctx context.Context, org string, channelId string, vodId string) ApiGetOrgVodRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgVod(ctx context.Context, org string, channelId string, vodId string) ApiGetOrgVodRequest {
 	return ApiGetOrgVodRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
 	}
 }
 
 // Execute executes the request
-//  @return GetVODResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponseBody, *http.Response, error) {
+//
+//	@return GetVODResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgVodExecute(r ApiGetOrgVodRequest) (*GetVODResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetVODResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetVODResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgVod")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2199,12 +2207,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodExecute(r ApiGetOrgVodReque
 }
 
 type ApiGetOrgVodClipProgramTimeRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
+	clipId     string
 }
 
 func (r ApiGetOrgVodClipProgramTimeRequest) Execute() (*GetClipProgramTimeResponseBody, *http.Response, error) {
@@ -2216,35 +2224,36 @@ GetOrgVodClipProgramTime Get Clip Program Times
 
 Get the program start and end times for a clip
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiGetOrgVodClipProgramTimeRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiGetOrgVodClipProgramTimeRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTime(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipProgramTimeRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgVodClipProgramTime(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipProgramTimeRequest {
 	return ApiGetOrgVodClipProgramTimeRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return GetClipProgramTimeResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponseBody, *http.Response, error) {
+//
+//	@return GetClipProgramTimeResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgVodClipProgramTimeExecute(r ApiGetOrgVodClipProgramTimeRequest) (*GetClipProgramTimeResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetClipProgramTimeResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetClipProgramTimeResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVodClipProgramTime")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgVodClipProgramTime")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2388,12 +2397,12 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipProgramTimeExecute(r Ap
 }
 
 type ApiGetOrgVodClipScte35MarkersRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
+	clipId     string
 }
 
 func (r ApiGetOrgVodClipScte35MarkersRequest) Execute() (*GetScte35MarkerByClipIDResponseBody, *http.Response, error) {
@@ -2405,35 +2414,36 @@ GetOrgVodClipScte35Markers Get Scte 35 Markers By Clip
 
 Get the scte markers for a clip
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiGetOrgVodClipScte35MarkersRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiGetOrgVodClipScte35MarkersRequest
 */
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35Markers(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipScte35MarkersRequest {
+func (a *Live2VODForOrganizationAPIService) GetOrgVodClipScte35Markers(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiGetOrgVodClipScte35MarkersRequest {
 	return ApiGetOrgVodClipScte35MarkersRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return GetScte35MarkerByClipIDResponseBody
-func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponseBody, *http.Response, error) {
+//
+//	@return GetScte35MarkerByClipIDResponseBody
+func (a *Live2VODForOrganizationAPIService) GetOrgVodClipScte35MarkersExecute(r ApiGetOrgVodClipScte35MarkersRequest) (*GetScte35MarkerByClipIDResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *GetScte35MarkerByClipIDResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetScte35MarkerByClipIDResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.GetOrgVodClipScte35Markers")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.GetOrgVodClipScte35Markers")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2577,8 +2587,8 @@ func (a *Live2VODForOrganizationApiService) GetOrgVodClipScte35MarkersExecute(r 
 }
 
 type ApiListFailedTasksRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
 }
 
 func (r ApiListFailedTasksRequest) Execute() (*ListTasksResponseBody, *http.Response, error) {
@@ -2590,27 +2600,28 @@ ListFailedTasks List Failed Tasks
 
 List all permanently failed L2V tasks (exhausted all retries) from the last 14 days.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListFailedTasksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListFailedTasksRequest
 */
-func (a *Live2VODForOrganizationApiService) ListFailedTasks(ctx context.Context) ApiListFailedTasksRequest {
+func (a *Live2VODForOrganizationAPIService) ListFailedTasks(ctx context.Context) ApiListFailedTasksRequest {
 	return ApiListFailedTasksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ListTasksResponseBody
-func (a *Live2VODForOrganizationApiService) ListFailedTasksExecute(r ApiListFailedTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
+//
+//	@return ListTasksResponseBody
+func (a *Live2VODForOrganizationAPIService) ListFailedTasksExecute(r ApiListFailedTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListTasksResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListTasksResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListFailedTasks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListFailedTasks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2757,10 +2768,10 @@ func (a *Live2VODForOrganizationApiService) ListFailedTasksExecute(r ApiListFail
 }
 
 type ApiListOrgClipsRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
 }
 
 func (r ApiListOrgClipsRequest) Execute() (*ListClipsResponseBody, *http.Response, error) {
@@ -2772,31 +2783,32 @@ ListOrgClips List available clips
 
 List all clips for all VODs of the channel identified in the request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiListOrgClipsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiListOrgClipsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgClips(ctx context.Context, org string, channelId string) ApiListOrgClipsRequest {
+func (a *Live2VODForOrganizationAPIService) ListOrgClips(ctx context.Context, org string, channelId string) ApiListOrgClipsRequest {
 	return ApiListOrgClipsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return ListClipsResponseBody
-func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponseBody, *http.Response, error) {
+//
+//	@return ListClipsResponseBody
+func (a *Live2VODForOrganizationAPIService) ListOrgClipsExecute(r ApiListOrgClipsRequest) (*ListClipsResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListClipsResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListClipsResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgClips")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListOrgClips")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -2938,13 +2950,13 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsExecute(r ApiListOrgClip
 }
 
 type ApiListOrgClipsVodRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	cursor *string
-	pageSize *int32
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	vodId      string
+	cursor     *string
+	pageSize   *int32
 }
 
 // Current page cursor
@@ -2968,33 +2980,34 @@ ListOrgClipsVod List available clips for a vod
 
 List all clips for a single VOD in the channel identified in the request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @return ApiListOrgClipsVodRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@return ApiListOrgClipsVodRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgClipsVod(ctx context.Context, org string, channelId string, vodId string) ApiListOrgClipsVodRequest {
+func (a *Live2VODForOrganizationAPIService) ListOrgClipsVod(ctx context.Context, org string, channelId string, vodId string) ApiListOrgClipsVodRequest {
 	return ApiListOrgClipsVodRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
 	}
 }
 
 // Execute executes the request
-//  @return ListClipsForVodResponseBody
-func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponseBody, *http.Response, error) {
+//
+//	@return ListClipsForVodResponseBody
+func (a *Live2VODForOrganizationAPIService) ListOrgClipsVodExecute(r ApiListOrgClipsVodRequest) (*ListClipsForVodResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListClipsForVodResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListClipsForVodResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgClipsVod")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListOrgClipsVod")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3143,9 +3156,9 @@ func (a *Live2VODForOrganizationApiService) ListOrgClipsVodExecute(r ApiListOrgC
 }
 
 type ApiListOrgProductsRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
 }
 
 func (r ApiListOrgProductsRequest) Execute() (*ListProductsResponseBody, *http.Response, error) {
@@ -3157,29 +3170,30 @@ ListOrgProducts List Products
 
 Get all the products for a specific organization across all regions
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @return ApiListOrgProductsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@return ApiListOrgProductsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgProducts(ctx context.Context, org string) ApiListOrgProductsRequest {
+func (a *Live2VODForOrganizationAPIService) ListOrgProducts(ctx context.Context, org string) ApiListOrgProductsRequest {
 	return ApiListOrgProductsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
+		ctx:        ctx,
+		org:        org,
 	}
 }
 
 // Execute executes the request
-//  @return ListProductsResponseBody
-func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponseBody, *http.Response, error) {
+//
+//	@return ListProductsResponseBody
+func (a *Live2VODForOrganizationAPIService) ListOrgProductsExecute(r ApiListOrgProductsRequest) (*ListProductsResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListProductsResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListProductsResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgProducts")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListOrgProducts")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3317,10 +3331,10 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsExecute(r ApiListOrgP
 }
 
 type ApiListOrgProductsProgramsRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	productId  string
 }
 
 func (r ApiListOrgProductsProgramsRequest) Execute() (*ListProgramsResponseBody, *http.Response, error) {
@@ -3332,31 +3346,32 @@ ListOrgProductsPrograms List Programs
 
 Get all the programs for a specific organization and product
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param productId Product ID for a l2v request
- @return ApiListOrgProductsProgramsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param productId Product ID for a l2v request
+	@return ApiListOrgProductsProgramsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgProductsPrograms(ctx context.Context, org string, productId string) ApiListOrgProductsProgramsRequest {
+func (a *Live2VODForOrganizationAPIService) ListOrgProductsPrograms(ctx context.Context, org string, productId string) ApiListOrgProductsProgramsRequest {
 	return ApiListOrgProductsProgramsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		productId: productId,
+		ctx:        ctx,
+		org:        org,
+		productId:  productId,
 	}
 }
 
 // Execute executes the request
-//  @return ListProgramsResponseBody
-func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponseBody, *http.Response, error) {
+//
+//	@return ListProgramsResponseBody
+func (a *Live2VODForOrganizationAPIService) ListOrgProductsProgramsExecute(r ApiListOrgProductsProgramsRequest) (*ListProgramsResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListProgramsResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListProgramsResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgProductsPrograms")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListOrgProductsPrograms")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3495,10 +3510,10 @@ func (a *Live2VODForOrganizationApiService) ListOrgProductsProgramsExecute(r Api
 }
 
 type ApiListOrgVodsRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
 }
 
 func (r ApiListOrgVodsRequest) Execute() ([]ListVODsResponse, *http.Response, error) {
@@ -3511,31 +3526,32 @@ ListOrgVods List VODs
 VODs can be listed after an appropriately configured channel is turned on for the first time.
 If a channel with existing VODs is turned off or deleted, the VODs will still be returned.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiListOrgVodsRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiListOrgVodsRequest
 */
-func (a *Live2VODForOrganizationApiService) ListOrgVods(ctx context.Context, org string, channelId string) ApiListOrgVodsRequest {
+func (a *Live2VODForOrganizationAPIService) ListOrgVods(ctx context.Context, org string, channelId string) ApiListOrgVodsRequest {
 	return ApiListOrgVodsRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return []ListVODsResponse
-func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error) {
+//
+//	@return []ListVODsResponse
+func (a *Live2VODForOrganizationAPIService) ListOrgVodsExecute(r ApiListOrgVodsRequest) ([]ListVODsResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  []ListVODsResponse
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []ListVODsResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListOrgVods")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListOrgVods")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3677,8 +3693,8 @@ func (a *Live2VODForOrganizationApiService) ListOrgVodsExecute(r ApiListOrgVodsR
 }
 
 type ApiListTasksRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
 }
 
 func (r ApiListTasksRequest) Execute() (*ListTasksResponseBody, *http.Response, error) {
@@ -3690,27 +3706,28 @@ ListTasks List Tasks
 
 List all L2V tasks.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return ApiListTasksRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@return ApiListTasksRequest
 */
-func (a *Live2VODForOrganizationApiService) ListTasks(ctx context.Context) ApiListTasksRequest {
+func (a *Live2VODForOrganizationAPIService) ListTasks(ctx context.Context) ApiListTasksRequest {
 	return ApiListTasksRequest{
 		ApiService: a,
-		ctx: ctx,
+		ctx:        ctx,
 	}
 }
 
 // Execute executes the request
-//  @return ListTasksResponseBody
-func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
+//
+//	@return ListTasksResponseBody
+func (a *Live2VODForOrganizationAPIService) ListTasksExecute(r ApiListTasksRequest) (*ListTasksResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ListTasksResponseBody
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ListTasksResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.ListTasks")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.ListTasks")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -3857,12 +3874,12 @@ func (a *Live2VODForOrganizationApiService) ListTasksExecute(r ApiListTasksReque
 }
 
 type ApiPostCopyMp4Request struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx                context.Context
+	ApiService         Live2VODForOrganizationAPI
+	org                string
+	channelId          string
+	vodId              string
+	clipId             string
 	postCopyMP4Request *PostCopyMP4Request
 }
 
@@ -3880,35 +3897,36 @@ PostCopyMp4 Copy mp4
 
 Starts a copy mp4 task in l2v to copy an MP4 to another preset storage location
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiPostCopyMp4Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiPostCopyMp4Request
 */
-func (a *Live2VODForOrganizationApiService) PostCopyMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostCopyMp4Request {
+func (a *Live2VODForOrganizationAPIService) PostCopyMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostCopyMp4Request {
 	return ApiPostCopyMp4Request{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return PostCopyMP4ResponseBody
-func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4ResponseBody, *http.Response, error) {
+//
+//	@return PostCopyMP4ResponseBody
+func (a *Live2VODForOrganizationAPIService) PostCopyMp4Execute(r ApiPostCopyMp4Request) (*PostCopyMP4ResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PostCopyMP4ResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PostCopyMP4ResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostCopyMp4")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostCopyMp4")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4077,10 +4095,10 @@ func (a *Live2VODForOrganizationApiService) PostCopyMp4Execute(r ApiPostCopyMp4R
 }
 
 type ApiPostOrgChannelSyndicationRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	ctx                       context.Context
+	ApiService                Live2VODForOrganizationAPI
+	org                       string
+	channelId                 string
 	dynamicSyndicationRequest *DynamicSyndicationRequest
 }
 
@@ -4099,31 +4117,32 @@ PostOrgChannelSyndication Dynamic Syndication
 Syndication (MP4's/WAV's) creation using Aventus Dynamic Manifest Origin.
 Uses archive settings from the request to archive syndication files (mp4/wav) files.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPostOrgChannelSyndicationRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPostOrgChannelSyndicationRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndication(ctx context.Context, org string, channelId string) ApiPostOrgChannelSyndicationRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgChannelSyndication(ctx context.Context, org string, channelId string) ApiPostOrgChannelSyndicationRequest {
 	return ApiPostOrgChannelSyndicationRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return DynamicSyndicationResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponseBody, *http.Response, error) {
+//
+//	@return DynamicSyndicationResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgChannelSyndicationExecute(r ApiPostOrgChannelSyndicationRequest) (*DynamicSyndicationResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DynamicSyndicationResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *DynamicSyndicationResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgChannelSyndication")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgChannelSyndication")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4290,10 +4309,10 @@ func (a *Live2VODForOrganizationApiService) PostOrgChannelSyndicationExecute(r A
 }
 
 type ApiPostOrgClipRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	ctx             context.Context
+	ApiService      Live2VODForOrganizationAPI
+	org             string
+	channelId       string
 	postClipRequest *PostClipRequest
 }
 
@@ -4311,31 +4330,32 @@ PostOrgClip Make a clip for all VODs
 
 Starts a job to create a clip for all VODs for the channel identified in the request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPostOrgClipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPostOrgClipRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgClip(ctx context.Context, org string, channelId string) ApiPostOrgClipRequest {
 	return ApiPostOrgClipRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return PostClipResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponseBody, *http.Response, error) {
+//
+//	@return PostClipResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgClipExecute(r ApiPostOrgClipRequest) (*PostClipResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PostClipResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PostClipResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgClip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4502,11 +4522,11 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipExecute(r ApiPostOrgClipR
 }
 
 type ApiPostOrgClipArchiveRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	clipId string
+	ctx                    context.Context
+	ApiService             Live2VODForOrganizationAPI
+	org                    string
+	channelId              string
+	clipId                 string
 	postClipArchiveRequest *PostClipArchiveRequest
 }
 
@@ -4524,33 +4544,34 @@ PostOrgClipArchive Archive a clip
 
 Uses archive settings configured in Live2VOD for the organization and on the channel.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param clipId ID for a Clip
- @return ApiPostOrgClipArchiveRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param clipId ID for a Clip
+	@return ApiPostOrgClipArchiveRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgClipArchive(ctx context.Context, org string, channelId string, clipId string) ApiPostOrgClipArchiveRequest {
 	return ApiPostOrgClipArchiveRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return PostClipArchiveResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponseBody, *http.Response, error) {
+//
+//	@return PostClipArchiveResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgClipArchiveExecute(r ApiPostOrgClipArchiveRequest) (*PostClipArchiveResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *PostClipArchiveResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *PostClipArchiveResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgClipArchive")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgClipArchive")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4718,12 +4739,12 @@ func (a *Live2VODForOrganizationApiService) PostOrgClipArchiveExecute(r ApiPostO
 }
 
 type ApiPostOrgMakeMp4Request struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
-	clipId string
+	ctx                context.Context
+	ApiService         Live2VODForOrganizationAPI
+	org                string
+	channelId          string
+	vodId              string
+	clipId             string
 	postMakeMP4Request *PostMakeMP4Request
 }
 
@@ -4741,35 +4762,36 @@ PostOrgMakeMp4 Create MP4 for Clip
 
 Create a mp4 entity for the clip within a vod
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @param clipId ID for a Clip
- @return ApiPostOrgMakeMp4Request
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@param clipId ID for a Clip
+	@return ApiPostOrgMakeMp4Request
 */
-func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostOrgMakeMp4Request {
+func (a *Live2VODForOrganizationAPIService) PostOrgMakeMp4(ctx context.Context, org string, channelId string, vodId string, clipId string) ApiPostOrgMakeMp4Request {
 	return ApiPostOrgMakeMp4Request{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
-		clipId: clipId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
+		clipId:     clipId,
 	}
 }
 
 // Execute executes the request
-//  @return MakeMP4ResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4ResponseBody, *http.Response, error) {
+//
+//	@return MakeMP4ResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgMakeMp4Execute(r ApiPostOrgMakeMp4Request) (*MakeMP4ResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MakeMP4ResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MakeMP4ResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgMakeMp4")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgMakeMp4")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -4938,10 +4960,10 @@ func (a *Live2VODForOrganizationApiService) PostOrgMakeMp4Execute(r ApiPostOrgMa
 }
 
 type ApiPostOrgProductConfigRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	productId string
+	ctx                        context.Context
+	ApiService                 Live2VODForOrganizationAPI
+	org                        string
+	productId                  string
 	updateProductConfigRequest *UpdateProductConfigRequest
 }
 
@@ -4959,29 +4981,29 @@ PostOrgProductConfig Update config
 
 Update fields for product config
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param productId Product ID for a l2v request
- @return ApiPostOrgProductConfigRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param productId Product ID for a l2v request
+	@return ApiPostOrgProductConfigRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgProductConfig(ctx context.Context, org string, productId string) ApiPostOrgProductConfigRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgProductConfig(ctx context.Context, org string, productId string) ApiPostOrgProductConfigRequest {
 	return ApiPostOrgProductConfigRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		productId: productId,
+		ctx:        ctx,
+		org:        org,
+		productId:  productId,
 	}
 }
 
 // Execute executes the request
-func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (*http.Response, error) {
+func (a *Live2VODForOrganizationAPIService) PostOrgProductConfigExecute(r ApiPostOrgProductConfigRequest) (*http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
+		localVarHTTPMethod = http.MethodPost
+		localVarPostBody   interface{}
+		formFiles          []formFile
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgProductConfig")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgProductConfig")
 	if err != nil {
 		return nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5124,11 +5146,11 @@ func (a *Live2VODForOrganizationApiService) PostOrgProductConfigExecute(r ApiPos
 }
 
 type ApiPostOrgTaskCancelRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	taskId     string
 }
 
 func (r ApiPostOrgTaskCancelRequest) Execute() (*CancelTaskResponseBody, *http.Response, error) {
@@ -5140,33 +5162,34 @@ PostOrgTaskCancel Cancel Task
 
 Cancel a L2V task with the taskID
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param taskId Task ID for a l2v request
- @return ApiPostOrgTaskCancelRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param taskId Task ID for a l2v request
+	@return ApiPostOrgTaskCancelRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgTaskCancel(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskCancelRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgTaskCancel(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskCancelRequest {
 	return ApiPostOrgTaskCancelRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		taskId: taskId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
-//  @return CancelTaskResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponseBody, *http.Response, error) {
+//
+//	@return CancelTaskResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgTaskCancelExecute(r ApiPostOrgTaskCancelRequest) (*CancelTaskResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *CancelTaskResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *CancelTaskResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgTaskCancel")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgTaskCancel")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5309,11 +5332,11 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskCancelExecute(r ApiPostOr
 }
 
 type ApiPostOrgTaskRetryRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	taskId string
+	ctx        context.Context
+	ApiService Live2VODForOrganizationAPI
+	org        string
+	channelId  string
+	taskId     string
 }
 
 func (r ApiPostOrgTaskRetryRequest) Execute() (*RetryTaskResponseBody, *http.Response, error) {
@@ -5325,33 +5348,34 @@ PostOrgTaskRetry Retry Task
 
 Retry a L2V task with the taskID.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param taskId Task ID for a l2v request
- @return ApiPostOrgTaskRetryRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param taskId Task ID for a l2v request
+	@return ApiPostOrgTaskRetryRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgTaskRetry(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskRetryRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgTaskRetry(ctx context.Context, org string, channelId string, taskId string) ApiPostOrgTaskRetryRequest {
 	return ApiPostOrgTaskRetryRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		taskId: taskId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		taskId:     taskId,
 	}
 }
 
 // Execute executes the request
-//  @return RetryTaskResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponseBody, *http.Response, error) {
+//
+//	@return RetryTaskResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgTaskRetryExecute(r ApiPostOrgTaskRetryRequest) (*RetryTaskResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *RetryTaskResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *RetryTaskResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgTaskRetry")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgTaskRetry")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5494,11 +5518,11 @@ func (a *Live2VODForOrganizationApiService) PostOrgTaskRetryExecute(r ApiPostOrg
 }
 
 type ApiPostOrgVodClipRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
-	vodId string
+	ctx             context.Context
+	ApiService      Live2VODForOrganizationAPI
+	org             string
+	channelId       string
+	vodId           string
 	makeClipRequest *MakeClipRequest
 }
 
@@ -5516,33 +5540,34 @@ PostOrgVodClip Make a clip for a single VOD
 
 Starts a job to create a clip for a VOD on the channel identified in the request.
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @param vodId ID for a VOD
- @return ApiPostOrgVodClipRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@param vodId ID for a VOD
+	@return ApiPostOrgVodClipRequest
 */
-func (a *Live2VODForOrganizationApiService) PostOrgVodClip(ctx context.Context, org string, channelId string, vodId string) ApiPostOrgVodClipRequest {
+func (a *Live2VODForOrganizationAPIService) PostOrgVodClip(ctx context.Context, org string, channelId string, vodId string) ApiPostOrgVodClipRequest {
 	return ApiPostOrgVodClipRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
-		vodId: vodId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+		vodId:      vodId,
 	}
 }
 
 // Execute executes the request
-//  @return MakeClipResponseBody
-func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponseBody, *http.Response, error) {
+//
+//	@return MakeClipResponseBody
+func (a *Live2VODForOrganizationAPIService) PostOrgVodClipExecute(r ApiPostOrgVodClipRequest) (*MakeClipResponseBody, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *MakeClipResponseBody
+		localVarHTTPMethod  = http.MethodPost
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *MakeClipResponseBody
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PostOrgVodClip")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PostOrgVodClip")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -5710,10 +5735,10 @@ func (a *Live2VODForOrganizationApiService) PostOrgVodClipExecute(r ApiPostOrgVo
 }
 
 type ApiPutOrgChannelFerRequest struct {
-	ctx context.Context
-	ApiService Live2VODForOrganizationApi
-	org string
-	channelId string
+	ctx               context.Context
+	ApiService        Live2VODForOrganizationAPI
+	org               string
+	channelId         string
 	archiveFERRequest *ArchiveFERRequest
 }
 
@@ -5731,31 +5756,32 @@ PutOrgChannelFer Archive a FER
 
 Uses archive settings from the request to archive a FER
 
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param org Organization name
- @param channelId Unique channel identifier
- @return ApiPutOrgChannelFerRequest
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiPutOrgChannelFerRequest
 */
-func (a *Live2VODForOrganizationApiService) PutOrgChannelFer(ctx context.Context, org string, channelId string) ApiPutOrgChannelFerRequest {
+func (a *Live2VODForOrganizationAPIService) PutOrgChannelFer(ctx context.Context, org string, channelId string) ApiPutOrgChannelFerRequest {
 	return ApiPutOrgChannelFerRequest{
 		ApiService: a,
-		ctx: ctx,
-		org: org,
-		channelId: channelId,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
 	}
 }
 
 // Execute executes the request
-//  @return ArchiveFERResponse
-func (a *Live2VODForOrganizationApiService) PutOrgChannelFerExecute(r ApiPutOrgChannelFerRequest) (*ArchiveFERResponse, *http.Response, error) {
+//
+//	@return ArchiveFERResponse
+func (a *Live2VODForOrganizationAPIService) PutOrgChannelFerExecute(r ApiPutOrgChannelFerRequest) (*ArchiveFERResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *ArchiveFERResponse
+		localVarHTTPMethod  = http.MethodPut
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *ArchiveFERResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationApiService.PutOrgChannelFer")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "Live2VODForOrganizationAPIService.PutOrgChannelFer")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}

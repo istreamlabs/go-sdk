@@ -19,12 +19,12 @@ var _ MappedNullable = &DynamicSyndicationRequest{}
 // DynamicSyndicationRequest struct for DynamicSyndicationRequest
 type DynamicSyndicationRequest struct {
 	// A URL to the JSON Schema for this object.
-	Schema *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	Schema  *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	Archive Archive `json:"archive"`
 	// Correlation ID for this FER archive request
 	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
 	// URL of the main manifest to reference for the mp4
-	ManifestUrl string `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
+	ManifestUrl  string              `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
 	Notification DynamicNotification `json:"notification"`
 	// Query string containing params for the manifest url
 	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
@@ -234,7 +234,7 @@ func (o *DynamicSyndicationRequest) SetSyndicationFiles(v []SyndicationMediaFile
 }
 
 func (o DynamicSyndicationRequest) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -292,5 +292,3 @@ func (v *NullableDynamicSyndicationRequest) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

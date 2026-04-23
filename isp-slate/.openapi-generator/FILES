@@ -1,4 +1,5 @@
 api_slates_for_organization.go
+client.go
 configuration.go
 model_error_detail.go
 model_error_model.go

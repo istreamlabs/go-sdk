@@ -18,13 +18,13 @@ var _ MappedNullable = &ContentProtection{}
 
 // ContentProtection struct for ContentProtection
 type ContentProtection struct {
-	Atlas *PatchOrgChannelRequestPackagingPackagersValueContentProtectionAtlas `json:"atlas,omitempty"`
-	BulkFile *PatchOrgChannelRequestPackagingPackagersValueContentProtectionBulkFile `json:"bulk_file,omitempty"`
-	Common *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCommon `json:"common,omitempty"`
-	Cpix *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCpix `json:"cpix,omitempty"`
+	Atlas       *PatchOrgChannelRequestPackagingPackagersValueContentProtectionAtlas       `json:"atlas,omitempty"`
+	BulkFile    *PatchOrgChannelRequestPackagingPackagersValueContentProtectionBulkFile    `json:"bulk_file,omitempty"`
+	Common      *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCommon      `json:"common,omitempty"`
+	Cpix        *PatchOrgChannelRequestPackagingPackagersValueContentProtectionCpix        `json:"cpix,omitempty"`
 	KeyRotation *PatchOrgChannelRequestPackagingPackagersValueContentProtectionKeyRotation `json:"key_rotation,omitempty"`
-	SampleAes *map[string]interface{} `json:"sample_aes,omitempty"`
-	Simple *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple `json:"simple,omitempty"`
+	SampleAes   *map[string]interface{}                                                    `json:"sample_aes,omitempty"`
+	Simple      *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple      `json:"simple,omitempty"`
 }
 
 // NewContentProtection instantiates a new ContentProtection object
@@ -269,7 +269,7 @@ func (o *ContentProtection) SetSimple(v PatchOrgChannelRequestPackagingPackagers
 }
 
 func (o ContentProtection) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -337,5 +337,3 @@ func (v *NullableContentProtection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

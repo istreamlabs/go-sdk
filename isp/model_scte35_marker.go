@@ -19,13 +19,13 @@ var _ MappedNullable = &Scte35Marker{}
 
 // Scte35Marker struct for Scte35Marker
 type Scte35Marker struct {
-	CreatedTime time.Time `json:"created_time" format:"date-time"`
-	CueId int32 `json:"cue_id" format:"int32" minimum:"0"`
-	MarkerId int64 `json:"marker_id" format:"int64"`
-	Progress string `json:"progress"`
-	TimelineEvent string `json:"timeline_event"`
-	Timestamp time.Time `json:"timestamp" format:"date-time"`
-	Type string `json:"type"`
+	CreatedTime   time.Time `json:"created_time" format:"date-time"`
+	CueId         int32     `json:"cue_id" format:"int32" minimum:"0"`
+	MarkerId      int64     `json:"marker_id" format:"int64"`
+	Progress      string    `json:"progress"`
+	TimelineEvent string    `json:"timeline_event"`
+	Timestamp     time.Time `json:"timestamp" format:"date-time"`
+	Type          string    `json:"type"`
 }
 
 // NewScte35Marker instantiates a new Scte35Marker object
@@ -221,7 +221,7 @@ func (o *Scte35Marker) SetType(v string) {
 }
 
 func (o Scte35Marker) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -275,5 +275,3 @@ func (v *NullableScte35Marker) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-

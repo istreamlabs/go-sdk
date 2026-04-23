@@ -24,8 +24,8 @@ type PatchOrgChannelRequestTranscodeSubtitleEncodersInner struct {
 	// Language is the code for the language in which the subtitles are written.
 	Language *string `json:"language,omitempty" minLength:"2" doc:"Language is the code for the language in which the subtitles are written."`
 	// Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus.
-	Tag *string `json:"tag,omitempty" doc:"Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus."`
-	Teletext *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTeletext `json:"teletext,omitempty"`
+	Tag           *string                                                            `json:"tag,omitempty" doc:"Used by the player to map text tracks to a quadrant, which represents a single view in a multiview layout. This value is opaque and not used by Aventus."`
+	Teletext      *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTeletext      `json:"teletext,omitempty"`
 	Transcription *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscription `json:"transcription,omitempty"`
 	// Usage indicates how this encoder should be flagged in generated manifests.
 	Usage *string `json:"usage,omitempty" enum:"CLOSED_CAPTIONS,SUBTITLES" doc:"Usage indicates how this encoder should be flagged in generated manifests."`
@@ -273,7 +273,7 @@ func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) SetUsage(v string
 }
 
 func (o PatchOrgChannelRequestTranscodeSubtitleEncodersInner) MarshalJSON() ([]byte, error) {
-	toSerialize,err := o.ToMap()
+	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
 	}
@@ -341,5 +341,3 @@ func (v *NullablePatchOrgChannelRequestTranscodeSubtitleEncodersInner) Unmarshal
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
-
-
