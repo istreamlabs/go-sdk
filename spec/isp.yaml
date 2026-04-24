@@ -4492,9 +4492,6 @@ components:
               description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
               type: object
             fallback_defaults:
-              $ref: '#/components/schemas/OriginManifestDefaults'
-              description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-            manifest_defaults:
               additionalProperties: false
               properties:
                 dash_signaling_formats:
@@ -4575,6 +4572,9 @@ components:
                   minimum: 0
                   type: integer
               type: object
+            manifest_defaults:
+              $ref: '#/components/schemas/OriginManifestDefaults'
+              description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
             retention_minutes:
               description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
               format: int32
@@ -5052,9 +5052,6 @@ components:
                     description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                     type: object
                   fallback_defaults:
-                    $ref: '#/components/schemas/OriginManifestDefaults'
-                    description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                  manifest_defaults:
                     additionalProperties: false
                     properties:
                       dash_signaling_formats:
@@ -5135,6 +5132,9 @@ components:
                         minimum: 0
                         type: integer
                     type: object
+                  manifest_defaults:
+                    $ref: '#/components/schemas/OriginManifestDefaults'
+                    description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                   retention_minutes:
                     description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                     format: int32
@@ -5883,9 +5883,6 @@ components:
                         description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                         type: object
                       fallback_defaults:
-                        $ref: '#/components/schemas/OriginManifestDefaults'
-                        description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                      manifest_defaults:
                         additionalProperties: false
                         properties:
                           dash_signaling_formats:
@@ -5966,6 +5963,9 @@ components:
                             minimum: 0
                             type: integer
                         type: object
+                      manifest_defaults:
+                        $ref: '#/components/schemas/OriginManifestDefaults'
+                        description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                       retention_minutes:
                         description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                         format: int32
@@ -9595,9 +9595,6 @@ components:
           description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
           type: object
         fallback_defaults:
-          $ref: '#/components/schemas/OriginManifestDefaults'
-          description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-        manifest_defaults:
           additionalProperties: false
           properties:
             dash_signaling_formats:
@@ -9678,6 +9675,9 @@ components:
               minimum: 0
               type: integer
           type: object
+        manifest_defaults:
+          $ref: '#/components/schemas/OriginManifestDefaults'
+          description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
         retention_minutes:
           description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
           format: int32
@@ -11843,8 +11843,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -11921,6 +11919,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -13400,8 +13400,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -13478,6 +13476,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32

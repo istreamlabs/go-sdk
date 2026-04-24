@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults{}
+// checks if the PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults{}
 
-// PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults struct for PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
-type PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults struct {
+// PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults struct for PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults
+type PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
 	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
 	// Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID
@@ -44,25 +44,25 @@ type PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults str
 	SuggestedPresentationDelaySeconds *int32 `json:"suggested_presentation_delay_seconds,omitempty" format:"int32" minimum:"0" doc:"Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration."`
 }
 
-// NewPatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults instantiates a new PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults object
+// NewPatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults instantiates a new PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults() *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults {
-	this := PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults{}
+func NewPatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults() *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults {
+	this := PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults{}
 	return &this
 }
 
-// NewPatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaultsWithDefaults instantiates a new PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults object
+// NewPatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaultsWithDefaults instantiates a new PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaultsWithDefaults() *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults {
-	this := PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults{}
+func NewPatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaultsWithDefaults() *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults {
+	this := PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults{}
 	return &this
 }
 
 // GetDashSignalingFormats returns the DashSignalingFormats field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDashSignalingFormats() []string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDashSignalingFormats() []string {
 	if o == nil || IsNil(o.DashSignalingFormats) {
 		var ret []string
 		return ret
@@ -72,7 +72,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetDashSignalingFormatsOk returns a tuple with the DashSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDashSignalingFormatsOk() ([]string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDashSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DashSignalingFormats) {
 		return nil, false
 	}
@@ -80,7 +80,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasDashSignalingFormats returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasDashSignalingFormats() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasDashSignalingFormats() bool {
 	if o != nil && !IsNil(o.DashSignalingFormats) {
 		return true
 	}
@@ -89,12 +89,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetDashSignalingFormats gets a reference to the given []string and assigns it to the DashSignalingFormats field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetDashSignalingFormats(v []string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetDashSignalingFormats(v []string) {
 	o.DashSignalingFormats = v
 }
 
 // GetDrmSystemIds returns the DrmSystemIds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDrmSystemIds() []string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDrmSystemIds() []string {
 	if o == nil || IsNil(o.DrmSystemIds) {
 		var ret []string
 		return ret
@@ -104,7 +104,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetDrmSystemIdsOk returns a tuple with the DrmSystemIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDrmSystemIdsOk() ([]string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDrmSystemIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DrmSystemIds) {
 		return nil, false
 	}
@@ -112,7 +112,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasDrmSystemIds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasDrmSystemIds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasDrmSystemIds() bool {
 	if o != nil && !IsNil(o.DrmSystemIds) {
 		return true
 	}
@@ -121,12 +121,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetDrmSystemIds gets a reference to the given []string and assigns it to the DrmSystemIds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetDrmSystemIds(v []string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetDrmSystemIds(v []string) {
 	o.DrmSystemIds = v
 }
 
 // GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDurationSeconds() int32 {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDurationSeconds() int32 {
 	if o == nil || IsNil(o.DurationSeconds) {
 		var ret int32
 		return ret
@@ -136,7 +136,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetDurationSecondsOk() (*int32, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.DurationSeconds) {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasDurationSeconds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasDurationSeconds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasDurationSeconds() bool {
 	if o != nil && !IsNil(o.DurationSeconds) {
 		return true
 	}
@@ -153,12 +153,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetDurationSeconds gets a reference to the given int32 and assigns it to the DurationSeconds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetDurationSeconds(v int32) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetDurationSeconds(v int32) {
 	o.DurationSeconds = &v
 }
 
 // GetEnableHlsDeltaUpdates returns the EnableHlsDeltaUpdates field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetEnableHlsDeltaUpdates() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetEnableHlsDeltaUpdates() bool {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		var ret bool
 		return ret
@@ -168,7 +168,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetEnableHlsDeltaUpdatesOk returns a tuple with the EnableHlsDeltaUpdates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		return nil, false
 	}
@@ -176,7 +176,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasEnableHlsDeltaUpdates returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasEnableHlsDeltaUpdates() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasEnableHlsDeltaUpdates() bool {
 	if o != nil && !IsNil(o.EnableHlsDeltaUpdates) {
 		return true
 	}
@@ -185,12 +185,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetEnableHlsDeltaUpdates gets a reference to the given bool and assigns it to the EnableHlsDeltaUpdates field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetEnableHlsDeltaUpdates(v bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetEnableHlsDeltaUpdates(v bool) {
 	o.EnableHlsDeltaUpdates = &v
 }
 
 // GetEncoderIds returns the EncoderIds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetEncoderIds() []string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetEncoderIds() []string {
 	if o == nil || IsNil(o.EncoderIds) {
 		var ret []string
 		return ret
@@ -200,7 +200,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetEncoderIdsOk returns a tuple with the EncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetEncoderIdsOk() ([]string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.EncoderIds) {
 		return nil, false
 	}
@@ -208,7 +208,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasEncoderIds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasEncoderIds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasEncoderIds() bool {
 	if o != nil && !IsNil(o.EncoderIds) {
 		return true
 	}
@@ -217,12 +217,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetEncoderIds gets a reference to the given []string and assigns it to the EncoderIds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetEncoderIds(v []string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetEncoderIds(v []string) {
 	o.EncoderIds = v
 }
 
 // GetHlsSignalingFormats returns the HlsSignalingFormats field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetHlsSignalingFormats() []string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetHlsSignalingFormats() []string {
 	if o == nil || IsNil(o.HlsSignalingFormats) {
 		var ret []string
 		return ret
@@ -232,7 +232,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetHlsSignalingFormatsOk returns a tuple with the HlsSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetHlsSignalingFormatsOk() ([]string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetHlsSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.HlsSignalingFormats) {
 		return nil, false
 	}
@@ -240,7 +240,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasHlsSignalingFormats returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasHlsSignalingFormats() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasHlsSignalingFormats() bool {
 	if o != nil && !IsNil(o.HlsSignalingFormats) {
 		return true
 	}
@@ -249,12 +249,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetHlsSignalingFormats gets a reference to the given []string and assigns it to the HlsSignalingFormats field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetHlsSignalingFormats(v []string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetHlsSignalingFormats(v []string) {
 	o.HlsSignalingFormats = v
 }
 
 // GetMediaUrlType returns the MediaUrlType field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMediaUrlType() string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMediaUrlType() string {
 	if o == nil || IsNil(o.MediaUrlType) {
 		var ret string
 		return ret
@@ -264,7 +264,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetMediaUrlTypeOk returns a tuple with the MediaUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMediaUrlTypeOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMediaUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MediaUrlType) {
 		return nil, false
 	}
@@ -272,7 +272,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasMediaUrlType returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasMediaUrlType() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasMediaUrlType() bool {
 	if o != nil && !IsNil(o.MediaUrlType) {
 		return true
 	}
@@ -281,12 +281,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetMediaUrlType gets a reference to the given string and assigns it to the MediaUrlType field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetMediaUrlType(v string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetMediaUrlType(v string) {
 	o.MediaUrlType = &v
 }
 
 // GetMinimumUpdatePeriodSeconds returns the MinimumUpdatePeriodSeconds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMinimumUpdatePeriodSeconds() int32 {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMinimumUpdatePeriodSeconds() int32 {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		var ret int32
 		return ret
@@ -296,7 +296,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetMinimumUpdatePeriodSecondsOk returns a tuple with the MinimumUpdatePeriodSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		return nil, false
 	}
@@ -304,7 +304,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasMinimumUpdatePeriodSeconds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasMinimumUpdatePeriodSeconds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasMinimumUpdatePeriodSeconds() bool {
 	if o != nil && !IsNil(o.MinimumUpdatePeriodSeconds) {
 		return true
 	}
@@ -313,12 +313,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetMinimumUpdatePeriodSeconds gets a reference to the given int32 and assigns it to the MinimumUpdatePeriodSeconds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetMinimumUpdatePeriodSeconds(v int32) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetMinimumUpdatePeriodSeconds(v int32) {
 	o.MinimumUpdatePeriodSeconds = &v
 }
 
 // GetMultiVariantUrlType returns the MultiVariantUrlType field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMultiVariantUrlType() string {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMultiVariantUrlType() string {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		var ret string
 		return ret
@@ -328,7 +328,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetMultiVariantUrlTypeOk returns a tuple with the MultiVariantUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetMultiVariantUrlTypeOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetMultiVariantUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		return nil, false
 	}
@@ -336,7 +336,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasMultiVariantUrlType returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasMultiVariantUrlType() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasMultiVariantUrlType() bool {
 	if o != nil && !IsNil(o.MultiVariantUrlType) {
 		return true
 	}
@@ -345,12 +345,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetMultiVariantUrlType gets a reference to the given string and assigns it to the MultiVariantUrlType field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetMultiVariantUrlType(v string) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetMultiVariantUrlType(v string) {
 	o.MultiVariantUrlType = &v
 }
 
 // GetPdtOnEverySegment returns the PdtOnEverySegment field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetPdtOnEverySegment() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetPdtOnEverySegment() bool {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		var ret bool
 		return ret
@@ -360,7 +360,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetPdtOnEverySegmentOk returns a tuple with the PdtOnEverySegment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetPdtOnEverySegmentOk() (*bool, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetPdtOnEverySegmentOk() (*bool, bool) {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		return nil, false
 	}
@@ -368,7 +368,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasPdtOnEverySegment returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasPdtOnEverySegment() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasPdtOnEverySegment() bool {
 	if o != nil && !IsNil(o.PdtOnEverySegment) {
 		return true
 	}
@@ -377,12 +377,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetPdtOnEverySegment gets a reference to the given bool and assigns it to the PdtOnEverySegment field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetPdtOnEverySegment(v bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetPdtOnEverySegment(v bool) {
 	o.PdtOnEverySegment = &v
 }
 
 // GetPreStartDurationSeconds returns the PreStartDurationSeconds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetPreStartDurationSeconds() int32 {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetPreStartDurationSeconds() int32 {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		var ret int32
 		return ret
@@ -392,7 +392,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetPreStartDurationSecondsOk returns a tuple with the PreStartDurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetPreStartDurationSecondsOk() (*int32, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetPreStartDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		return nil, false
 	}
@@ -400,7 +400,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasPreStartDurationSeconds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasPreStartDurationSeconds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasPreStartDurationSeconds() bool {
 	if o != nil && !IsNil(o.PreStartDurationSeconds) {
 		return true
 	}
@@ -409,12 +409,12 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetPreStartDurationSeconds gets a reference to the given int32 and assigns it to the PreStartDurationSeconds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetPreStartDurationSeconds(v int32) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetPreStartDurationSeconds(v int32) {
 	o.PreStartDurationSeconds = &v
 }
 
 // GetSuggestedPresentationDelaySeconds returns the SuggestedPresentationDelaySeconds field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetSuggestedPresentationDelaySeconds() int32 {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetSuggestedPresentationDelaySeconds() int32 {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		var ret int32
 		return ret
@@ -424,7 +424,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 
 // GetSuggestedPresentationDelaySecondsOk returns a tuple with the SuggestedPresentationDelaySeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		return nil, false
 	}
@@ -432,7 +432,7 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // HasSuggestedPresentationDelaySeconds returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) HasSuggestedPresentationDelaySeconds() bool {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) HasSuggestedPresentationDelaySeconds() bool {
 	if o != nil && !IsNil(o.SuggestedPresentationDelaySeconds) {
 		return true
 	}
@@ -441,11 +441,11 @@ func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
 }
 
 // SetSuggestedPresentationDelaySeconds gets a reference to the given int32 and assigns it to the SuggestedPresentationDelaySeconds field.
-func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) SetSuggestedPresentationDelaySeconds(v int32) {
+func (o *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) SetSuggestedPresentationDelaySeconds(v int32) {
 	o.SuggestedPresentationDelaySeconds = &v
 }
 
-func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -453,7 +453,7 @@ func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults)
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DashSignalingFormats) {
 		toSerialize["dash_signaling_formats"] = o.DashSignalingFormats
@@ -494,38 +494,38 @@ func (o PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults)
 	return toSerialize, nil
 }
 
-type NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults struct {
-	value *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults
+type NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults struct {
+	value *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults
 	isSet bool
 }
 
-func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) Get() *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults {
+func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) Get() *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults {
 	return v.value
 }
 
-func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) Set(val *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) {
+func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) Set(val *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) IsSet() bool {
+func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) Unset() {
+func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults(val *PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults {
-	return &NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults(val *PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults {
+	return &NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults{value: val, isSet: true}
 }
 
-func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

@@ -96,7 +96,7 @@ jobs:
 
       - name: Commit changes
         if: steps.changes.outputs.should-commit == 'true'
-        uses: planetscale/ghcommit-action@v0.2.0
+        uses: planetscale/ghcommit-action@v0.2.20
         env:
           GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
         with:
