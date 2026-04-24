@@ -18,10 +18,10 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
 
 // PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81
 type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 struct {
-	Clli *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
+	Clli interface{} `json:"clli,omitempty"`
 	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
 	Level8 []PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
-	Mdcv   *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv         `json:"mdcv,omitempty"`
+	Mdcv   interface{}                                                                               `json:"mdcv,omitempty"`
 }
 
 // NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 object
@@ -41,36 +41,37 @@ func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfi
 	return &this
 }
 
-// GetClli returns the Clli field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetClli() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli {
-	if o == nil || IsNil(o.Clli) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli
+// GetClli returns the Clli field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetClli() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Clli
+	return o.Clli
 }
 
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetClliOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetClliOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
-	return o.Clli, true
+	return &o.Clli, true
 }
 
 // HasClli returns a boolean if a field has been set.
 func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) HasClli() bool {
-	if o != nil && !IsNil(o.Clli) {
+	if o != nil && IsNil(o.Clli) {
 		return true
 	}
 
 	return false
 }
 
-// SetClli gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli and assigns it to the Clli field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetClli(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) {
-	o.Clli = &v
+// SetClli gets a reference to the given interface{} and assigns it to the Clli field.
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetClli(v interface{}) {
+	o.Clli = v
 }
 
 // GetLevel8 returns the Level8 field value if set, zero value otherwise.
@@ -105,36 +106,37 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 	o.Level8 = v
 }
 
-// GetMdcv returns the Mdcv field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetMdcv() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv {
-	if o == nil || IsNil(o.Mdcv) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv
+// GetMdcv returns the Mdcv field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetMdcv() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Mdcv
+	return o.Mdcv
 }
 
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetMdcvOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) GetMdcvOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
-	return o.Mdcv, true
+	return &o.Mdcv, true
 }
 
 // HasMdcv returns a boolean if a field has been set.
 func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) HasMdcv() bool {
-	if o != nil && !IsNil(o.Mdcv) {
+	if o != nil && IsNil(o.Mdcv) {
 		return true
 	}
 
 	return false
 }
 
-// SetMdcv gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv and assigns it to the Mdcv field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetMdcv(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) {
-	o.Mdcv = &v
+// SetMdcv gets a reference to the given interface{} and assigns it to the Mdcv field.
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) SetMdcv(v interface{}) {
+	o.Mdcv = v
 }
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
@@ -147,13 +149,13 @@ func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfi
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Clli) {
+	if o.Clli != nil {
 		toSerialize["clli"] = o.Clli
 	}
 	if !IsNil(o.Level8) {
 		toSerialize["level8"] = o.Level8
 	}
-	if !IsNil(o.Mdcv) {
+	if o.Mdcv != nil {
 		toSerialize["mdcv"] = o.Mdcv
 	}
 	return toSerialize, nil
