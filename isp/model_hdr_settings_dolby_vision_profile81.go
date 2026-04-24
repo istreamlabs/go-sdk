@@ -18,10 +18,10 @@ var _ MappedNullable = &HdrSettingsDolbyVisionProfile81{}
 
 // HdrSettingsDolbyVisionProfile81 struct for HdrSettingsDolbyVisionProfile81
 type HdrSettingsDolbyVisionProfile81 struct {
-	Clli *HdrSettingsContentLightLevelInfo `json:"clli,omitempty"`
+	Clli *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli `json:"clli,omitempty"`
 	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
 	Level8 []PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
-	Mdcv   *HdrSettingsMasteringDisplayColorVolume                                                   `json:"mdcv,omitempty"`
+	Mdcv   *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv         `json:"mdcv,omitempty"`
 }
 
 // NewHdrSettingsDolbyVisionProfile81 instantiates a new HdrSettingsDolbyVisionProfile81 object
@@ -42,9 +42,9 @@ func NewHdrSettingsDolbyVisionProfile81WithDefaults() *HdrSettingsDolbyVisionPro
 }
 
 // GetClli returns the Clli field value if set, zero value otherwise.
-func (o *HdrSettingsDolbyVisionProfile81) GetClli() HdrSettingsContentLightLevelInfo {
+func (o *HdrSettingsDolbyVisionProfile81) GetClli() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli {
 	if o == nil || IsNil(o.Clli) {
-		var ret HdrSettingsContentLightLevelInfo
+		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli
 		return ret
 	}
 	return *o.Clli
@@ -52,7 +52,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetClli() HdrSettingsContentLightLevel
 
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsDolbyVisionProfile81) GetClliOk() (*HdrSettingsContentLightLevelInfo, bool) {
+func (o *HdrSettingsDolbyVisionProfile81) GetClliOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli, bool) {
 	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *HdrSettingsDolbyVisionProfile81) HasClli() bool {
 	return false
 }
 
-// SetClli gets a reference to the given HdrSettingsContentLightLevelInfo and assigns it to the Clli field.
-func (o *HdrSettingsDolbyVisionProfile81) SetClli(v HdrSettingsContentLightLevelInfo) {
+// SetClli gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli and assigns it to the Clli field.
+func (o *HdrSettingsDolbyVisionProfile81) SetClli(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Clli) {
 	o.Clli = &v
 }
 
@@ -107,9 +107,9 @@ func (o *HdrSettingsDolbyVisionProfile81) SetLevel8(v []PatchOrgChannelRequestTr
 }
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
-func (o *HdrSettingsDolbyVisionProfile81) GetMdcv() HdrSettingsMasteringDisplayColorVolume {
+func (o *HdrSettingsDolbyVisionProfile81) GetMdcv() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv {
 	if o == nil || IsNil(o.Mdcv) {
-		var ret HdrSettingsMasteringDisplayColorVolume
+		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv
 		return ret
 	}
 	return *o.Mdcv
@@ -117,7 +117,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetMdcv() HdrSettingsMasteringDisplayC
 
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsDolbyVisionProfile81) GetMdcvOk() (*HdrSettingsMasteringDisplayColorVolume, bool) {
+func (o *HdrSettingsDolbyVisionProfile81) GetMdcvOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv, bool) {
 	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
@@ -133,8 +133,8 @@ func (o *HdrSettingsDolbyVisionProfile81) HasMdcv() bool {
 	return false
 }
 
-// SetMdcv gets a reference to the given HdrSettingsMasteringDisplayColorVolume and assigns it to the Mdcv field.
-func (o *HdrSettingsDolbyVisionProfile81) SetMdcv(v HdrSettingsMasteringDisplayColorVolume) {
+// SetMdcv gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv and assigns it to the Mdcv field.
+func (o *HdrSettingsDolbyVisionProfile81) SetMdcv(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Mdcv) {
 	o.Mdcv = &v
 }
 

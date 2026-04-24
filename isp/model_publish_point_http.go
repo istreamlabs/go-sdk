@@ -18,7 +18,7 @@ var _ MappedNullable = &PublishPointHTTP{}
 
 // PublishPointHTTP struct for PublishPointHTTP
 type PublishPointHTTP struct {
-	BasicAuth *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth `json:"basic_auth,omitempty"`
+	BasicAuth *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth `json:"basic_auth,omitempty"`
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
 	Compression *string `json:"compression,omitempty" enum:"NONE,GZIP" doc:"Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed."`
 	// (Optional) Specifies if this pubpoint should not be monitored by PLM.
@@ -32,8 +32,8 @@ type PublishPointHTTP struct {
 	// Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'
 	PlaybackQueryParams *string `json:"playback_query_params,omitempty" doc:"Specifies any query parameters that will be added to playback urls. Should not include the initial '?' Example: 'foo=bar&q=golang'"`
 	// The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-	PublishBaseUrl   *string                                                                                  `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
-	SecureHeaderAuth *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth `json:"secure_header_auth,omitempty"`
+	PublishBaseUrl   *string                                                                                                 `json:"publish_base_url,omitempty" format:"uri-reference" doc:"The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'."`
+	SecureHeaderAuth *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth `json:"secure_header_auth,omitempty"`
 }
 
 // NewPublishPointHTTP instantiates a new PublishPointHTTP object
@@ -54,9 +54,9 @@ func NewPublishPointHTTPWithDefaults() *PublishPointHTTP {
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetBasicAuth() PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth {
+func (o *PublishPointHTTP) GetBasicAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth {
 	if o == nil || IsNil(o.BasicAuth) {
-		var ret PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth
+		var ret PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth
 		return ret
 	}
 	return *o.BasicAuth
@@ -64,7 +64,7 @@ func (o *PublishPointHTTP) GetBasicAuth() PatchOrgChannelRequestPublishingPublic
 
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetBasicAuthOk() (*PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth, bool) {
+func (o *PublishPointHTTP) GetBasicAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth, bool) {
 	if o == nil || IsNil(o.BasicAuth) {
 		return nil, false
 	}
@@ -80,8 +80,8 @@ func (o *PublishPointHTTP) HasBasicAuth() bool {
 	return false
 }
 
-// SetBasicAuth gets a reference to the given PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth and assigns it to the BasicAuth field.
-func (o *PublishPointHTTP) SetBasicAuth(v PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpBasicAuth) {
+// SetBasicAuth gets a reference to the given PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth and assigns it to the BasicAuth field.
+func (o *PublishPointHTTP) SetBasicAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) {
 	o.BasicAuth = &v
 }
 
@@ -310,9 +310,9 @@ func (o *PublishPointHTTP) SetPublishBaseUrl(v string) {
 }
 
 // GetSecureHeaderAuth returns the SecureHeaderAuth field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetSecureHeaderAuth() PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth {
+func (o *PublishPointHTTP) GetSecureHeaderAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth {
 	if o == nil || IsNil(o.SecureHeaderAuth) {
-		var ret PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth
+		var ret PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth
 		return ret
 	}
 	return *o.SecureHeaderAuth
@@ -320,7 +320,7 @@ func (o *PublishPointHTTP) GetSecureHeaderAuth() PatchOrgChannelRequestPublishin
 
 // GetSecureHeaderAuthOk returns a tuple with the SecureHeaderAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetSecureHeaderAuthOk() (*PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth, bool) {
+func (o *PublishPointHTTP) GetSecureHeaderAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth, bool) {
 	if o == nil || IsNil(o.SecureHeaderAuth) {
 		return nil, false
 	}
@@ -336,8 +336,8 @@ func (o *PublishPointHTTP) HasSecureHeaderAuth() bool {
 	return false
 }
 
-// SetSecureHeaderAuth gets a reference to the given PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth and assigns it to the SecureHeaderAuth field.
-func (o *PublishPointHTTP) SetSecureHeaderAuth(v PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttpSecureHeaderAuth) {
+// SetSecureHeaderAuth gets a reference to the given PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth and assigns it to the SecureHeaderAuth field.
+func (o *PublishPointHTTP) SetSecureHeaderAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth) {
 	o.SecureHeaderAuth = &v
 }
 
