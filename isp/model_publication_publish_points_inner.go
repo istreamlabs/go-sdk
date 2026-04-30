@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PublishPoint type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PublishPoint{}
+// checks if the PublicationPublishPointsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublicationPublishPointsInner{}
 
-// PublishPoint struct for PublishPoint
-type PublishPoint struct {
+// PublicationPublishPointsInner struct for PublicationPublishPointsInner
+type PublicationPublishPointsInner struct {
 	Http *PublishPointHTTP `json:"http,omitempty"`
 	// uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
 	Id *string `json:"id,omitempty" doc:"uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field."`
@@ -25,25 +25,25 @@ type PublishPoint struct {
 	PlaylistOnlyFor *string `json:"playlist_only_for,omitempty" doc:"playlist_only_for identifies the id of the publish_point that has the segments for this publish_point, which is only publishing a playlist for those segments. All publish_points within a publication must either have 'playlist_only_for' all set or all not set."`
 }
 
-// NewPublishPoint instantiates a new PublishPoint object
+// NewPublicationPublishPointsInner instantiates a new PublicationPublishPointsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublishPoint() *PublishPoint {
-	this := PublishPoint{}
+func NewPublicationPublishPointsInner() *PublicationPublishPointsInner {
+	this := PublicationPublishPointsInner{}
 	return &this
 }
 
-// NewPublishPointWithDefaults instantiates a new PublishPoint object
+// NewPublicationPublishPointsInnerWithDefaults instantiates a new PublicationPublishPointsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPublishPointWithDefaults() *PublishPoint {
-	this := PublishPoint{}
+func NewPublicationPublishPointsInnerWithDefaults() *PublicationPublishPointsInner {
+	this := PublicationPublishPointsInner{}
 	return &this
 }
 
 // GetHttp returns the Http field value if set, zero value otherwise.
-func (o *PublishPoint) GetHttp() PublishPointHTTP {
+func (o *PublicationPublishPointsInner) GetHttp() PublishPointHTTP {
 	if o == nil || IsNil(o.Http) {
 		var ret PublishPointHTTP
 		return ret
@@ -53,7 +53,7 @@ func (o *PublishPoint) GetHttp() PublishPointHTTP {
 
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPoint) GetHttpOk() (*PublishPointHTTP, bool) {
+func (o *PublicationPublishPointsInner) GetHttpOk() (*PublishPointHTTP, bool) {
 	if o == nil || IsNil(o.Http) {
 		return nil, false
 	}
@@ -61,7 +61,7 @@ func (o *PublishPoint) GetHttpOk() (*PublishPointHTTP, bool) {
 }
 
 // HasHttp returns a boolean if a field has been set.
-func (o *PublishPoint) HasHttp() bool {
+func (o *PublicationPublishPointsInner) HasHttp() bool {
 	if o != nil && !IsNil(o.Http) {
 		return true
 	}
@@ -70,12 +70,12 @@ func (o *PublishPoint) HasHttp() bool {
 }
 
 // SetHttp gets a reference to the given PublishPointHTTP and assigns it to the Http field.
-func (o *PublishPoint) SetHttp(v PublishPointHTTP) {
+func (o *PublicationPublishPointsInner) SetHttp(v PublishPointHTTP) {
 	o.Http = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *PublishPoint) GetId() string {
+func (o *PublicationPublishPointsInner) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -85,7 +85,7 @@ func (o *PublishPoint) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPoint) GetIdOk() (*string, bool) {
+func (o *PublicationPublishPointsInner) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *PublishPoint) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *PublishPoint) HasId() bool {
+func (o *PublicationPublishPointsInner) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *PublishPoint) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PublishPoint) SetId(v string) {
+func (o *PublicationPublishPointsInner) SetId(v string) {
 	o.Id = &v
 }
 
 // GetPlaylistOnlyFor returns the PlaylistOnlyFor field value if set, zero value otherwise.
-func (o *PublishPoint) GetPlaylistOnlyFor() string {
+func (o *PublicationPublishPointsInner) GetPlaylistOnlyFor() string {
 	if o == nil || IsNil(o.PlaylistOnlyFor) {
 		var ret string
 		return ret
@@ -117,7 +117,7 @@ func (o *PublishPoint) GetPlaylistOnlyFor() string {
 
 // GetPlaylistOnlyForOk returns a tuple with the PlaylistOnlyFor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPoint) GetPlaylistOnlyForOk() (*string, bool) {
+func (o *PublicationPublishPointsInner) GetPlaylistOnlyForOk() (*string, bool) {
 	if o == nil || IsNil(o.PlaylistOnlyFor) {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *PublishPoint) GetPlaylistOnlyForOk() (*string, bool) {
 }
 
 // HasPlaylistOnlyFor returns a boolean if a field has been set.
-func (o *PublishPoint) HasPlaylistOnlyFor() bool {
+func (o *PublicationPublishPointsInner) HasPlaylistOnlyFor() bool {
 	if o != nil && !IsNil(o.PlaylistOnlyFor) {
 		return true
 	}
@@ -134,11 +134,11 @@ func (o *PublishPoint) HasPlaylistOnlyFor() bool {
 }
 
 // SetPlaylistOnlyFor gets a reference to the given string and assigns it to the PlaylistOnlyFor field.
-func (o *PublishPoint) SetPlaylistOnlyFor(v string) {
+func (o *PublicationPublishPointsInner) SetPlaylistOnlyFor(v string) {
 	o.PlaylistOnlyFor = &v
 }
 
-func (o PublishPoint) MarshalJSON() ([]byte, error) {
+func (o PublicationPublishPointsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -146,7 +146,7 @@ func (o PublishPoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PublishPoint) ToMap() (map[string]interface{}, error) {
+func (o PublicationPublishPointsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Http) {
 		toSerialize["http"] = o.Http
@@ -160,38 +160,38 @@ func (o PublishPoint) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePublishPoint struct {
-	value *PublishPoint
+type NullablePublicationPublishPointsInner struct {
+	value *PublicationPublishPointsInner
 	isSet bool
 }
 
-func (v NullablePublishPoint) Get() *PublishPoint {
+func (v NullablePublicationPublishPointsInner) Get() *PublicationPublishPointsInner {
 	return v.value
 }
 
-func (v *NullablePublishPoint) Set(val *PublishPoint) {
+func (v *NullablePublicationPublishPointsInner) Set(val *PublicationPublishPointsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePublishPoint) IsSet() bool {
+func (v NullablePublicationPublishPointsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePublishPoint) Unset() {
+func (v *NullablePublicationPublishPointsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePublishPoint(val *PublishPoint) *NullablePublishPoint {
-	return &NullablePublishPoint{value: val, isSet: true}
+func NewNullablePublicationPublishPointsInner(val *PublicationPublishPointsInner) *NullablePublicationPublishPointsInner {
+	return &NullablePublicationPublishPointsInner{value: val, isSet: true}
 }
 
-func (v NullablePublishPoint) MarshalJSON() ([]byte, error) {
+func (v NullablePublicationPublishPointsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePublishPoint) UnmarshalJSON(src []byte) error {
+func (v *NullablePublicationPublishPointsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

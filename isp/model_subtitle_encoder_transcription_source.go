@@ -20,8 +20,11 @@ var _ MappedNullable = &SubtitleEncoderTranscriptionSource{}
 type SubtitleEncoderTranscriptionSource struct {
 	// Identifies the 'AudioSource' to be transcribed.
 	AudioSourceId *string `json:"audio_source_id,omitempty" minLength:"1" doc:"Identifies the 'AudioSource' to be transcribed."`
-	// Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
-	Preset *string `json:"preset,omitempty" enum:"CNN,NCAA" doc:"Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change."`
+	// Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
+	Preset *string                                                                  `json:"preset,omitempty" enum:"CNN,NCAA" doc:"Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change."`
+	Region *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion `json:"region,omitempty"`
+	// If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+	VerbitOrderId *string `json:"verbit_order_id,omitempty" doc:"If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'."`
 }
 
 // NewSubtitleEncoderTranscriptionSource instantiates a new SubtitleEncoderTranscriptionSource object
@@ -105,6 +108,70 @@ func (o *SubtitleEncoderTranscriptionSource) SetPreset(v string) {
 	o.Preset = &v
 }
 
+// GetRegion returns the Region field value if set, zero value otherwise.
+func (o *SubtitleEncoderTranscriptionSource) GetRegion() PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion {
+	if o == nil || IsNil(o.Region) {
+		var ret PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion
+		return ret
+	}
+	return *o.Region
+}
+
+// GetRegionOk returns a tuple with the Region field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubtitleEncoderTranscriptionSource) GetRegionOk() (*PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion, bool) {
+	if o == nil || IsNil(o.Region) {
+		return nil, false
+	}
+	return o.Region, true
+}
+
+// HasRegion returns a boolean if a field has been set.
+func (o *SubtitleEncoderTranscriptionSource) HasRegion() bool {
+	if o != nil && !IsNil(o.Region) {
+		return true
+	}
+
+	return false
+}
+
+// SetRegion gets a reference to the given PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion and assigns it to the Region field.
+func (o *SubtitleEncoderTranscriptionSource) SetRegion(v PatchOrgChannelRequestTranscodeSubtitleEncodersInnerTranscriptionRegion) {
+	o.Region = &v
+}
+
+// GetVerbitOrderId returns the VerbitOrderId field value if set, zero value otherwise.
+func (o *SubtitleEncoderTranscriptionSource) GetVerbitOrderId() string {
+	if o == nil || IsNil(o.VerbitOrderId) {
+		var ret string
+		return ret
+	}
+	return *o.VerbitOrderId
+}
+
+// GetVerbitOrderIdOk returns a tuple with the VerbitOrderId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubtitleEncoderTranscriptionSource) GetVerbitOrderIdOk() (*string, bool) {
+	if o == nil || IsNil(o.VerbitOrderId) {
+		return nil, false
+	}
+	return o.VerbitOrderId, true
+}
+
+// HasVerbitOrderId returns a boolean if a field has been set.
+func (o *SubtitleEncoderTranscriptionSource) HasVerbitOrderId() bool {
+	if o != nil && !IsNil(o.VerbitOrderId) {
+		return true
+	}
+
+	return false
+}
+
+// SetVerbitOrderId gets a reference to the given string and assigns it to the VerbitOrderId field.
+func (o *SubtitleEncoderTranscriptionSource) SetVerbitOrderId(v string) {
+	o.VerbitOrderId = &v
+}
+
 func (o SubtitleEncoderTranscriptionSource) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -120,6 +187,12 @@ func (o SubtitleEncoderTranscriptionSource) ToMap() (map[string]interface{}, err
 	}
 	if !IsNil(o.Preset) {
 		toSerialize["preset"] = o.Preset
+	}
+	if !IsNil(o.Region) {
+		toSerialize["region"] = o.Region
+	}
+	if !IsNil(o.VerbitOrderId) {
+		toSerialize["verbit_order_id"] = o.VerbitOrderId
 	}
 	return toSerialize, nil
 }
