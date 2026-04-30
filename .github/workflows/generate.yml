@@ -38,7 +38,7 @@ jobs:
       pr-number: ${{ steps.create-pr.outputs.pull-request-number }}
     steps:
 
-      - uses: actions/create-github-app-token@v2
+      - uses: actions/create-github-app-token@v3
         id: app-token
         with:
           app-id: ${{ secrets.ORG_ISP_WRITER_APP_ID }}
