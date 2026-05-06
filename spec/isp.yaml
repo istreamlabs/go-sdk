@@ -3379,6 +3379,22 @@ components:
         white_point:
           $ref: '#/components/schemas/Cie1931P'
       type: object
+    Moment:
+      additionalProperties: false
+      properties:
+        end:
+          format: date-time
+          type: string
+        id:
+          type: string
+        start:
+          format: date-time
+          type: string
+      required:
+        - id
+        - start
+        - end
+      type: object
     Mp2TFormat:
       additionalProperties: false
       properties:
@@ -3600,6 +3616,17 @@ components:
       required:
         - archive
         - package_id
+      type: object
+    PackageUrls:
+      additionalProperties: false
+      properties:
+        fallback_url:
+          type: string
+        primary_url:
+          type: string
+      required:
+        - primary_url
+        - fallback_url
       type: object
     Packager:
       additionalProperties: false
@@ -4492,6 +4519,9 @@ components:
               description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
               type: object
             fallback_defaults:
+              $ref: '#/components/schemas/OriginManifestDefaults'
+              description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+            manifest_defaults:
               additionalProperties: false
               properties:
                 dash_signaling_formats:
@@ -4572,9 +4602,6 @@ components:
                   minimum: 0
                   type: integer
               type: object
-            manifest_defaults:
-              $ref: '#/components/schemas/OriginManifestDefaults'
-              description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
             retention_minutes:
               description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
               format: int32
@@ -5052,6 +5079,9 @@ components:
                     description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                     type: object
                   fallback_defaults:
+                    $ref: '#/components/schemas/OriginManifestDefaults'
+                    description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                  manifest_defaults:
                     additionalProperties: false
                     properties:
                       dash_signaling_formats:
@@ -5132,9 +5162,6 @@ components:
                         minimum: 0
                         type: integer
                     type: object
-                  manifest_defaults:
-                    $ref: '#/components/schemas/OriginManifestDefaults'
-                    description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                   retention_minutes:
                     description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                     format: int32
@@ -5883,6 +5910,9 @@ components:
                         description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                         type: object
                       fallback_defaults:
+                        $ref: '#/components/schemas/OriginManifestDefaults'
+                        description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                      manifest_defaults:
                         additionalProperties: false
                         properties:
                           dash_signaling_formats:
@@ -5963,9 +5993,6 @@ components:
                             minimum: 0
                             type: integer
                         type: object
-                      manifest_defaults:
-                        $ref: '#/components/schemas/OriginManifestDefaults'
-                        description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                       retention_minutes:
                         description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                         format: int32
@@ -6695,10 +6722,32 @@ components:
                         minLength: 1
                         type: string
                       preset:
-                        description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                        description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
                         enum:
                           - CNN
                           - NCAA
+                        type: string
+                      region:
+                        additionalProperties: false
+                        properties:
+                          rows:
+                            description: Height of the transcription area in rows (lines). If zero, use the default.
+                            example: 3
+                            format: int32
+                            maximum: 4
+                            minimum: 0
+                            type: integer
+                          "y":
+                            description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+                            example: 75
+                            format: int32
+                            maximum: 100
+                            minimum: 0
+                            type: integer
+                        type: object
+                      verbit_order_id:
+                        description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+                        example: 3b039274-631a-4c92-b450-1fdb801d2767
                         type: string
                     type: object
                   usage:
@@ -6946,6 +6995,79 @@ components:
           type: object
       required:
         - ingest
+      type: object
+    PutQCURequest:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://api.istreamplanet.com/schemas/PutQCURequest.json
+          format: uri
+          readOnly: true
+          type: string
+        correlation_id:
+          description: Correlation ID for this QCU request
+          type: string
+        moments:
+          description: List of moments to process
+          items:
+            $ref: '#/components/schemas/Moment'
+          nullable: true
+          type: array
+        notification:
+          $ref: '#/components/schemas/DynamicNotification'
+          description: Notification settings
+        options:
+          additionalProperties:
+            type: string
+          description: Optional key/value configuration pairs
+          type: object
+        packages:
+          description: Aventus Origin playback configurations to decorate per moment. The caller is responsible for selecting which packages to include; the worker emits the decorated URLs in the matching positions of the QCU notification.
+          items:
+            $ref: '#/components/schemas/QCUPackage'
+          nullable: true
+          type: array
+        request_number:
+          description: Order of the QCU request for an event, 1-based
+          format: int64
+          type: integer
+      required:
+        - correlation_id
+        - request_number
+        - moments
+        - packages
+        - notification
+      type: object
+    PutQCUResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://api.istreamplanet.com/schemas/PutQCUResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        correlation_id:
+          description: Identifier that is carried through the QCU request
+          type: string
+        task_id:
+          description: Task ID for the QCU task started by the L2V service
+          type: string
+      required:
+        - task_id
+      type: object
+    QCUPackage:
+      additionalProperties: false
+      properties:
+        dash:
+          $ref: '#/components/schemas/PackageUrls'
+        hls:
+          $ref: '#/components/schemas/PackageUrls'
+        id:
+          type: string
+      required:
+        - id
       type: object
     RTMPPublication:
       additionalProperties: false
@@ -8131,10 +8253,32 @@ components:
               minLength: 1
               type: string
             preset:
-              description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+              description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
               enum:
                 - CNN
                 - NCAA
+              type: string
+            region:
+              additionalProperties: false
+              properties:
+                rows:
+                  description: Height of the transcription area in rows (lines). If zero, use the default.
+                  example: 3
+                  format: int32
+                  maximum: 4
+                  minimum: 0
+                  type: integer
+                "y":
+                  description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+                  example: 75
+                  format: int32
+                  maximum: 100
+                  minimum: 0
+                  type: integer
+              type: object
+            verbit_order_id:
+              description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+              example: 3b039274-631a-4c92-b450-1fdb801d2767
               type: string
           type: object
         usage:
@@ -8159,6 +8303,24 @@ components:
           example: 1
           format: int32
           maximum: 63
+          minimum: 0
+          type: integer
+      type: object
+    SubtitleEncoderCaptionRegion:
+      additionalProperties: false
+      properties:
+        rows:
+          description: Height of the transcription area in rows (lines). If zero, use the default.
+          example: 3
+          format: int32
+          maximum: 4
+          minimum: 0
+          type: integer
+        "y":
+          description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+          example: 75
+          format: int32
+          maximum: 100
           minimum: 0
           type: integer
       type: object
@@ -8211,10 +8373,32 @@ components:
           minLength: 1
           type: string
         preset:
-          description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+          description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
           enum:
             - CNN
             - NCAA
+          type: string
+        region:
+          additionalProperties: false
+          properties:
+            rows:
+              description: Height of the transcription area in rows (lines). If zero, use the default.
+              example: 3
+              format: int32
+              maximum: 4
+              minimum: 0
+              type: integer
+            "y":
+              description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+              example: 75
+              format: int32
+              maximum: 100
+              minimum: 0
+              type: integer
+          type: object
+        verbit_order_id:
+          description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+          example: 3b039274-631a-4c92-b450-1fdb801d2767
           type: string
       type: object
     Summary:
@@ -8840,10 +9024,32 @@ components:
                     minLength: 1
                     type: string
                   preset:
-                    description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                    description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
                     enum:
                       - CNN
                       - NCAA
+                    type: string
+                  region:
+                    additionalProperties: false
+                    properties:
+                      rows:
+                        description: Height of the transcription area in rows (lines). If zero, use the default.
+                        example: 3
+                        format: int32
+                        maximum: 4
+                        minimum: 0
+                        type: integer
+                      "y":
+                        description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+                        example: 75
+                        format: int32
+                        maximum: 100
+                        minimum: 0
+                        type: integer
+                    type: object
+                  verbit_order_id:
+                    description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+                    example: 3b039274-631a-4c92-b450-1fdb801d2767
                     type: string
                 type: object
               usage:
@@ -9595,6 +9801,9 @@ components:
           description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
           type: object
         fallback_defaults:
+          $ref: '#/components/schemas/OriginManifestDefaults'
+          description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+        manifest_defaults:
           additionalProperties: false
           properties:
             dash_signaling_formats:
@@ -9675,9 +9884,6 @@ components:
               minimum: 0
               type: integer
           type: object
-        manifest_defaults:
-          $ref: '#/components/schemas/OriginManifestDefaults'
-          description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
         retention_minutes:
           description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
           format: int32
@@ -11843,6 +12049,8 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
+                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -11919,8 +12127,6 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
-                              manifest_defaults:
-                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -12630,10 +12836,32 @@ paths:
                                 minLength: 1
                                 type: string
                               preset:
-                                description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                                description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
                                 enum:
                                   - CNN
                                   - NCAA
+                                type: string
+                              region:
+                                additionalProperties: false
+                                properties:
+                                  rows:
+                                    description: Height of the transcription area in rows (lines). If zero, use the default.
+                                    example: 3
+                                    format: int32
+                                    maximum: 4
+                                    minimum: 0
+                                    type: integer
+                                  "y":
+                                    description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+                                    example: 75
+                                    format: int32
+                                    maximum: 100
+                                    minimum: 0
+                                    type: integer
+                                type: object
+                              verbit_order_id:
+                                description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+                                example: 3b039274-631a-4c92-b450-1fdb801d2767
                                 type: string
                             type: object
                           usage:
@@ -13400,6 +13628,8 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
+                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -13476,8 +13706,6 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
-                              manifest_defaults:
-                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -14187,10 +14415,32 @@ paths:
                                 minLength: 1
                                 type: string
                               preset:
-                                description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Exactly how presets correspond to configurations is unspecified and subject to change.
+                                description: Indicates a particular transcription configuration (e.g. glossary) for a certain use case. Cannot be used at the same time as 'verbit_order_id'. Exactly how presets correspond to configurations is unspecified and subject to change.
                                 enum:
                                   - CNN
                                   - NCAA
+                                type: string
+                              region:
+                                additionalProperties: false
+                                properties:
+                                  rows:
+                                    description: Height of the transcription area in rows (lines). If zero, use the default.
+                                    example: 3
+                                    format: int32
+                                    maximum: 4
+                                    minimum: 0
+                                    type: integer
+                                  "y":
+                                    description: 'Y coordinate as a percent of the display height where the caption should be placed. If < 50 the caption will be top anchored. If > 50 it will be bottom anchored. If exactly 50, the caption will be vertically centered. 0 means use default. Example: y = 40, rows = 3. The top of the caption area will be approximately 40% the video height from the top of the screen, and will be 3 lines tall. Example: y = 75, rows = 2. The bottom of the caption area will be approximately 25% the video height from the bottom of the screen, and will be 2 lines tall.'
+                                    example: 75
+                                    format: int32
+                                    maximum: 100
+                                    minimum: 0
+                                    type: integer
+                                type: object
+                              verbit_order_id:
+                                description: If specified, indicates that the generated transcription should be associated with this Verbit order. Used to retrieve the Verbit transcription endpoint URL. Cannot be used at the same time as 'preset'.
+                                example: 3b039274-631a-4c92-b450-1fdb801d2767
                                 type: string
                             type: object
                           usage:
@@ -16251,6 +16501,91 @@ paths:
       summary: Get Preview Streams
       tags:
         - Channel Operations for Organization
+  /v2/{org}/channels/{channel-id}/qcu:
+    put:
+      description: Creates a QCU task to assemble a playable reel from a list of moments
+      operationId: put-org-channel-qcu
+      parameters:
+        - description: Organization name
+          in: path
+          name: org
+          required: true
+          schema:
+            description: Organization name
+            type: string
+        - description: Unique channel identifier
+          in: path
+          name: channel-id
+          required: true
+          schema:
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PutQCURequest'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PutQCUResponse'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "408":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Timeout
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+      summary: Create a QCU reel
+      tags:
+        - Live2VOD for Organization
   /v2/{org}/channels/{channel-id}/rotate-key:
     put:
       description: Rotate the keys for a channel

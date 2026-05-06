@@ -136,6 +136,7 @@ model_origin_manifest_defaults.go
 model_origin_segments.go
 model_overlay.go
 model_package.go
+model_package_urls.go
 model_packager.go
 model_packaging.go
 model_patch_org_channel_request.go
@@ -246,6 +247,7 @@ model_put_channel_request_body_transcode_video_encoders_inner.go
 model_put_channel_request_body_transcode_video_encoders_inner_h265.go
 model_put_qcu_request.go
 model_put_qcu_response.go
+model_qcu_package.go
 model_retry_task_response_body.go
 model_rtmp_publication.go
 model_s3.go
