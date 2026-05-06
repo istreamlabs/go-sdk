@@ -11,6 +11,7 @@ package isp
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // checks if the Moment type satisfies the MappedNullable interface at compile time
@@ -18,16 +19,16 @@ var _ MappedNullable = &Moment{}
 
 // Moment struct for Moment
 type Moment struct {
-	End   string `json:"end"`
-	Id    string `json:"id"`
-	Start string `json:"start"`
+	End   time.Time `json:"end" format:"date-time"`
+	Id    string    `json:"id"`
+	Start time.Time `json:"start" format:"date-time"`
 }
 
 // NewMoment instantiates a new Moment object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMoment(end string, id string, start string) *Moment {
+func NewMoment(end time.Time, id string, start time.Time) *Moment {
 	this := Moment{}
 	this.End = end
 	this.Id = id
@@ -44,9 +45,9 @@ func NewMomentWithDefaults() *Moment {
 }
 
 // GetEnd returns the End field value
-func (o *Moment) GetEnd() string {
+func (o *Moment) GetEnd() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -55,7 +56,7 @@ func (o *Moment) GetEnd() string {
 
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
-func (o *Moment) GetEndOk() (*string, bool) {
+func (o *Moment) GetEndOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -63,7 +64,7 @@ func (o *Moment) GetEndOk() (*string, bool) {
 }
 
 // SetEnd sets field value
-func (o *Moment) SetEnd(v string) {
+func (o *Moment) SetEnd(v time.Time) {
 	o.End = v
 }
 
@@ -92,9 +93,9 @@ func (o *Moment) SetId(v string) {
 }
 
 // GetStart returns the Start field value
-func (o *Moment) GetStart() string {
+func (o *Moment) GetStart() time.Time {
 	if o == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 
@@ -103,7 +104,7 @@ func (o *Moment) GetStart() string {
 
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
-func (o *Moment) GetStartOk() (*string, bool) {
+func (o *Moment) GetStartOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -111,7 +112,7 @@ func (o *Moment) GetStartOk() (*string, bool) {
 }
 
 // SetStart sets field value
-func (o *Moment) SetStart(v string) {
+func (o *Moment) SetStart(v time.Time) {
 	o.Start = v
 }
 
