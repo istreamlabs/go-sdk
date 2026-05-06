@@ -27,6 +27,8 @@ type PutQCURequest struct {
 	Notification DynamicNotification `json:"notification"`
 	// Optional key/value configuration pairs
 	Options *map[string]string `json:"options,omitempty" doc:"Optional key/value configuration pairs"`
+	// Aventus Origin playback configurations to decorate per moment. The caller is responsible for selecting which packages to include; the worker emits the decorated URLs in the matching positions of the QCU notification.
+	Packages []QCUPackage `json:"packages" doc:"Aventus Origin playback configurations to decorate per moment. The caller is responsible for selecting which packages to include; the worker emits the decorated URLs in the matching positions of the QCU notification."`
 	// Order of the QCU request for an event, 1-based
 	RequestNumber int64 `json:"request_number" format:"int64" doc:"Order of the QCU request for an event, 1-based"`
 }
@@ -35,11 +37,12 @@ type PutQCURequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPutQCURequest(correlationId string, moments []Moment, notification DynamicNotification, requestNumber int64) *PutQCURequest {
+func NewPutQCURequest(correlationId string, moments []Moment, notification DynamicNotification, packages []QCUPackage, requestNumber int64) *PutQCURequest {
 	this := PutQCURequest{}
 	this.CorrelationId = correlationId
 	this.Moments = moments
 	this.Notification = notification
+	this.Packages = packages
 	this.RequestNumber = requestNumber
 	return &this
 }
@@ -190,6 +193,32 @@ func (o *PutQCURequest) SetOptions(v map[string]string) {
 	o.Options = &v
 }
 
+// GetPackages returns the Packages field value
+// If the value is explicit nil, the zero value for []QCUPackage will be returned
+func (o *PutQCURequest) GetPackages() []QCUPackage {
+	if o == nil {
+		var ret []QCUPackage
+		return ret
+	}
+
+	return o.Packages
+}
+
+// GetPackagesOk returns a tuple with the Packages field value
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PutQCURequest) GetPackagesOk() ([]QCUPackage, bool) {
+	if o == nil || IsNil(o.Packages) {
+		return nil, false
+	}
+	return o.Packages, true
+}
+
+// SetPackages sets field value
+func (o *PutQCURequest) SetPackages(v []QCUPackage) {
+	o.Packages = v
+}
+
 // GetRequestNumber returns the RequestNumber field value
 func (o *PutQCURequest) GetRequestNumber() int64 {
 	if o == nil {
@@ -234,6 +263,9 @@ func (o PutQCURequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["notification"] = o.Notification
 	if !IsNil(o.Options) {
 		toSerialize["options"] = o.Options
+	}
+	if o.Packages != nil {
+		toSerialize["packages"] = o.Packages
 	}
 	toSerialize["request_number"] = o.RequestNumber
 	return toSerialize, nil
