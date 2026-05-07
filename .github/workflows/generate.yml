@@ -103,7 +103,7 @@ jobs:
           commit_message: "re-generate sdk"
           repo: ${{ github.repository }}
           branch: ${{ steps.pr-head.outputs.name }}
-          file_pattern: 'isp isp-slate isp-lifecycle'
+          file_pattern: 'isp isp-slate isp-lifecycle spec'
 
       - name: Create Pull Request
         id: create-pr
