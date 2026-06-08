@@ -33,6 +33,7 @@ jobs:
             go:
               - 'isp/**'
               - 'isp-slate/**'
+              - 'isp-lifecycle/**'
               - '*.go'
               - 'go.*'
 

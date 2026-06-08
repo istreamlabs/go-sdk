@@ -1,0 +1,10 @@
+api_slates_for_organization.go
+client.go
+configuration.go
+model_error_detail.go
+model_error_model.go
+model_slate.go
+model_slate_without_id.go
+response.go
+test/api_slates_for_organization_test.go
+utils.go

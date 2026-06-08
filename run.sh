@@ -1,9 +1,10 @@
 #!/bin/bash
+set -euo pipefail
 
 GENERATOR_IMAGE="openapitools/openapi-generator-cli:v7.21.0"
 
-API="${1-isp}"
-ENV="${2-prod}"
+API="${1:-isp}"
+ENV="${2:-prod}"
 
 OPENAPI_SPEC=""
 if [[ "$API" == "isp" ]]; then
@@ -103,8 +104,11 @@ if [[ "$API" == "isp" ]]; then
 fi
 
 # Correct an error in the unit tests
-sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
-sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-lifecycle",g' ./isp-lifecycle/**/*.go
+if [[ "$API" == "isp-slate" ]]; then
+  sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-slate",g' ./isp-slate/**/*.go
+elif [[ "$API" == "isp-lifecycle" ]]; then
+  sed -i.bak -E 's,"github.com/istreamlabs/go-sdk/v2/isp","github.com/istreamlabs/go-sdk/v2/isp-lifecycle",g' ./isp-lifecycle/**/*.go
+fi
 
 # Cleanup all sed backups
 find . -name '*.bak' -delete
