@@ -92,14 +92,38 @@ sed -i.bak -E 's/ example:"null"//g' ./${API}/*.go
 # Note: Use POSIX ERE (no \b). Tested with BSD sed (macOS).
 sed -i.bak -E 's/(`[^`]*pattern:")\/([^"]*)\/(")/\1\2\3/g' ./${API}/*.go
 
-# The spec's srt_publications.video_encoders uses an inline schema that is
-# structurally identical to components/schemas/SrtPublicationEncoder (the
-# audio_encoders sibling uses a $ref for the same shape). The generator
-# therefore synthesises a duplicate model. Drop the synthetic file and
-# rewrite references back to the canonical type; wire format is unchanged.
+# The spec's srt_publications video_encoders and audio_encoders both use the
+# same shape as components/schemas/SrtPublicationEncoder, but huma
+# non-deterministically inlines one while $ref-ing the other. The generator
+# therefore synthesises a duplicate model for whichever is inlined. Drop both
+# possible synthetic files and rewrite references to the canonical type.
 if [[ "$API" == "isp" ]]; then
   rm -f ./${API}/model_patch_org_channel_request_publishing_srt_publications_inner_video_encoders_inner.go
+  rm -f ./${API}/model_patch_org_channel_request_publishing_srt_publications_inner_audio_encoders_inner.go
   sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerVideoEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner/SrtPublicationEncoder/g' ./${API}/*.go
+
+  # The upstream spec non-deterministically inlines OriginManifestDefaults on
+  # manifest_defaults, fallback_defaults, or alternate_manifest_defaults (huma
+  # emits $ref for some and inline schemas for others, varying between runs).
+  # Drop whichever synthetic model files the generator created and rewrite all
+  # possible synthetic type names back to the canonical OriginManifestDefaults.
+  rm -f ./${API}/model_publication_origin_manifest_defaults.go
+  rm -f ./${API}/model_publication_origin_fallback_defaults.go
+  rm -f ./${API}/model_patch_org_channel_request_publishing_publications_inner_origin_manifest_defaults.go
+  rm -f ./${API}/model_patch_org_channel_request_publishing_publications_inner_origin_fallback_defaults.go
+  rm -f ./${API}/model_patch_org_channel_request_publishing_publications_inner_origin_alternate_manifest_defaults_value.go
+  rm -f ./${API}/model_channeldochuma_origin_manifest_defaults.go
+  rm -f ./${API}/model_channeldochuma_origin_fallback_defaults.go
+  rm -f ./${API}/model_channeldochuma_origin_alternate_manifest_defaults_value.go
+  sed -i.bak -E 's/PublicationOriginManifestDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/PublicationOriginFallbackDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingPublicationsInnerOriginManifestDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingPublicationsInnerOriginFallbackDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/ChanneldochumaOriginManifestDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/ChanneldochumaOriginFallbackDefaults/OriginManifestDefaults/g' ./${API}/*.go
+  sed -i.bak -E 's/ChanneldochumaOriginAlternateManifestDefaultsValue/OriginManifestDefaults/g' ./${API}/*.go
 fi
 
 # Correct an error in the unit tests

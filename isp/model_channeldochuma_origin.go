@@ -21,7 +21,7 @@ type ChanneldochumaOrigin struct {
 	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
 	AlternateManifestDefaults *map[string]OriginManifestDefaults `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
 	FallbackDefaults          *OriginManifestDefaults            `json:"fallback_defaults,omitempty"`
-	ManifestDefaults          *PublicationOriginManifestDefaults `json:"manifest_defaults,omitempty"`
+	ManifestDefaults          *OriginManifestDefaults            `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
 	RetentionMinutes *int32                                                           `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
 	Segments         *PatchOrgChannelRequestPublishingPublicationsInnerOriginSegments `json:"segments,omitempty"`
@@ -109,9 +109,9 @@ func (o *ChanneldochumaOrigin) SetFallbackDefaults(v OriginManifestDefaults) {
 }
 
 // GetManifestDefaults returns the ManifestDefaults field value if set, zero value otherwise.
-func (o *ChanneldochumaOrigin) GetManifestDefaults() PublicationOriginManifestDefaults {
+func (o *ChanneldochumaOrigin) GetManifestDefaults() OriginManifestDefaults {
 	if o == nil || IsNil(o.ManifestDefaults) {
-		var ret PublicationOriginManifestDefaults
+		var ret OriginManifestDefaults
 		return ret
 	}
 	return *o.ManifestDefaults
@@ -119,7 +119,7 @@ func (o *ChanneldochumaOrigin) GetManifestDefaults() PublicationOriginManifestDe
 
 // GetManifestDefaultsOk returns a tuple with the ManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ChanneldochumaOrigin) GetManifestDefaultsOk() (*PublicationOriginManifestDefaults, bool) {
+func (o *ChanneldochumaOrigin) GetManifestDefaultsOk() (*OriginManifestDefaults, bool) {
 	if o == nil || IsNil(o.ManifestDefaults) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *ChanneldochumaOrigin) HasManifestDefaults() bool {
 	return false
 }
 
-// SetManifestDefaults gets a reference to the given PublicationOriginManifestDefaults and assigns it to the ManifestDefaults field.
-func (o *ChanneldochumaOrigin) SetManifestDefaults(v PublicationOriginManifestDefaults) {
+// SetManifestDefaults gets a reference to the given OriginManifestDefaults and assigns it to the ManifestDefaults field.
+func (o *ChanneldochumaOrigin) SetManifestDefaults(v OriginManifestDefaults) {
 	o.ManifestDefaults = &v
 }
 
