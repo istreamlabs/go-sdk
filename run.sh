@@ -124,6 +124,22 @@ if [[ "$API" == "isp" ]]; then
   sed -i.bak -E 's/ChanneldochumaOriginManifestDefaults/OriginManifestDefaults/g' ./${API}/*.go
   sed -i.bak -E 's/ChanneldochumaOriginFallbackDefaults/OriginManifestDefaults/g' ./${API}/*.go
   sed -i.bak -E 's/ChanneldochumaOriginAlternateManifestDefaultsValue/OriginManifestDefaults/g' ./${API}/*.go
+
+  # Scrub deleted synthetic files from the .openapi-generator/FILES manifest
+  # so regeneration does not produce spurious diffs in this file.
+  FILES_LIST="./${API}/.openapi-generator/FILES"
+  sed -i.bak \
+    -e '/model_patch_org_channel_request_publishing_srt_publications_inner_video_encoders_inner\.go/d' \
+    -e '/model_patch_org_channel_request_publishing_srt_publications_inner_audio_encoders_inner\.go/d' \
+    -e '/model_publication_origin_manifest_defaults\.go/d' \
+    -e '/model_publication_origin_fallback_defaults\.go/d' \
+    -e '/model_patch_org_channel_request_publishing_publications_inner_origin_manifest_defaults\.go/d' \
+    -e '/model_patch_org_channel_request_publishing_publications_inner_origin_fallback_defaults\.go/d' \
+    -e '/model_patch_org_channel_request_publishing_publications_inner_origin_alternate_manifest_defaults_value\.go/d' \
+    -e '/model_channeldochuma_origin_manifest_defaults\.go/d' \
+    -e '/model_channeldochuma_origin_fallback_defaults\.go/d' \
+    -e '/model_channeldochuma_origin_alternate_manifest_defaults_value\.go/d' \
+    "$FILES_LIST"
 fi
 
 # Correct an error in the unit tests
