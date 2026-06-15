@@ -222,7 +222,6 @@ paths:
             description: Organization name
             type: string
         - description: Unique identifier for this slate
-          example: slate-id-1
           in: path
           name: slate-id
           required: true
@@ -297,7 +296,6 @@ paths:
             description: Organization name
             type: string
         - description: Unique identifier for this slate
-          example: slate-id-1
           in: path
           name: slate-id
           required: true
@@ -376,7 +374,6 @@ paths:
       operationId: put-org-slate
       parameters:
         - description: Unique identifier for this slate
-          example: slate-id-1
           in: path
           name: slate-id
           required: true
