@@ -18,7 +18,8 @@ var _ MappedNullable = &Ac4Settings{}
 
 // Ac4Settings struct for Ac4Settings
 type Ac4Settings struct {
-	EncodingMode *string `json:"encoding_mode,omitempty" enum:"ENCODING_MODE_UNSPECIFIED,ENCODING_MODE_EMISSION"`
+	Drc          *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc `json:"drc,omitempty"`
+	EncodingMode *string                                                  `json:"encoding_mode,omitempty" enum:"ENCODING_MODE_UNSPECIFIED,ENCODING_MODE_EMISSION"`
 }
 
 // NewAc4Settings instantiates a new Ac4Settings object
@@ -36,6 +37,38 @@ func NewAc4Settings() *Ac4Settings {
 func NewAc4SettingsWithDefaults() *Ac4Settings {
 	this := Ac4Settings{}
 	return &this
+}
+
+// GetDrc returns the Drc field value if set, zero value otherwise.
+func (o *Ac4Settings) GetDrc() PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc {
+	if o == nil || IsNil(o.Drc) {
+		var ret PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc
+		return ret
+	}
+	return *o.Drc
+}
+
+// GetDrcOk returns a tuple with the Drc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Ac4Settings) GetDrcOk() (*PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc, bool) {
+	if o == nil || IsNil(o.Drc) {
+		return nil, false
+	}
+	return o.Drc, true
+}
+
+// HasDrc returns a boolean if a field has been set.
+func (o *Ac4Settings) HasDrc() bool {
+	if o != nil && !IsNil(o.Drc) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrc gets a reference to the given PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc and assigns it to the Drc field.
+func (o *Ac4Settings) SetDrc(v PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc) {
+	o.Drc = &v
 }
 
 // GetEncodingMode returns the EncodingMode field value if set, zero value otherwise.
@@ -80,6 +113,9 @@ func (o Ac4Settings) MarshalJSON() ([]byte, error) {
 
 func (o Ac4Settings) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Drc) {
+		toSerialize["drc"] = o.Drc
+	}
 	if !IsNil(o.EncodingMode) {
 		toSerialize["encoding_mode"] = o.EncodingMode
 	}

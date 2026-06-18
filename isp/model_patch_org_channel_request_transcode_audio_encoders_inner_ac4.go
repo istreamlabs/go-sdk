@@ -18,7 +18,8 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4{}
 
 // PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4 struct for PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4
 type PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4 struct {
-	EncodingMode *string `json:"encoding_mode,omitempty" enum:"ENCODING_MODE_UNSPECIFIED,ENCODING_MODE_EMISSION"`
+	Drc          *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc `json:"drc,omitempty"`
+	EncodingMode *string                                                  `json:"encoding_mode,omitempty" enum:"ENCODING_MODE_UNSPECIFIED,ENCODING_MODE_EMISSION"`
 }
 
 // NewPatchOrgChannelRequestTranscodeAudioEncodersInnerAc4 instantiates a new PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4 object
@@ -36,6 +37,38 @@ func NewPatchOrgChannelRequestTranscodeAudioEncodersInnerAc4() *PatchOrgChannelR
 func NewPatchOrgChannelRequestTranscodeAudioEncodersInnerAc4WithDefaults() *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4 {
 	this := PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4{}
 	return &this
+}
+
+// GetDrc returns the Drc field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) GetDrc() PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc {
+	if o == nil || IsNil(o.Drc) {
+		var ret PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc
+		return ret
+	}
+	return *o.Drc
+}
+
+// GetDrcOk returns a tuple with the Drc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) GetDrcOk() (*PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc, bool) {
+	if o == nil || IsNil(o.Drc) {
+		return nil, false
+	}
+	return o.Drc, true
+}
+
+// HasDrc returns a boolean if a field has been set.
+func (o *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) HasDrc() bool {
+	if o != nil && !IsNil(o.Drc) {
+		return true
+	}
+
+	return false
+}
+
+// SetDrc gets a reference to the given PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc and assigns it to the Drc field.
+func (o *PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) SetDrc(v PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4Drc) {
+	o.Drc = &v
 }
 
 // GetEncodingMode returns the EncodingMode field value if set, zero value otherwise.
@@ -80,6 +113,9 @@ func (o PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) MarshalJSON() ([]b
 
 func (o PatchOrgChannelRequestTranscodeAudioEncodersInnerAc4) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Drc) {
+		toSerialize["drc"] = o.Drc
+	}
 	if !IsNil(o.EncodingMode) {
 		toSerialize["encoding_mode"] = o.EncodingMode
 	}

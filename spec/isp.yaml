@@ -1,8 +1,88 @@
 components:
   schemas:
+    Ac4DrcSettings:
+      additionalProperties: false
+      properties:
+        flat_panel_tv:
+          enum:
+            - DRC_FILM_STANDARD
+            - DRC_FILM_LIGHT
+            - DRC_MUSIC_STANDARD
+            - DRC_MUSIC_LIGHT
+            - DRC_SPEECH
+          example: DRC_FILM_STANDARD
+          type: string
+        home_theatre:
+          enum:
+            - DRC_FILM_STANDARD
+            - DRC_FILM_LIGHT
+            - DRC_MUSIC_STANDARD
+            - DRC_MUSIC_LIGHT
+            - DRC_SPEECH
+          example: DRC_FILM_STANDARD
+          type: string
+        portable_headphones:
+          enum:
+            - DRC_FILM_STANDARD
+            - DRC_FILM_LIGHT
+            - DRC_MUSIC_STANDARD
+            - DRC_MUSIC_LIGHT
+            - DRC_SPEECH
+          example: DRC_FILM_STANDARD
+          type: string
+        portable_speakers:
+          enum:
+            - DRC_FILM_STANDARD
+            - DRC_FILM_LIGHT
+            - DRC_MUSIC_STANDARD
+            - DRC_MUSIC_LIGHT
+            - DRC_SPEECH
+          example: DRC_FILM_STANDARD
+          type: string
+      type: object
     Ac4Settings:
       additionalProperties: false
       properties:
+        drc:
+          additionalProperties: false
+          properties:
+            flat_panel_tv:
+              enum:
+                - DRC_FILM_STANDARD
+                - DRC_FILM_LIGHT
+                - DRC_MUSIC_STANDARD
+                - DRC_MUSIC_LIGHT
+                - DRC_SPEECH
+              example: DRC_FILM_STANDARD
+              type: string
+            home_theatre:
+              enum:
+                - DRC_FILM_STANDARD
+                - DRC_FILM_LIGHT
+                - DRC_MUSIC_STANDARD
+                - DRC_MUSIC_LIGHT
+                - DRC_SPEECH
+              example: DRC_FILM_STANDARD
+              type: string
+            portable_headphones:
+              enum:
+                - DRC_FILM_STANDARD
+                - DRC_FILM_LIGHT
+                - DRC_MUSIC_STANDARD
+                - DRC_MUSIC_LIGHT
+                - DRC_SPEECH
+              example: DRC_FILM_STANDARD
+              type: string
+            portable_speakers:
+              enum:
+                - DRC_FILM_STANDARD
+                - DRC_FILM_LIGHT
+                - DRC_MUSIC_STANDARD
+                - DRC_MUSIC_LIGHT
+                - DRC_SPEECH
+              example: DRC_FILM_STANDARD
+              type: string
+          type: object
         encoding_mode:
           enum:
             - ENCODING_MODE_UNSPECIFIED
@@ -117,6 +197,46 @@ components:
         ac4:
           additionalProperties: false
           properties:
+            drc:
+              additionalProperties: false
+              properties:
+                flat_panel_tv:
+                  enum:
+                    - DRC_FILM_STANDARD
+                    - DRC_FILM_LIGHT
+                    - DRC_MUSIC_STANDARD
+                    - DRC_MUSIC_LIGHT
+                    - DRC_SPEECH
+                  example: DRC_FILM_STANDARD
+                  type: string
+                home_theatre:
+                  enum:
+                    - DRC_FILM_STANDARD
+                    - DRC_FILM_LIGHT
+                    - DRC_MUSIC_STANDARD
+                    - DRC_MUSIC_LIGHT
+                    - DRC_SPEECH
+                  example: DRC_FILM_STANDARD
+                  type: string
+                portable_headphones:
+                  enum:
+                    - DRC_FILM_STANDARD
+                    - DRC_FILM_LIGHT
+                    - DRC_MUSIC_STANDARD
+                    - DRC_MUSIC_LIGHT
+                    - DRC_SPEECH
+                  example: DRC_FILM_STANDARD
+                  type: string
+                portable_speakers:
+                  enum:
+                    - DRC_FILM_STANDARD
+                    - DRC_FILM_LIGHT
+                    - DRC_MUSIC_STANDARD
+                    - DRC_MUSIC_LIGHT
+                    - DRC_SPEECH
+                  example: DRC_FILM_STANDARD
+                  type: string
+              type: object
             encoding_mode:
               enum:
                 - ENCODING_MODE_UNSPECIFIED
@@ -4519,9 +4639,6 @@ components:
               description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
               type: object
             fallback_defaults:
-              $ref: '#/components/schemas/OriginManifestDefaults'
-              description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-            manifest_defaults:
               additionalProperties: false
               properties:
                 dash_signaling_formats:
@@ -4602,6 +4719,9 @@ components:
                   minimum: 0
                   type: integer
               type: object
+            manifest_defaults:
+              $ref: '#/components/schemas/OriginManifestDefaults'
+              description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
             retention_minutes:
               description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
               format: int32
@@ -5079,9 +5199,6 @@ components:
                     description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                     type: object
                   fallback_defaults:
-                    $ref: '#/components/schemas/OriginManifestDefaults'
-                    description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                  manifest_defaults:
                     additionalProperties: false
                     properties:
                       dash_signaling_formats:
@@ -5162,6 +5279,9 @@ components:
                         minimum: 0
                         type: integer
                     type: object
+                  manifest_defaults:
+                    $ref: '#/components/schemas/OriginManifestDefaults'
+                    description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                   retention_minutes:
                     description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                     format: int32
@@ -5910,9 +6030,6 @@ components:
                         description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                         type: object
                       fallback_defaults:
-                        $ref: '#/components/schemas/OriginManifestDefaults'
-                        description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                      manifest_defaults:
                         additionalProperties: false
                         properties:
                           dash_signaling_formats:
@@ -5993,6 +6110,9 @@ components:
                             minimum: 0
                             type: integer
                         type: object
+                      manifest_defaults:
+                        $ref: '#/components/schemas/OriginManifestDefaults'
+                        description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                       retention_minutes:
                         description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                         format: int32
@@ -6436,6 +6556,46 @@ components:
                   ac4:
                     additionalProperties: false
                     properties:
+                      drc:
+                        additionalProperties: false
+                        properties:
+                          flat_panel_tv:
+                            enum:
+                              - DRC_FILM_STANDARD
+                              - DRC_FILM_LIGHT
+                              - DRC_MUSIC_STANDARD
+                              - DRC_MUSIC_LIGHT
+                              - DRC_SPEECH
+                            example: DRC_FILM_STANDARD
+                            type: string
+                          home_theatre:
+                            enum:
+                              - DRC_FILM_STANDARD
+                              - DRC_FILM_LIGHT
+                              - DRC_MUSIC_STANDARD
+                              - DRC_MUSIC_LIGHT
+                              - DRC_SPEECH
+                            example: DRC_FILM_STANDARD
+                            type: string
+                          portable_headphones:
+                            enum:
+                              - DRC_FILM_STANDARD
+                              - DRC_FILM_LIGHT
+                              - DRC_MUSIC_STANDARD
+                              - DRC_MUSIC_LIGHT
+                              - DRC_SPEECH
+                            example: DRC_FILM_STANDARD
+                            type: string
+                          portable_speakers:
+                            enum:
+                              - DRC_FILM_STANDARD
+                              - DRC_FILM_LIGHT
+                              - DRC_MUSIC_STANDARD
+                              - DRC_MUSIC_LIGHT
+                              - DRC_SPEECH
+                            example: DRC_FILM_STANDARD
+                            type: string
+                        type: object
                       encoding_mode:
                         enum:
                           - ENCODING_MODE_UNSPECIFIED
@@ -6693,15 +6853,17 @@ components:
                         example: swe
                         type: string
                       magazine:
-                        description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                        description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
                         example: 1
                         format: int32
+                        maximum: 8
                         minimum: 0
                         type: integer
                       page:
-                        description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                        description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
                         example: 170
                         format: int32
+                        maximum: 255
                         minimum: 0
                         type: integer
                       page_type:
@@ -8224,15 +8386,17 @@ components:
               example: swe
               type: string
             magazine:
-              description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+              description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
               example: 1
               format: int32
+              maximum: 8
               minimum: 0
               type: integer
             page:
-              description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+              description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
               example: 170
               format: int32
+              maximum: 255
               minimum: 0
               type: integer
             page_type:
@@ -8344,15 +8508,17 @@ components:
           example: swe
           type: string
         magazine:
-          description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+          description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
           example: 1
           format: int32
+          maximum: 8
           minimum: 0
           type: integer
         page:
-          description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+          description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
           example: 170
           format: int32
+          maximum: 255
           minimum: 0
           type: integer
         page_type:
@@ -8738,6 +8904,46 @@ components:
               ac4:
                 additionalProperties: false
                 properties:
+                  drc:
+                    additionalProperties: false
+                    properties:
+                      flat_panel_tv:
+                        enum:
+                          - DRC_FILM_STANDARD
+                          - DRC_FILM_LIGHT
+                          - DRC_MUSIC_STANDARD
+                          - DRC_MUSIC_LIGHT
+                          - DRC_SPEECH
+                        example: DRC_FILM_STANDARD
+                        type: string
+                      home_theatre:
+                        enum:
+                          - DRC_FILM_STANDARD
+                          - DRC_FILM_LIGHT
+                          - DRC_MUSIC_STANDARD
+                          - DRC_MUSIC_LIGHT
+                          - DRC_SPEECH
+                        example: DRC_FILM_STANDARD
+                        type: string
+                      portable_headphones:
+                        enum:
+                          - DRC_FILM_STANDARD
+                          - DRC_FILM_LIGHT
+                          - DRC_MUSIC_STANDARD
+                          - DRC_MUSIC_LIGHT
+                          - DRC_SPEECH
+                        example: DRC_FILM_STANDARD
+                        type: string
+                      portable_speakers:
+                        enum:
+                          - DRC_FILM_STANDARD
+                          - DRC_FILM_LIGHT
+                          - DRC_MUSIC_STANDARD
+                          - DRC_MUSIC_LIGHT
+                          - DRC_SPEECH
+                        example: DRC_FILM_STANDARD
+                        type: string
+                    type: object
                   encoding_mode:
                     enum:
                       - ENCODING_MODE_UNSPECIFIED
@@ -8995,15 +9201,17 @@ components:
                     example: swe
                     type: string
                   magazine:
-                    description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                    description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
                     example: 1
                     format: int32
+                    maximum: 8
                     minimum: 0
                     type: integer
                   page:
-                    description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                    description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
                     example: 170
                     format: int32
+                    maximum: 255
                     minimum: 0
                     type: integer
                   page_type:
@@ -9801,9 +10009,6 @@ components:
           description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
           type: object
         fallback_defaults:
-          $ref: '#/components/schemas/OriginManifestDefaults'
-          description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-        manifest_defaults:
           additionalProperties: false
           properties:
             dash_signaling_formats:
@@ -9884,6 +10089,9 @@ components:
               minimum: 0
               type: integer
           type: object
+        manifest_defaults:
+          $ref: '#/components/schemas/OriginManifestDefaults'
+          description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
         retention_minutes:
           description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
           format: int32
@@ -12049,8 +12257,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -12127,6 +12333,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -12553,6 +12761,46 @@ paths:
                           ac4:
                             additionalProperties: false
                             properties:
+                              drc:
+                                additionalProperties: false
+                                properties:
+                                  flat_panel_tv:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  home_theatre:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  portable_headphones:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  portable_speakers:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                type: object
                               encoding_mode:
                                 enum:
                                   - ENCODING_MODE_UNSPECIFIED
@@ -12807,15 +13055,17 @@ paths:
                                 example: swe
                                 type: string
                               magazine:
-                                description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                                description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
                                 example: 1
                                 format: int32
+                                maximum: 8
                                 minimum: 0
                                 type: integer
                               page:
-                                description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                                description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
                                 example: 170
                                 format: int32
+                                maximum: 255
                                 minimum: 0
                                 type: integer
                               page_type:
@@ -13628,8 +13878,6 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
-                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
-                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -13706,6 +13954,8 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
+                              manifest_defaults:
+                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -14132,6 +14382,46 @@ paths:
                           ac4:
                             additionalProperties: false
                             properties:
+                              drc:
+                                additionalProperties: false
+                                properties:
+                                  flat_panel_tv:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  home_theatre:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  portable_headphones:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                  portable_speakers:
+                                    enum:
+                                      - DRC_FILM_STANDARD
+                                      - DRC_FILM_LIGHT
+                                      - DRC_MUSIC_STANDARD
+                                      - DRC_MUSIC_LIGHT
+                                      - DRC_SPEECH
+                                    example: DRC_FILM_STANDARD
+                                    type: string
+                                type: object
                               encoding_mode:
                                 enum:
                                   - ENCODING_MODE_UNSPECIFIED
@@ -14386,15 +14676,17 @@ paths:
                                 example: swe
                                 type: string
                               magazine:
-                                description: The teletext magazine number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                                description: The teletext magazine number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the first digit. E.g., in 'page 123', the magazine number is 1. 'Magazine 0' and 'magazine 8' are interchangeable and refer to the same thing. magazine + page configuration is mutually exclusive with language + type configuration.
                                 example: 1
                                 format: int32
+                                maximum: 8
                                 minimum: 0
                                 type: integer
                               page:
-                                description: The teletext page number where the subtitles are found. magazine + page configuration is mutually exclusive with language + type configuration.
+                                description: The teletext page number where the subtitles are found. In a conventional 3-digit Teletext page number, this is the second two digits, *after interpreting those digits as hex*. E.g., in 'page 123', the page number is 35 (0x23). magazine + page configuration is mutually exclusive with language + type configuration.
                                 example: 170
                                 format: int32
+                                maximum: 255
                                 minimum: 0
                                 type: integer
                               page_type:
