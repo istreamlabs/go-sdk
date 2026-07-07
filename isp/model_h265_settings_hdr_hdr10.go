@@ -13,34 +13,34 @@ import (
 	"encoding/json"
 )
 
-// checks if the HdrSettingsHdr10Format type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HdrSettingsHdr10Format{}
+// checks if the H265SettingsHdrHdr10 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &H265SettingsHdrHdr10{}
 
-// HdrSettingsHdr10Format struct for HdrSettingsHdr10Format
-type HdrSettingsHdr10Format struct {
+// H265SettingsHdrHdr10 struct for H265SettingsHdrHdr10
+type H265SettingsHdrHdr10 struct {
 	Clli *HdrSettingsContentLightLevelInfo       `json:"clli,omitempty"`
 	Mdcv *HdrSettingsMasteringDisplayColorVolume `json:"mdcv,omitempty"`
 }
 
-// NewHdrSettingsHdr10Format instantiates a new HdrSettingsHdr10Format object
+// NewH265SettingsHdrHdr10 instantiates a new H265SettingsHdrHdr10 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHdrSettingsHdr10Format() *HdrSettingsHdr10Format {
-	this := HdrSettingsHdr10Format{}
+func NewH265SettingsHdrHdr10() *H265SettingsHdrHdr10 {
+	this := H265SettingsHdrHdr10{}
 	return &this
 }
 
-// NewHdrSettingsHdr10FormatWithDefaults instantiates a new HdrSettingsHdr10Format object
+// NewH265SettingsHdrHdr10WithDefaults instantiates a new H265SettingsHdrHdr10 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHdrSettingsHdr10FormatWithDefaults() *HdrSettingsHdr10Format {
-	this := HdrSettingsHdr10Format{}
+func NewH265SettingsHdrHdr10WithDefaults() *H265SettingsHdrHdr10 {
+	this := H265SettingsHdrHdr10{}
 	return &this
 }
 
 // GetClli returns the Clli field value if set, zero value otherwise.
-func (o *HdrSettingsHdr10Format) GetClli() HdrSettingsContentLightLevelInfo {
+func (o *H265SettingsHdrHdr10) GetClli() HdrSettingsContentLightLevelInfo {
 	if o == nil || IsNil(o.Clli) {
 		var ret HdrSettingsContentLightLevelInfo
 		return ret
@@ -50,7 +50,7 @@ func (o *HdrSettingsHdr10Format) GetClli() HdrSettingsContentLightLevelInfo {
 
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsHdr10Format) GetClliOk() (*HdrSettingsContentLightLevelInfo, bool) {
+func (o *H265SettingsHdrHdr10) GetClliOk() (*HdrSettingsContentLightLevelInfo, bool) {
 	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
@@ -58,7 +58,7 @@ func (o *HdrSettingsHdr10Format) GetClliOk() (*HdrSettingsContentLightLevelInfo,
 }
 
 // HasClli returns a boolean if a field has been set.
-func (o *HdrSettingsHdr10Format) HasClli() bool {
+func (o *H265SettingsHdrHdr10) HasClli() bool {
 	if o != nil && !IsNil(o.Clli) {
 		return true
 	}
@@ -67,12 +67,12 @@ func (o *HdrSettingsHdr10Format) HasClli() bool {
 }
 
 // SetClli gets a reference to the given HdrSettingsContentLightLevelInfo and assigns it to the Clli field.
-func (o *HdrSettingsHdr10Format) SetClli(v HdrSettingsContentLightLevelInfo) {
+func (o *H265SettingsHdrHdr10) SetClli(v HdrSettingsContentLightLevelInfo) {
 	o.Clli = &v
 }
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
-func (o *HdrSettingsHdr10Format) GetMdcv() HdrSettingsMasteringDisplayColorVolume {
+func (o *H265SettingsHdrHdr10) GetMdcv() HdrSettingsMasteringDisplayColorVolume {
 	if o == nil || IsNil(o.Mdcv) {
 		var ret HdrSettingsMasteringDisplayColorVolume
 		return ret
@@ -82,7 +82,7 @@ func (o *HdrSettingsHdr10Format) GetMdcv() HdrSettingsMasteringDisplayColorVolum
 
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsHdr10Format) GetMdcvOk() (*HdrSettingsMasteringDisplayColorVolume, bool) {
+func (o *H265SettingsHdrHdr10) GetMdcvOk() (*HdrSettingsMasteringDisplayColorVolume, bool) {
 	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
@@ -90,7 +90,7 @@ func (o *HdrSettingsHdr10Format) GetMdcvOk() (*HdrSettingsMasteringDisplayColorV
 }
 
 // HasMdcv returns a boolean if a field has been set.
-func (o *HdrSettingsHdr10Format) HasMdcv() bool {
+func (o *H265SettingsHdrHdr10) HasMdcv() bool {
 	if o != nil && !IsNil(o.Mdcv) {
 		return true
 	}
@@ -99,11 +99,11 @@ func (o *HdrSettingsHdr10Format) HasMdcv() bool {
 }
 
 // SetMdcv gets a reference to the given HdrSettingsMasteringDisplayColorVolume and assigns it to the Mdcv field.
-func (o *HdrSettingsHdr10Format) SetMdcv(v HdrSettingsMasteringDisplayColorVolume) {
+func (o *H265SettingsHdrHdr10) SetMdcv(v HdrSettingsMasteringDisplayColorVolume) {
 	o.Mdcv = &v
 }
 
-func (o HdrSettingsHdr10Format) MarshalJSON() ([]byte, error) {
+func (o H265SettingsHdrHdr10) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -111,7 +111,7 @@ func (o HdrSettingsHdr10Format) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o HdrSettingsHdr10Format) ToMap() (map[string]interface{}, error) {
+func (o H265SettingsHdrHdr10) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Clli) {
 		toSerialize["clli"] = o.Clli
@@ -122,38 +122,38 @@ func (o HdrSettingsHdr10Format) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableHdrSettingsHdr10Format struct {
-	value *HdrSettingsHdr10Format
+type NullableH265SettingsHdrHdr10 struct {
+	value *H265SettingsHdrHdr10
 	isSet bool
 }
 
-func (v NullableHdrSettingsHdr10Format) Get() *HdrSettingsHdr10Format {
+func (v NullableH265SettingsHdrHdr10) Get() *H265SettingsHdrHdr10 {
 	return v.value
 }
 
-func (v *NullableHdrSettingsHdr10Format) Set(val *HdrSettingsHdr10Format) {
+func (v *NullableH265SettingsHdrHdr10) Set(val *H265SettingsHdrHdr10) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHdrSettingsHdr10Format) IsSet() bool {
+func (v NullableH265SettingsHdrHdr10) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHdrSettingsHdr10Format) Unset() {
+func (v *NullableH265SettingsHdrHdr10) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHdrSettingsHdr10Format(val *HdrSettingsHdr10Format) *NullableHdrSettingsHdr10Format {
-	return &NullableHdrSettingsHdr10Format{value: val, isSet: true}
+func NewNullableH265SettingsHdrHdr10(val *H265SettingsHdrHdr10) *NullableH265SettingsHdrHdr10 {
+	return &NullableH265SettingsHdrHdr10{value: val, isSet: true}
 }
 
-func (v NullableHdrSettingsHdr10Format) MarshalJSON() ([]byte, error) {
+func (v NullableH265SettingsHdrHdr10) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHdrSettingsHdr10Format) UnmarshalJSON(src []byte) error {
+func (v *NullableH265SettingsHdrHdr10) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
