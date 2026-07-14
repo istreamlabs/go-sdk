@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PublishPointHTTP type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PublishPointHTTP{}
+// checks if the PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner{}
 
-// PublishPointHTTP struct for PublishPointHTTP
-type PublishPointHTTP struct {
+// PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner struct for PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner
+type PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner struct {
 	BasicAuth *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth `json:"basic_auth,omitempty"`
 	// Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
 	Compression *string `json:"compression,omitempty" enum:"NONE,GZIP" doc:"Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed."`
@@ -36,25 +36,25 @@ type PublishPointHTTP struct {
 	SecureHeaderAuth *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth `json:"secure_header_auth,omitempty"`
 }
 
-// NewPublishPointHTTP instantiates a new PublishPointHTTP object
+// NewPatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner instantiates a new PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublishPointHTTP() *PublishPointHTTP {
-	this := PublishPointHTTP{}
+func NewPatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner() *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
+	this := PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner{}
 	return &this
 }
 
-// NewPublishPointHTTPWithDefaults instantiates a new PublishPointHTTP object
+// NewPatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerWithDefaults instantiates a new PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPublishPointHTTPWithDefaults() *PublishPointHTTP {
-	this := PublishPointHTTP{}
+func NewPatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerWithDefaults() *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
+	this := PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner{}
 	return &this
 }
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetBasicAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetBasicAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth {
 	if o == nil || IsNil(o.BasicAuth) {
 		var ret PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth
 		return ret
@@ -64,7 +64,7 @@ func (o *PublishPointHTTP) GetBasicAuth() PatchOrgChannelRequestPackagingPackage
 
 // GetBasicAuthOk returns a tuple with the BasicAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetBasicAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetBasicAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth, bool) {
 	if o == nil || IsNil(o.BasicAuth) {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *PublishPointHTTP) GetBasicAuthOk() (*PatchOrgChannelRequestPackagingPac
 }
 
 // HasBasicAuth returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasBasicAuth() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasBasicAuth() bool {
 	if o != nil && !IsNil(o.BasicAuth) {
 		return true
 	}
@@ -81,12 +81,12 @@ func (o *PublishPointHTTP) HasBasicAuth() bool {
 }
 
 // SetBasicAuth gets a reference to the given PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth and assigns it to the BasicAuth field.
-func (o *PublishPointHTTP) SetBasicAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetBasicAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerBasicAuth) {
 	o.BasicAuth = &v
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetCompression() string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetCompression() string {
 	if o == nil || IsNil(o.Compression) {
 		var ret string
 		return ret
@@ -96,7 +96,7 @@ func (o *PublishPointHTTP) GetCompression() string {
 
 // GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetCompressionOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetCompressionOk() (*string, bool) {
 	if o == nil || IsNil(o.Compression) {
 		return nil, false
 	}
@@ -104,7 +104,7 @@ func (o *PublishPointHTTP) GetCompressionOk() (*string, bool) {
 }
 
 // HasCompression returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasCompression() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasCompression() bool {
 	if o != nil && !IsNil(o.Compression) {
 		return true
 	}
@@ -113,12 +113,12 @@ func (o *PublishPointHTTP) HasCompression() bool {
 }
 
 // SetCompression gets a reference to the given string and assigns it to the Compression field.
-func (o *PublishPointHTTP) SetCompression(v string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetCompression(v string) {
 	o.Compression = &v
 }
 
 // GetDoNotMonitor returns the DoNotMonitor field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetDoNotMonitor() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetDoNotMonitor() bool {
 	if o == nil || IsNil(o.DoNotMonitor) {
 		var ret bool
 		return ret
@@ -128,7 +128,7 @@ func (o *PublishPointHTTP) GetDoNotMonitor() bool {
 
 // GetDoNotMonitorOk returns a tuple with the DoNotMonitor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetDoNotMonitorOk() (*bool, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetDoNotMonitorOk() (*bool, bool) {
 	if o == nil || IsNil(o.DoNotMonitor) {
 		return nil, false
 	}
@@ -136,7 +136,7 @@ func (o *PublishPointHTTP) GetDoNotMonitorOk() (*bool, bool) {
 }
 
 // HasDoNotMonitor returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasDoNotMonitor() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasDoNotMonitor() bool {
 	if o != nil && !IsNil(o.DoNotMonitor) {
 		return true
 	}
@@ -145,12 +145,12 @@ func (o *PublishPointHTTP) HasDoNotMonitor() bool {
 }
 
 // SetDoNotMonitor gets a reference to the given bool and assigns it to the DoNotMonitor field.
-func (o *PublishPointHTTP) SetDoNotMonitor(v bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetDoNotMonitor(v bool) {
 	o.DoNotMonitor = &v
 }
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetHeaders() map[string]string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetHeaders() map[string]string {
 	if o == nil || IsNil(o.Headers) {
 		var ret map[string]string
 		return ret
@@ -160,7 +160,7 @@ func (o *PublishPointHTTP) GetHeaders() map[string]string {
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetHeadersOk() (*map[string]string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || IsNil(o.Headers) {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *PublishPointHTTP) GetHeadersOk() (*map[string]string, bool) {
 }
 
 // HasHeaders returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasHeaders() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasHeaders() bool {
 	if o != nil && !IsNil(o.Headers) {
 		return true
 	}
@@ -177,12 +177,12 @@ func (o *PublishPointHTTP) HasHeaders() bool {
 }
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
-func (o *PublishPointHTTP) SetHeaders(v map[string]string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetHeaders(v map[string]string) {
 	o.Headers = &v
 }
 
 // GetMethod returns the Method field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetMethod() string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetMethod() string {
 	if o == nil || IsNil(o.Method) {
 		var ret string
 		return ret
@@ -192,7 +192,7 @@ func (o *PublishPointHTTP) GetMethod() string {
 
 // GetMethodOk returns a tuple with the Method field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetMethodOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetMethodOk() (*string, bool) {
 	if o == nil || IsNil(o.Method) {
 		return nil, false
 	}
@@ -200,7 +200,7 @@ func (o *PublishPointHTTP) GetMethodOk() (*string, bool) {
 }
 
 // HasMethod returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasMethod() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasMethod() bool {
 	if o != nil && !IsNil(o.Method) {
 		return true
 	}
@@ -209,12 +209,12 @@ func (o *PublishPointHTTP) HasMethod() bool {
 }
 
 // SetMethod gets a reference to the given string and assigns it to the Method field.
-func (o *PublishPointHTTP) SetMethod(v string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetMethod(v string) {
 	o.Method = &v
 }
 
 // GetPlaybackBaseUrl returns the PlaybackBaseUrl field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetPlaybackBaseUrl() string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPlaybackBaseUrl() string {
 	if o == nil || IsNil(o.PlaybackBaseUrl) {
 		var ret string
 		return ret
@@ -224,7 +224,7 @@ func (o *PublishPointHTTP) GetPlaybackBaseUrl() string {
 
 // GetPlaybackBaseUrlOk returns a tuple with the PlaybackBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetPlaybackBaseUrlOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPlaybackBaseUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.PlaybackBaseUrl) {
 		return nil, false
 	}
@@ -232,7 +232,7 @@ func (o *PublishPointHTTP) GetPlaybackBaseUrlOk() (*string, bool) {
 }
 
 // HasPlaybackBaseUrl returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasPlaybackBaseUrl() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasPlaybackBaseUrl() bool {
 	if o != nil && !IsNil(o.PlaybackBaseUrl) {
 		return true
 	}
@@ -241,12 +241,12 @@ func (o *PublishPointHTTP) HasPlaybackBaseUrl() bool {
 }
 
 // SetPlaybackBaseUrl gets a reference to the given string and assigns it to the PlaybackBaseUrl field.
-func (o *PublishPointHTTP) SetPlaybackBaseUrl(v string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetPlaybackBaseUrl(v string) {
 	o.PlaybackBaseUrl = &v
 }
 
 // GetPlaybackQueryParams returns the PlaybackQueryParams field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetPlaybackQueryParams() string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPlaybackQueryParams() string {
 	if o == nil || IsNil(o.PlaybackQueryParams) {
 		var ret string
 		return ret
@@ -256,7 +256,7 @@ func (o *PublishPointHTTP) GetPlaybackQueryParams() string {
 
 // GetPlaybackQueryParamsOk returns a tuple with the PlaybackQueryParams field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetPlaybackQueryParamsOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPlaybackQueryParamsOk() (*string, bool) {
 	if o == nil || IsNil(o.PlaybackQueryParams) {
 		return nil, false
 	}
@@ -264,7 +264,7 @@ func (o *PublishPointHTTP) GetPlaybackQueryParamsOk() (*string, bool) {
 }
 
 // HasPlaybackQueryParams returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasPlaybackQueryParams() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasPlaybackQueryParams() bool {
 	if o != nil && !IsNil(o.PlaybackQueryParams) {
 		return true
 	}
@@ -273,12 +273,12 @@ func (o *PublishPointHTTP) HasPlaybackQueryParams() bool {
 }
 
 // SetPlaybackQueryParams gets a reference to the given string and assigns it to the PlaybackQueryParams field.
-func (o *PublishPointHTTP) SetPlaybackQueryParams(v string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetPlaybackQueryParams(v string) {
 	o.PlaybackQueryParams = &v
 }
 
 // GetPublishBaseUrl returns the PublishBaseUrl field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetPublishBaseUrl() string {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPublishBaseUrl() string {
 	if o == nil || IsNil(o.PublishBaseUrl) {
 		var ret string
 		return ret
@@ -288,7 +288,7 @@ func (o *PublishPointHTTP) GetPublishBaseUrl() string {
 
 // GetPublishBaseUrlOk returns a tuple with the PublishBaseUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetPublishBaseUrlOk() (*string, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetPublishBaseUrlOk() (*string, bool) {
 	if o == nil || IsNil(o.PublishBaseUrl) {
 		return nil, false
 	}
@@ -296,7 +296,7 @@ func (o *PublishPointHTTP) GetPublishBaseUrlOk() (*string, bool) {
 }
 
 // HasPublishBaseUrl returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasPublishBaseUrl() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasPublishBaseUrl() bool {
 	if o != nil && !IsNil(o.PublishBaseUrl) {
 		return true
 	}
@@ -305,12 +305,12 @@ func (o *PublishPointHTTP) HasPublishBaseUrl() bool {
 }
 
 // SetPublishBaseUrl gets a reference to the given string and assigns it to the PublishBaseUrl field.
-func (o *PublishPointHTTP) SetPublishBaseUrl(v string) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetPublishBaseUrl(v string) {
 	o.PublishBaseUrl = &v
 }
 
 // GetSecureHeaderAuth returns the SecureHeaderAuth field value if set, zero value otherwise.
-func (o *PublishPointHTTP) GetSecureHeaderAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetSecureHeaderAuth() PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth {
 	if o == nil || IsNil(o.SecureHeaderAuth) {
 		var ret PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth
 		return ret
@@ -320,7 +320,7 @@ func (o *PublishPointHTTP) GetSecureHeaderAuth() PatchOrgChannelRequestPackaging
 
 // GetSecureHeaderAuthOk returns a tuple with the SecureHeaderAuth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPointHTTP) GetSecureHeaderAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) GetSecureHeaderAuthOk() (*PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth, bool) {
 	if o == nil || IsNil(o.SecureHeaderAuth) {
 		return nil, false
 	}
@@ -328,7 +328,7 @@ func (o *PublishPointHTTP) GetSecureHeaderAuthOk() (*PatchOrgChannelRequestPacka
 }
 
 // HasSecureHeaderAuth returns a boolean if a field has been set.
-func (o *PublishPointHTTP) HasSecureHeaderAuth() bool {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) HasSecureHeaderAuth() bool {
 	if o != nil && !IsNil(o.SecureHeaderAuth) {
 		return true
 	}
@@ -337,11 +337,11 @@ func (o *PublishPointHTTP) HasSecureHeaderAuth() bool {
 }
 
 // SetSecureHeaderAuth gets a reference to the given PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth and assigns it to the SecureHeaderAuth field.
-func (o *PublishPointHTTP) SetSecureHeaderAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) SetSecureHeaderAuth(v PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInnerSecureHeaderAuth) {
 	o.SecureHeaderAuth = &v
 }
 
-func (o PublishPointHTTP) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -349,7 +349,7 @@ func (o PublishPointHTTP) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PublishPointHTTP) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BasicAuth) {
 		toSerialize["basic_auth"] = o.BasicAuth
@@ -381,38 +381,38 @@ func (o PublishPointHTTP) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePublishPointHTTP struct {
-	value *PublishPointHTTP
+type NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner struct {
+	value *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner
 	isSet bool
 }
 
-func (v NullablePublishPointHTTP) Get() *PublishPointHTTP {
+func (v NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) Get() *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
 	return v.value
 }
 
-func (v *NullablePublishPointHTTP) Set(val *PublishPointHTTP) {
+func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) Set(val *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePublishPointHTTP) IsSet() bool {
+func (v NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePublishPointHTTP) Unset() {
+func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePublishPointHTTP(val *PublishPointHTTP) *NullablePublishPointHTTP {
-	return &NullablePublishPointHTTP{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner(val *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
+	return &NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner{value: val, isSet: true}
 }
 
-func (v NullablePublishPointHTTP) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePublishPointHTTP) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
