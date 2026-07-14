@@ -18,7 +18,7 @@ var _ MappedNullable = &SrtPublication{}
 
 // SrtPublication struct for SrtPublication
 type SrtPublication struct {
-	AudioEncoders []SrtPublicationEncoder `json:"audio_encoders,omitempty" minItems:"1"`
+	AudioEncoders []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner `json:"audio_encoders,omitempty" minItems:"1"`
 	// SRT publication ID. Must be unique.
 	Id *string `json:"id,omitempty" validate:"regexp=^([a-z0-9]+(-*[a-z0-9]+)*)$" minLength:"1" pattern:"^([a-z0-9]+(-*[a-z0-9]+)*)$" doc:"SRT publication ID. Must be unique."`
 	// MPEG-TS PMT PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
@@ -47,9 +47,9 @@ func NewSrtPublicationWithDefaults() *SrtPublication {
 }
 
 // GetAudioEncoders returns the AudioEncoders field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *SrtPublication) GetAudioEncoders() []SrtPublicationEncoder {
+func (o *SrtPublication) GetAudioEncoders() []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner {
 	if o == nil {
-		var ret []SrtPublicationEncoder
+		var ret []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner
 		return ret
 	}
 	return o.AudioEncoders
@@ -58,7 +58,7 @@ func (o *SrtPublication) GetAudioEncoders() []SrtPublicationEncoder {
 // GetAudioEncodersOk returns a tuple with the AudioEncoders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SrtPublication) GetAudioEncodersOk() ([]SrtPublicationEncoder, bool) {
+func (o *SrtPublication) GetAudioEncodersOk() ([]PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner, bool) {
 	if o == nil || IsNil(o.AudioEncoders) {
 		return nil, false
 	}
@@ -74,8 +74,8 @@ func (o *SrtPublication) HasAudioEncoders() bool {
 	return false
 }
 
-// SetAudioEncoders gets a reference to the given []SrtPublicationEncoder and assigns it to the AudioEncoders field.
-func (o *SrtPublication) SetAudioEncoders(v []SrtPublicationEncoder) {
+// SetAudioEncoders gets a reference to the given []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner and assigns it to the AudioEncoders field.
+func (o *SrtPublication) SetAudioEncoders(v []PatchOrgChannelRequestPublishingSrtPublicationsInnerAudioEncodersInner) {
 	o.AudioEncoders = v
 }
 

@@ -1079,7 +1079,57 @@ components:
             publish_points:
               description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
               items:
-                $ref: '#/components/schemas/PublishPointHTTP'
+                additionalProperties: false
+                properties:
+                  basic_auth:
+                    additionalProperties: false
+                    properties:
+                      password:
+                        description: Plain text password for basic auth.
+                        type: string
+                      username:
+                        description: Username for basic auth.
+                        type: string
+                    type: object
+                  compression:
+                    description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                    enum:
+                      - NONE
+                      - GZIP
+                    type: string
+                  do_not_monitor:
+                    description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                    type: boolean
+                  headers:
+                    additionalProperties:
+                      type: string
+                    description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                    type: object
+                  method:
+                    description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                    type: string
+                  playback_base_url:
+                    description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                    format: uri-reference
+                    type: string
+                  playback_query_params:
+                    description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                    type: string
+                  publish_base_url:
+                    description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                    format: uri-reference
+                    type: string
+                  secure_header_auth:
+                    additionalProperties: false
+                    properties:
+                      arn:
+                        description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                        type: string
+                      version_id:
+                        description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                        type: string
+                    type: object
+                type: object
               nullable: true
               type: array
             require_publish:
@@ -3864,7 +3914,57 @@ components:
                 publish_points:
                   description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
                   items:
-                    $ref: '#/components/schemas/PublishPointHTTP'
+                    additionalProperties: false
+                    properties:
+                      basic_auth:
+                        additionalProperties: false
+                        properties:
+                          password:
+                            description: Plain text password for basic auth.
+                            type: string
+                          username:
+                            description: Username for basic auth.
+                            type: string
+                        type: object
+                      compression:
+                        description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                        enum:
+                          - NONE
+                          - GZIP
+                        type: string
+                      do_not_monitor:
+                        description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                        type: boolean
+                      headers:
+                        additionalProperties:
+                          type: string
+                        description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                        type: object
+                      method:
+                        description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                        type: string
+                      playback_base_url:
+                        description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                        format: uri-reference
+                        type: string
+                      playback_query_params:
+                        description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                        type: string
+                      publish_base_url:
+                        description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                        format: uri-reference
+                        type: string
+                      secure_header_auth:
+                        additionalProperties: false
+                        properties:
+                          arn:
+                            description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                            type: string
+                          version_id:
+                            description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                            type: string
+                        type: object
+                    type: object
                   nullable: true
                   type: array
                 require_publish:
@@ -4032,7 +4132,57 @@ components:
                       publish_points:
                         description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
                         items:
-                          $ref: '#/components/schemas/PublishPointHTTP'
+                          additionalProperties: false
+                          properties:
+                            basic_auth:
+                              additionalProperties: false
+                              properties:
+                                password:
+                                  description: Plain text password for basic auth.
+                                  type: string
+                                username:
+                                  description: Username for basic auth.
+                                  type: string
+                              type: object
+                            compression:
+                              description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                              enum:
+                                - NONE
+                                - GZIP
+                              type: string
+                            do_not_monitor:
+                              description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                              type: boolean
+                            headers:
+                              additionalProperties:
+                                type: string
+                              description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                              type: object
+                            method:
+                              description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                              type: string
+                            playback_base_url:
+                              description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                              format: uri-reference
+                              type: string
+                            playback_query_params:
+                              description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                              type: string
+                            publish_base_url:
+                              description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                              format: uri-reference
+                              type: string
+                            secure_header_auth:
+                              additionalProperties: false
+                              properties:
+                                arn:
+                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                  type: string
+                                version_id:
+                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                  type: string
+                              type: object
+                          type: object
                         nullable: true
                         type: array
                       require_publish:
@@ -4639,6 +4789,9 @@ components:
               description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
               type: object
             fallback_defaults:
+              $ref: '#/components/schemas/OriginManifestDefaults'
+              description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+            manifest_defaults:
               additionalProperties: false
               properties:
                 dash_signaling_formats:
@@ -4719,9 +4872,6 @@ components:
                   minimum: 0
                   type: integer
               type: object
-            manifest_defaults:
-              $ref: '#/components/schemas/OriginManifestDefaults'
-              description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
             retention_minutes:
               description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
               format: int32
@@ -4747,57 +4897,8 @@ components:
             additionalProperties: false
             properties:
               http:
-                additionalProperties: false
-                properties:
-                  basic_auth:
-                    additionalProperties: false
-                    properties:
-                      password:
-                        description: Plain text password for basic auth.
-                        type: string
-                      username:
-                        description: Username for basic auth.
-                        type: string
-                    type: object
-                  compression:
-                    description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-                    enum:
-                      - NONE
-                      - GZIP
-                    type: string
-                  do_not_monitor:
-                    description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-                    type: boolean
-                  headers:
-                    additionalProperties:
-                      type: string
-                    description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-                    type: object
-                  method:
-                    description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-                    type: string
-                  playback_base_url:
-                    description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-                    format: uri-reference
-                    type: string
-                  playback_query_params:
-                    description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-                    type: string
-                  publish_base_url:
-                    description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-                    format: uri-reference
-                    type: string
-                  secure_header_auth:
-                    additionalProperties: false
-                    properties:
-                      arn:
-                        description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                        type: string
-                      version_id:
-                        description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                        type: string
-                    type: object
-                type: object
+                $ref: '#/components/schemas/PublishPointHTTP'
+                description: HTTP destination where media segments and playlists will be published.
               id:
                 description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
                 type: string
@@ -4847,57 +4948,8 @@ components:
       additionalProperties: false
       properties:
         http:
-          additionalProperties: false
-          properties:
-            basic_auth:
-              additionalProperties: false
-              properties:
-                password:
-                  description: Plain text password for basic auth.
-                  type: string
-                username:
-                  description: Username for basic auth.
-                  type: string
-              type: object
-            compression:
-              description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-              enum:
-                - NONE
-                - GZIP
-              type: string
-            do_not_monitor:
-              description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-              type: boolean
-            headers:
-              additionalProperties:
-                type: string
-              description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-              type: object
-            method:
-              description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-              type: string
-            playback_base_url:
-              description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-              format: uri-reference
-              type: string
-            playback_query_params:
-              description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-              type: string
-            publish_base_url:
-              description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-              format: uri-reference
-              type: string
-            secure_header_auth:
-              additionalProperties: false
-              properties:
-                arn:
-                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                  type: string
-                version_id:
-                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                  type: string
-              type: object
-          type: object
+          $ref: '#/components/schemas/PublishPointHTTP'
+          description: HTTP destination where media segments and playlists will be published.
         id:
           description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
           type: string
@@ -5199,6 +5251,9 @@ components:
                     description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                     type: object
                   fallback_defaults:
+                    $ref: '#/components/schemas/OriginManifestDefaults'
+                    description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                  manifest_defaults:
                     additionalProperties: false
                     properties:
                       dash_signaling_formats:
@@ -5279,9 +5334,6 @@ components:
                         minimum: 0
                         type: integer
                     type: object
-                  manifest_defaults:
-                    $ref: '#/components/schemas/OriginManifestDefaults'
-                    description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                   retention_minutes:
                     description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                     format: int32
@@ -5307,57 +5359,8 @@ components:
                   additionalProperties: false
                   properties:
                     http:
-                      additionalProperties: false
-                      properties:
-                        basic_auth:
-                          additionalProperties: false
-                          properties:
-                            password:
-                              description: Plain text password for basic auth.
-                              type: string
-                            username:
-                              description: Username for basic auth.
-                              type: string
-                          type: object
-                        compression:
-                          description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-                          enum:
-                            - NONE
-                            - GZIP
-                          type: string
-                        do_not_monitor:
-                          description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-                          type: boolean
-                        headers:
-                          additionalProperties:
-                            type: string
-                          description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-                          type: object
-                        method:
-                          description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-                          type: string
-                        playback_base_url:
-                          description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-                          format: uri-reference
-                          type: string
-                        playback_query_params:
-                          description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-                          type: string
-                        publish_base_url:
-                          description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-                          format: uri-reference
-                          type: string
-                        secure_header_auth:
-                          additionalProperties: false
-                          properties:
-                            arn:
-                              description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                              type: string
-                            version_id:
-                              description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                              type: string
-                          type: object
-                      type: object
+                      $ref: '#/components/schemas/PublishPointHTTP'
+                      description: HTTP destination where media segments and playlists will be published.
                     id:
                       description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
                       type: string
@@ -5438,7 +5441,18 @@ components:
             properties:
               audio_encoders:
                 items:
-                  $ref: '#/components/schemas/SrtPublicationEncoder'
+                  additionalProperties: false
+                  properties:
+                    id:
+                      minLength: 1
+                      type: string
+                    pid:
+                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                      exclusiveMaximum: true
+                      format: int32
+                      maximum: 8191
+                      type: integer
+                  type: object
                 minItems: 1
                 nullable: true
                 type: array
@@ -5466,18 +5480,7 @@ components:
                 type: string
               video_encoders:
                 items:
-                  additionalProperties: false
-                  properties:
-                    id:
-                      minLength: 1
-                      type: string
-                    pid:
-                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                      exclusiveMaximum: true
-                      format: int32
-                      maximum: 8191
-                      type: integer
-                  type: object
+                  $ref: '#/components/schemas/SrtPublicationEncoder'
                 minItems: 1
                 nullable: true
                 type: array
@@ -5737,7 +5740,57 @@ components:
                           publish_points:
                             description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
                             items:
-                              $ref: '#/components/schemas/PublishPointHTTP'
+                              additionalProperties: false
+                              properties:
+                                basic_auth:
+                                  additionalProperties: false
+                                  properties:
+                                    password:
+                                      description: Plain text password for basic auth.
+                                      type: string
+                                    username:
+                                      description: Username for basic auth.
+                                      type: string
+                                  type: object
+                                compression:
+                                  description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                                  enum:
+                                    - NONE
+                                    - GZIP
+                                  type: string
+                                do_not_monitor:
+                                  description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                                  type: boolean
+                                headers:
+                                  additionalProperties:
+                                    type: string
+                                  description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                                  type: object
+                                method:
+                                  description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                                  type: string
+                                playback_base_url:
+                                  description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                                  format: uri-reference
+                                  type: string
+                                playback_query_params:
+                                  description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                                  type: string
+                                publish_base_url:
+                                  description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                                  format: uri-reference
+                                  type: string
+                                secure_header_auth:
+                                  additionalProperties: false
+                                  properties:
+                                    arn:
+                                      description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                      type: string
+                                    version_id:
+                                      description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                      type: string
+                                  type: object
+                              type: object
                             nullable: true
                             type: array
                           require_publish:
@@ -6030,6 +6083,9 @@ components:
                         description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                         type: object
                       fallback_defaults:
+                        $ref: '#/components/schemas/OriginManifestDefaults'
+                        description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                      manifest_defaults:
                         additionalProperties: false
                         properties:
                           dash_signaling_formats:
@@ -6110,9 +6166,6 @@ components:
                             minimum: 0
                             type: integer
                         type: object
-                      manifest_defaults:
-                        $ref: '#/components/schemas/OriginManifestDefaults'
-                        description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                       retention_minutes:
                         description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                         format: int32
@@ -6138,57 +6191,8 @@ components:
                       additionalProperties: false
                       properties:
                         http:
-                          additionalProperties: false
-                          properties:
-                            basic_auth:
-                              additionalProperties: false
-                              properties:
-                                password:
-                                  description: Plain text password for basic auth.
-                                  type: string
-                                username:
-                                  description: Username for basic auth.
-                                  type: string
-                              type: object
-                            compression:
-                              description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-                              enum:
-                                - NONE
-                                - GZIP
-                              type: string
-                            do_not_monitor:
-                              description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-                              type: boolean
-                            headers:
-                              additionalProperties:
-                                type: string
-                              description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-                              type: object
-                            method:
-                              description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-                              type: string
-                            playback_base_url:
-                              description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-                              format: uri-reference
-                              type: string
-                            playback_query_params:
-                              description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-                              type: string
-                            publish_base_url:
-                              description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-                              format: uri-reference
-                              type: string
-                            secure_header_auth:
-                              additionalProperties: false
-                              properties:
-                                arn:
-                                  description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                                  type: string
-                                version_id:
-                                  description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                                  type: string
-                              type: object
-                          type: object
+                          $ref: '#/components/schemas/PublishPointHTTP'
+                          description: HTTP destination where media segments and playlists will be published.
                         id:
                           description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
                           type: string
@@ -6269,7 +6273,18 @@ components:
                 properties:
                   audio_encoders:
                     items:
-                      $ref: '#/components/schemas/SrtPublicationEncoder'
+                      additionalProperties: false
+                      properties:
+                        id:
+                          minLength: 1
+                          type: string
+                        pid:
+                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                          exclusiveMaximum: true
+                          format: int32
+                          maximum: 8191
+                          type: integer
+                      type: object
                     minItems: 1
                     nullable: true
                     type: array
@@ -6297,18 +6312,7 @@ components:
                     type: string
                   video_encoders:
                     items:
-                      additionalProperties: false
-                      properties:
-                        id:
-                          minLength: 1
-                          type: string
-                        pid:
-                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                          exclusiveMaximum: true
-                          format: int32
-                          maximum: 8191
-                          type: integer
-                      type: object
+                      $ref: '#/components/schemas/SrtPublicationEncoder'
                     minItems: 1
                     nullable: true
                     type: array
@@ -7971,7 +7975,57 @@ components:
         publish_points:
           description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
           items:
-            $ref: '#/components/schemas/PublishPointHTTP'
+            additionalProperties: false
+            properties:
+              basic_auth:
+                additionalProperties: false
+                properties:
+                  password:
+                    description: Plain text password for basic auth.
+                    type: string
+                  username:
+                    description: Username for basic auth.
+                    type: string
+                type: object
+              compression:
+                description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                enum:
+                  - NONE
+                  - GZIP
+                type: string
+              do_not_monitor:
+                description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                type: boolean
+              headers:
+                additionalProperties:
+                  type: string
+                description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                type: object
+              method:
+                description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                type: string
+              playback_base_url:
+                description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                format: uri-reference
+                type: string
+              playback_query_params:
+                description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                type: string
+              publish_base_url:
+                description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                format: uri-reference
+                type: string
+              secure_header_auth:
+                additionalProperties: false
+                properties:
+                  arn:
+                    description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                    type: string
+                  version_id:
+                    description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                    type: string
+                type: object
+            type: object
           nullable: true
           type: array
         require_publish:
@@ -8234,7 +8288,18 @@ components:
       properties:
         audio_encoders:
           items:
-            $ref: '#/components/schemas/SrtPublicationEncoder'
+            additionalProperties: false
+            properties:
+              id:
+                minLength: 1
+                type: string
+              pid:
+                description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                exclusiveMaximum: true
+                format: int32
+                maximum: 8191
+                type: integer
+            type: object
           minItems: 1
           nullable: true
           type: array
@@ -8262,18 +8327,7 @@ components:
           type: string
         video_encoders:
           items:
-            additionalProperties: false
-            properties:
-              id:
-                minLength: 1
-                type: string
-              pid:
-                description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                exclusiveMaximum: true
-                format: int32
-                maximum: 8191
-                type: integer
-            type: object
+            $ref: '#/components/schemas/SrtPublicationEncoder'
           minItems: 1
           nullable: true
           type: array
@@ -10009,6 +10063,9 @@ components:
           description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
           type: object
         fallback_defaults:
+          $ref: '#/components/schemas/OriginManifestDefaults'
+          description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+        manifest_defaults:
           additionalProperties: false
           properties:
             dash_signaling_formats:
@@ -10089,9 +10146,6 @@ components:
               minimum: 0
               type: integer
           type: object
-        manifest_defaults:
-          $ref: '#/components/schemas/OriginManifestDefaults'
-          description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
         retention_minutes:
           description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
           format: int32
@@ -11978,7 +12032,57 @@ paths:
                                   publish_points:
                                     description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
                                     items:
-                                      $ref: '#/components/schemas/PublishPointHTTP'
+                                      additionalProperties: false
+                                      properties:
+                                        basic_auth:
+                                          additionalProperties: false
+                                          properties:
+                                            password:
+                                              description: Plain text password for basic auth.
+                                              type: string
+                                            username:
+                                              description: Username for basic auth.
+                                              type: string
+                                          type: object
+                                        compression:
+                                          description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                                          enum:
+                                            - NONE
+                                            - GZIP
+                                          type: string
+                                        do_not_monitor:
+                                          description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                                          type: boolean
+                                        headers:
+                                          additionalProperties:
+                                            type: string
+                                          description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                                          type: object
+                                        method:
+                                          description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                                          type: string
+                                        playback_base_url:
+                                          description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                                          format: uri-reference
+                                          type: string
+                                        playback_query_params:
+                                          description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                                          type: string
+                                        publish_base_url:
+                                          description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                                          format: uri-reference
+                                          type: string
+                                        secure_header_auth:
+                                          additionalProperties: false
+                                          properties:
+                                            arn:
+                                              description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                              type: string
+                                            version_id:
+                                              description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                              type: string
+                                          type: object
+                                      type: object
                                     nullable: true
                                     type: array
                                   require_publish:
@@ -12257,6 +12361,8 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
+                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -12333,8 +12439,6 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
-                              manifest_defaults:
-                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -12360,57 +12464,7 @@ paths:
                               additionalProperties: false
                               properties:
                                 http:
-                                  additionalProperties: false
-                                  properties:
-                                    basic_auth:
-                                      additionalProperties: false
-                                      properties:
-                                        password:
-                                          description: Plain text password for basic auth.
-                                          type: string
-                                        username:
-                                          description: Username for basic auth.
-                                          type: string
-                                      type: object
-                                    compression:
-                                      description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-                                      enum:
-                                        - NONE
-                                        - GZIP
-                                      type: string
-                                    do_not_monitor:
-                                      description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-                                      type: boolean
-                                    headers:
-                                      additionalProperties:
-                                        type: string
-                                      description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-                                      type: object
-                                    method:
-                                      description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-                                      type: string
-                                    playback_base_url:
-                                      description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-                                      format: uri-reference
-                                      type: string
-                                    playback_query_params:
-                                      description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-                                      type: string
-                                    publish_base_url:
-                                      description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-                                      format: uri-reference
-                                      type: string
-                                    secure_header_auth:
-                                      additionalProperties: false
-                                      properties:
-                                        arn:
-                                          description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                                          type: string
-                                        version_id:
-                                          description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                                          type: string
-                                      type: object
-                                  type: object
+                                  description: HTTP destination where media segments and playlists will be published.
                                 id:
                                   description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
                                   type: string
@@ -12485,7 +12539,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -12511,19 +12577,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
@@ -13599,7 +13653,57 @@ paths:
                                   publish_points:
                                     description: Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
                                     items:
-                                      $ref: '#/components/schemas/PublishPointHTTP'
+                                      additionalProperties: false
+                                      properties:
+                                        basic_auth:
+                                          additionalProperties: false
+                                          properties:
+                                            password:
+                                              description: Plain text password for basic auth.
+                                              type: string
+                                            username:
+                                              description: Username for basic auth.
+                                              type: string
+                                          type: object
+                                        compression:
+                                          description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
+                                          enum:
+                                            - NONE
+                                            - GZIP
+                                          type: string
+                                        do_not_monitor:
+                                          description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
+                                          type: boolean
+                                        headers:
+                                          additionalProperties:
+                                            type: string
+                                          description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
+                                          type: object
+                                        method:
+                                          description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
+                                          type: string
+                                        playback_base_url:
+                                          description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
+                                          format: uri-reference
+                                          type: string
+                                        playback_query_params:
+                                          description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
+                                          type: string
+                                        publish_base_url:
+                                          description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
+                                          format: uri-reference
+                                          type: string
+                                        secure_header_auth:
+                                          additionalProperties: false
+                                          properties:
+                                            arn:
+                                              description: arn is the AWS Secret ARN that contains the secure header list to be applied.
+                                              type: string
+                                            version_id:
+                                              description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
+                                              type: string
+                                          type: object
+                                      type: object
                                     nullable: true
                                     type: array
                                   require_publish:
@@ -13878,6 +13982,8 @@ paths:
                                 description: 'AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: ''ph'' = ''main.ph.m3u8'', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, ''iframe'' is a reserved acronym for iframe playlists.'
                                 type: object
                               fallback_defaults:
+                                description: FallbackDefaults specifies the alternative behavior of the dynamic manifest generator. This behavior is intended to be a simplified configuration comparead to the default behavior so that it can be used as a fallback for when players are encountering issues with the default behavior. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
+                              manifest_defaults:
                                 additionalProperties: false
                                 properties:
                                   dash_signaling_formats:
@@ -13954,8 +14060,6 @@ paths:
                                     minimum: 0
                                     type: integer
                                 type: object
-                              manifest_defaults:
-                                description: ManifestDefaults specifies the default behavior of the dynamic manifest generator. Specific behaviors can be overwritten using appropriate query string parameters when making the request for the manifest.
                               retention_minutes:
                                 description: RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
                                 format: int32
@@ -13981,57 +14085,7 @@ paths:
                               additionalProperties: false
                               properties:
                                 http:
-                                  additionalProperties: false
-                                  properties:
-                                    basic_auth:
-                                      additionalProperties: false
-                                      properties:
-                                        password:
-                                          description: Plain text password for basic auth.
-                                          type: string
-                                        username:
-                                          description: Username for basic auth.
-                                          type: string
-                                      type: object
-                                    compression:
-                                      description: Configures whether or not (and how) to compress manifests being published to the origin. If not specified, manifests will not be compressed.
-                                      enum:
-                                        - NONE
-                                        - GZIP
-                                      type: string
-                                    do_not_monitor:
-                                      description: (Optional) Specifies if this pubpoint should not be monitored by PLM.
-                                      type: boolean
-                                    headers:
-                                      additionalProperties:
-                                        type: string
-                                      description: Allows custom HTTP headers to be set via configuration for all HTTP requests.
-                                      type: object
-                                    method:
-                                      description: Method overrides what HTTP method to specify in requests to the Publish Point. If not specified the service will default to POST.
-                                      type: string
-                                    playback_base_url:
-                                      description: The base URL where published playlists will be able to be obtained. This is often different than the publish_base_url for CDN publishing workflows.
-                                      format: uri-reference
-                                      type: string
-                                    playback_query_params:
-                                      description: 'Specifies any query parameters that will be added to playback urls. Should not include the initial ''?'' Example: ''foo=bar&q=golang'''
-                                      type: string
-                                    publish_base_url:
-                                      description: The base URL where generated playlists will be sent/published. Each publish point requires a unique 'publish_base_url'.
-                                      format: uri-reference
-                                      type: string
-                                    secure_header_auth:
-                                      additionalProperties: false
-                                      properties:
-                                        arn:
-                                          description: arn is the AWS Secret ARN that contains the secure header list to be applied.
-                                          type: string
-                                        version_id:
-                                          description: version_id is the AWS Secret's version ID that contains the version of the secret to be applied.
-                                          type: string
-                                      type: object
-                                  type: object
+                                  description: HTTP destination where media segments and playlists will be published.
                                 id:
                                   description: uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
                                   type: string
@@ -14106,7 +14160,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -14132,19 +14198,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
