@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PublicationOriginFallbackDefaults type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PublicationOriginFallbackDefaults{}
+// checks if the PublicationOriginManifestDefaults type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublicationOriginManifestDefaults{}
 
-// PublicationOriginFallbackDefaults struct for PublicationOriginFallbackDefaults
-type PublicationOriginFallbackDefaults struct {
+// PublicationOriginManifestDefaults struct for PublicationOriginManifestDefaults
+type PublicationOriginManifestDefaults struct {
 	// DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests.
 	DashSignalingFormats []string `json:"dash_signaling_formats,omitempty" uniqueItems:"true" enum:"SCTE35_SPLICE_INFO_SECTION,SCTE35_BIN" doc:"DASH Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering DASH manifests."`
 	// Specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this origin. If omitted or empty, all DRMs specified by the packager will be advertised. Only honored for Alternate Manifests. Example: '81376844-f976-481e-a84e-cc25d39b0b33' for bulk file encryption ID
@@ -44,25 +44,25 @@ type PublicationOriginFallbackDefaults struct {
 	SuggestedPresentationDelaySeconds *int32 `json:"suggested_presentation_delay_seconds,omitempty" format:"int32" minimum:"0" doc:"Sets the suggestedPresentationDelay field in MPD to be this value. This value must be greater or equal to 'minimum_update_period_secs'. If unset, the default value will be calculated as 3 * segment target duration."`
 }
 
-// NewPublicationOriginFallbackDefaults instantiates a new PublicationOriginFallbackDefaults object
+// NewPublicationOriginManifestDefaults instantiates a new PublicationOriginManifestDefaults object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublicationOriginFallbackDefaults() *PublicationOriginFallbackDefaults {
-	this := PublicationOriginFallbackDefaults{}
+func NewPublicationOriginManifestDefaults() *PublicationOriginManifestDefaults {
+	this := PublicationOriginManifestDefaults{}
 	return &this
 }
 
-// NewPublicationOriginFallbackDefaultsWithDefaults instantiates a new PublicationOriginFallbackDefaults object
+// NewPublicationOriginManifestDefaultsWithDefaults instantiates a new PublicationOriginManifestDefaults object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPublicationOriginFallbackDefaultsWithDefaults() *PublicationOriginFallbackDefaults {
-	this := PublicationOriginFallbackDefaults{}
+func NewPublicationOriginManifestDefaultsWithDefaults() *PublicationOriginManifestDefaults {
+	this := PublicationOriginManifestDefaults{}
 	return &this
 }
 
 // GetDashSignalingFormats returns the DashSignalingFormats field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationOriginFallbackDefaults) GetDashSignalingFormats() []string {
+func (o *PublicationOriginManifestDefaults) GetDashSignalingFormats() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -73,7 +73,7 @@ func (o *PublicationOriginFallbackDefaults) GetDashSignalingFormats() []string {
 // GetDashSignalingFormatsOk returns a tuple with the DashSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationOriginFallbackDefaults) GetDashSignalingFormatsOk() ([]string, bool) {
+func (o *PublicationOriginManifestDefaults) GetDashSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DashSignalingFormats) {
 		return nil, false
 	}
@@ -81,7 +81,7 @@ func (o *PublicationOriginFallbackDefaults) GetDashSignalingFormatsOk() ([]strin
 }
 
 // HasDashSignalingFormats returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasDashSignalingFormats() bool {
+func (o *PublicationOriginManifestDefaults) HasDashSignalingFormats() bool {
 	if o != nil && IsNil(o.DashSignalingFormats) {
 		return true
 	}
@@ -90,12 +90,12 @@ func (o *PublicationOriginFallbackDefaults) HasDashSignalingFormats() bool {
 }
 
 // SetDashSignalingFormats gets a reference to the given []string and assigns it to the DashSignalingFormats field.
-func (o *PublicationOriginFallbackDefaults) SetDashSignalingFormats(v []string) {
+func (o *PublicationOriginManifestDefaults) SetDashSignalingFormats(v []string) {
 	o.DashSignalingFormats = v
 }
 
 // GetDrmSystemIds returns the DrmSystemIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationOriginFallbackDefaults) GetDrmSystemIds() []string {
+func (o *PublicationOriginManifestDefaults) GetDrmSystemIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -106,7 +106,7 @@ func (o *PublicationOriginFallbackDefaults) GetDrmSystemIds() []string {
 // GetDrmSystemIdsOk returns a tuple with the DrmSystemIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationOriginFallbackDefaults) GetDrmSystemIdsOk() ([]string, bool) {
+func (o *PublicationOriginManifestDefaults) GetDrmSystemIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.DrmSystemIds) {
 		return nil, false
 	}
@@ -114,7 +114,7 @@ func (o *PublicationOriginFallbackDefaults) GetDrmSystemIdsOk() ([]string, bool)
 }
 
 // HasDrmSystemIds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasDrmSystemIds() bool {
+func (o *PublicationOriginManifestDefaults) HasDrmSystemIds() bool {
 	if o != nil && IsNil(o.DrmSystemIds) {
 		return true
 	}
@@ -123,12 +123,12 @@ func (o *PublicationOriginFallbackDefaults) HasDrmSystemIds() bool {
 }
 
 // SetDrmSystemIds gets a reference to the given []string and assigns it to the DrmSystemIds field.
-func (o *PublicationOriginFallbackDefaults) SetDrmSystemIds(v []string) {
+func (o *PublicationOriginManifestDefaults) SetDrmSystemIds(v []string) {
 	o.DrmSystemIds = v
 }
 
 // GetDurationSeconds returns the DurationSeconds field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetDurationSeconds() int32 {
+func (o *PublicationOriginManifestDefaults) GetDurationSeconds() int32 {
 	if o == nil || IsNil(o.DurationSeconds) {
 		var ret int32
 		return ret
@@ -138,7 +138,7 @@ func (o *PublicationOriginFallbackDefaults) GetDurationSeconds() int32 {
 
 // GetDurationSecondsOk returns a tuple with the DurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetDurationSecondsOk() (*int32, bool) {
+func (o *PublicationOriginManifestDefaults) GetDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.DurationSeconds) {
 		return nil, false
 	}
@@ -146,7 +146,7 @@ func (o *PublicationOriginFallbackDefaults) GetDurationSecondsOk() (*int32, bool
 }
 
 // HasDurationSeconds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasDurationSeconds() bool {
+func (o *PublicationOriginManifestDefaults) HasDurationSeconds() bool {
 	if o != nil && !IsNil(o.DurationSeconds) {
 		return true
 	}
@@ -155,12 +155,12 @@ func (o *PublicationOriginFallbackDefaults) HasDurationSeconds() bool {
 }
 
 // SetDurationSeconds gets a reference to the given int32 and assigns it to the DurationSeconds field.
-func (o *PublicationOriginFallbackDefaults) SetDurationSeconds(v int32) {
+func (o *PublicationOriginManifestDefaults) SetDurationSeconds(v int32) {
 	o.DurationSeconds = &v
 }
 
 // GetEnableHlsDeltaUpdates returns the EnableHlsDeltaUpdates field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetEnableHlsDeltaUpdates() bool {
+func (o *PublicationOriginManifestDefaults) GetEnableHlsDeltaUpdates() bool {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		var ret bool
 		return ret
@@ -170,7 +170,7 @@ func (o *PublicationOriginFallbackDefaults) GetEnableHlsDeltaUpdates() bool {
 
 // GetEnableHlsDeltaUpdatesOk returns a tuple with the EnableHlsDeltaUpdates field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
+func (o *PublicationOriginManifestDefaults) GetEnableHlsDeltaUpdatesOk() (*bool, bool) {
 	if o == nil || IsNil(o.EnableHlsDeltaUpdates) {
 		return nil, false
 	}
@@ -178,7 +178,7 @@ func (o *PublicationOriginFallbackDefaults) GetEnableHlsDeltaUpdatesOk() (*bool,
 }
 
 // HasEnableHlsDeltaUpdates returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasEnableHlsDeltaUpdates() bool {
+func (o *PublicationOriginManifestDefaults) HasEnableHlsDeltaUpdates() bool {
 	if o != nil && !IsNil(o.EnableHlsDeltaUpdates) {
 		return true
 	}
@@ -187,12 +187,12 @@ func (o *PublicationOriginFallbackDefaults) HasEnableHlsDeltaUpdates() bool {
 }
 
 // SetEnableHlsDeltaUpdates gets a reference to the given bool and assigns it to the EnableHlsDeltaUpdates field.
-func (o *PublicationOriginFallbackDefaults) SetEnableHlsDeltaUpdates(v bool) {
+func (o *PublicationOriginManifestDefaults) SetEnableHlsDeltaUpdates(v bool) {
 	o.EnableHlsDeltaUpdates = &v
 }
 
 // GetEncoderIds returns the EncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationOriginFallbackDefaults) GetEncoderIds() []string {
+func (o *PublicationOriginManifestDefaults) GetEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -203,7 +203,7 @@ func (o *PublicationOriginFallbackDefaults) GetEncoderIds() []string {
 // GetEncoderIdsOk returns a tuple with the EncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationOriginFallbackDefaults) GetEncoderIdsOk() ([]string, bool) {
+func (o *PublicationOriginManifestDefaults) GetEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.EncoderIds) {
 		return nil, false
 	}
@@ -211,7 +211,7 @@ func (o *PublicationOriginFallbackDefaults) GetEncoderIdsOk() ([]string, bool) {
 }
 
 // HasEncoderIds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasEncoderIds() bool {
+func (o *PublicationOriginManifestDefaults) HasEncoderIds() bool {
 	if o != nil && IsNil(o.EncoderIds) {
 		return true
 	}
@@ -220,12 +220,12 @@ func (o *PublicationOriginFallbackDefaults) HasEncoderIds() bool {
 }
 
 // SetEncoderIds gets a reference to the given []string and assigns it to the EncoderIds field.
-func (o *PublicationOriginFallbackDefaults) SetEncoderIds(v []string) {
+func (o *PublicationOriginManifestDefaults) SetEncoderIds(v []string) {
 	o.EncoderIds = v
 }
 
 // GetHlsSignalingFormats returns the HlsSignalingFormats field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationOriginFallbackDefaults) GetHlsSignalingFormats() []string {
+func (o *PublicationOriginManifestDefaults) GetHlsSignalingFormats() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -236,7 +236,7 @@ func (o *PublicationOriginFallbackDefaults) GetHlsSignalingFormats() []string {
 // GetHlsSignalingFormatsOk returns a tuple with the HlsSignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationOriginFallbackDefaults) GetHlsSignalingFormatsOk() ([]string, bool) {
+func (o *PublicationOriginManifestDefaults) GetHlsSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.HlsSignalingFormats) {
 		return nil, false
 	}
@@ -244,7 +244,7 @@ func (o *PublicationOriginFallbackDefaults) GetHlsSignalingFormatsOk() ([]string
 }
 
 // HasHlsSignalingFormats returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasHlsSignalingFormats() bool {
+func (o *PublicationOriginManifestDefaults) HasHlsSignalingFormats() bool {
 	if o != nil && IsNil(o.HlsSignalingFormats) {
 		return true
 	}
@@ -253,12 +253,12 @@ func (o *PublicationOriginFallbackDefaults) HasHlsSignalingFormats() bool {
 }
 
 // SetHlsSignalingFormats gets a reference to the given []string and assigns it to the HlsSignalingFormats field.
-func (o *PublicationOriginFallbackDefaults) SetHlsSignalingFormats(v []string) {
+func (o *PublicationOriginManifestDefaults) SetHlsSignalingFormats(v []string) {
 	o.HlsSignalingFormats = v
 }
 
 // GetMediaUrlType returns the MediaUrlType field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetMediaUrlType() string {
+func (o *PublicationOriginManifestDefaults) GetMediaUrlType() string {
 	if o == nil || IsNil(o.MediaUrlType) {
 		var ret string
 		return ret
@@ -268,7 +268,7 @@ func (o *PublicationOriginFallbackDefaults) GetMediaUrlType() string {
 
 // GetMediaUrlTypeOk returns a tuple with the MediaUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetMediaUrlTypeOk() (*string, bool) {
+func (o *PublicationOriginManifestDefaults) GetMediaUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MediaUrlType) {
 		return nil, false
 	}
@@ -276,7 +276,7 @@ func (o *PublicationOriginFallbackDefaults) GetMediaUrlTypeOk() (*string, bool) 
 }
 
 // HasMediaUrlType returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasMediaUrlType() bool {
+func (o *PublicationOriginManifestDefaults) HasMediaUrlType() bool {
 	if o != nil && !IsNil(o.MediaUrlType) {
 		return true
 	}
@@ -285,12 +285,12 @@ func (o *PublicationOriginFallbackDefaults) HasMediaUrlType() bool {
 }
 
 // SetMediaUrlType gets a reference to the given string and assigns it to the MediaUrlType field.
-func (o *PublicationOriginFallbackDefaults) SetMediaUrlType(v string) {
+func (o *PublicationOriginManifestDefaults) SetMediaUrlType(v string) {
 	o.MediaUrlType = &v
 }
 
 // GetMinimumUpdatePeriodSeconds returns the MinimumUpdatePeriodSeconds field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetMinimumUpdatePeriodSeconds() int32 {
+func (o *PublicationOriginManifestDefaults) GetMinimumUpdatePeriodSeconds() int32 {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		var ret int32
 		return ret
@@ -300,7 +300,7 @@ func (o *PublicationOriginFallbackDefaults) GetMinimumUpdatePeriodSeconds() int3
 
 // GetMinimumUpdatePeriodSecondsOk returns a tuple with the MinimumUpdatePeriodSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
+func (o *PublicationOriginManifestDefaults) GetMinimumUpdatePeriodSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSeconds) {
 		return nil, false
 	}
@@ -308,7 +308,7 @@ func (o *PublicationOriginFallbackDefaults) GetMinimumUpdatePeriodSecondsOk() (*
 }
 
 // HasMinimumUpdatePeriodSeconds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasMinimumUpdatePeriodSeconds() bool {
+func (o *PublicationOriginManifestDefaults) HasMinimumUpdatePeriodSeconds() bool {
 	if o != nil && !IsNil(o.MinimumUpdatePeriodSeconds) {
 		return true
 	}
@@ -317,12 +317,12 @@ func (o *PublicationOriginFallbackDefaults) HasMinimumUpdatePeriodSeconds() bool
 }
 
 // SetMinimumUpdatePeriodSeconds gets a reference to the given int32 and assigns it to the MinimumUpdatePeriodSeconds field.
-func (o *PublicationOriginFallbackDefaults) SetMinimumUpdatePeriodSeconds(v int32) {
+func (o *PublicationOriginManifestDefaults) SetMinimumUpdatePeriodSeconds(v int32) {
 	o.MinimumUpdatePeriodSeconds = &v
 }
 
 // GetMultiVariantUrlType returns the MultiVariantUrlType field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetMultiVariantUrlType() string {
+func (o *PublicationOriginManifestDefaults) GetMultiVariantUrlType() string {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		var ret string
 		return ret
@@ -332,7 +332,7 @@ func (o *PublicationOriginFallbackDefaults) GetMultiVariantUrlType() string {
 
 // GetMultiVariantUrlTypeOk returns a tuple with the MultiVariantUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetMultiVariantUrlTypeOk() (*string, bool) {
+func (o *PublicationOriginManifestDefaults) GetMultiVariantUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MultiVariantUrlType) {
 		return nil, false
 	}
@@ -340,7 +340,7 @@ func (o *PublicationOriginFallbackDefaults) GetMultiVariantUrlTypeOk() (*string,
 }
 
 // HasMultiVariantUrlType returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasMultiVariantUrlType() bool {
+func (o *PublicationOriginManifestDefaults) HasMultiVariantUrlType() bool {
 	if o != nil && !IsNil(o.MultiVariantUrlType) {
 		return true
 	}
@@ -349,12 +349,12 @@ func (o *PublicationOriginFallbackDefaults) HasMultiVariantUrlType() bool {
 }
 
 // SetMultiVariantUrlType gets a reference to the given string and assigns it to the MultiVariantUrlType field.
-func (o *PublicationOriginFallbackDefaults) SetMultiVariantUrlType(v string) {
+func (o *PublicationOriginManifestDefaults) SetMultiVariantUrlType(v string) {
 	o.MultiVariantUrlType = &v
 }
 
 // GetPdtOnEverySegment returns the PdtOnEverySegment field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetPdtOnEverySegment() bool {
+func (o *PublicationOriginManifestDefaults) GetPdtOnEverySegment() bool {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		var ret bool
 		return ret
@@ -364,7 +364,7 @@ func (o *PublicationOriginFallbackDefaults) GetPdtOnEverySegment() bool {
 
 // GetPdtOnEverySegmentOk returns a tuple with the PdtOnEverySegment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetPdtOnEverySegmentOk() (*bool, bool) {
+func (o *PublicationOriginManifestDefaults) GetPdtOnEverySegmentOk() (*bool, bool) {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		return nil, false
 	}
@@ -372,7 +372,7 @@ func (o *PublicationOriginFallbackDefaults) GetPdtOnEverySegmentOk() (*bool, boo
 }
 
 // HasPdtOnEverySegment returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasPdtOnEverySegment() bool {
+func (o *PublicationOriginManifestDefaults) HasPdtOnEverySegment() bool {
 	if o != nil && !IsNil(o.PdtOnEverySegment) {
 		return true
 	}
@@ -381,12 +381,12 @@ func (o *PublicationOriginFallbackDefaults) HasPdtOnEverySegment() bool {
 }
 
 // SetPdtOnEverySegment gets a reference to the given bool and assigns it to the PdtOnEverySegment field.
-func (o *PublicationOriginFallbackDefaults) SetPdtOnEverySegment(v bool) {
+func (o *PublicationOriginManifestDefaults) SetPdtOnEverySegment(v bool) {
 	o.PdtOnEverySegment = &v
 }
 
 // GetPreStartDurationSeconds returns the PreStartDurationSeconds field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetPreStartDurationSeconds() int32 {
+func (o *PublicationOriginManifestDefaults) GetPreStartDurationSeconds() int32 {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		var ret int32
 		return ret
@@ -396,7 +396,7 @@ func (o *PublicationOriginFallbackDefaults) GetPreStartDurationSeconds() int32 {
 
 // GetPreStartDurationSecondsOk returns a tuple with the PreStartDurationSeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetPreStartDurationSecondsOk() (*int32, bool) {
+func (o *PublicationOriginManifestDefaults) GetPreStartDurationSecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.PreStartDurationSeconds) {
 		return nil, false
 	}
@@ -404,7 +404,7 @@ func (o *PublicationOriginFallbackDefaults) GetPreStartDurationSecondsOk() (*int
 }
 
 // HasPreStartDurationSeconds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasPreStartDurationSeconds() bool {
+func (o *PublicationOriginManifestDefaults) HasPreStartDurationSeconds() bool {
 	if o != nil && !IsNil(o.PreStartDurationSeconds) {
 		return true
 	}
@@ -413,12 +413,12 @@ func (o *PublicationOriginFallbackDefaults) HasPreStartDurationSeconds() bool {
 }
 
 // SetPreStartDurationSeconds gets a reference to the given int32 and assigns it to the PreStartDurationSeconds field.
-func (o *PublicationOriginFallbackDefaults) SetPreStartDurationSeconds(v int32) {
+func (o *PublicationOriginManifestDefaults) SetPreStartDurationSeconds(v int32) {
 	o.PreStartDurationSeconds = &v
 }
 
 // GetSuggestedPresentationDelaySeconds returns the SuggestedPresentationDelaySeconds field value if set, zero value otherwise.
-func (o *PublicationOriginFallbackDefaults) GetSuggestedPresentationDelaySeconds() int32 {
+func (o *PublicationOriginManifestDefaults) GetSuggestedPresentationDelaySeconds() int32 {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		var ret int32
 		return ret
@@ -428,7 +428,7 @@ func (o *PublicationOriginFallbackDefaults) GetSuggestedPresentationDelaySeconds
 
 // GetSuggestedPresentationDelaySecondsOk returns a tuple with the SuggestedPresentationDelaySeconds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationOriginFallbackDefaults) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
+func (o *PublicationOriginManifestDefaults) GetSuggestedPresentationDelaySecondsOk() (*int32, bool) {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySeconds) {
 		return nil, false
 	}
@@ -436,7 +436,7 @@ func (o *PublicationOriginFallbackDefaults) GetSuggestedPresentationDelaySeconds
 }
 
 // HasSuggestedPresentationDelaySeconds returns a boolean if a field has been set.
-func (o *PublicationOriginFallbackDefaults) HasSuggestedPresentationDelaySeconds() bool {
+func (o *PublicationOriginManifestDefaults) HasSuggestedPresentationDelaySeconds() bool {
 	if o != nil && !IsNil(o.SuggestedPresentationDelaySeconds) {
 		return true
 	}
@@ -445,11 +445,11 @@ func (o *PublicationOriginFallbackDefaults) HasSuggestedPresentationDelaySeconds
 }
 
 // SetSuggestedPresentationDelaySeconds gets a reference to the given int32 and assigns it to the SuggestedPresentationDelaySeconds field.
-func (o *PublicationOriginFallbackDefaults) SetSuggestedPresentationDelaySeconds(v int32) {
+func (o *PublicationOriginManifestDefaults) SetSuggestedPresentationDelaySeconds(v int32) {
 	o.SuggestedPresentationDelaySeconds = &v
 }
 
-func (o PublicationOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
+func (o PublicationOriginManifestDefaults) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -457,7 +457,7 @@ func (o PublicationOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PublicationOriginFallbackDefaults) ToMap() (map[string]interface{}, error) {
+func (o PublicationOriginManifestDefaults) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.DashSignalingFormats != nil {
 		toSerialize["dash_signaling_formats"] = o.DashSignalingFormats
@@ -498,38 +498,38 @@ func (o PublicationOriginFallbackDefaults) ToMap() (map[string]interface{}, erro
 	return toSerialize, nil
 }
 
-type NullablePublicationOriginFallbackDefaults struct {
-	value *PublicationOriginFallbackDefaults
+type NullablePublicationOriginManifestDefaults struct {
+	value *PublicationOriginManifestDefaults
 	isSet bool
 }
 
-func (v NullablePublicationOriginFallbackDefaults) Get() *PublicationOriginFallbackDefaults {
+func (v NullablePublicationOriginManifestDefaults) Get() *PublicationOriginManifestDefaults {
 	return v.value
 }
 
-func (v *NullablePublicationOriginFallbackDefaults) Set(val *PublicationOriginFallbackDefaults) {
+func (v *NullablePublicationOriginManifestDefaults) Set(val *PublicationOriginManifestDefaults) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePublicationOriginFallbackDefaults) IsSet() bool {
+func (v NullablePublicationOriginManifestDefaults) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePublicationOriginFallbackDefaults) Unset() {
+func (v *NullablePublicationOriginManifestDefaults) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePublicationOriginFallbackDefaults(val *PublicationOriginFallbackDefaults) *NullablePublicationOriginFallbackDefaults {
-	return &NullablePublicationOriginFallbackDefaults{value: val, isSet: true}
+func NewNullablePublicationOriginManifestDefaults(val *PublicationOriginManifestDefaults) *NullablePublicationOriginManifestDefaults {
+	return &NullablePublicationOriginManifestDefaults{value: val, isSet: true}
 }
 
-func (v NullablePublicationOriginFallbackDefaults) MarshalJSON() ([]byte, error) {
+func (v NullablePublicationOriginManifestDefaults) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePublicationOriginFallbackDefaults) UnmarshalJSON(src []byte) error {
+func (v *NullablePublicationOriginManifestDefaults) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
