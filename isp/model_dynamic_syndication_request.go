@@ -27,7 +27,8 @@ type DynamicSyndicationRequest struct {
 	ManifestUrl  string              `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
 	Notification DynamicNotification `json:"notification"`
 	// Query string containing params for the manifest url
-	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
+	QueryString string            `json:"query_string" doc:"Query string containing params for the manifest url"`
+	SccSidecar  *SCCSidecarConfig `json:"scc_sidecar,omitempty"`
 	// List of files to be created by Syndication
 	SyndicationFiles []SyndicationMediaFile `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
 }
@@ -207,6 +208,38 @@ func (o *DynamicSyndicationRequest) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+// GetSccSidecar returns the SccSidecar field value if set, zero value otherwise.
+func (o *DynamicSyndicationRequest) GetSccSidecar() SCCSidecarConfig {
+	if o == nil || IsNil(o.SccSidecar) {
+		var ret SCCSidecarConfig
+		return ret
+	}
+	return *o.SccSidecar
+}
+
+// GetSccSidecarOk returns a tuple with the SccSidecar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DynamicSyndicationRequest) GetSccSidecarOk() (*SCCSidecarConfig, bool) {
+	if o == nil || IsNil(o.SccSidecar) {
+		return nil, false
+	}
+	return o.SccSidecar, true
+}
+
+// HasSccSidecar returns a boolean if a field has been set.
+func (o *DynamicSyndicationRequest) HasSccSidecar() bool {
+	if o != nil && !IsNil(o.SccSidecar) {
+		return true
+	}
+
+	return false
+}
+
+// SetSccSidecar gets a reference to the given SCCSidecarConfig and assigns it to the SccSidecar field.
+func (o *DynamicSyndicationRequest) SetSccSidecar(v SCCSidecarConfig) {
+	o.SccSidecar = &v
+}
+
 // GetSyndicationFiles returns the SyndicationFiles field value
 // If the value is explicit nil, the zero value for []SyndicationMediaFile will be returned
 func (o *DynamicSyndicationRequest) GetSyndicationFiles() []SyndicationMediaFile {
@@ -251,6 +284,9 @@ func (o DynamicSyndicationRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["manifest_url"] = o.ManifestUrl
 	toSerialize["notification"] = o.Notification
 	toSerialize["query_string"] = o.QueryString
+	if !IsNil(o.SccSidecar) {
+		toSerialize["scc_sidecar"] = o.SccSidecar
+	}
 	if o.SyndicationFiles != nil {
 		toSerialize["syndication_files"] = o.SyndicationFiles
 	}
