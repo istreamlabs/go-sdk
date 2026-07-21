@@ -18,7 +18,7 @@ var _ MappedNullable = &PublishPoint{}
 
 // PublishPoint struct for PublishPoint
 type PublishPoint struct {
-	Http *PublishPointHTTP `json:"http,omitempty"`
+	Http *PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp `json:"http,omitempty"`
 	// uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field.
 	Id *string `json:"id,omitempty" doc:"uniquely identifies this publish_point within a channel configuration. Can be referenced by other publish_points in the 'playlist_only_for' field."`
 	// playlist_only_for identifies the id of the publish_point that has the segments for this publish_point, which is only publishing a playlist for those segments. All publish_points within a publication must either have 'playlist_only_for' all set or all not set.
@@ -43,9 +43,9 @@ func NewPublishPointWithDefaults() *PublishPoint {
 }
 
 // GetHttp returns the Http field value if set, zero value otherwise.
-func (o *PublishPoint) GetHttp() PublishPointHTTP {
+func (o *PublishPoint) GetHttp() PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp {
 	if o == nil || IsNil(o.Http) {
-		var ret PublishPointHTTP
+		var ret PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp
 		return ret
 	}
 	return *o.Http
@@ -53,7 +53,7 @@ func (o *PublishPoint) GetHttp() PublishPointHTTP {
 
 // GetHttpOk returns a tuple with the Http field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishPoint) GetHttpOk() (*PublishPointHTTP, bool) {
+func (o *PublishPoint) GetHttpOk() (*PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp, bool) {
 	if o == nil || IsNil(o.Http) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *PublishPoint) HasHttp() bool {
 	return false
 }
 
-// SetHttp gets a reference to the given PublishPointHTTP and assigns it to the Http field.
-func (o *PublishPoint) SetHttp(v PublishPointHTTP) {
+// SetHttp gets a reference to the given PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp and assigns it to the Http field.
+func (o *PublishPoint) SetHttp(v PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInnerHttp) {
 	o.Http = &v
 }
 

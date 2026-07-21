@@ -19,7 +19,7 @@ var _ MappedNullable = &PatchOrgChannelRequestPackagingPackagersValueContentProt
 // PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple struct for PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple
 type PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple struct {
 	// Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published.
-	PublishPoints []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner `json:"publish_points,omitempty" doc:"Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published."`
+	PublishPoints []PublishPointHTTP `json:"publish_points,omitempty" doc:"Pub points where keys should be published. If multiple are specified, only one needs to succeed to consider the key successfully published."`
 	// Indicates which publish points must succeed for segment publishing to use the keys.
 	RequirePublish *string `json:"require_publish,omitempty" enum:"ANY,ALL" doc:"Indicates which publish points must succeed for segment publishing to use the keys."`
 }
@@ -42,9 +42,9 @@ func NewPatchOrgChannelRequestPackagingPackagersValueContentProtectionSimpleWith
 }
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) GetPublishPoints() []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) GetPublishPoints() []PublishPointHTTP {
 	if o == nil {
-		var ret []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner
+		var ret []PublishPointHTTP
 		return ret
 	}
 	return o.PublishPoints
@@ -53,7 +53,7 @@ func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) G
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) GetPublishPointsOk() ([]PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner, bool) {
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) GetPublishPointsOk() ([]PublishPointHTTP, bool) {
 	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
@@ -69,8 +69,8 @@ func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) H
 	return false
 }
 
-// SetPublishPoints gets a reference to the given []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner and assigns it to the PublishPoints field.
-func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) SetPublishPoints(v []PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimplePublishPointsInner) {
+// SetPublishPoints gets a reference to the given []PublishPointHTTP and assigns it to the PublishPoints field.
+func (o *PatchOrgChannelRequestPackagingPackagersValueContentProtectionSimple) SetPublishPoints(v []PublishPointHTTP) {
 	o.PublishPoints = v
 }
 
