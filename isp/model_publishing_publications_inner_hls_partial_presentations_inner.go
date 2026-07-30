@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the HLSPartialPresentationsInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HLSPartialPresentationsInner{}
+// checks if the PublishingPublicationsInnerHlsPartialPresentationsInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublishingPublicationsInnerHlsPartialPresentationsInner{}
 
-// HLSPartialPresentationsInner struct for HLSPartialPresentationsInner
-type HLSPartialPresentationsInner struct {
+// PublishingPublicationsInnerHlsPartialPresentationsInner struct for PublishingPublicationsInnerHlsPartialPresentationsInner
+type PublishingPublicationsInnerHlsPartialPresentationsInner struct {
 	// Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used.
 	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which audio encoders should be used for this presentation. If none are specified, all audio encoders configured for the parent Publication will be used."`
 	// Optionally specify which audio encoders should be used when generating the FER of this Partial Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used. NOTE: This MUST only be used with push based manifest. Ignore this field when using Aventus Origin with Dynamic Manifests. Instead use the AudioSource.License field.
@@ -32,25 +32,25 @@ type HLSPartialPresentationsInner struct {
 	VideoEncoderIds []string `json:"video_encoder_ids,omitempty" uniqueItems:"true" doc:"Specify which video encoders should be used for this presentation. If none are specified, all video encoders configured for the parent Publication will be used."`
 }
 
-// NewHLSPartialPresentationsInner instantiates a new HLSPartialPresentationsInner object
+// NewPublishingPublicationsInnerHlsPartialPresentationsInner instantiates a new PublishingPublicationsInnerHlsPartialPresentationsInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHLSPartialPresentationsInner() *HLSPartialPresentationsInner {
-	this := HLSPartialPresentationsInner{}
+func NewPublishingPublicationsInnerHlsPartialPresentationsInner() *PublishingPublicationsInnerHlsPartialPresentationsInner {
+	this := PublishingPublicationsInnerHlsPartialPresentationsInner{}
 	return &this
 }
 
-// NewHLSPartialPresentationsInnerWithDefaults instantiates a new HLSPartialPresentationsInner object
+// NewPublishingPublicationsInnerHlsPartialPresentationsInnerWithDefaults instantiates a new PublishingPublicationsInnerHlsPartialPresentationsInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHLSPartialPresentationsInnerWithDefaults() *HLSPartialPresentationsInner {
-	this := HLSPartialPresentationsInner{}
+func NewPublishingPublicationsInnerHlsPartialPresentationsInnerWithDefaults() *PublishingPublicationsInnerHlsPartialPresentationsInner {
+	this := PublishingPublicationsInnerHlsPartialPresentationsInner{}
 	return &this
 }
 
 // GetAudioEncoderIds returns the AudioEncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HLSPartialPresentationsInner) GetAudioEncoderIds() []string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetAudioEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -61,7 +61,7 @@ func (o *HLSPartialPresentationsInner) GetAudioEncoderIds() []string {
 // GetAudioEncoderIdsOk returns a tuple with the AudioEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HLSPartialPresentationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.AudioEncoderIds) {
 		return nil, false
 	}
@@ -69,7 +69,7 @@ func (o *HLSPartialPresentationsInner) GetAudioEncoderIdsOk() ([]string, bool) {
 }
 
 // HasAudioEncoderIds returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasAudioEncoderIds() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasAudioEncoderIds() bool {
 	if o != nil && IsNil(o.AudioEncoderIds) {
 		return true
 	}
@@ -78,12 +78,12 @@ func (o *HLSPartialPresentationsInner) HasAudioEncoderIds() bool {
 }
 
 // SetAudioEncoderIds gets a reference to the given []string and assigns it to the AudioEncoderIds field.
-func (o *HLSPartialPresentationsInner) SetAudioEncoderIds(v []string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetAudioEncoderIds(v []string) {
 	o.AudioEncoderIds = v
 }
 
 // GetFerAudioEncoderIds returns the FerAudioEncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HLSPartialPresentationsInner) GetFerAudioEncoderIds() []string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetFerAudioEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -94,7 +94,7 @@ func (o *HLSPartialPresentationsInner) GetFerAudioEncoderIds() []string {
 // GetFerAudioEncoderIdsOk returns a tuple with the FerAudioEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HLSPartialPresentationsInner) GetFerAudioEncoderIdsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetFerAudioEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.FerAudioEncoderIds) {
 		return nil, false
 	}
@@ -102,7 +102,7 @@ func (o *HLSPartialPresentationsInner) GetFerAudioEncoderIdsOk() ([]string, bool
 }
 
 // HasFerAudioEncoderIds returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasFerAudioEncoderIds() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasFerAudioEncoderIds() bool {
 	if o != nil && IsNil(o.FerAudioEncoderIds) {
 		return true
 	}
@@ -111,12 +111,12 @@ func (o *HLSPartialPresentationsInner) HasFerAudioEncoderIds() bool {
 }
 
 // SetFerAudioEncoderIds gets a reference to the given []string and assigns it to the FerAudioEncoderIds field.
-func (o *HLSPartialPresentationsInner) SetFerAudioEncoderIds(v []string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetFerAudioEncoderIds(v []string) {
 	o.FerAudioEncoderIds = v
 }
 
 // GetIframeOnlyEncoderIds returns the IframeOnlyEncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HLSPartialPresentationsInner) GetIframeOnlyEncoderIds() []string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetIframeOnlyEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -127,7 +127,7 @@ func (o *HLSPartialPresentationsInner) GetIframeOnlyEncoderIds() []string {
 // GetIframeOnlyEncoderIdsOk returns a tuple with the IframeOnlyEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HLSPartialPresentationsInner) GetIframeOnlyEncoderIdsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetIframeOnlyEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.IframeOnlyEncoderIds) {
 		return nil, false
 	}
@@ -135,7 +135,7 @@ func (o *HLSPartialPresentationsInner) GetIframeOnlyEncoderIdsOk() ([]string, bo
 }
 
 // HasIframeOnlyEncoderIds returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasIframeOnlyEncoderIds() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasIframeOnlyEncoderIds() bool {
 	if o != nil && IsNil(o.IframeOnlyEncoderIds) {
 		return true
 	}
@@ -144,12 +144,12 @@ func (o *HLSPartialPresentationsInner) HasIframeOnlyEncoderIds() bool {
 }
 
 // SetIframeOnlyEncoderIds gets a reference to the given []string and assigns it to the IframeOnlyEncoderIds field.
-func (o *HLSPartialPresentationsInner) SetIframeOnlyEncoderIds(v []string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetIframeOnlyEncoderIds(v []string) {
 	o.IframeOnlyEncoderIds = v
 }
 
 // GetPlaylistPath returns the PlaylistPath field value if set, zero value otherwise.
-func (o *HLSPartialPresentationsInner) GetPlaylistPath() string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetPlaylistPath() string {
 	if o == nil || IsNil(o.PlaylistPath) {
 		var ret string
 		return ret
@@ -159,7 +159,7 @@ func (o *HLSPartialPresentationsInner) GetPlaylistPath() string {
 
 // GetPlaylistPathOk returns a tuple with the PlaylistPath field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HLSPartialPresentationsInner) GetPlaylistPathOk() (*string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetPlaylistPathOk() (*string, bool) {
 	if o == nil || IsNil(o.PlaylistPath) {
 		return nil, false
 	}
@@ -167,7 +167,7 @@ func (o *HLSPartialPresentationsInner) GetPlaylistPathOk() (*string, bool) {
 }
 
 // HasPlaylistPath returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasPlaylistPath() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasPlaylistPath() bool {
 	if o != nil && !IsNil(o.PlaylistPath) {
 		return true
 	}
@@ -176,12 +176,12 @@ func (o *HLSPartialPresentationsInner) HasPlaylistPath() bool {
 }
 
 // SetPlaylistPath gets a reference to the given string and assigns it to the PlaylistPath field.
-func (o *HLSPartialPresentationsInner) SetPlaylistPath(v string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetPlaylistPath(v string) {
 	o.PlaylistPath = &v
 }
 
 // GetThumbnailEncoderIds returns the ThumbnailEncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HLSPartialPresentationsInner) GetThumbnailEncoderIds() []string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetThumbnailEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -192,7 +192,7 @@ func (o *HLSPartialPresentationsInner) GetThumbnailEncoderIds() []string {
 // GetThumbnailEncoderIdsOk returns a tuple with the ThumbnailEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HLSPartialPresentationsInner) GetThumbnailEncoderIdsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetThumbnailEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.ThumbnailEncoderIds) {
 		return nil, false
 	}
@@ -200,7 +200,7 @@ func (o *HLSPartialPresentationsInner) GetThumbnailEncoderIdsOk() ([]string, boo
 }
 
 // HasThumbnailEncoderIds returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasThumbnailEncoderIds() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasThumbnailEncoderIds() bool {
 	if o != nil && IsNil(o.ThumbnailEncoderIds) {
 		return true
 	}
@@ -209,12 +209,12 @@ func (o *HLSPartialPresentationsInner) HasThumbnailEncoderIds() bool {
 }
 
 // SetThumbnailEncoderIds gets a reference to the given []string and assigns it to the ThumbnailEncoderIds field.
-func (o *HLSPartialPresentationsInner) SetThumbnailEncoderIds(v []string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetThumbnailEncoderIds(v []string) {
 	o.ThumbnailEncoderIds = v
 }
 
 // GetVideoEncoderIds returns the VideoEncoderIds field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HLSPartialPresentationsInner) GetVideoEncoderIds() []string {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetVideoEncoderIds() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -225,7 +225,7 @@ func (o *HLSPartialPresentationsInner) GetVideoEncoderIds() []string {
 // GetVideoEncoderIdsOk returns a tuple with the VideoEncoderIds field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HLSPartialPresentationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
 	if o == nil || IsNil(o.VideoEncoderIds) {
 		return nil, false
 	}
@@ -233,7 +233,7 @@ func (o *HLSPartialPresentationsInner) GetVideoEncoderIdsOk() ([]string, bool) {
 }
 
 // HasVideoEncoderIds returns a boolean if a field has been set.
-func (o *HLSPartialPresentationsInner) HasVideoEncoderIds() bool {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) HasVideoEncoderIds() bool {
 	if o != nil && IsNil(o.VideoEncoderIds) {
 		return true
 	}
@@ -242,11 +242,11 @@ func (o *HLSPartialPresentationsInner) HasVideoEncoderIds() bool {
 }
 
 // SetVideoEncoderIds gets a reference to the given []string and assigns it to the VideoEncoderIds field.
-func (o *HLSPartialPresentationsInner) SetVideoEncoderIds(v []string) {
+func (o *PublishingPublicationsInnerHlsPartialPresentationsInner) SetVideoEncoderIds(v []string) {
 	o.VideoEncoderIds = v
 }
 
-func (o HLSPartialPresentationsInner) MarshalJSON() ([]byte, error) {
+func (o PublishingPublicationsInnerHlsPartialPresentationsInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -254,7 +254,7 @@ func (o HLSPartialPresentationsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o HLSPartialPresentationsInner) ToMap() (map[string]interface{}, error) {
+func (o PublishingPublicationsInnerHlsPartialPresentationsInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if o.AudioEncoderIds != nil {
 		toSerialize["audio_encoder_ids"] = o.AudioEncoderIds
@@ -277,38 +277,38 @@ func (o HLSPartialPresentationsInner) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullableHLSPartialPresentationsInner struct {
-	value *HLSPartialPresentationsInner
+type NullablePublishingPublicationsInnerHlsPartialPresentationsInner struct {
+	value *PublishingPublicationsInnerHlsPartialPresentationsInner
 	isSet bool
 }
 
-func (v NullableHLSPartialPresentationsInner) Get() *HLSPartialPresentationsInner {
+func (v NullablePublishingPublicationsInnerHlsPartialPresentationsInner) Get() *PublishingPublicationsInnerHlsPartialPresentationsInner {
 	return v.value
 }
 
-func (v *NullableHLSPartialPresentationsInner) Set(val *HLSPartialPresentationsInner) {
+func (v *NullablePublishingPublicationsInnerHlsPartialPresentationsInner) Set(val *PublishingPublicationsInnerHlsPartialPresentationsInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHLSPartialPresentationsInner) IsSet() bool {
+func (v NullablePublishingPublicationsInnerHlsPartialPresentationsInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHLSPartialPresentationsInner) Unset() {
+func (v *NullablePublishingPublicationsInnerHlsPartialPresentationsInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHLSPartialPresentationsInner(val *HLSPartialPresentationsInner) *NullableHLSPartialPresentationsInner {
-	return &NullableHLSPartialPresentationsInner{value: val, isSet: true}
+func NewNullablePublishingPublicationsInnerHlsPartialPresentationsInner(val *PublishingPublicationsInnerHlsPartialPresentationsInner) *NullablePublishingPublicationsInnerHlsPartialPresentationsInner {
+	return &NullablePublishingPublicationsInnerHlsPartialPresentationsInner{value: val, isSet: true}
 }
 
-func (v NullableHLSPartialPresentationsInner) MarshalJSON() ([]byte, error) {
+func (v NullablePublishingPublicationsInnerHlsPartialPresentationsInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHLSPartialPresentationsInner) UnmarshalJSON(src []byte) error {
+func (v *NullablePublishingPublicationsInnerHlsPartialPresentationsInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

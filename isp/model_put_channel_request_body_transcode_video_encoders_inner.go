@@ -18,6 +18,7 @@ var _ MappedNullable = &PutChannelRequestBodyTranscodeVideoEncodersInner{}
 
 // PutChannelRequestBodyTranscodeVideoEncodersInner struct for PutChannelRequestBodyTranscodeVideoEncodersInner
 type PutChannelRequestBodyTranscodeVideoEncodersInner struct {
+	Av1 *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 `json:"av1,omitempty"`
 	// Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
 	BitRate *int32 `json:"bit_rate,omitempty" format:"int32" exclusiveMinimum:"1000" doc:"Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate."`
 	// Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
@@ -49,6 +50,38 @@ func NewPutChannelRequestBodyTranscodeVideoEncodersInner() *PutChannelRequestBod
 func NewPutChannelRequestBodyTranscodeVideoEncodersInnerWithDefaults() *PutChannelRequestBodyTranscodeVideoEncodersInner {
 	this := PutChannelRequestBodyTranscodeVideoEncodersInner{}
 	return &this
+}
+
+// GetAv1 returns the Av1 field value if set, zero value otherwise.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInner) GetAv1() PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 {
+	if o == nil || IsNil(o.Av1) {
+		var ret PutChannelRequestBodyTranscodeVideoEncodersInnerAv1
+		return ret
+	}
+	return *o.Av1
+}
+
+// GetAv1Ok returns a tuple with the Av1 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInner) GetAv1Ok() (*PutChannelRequestBodyTranscodeVideoEncodersInnerAv1, bool) {
+	if o == nil || IsNil(o.Av1) {
+		return nil, false
+	}
+	return o.Av1, true
+}
+
+// HasAv1 returns a boolean if a field has been set.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInner) HasAv1() bool {
+	if o != nil && !IsNil(o.Av1) {
+		return true
+	}
+
+	return false
+}
+
+// SetAv1 gets a reference to the given PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 and assigns it to the Av1 field.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInner) SetAv1(v PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) {
+	o.Av1 = &v
 }
 
 // GetBitRate returns the BitRate field value if set, zero value otherwise.
@@ -317,6 +350,9 @@ func (o PutChannelRequestBodyTranscodeVideoEncodersInner) MarshalJSON() ([]byte,
 
 func (o PutChannelRequestBodyTranscodeVideoEncodersInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Av1) {
+		toSerialize["av1"] = o.Av1
+	}
 	if !IsNil(o.BitRate) {
 		toSerialize["bit_rate"] = o.BitRate
 	}

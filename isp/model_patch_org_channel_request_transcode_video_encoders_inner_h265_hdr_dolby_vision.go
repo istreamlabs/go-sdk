@@ -18,9 +18,11 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
 
 // PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision
 type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision struct {
-	Profile5  *map[string]interface{}                                                       `json:"profile5,omitempty"`
-	Profile81 *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 `json:"profile81,omitempty"`
-	Profile84 *map[string]interface{}                                                       `json:"profile84,omitempty"`
+	// Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
+	Profile101 interface{}                                                                   `json:"profile101,omitempty" doc:"Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set."`
+	Profile5   *map[string]interface{}                                                       `json:"profile5,omitempty"`
+	Profile81  *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81 `json:"profile81,omitempty"`
+	Profile84  *map[string]interface{}                                                       `json:"profile84,omitempty"`
 }
 
 // NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision object
@@ -38,6 +40,39 @@ func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision() *P
 func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionWithDefaults() *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision {
 	this := PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision{}
 	return &this
+}
+
+// GetProfile101 returns the Profile101 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile101() interface{} {
+	if o == nil {
+		var ret interface{}
+		return ret
+	}
+	return o.Profile101
+}
+
+// GetProfile101Ok returns a tuple with the Profile101 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) GetProfile101Ok() (*interface{}, bool) {
+	if o == nil || IsNil(o.Profile101) {
+		return nil, false
+	}
+	return &o.Profile101, true
+}
+
+// HasProfile101 returns a boolean if a field has been set.
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) HasProfile101() bool {
+	if o != nil && IsNil(o.Profile101) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile101 gets a reference to the given interface{} and assigns it to the Profile101 field.
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) SetProfile101(v interface{}) {
+	o.Profile101 = v
 }
 
 // GetProfile5 returns the Profile5 field value if set, zero value otherwise.
@@ -146,6 +181,9 @@ func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) Mar
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVision) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if o.Profile101 != nil {
+		toSerialize["profile101"] = o.Profile101
+	}
 	if !IsNil(o.Profile5) {
 		toSerialize["profile5"] = o.Profile5
 	}
