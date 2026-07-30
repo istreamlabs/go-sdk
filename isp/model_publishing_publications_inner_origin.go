@@ -19,9 +19,9 @@ var _ MappedNullable = &PublishingPublicationsInnerOrigin{}
 // PublishingPublicationsInnerOrigin struct for PublishingPublicationsInnerOrigin
 type PublishingPublicationsInnerOrigin struct {
 	// AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists.
-	AlternateManifestDefaults *map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
-	FallbackDefaults          *OriginManifestDefaults                                                                           `json:"fallback_defaults,omitempty"`
-	ManifestDefaults          *OriginManifestDefaults                                                                           `json:"manifest_defaults,omitempty"`
+	AlternateManifestDefaults *map[string]OriginManifestDefaults                 `json:"alternate_manifest_defaults,omitempty" doc:"AlternateManifestDefaults specifies a map of alternately named manifests for Legacy playback. Ex: 'ph' = 'main.ph.m3u8', with a specific set of partial playlists supported by the system. If the rules are expanded to allow for more than 5 characters, 'iframe' is a reserved acronym for iframe playlists."`
+	FallbackDefaults          *OriginManifestDefaults                            `json:"fallback_defaults,omitempty"`
+	ManifestDefaults          *PublishingPublicationsInnerOriginManifestDefaults `json:"manifest_defaults,omitempty"`
 	// RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes).
 	RetentionMinutes *int32                                                           `json:"retention_minutes,omitempty" format:"int32" minimum:"0" maximum:"21600" doc:"RetentionMinutes specifies how long data is retained, in minutes. Live linear (24/7) channels should set this to the longest expected DVR window (a few hours). Live event channels should set this to how Live2VOD playlists are expected to be available. If unspecified, the default will be 60 minutes. The maximum value is 15 days (21600 minutes)."`
 	Segments         *PatchOrgChannelRequestPublishingPublicationsInnerOriginSegments `json:"segments,omitempty"`
@@ -45,9 +45,9 @@ func NewPublishingPublicationsInnerOriginWithDefaults() *PublishingPublicationsI
 }
 
 // GetAlternateManifestDefaults returns the AlternateManifestDefaults field value if set, zero value otherwise.
-func (o *PublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue {
+func (o *PublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[string]OriginManifestDefaults {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
-		var ret map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue
+		var ret map[string]OriginManifestDefaults
 		return ret
 	}
 	return *o.AlternateManifestDefaults
@@ -55,7 +55,7 @@ func (o *PublishingPublicationsInnerOrigin) GetAlternateManifestDefaults() map[s
 
 // GetAlternateManifestDefaultsOk returns a tuple with the AlternateManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishingPublicationsInnerOrigin) GetAlternateManifestDefaultsOk() (*map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue, bool) {
+func (o *PublishingPublicationsInnerOrigin) GetAlternateManifestDefaultsOk() (*map[string]OriginManifestDefaults, bool) {
 	if o == nil || IsNil(o.AlternateManifestDefaults) {
 		return nil, false
 	}
@@ -71,8 +71,8 @@ func (o *PublishingPublicationsInnerOrigin) HasAlternateManifestDefaults() bool 
 	return false
 }
 
-// SetAlternateManifestDefaults gets a reference to the given map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue and assigns it to the AlternateManifestDefaults field.
-func (o *PublishingPublicationsInnerOrigin) SetAlternateManifestDefaults(v map[string]PatchOrgChannelRequestPublishingPublicationsInnerOriginAlternateManifestDefaultsValue) {
+// SetAlternateManifestDefaults gets a reference to the given map[string]OriginManifestDefaults and assigns it to the AlternateManifestDefaults field.
+func (o *PublishingPublicationsInnerOrigin) SetAlternateManifestDefaults(v map[string]OriginManifestDefaults) {
 	o.AlternateManifestDefaults = &v
 }
 
@@ -109,9 +109,9 @@ func (o *PublishingPublicationsInnerOrigin) SetFallbackDefaults(v OriginManifest
 }
 
 // GetManifestDefaults returns the ManifestDefaults field value if set, zero value otherwise.
-func (o *PublishingPublicationsInnerOrigin) GetManifestDefaults() OriginManifestDefaults {
+func (o *PublishingPublicationsInnerOrigin) GetManifestDefaults() PublishingPublicationsInnerOriginManifestDefaults {
 	if o == nil || IsNil(o.ManifestDefaults) {
-		var ret OriginManifestDefaults
+		var ret PublishingPublicationsInnerOriginManifestDefaults
 		return ret
 	}
 	return *o.ManifestDefaults
@@ -119,7 +119,7 @@ func (o *PublishingPublicationsInnerOrigin) GetManifestDefaults() OriginManifest
 
 // GetManifestDefaultsOk returns a tuple with the ManifestDefaults field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishingPublicationsInnerOrigin) GetManifestDefaultsOk() (*OriginManifestDefaults, bool) {
+func (o *PublishingPublicationsInnerOrigin) GetManifestDefaultsOk() (*PublishingPublicationsInnerOriginManifestDefaults, bool) {
 	if o == nil || IsNil(o.ManifestDefaults) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *PublishingPublicationsInnerOrigin) HasManifestDefaults() bool {
 	return false
 }
 
-// SetManifestDefaults gets a reference to the given OriginManifestDefaults and assigns it to the ManifestDefaults field.
-func (o *PublishingPublicationsInnerOrigin) SetManifestDefaults(v OriginManifestDefaults) {
+// SetManifestDefaults gets a reference to the given PublishingPublicationsInnerOriginManifestDefaults and assigns it to the ManifestDefaults field.
+func (o *PublishingPublicationsInnerOrigin) SetManifestDefaults(v PublishingPublicationsInnerOriginManifestDefaults) {
 	o.ManifestDefaults = &v
 }
 
