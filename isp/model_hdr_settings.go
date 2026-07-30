@@ -18,7 +18,7 @@ var _ MappedNullable = &HdrSettings{}
 
 // HdrSettings struct for HdrSettings
 type HdrSettings struct {
-	DolbyVision *H265SettingsHdrDolbyVision                                    `json:"dolby_vision,omitempty"`
+	DolbyVision *HdrSettingsDolbyVision                                        `json:"dolby_vision,omitempty"`
 	Hdr10       *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
 }
 
@@ -40,9 +40,9 @@ func NewHdrSettingsWithDefaults() *HdrSettings {
 }
 
 // GetDolbyVision returns the DolbyVision field value if set, zero value otherwise.
-func (o *HdrSettings) GetDolbyVision() H265SettingsHdrDolbyVision {
+func (o *HdrSettings) GetDolbyVision() HdrSettingsDolbyVision {
 	if o == nil || IsNil(o.DolbyVision) {
-		var ret H265SettingsHdrDolbyVision
+		var ret HdrSettingsDolbyVision
 		return ret
 	}
 	return *o.DolbyVision
@@ -50,7 +50,7 @@ func (o *HdrSettings) GetDolbyVision() H265SettingsHdrDolbyVision {
 
 // GetDolbyVisionOk returns a tuple with the DolbyVision field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettings) GetDolbyVisionOk() (*H265SettingsHdrDolbyVision, bool) {
+func (o *HdrSettings) GetDolbyVisionOk() (*HdrSettingsDolbyVision, bool) {
 	if o == nil || IsNil(o.DolbyVision) {
 		return nil, false
 	}
@@ -66,8 +66,8 @@ func (o *HdrSettings) HasDolbyVision() bool {
 	return false
 }
 
-// SetDolbyVision gets a reference to the given H265SettingsHdrDolbyVision and assigns it to the DolbyVision field.
-func (o *HdrSettings) SetDolbyVision(v H265SettingsHdrDolbyVision) {
+// SetDolbyVision gets a reference to the given HdrSettingsDolbyVision and assigns it to the DolbyVision field.
+func (o *HdrSettings) SetDolbyVision(v HdrSettingsDolbyVision) {
 	o.DolbyVision = &v
 }
 

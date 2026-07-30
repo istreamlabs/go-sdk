@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PublicationDash type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PublicationDash{}
+// checks if the PublishingPublicationsInnerDash type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublishingPublicationsInnerDash{}
 
-// PublicationDash struct for PublicationDash
-type PublicationDash struct {
+// PublishingPublicationsInnerDash struct for PublishingPublicationsInnerDash
+type PublishingPublicationsInnerDash struct {
 	// Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'.
 	MinimumUpdatePeriodSecs *int32 `json:"minimum_update_period_secs,omitempty" format:"int32" doc:"Sets the minimumUpdatePeriod field in MPD to be this value. If set to 0 (default), segment duration is used. The value shall not exceed the 'suggested_presentation_delay_secs'."`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -28,25 +28,25 @@ type PublicationDash struct {
 	UrlType *string `json:"url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"If set to 'URL_TYPE_UNDEFINED' playlist generation will use 'RELATIVE'."`
 }
 
-// NewPublicationDash instantiates a new PublicationDash object
+// NewPublishingPublicationsInnerDash instantiates a new PublishingPublicationsInnerDash object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublicationDash() *PublicationDash {
-	this := PublicationDash{}
+func NewPublishingPublicationsInnerDash() *PublishingPublicationsInnerDash {
+	this := PublishingPublicationsInnerDash{}
 	return &this
 }
 
-// NewPublicationDashWithDefaults instantiates a new PublicationDash object
+// NewPublishingPublicationsInnerDashWithDefaults instantiates a new PublishingPublicationsInnerDash object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPublicationDashWithDefaults() *PublicationDash {
-	this := PublicationDash{}
+func NewPublishingPublicationsInnerDashWithDefaults() *PublishingPublicationsInnerDash {
+	this := PublishingPublicationsInnerDash{}
 	return &this
 }
 
 // GetMinimumUpdatePeriodSecs returns the MinimumUpdatePeriodSecs field value if set, zero value otherwise.
-func (o *PublicationDash) GetMinimumUpdatePeriodSecs() int32 {
+func (o *PublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecs() int32 {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSecs) {
 		var ret int32
 		return ret
@@ -56,7 +56,7 @@ func (o *PublicationDash) GetMinimumUpdatePeriodSecs() int32 {
 
 // GetMinimumUpdatePeriodSecsOk returns a tuple with the MinimumUpdatePeriodSecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationDash) GetMinimumUpdatePeriodSecsOk() (*int32, bool) {
+func (o *PublishingPublicationsInnerDash) GetMinimumUpdatePeriodSecsOk() (*int32, bool) {
 	if o == nil || IsNil(o.MinimumUpdatePeriodSecs) {
 		return nil, false
 	}
@@ -64,7 +64,7 @@ func (o *PublicationDash) GetMinimumUpdatePeriodSecsOk() (*int32, bool) {
 }
 
 // HasMinimumUpdatePeriodSecs returns a boolean if a field has been set.
-func (o *PublicationDash) HasMinimumUpdatePeriodSecs() bool {
+func (o *PublishingPublicationsInnerDash) HasMinimumUpdatePeriodSecs() bool {
 	if o != nil && !IsNil(o.MinimumUpdatePeriodSecs) {
 		return true
 	}
@@ -73,12 +73,12 @@ func (o *PublicationDash) HasMinimumUpdatePeriodSecs() bool {
 }
 
 // SetMinimumUpdatePeriodSecs gets a reference to the given int32 and assigns it to the MinimumUpdatePeriodSecs field.
-func (o *PublicationDash) SetMinimumUpdatePeriodSecs(v int32) {
+func (o *PublishingPublicationsInnerDash) SetMinimumUpdatePeriodSecs(v int32) {
 	o.MinimumUpdatePeriodSecs = &v
 }
 
 // GetSignalingFormats returns the SignalingFormats field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationDash) GetSignalingFormats() []string {
+func (o *PublishingPublicationsInnerDash) GetSignalingFormats() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -89,7 +89,7 @@ func (o *PublicationDash) GetSignalingFormats() []string {
 // GetSignalingFormatsOk returns a tuple with the SignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationDash) GetSignalingFormatsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerDash) GetSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.SignalingFormats) {
 		return nil, false
 	}
@@ -97,7 +97,7 @@ func (o *PublicationDash) GetSignalingFormatsOk() ([]string, bool) {
 }
 
 // HasSignalingFormats returns a boolean if a field has been set.
-func (o *PublicationDash) HasSignalingFormats() bool {
+func (o *PublishingPublicationsInnerDash) HasSignalingFormats() bool {
 	if o != nil && IsNil(o.SignalingFormats) {
 		return true
 	}
@@ -106,12 +106,12 @@ func (o *PublicationDash) HasSignalingFormats() bool {
 }
 
 // SetSignalingFormats gets a reference to the given []string and assigns it to the SignalingFormats field.
-func (o *PublicationDash) SetSignalingFormats(v []string) {
+func (o *PublishingPublicationsInnerDash) SetSignalingFormats(v []string) {
 	o.SignalingFormats = v
 }
 
 // GetSuggestedPresentationDelaySecs returns the SuggestedPresentationDelaySecs field value if set, zero value otherwise.
-func (o *PublicationDash) GetSuggestedPresentationDelaySecs() int32 {
+func (o *PublishingPublicationsInnerDash) GetSuggestedPresentationDelaySecs() int32 {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySecs) {
 		var ret int32
 		return ret
@@ -121,7 +121,7 @@ func (o *PublicationDash) GetSuggestedPresentationDelaySecs() int32 {
 
 // GetSuggestedPresentationDelaySecsOk returns a tuple with the SuggestedPresentationDelaySecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationDash) GetSuggestedPresentationDelaySecsOk() (*int32, bool) {
+func (o *PublishingPublicationsInnerDash) GetSuggestedPresentationDelaySecsOk() (*int32, bool) {
 	if o == nil || IsNil(o.SuggestedPresentationDelaySecs) {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *PublicationDash) GetSuggestedPresentationDelaySecsOk() (*int32, bool) {
 }
 
 // HasSuggestedPresentationDelaySecs returns a boolean if a field has been set.
-func (o *PublicationDash) HasSuggestedPresentationDelaySecs() bool {
+func (o *PublishingPublicationsInnerDash) HasSuggestedPresentationDelaySecs() bool {
 	if o != nil && !IsNil(o.SuggestedPresentationDelaySecs) {
 		return true
 	}
@@ -138,12 +138,12 @@ func (o *PublicationDash) HasSuggestedPresentationDelaySecs() bool {
 }
 
 // SetSuggestedPresentationDelaySecs gets a reference to the given int32 and assigns it to the SuggestedPresentationDelaySecs field.
-func (o *PublicationDash) SetSuggestedPresentationDelaySecs(v int32) {
+func (o *PublishingPublicationsInnerDash) SetSuggestedPresentationDelaySecs(v int32) {
 	o.SuggestedPresentationDelaySecs = &v
 }
 
 // GetUrlType returns the UrlType field value if set, zero value otherwise.
-func (o *PublicationDash) GetUrlType() string {
+func (o *PublishingPublicationsInnerDash) GetUrlType() string {
 	if o == nil || IsNil(o.UrlType) {
 		var ret string
 		return ret
@@ -153,7 +153,7 @@ func (o *PublicationDash) GetUrlType() string {
 
 // GetUrlTypeOk returns a tuple with the UrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationDash) GetUrlTypeOk() (*string, bool) {
+func (o *PublishingPublicationsInnerDash) GetUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.UrlType) {
 		return nil, false
 	}
@@ -161,7 +161,7 @@ func (o *PublicationDash) GetUrlTypeOk() (*string, bool) {
 }
 
 // HasUrlType returns a boolean if a field has been set.
-func (o *PublicationDash) HasUrlType() bool {
+func (o *PublishingPublicationsInnerDash) HasUrlType() bool {
 	if o != nil && !IsNil(o.UrlType) {
 		return true
 	}
@@ -170,11 +170,11 @@ func (o *PublicationDash) HasUrlType() bool {
 }
 
 // SetUrlType gets a reference to the given string and assigns it to the UrlType field.
-func (o *PublicationDash) SetUrlType(v string) {
+func (o *PublishingPublicationsInnerDash) SetUrlType(v string) {
 	o.UrlType = &v
 }
 
-func (o PublicationDash) MarshalJSON() ([]byte, error) {
+func (o PublishingPublicationsInnerDash) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -182,7 +182,7 @@ func (o PublicationDash) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PublicationDash) ToMap() (map[string]interface{}, error) {
+func (o PublishingPublicationsInnerDash) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.MinimumUpdatePeriodSecs) {
 		toSerialize["minimum_update_period_secs"] = o.MinimumUpdatePeriodSecs
@@ -199,38 +199,38 @@ func (o PublicationDash) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePublicationDash struct {
-	value *PublicationDash
+type NullablePublishingPublicationsInnerDash struct {
+	value *PublishingPublicationsInnerDash
 	isSet bool
 }
 
-func (v NullablePublicationDash) Get() *PublicationDash {
+func (v NullablePublishingPublicationsInnerDash) Get() *PublishingPublicationsInnerDash {
 	return v.value
 }
 
-func (v *NullablePublicationDash) Set(val *PublicationDash) {
+func (v *NullablePublishingPublicationsInnerDash) Set(val *PublishingPublicationsInnerDash) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePublicationDash) IsSet() bool {
+func (v NullablePublishingPublicationsInnerDash) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePublicationDash) Unset() {
+func (v *NullablePublishingPublicationsInnerDash) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePublicationDash(val *PublicationDash) *NullablePublicationDash {
-	return &NullablePublicationDash{value: val, isSet: true}
+func NewNullablePublishingPublicationsInnerDash(val *PublishingPublicationsInnerDash) *NullablePublishingPublicationsInnerDash {
+	return &NullablePublishingPublicationsInnerDash{value: val, isSet: true}
 }
 
-func (v NullablePublicationDash) MarshalJSON() ([]byte, error) {
+func (v NullablePublishingPublicationsInnerDash) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePublicationDash) UnmarshalJSON(src []byte) error {
+func (v *NullablePublishingPublicationsInnerDash) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

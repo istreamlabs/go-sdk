@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PublicationHls type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PublicationHls{}
+// checks if the PublishingPublicationsInnerHls type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PublishingPublicationsInnerHls{}
 
-// PublicationHls struct for PublicationHls
-type PublicationHls struct {
+// PublishingPublicationsInnerHls struct for PublishingPublicationsInnerHls
+type PublishingPublicationsInnerHls struct {
 	// Defines how audio only variant streams are included in the master playlist, where the variant streams are defined by #EXT-X-STREAM-INF tag, the tag attributes provide information about the Stream. The INCLUDE_DEFAULT option - only the default 'audio only variant stream' is included in master playlist. This is the most common use case. INCLUDE_NONE - no audio only variant streams are included in the master playlist. INCLUDE_ALL - include all audio only variant streams in the master playlist.
 	AudioOnlyVariants *string `json:"audio_only_variants,omitempty" enum:"INCLUDE_DEFAULT,INCLUDE_NONE,INCLUDE_ALL" doc:"Defines how audio only variant streams are included in the master playlist, where the variant streams are defined by #EXT-X-STREAM-INF tag, the tag attributes provide information about the Stream. The INCLUDE_DEFAULT option - only the default 'audio only variant stream' is included in master playlist. This is the most common use case. INCLUDE_NONE - no audio only variant streams are included in the master playlist. INCLUDE_ALL - include all audio only variant streams in the master playlist."`
 	// Allows turning gap tags ON/OFF. When turned ON - the tag '#EXT-X-GAP' is inserted into media playlist for a missing segment. When turned OFF - Discontinuity is inserted into the playlist for missing segment(s). The default option UNDEFINED is mapped to OFF. Note: Gap tags are always inserted for the missing thumbnail segments independently of this setting
@@ -29,7 +29,7 @@ type PublicationHls struct {
 	// Allows specifying url type for HLS media playlists. If not provided, playlist generation will use 'RELATIVE'.
 	MediaUrlType *string `json:"media_url_type,omitempty" enum:"RELATIVE,ABSOLUTE,HOST_RELATIVE" doc:"Allows specifying url type for HLS media playlists. If not provided, playlist generation will use 'RELATIVE'."`
 	// Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists.
-	PartialPresentations []HLSPartialPresentationsInner `json:"partial_presentations,omitempty" doc:"Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists."`
+	PartialPresentations []PublishingPublicationsInnerHlsPartialPresentationsInner `json:"partial_presentations,omitempty" doc:"Specify which partial presentations should be used for this presentation. Partial presentations are additional master playlists that point to a subset of the parent presentation's media streams/variant playlists."`
 	// When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification.
 	PdtOnEverySegment *bool `json:"pdt_on_every_segment,omitempty" doc:"When true a #EXT-X-PROGRAM-DATE-TIME tag will be placed on every media segment in media playlists. When false, the default behavior, the PDT tag is set according to the HLS specification."`
 	// Signaling formats specifies which SCTE-35 timeline marker formatting to use when rendering playlists.
@@ -38,25 +38,25 @@ type PublicationHls struct {
 	UtcInSegmentTitle *bool `json:"utc_in_segment_title,omitempty" doc:"Include a UTC timestamp (that is equivalent in value to #EXT-X-PROGRAM-DATE-TIME) in the title of each media segment in media playlists. Ex. #EXTINF:6.006,LTC=2020-01-01T12:00:00.000Z"`
 }
 
-// NewPublicationHls instantiates a new PublicationHls object
+// NewPublishingPublicationsInnerHls instantiates a new PublishingPublicationsInnerHls object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPublicationHls() *PublicationHls {
-	this := PublicationHls{}
+func NewPublishingPublicationsInnerHls() *PublishingPublicationsInnerHls {
+	this := PublishingPublicationsInnerHls{}
 	return &this
 }
 
-// NewPublicationHlsWithDefaults instantiates a new PublicationHls object
+// NewPublishingPublicationsInnerHlsWithDefaults instantiates a new PublishingPublicationsInnerHls object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPublicationHlsWithDefaults() *PublicationHls {
-	this := PublicationHls{}
+func NewPublishingPublicationsInnerHlsWithDefaults() *PublishingPublicationsInnerHls {
+	this := PublishingPublicationsInnerHls{}
 	return &this
 }
 
 // GetAudioOnlyVariants returns the AudioOnlyVariants field value if set, zero value otherwise.
-func (o *PublicationHls) GetAudioOnlyVariants() string {
+func (o *PublishingPublicationsInnerHls) GetAudioOnlyVariants() string {
 	if o == nil || IsNil(o.AudioOnlyVariants) {
 		var ret string
 		return ret
@@ -66,7 +66,7 @@ func (o *PublicationHls) GetAudioOnlyVariants() string {
 
 // GetAudioOnlyVariantsOk returns a tuple with the AudioOnlyVariants field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetAudioOnlyVariantsOk() (*string, bool) {
+func (o *PublishingPublicationsInnerHls) GetAudioOnlyVariantsOk() (*string, bool) {
 	if o == nil || IsNil(o.AudioOnlyVariants) {
 		return nil, false
 	}
@@ -74,7 +74,7 @@ func (o *PublicationHls) GetAudioOnlyVariantsOk() (*string, bool) {
 }
 
 // HasAudioOnlyVariants returns a boolean if a field has been set.
-func (o *PublicationHls) HasAudioOnlyVariants() bool {
+func (o *PublishingPublicationsInnerHls) HasAudioOnlyVariants() bool {
 	if o != nil && !IsNil(o.AudioOnlyVariants) {
 		return true
 	}
@@ -83,12 +83,12 @@ func (o *PublicationHls) HasAudioOnlyVariants() bool {
 }
 
 // SetAudioOnlyVariants gets a reference to the given string and assigns it to the AudioOnlyVariants field.
-func (o *PublicationHls) SetAudioOnlyVariants(v string) {
+func (o *PublishingPublicationsInnerHls) SetAudioOnlyVariants(v string) {
 	o.AudioOnlyVariants = &v
 }
 
 // GetGapTags returns the GapTags field value if set, zero value otherwise.
-func (o *PublicationHls) GetGapTags() string {
+func (o *PublishingPublicationsInnerHls) GetGapTags() string {
 	if o == nil || IsNil(o.GapTags) {
 		var ret string
 		return ret
@@ -98,7 +98,7 @@ func (o *PublicationHls) GetGapTags() string {
 
 // GetGapTagsOk returns a tuple with the GapTags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetGapTagsOk() (*string, bool) {
+func (o *PublishingPublicationsInnerHls) GetGapTagsOk() (*string, bool) {
 	if o == nil || IsNil(o.GapTags) {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *PublicationHls) GetGapTagsOk() (*string, bool) {
 }
 
 // HasGapTags returns a boolean if a field has been set.
-func (o *PublicationHls) HasGapTags() bool {
+func (o *PublishingPublicationsInnerHls) HasGapTags() bool {
 	if o != nil && !IsNil(o.GapTags) {
 		return true
 	}
@@ -115,12 +115,12 @@ func (o *PublicationHls) HasGapTags() bool {
 }
 
 // SetGapTags gets a reference to the given string and assigns it to the GapTags field.
-func (o *PublicationHls) SetGapTags(v string) {
+func (o *PublishingPublicationsInnerHls) SetGapTags(v string) {
 	o.GapTags = &v
 }
 
 // GetMasterPublishFrequencySecs returns the MasterPublishFrequencySecs field value if set, zero value otherwise.
-func (o *PublicationHls) GetMasterPublishFrequencySecs() int32 {
+func (o *PublishingPublicationsInnerHls) GetMasterPublishFrequencySecs() int32 {
 	if o == nil || IsNil(o.MasterPublishFrequencySecs) {
 		var ret int32
 		return ret
@@ -130,7 +130,7 @@ func (o *PublicationHls) GetMasterPublishFrequencySecs() int32 {
 
 // GetMasterPublishFrequencySecsOk returns a tuple with the MasterPublishFrequencySecs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetMasterPublishFrequencySecsOk() (*int32, bool) {
+func (o *PublishingPublicationsInnerHls) GetMasterPublishFrequencySecsOk() (*int32, bool) {
 	if o == nil || IsNil(o.MasterPublishFrequencySecs) {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *PublicationHls) GetMasterPublishFrequencySecsOk() (*int32, bool) {
 }
 
 // HasMasterPublishFrequencySecs returns a boolean if a field has been set.
-func (o *PublicationHls) HasMasterPublishFrequencySecs() bool {
+func (o *PublishingPublicationsInnerHls) HasMasterPublishFrequencySecs() bool {
 	if o != nil && !IsNil(o.MasterPublishFrequencySecs) {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *PublicationHls) HasMasterPublishFrequencySecs() bool {
 }
 
 // SetMasterPublishFrequencySecs gets a reference to the given int32 and assigns it to the MasterPublishFrequencySecs field.
-func (o *PublicationHls) SetMasterPublishFrequencySecs(v int32) {
+func (o *PublishingPublicationsInnerHls) SetMasterPublishFrequencySecs(v int32) {
 	o.MasterPublishFrequencySecs = &v
 }
 
 // GetMasterUrlType returns the MasterUrlType field value if set, zero value otherwise.
-func (o *PublicationHls) GetMasterUrlType() string {
+func (o *PublishingPublicationsInnerHls) GetMasterUrlType() string {
 	if o == nil || IsNil(o.MasterUrlType) {
 		var ret string
 		return ret
@@ -162,7 +162,7 @@ func (o *PublicationHls) GetMasterUrlType() string {
 
 // GetMasterUrlTypeOk returns a tuple with the MasterUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetMasterUrlTypeOk() (*string, bool) {
+func (o *PublishingPublicationsInnerHls) GetMasterUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MasterUrlType) {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *PublicationHls) GetMasterUrlTypeOk() (*string, bool) {
 }
 
 // HasMasterUrlType returns a boolean if a field has been set.
-func (o *PublicationHls) HasMasterUrlType() bool {
+func (o *PublishingPublicationsInnerHls) HasMasterUrlType() bool {
 	if o != nil && !IsNil(o.MasterUrlType) {
 		return true
 	}
@@ -179,12 +179,12 @@ func (o *PublicationHls) HasMasterUrlType() bool {
 }
 
 // SetMasterUrlType gets a reference to the given string and assigns it to the MasterUrlType field.
-func (o *PublicationHls) SetMasterUrlType(v string) {
+func (o *PublishingPublicationsInnerHls) SetMasterUrlType(v string) {
 	o.MasterUrlType = &v
 }
 
 // GetMediaUrlType returns the MediaUrlType field value if set, zero value otherwise.
-func (o *PublicationHls) GetMediaUrlType() string {
+func (o *PublishingPublicationsInnerHls) GetMediaUrlType() string {
 	if o == nil || IsNil(o.MediaUrlType) {
 		var ret string
 		return ret
@@ -194,7 +194,7 @@ func (o *PublicationHls) GetMediaUrlType() string {
 
 // GetMediaUrlTypeOk returns a tuple with the MediaUrlType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetMediaUrlTypeOk() (*string, bool) {
+func (o *PublishingPublicationsInnerHls) GetMediaUrlTypeOk() (*string, bool) {
 	if o == nil || IsNil(o.MediaUrlType) {
 		return nil, false
 	}
@@ -202,7 +202,7 @@ func (o *PublicationHls) GetMediaUrlTypeOk() (*string, bool) {
 }
 
 // HasMediaUrlType returns a boolean if a field has been set.
-func (o *PublicationHls) HasMediaUrlType() bool {
+func (o *PublishingPublicationsInnerHls) HasMediaUrlType() bool {
 	if o != nil && !IsNil(o.MediaUrlType) {
 		return true
 	}
@@ -211,14 +211,14 @@ func (o *PublicationHls) HasMediaUrlType() bool {
 }
 
 // SetMediaUrlType gets a reference to the given string and assigns it to the MediaUrlType field.
-func (o *PublicationHls) SetMediaUrlType(v string) {
+func (o *PublishingPublicationsInnerHls) SetMediaUrlType(v string) {
 	o.MediaUrlType = &v
 }
 
 // GetPartialPresentations returns the PartialPresentations field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationHls) GetPartialPresentations() []HLSPartialPresentationsInner {
+func (o *PublishingPublicationsInnerHls) GetPartialPresentations() []PublishingPublicationsInnerHlsPartialPresentationsInner {
 	if o == nil {
-		var ret []HLSPartialPresentationsInner
+		var ret []PublishingPublicationsInnerHlsPartialPresentationsInner
 		return ret
 	}
 	return o.PartialPresentations
@@ -227,7 +227,7 @@ func (o *PublicationHls) GetPartialPresentations() []HLSPartialPresentationsInne
 // GetPartialPresentationsOk returns a tuple with the PartialPresentations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationHls) GetPartialPresentationsOk() ([]HLSPartialPresentationsInner, bool) {
+func (o *PublishingPublicationsInnerHls) GetPartialPresentationsOk() ([]PublishingPublicationsInnerHlsPartialPresentationsInner, bool) {
 	if o == nil || IsNil(o.PartialPresentations) {
 		return nil, false
 	}
@@ -235,7 +235,7 @@ func (o *PublicationHls) GetPartialPresentationsOk() ([]HLSPartialPresentationsI
 }
 
 // HasPartialPresentations returns a boolean if a field has been set.
-func (o *PublicationHls) HasPartialPresentations() bool {
+func (o *PublishingPublicationsInnerHls) HasPartialPresentations() bool {
 	if o != nil && IsNil(o.PartialPresentations) {
 		return true
 	}
@@ -243,13 +243,13 @@ func (o *PublicationHls) HasPartialPresentations() bool {
 	return false
 }
 
-// SetPartialPresentations gets a reference to the given []HLSPartialPresentationsInner and assigns it to the PartialPresentations field.
-func (o *PublicationHls) SetPartialPresentations(v []HLSPartialPresentationsInner) {
+// SetPartialPresentations gets a reference to the given []PublishingPublicationsInnerHlsPartialPresentationsInner and assigns it to the PartialPresentations field.
+func (o *PublishingPublicationsInnerHls) SetPartialPresentations(v []PublishingPublicationsInnerHlsPartialPresentationsInner) {
 	o.PartialPresentations = v
 }
 
 // GetPdtOnEverySegment returns the PdtOnEverySegment field value if set, zero value otherwise.
-func (o *PublicationHls) GetPdtOnEverySegment() bool {
+func (o *PublishingPublicationsInnerHls) GetPdtOnEverySegment() bool {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		var ret bool
 		return ret
@@ -259,7 +259,7 @@ func (o *PublicationHls) GetPdtOnEverySegment() bool {
 
 // GetPdtOnEverySegmentOk returns a tuple with the PdtOnEverySegment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetPdtOnEverySegmentOk() (*bool, bool) {
+func (o *PublishingPublicationsInnerHls) GetPdtOnEverySegmentOk() (*bool, bool) {
 	if o == nil || IsNil(o.PdtOnEverySegment) {
 		return nil, false
 	}
@@ -267,7 +267,7 @@ func (o *PublicationHls) GetPdtOnEverySegmentOk() (*bool, bool) {
 }
 
 // HasPdtOnEverySegment returns a boolean if a field has been set.
-func (o *PublicationHls) HasPdtOnEverySegment() bool {
+func (o *PublishingPublicationsInnerHls) HasPdtOnEverySegment() bool {
 	if o != nil && !IsNil(o.PdtOnEverySegment) {
 		return true
 	}
@@ -276,12 +276,12 @@ func (o *PublicationHls) HasPdtOnEverySegment() bool {
 }
 
 // SetPdtOnEverySegment gets a reference to the given bool and assigns it to the PdtOnEverySegment field.
-func (o *PublicationHls) SetPdtOnEverySegment(v bool) {
+func (o *PublishingPublicationsInnerHls) SetPdtOnEverySegment(v bool) {
 	o.PdtOnEverySegment = &v
 }
 
 // GetSignalingFormats returns the SignalingFormats field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublicationHls) GetSignalingFormats() []string {
+func (o *PublishingPublicationsInnerHls) GetSignalingFormats() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -292,7 +292,7 @@ func (o *PublicationHls) GetSignalingFormats() []string {
 // GetSignalingFormatsOk returns a tuple with the SignalingFormats field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublicationHls) GetSignalingFormatsOk() ([]string, bool) {
+func (o *PublishingPublicationsInnerHls) GetSignalingFormatsOk() ([]string, bool) {
 	if o == nil || IsNil(o.SignalingFormats) {
 		return nil, false
 	}
@@ -300,7 +300,7 @@ func (o *PublicationHls) GetSignalingFormatsOk() ([]string, bool) {
 }
 
 // HasSignalingFormats returns a boolean if a field has been set.
-func (o *PublicationHls) HasSignalingFormats() bool {
+func (o *PublishingPublicationsInnerHls) HasSignalingFormats() bool {
 	if o != nil && IsNil(o.SignalingFormats) {
 		return true
 	}
@@ -309,12 +309,12 @@ func (o *PublicationHls) HasSignalingFormats() bool {
 }
 
 // SetSignalingFormats gets a reference to the given []string and assigns it to the SignalingFormats field.
-func (o *PublicationHls) SetSignalingFormats(v []string) {
+func (o *PublishingPublicationsInnerHls) SetSignalingFormats(v []string) {
 	o.SignalingFormats = v
 }
 
 // GetUtcInSegmentTitle returns the UtcInSegmentTitle field value if set, zero value otherwise.
-func (o *PublicationHls) GetUtcInSegmentTitle() bool {
+func (o *PublishingPublicationsInnerHls) GetUtcInSegmentTitle() bool {
 	if o == nil || IsNil(o.UtcInSegmentTitle) {
 		var ret bool
 		return ret
@@ -324,7 +324,7 @@ func (o *PublicationHls) GetUtcInSegmentTitle() bool {
 
 // GetUtcInSegmentTitleOk returns a tuple with the UtcInSegmentTitle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublicationHls) GetUtcInSegmentTitleOk() (*bool, bool) {
+func (o *PublishingPublicationsInnerHls) GetUtcInSegmentTitleOk() (*bool, bool) {
 	if o == nil || IsNil(o.UtcInSegmentTitle) {
 		return nil, false
 	}
@@ -332,7 +332,7 @@ func (o *PublicationHls) GetUtcInSegmentTitleOk() (*bool, bool) {
 }
 
 // HasUtcInSegmentTitle returns a boolean if a field has been set.
-func (o *PublicationHls) HasUtcInSegmentTitle() bool {
+func (o *PublishingPublicationsInnerHls) HasUtcInSegmentTitle() bool {
 	if o != nil && !IsNil(o.UtcInSegmentTitle) {
 		return true
 	}
@@ -341,11 +341,11 @@ func (o *PublicationHls) HasUtcInSegmentTitle() bool {
 }
 
 // SetUtcInSegmentTitle gets a reference to the given bool and assigns it to the UtcInSegmentTitle field.
-func (o *PublicationHls) SetUtcInSegmentTitle(v bool) {
+func (o *PublishingPublicationsInnerHls) SetUtcInSegmentTitle(v bool) {
 	o.UtcInSegmentTitle = &v
 }
 
-func (o PublicationHls) MarshalJSON() ([]byte, error) {
+func (o PublishingPublicationsInnerHls) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -353,7 +353,7 @@ func (o PublicationHls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o PublicationHls) ToMap() (map[string]interface{}, error) {
+func (o PublishingPublicationsInnerHls) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AudioOnlyVariants) {
 		toSerialize["audio_only_variants"] = o.AudioOnlyVariants
@@ -385,38 +385,38 @@ func (o PublicationHls) ToMap() (map[string]interface{}, error) {
 	return toSerialize, nil
 }
 
-type NullablePublicationHls struct {
-	value *PublicationHls
+type NullablePublishingPublicationsInnerHls struct {
+	value *PublishingPublicationsInnerHls
 	isSet bool
 }
 
-func (v NullablePublicationHls) Get() *PublicationHls {
+func (v NullablePublishingPublicationsInnerHls) Get() *PublishingPublicationsInnerHls {
 	return v.value
 }
 
-func (v *NullablePublicationHls) Set(val *PublicationHls) {
+func (v *NullablePublishingPublicationsInnerHls) Set(val *PublishingPublicationsInnerHls) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePublicationHls) IsSet() bool {
+func (v NullablePublishingPublicationsInnerHls) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePublicationHls) Unset() {
+func (v *NullablePublishingPublicationsInnerHls) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePublicationHls(val *PublicationHls) *NullablePublicationHls {
-	return &NullablePublicationHls{value: val, isSet: true}
+func NewNullablePublishingPublicationsInnerHls(val *PublishingPublicationsInnerHls) *NullablePublishingPublicationsInnerHls {
+	return &NullablePublishingPublicationsInnerHls{value: val, isSet: true}
 }
 
-func (v NullablePublicationHls) MarshalJSON() ([]byte, error) {
+func (v NullablePublishingPublicationsInnerHls) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePublicationHls) UnmarshalJSON(src []byte) error {
+func (v *NullablePublishingPublicationsInnerHls) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

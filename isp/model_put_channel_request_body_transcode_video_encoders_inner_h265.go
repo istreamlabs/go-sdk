@@ -18,7 +18,7 @@ var _ MappedNullable = &PutChannelRequestBodyTranscodeVideoEncodersInnerH265{}
 
 // PutChannelRequestBodyTranscodeVideoEncodersInnerH265 struct for PutChannelRequestBodyTranscodeVideoEncodersInnerH265
 type PutChannelRequestBodyTranscodeVideoEncodersInnerH265 struct {
-	Hdr *H265SettingsHdr `json:"hdr,omitempty"`
+	Hdr *PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr `json:"hdr,omitempty"`
 	// H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
 	Profile *string `json:"profile,omitempty" enum:"MAIN,MAIN_10" doc:"H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details."`
 }
@@ -41,9 +41,9 @@ func NewPutChannelRequestBodyTranscodeVideoEncodersInnerH265WithDefaults() *PutC
 }
 
 // GetHdr returns the Hdr field value if set, zero value otherwise.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) GetHdr() H265SettingsHdr {
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) GetHdr() PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr {
 	if o == nil || IsNil(o.Hdr) {
-		var ret H265SettingsHdr
+		var ret PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr
 		return ret
 	}
 	return *o.Hdr
@@ -51,7 +51,7 @@ func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) GetHdr() H265Sett
 
 // GetHdrOk returns a tuple with the Hdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) GetHdrOk() (*H265SettingsHdr, bool) {
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) GetHdrOk() (*PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr, bool) {
 	if o == nil || IsNil(o.Hdr) {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) HasHdr() bool {
 	return false
 }
 
-// SetHdr gets a reference to the given H265SettingsHdr and assigns it to the Hdr field.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) SetHdr(v H265SettingsHdr) {
+// SetHdr gets a reference to the given PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr and assigns it to the Hdr field.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerH265) SetHdr(v PutChannelRequestBodyTranscodeVideoEncodersInnerH265Hdr) {
 	o.Hdr = &v
 }
 

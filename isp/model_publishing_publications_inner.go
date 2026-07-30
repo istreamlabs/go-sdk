@@ -21,24 +21,24 @@ type PublishingPublicationsInner struct {
 	// Optionally specify which audio encoders should be used for this publication. If none are specified, all audio encoders configured for the transcoder will be used.
 	AudioEncoderIds []string `json:"audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used for this publication. If none are specified, all audio encoders configured for the transcoder will be used."`
 	// Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|.
-	CreateVods *bool            `json:"create_vods,omitempty" doc:"Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|."`
-	Dash       *PublicationDash `json:"dash,omitempty"`
+	CreateVods *bool                            `json:"create_vods,omitempty" doc:"Create VODs for all publish points in this publication. Note that Live2VOD must also be configured for the parent |Channel|."`
+	Dash       *PublishingPublicationsInnerDash `json:"dash,omitempty"`
 	// Optionally specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this publication. If omitted or empty, all DRMs specified by the packager will be advertised. This setting can only be used for HLS playlists.
 	Drms []string `json:"drms,omitempty" uniqueItems:"true" enum:"WIDEVINE,FAIRPLAY,PRIMETIME,PLAYREADY,W3C_COMMON_CLEAR_KEY,BULK_FILE" doc:"Optionally specify which DRMs to advertise in the playlist. If specified, this must be a subset of the DRMs specified by the packager associated with this publication. If omitted or empty, all DRMs specified by the packager will be advertised. This setting can only be used for HLS playlists."`
 	// DVR window is the max sum(duration of media segments) that will be kept in a manifest at a given time in seconds. The max supported DVR window is 10 hours.
 	DvrWindowSecs *int32 `json:"dvr_window_secs,omitempty" format:"int32" minimum:"0" maximum:"36000" doc:"DVR window is the max sum(duration of media segments) that will be kept in a manifest at a given time in seconds. The max supported DVR window is 10 hours."`
 	// Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used.
-	FerAudioEncoderIds []string        `json:"fer_audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used."`
-	Hls                *PublicationHls `json:"hls,omitempty"`
+	FerAudioEncoderIds []string                        `json:"fer_audio_encoder_ids,omitempty" uniqueItems:"true" doc:"Optionally specify which audio encoders should be used when generating the FER of this Presentation, this overrides the 'audio_encoder_ids' used during the live portion. If none are specified, the 'audio_encoder_ids' field will be used."`
+	Hls                *PublishingPublicationsInnerHls `json:"hls,omitempty"`
 	// List of video encoder IDs that should have I-Frame only playlists generated for them.
 	IframeOnlyEncoderIds []string `json:"iframe_only_encoder_ids,omitempty" uniqueItems:"true" doc:"List of video encoder IDs that should have I-Frame only playlists generated for them."`
 	// Optional master manifest name. When not supplied a default of 'master' will be used.
-	MasterPlaylistName *string            `json:"master_playlist_name,omitempty" doc:"Optional master manifest name. When not supplied a default of 'master' will be used."`
-	Origin             *PublicationOrigin `json:"origin,omitempty"`
+	MasterPlaylistName *string                            `json:"master_playlist_name,omitempty" doc:"Optional master manifest name. When not supplied a default of 'master' will be used."`
+	Origin             *PublishingPublicationsInnerOrigin `json:"origin,omitempty"`
 	// Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for.
 	PackagerId *string `json:"packager_id,omitempty" doc:"Determines how segments in this publication are packaged. Must reference a packager in 'packaging.packagers'. However, if this is a playlist-only publication (i.e. contains publish points that specify 'playlist_only_for'), this must remain unset as the packager will be inferred from the publication this one is providing playlists for."`
 	// Publish points specify where to output.
-	PublishPoints []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner `json:"publish_points,omitempty" doc:"Publish points specify where to output."`
+	PublishPoints []PublishingPublicationsInnerPublishPointsInner `json:"publish_points,omitempty" doc:"Publish points specify where to output."`
 	// When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication.
 	RedundantPublishing *bool                                                       `json:"redundant_publishing,omitempty" doc:"When redundant publishing is enabled succeeding to publish a given media segment to at least one HTTPPublishPoint in publish_points will result in that segment showing up in manifests as playable content. Will require at least two publish_points defined within the same publication."`
 	Startover           *PatchOrgChannelRequestPublishingPublicationsInnerStartover `json:"startover,omitempty"`
@@ -133,9 +133,9 @@ func (o *PublishingPublicationsInner) SetCreateVods(v bool) {
 }
 
 // GetDash returns the Dash field value if set, zero value otherwise.
-func (o *PublishingPublicationsInner) GetDash() PublicationDash {
+func (o *PublishingPublicationsInner) GetDash() PublishingPublicationsInnerDash {
 	if o == nil || IsNil(o.Dash) {
-		var ret PublicationDash
+		var ret PublishingPublicationsInnerDash
 		return ret
 	}
 	return *o.Dash
@@ -143,7 +143,7 @@ func (o *PublishingPublicationsInner) GetDash() PublicationDash {
 
 // GetDashOk returns a tuple with the Dash field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishingPublicationsInner) GetDashOk() (*PublicationDash, bool) {
+func (o *PublishingPublicationsInner) GetDashOk() (*PublishingPublicationsInnerDash, bool) {
 	if o == nil || IsNil(o.Dash) {
 		return nil, false
 	}
@@ -159,8 +159,8 @@ func (o *PublishingPublicationsInner) HasDash() bool {
 	return false
 }
 
-// SetDash gets a reference to the given PublicationDash and assigns it to the Dash field.
-func (o *PublishingPublicationsInner) SetDash(v PublicationDash) {
+// SetDash gets a reference to the given PublishingPublicationsInnerDash and assigns it to the Dash field.
+func (o *PublishingPublicationsInner) SetDash(v PublishingPublicationsInnerDash) {
 	o.Dash = &v
 }
 
@@ -263,9 +263,9 @@ func (o *PublishingPublicationsInner) SetFerAudioEncoderIds(v []string) {
 }
 
 // GetHls returns the Hls field value if set, zero value otherwise.
-func (o *PublishingPublicationsInner) GetHls() PublicationHls {
+func (o *PublishingPublicationsInner) GetHls() PublishingPublicationsInnerHls {
 	if o == nil || IsNil(o.Hls) {
-		var ret PublicationHls
+		var ret PublishingPublicationsInnerHls
 		return ret
 	}
 	return *o.Hls
@@ -273,7 +273,7 @@ func (o *PublishingPublicationsInner) GetHls() PublicationHls {
 
 // GetHlsOk returns a tuple with the Hls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishingPublicationsInner) GetHlsOk() (*PublicationHls, bool) {
+func (o *PublishingPublicationsInner) GetHlsOk() (*PublishingPublicationsInnerHls, bool) {
 	if o == nil || IsNil(o.Hls) {
 		return nil, false
 	}
@@ -289,8 +289,8 @@ func (o *PublishingPublicationsInner) HasHls() bool {
 	return false
 }
 
-// SetHls gets a reference to the given PublicationHls and assigns it to the Hls field.
-func (o *PublishingPublicationsInner) SetHls(v PublicationHls) {
+// SetHls gets a reference to the given PublishingPublicationsInnerHls and assigns it to the Hls field.
+func (o *PublishingPublicationsInner) SetHls(v PublishingPublicationsInnerHls) {
 	o.Hls = &v
 }
 
@@ -360,9 +360,9 @@ func (o *PublishingPublicationsInner) SetMasterPlaylistName(v string) {
 }
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
-func (o *PublishingPublicationsInner) GetOrigin() PublicationOrigin {
+func (o *PublishingPublicationsInner) GetOrigin() PublishingPublicationsInnerOrigin {
 	if o == nil || IsNil(o.Origin) {
-		var ret PublicationOrigin
+		var ret PublishingPublicationsInnerOrigin
 		return ret
 	}
 	return *o.Origin
@@ -370,7 +370,7 @@ func (o *PublishingPublicationsInner) GetOrigin() PublicationOrigin {
 
 // GetOriginOk returns a tuple with the Origin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PublishingPublicationsInner) GetOriginOk() (*PublicationOrigin, bool) {
+func (o *PublishingPublicationsInner) GetOriginOk() (*PublishingPublicationsInnerOrigin, bool) {
 	if o == nil || IsNil(o.Origin) {
 		return nil, false
 	}
@@ -386,8 +386,8 @@ func (o *PublishingPublicationsInner) HasOrigin() bool {
 	return false
 }
 
-// SetOrigin gets a reference to the given PublicationOrigin and assigns it to the Origin field.
-func (o *PublishingPublicationsInner) SetOrigin(v PublicationOrigin) {
+// SetOrigin gets a reference to the given PublishingPublicationsInnerOrigin and assigns it to the Origin field.
+func (o *PublishingPublicationsInner) SetOrigin(v PublishingPublicationsInnerOrigin) {
 	o.Origin = &v
 }
 
@@ -424,9 +424,9 @@ func (o *PublishingPublicationsInner) SetPackagerId(v string) {
 }
 
 // GetPublishPoints returns the PublishPoints field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *PublishingPublicationsInner) GetPublishPoints() []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner {
+func (o *PublishingPublicationsInner) GetPublishPoints() []PublishingPublicationsInnerPublishPointsInner {
 	if o == nil {
-		var ret []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner
+		var ret []PublishingPublicationsInnerPublishPointsInner
 		return ret
 	}
 	return o.PublishPoints
@@ -435,7 +435,7 @@ func (o *PublishingPublicationsInner) GetPublishPoints() []PatchOrgChannelReques
 // GetPublishPointsOk returns a tuple with the PublishPoints field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *PublishingPublicationsInner) GetPublishPointsOk() ([]PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner, bool) {
+func (o *PublishingPublicationsInner) GetPublishPointsOk() ([]PublishingPublicationsInnerPublishPointsInner, bool) {
 	if o == nil || IsNil(o.PublishPoints) {
 		return nil, false
 	}
@@ -451,8 +451,8 @@ func (o *PublishingPublicationsInner) HasPublishPoints() bool {
 	return false
 }
 
-// SetPublishPoints gets a reference to the given []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner and assigns it to the PublishPoints field.
-func (o *PublishingPublicationsInner) SetPublishPoints(v []PatchOrgChannelRequestPublishingPublicationsInnerPublishPointsInner) {
+// SetPublishPoints gets a reference to the given []PublishingPublicationsInnerPublishPointsInner and assigns it to the PublishPoints field.
+func (o *PublishingPublicationsInner) SetPublishPoints(v []PublishingPublicationsInnerPublishPointsInner) {
 	o.PublishPoints = v
 }
 
