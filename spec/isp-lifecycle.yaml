@@ -234,15 +234,15 @@ components:
     authcode:
       flows:
         authorizationCode:
-          authorizationUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
+          authorizationUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/authorize
           scopes: null
-          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+          tokenUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
       type: oauth2
     m2m:
       flows:
         authorizationCode:
           scopes: null
-          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+          tokenUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
       type: oauth2
 info:
   title: Channel Lifecycle State API
@@ -427,10 +427,10 @@ security:
     m2m: []
 x-cli-config:
   params:
-    authorize_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
-    client_id: 0oa125bj1lwLZRxjD0x8
+    authorize_url: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/authorize
+    client_id: 0oa1rwqv4ii3PFJE60h8
     redirect_url: http://auth.rest.sh:8484
     scopes: offline_access,Groups
     state: non-empty
-    token_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+    token_url: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
   security: authcode

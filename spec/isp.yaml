@@ -13,7 +13,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ArchiveFERRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/ArchiveFERRequest.json
           format: uri
           readOnly: true
           type: string
@@ -43,7 +43,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ArchiveFERResponse.json
+          example: https://stage.api.istreamplanet.com/schemas/ArchiveFERResponse.json
           format: uri
           readOnly: true
           type: string
@@ -120,7 +120,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/CancelTaskResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/CancelTaskResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -135,7 +135,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/Channel.json
+          example: https://stage.api.istreamplanet.com/schemas/Channel.json
           format: uri
           readOnly: true
           type: string
@@ -256,7 +256,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ChannelPlaybackBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ChannelPlaybackBody.json
           format: uri
           readOnly: true
           type: string
@@ -499,7 +499,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/CollapseVODRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/CollapseVODRequest.json
           format: uri
           readOnly: true
           type: string
@@ -545,7 +545,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/CollapseVODResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/CollapseVODResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -823,7 +823,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedGetClipResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedGetClipResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -871,7 +871,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedGetMp4UrlResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedGetMp4UrlResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -885,7 +885,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedGetProgramResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedGetProgramResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -937,7 +937,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedGetProgramTimeResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedGetProgramTimeResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1043,7 +1043,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedMakeMP4Request.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedMakeMP4Request.json
           format: uri
           readOnly: true
           type: string
@@ -1056,7 +1056,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DeprecatedMakeMP4ResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DeprecatedMakeMP4ResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1071,7 +1071,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DesiredStateRequestBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DesiredStateRequestBody.json
           format: uri
           readOnly: true
           type: string
@@ -1131,7 +1131,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DynamicSyndicationRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/DynamicSyndicationRequest.json
           format: uri
           readOnly: true
           type: string
@@ -1173,7 +1173,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/DynamicSyndicationResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/DynamicSyndicationResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1229,7 +1229,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ErrorModel.json
+          example: https://stage.api.istreamplanet.com/schemas/ErrorModel.json
           format: uri
           readOnly: true
           type: string
@@ -1384,7 +1384,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetChannelCostReportResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetChannelCostReportResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1420,7 +1420,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetClipProgramTimeResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetClipProgramTimeResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1447,7 +1447,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetPreviewStreamsResponse.json
+          example: https://stage.api.istreamplanet.com/schemas/GetPreviewStreamsResponse.json
           format: uri
           readOnly: true
           type: string
@@ -1479,7 +1479,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetProductConfigResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetProductConfigResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1504,7 +1504,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetProductResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetProductResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1529,7 +1529,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetScte35MarkerByClipIDResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetScte35MarkerByClipIDResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1547,7 +1547,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetSourcePreviewStreamResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetSourcePreviewStreamResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1579,7 +1579,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetSourcePreviewTranscoderStatusResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetSourcePreviewTranscoderStatusResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1595,7 +1595,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetTaskProgramResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetTaskProgramResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1613,7 +1613,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetTaskResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetTaskResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1695,7 +1695,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/GetVODResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/GetVODResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1782,16 +1782,24 @@ components:
           additionalProperties: false
           properties:
             profile101:
-              $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-              description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-            profile5:
-              additionalProperties: false
-              type: object
-            profile81:
               additionalProperties: false
               properties:
                 clli:
-                  $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                  additionalProperties: false
+                  properties:
+                    max_cll:
+                      description: Maximum Content Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    max_fall:
+                      description: Maximum Frame-Average Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
                 level8:
                   description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                   items:
@@ -1857,8 +1865,35 @@ components:
                   nullable: true
                   type: array
                 mdcv:
-                  $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                  additionalProperties: false
+                  properties:
+                    color_profile:
+                      description: Identifies color primaries and white point.
+                      enum:
+                        - BT2020
+                        - P3_D65
+                        - BT709
+                      type: string
+                    max_dml:
+                      description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    min_dml:
+                      description: Minimum display mastering luminance (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
               type: object
+            profile5:
+              additionalProperties: false
+              type: object
+            profile81:
+              $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+              description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
             profile84:
               additionalProperties: false
               type: object
@@ -1867,44 +1902,9 @@ components:
           additionalProperties: false
           properties:
             clli:
-              additionalProperties: false
-              properties:
-                max_cll:
-                  description: Maximum Content Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                max_fall:
-                  description: Maximum Frame-Average Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
             mdcv:
-              additionalProperties: false
-              properties:
-                color_profile:
-                  description: Identifies color primaries and white point.
-                  enum:
-                    - BT2020
-                    - P3_D65
-                    - BT709
-                  type: string
-                max_dml:
-                  description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                min_dml:
-                  description: Minimum display mastering luminance (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
           type: object
       type: object
     HdrSettingsContentLightLevelInfo:
@@ -1927,7 +1927,21 @@ components:
       additionalProperties: false
       properties:
         clli:
-          $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+          additionalProperties: false
+          properties:
+            max_cll:
+              description: Maximum Content Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+            max_fall:
+              description: Maximum Frame-Average Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+          type: object
         level8:
           description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
           items:
@@ -1993,7 +2007,28 @@ components:
           nullable: true
           type: array
         mdcv:
-          $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+          additionalProperties: false
+          properties:
+            color_profile:
+              description: Identifies color primaries and white point.
+              enum:
+                - BT2020
+                - P3_D65
+                - BT709
+              type: string
+            max_dml:
+              description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+            min_dml:
+              description: Minimum display mastering luminance (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+          type: object
       type: object
     HdrSettingsMasteringDisplayColorVolume:
       additionalProperties: false
@@ -2125,7 +2160,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/InsertMetadataBody.json
+          example: https://stage.api.istreamplanet.com/schemas/InsertMetadataBody.json
           format: uri
           readOnly: true
           type: string
@@ -2141,7 +2176,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/InsertMetadataRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/InsertMetadataRequest.json
           format: uri
           readOnly: true
           type: string
@@ -2156,7 +2191,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/IsBreakingChangeResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/IsBreakingChangeResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2222,7 +2257,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListClipsForVodResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListClipsForVodResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2247,7 +2282,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListClipsResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListClipsResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2272,7 +2307,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListContentSegmentHistoryResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListContentSegmentHistoryResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2287,7 +2322,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListProductsResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListProductsResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2312,7 +2347,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListProgramsResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListProgramsResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2337,7 +2372,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListRawSCTEHistoryByChannelResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListRawSCTEHistoryByChannelResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2352,7 +2387,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListRawSCTEHistoryResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListRawSCTEHistoryResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2367,7 +2402,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/ListTasksResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/ListTasksResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2468,7 +2503,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/MP4URLResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/MP4URLResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2483,7 +2518,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/MakeClipRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/MakeClipRequest.json
           format: uri
           readOnly: true
           type: string
@@ -2514,7 +2549,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/MakeClipResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/MakeClipResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -2533,7 +2568,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/MakeMP4ResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/MakeMP4ResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -3220,7 +3255,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PinSourceRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/PinSourceRequest.json
           format: uri
           readOnly: true
           type: string
@@ -3236,7 +3271,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PlayURLBody.json
+          example: https://stage.api.istreamplanet.com/schemas/PlayURLBody.json
           format: uri
           readOnly: true
           type: string
@@ -3306,7 +3341,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostClipArchiveRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/PostClipArchiveRequest.json
           format: uri
           readOnly: true
           type: string
@@ -3319,7 +3354,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostClipArchiveResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/PostClipArchiveResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -3347,7 +3382,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostClipRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/PostClipRequest.json
           format: uri
           readOnly: true
           type: string
@@ -3385,7 +3420,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostClipResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/PostClipResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -3420,7 +3455,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostCopyMP4Request.json
+          example: https://stage.api.istreamplanet.com/schemas/PostCopyMP4Request.json
           format: uri
           readOnly: true
           type: string
@@ -3434,7 +3469,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostCopyMP4ResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/PostCopyMP4ResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -3452,7 +3487,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PostMakeMP4Request.json
+          example: https://stage.api.istreamplanet.com/schemas/PostMakeMP4Request.json
           format: uri
           readOnly: true
           type: string
@@ -4068,7 +4103,18 @@ components:
             properties:
               audio_encoders:
                 items:
-                  $ref: '#/components/schemas/SrtPublicationEncoder'
+                  additionalProperties: false
+                  properties:
+                    id:
+                      minLength: 1
+                      type: string
+                    pid:
+                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                      exclusiveMaximum: true
+                      format: int32
+                      maximum: 8191
+                      type: integer
+                  type: object
                 minItems: 1
                 nullable: true
                 type: array
@@ -4096,18 +4142,7 @@ components:
                 type: string
               video_encoders:
                 items:
-                  additionalProperties: false
-                  properties:
-                    id:
-                      minLength: 1
-                      type: string
-                    pid:
-                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                      exclusiveMaximum: true
-                      format: int32
-                      maximum: 8191
-                      type: integer
-                  type: object
+                  $ref: '#/components/schemas/SrtPublicationEncoder'
                 minItems: 1
                 nullable: true
                 type: array
@@ -4120,7 +4155,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PutChannelRequestBody.json
+          example: https://stage.api.istreamplanet.com/schemas/PutChannelRequestBody.json
           format: uri
           readOnly: true
           type: string
@@ -4901,7 +4936,18 @@ components:
                 properties:
                   audio_encoders:
                     items:
-                      $ref: '#/components/schemas/SrtPublicationEncoder'
+                      additionalProperties: false
+                      properties:
+                        id:
+                          minLength: 1
+                          type: string
+                        pid:
+                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                          exclusiveMaximum: true
+                          format: int32
+                          maximum: 8191
+                          type: integer
+                      type: object
                     minItems: 1
                     nullable: true
                     type: array
@@ -4929,18 +4975,7 @@ components:
                     type: string
                   video_encoders:
                     items:
-                      additionalProperties: false
-                      properties:
-                        id:
-                          minLength: 1
-                          type: string
-                        pid:
-                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                          exclusiveMaximum: true
-                          format: int32
-                          maximum: 8191
-                          type: integer
-                      type: object
+                      $ref: '#/components/schemas/SrtPublicationEncoder'
                     minItems: 1
                     nullable: true
                     type: array
@@ -5588,62 +5623,30 @@ components:
                     additionalProperties: false
                     properties:
                       hdr:
-                        $ref: '#/components/schemas/HdrSettings'
-                        description: Configure the HDR settings.
-                    type: object
-                  bit_rate:
-                    description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                    example: 6000000
-                    exclusiveMinimum: true
-                    format: int32
-                    minimum: 1000
-                    type: integer
-                  frame_rate:
-                    description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                    enum:
-                      - FR_23_98
-                      - FR_24
-                      - FR_25
-                      - FR_29_97
-                      - FR_30
-                      - FR_50
-                      - FR_59_94
-                      - FR_60
-                    example: FR_60
-                    type: string
-                  h264:
-                    additionalProperties: false
-                    properties:
-                      profile:
-                        description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                        enum:
-                          - BASELINE
-                          - MAIN
-                          - HIGH
-                          - HIGH_10
-                          - HIGH_422
-                        type: string
-                    type: object
-                  h265:
-                    additionalProperties: false
-                    properties:
-                      hdr:
                         additionalProperties: false
                         properties:
                           dolby_vision:
                             additionalProperties: false
                             properties:
                               profile101:
-                                $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-                                description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                              profile5:
-                                additionalProperties: false
-                                type: object
-                              profile81:
                                 additionalProperties: false
                                 properties:
                                   clli:
-                                    $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                    additionalProperties: false
+                                    properties:
+                                      max_cll:
+                                        description: Maximum Content Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      max_fall:
+                                        description: Maximum Frame-Average Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                   level8:
                                     description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                     items:
@@ -5709,8 +5712,35 @@ components:
                                     nullable: true
                                     type: array
                                   mdcv:
-                                    $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                    additionalProperties: false
+                                    properties:
+                                      color_profile:
+                                        description: Identifies color primaries and white point.
+                                        enum:
+                                          - BT2020
+                                          - P3_D65
+                                          - BT709
+                                        type: string
+                                      max_dml:
+                                        description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      min_dml:
+                                        description: Minimum display mastering luminance (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                 type: object
+                              profile5:
+                                additionalProperties: false
+                                type: object
+                              profile81:
+                                $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+                                description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                               profile84:
                                 additionalProperties: false
                                 type: object
@@ -5719,46 +5749,51 @@ components:
                             additionalProperties: false
                             properties:
                               clli:
-                                additionalProperties: false
-                                properties:
-                                  max_cll:
-                                    description: Maximum Content Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  max_fall:
-                                    description: Maximum Frame-Average Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                               mdcv:
-                                additionalProperties: false
-                                properties:
-                                  color_profile:
-                                    description: Identifies color primaries and white point.
-                                    enum:
-                                      - BT2020
-                                      - P3_D65
-                                      - BT709
-                                    type: string
-                                  max_dml:
-                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  min_dml:
-                                    description: Minimum display mastering luminance (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                             type: object
                         type: object
+                    type: object
+                  bit_rate:
+                    description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                    example: 6000000
+                    exclusiveMinimum: true
+                    format: int32
+                    minimum: 1000
+                    type: integer
+                  frame_rate:
+                    description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                    enum:
+                      - FR_23_98
+                      - FR_24
+                      - FR_25
+                      - FR_29_97
+                      - FR_30
+                      - FR_50
+                      - FR_59_94
+                      - FR_60
+                    example: FR_60
+                    type: string
+                  h264:
+                    additionalProperties: false
+                    properties:
+                      profile:
+                        description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                        enum:
+                          - BASELINE
+                          - MAIN
+                          - HIGH
+                          - HIGH_10
+                          - HIGH_422
+                        type: string
+                    type: object
+                  h265:
+                    additionalProperties: false
+                    properties:
+                      hdr:
+                        $ref: '#/components/schemas/HdrSettings'
+                        description: Configure the HDR settings.
                       profile:
                         description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                         enum:
@@ -5805,7 +5840,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PutQCURequest.json
+          example: https://stage.api.istreamplanet.com/schemas/PutQCURequest.json
           format: uri
           readOnly: true
           type: string
@@ -5848,7 +5883,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/PutQCUResponse.json
+          example: https://stage.api.istreamplanet.com/schemas/PutQCUResponse.json
           format: uri
           readOnly: true
           type: string
@@ -5878,7 +5913,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/RetryTaskResponseBody.json
+          example: https://stage.api.istreamplanet.com/schemas/RetryTaskResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -5950,7 +5985,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/Scte35.json
+          example: https://stage.api.istreamplanet.com/schemas/Scte35.json
           format: uri
           readOnly: true
           type: string
@@ -6090,7 +6125,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/SetDynamicStateRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/SetDynamicStateRequest.json
           format: uri
           readOnly: true
           type: string
@@ -6352,7 +6387,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/SourceDetail.json
+          example: https://stage.api.istreamplanet.com/schemas/SourceDetail.json
           format: uri
           readOnly: true
           type: string
@@ -6527,7 +6562,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/Status.json
+          example: https://stage.api.istreamplanet.com/schemas/Status.json
           format: uri
           readOnly: true
           type: string
@@ -7253,62 +7288,30 @@ components:
                 additionalProperties: false
                 properties:
                   hdr:
-                    $ref: '#/components/schemas/HdrSettings'
-                    description: Configure the HDR settings.
-                type: object
-              bit_rate:
-                description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                example: 6000000
-                exclusiveMinimum: true
-                format: int32
-                minimum: 1000
-                type: integer
-              frame_rate:
-                description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                enum:
-                  - FR_23_98
-                  - FR_24
-                  - FR_25
-                  - FR_29_97
-                  - FR_30
-                  - FR_50
-                  - FR_59_94
-                  - FR_60
-                example: FR_60
-                type: string
-              h264:
-                additionalProperties: false
-                properties:
-                  profile:
-                    description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                    enum:
-                      - BASELINE
-                      - MAIN
-                      - HIGH
-                      - HIGH_10
-                      - HIGH_422
-                    type: string
-                type: object
-              h265:
-                additionalProperties: false
-                properties:
-                  hdr:
                     additionalProperties: false
                     properties:
                       dolby_vision:
                         additionalProperties: false
                         properties:
                           profile101:
-                            $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-                            description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                          profile5:
-                            additionalProperties: false
-                            type: object
-                          profile81:
                             additionalProperties: false
                             properties:
                               clli:
-                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                additionalProperties: false
+                                properties:
+                                  max_cll:
+                                    description: Maximum Content Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  max_fall:
+                                    description: Maximum Frame-Average Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                               level8:
                                 description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                 items:
@@ -7374,8 +7377,35 @@ components:
                                 nullable: true
                                 type: array
                               mdcv:
-                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                additionalProperties: false
+                                properties:
+                                  color_profile:
+                                    description: Identifies color primaries and white point.
+                                    enum:
+                                      - BT2020
+                                      - P3_D65
+                                      - BT709
+                                    type: string
+                                  max_dml:
+                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  min_dml:
+                                    description: Minimum display mastering luminance (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                             type: object
+                          profile5:
+                            additionalProperties: false
+                            type: object
+                          profile81:
+                            $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+                            description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                           profile84:
                             additionalProperties: false
                             type: object
@@ -7384,46 +7414,51 @@ components:
                         additionalProperties: false
                         properties:
                           clli:
-                            additionalProperties: false
-                            properties:
-                              max_cll:
-                                description: Maximum Content Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              max_fall:
-                                description: Maximum Frame-Average Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                           mdcv:
-                            additionalProperties: false
-                            properties:
-                              color_profile:
-                                description: Identifies color primaries and white point.
-                                enum:
-                                  - BT2020
-                                  - P3_D65
-                                  - BT709
-                                type: string
-                              max_dml:
-                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              min_dml:
-                                description: Minimum display mastering luminance (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                         type: object
                     type: object
+                type: object
+              bit_rate:
+                description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                example: 6000000
+                exclusiveMinimum: true
+                format: int32
+                minimum: 1000
+                type: integer
+              frame_rate:
+                description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                enum:
+                  - FR_23_98
+                  - FR_24
+                  - FR_25
+                  - FR_29_97
+                  - FR_30
+                  - FR_50
+                  - FR_59_94
+                  - FR_60
+                example: FR_60
+                type: string
+              h264:
+                additionalProperties: false
+                properties:
+                  profile:
+                    description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                    enum:
+                      - BASELINE
+                      - MAIN
+                      - HIGH
+                      - HIGH_10
+                      - HIGH_422
+                    type: string
+                type: object
+              h265:
+                additionalProperties: false
+                properties:
+                  hdr:
+                    $ref: '#/components/schemas/HdrSettings'
+                    description: Configure the HDR settings.
                   profile:
                     description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                     enum:
@@ -7561,7 +7596,7 @@ components:
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
-          example: https://api.istreamplanet.com/schemas/UpdateProductConfigRequest.json
+          example: https://stage.api.istreamplanet.com/schemas/UpdateProductConfigRequest.json
           format: uri
           readOnly: true
           type: string
@@ -7712,15 +7747,15 @@ components:
     authcode:
       flows:
         authorizationCode:
-          authorizationUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
+          authorizationUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/authorize
           scopes: null
-          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+          tokenUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
       type: oauth2
     m2m:
       flows:
         clientCredentials:
           scopes: null
-          tokenUrl: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+          tokenUrl: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
       type: oauth2
 info:
   contact:
@@ -9324,7 +9359,7 @@ paths:
               properties:
                 $schema:
                   description: A URL to the JSON Schema for this object.
-                  example: https://api.istreamplanet.com/schemas/PutChannelRequestBody.json
+                  example: https://stage.api.istreamplanet.com/schemas/PutChannelRequestBody.json
                   format: uri
                   readOnly: true
                   type: string
@@ -10076,7 +10111,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -10102,19 +10149,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
@@ -10747,59 +10782,30 @@ paths:
                             additionalProperties: false
                             properties:
                               hdr:
-                                description: Configure the HDR settings.
-                            type: object
-                          bit_rate:
-                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                            example: 6000000
-                            exclusiveMinimum: true
-                            format: int32
-                            minimum: 1000
-                            type: integer
-                          frame_rate:
-                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                            enum:
-                              - FR_23_98
-                              - FR_24
-                              - FR_25
-                              - FR_29_97
-                              - FR_30
-                              - FR_50
-                              - FR_59_94
-                              - FR_60
-                            example: FR_60
-                            type: string
-                          h264:
-                            additionalProperties: false
-                            properties:
-                              profile:
-                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                                enum:
-                                  - BASELINE
-                                  - MAIN
-                                  - HIGH
-                                  - HIGH_10
-                                  - HIGH_422
-                                type: string
-                            type: object
-                          h265:
-                            additionalProperties: false
-                            properties:
-                              hdr:
                                 additionalProperties: false
                                 properties:
                                   dolby_vision:
                                     additionalProperties: false
                                     properties:
                                       profile101:
-                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                                      profile5:
-                                        additionalProperties: false
-                                        type: object
-                                      profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -10863,8 +10869,35 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
+                                      profile5:
+                                        additionalProperties: false
+                                        type: object
+                                      profile81:
+                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                                       profile84:
                                         additionalProperties: false
                                         type: object
@@ -10872,47 +10905,49 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
+                            type: object
+                          bit_rate:
+                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                            example: 6000000
+                            exclusiveMinimum: true
+                            format: int32
+                            minimum: 1000
+                            type: integer
+                          frame_rate:
+                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                            enum:
+                              - FR_23_98
+                              - FR_24
+                              - FR_25
+                              - FR_29_97
+                              - FR_30
+                              - FR_50
+                              - FR_59_94
+                              - FR_60
+                            example: FR_60
+                            type: string
+                          h264:
+                            additionalProperties: false
+                            properties:
+                              profile:
+                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                                enum:
+                                  - BASELINE
+                                  - MAIN
+                                  - HIGH
+                                  - HIGH_10
+                                  - HIGH_422
+                                type: string
+                            type: object
+                          h265:
+                            additionalProperties: false
+                            properties:
+                              hdr:
+                                description: Configure the HDR settings.
                               profile:
                                 description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                                 enum:
@@ -10957,7 +10992,7 @@ paths:
               properties:
                 $schema:
                   description: A URL to the JSON Schema for this object.
-                  example: https://api.istreamplanet.com/schemas/PutChannelRequestBody.json
+                  example: https://stage.api.istreamplanet.com/schemas/PutChannelRequestBody.json
                   format: uri
                   readOnly: true
                   type: string
@@ -11709,7 +11744,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -11735,19 +11782,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
@@ -12380,59 +12415,30 @@ paths:
                             additionalProperties: false
                             properties:
                               hdr:
-                                description: Configure the HDR settings.
-                            type: object
-                          bit_rate:
-                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                            example: 6000000
-                            exclusiveMinimum: true
-                            format: int32
-                            minimum: 1000
-                            type: integer
-                          frame_rate:
-                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                            enum:
-                              - FR_23_98
-                              - FR_24
-                              - FR_25
-                              - FR_29_97
-                              - FR_30
-                              - FR_50
-                              - FR_59_94
-                              - FR_60
-                            example: FR_60
-                            type: string
-                          h264:
-                            additionalProperties: false
-                            properties:
-                              profile:
-                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                                enum:
-                                  - BASELINE
-                                  - MAIN
-                                  - HIGH
-                                  - HIGH_10
-                                  - HIGH_422
-                                type: string
-                            type: object
-                          h265:
-                            additionalProperties: false
-                            properties:
-                              hdr:
                                 additionalProperties: false
                                 properties:
                                   dolby_vision:
                                     additionalProperties: false
                                     properties:
                                       profile101:
-                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                                      profile5:
-                                        additionalProperties: false
-                                        type: object
-                                      profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -12496,8 +12502,35 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
+                                      profile5:
+                                        additionalProperties: false
+                                        type: object
+                                      profile81:
+                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                                       profile84:
                                         additionalProperties: false
                                         type: object
@@ -12505,47 +12538,49 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
+                            type: object
+                          bit_rate:
+                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                            example: 6000000
+                            exclusiveMinimum: true
+                            format: int32
+                            minimum: 1000
+                            type: integer
+                          frame_rate:
+                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                            enum:
+                              - FR_23_98
+                              - FR_24
+                              - FR_25
+                              - FR_29_97
+                              - FR_30
+                              - FR_50
+                              - FR_59_94
+                              - FR_60
+                            example: FR_60
+                            type: string
+                          h264:
+                            additionalProperties: false
+                            properties:
+                              profile:
+                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                                enum:
+                                  - BASELINE
+                                  - MAIN
+                                  - HIGH
+                                  - HIGH_10
+                                  - HIGH_422
+                                type: string
+                            type: object
+                          h265:
+                            additionalProperties: false
+                            properties:
+                              hdr:
+                                description: Configure the HDR settings.
                               profile:
                                 description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                                 enum:
@@ -17773,8 +17808,10 @@ security:
   - authcode: []
     m2m: []
 servers:
-  - description: prod
-    url: https://api.istreamplanet.com
+  - description: stage
+    url: https://stage.api.istreamplanet.com
+  - description: local
+    url: http://localhost:8888
 tags:
   - name: Organizations
   - name: Available Sources
@@ -17789,10 +17826,10 @@ tags:
   - name: Audit Operations
 x-cli-config:
   params:
-    authorize_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/authorize
-    client_id: 0oa125bj1lwLZRxjD0x8
+    authorize_url: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/authorize
+    client_id: 0oa1rwqv4ii3PFJE60h8
     redirect_url: http://auth.rest.sh:8484
     scopes: offline_access,Groups
     state: non-empty
-    token_url: https://sso.wbd.com/oauth2/aus125bl6q770za4g0x8/v1/token
+    token_url: https://ssoqa.wbd.com/oauth2/aus1sjz42iq5tkoV80h8/v1/token
   security: authcode
