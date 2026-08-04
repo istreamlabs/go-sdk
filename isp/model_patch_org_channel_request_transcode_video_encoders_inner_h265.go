@@ -18,7 +18,8 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265{}
 
 // PatchOrgChannelRequestTranscodeVideoEncodersInnerH265 struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265
 type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265 struct {
-	Hdr *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr `json:"hdr,omitempty"`
+	// Configure the HDR settings.
+	Hdr interface{} `json:"hdr,omitempty" doc:"Configure the HDR settings."`
 	// H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
 	Profile *string `json:"profile,omitempty" enum:"MAIN,MAIN_10" doc:"H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details."`
 }
@@ -40,36 +41,37 @@ func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265WithDefaults() *Pat
 	return &this
 }
 
-// GetHdr returns the Hdr field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) GetHdr() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr {
-	if o == nil || IsNil(o.Hdr) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr
+// GetHdr returns the Hdr field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) GetHdr() interface{} {
+	if o == nil {
+		var ret interface{}
 		return ret
 	}
-	return *o.Hdr
+	return o.Hdr
 }
 
 // GetHdrOk returns a tuple with the Hdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) GetHdrOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr, bool) {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) GetHdrOk() (*interface{}, bool) {
 	if o == nil || IsNil(o.Hdr) {
 		return nil, false
 	}
-	return o.Hdr, true
+	return &o.Hdr, true
 }
 
 // HasHdr returns a boolean if a field has been set.
 func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) HasHdr() bool {
-	if o != nil && !IsNil(o.Hdr) {
+	if o != nil && IsNil(o.Hdr) {
 		return true
 	}
 
 	return false
 }
 
-// SetHdr gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr and assigns it to the Hdr field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) SetHdr(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265Hdr) {
-	o.Hdr = &v
+// SetHdr gets a reference to the given interface{} and assigns it to the Hdr field.
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) SetHdr(v interface{}) {
+	o.Hdr = v
 }
 
 // GetProfile returns the Profile field value if set, zero value otherwise.
@@ -114,7 +116,7 @@ func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) MarshalJSON() ([]
 
 func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Hdr) {
+	if o.Hdr != nil {
 		toSerialize["hdr"] = o.Hdr
 	}
 	if !IsNil(o.Profile) {

@@ -18,7 +18,7 @@ var _ MappedNullable = &PutChannelRequestBodyTranscodeVideoEncodersInnerAv1{}
 
 // PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 struct for PutChannelRequestBodyTranscodeVideoEncodersInnerAv1
 type PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 struct {
-	Hdr *HdrSettings `json:"hdr,omitempty"`
+	Hdr *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr `json:"hdr,omitempty"`
 }
 
 // NewPutChannelRequestBodyTranscodeVideoEncodersInnerAv1 instantiates a new PutChannelRequestBodyTranscodeVideoEncodersInnerAv1 object
@@ -39,9 +39,9 @@ func NewPutChannelRequestBodyTranscodeVideoEncodersInnerAv1WithDefaults() *PutCh
 }
 
 // GetHdr returns the Hdr field value if set, zero value otherwise.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) GetHdr() HdrSettings {
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) GetHdr() PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr {
 	if o == nil || IsNil(o.Hdr) {
-		var ret HdrSettings
+		var ret PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr
 		return ret
 	}
 	return *o.Hdr
@@ -49,7 +49,7 @@ func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) GetHdr() HdrSettin
 
 // GetHdrOk returns a tuple with the Hdr field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) GetHdrOk() (*HdrSettings, bool) {
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) GetHdrOk() (*PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr, bool) {
 	if o == nil || IsNil(o.Hdr) {
 		return nil, false
 	}
@@ -65,8 +65,8 @@ func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) HasHdr() bool {
 	return false
 }
 
-// SetHdr gets a reference to the given HdrSettings and assigns it to the Hdr field.
-func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) SetHdr(v HdrSettings) {
+// SetHdr gets a reference to the given PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr and assigns it to the Hdr field.
+func (o *PutChannelRequestBodyTranscodeVideoEncodersInnerAv1) SetHdr(v PutChannelRequestBodyTranscodeVideoEncodersInnerAv1Hdr) {
 	o.Hdr = &v
 }
 
