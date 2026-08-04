@@ -1782,16 +1782,24 @@ components:
           additionalProperties: false
           properties:
             profile101:
-              $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-              description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-            profile5:
-              additionalProperties: false
-              type: object
-            profile81:
               additionalProperties: false
               properties:
                 clli:
-                  $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                  additionalProperties: false
+                  properties:
+                    max_cll:
+                      description: Maximum Content Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    max_fall:
+                      description: Maximum Frame-Average Light Level (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
                 level8:
                   description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                   items:
@@ -1857,8 +1865,35 @@ components:
                   nullable: true
                   type: array
                 mdcv:
-                  $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                  additionalProperties: false
+                  properties:
+                    color_profile:
+                      description: Identifies color primaries and white point.
+                      enum:
+                        - BT2020
+                        - P3_D65
+                        - BT709
+                      type: string
+                    max_dml:
+                      description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                    min_dml:
+                      description: Minimum display mastering luminance (nits).
+                      format: double
+                      maximum: 10000
+                      minimum: 0
+                      type: number
+                  type: object
               type: object
+            profile5:
+              additionalProperties: false
+              type: object
+            profile81:
+              $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+              description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
             profile84:
               additionalProperties: false
               type: object
@@ -1867,44 +1902,9 @@ components:
           additionalProperties: false
           properties:
             clli:
-              additionalProperties: false
-              properties:
-                max_cll:
-                  description: Maximum Content Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                max_fall:
-                  description: Maximum Frame-Average Light Level (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
             mdcv:
-              additionalProperties: false
-              properties:
-                color_profile:
-                  description: Identifies color primaries and white point.
-                  enum:
-                    - BT2020
-                    - P3_D65
-                    - BT709
-                  type: string
-                max_dml:
-                  description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-                min_dml:
-                  description: Minimum display mastering luminance (nits).
-                  format: double
-                  maximum: 10000
-                  minimum: 0
-                  type: number
-              type: object
+              $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
           type: object
       type: object
     HdrSettingsContentLightLevelInfo:
@@ -1927,7 +1927,21 @@ components:
       additionalProperties: false
       properties:
         clli:
-          $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+          additionalProperties: false
+          properties:
+            max_cll:
+              description: Maximum Content Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+            max_fall:
+              description: Maximum Frame-Average Light Level (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+          type: object
         level8:
           description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
           items:
@@ -1993,7 +2007,28 @@ components:
           nullable: true
           type: array
         mdcv:
-          $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+          additionalProperties: false
+          properties:
+            color_profile:
+              description: Identifies color primaries and white point.
+              enum:
+                - BT2020
+                - P3_D65
+                - BT709
+              type: string
+            max_dml:
+              description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+            min_dml:
+              description: Minimum display mastering luminance (nits).
+              format: double
+              maximum: 10000
+              minimum: 0
+              type: number
+          type: object
       type: object
     HdrSettingsMasteringDisplayColorVolume:
       additionalProperties: false
@@ -4068,7 +4103,18 @@ components:
             properties:
               audio_encoders:
                 items:
-                  $ref: '#/components/schemas/SrtPublicationEncoder'
+                  additionalProperties: false
+                  properties:
+                    id:
+                      minLength: 1
+                      type: string
+                    pid:
+                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                      exclusiveMaximum: true
+                      format: int32
+                      maximum: 8191
+                      type: integer
+                  type: object
                 minItems: 1
                 nullable: true
                 type: array
@@ -4096,18 +4142,7 @@ components:
                 type: string
               video_encoders:
                 items:
-                  additionalProperties: false
-                  properties:
-                    id:
-                      minLength: 1
-                      type: string
-                    pid:
-                      description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                      exclusiveMaximum: true
-                      format: int32
-                      maximum: 8191
-                      type: integer
-                  type: object
+                  $ref: '#/components/schemas/SrtPublicationEncoder'
                 minItems: 1
                 nullable: true
                 type: array
@@ -4901,7 +4936,18 @@ components:
                 properties:
                   audio_encoders:
                     items:
-                      $ref: '#/components/schemas/SrtPublicationEncoder'
+                      additionalProperties: false
+                      properties:
+                        id:
+                          minLength: 1
+                          type: string
+                        pid:
+                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                          exclusiveMaximum: true
+                          format: int32
+                          maximum: 8191
+                          type: integer
+                      type: object
                     minItems: 1
                     nullable: true
                     type: array
@@ -4929,18 +4975,7 @@ components:
                     type: string
                   video_encoders:
                     items:
-                      additionalProperties: false
-                      properties:
-                        id:
-                          minLength: 1
-                          type: string
-                        pid:
-                          description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                          exclusiveMaximum: true
-                          format: int32
-                          maximum: 8191
-                          type: integer
-                      type: object
+                      $ref: '#/components/schemas/SrtPublicationEncoder'
                     minItems: 1
                     nullable: true
                     type: array
@@ -5588,62 +5623,30 @@ components:
                     additionalProperties: false
                     properties:
                       hdr:
-                        $ref: '#/components/schemas/HdrSettings'
-                        description: Configure the HDR settings.
-                    type: object
-                  bit_rate:
-                    description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                    example: 6000000
-                    exclusiveMinimum: true
-                    format: int32
-                    minimum: 1000
-                    type: integer
-                  frame_rate:
-                    description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                    enum:
-                      - FR_23_98
-                      - FR_24
-                      - FR_25
-                      - FR_29_97
-                      - FR_30
-                      - FR_50
-                      - FR_59_94
-                      - FR_60
-                    example: FR_60
-                    type: string
-                  h264:
-                    additionalProperties: false
-                    properties:
-                      profile:
-                        description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                        enum:
-                          - BASELINE
-                          - MAIN
-                          - HIGH
-                          - HIGH_10
-                          - HIGH_422
-                        type: string
-                    type: object
-                  h265:
-                    additionalProperties: false
-                    properties:
-                      hdr:
                         additionalProperties: false
                         properties:
                           dolby_vision:
                             additionalProperties: false
                             properties:
                               profile101:
-                                $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-                                description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                              profile5:
-                                additionalProperties: false
-                                type: object
-                              profile81:
                                 additionalProperties: false
                                 properties:
                                   clli:
-                                    $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                    additionalProperties: false
+                                    properties:
+                                      max_cll:
+                                        description: Maximum Content Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      max_fall:
+                                        description: Maximum Frame-Average Light Level (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                   level8:
                                     description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                     items:
@@ -5709,8 +5712,35 @@ components:
                                     nullable: true
                                     type: array
                                   mdcv:
-                                    $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                    additionalProperties: false
+                                    properties:
+                                      color_profile:
+                                        description: Identifies color primaries and white point.
+                                        enum:
+                                          - BT2020
+                                          - P3_D65
+                                          - BT709
+                                        type: string
+                                      max_dml:
+                                        description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                      min_dml:
+                                        description: Minimum display mastering luminance (nits).
+                                        format: double
+                                        maximum: 10000
+                                        minimum: 0
+                                        type: number
+                                    type: object
                                 type: object
+                              profile5:
+                                additionalProperties: false
+                                type: object
+                              profile81:
+                                $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+                                description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                               profile84:
                                 additionalProperties: false
                                 type: object
@@ -5719,46 +5749,51 @@ components:
                             additionalProperties: false
                             properties:
                               clli:
-                                additionalProperties: false
-                                properties:
-                                  max_cll:
-                                    description: Maximum Content Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  max_fall:
-                                    description: Maximum Frame-Average Light Level (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                               mdcv:
-                                additionalProperties: false
-                                properties:
-                                  color_profile:
-                                    description: Identifies color primaries and white point.
-                                    enum:
-                                      - BT2020
-                                      - P3_D65
-                                      - BT709
-                                    type: string
-                                  max_dml:
-                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                  min_dml:
-                                    description: Minimum display mastering luminance (nits).
-                                    format: double
-                                    maximum: 10000
-                                    minimum: 0
-                                    type: number
-                                type: object
+                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                             type: object
                         type: object
+                    type: object
+                  bit_rate:
+                    description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                    example: 6000000
+                    exclusiveMinimum: true
+                    format: int32
+                    minimum: 1000
+                    type: integer
+                  frame_rate:
+                    description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                    enum:
+                      - FR_23_98
+                      - FR_24
+                      - FR_25
+                      - FR_29_97
+                      - FR_30
+                      - FR_50
+                      - FR_59_94
+                      - FR_60
+                    example: FR_60
+                    type: string
+                  h264:
+                    additionalProperties: false
+                    properties:
+                      profile:
+                        description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                        enum:
+                          - BASELINE
+                          - MAIN
+                          - HIGH
+                          - HIGH_10
+                          - HIGH_422
+                        type: string
+                    type: object
+                  h265:
+                    additionalProperties: false
+                    properties:
+                      hdr:
+                        $ref: '#/components/schemas/HdrSettings'
+                        description: Configure the HDR settings.
                       profile:
                         description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                         enum:
@@ -7253,62 +7288,30 @@ components:
                 additionalProperties: false
                 properties:
                   hdr:
-                    $ref: '#/components/schemas/HdrSettings'
-                    description: Configure the HDR settings.
-                type: object
-              bit_rate:
-                description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                example: 6000000
-                exclusiveMinimum: true
-                format: int32
-                minimum: 1000
-                type: integer
-              frame_rate:
-                description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                enum:
-                  - FR_23_98
-                  - FR_24
-                  - FR_25
-                  - FR_29_97
-                  - FR_30
-                  - FR_50
-                  - FR_59_94
-                  - FR_60
-                example: FR_60
-                type: string
-              h264:
-                additionalProperties: false
-                properties:
-                  profile:
-                    description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                    enum:
-                      - BASELINE
-                      - MAIN
-                      - HIGH
-                      - HIGH_10
-                      - HIGH_422
-                    type: string
-                type: object
-              h265:
-                additionalProperties: false
-                properties:
-                  hdr:
                     additionalProperties: false
                     properties:
                       dolby_vision:
                         additionalProperties: false
                         properties:
                           profile101:
-                            $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
-                            description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                          profile5:
-                            additionalProperties: false
-                            type: object
-                          profile81:
                             additionalProperties: false
                             properties:
                               clli:
-                                $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
+                                additionalProperties: false
+                                properties:
+                                  max_cll:
+                                    description: Maximum Content Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  max_fall:
+                                    description: Maximum Frame-Average Light Level (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                               level8:
                                 description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                 items:
@@ -7374,8 +7377,35 @@ components:
                                 nullable: true
                                 type: array
                               mdcv:
-                                $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
+                                additionalProperties: false
+                                properties:
+                                  color_profile:
+                                    description: Identifies color primaries and white point.
+                                    enum:
+                                      - BT2020
+                                      - P3_D65
+                                      - BT709
+                                    type: string
+                                  max_dml:
+                                    description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                  min_dml:
+                                    description: Minimum display mastering luminance (nits).
+                                    format: double
+                                    maximum: 10000
+                                    minimum: 0
+                                    type: number
+                                type: object
                             type: object
+                          profile5:
+                            additionalProperties: false
+                            type: object
+                          profile81:
+                            $ref: '#/components/schemas/HdrSettingsDolbyVisionProfile81'
+                            description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                           profile84:
                             additionalProperties: false
                             type: object
@@ -7384,46 +7414,51 @@ components:
                         additionalProperties: false
                         properties:
                           clli:
-                            additionalProperties: false
-                            properties:
-                              max_cll:
-                                description: Maximum Content Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              max_fall:
-                                description: Maximum Frame-Average Light Level (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsContentLightLevelInfo'
                           mdcv:
-                            additionalProperties: false
-                            properties:
-                              color_profile:
-                                description: Identifies color primaries and white point.
-                                enum:
-                                  - BT2020
-                                  - P3_D65
-                                  - BT709
-                                type: string
-                              max_dml:
-                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                              min_dml:
-                                description: Minimum display mastering luminance (nits).
-                                format: double
-                                maximum: 10000
-                                minimum: 0
-                                type: number
-                            type: object
+                            $ref: '#/components/schemas/HdrSettingsMasteringDisplayColorVolume'
                         type: object
                     type: object
+                type: object
+              bit_rate:
+                description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                example: 6000000
+                exclusiveMinimum: true
+                format: int32
+                minimum: 1000
+                type: integer
+              frame_rate:
+                description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                enum:
+                  - FR_23_98
+                  - FR_24
+                  - FR_25
+                  - FR_29_97
+                  - FR_30
+                  - FR_50
+                  - FR_59_94
+                  - FR_60
+                example: FR_60
+                type: string
+              h264:
+                additionalProperties: false
+                properties:
+                  profile:
+                    description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                    enum:
+                      - BASELINE
+                      - MAIN
+                      - HIGH
+                      - HIGH_10
+                      - HIGH_422
+                    type: string
+                type: object
+              h265:
+                additionalProperties: false
+                properties:
+                  hdr:
+                    $ref: '#/components/schemas/HdrSettings'
+                    description: Configure the HDR settings.
                   profile:
                     description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                     enum:
@@ -10076,7 +10111,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -10102,19 +10149,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
@@ -10747,59 +10782,30 @@ paths:
                             additionalProperties: false
                             properties:
                               hdr:
-                                description: Configure the HDR settings.
-                            type: object
-                          bit_rate:
-                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                            example: 6000000
-                            exclusiveMinimum: true
-                            format: int32
-                            minimum: 1000
-                            type: integer
-                          frame_rate:
-                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                            enum:
-                              - FR_23_98
-                              - FR_24
-                              - FR_25
-                              - FR_29_97
-                              - FR_30
-                              - FR_50
-                              - FR_59_94
-                              - FR_60
-                            example: FR_60
-                            type: string
-                          h264:
-                            additionalProperties: false
-                            properties:
-                              profile:
-                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                                enum:
-                                  - BASELINE
-                                  - MAIN
-                                  - HIGH
-                                  - HIGH_10
-                                  - HIGH_422
-                                type: string
-                            type: object
-                          h265:
-                            additionalProperties: false
-                            properties:
-                              hdr:
                                 additionalProperties: false
                                 properties:
                                   dolby_vision:
                                     additionalProperties: false
                                     properties:
                                       profile101:
-                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                                      profile5:
-                                        additionalProperties: false
-                                        type: object
-                                      profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -10863,8 +10869,35 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
+                                      profile5:
+                                        additionalProperties: false
+                                        type: object
+                                      profile81:
+                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                                       profile84:
                                         additionalProperties: false
                                         type: object
@@ -10872,47 +10905,49 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
+                            type: object
+                          bit_rate:
+                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                            example: 6000000
+                            exclusiveMinimum: true
+                            format: int32
+                            minimum: 1000
+                            type: integer
+                          frame_rate:
+                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                            enum:
+                              - FR_23_98
+                              - FR_24
+                              - FR_25
+                              - FR_29_97
+                              - FR_30
+                              - FR_50
+                              - FR_59_94
+                              - FR_60
+                            example: FR_60
+                            type: string
+                          h264:
+                            additionalProperties: false
+                            properties:
+                              profile:
+                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                                enum:
+                                  - BASELINE
+                                  - MAIN
+                                  - HIGH
+                                  - HIGH_10
+                                  - HIGH_422
+                                type: string
+                            type: object
+                          h265:
+                            additionalProperties: false
+                            properties:
+                              hdr:
+                                description: Configure the HDR settings.
                               profile:
                                 description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                                 enum:
@@ -11709,7 +11744,19 @@ paths:
                         additionalProperties: false
                         properties:
                           audio_encoders:
-                            items: {}
+                            items:
+                              additionalProperties: false
+                              properties:
+                                id:
+                                  minLength: 1
+                                  type: string
+                                pid:
+                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
+                                  exclusiveMaximum: true
+                                  format: int32
+                                  maximum: 8191
+                                  type: integer
+                              type: object
                             minItems: 1
                             type: array
                           id:
@@ -11735,19 +11782,7 @@ paths:
                             pattern: ^srt://
                             type: string
                           video_encoders:
-                            items:
-                              additionalProperties: false
-                              properties:
-                                id:
-                                  minLength: 1
-                                  type: string
-                                pid:
-                                  description: Output MPEG-TS PID. PIDs should be set on the PMT, SCTE-35 and all encoders or none. Valid PIDs must 13-bit values greater than 31. If no PIDs are provided (pid == 0) then they will be generated automatically.
-                                  exclusiveMaximum: true
-                                  format: int32
-                                  maximum: 8191
-                                  type: integer
-                              type: object
+                            items: {}
                             minItems: 1
                             type: array
                         type: object
@@ -12380,59 +12415,30 @@ paths:
                             additionalProperties: false
                             properties:
                               hdr:
-                                description: Configure the HDR settings.
-                            type: object
-                          bit_rate:
-                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
-                            example: 6000000
-                            exclusiveMinimum: true
-                            format: int32
-                            minimum: 1000
-                            type: integer
-                          frame_rate:
-                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
-                            enum:
-                              - FR_23_98
-                              - FR_24
-                              - FR_25
-                              - FR_29_97
-                              - FR_30
-                              - FR_50
-                              - FR_59_94
-                              - FR_60
-                            example: FR_60
-                            type: string
-                          h264:
-                            additionalProperties: false
-                            properties:
-                              profile:
-                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
-                                enum:
-                                  - BASELINE
-                                  - MAIN
-                                  - HIGH
-                                  - HIGH_10
-                                  - HIGH_422
-                                type: string
-                            type: object
-                          h265:
-                            additionalProperties: false
-                            properties:
-                              hdr:
                                 additionalProperties: false
                                 properties:
                                   dolby_vision:
                                     additionalProperties: false
                                     properties:
                                       profile101:
-                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
-                                      profile5:
-                                        additionalProperties: false
-                                        type: object
-                                      profile81:
                                         additionalProperties: false
                                         properties:
-                                          clli: {}
+                                          clli:
+                                            additionalProperties: false
+                                            properties:
+                                              max_cll:
+                                                description: Maximum Content Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              max_fall:
+                                                description: Maximum Frame-Average Light Level (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                           level8:
                                             description: Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
                                             items:
@@ -12496,8 +12502,35 @@ paths:
                                                   type: number
                                               type: object
                                             type: array
-                                          mdcv: {}
+                                          mdcv:
+                                            additionalProperties: false
+                                            properties:
+                                              color_profile:
+                                                description: Identifies color primaries and white point.
+                                                enum:
+                                                  - BT2020
+                                                  - P3_D65
+                                                  - BT709
+                                                type: string
+                                              max_dml:
+                                                description: Maximum display mastering luminance (nits). Must be greater than min_dml.
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                              min_dml:
+                                                description: Minimum display mastering luminance (nits).
+                                                format: double
+                                                maximum: 10000
+                                                minimum: 0
+                                                type: number
+                                            type: object
                                         type: object
+                                      profile5:
+                                        additionalProperties: false
+                                        type: object
+                                      profile81:
+                                        description: Only one of ['profile5', 'profile81', 'profile84', 'profile101'] may be set.
                                       profile84:
                                         additionalProperties: false
                                         type: object
@@ -12505,47 +12538,49 @@ paths:
                                   hdr10:
                                     additionalProperties: false
                                     properties:
-                                      clli:
-                                        additionalProperties: false
-                                        properties:
-                                          max_cll:
-                                            description: Maximum Content Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          max_fall:
-                                            description: Maximum Frame-Average Light Level (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
-                                      mdcv:
-                                        additionalProperties: false
-                                        properties:
-                                          color_profile:
-                                            description: Identifies color primaries and white point.
-                                            enum:
-                                              - BT2020
-                                              - P3_D65
-                                              - BT709
-                                            type: string
-                                          max_dml:
-                                            description: Maximum display mastering luminance (nits). Must be greater than min_dml.
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                          min_dml:
-                                            description: Minimum display mastering luminance (nits).
-                                            format: double
-                                            maximum: 10000
-                                            minimum: 0
-                                            type: number
-                                        type: object
+                                      clli: {}
+                                      mdcv: {}
                                     type: object
                                 type: object
+                            type: object
+                          bit_rate:
+                            description: Bit rate specifies the number in bits used per second. Higher values result in better video quality but bigger file sizes. For H.264 this value is the target of the constrained variable bit rate.
+                            example: 6000000
+                            exclusiveMinimum: true
+                            format: int32
+                            minimum: 1000
+                            type: integer
+                          frame_rate:
+                            description: Frame rate specifies the number of images that are shown per second when playing back the video. For the best quality playback, this should match or be a multiple of the input source video stream.
+                            enum:
+                              - FR_23_98
+                              - FR_24
+                              - FR_25
+                              - FR_29_97
+                              - FR_30
+                              - FR_50
+                              - FR_59_94
+                              - FR_60
+                            example: FR_60
+                            type: string
+                          h264:
+                            additionalProperties: false
+                            properties:
+                              profile:
+                                description: H.264 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/Advanced_Video_Coding#Profiles for details.
+                                enum:
+                                  - BASELINE
+                                  - MAIN
+                                  - HIGH
+                                  - HIGH_10
+                                  - HIGH_422
+                                type: string
+                            type: object
+                          h265:
+                            additionalProperties: false
+                            properties:
+                              hdr:
+                                description: Configure the HDR settings.
                               profile:
                                 description: H.265 video profile, which defines various encoder features and settings. See https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding#Profiles for details.
                                 enum:
