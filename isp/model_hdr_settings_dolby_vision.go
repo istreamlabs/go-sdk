@@ -18,10 +18,10 @@ var _ MappedNullable = &HdrSettingsDolbyVision{}
 
 // HdrSettingsDolbyVision struct for HdrSettingsDolbyVision
 type HdrSettingsDolbyVision struct {
-	Profile101 *HdrSettingsDolbyVisionProfile81 `json:"profile101,omitempty"`
-	Profile5   *map[string]interface{}          `json:"profile5,omitempty"`
-	Profile81  *HdrSettingsDolbyVisionProfile81 `json:"profile81,omitempty"`
-	Profile84  *map[string]interface{}          `json:"profile84,omitempty"`
+	Profile101 *HdrSettingsDolbyVisionProfile101 `json:"profile101,omitempty"`
+	Profile5   *map[string]interface{}           `json:"profile5,omitempty"`
+	Profile81  *HdrSettingsDolbyVisionProfile81  `json:"profile81,omitempty"`
+	Profile84  *map[string]interface{}           `json:"profile84,omitempty"`
 }
 
 // NewHdrSettingsDolbyVision instantiates a new HdrSettingsDolbyVision object
@@ -42,9 +42,9 @@ func NewHdrSettingsDolbyVisionWithDefaults() *HdrSettingsDolbyVision {
 }
 
 // GetProfile101 returns the Profile101 field value if set, zero value otherwise.
-func (o *HdrSettingsDolbyVision) GetProfile101() HdrSettingsDolbyVisionProfile81 {
+func (o *HdrSettingsDolbyVision) GetProfile101() HdrSettingsDolbyVisionProfile101 {
 	if o == nil || IsNil(o.Profile101) {
-		var ret HdrSettingsDolbyVisionProfile81
+		var ret HdrSettingsDolbyVisionProfile101
 		return ret
 	}
 	return *o.Profile101
@@ -52,7 +52,7 @@ func (o *HdrSettingsDolbyVision) GetProfile101() HdrSettingsDolbyVisionProfile81
 
 // GetProfile101Ok returns a tuple with the Profile101 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsDolbyVision) GetProfile101Ok() (*HdrSettingsDolbyVisionProfile81, bool) {
+func (o *HdrSettingsDolbyVision) GetProfile101Ok() (*HdrSettingsDolbyVisionProfile101, bool) {
 	if o == nil || IsNil(o.Profile101) {
 		return nil, false
 	}
@@ -68,8 +68,8 @@ func (o *HdrSettingsDolbyVision) HasProfile101() bool {
 	return false
 }
 
-// SetProfile101 gets a reference to the given HdrSettingsDolbyVisionProfile81 and assigns it to the Profile101 field.
-func (o *HdrSettingsDolbyVision) SetProfile101(v HdrSettingsDolbyVisionProfile81) {
+// SetProfile101 gets a reference to the given HdrSettingsDolbyVisionProfile101 and assigns it to the Profile101 field.
+func (o *HdrSettingsDolbyVision) SetProfile101(v HdrSettingsDolbyVisionProfile101) {
 	o.Profile101 = &v
 }
 

@@ -13,36 +13,36 @@ import (
 	"encoding/json"
 )
 
-// checks if the HdrSettingsDolbyVisionProfile81 type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &HdrSettingsDolbyVisionProfile81{}
+// checks if the HdrSettingsDolbyVisionProfile101 type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &HdrSettingsDolbyVisionProfile101{}
 
-// HdrSettingsDolbyVisionProfile81 struct for HdrSettingsDolbyVisionProfile81
-type HdrSettingsDolbyVisionProfile81 struct {
+// HdrSettingsDolbyVisionProfile101 struct for HdrSettingsDolbyVisionProfile101
+type HdrSettingsDolbyVisionProfile101 struct {
 	Clli *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli `json:"clli,omitempty"`
 	// Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults.
 	Level8 []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner `json:"level8,omitempty" doc:"Configures custom Level 8 metadata. Each target may be configured at most once. Unconfigured targets use the Dolby LDP SIDK defaults."`
 	Mdcv   *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv         `json:"mdcv,omitempty"`
 }
 
-// NewHdrSettingsDolbyVisionProfile81 instantiates a new HdrSettingsDolbyVisionProfile81 object
+// NewHdrSettingsDolbyVisionProfile101 instantiates a new HdrSettingsDolbyVisionProfile101 object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHdrSettingsDolbyVisionProfile81() *HdrSettingsDolbyVisionProfile81 {
-	this := HdrSettingsDolbyVisionProfile81{}
+func NewHdrSettingsDolbyVisionProfile101() *HdrSettingsDolbyVisionProfile101 {
+	this := HdrSettingsDolbyVisionProfile101{}
 	return &this
 }
 
-// NewHdrSettingsDolbyVisionProfile81WithDefaults instantiates a new HdrSettingsDolbyVisionProfile81 object
+// NewHdrSettingsDolbyVisionProfile101WithDefaults instantiates a new HdrSettingsDolbyVisionProfile101 object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewHdrSettingsDolbyVisionProfile81WithDefaults() *HdrSettingsDolbyVisionProfile81 {
-	this := HdrSettingsDolbyVisionProfile81{}
+func NewHdrSettingsDolbyVisionProfile101WithDefaults() *HdrSettingsDolbyVisionProfile101 {
+	this := HdrSettingsDolbyVisionProfile101{}
 	return &this
 }
 
 // GetClli returns the Clli field value if set, zero value otherwise.
-func (o *HdrSettingsDolbyVisionProfile81) GetClli() PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli {
+func (o *HdrSettingsDolbyVisionProfile101) GetClli() PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli {
 	if o == nil || IsNil(o.Clli) {
 		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli
 		return ret
@@ -52,7 +52,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetClli() PatchOrgChannelRequestTransc
 
 // GetClliOk returns a tuple with the Clli field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsDolbyVisionProfile81) GetClliOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli, bool) {
+func (o *HdrSettingsDolbyVisionProfile101) GetClliOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli, bool) {
 	if o == nil || IsNil(o.Clli) {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetClliOk() (*PatchOrgChannelRequestTr
 }
 
 // HasClli returns a boolean if a field has been set.
-func (o *HdrSettingsDolbyVisionProfile81) HasClli() bool {
+func (o *HdrSettingsDolbyVisionProfile101) HasClli() bool {
 	if o != nil && !IsNil(o.Clli) {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *HdrSettingsDolbyVisionProfile81) HasClli() bool {
 }
 
 // SetClli gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli and assigns it to the Clli field.
-func (o *HdrSettingsDolbyVisionProfile81) SetClli(v PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli) {
+func (o *HdrSettingsDolbyVisionProfile101) SetClli(v PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Clli) {
 	o.Clli = &v
 }
 
 // GetLevel8 returns the Level8 field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *HdrSettingsDolbyVisionProfile81) GetLevel8() []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
+func (o *HdrSettingsDolbyVisionProfile101) GetLevel8() []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
 	if o == nil {
 		var ret []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner
 		return ret
@@ -85,7 +85,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetLevel8() []PatchOrgChannelRequestTr
 // GetLevel8Ok returns a tuple with the Level8 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *HdrSettingsDolbyVisionProfile81) GetLevel8Ok() ([]PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner, bool) {
+func (o *HdrSettingsDolbyVisionProfile101) GetLevel8Ok() ([]PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner, bool) {
 	if o == nil || IsNil(o.Level8) {
 		return nil, false
 	}
@@ -93,7 +93,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetLevel8Ok() ([]PatchOrgChannelReques
 }
 
 // HasLevel8 returns a boolean if a field has been set.
-func (o *HdrSettingsDolbyVisionProfile81) HasLevel8() bool {
+func (o *HdrSettingsDolbyVisionProfile101) HasLevel8() bool {
 	if o != nil && IsNil(o.Level8) {
 		return true
 	}
@@ -102,12 +102,12 @@ func (o *HdrSettingsDolbyVisionProfile81) HasLevel8() bool {
 }
 
 // SetLevel8 gets a reference to the given []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner and assigns it to the Level8 field.
-func (o *HdrSettingsDolbyVisionProfile81) SetLevel8(v []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) {
+func (o *HdrSettingsDolbyVisionProfile101) SetLevel8(v []PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) {
 	o.Level8 = v
 }
 
 // GetMdcv returns the Mdcv field value if set, zero value otherwise.
-func (o *HdrSettingsDolbyVisionProfile81) GetMdcv() PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv {
+func (o *HdrSettingsDolbyVisionProfile101) GetMdcv() PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv {
 	if o == nil || IsNil(o.Mdcv) {
 		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv
 		return ret
@@ -117,7 +117,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetMdcv() PatchOrgChannelRequestTransc
 
 // GetMdcvOk returns a tuple with the Mdcv field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettingsDolbyVisionProfile81) GetMdcvOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv, bool) {
+func (o *HdrSettingsDolbyVisionProfile101) GetMdcvOk() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv, bool) {
 	if o == nil || IsNil(o.Mdcv) {
 		return nil, false
 	}
@@ -125,7 +125,7 @@ func (o *HdrSettingsDolbyVisionProfile81) GetMdcvOk() (*PatchOrgChannelRequestTr
 }
 
 // HasMdcv returns a boolean if a field has been set.
-func (o *HdrSettingsDolbyVisionProfile81) HasMdcv() bool {
+func (o *HdrSettingsDolbyVisionProfile101) HasMdcv() bool {
 	if o != nil && !IsNil(o.Mdcv) {
 		return true
 	}
@@ -134,11 +134,11 @@ func (o *HdrSettingsDolbyVisionProfile81) HasMdcv() bool {
 }
 
 // SetMdcv gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv and assigns it to the Mdcv field.
-func (o *HdrSettingsDolbyVisionProfile81) SetMdcv(v PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv) {
+func (o *HdrSettingsDolbyVisionProfile101) SetMdcv(v PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Mdcv) {
 	o.Mdcv = &v
 }
 
-func (o HdrSettingsDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
+func (o HdrSettingsDolbyVisionProfile101) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -146,7 +146,7 @@ func (o HdrSettingsDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o HdrSettingsDolbyVisionProfile81) ToMap() (map[string]interface{}, error) {
+func (o HdrSettingsDolbyVisionProfile101) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Clli) {
 		toSerialize["clli"] = o.Clli
@@ -160,38 +160,38 @@ func (o HdrSettingsDolbyVisionProfile81) ToMap() (map[string]interface{}, error)
 	return toSerialize, nil
 }
 
-type NullableHdrSettingsDolbyVisionProfile81 struct {
-	value *HdrSettingsDolbyVisionProfile81
+type NullableHdrSettingsDolbyVisionProfile101 struct {
+	value *HdrSettingsDolbyVisionProfile101
 	isSet bool
 }
 
-func (v NullableHdrSettingsDolbyVisionProfile81) Get() *HdrSettingsDolbyVisionProfile81 {
+func (v NullableHdrSettingsDolbyVisionProfile101) Get() *HdrSettingsDolbyVisionProfile101 {
 	return v.value
 }
 
-func (v *NullableHdrSettingsDolbyVisionProfile81) Set(val *HdrSettingsDolbyVisionProfile81) {
+func (v *NullableHdrSettingsDolbyVisionProfile101) Set(val *HdrSettingsDolbyVisionProfile101) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullableHdrSettingsDolbyVisionProfile81) IsSet() bool {
+func (v NullableHdrSettingsDolbyVisionProfile101) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullableHdrSettingsDolbyVisionProfile81) Unset() {
+func (v *NullableHdrSettingsDolbyVisionProfile101) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullableHdrSettingsDolbyVisionProfile81(val *HdrSettingsDolbyVisionProfile81) *NullableHdrSettingsDolbyVisionProfile81 {
-	return &NullableHdrSettingsDolbyVisionProfile81{value: val, isSet: true}
+func NewNullableHdrSettingsDolbyVisionProfile101(val *HdrSettingsDolbyVisionProfile101) *NullableHdrSettingsDolbyVisionProfile101 {
+	return &NullableHdrSettingsDolbyVisionProfile101{value: val, isSet: true}
 }
 
-func (v NullableHdrSettingsDolbyVisionProfile81) MarshalJSON() ([]byte, error) {
+func (v NullableHdrSettingsDolbyVisionProfile101) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullableHdrSettingsDolbyVisionProfile81) UnmarshalJSON(src []byte) error {
+func (v *NullableHdrSettingsDolbyVisionProfile101) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

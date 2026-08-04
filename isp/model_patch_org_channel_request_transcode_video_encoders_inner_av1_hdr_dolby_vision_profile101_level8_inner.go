@@ -13,11 +13,11 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner{}
+// checks if the PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner{}
 
-// PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner
-type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner struct {
+// PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner struct for PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner
+type PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner struct {
 	// Control the clipping of whites. A positive value will clip highlights and bright whites less, while a negative value will clip more.
 	ClipTrim *float64 `json:"clip_trim,omitempty" format:"double" minimum:"-1" maximum:"1" doc:"Control the clipping of whites. A positive value will clip highlights and bright whites less, while a negative value will clip more."`
 	// Amount of multiscale detail to apply. This is offset from the values used in Dolby documentation so that the Protobuf default of 0.0 corresponds to the Dolby default of -1.0. Values > 1.0 will retain more details when Dolby Vision is mapping down to a lower luminance. Values < 1.0 will lower detail contrast when Dolby Vision is mapping down to a lower luminance. The special value of 0.0 will disable multiscale detail.
@@ -38,25 +38,25 @@ type PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile8
 	TrimSaturationGain *float64 `json:"trim_saturation_gain,omitempty" format:"double" minimum:"-1" maximum:"1" doc:"Saturation gain to apply. Gain on P and T components. Higher value implies stronger effect."`
 }
 
-// NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner object
+// NewPatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner() *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner {
-	this := PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner{}
+func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner() *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
+	this := PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner{}
 	return &this
 }
 
-// NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8InnerWithDefaults instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner object
+// NewPatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8InnerWithDefaults instantiates a new PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8InnerWithDefaults() *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner {
-	this := PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner{}
+func NewPatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8InnerWithDefaults() *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
+	this := PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner{}
 	return &this
 }
 
 // GetClipTrim returns the ClipTrim field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetClipTrim() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetClipTrim() float64 {
 	if o == nil || IsNil(o.ClipTrim) {
 		var ret float64
 		return ret
@@ -66,7 +66,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetClipTrimOk returns a tuple with the ClipTrim field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetClipTrimOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetClipTrimOk() (*float64, bool) {
 	if o == nil || IsNil(o.ClipTrim) {
 		return nil, false
 	}
@@ -74,7 +74,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasClipTrim returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasClipTrim() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasClipTrim() bool {
 	if o != nil && !IsNil(o.ClipTrim) {
 		return true
 	}
@@ -83,12 +83,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetClipTrim gets a reference to the given float64 and assigns it to the ClipTrim field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetClipTrim(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetClipTrim(v float64) {
 	o.ClipTrim = &v
 }
 
 // GetMsWeightPlusOne returns the MsWeightPlusOne field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetMsWeightPlusOne() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetMsWeightPlusOne() float64 {
 	if o == nil || IsNil(o.MsWeightPlusOne) {
 		var ret float64
 		return ret
@@ -98,7 +98,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetMsWeightPlusOneOk returns a tuple with the MsWeightPlusOne field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetMsWeightPlusOneOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetMsWeightPlusOneOk() (*float64, bool) {
 	if o == nil || IsNil(o.MsWeightPlusOne) {
 		return nil, false
 	}
@@ -106,7 +106,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasMsWeightPlusOne returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasMsWeightPlusOne() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasMsWeightPlusOne() bool {
 	if o != nil && !IsNil(o.MsWeightPlusOne) {
 		return true
 	}
@@ -115,12 +115,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetMsWeightPlusOne gets a reference to the given float64 and assigns it to the MsWeightPlusOne field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetMsWeightPlusOne(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetMsWeightPlusOne(v float64) {
 	o.MsWeightPlusOne = &v
 }
 
 // GetTarget returns the Target field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTarget() string {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTarget() string {
 	if o == nil || IsNil(o.Target) {
 		var ret string
 		return ret
@@ -130,7 +130,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTargetOk returns a tuple with the Target field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTargetOk() (*string, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTargetOk() (*string, bool) {
 	if o == nil || IsNil(o.Target) {
 		return nil, false
 	}
@@ -138,7 +138,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTarget returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTarget() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTarget() bool {
 	if o != nil && !IsNil(o.Target) {
 		return true
 	}
@@ -147,12 +147,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTarget gets a reference to the given string and assigns it to the Target field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTarget(v string) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTarget(v string) {
 	o.Target = &v
 }
 
 // GetTargetMidContrast returns the TargetMidContrast field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTargetMidContrast() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTargetMidContrast() float64 {
 	if o == nil || IsNil(o.TargetMidContrast) {
 		var ret float64
 		return ret
@@ -162,7 +162,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTargetMidContrastOk returns a tuple with the TargetMidContrast field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTargetMidContrastOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTargetMidContrastOk() (*float64, bool) {
 	if o == nil || IsNil(o.TargetMidContrast) {
 		return nil, false
 	}
@@ -170,7 +170,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTargetMidContrast returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTargetMidContrast() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTargetMidContrast() bool {
 	if o != nil && !IsNil(o.TargetMidContrast) {
 		return true
 	}
@@ -179,12 +179,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTargetMidContrast gets a reference to the given float64 and assigns it to the TargetMidContrast field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTargetMidContrast(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTargetMidContrast(v float64) {
 	o.TargetMidContrast = &v
 }
 
 // GetTrimChromaWeight returns the TrimChromaWeight field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimChromaWeight() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimChromaWeight() float64 {
 	if o == nil || IsNil(o.TrimChromaWeight) {
 		var ret float64
 		return ret
@@ -194,7 +194,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTrimChromaWeightOk returns a tuple with the TrimChromaWeight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimChromaWeightOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimChromaWeightOk() (*float64, bool) {
 	if o == nil || IsNil(o.TrimChromaWeight) {
 		return nil, false
 	}
@@ -202,7 +202,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTrimChromaWeight returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTrimChromaWeight() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTrimChromaWeight() bool {
 	if o != nil && !IsNil(o.TrimChromaWeight) {
 		return true
 	}
@@ -211,12 +211,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTrimChromaWeight gets a reference to the given float64 and assigns it to the TrimChromaWeight field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTrimChromaWeight(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTrimChromaWeight(v float64) {
 	o.TrimChromaWeight = &v
 }
 
 // GetTrimGain returns the TrimGain field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimGain() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimGain() float64 {
 	if o == nil || IsNil(o.TrimGain) {
 		var ret float64
 		return ret
@@ -226,7 +226,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTrimGainOk returns a tuple with the TrimGain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimGainOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimGainOk() (*float64, bool) {
 	if o == nil || IsNil(o.TrimGain) {
 		return nil, false
 	}
@@ -234,7 +234,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTrimGain returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTrimGain() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTrimGain() bool {
 	if o != nil && !IsNil(o.TrimGain) {
 		return true
 	}
@@ -243,12 +243,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTrimGain gets a reference to the given float64 and assigns it to the TrimGain field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTrimGain(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTrimGain(v float64) {
 	o.TrimGain = &v
 }
 
 // GetTrimGamma returns the TrimGamma field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimGamma() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimGamma() float64 {
 	if o == nil || IsNil(o.TrimGamma) {
 		var ret float64
 		return ret
@@ -258,7 +258,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTrimGammaOk returns a tuple with the TrimGamma field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimGammaOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimGammaOk() (*float64, bool) {
 	if o == nil || IsNil(o.TrimGamma) {
 		return nil, false
 	}
@@ -266,7 +266,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTrimGamma returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTrimGamma() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTrimGamma() bool {
 	if o != nil && !IsNil(o.TrimGamma) {
 		return true
 	}
@@ -275,12 +275,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTrimGamma gets a reference to the given float64 and assigns it to the TrimGamma field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTrimGamma(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTrimGamma(v float64) {
 	o.TrimGamma = &v
 }
 
 // GetTrimLift returns the TrimLift field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimLift() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimLift() float64 {
 	if o == nil || IsNil(o.TrimLift) {
 		var ret float64
 		return ret
@@ -290,7 +290,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTrimLiftOk returns a tuple with the TrimLift field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimLiftOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimLiftOk() (*float64, bool) {
 	if o == nil || IsNil(o.TrimLift) {
 		return nil, false
 	}
@@ -298,7 +298,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTrimLift returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTrimLift() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTrimLift() bool {
 	if o != nil && !IsNil(o.TrimLift) {
 		return true
 	}
@@ -307,12 +307,12 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTrimLift gets a reference to the given float64 and assigns it to the TrimLift field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTrimLift(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTrimLift(v float64) {
 	o.TrimLift = &v
 }
 
 // GetTrimSaturationGain returns the TrimSaturationGain field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimSaturationGain() float64 {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimSaturationGain() float64 {
 	if o == nil || IsNil(o.TrimSaturationGain) {
 		var ret float64
 		return ret
@@ -322,7 +322,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 
 // GetTrimSaturationGainOk returns a tuple with the TrimSaturationGain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) GetTrimSaturationGainOk() (*float64, bool) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) GetTrimSaturationGainOk() (*float64, bool) {
 	if o == nil || IsNil(o.TrimSaturationGain) {
 		return nil, false
 	}
@@ -330,7 +330,7 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // HasTrimSaturationGain returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) HasTrimSaturationGain() bool {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) HasTrimSaturationGain() bool {
 	if o != nil && !IsNil(o.TrimSaturationGain) {
 		return true
 	}
@@ -339,11 +339,11 @@ func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProf
 }
 
 // SetTrimSaturationGain gets a reference to the given float64 and assigns it to the TrimSaturationGain field.
-func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) SetTrimSaturationGain(v float64) {
+func (o *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) SetTrimSaturationGain(v float64) {
 	o.TrimSaturationGain = &v
 }
 
-func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) MarshalJSON() ([]byte, error) {
+func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -351,7 +351,7 @@ func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfi
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) ToMap() (map[string]interface{}, error) {
+func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.ClipTrim) {
 		toSerialize["clip_trim"] = o.ClipTrim
@@ -383,38 +383,38 @@ func (o PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfi
 	return toSerialize, nil
 }
 
-type NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner struct {
-	value *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner
+type NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner struct {
+	value *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner
 	isSet bool
 }
 
-func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) Get() *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner {
+func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) Get() *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
 	return v.value
 }
 
-func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) Set(val *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) {
+func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) Set(val *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) IsSet() bool {
+func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) Unset() {
+func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner(val *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner {
-	return &NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner{value: val, isSet: true}
+func NewNullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner(val *PatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner {
+	return &NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner{value: val, isSet: true}
 }
 
-func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) MarshalJSON() ([]byte, error) {
+func (v NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrDolbyVisionProfile81Level8Inner) UnmarshalJSON(src []byte) error {
+func (v *NullablePatchOrgChannelRequestTranscodeVideoEncodersInnerAv1HdrDolbyVisionProfile101Level8Inner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }

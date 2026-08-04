@@ -18,8 +18,8 @@ var _ MappedNullable = &HdrSettings{}
 
 // HdrSettings struct for HdrSettings
 type HdrSettings struct {
-	DolbyVision *HdrSettingsDolbyVision                                        `json:"dolby_vision,omitempty"`
-	Hdr10       *PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10 `json:"hdr10,omitempty"`
+	DolbyVision *HdrSettingsDolbyVision `json:"dolby_vision,omitempty"`
+	Hdr10       *HdrSettingsHdr10       `json:"hdr10,omitempty"`
 }
 
 // NewHdrSettings instantiates a new HdrSettings object
@@ -72,9 +72,9 @@ func (o *HdrSettings) SetDolbyVision(v HdrSettingsDolbyVision) {
 }
 
 // GetHdr10 returns the Hdr10 field value if set, zero value otherwise.
-func (o *HdrSettings) GetHdr10() PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10 {
+func (o *HdrSettings) GetHdr10() HdrSettingsHdr10 {
 	if o == nil || IsNil(o.Hdr10) {
-		var ret PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10
+		var ret HdrSettingsHdr10
 		return ret
 	}
 	return *o.Hdr10
@@ -82,7 +82,7 @@ func (o *HdrSettings) GetHdr10() PatchOrgChannelRequestTranscodeVideoEncodersInn
 
 // GetHdr10Ok returns a tuple with the Hdr10 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HdrSettings) GetHdr10Ok() (*PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10, bool) {
+func (o *HdrSettings) GetHdr10Ok() (*HdrSettingsHdr10, bool) {
 	if o == nil || IsNil(o.Hdr10) {
 		return nil, false
 	}
@@ -98,8 +98,8 @@ func (o *HdrSettings) HasHdr10() bool {
 	return false
 }
 
-// SetHdr10 gets a reference to the given PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10 and assigns it to the Hdr10 field.
-func (o *HdrSettings) SetHdr10(v PatchOrgChannelRequestTranscodeVideoEncodersInnerH265HdrHdr10) {
+// SetHdr10 gets a reference to the given HdrSettingsHdr10 and assigns it to the Hdr10 field.
+func (o *HdrSettings) SetHdr10(v HdrSettingsHdr10) {
 	o.Hdr10 = &v
 }
 
