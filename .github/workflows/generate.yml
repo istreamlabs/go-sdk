@@ -1,5 +1,7 @@
 name: generate-sdk
 
+run-name: Generate SDK (${{ inputs.api || 'all' }})
+
 on:
   workflow_dispatch:
     inputs:
