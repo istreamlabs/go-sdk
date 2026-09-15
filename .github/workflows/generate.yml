@@ -2,6 +2,16 @@ name: generate-sdk
 
 on:
   workflow_dispatch:
+    inputs:
+      api:
+        description: 'sdk to generate'
+        required: true
+        type: choice
+        options:
+          - all
+          - channelapi
+          - slates
+          - lifecycle
   workflow_call:
     inputs:
       pr-base:
@@ -49,6 +59,42 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           submodules: recursive
 
+      - name: Output booleans for which SDKs to generate
+        id: pick-sdks
+        env:
+          INPUT_API: ${{ inputs.api || 'all' }}
+        run: |
+          CHANNELAPI=false
+          SLATES=false
+          LIFECYCLE=false
+
+          case "$INPUT_API" in
+            all)
+              CHANNELAPI=true
+              SLATES=true
+              LIFECYCLE=true
+              ;;
+            channelapi)
+              CHANNELAPI=true
+              ;;
+            slates)
+              SLATES=true
+              ;;
+            lifecycle)
+              LIFECYCLE=true
+              ;;
+            *)
+              echo "::error::Unrecognized api: $INPUT_API"
+              exit 1
+              ;;
+          esac
+
+          {
+            echo "channelapi=$CHANNELAPI";
+            echo "slates=$SLATES";
+            echo "lifecycle=$LIFECYCLE";
+          } | tee -a "$GITHUB_OUTPUT"
+
       - name: Determine base branch name
         id: pr-base
         run: |
@@ -67,12 +113,15 @@ jobs:
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
 
       - name: Re-generate isp
+        if: ${{ steps.pick-sdks.outputs.channelapi == 'true' }}
         run: ./run.sh isp
 
       - name: Re-generate isp-slate
+        if: ${{ steps.pick-sdks.outputs.slates == 'true' }}
         run: ./run.sh isp-slate
 
       - name: Re-generate isp-lifecycle
+        if: ${{ steps.pick-sdks.outputs.lifecycle == 'true' }}
         run: ./run.sh isp-lifecycle
 
       - name: Detect generated changes
