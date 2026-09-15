@@ -20,7 +20,7 @@ on:
         required: true
         type: string
     secrets:
-      ORG_ISP_WRITER_APP_ID:
+      ORG_ISP_WRITER_APP_CLIENT_ID:
         required: true
       ORG_ISP_WRITER_APP_PRIVATE_KEY:
         required: true
@@ -53,7 +53,7 @@ jobs:
       - uses: actions/create-github-app-token@v3
         id: app-token
         with:
-          app-id: ${{ secrets.ORG_ISP_WRITER_APP_ID }}
+          client-id: ${{ secrets.ORG_ISP_WRITER_APP_CLIENT_ID }}
           private-key: ${{ secrets.ORG_ISP_WRITER_APP_PRIVATE_KEY }}
 
       - uses: actions/checkout@v6
