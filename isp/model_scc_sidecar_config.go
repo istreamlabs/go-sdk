@@ -18,8 +18,7 @@ var _ MappedNullable = &SCCSidecarConfig{}
 
 // SCCSidecarConfig struct for SCCSidecarConfig
 type SCCSidecarConfig struct {
-	Enabled  *bool `json:"enabled,omitempty"`
-	Required *bool `json:"required,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 // NewSCCSidecarConfig instantiates a new SCCSidecarConfig object
@@ -71,38 +70,6 @@ func (o *SCCSidecarConfig) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-// GetRequired returns the Required field value if set, zero value otherwise.
-func (o *SCCSidecarConfig) GetRequired() bool {
-	if o == nil || IsNil(o.Required) {
-		var ret bool
-		return ret
-	}
-	return *o.Required
-}
-
-// GetRequiredOk returns a tuple with the Required field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SCCSidecarConfig) GetRequiredOk() (*bool, bool) {
-	if o == nil || IsNil(o.Required) {
-		return nil, false
-	}
-	return o.Required, true
-}
-
-// HasRequired returns a boolean if a field has been set.
-func (o *SCCSidecarConfig) HasRequired() bool {
-	if o != nil && !IsNil(o.Required) {
-		return true
-	}
-
-	return false
-}
-
-// SetRequired gets a reference to the given bool and assigns it to the Required field.
-func (o *SCCSidecarConfig) SetRequired(v bool) {
-	o.Required = &v
-}
-
 func (o SCCSidecarConfig) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
@@ -115,9 +82,6 @@ func (o SCCSidecarConfig) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Enabled) {
 		toSerialize["enabled"] = o.Enabled
-	}
-	if !IsNil(o.Required) {
-		toSerialize["required"] = o.Required
 	}
 	return toSerialize, nil
 }

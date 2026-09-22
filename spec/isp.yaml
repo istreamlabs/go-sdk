@@ -5977,8 +5977,6 @@ components:
       properties:
         enabled:
           type: boolean
-        required:
-          type: boolean
       type: object
     Scte35:
       additionalProperties: false
