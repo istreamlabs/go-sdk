@@ -92,6 +92,19 @@ components:
           minLength: 1
           type: string
       type: object
+    AudioSourceRemappingSource:
+      additionalProperties: false
+      properties:
+        audio_source_id:
+          description: Identifies the ID of the elementary audio source from which this channel will be sourced.
+          minLength: 1
+          type: string
+        channel_index:
+          description: 'Identifies the zero-based channel index within the audio decoded from audio_source_id which is used for this channel mapping. If this index is out of bounds, the audio for this channel will be silent. For SMPTE-302M inputs, channel indices are always in the range 0-8 (unless the Aventus-specific extension for carrying more than 8 channels in one elementary stream is in use) and name the Nth channel of the input. I.e., the base channel index indicated by the input stream is ignored. For non-SMPTE-302M inputs with 1, 2, or 6 channels, the following index-to-channel mapping always applies: - 0 is front left (i.e. the only channel for mono) - 1 is front right - 2 is front center - 3 is LFE - 4 is side left - 5 is side right For non-SMPTE-302M inputs with 3, 4, or 5 channels, no index mapping is guaranteed. For non-SMPTE-302M inputs with more than 6 channels, the index mapping that would be used for 6 channels is guaranteed, and no specific mapping for the other channels is guaranteed.'
+          format: int32
+          minimum: 0
+          type: integer
+      type: object
     AudioTrackInfo:
       additionalProperties: false
       properties:
@@ -2080,7 +2093,7 @@ components:
                     minLength: 1
                     type: string
                   license:
-                    description: License specifies how the audio in this source is licensed.
+                    description: License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource.
                     enum:
                       - LIVE
                       - REPLAY
@@ -2089,8 +2102,55 @@ components:
                     description: Language fiendly name, e.g. 'English', 'Spanish'
                     minLength: 1
                     type: string
+                  remapping:
+                    additionalProperties: false
+                    properties:
+                      back_left:
+                        additionalProperties: false
+                        properties:
+                          audio_source_id:
+                            description: Identifies the ID of the elementary audio source from which this channel will be sourced.
+                            minLength: 1
+                            type: string
+                          channel_index:
+                            description: 'Identifies the zero-based channel index within the audio decoded from audio_source_id which is used for this channel mapping. If this index is out of bounds, the audio for this channel will be silent. For SMPTE-302M inputs, channel indices are always in the range 0-8 (unless the Aventus-specific extension for carrying more than 8 channels in one elementary stream is in use) and name the Nth channel of the input. I.e., the base channel index indicated by the input stream is ignored. For non-SMPTE-302M inputs with 1, 2, or 6 channels, the following index-to-channel mapping always applies: - 0 is front left (i.e. the only channel for mono) - 1 is front right - 2 is front center - 3 is LFE - 4 is side left - 5 is side right For non-SMPTE-302M inputs with 3, 4, or 5 channels, no index mapping is guaranteed. For non-SMPTE-302M inputs with more than 6 channels, the index mapping that would be used for 6 channels is guaranteed, and no specific mapping for the other channels is guaranteed.'
+                            format: int32
+                            minimum: 0
+                            type: integer
+                        type: object
+                      back_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      front_center:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      front_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      front_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      low_frequency:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      side_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      side_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_back_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_back_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_front_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_front_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_side_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      top_side_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      wide_left:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                      wide_right:
+                        $ref: '#/components/schemas/AudioSourceRemappingSource'
+                    type: object
                   selector:
-                    description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection
+                    description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input.
                     type: string
                 type: object
               minItems: 1
@@ -2119,6 +2179,9 @@ components:
                     - SDR
                     - HDR
                   type: string
+                jpeg_xs:
+                  description: If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate.
+                  type: boolean
                 max_resolution:
                   description: The maximum resolution the source will ever send to the transcoder.
                   enum:
@@ -4208,7 +4271,7 @@ components:
                         minLength: 1
                         type: string
                       license:
-                        description: License specifies how the audio in this source is licensed.
+                        description: License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource.
                         enum:
                           - LIVE
                           - REPLAY
@@ -4217,8 +4280,55 @@ components:
                         description: Language fiendly name, e.g. 'English', 'Spanish'
                         minLength: 1
                         type: string
+                      remapping:
+                        additionalProperties: false
+                        properties:
+                          back_left:
+                            additionalProperties: false
+                            properties:
+                              audio_source_id:
+                                description: Identifies the ID of the elementary audio source from which this channel will be sourced.
+                                minLength: 1
+                                type: string
+                              channel_index:
+                                description: 'Identifies the zero-based channel index within the audio decoded from audio_source_id which is used for this channel mapping. If this index is out of bounds, the audio for this channel will be silent. For SMPTE-302M inputs, channel indices are always in the range 0-8 (unless the Aventus-specific extension for carrying more than 8 channels in one elementary stream is in use) and name the Nth channel of the input. I.e., the base channel index indicated by the input stream is ignored. For non-SMPTE-302M inputs with 1, 2, or 6 channels, the following index-to-channel mapping always applies: - 0 is front left (i.e. the only channel for mono) - 1 is front right - 2 is front center - 3 is LFE - 4 is side left - 5 is side right For non-SMPTE-302M inputs with 3, 4, or 5 channels, no index mapping is guaranteed. For non-SMPTE-302M inputs with more than 6 channels, the index mapping that would be used for 6 channels is guaranteed, and no specific mapping for the other channels is guaranteed.'
+                                format: int32
+                                minimum: 0
+                                type: integer
+                            type: object
+                          back_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          front_center:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          front_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          front_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          low_frequency:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          side_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          side_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_back_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_back_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_front_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_front_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_side_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          top_side_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          wide_left:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                          wide_right:
+                            $ref: '#/components/schemas/AudioSourceRemappingSource'
+                        type: object
                       selector:
-                        description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection
+                        description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input.
                         type: string
                     type: object
                   minItems: 1
@@ -4247,6 +4357,9 @@ components:
                         - SDR
                         - HDR
                       type: string
+                    jpeg_xs:
+                      description: If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate.
+                      type: boolean
                     max_resolution:
                       description: The maximum resolution the source will ever send to the transcoder.
                       enum:
@@ -5976,8 +6089,6 @@ components:
       additionalProperties: false
       properties:
         enabled:
-          type: boolean
-        required:
           type: boolean
       type: object
     Scte35:
@@ -9412,7 +9523,7 @@ paths:
                                 minLength: 1
                                 type: string
                               license:
-                                description: License specifies how the audio in this source is licensed.
+                                description: License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource.
                                 enum:
                                   - LIVE
                                   - REPLAY
@@ -9421,8 +9532,40 @@ paths:
                                 description: Language fiendly name, e.g. 'English', 'Spanish'
                                 minLength: 1
                                 type: string
+                              remapping:
+                                additionalProperties: false
+                                properties:
+                                  back_left:
+                                    additionalProperties: false
+                                    properties:
+                                      audio_source_id:
+                                        description: Identifies the ID of the elementary audio source from which this channel will be sourced.
+                                        minLength: 1
+                                        type: string
+                                      channel_index:
+                                        description: 'Identifies the zero-based channel index within the audio decoded from audio_source_id which is used for this channel mapping. If this index is out of bounds, the audio for this channel will be silent. For SMPTE-302M inputs, channel indices are always in the range 0-8 (unless the Aventus-specific extension for carrying more than 8 channels in one elementary stream is in use) and name the Nth channel of the input. I.e., the base channel index indicated by the input stream is ignored. For non-SMPTE-302M inputs with 1, 2, or 6 channels, the following index-to-channel mapping always applies: - 0 is front left (i.e. the only channel for mono) - 1 is front right - 2 is front center - 3 is LFE - 4 is side left - 5 is side right For non-SMPTE-302M inputs with 3, 4, or 5 channels, no index mapping is guaranteed. For non-SMPTE-302M inputs with more than 6 channels, the index mapping that would be used for 6 channels is guaranteed, and no specific mapping for the other channels is guaranteed.'
+                                        format: int32
+                                        minimum: 0
+                                        type: integer
+                                    type: object
+                                  back_right: {}
+                                  front_center: {}
+                                  front_left: {}
+                                  front_right: {}
+                                  low_frequency: {}
+                                  side_left: {}
+                                  side_right: {}
+                                  top_back_left: {}
+                                  top_back_right: {}
+                                  top_front_left: {}
+                                  top_front_right: {}
+                                  top_side_left: {}
+                                  top_side_right: {}
+                                  wide_left: {}
+                                  wide_right: {}
+                                type: object
                               selector:
-                                description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection
+                                description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input.
                                 type: string
                             type: object
                           minItems: 1
@@ -9450,6 +9593,9 @@ paths:
                                 - SDR
                                 - HDR
                               type: string
+                            jpeg_xs:
+                              description: If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate.
+                              type: boolean
                             max_resolution:
                               description: The maximum resolution the source will ever send to the transcoder.
                               enum:
@@ -11045,7 +11191,7 @@ paths:
                                 minLength: 1
                                 type: string
                               license:
-                                description: License specifies how the audio in this source is licensed.
+                                description: License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource.
                                 enum:
                                   - LIVE
                                   - REPLAY
@@ -11054,8 +11200,40 @@ paths:
                                 description: Language fiendly name, e.g. 'English', 'Spanish'
                                 minLength: 1
                                 type: string
+                              remapping:
+                                additionalProperties: false
+                                properties:
+                                  back_left:
+                                    additionalProperties: false
+                                    properties:
+                                      audio_source_id:
+                                        description: Identifies the ID of the elementary audio source from which this channel will be sourced.
+                                        minLength: 1
+                                        type: string
+                                      channel_index:
+                                        description: 'Identifies the zero-based channel index within the audio decoded from audio_source_id which is used for this channel mapping. If this index is out of bounds, the audio for this channel will be silent. For SMPTE-302M inputs, channel indices are always in the range 0-8 (unless the Aventus-specific extension for carrying more than 8 channels in one elementary stream is in use) and name the Nth channel of the input. I.e., the base channel index indicated by the input stream is ignored. For non-SMPTE-302M inputs with 1, 2, or 6 channels, the following index-to-channel mapping always applies: - 0 is front left (i.e. the only channel for mono) - 1 is front right - 2 is front center - 3 is LFE - 4 is side left - 5 is side right For non-SMPTE-302M inputs with 3, 4, or 5 channels, no index mapping is guaranteed. For non-SMPTE-302M inputs with more than 6 channels, the index mapping that would be used for 6 channels is guaranteed, and no specific mapping for the other channels is guaranteed.'
+                                        format: int32
+                                        minimum: 0
+                                        type: integer
+                                    type: object
+                                  back_right: {}
+                                  front_center: {}
+                                  front_left: {}
+                                  front_right: {}
+                                  low_frequency: {}
+                                  side_left: {}
+                                  side_right: {}
+                                  top_back_left: {}
+                                  top_back_right: {}
+                                  top_front_left: {}
+                                  top_front_right: {}
+                                  top_side_left: {}
+                                  top_side_right: {}
+                                  wide_left: {}
+                                  wide_right: {}
+                                type: object
                               selector:
-                                description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection
+                                description: Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input.
                                 type: string
                             type: object
                           minItems: 1
@@ -11083,6 +11261,9 @@ paths:
                                 - SDR
                                 - HDR
                               type: string
+                            jpeg_xs:
+                              description: If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate.
+                              type: boolean
                             max_resolution:
                               description: The maximum resolution the source will ever send to the transcoder.
                               enum:

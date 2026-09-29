@@ -20,6 +20,8 @@ var _ MappedNullable = &PatchOrgChannelRequestIngestSourceVideoSource{}
 type PatchOrgChannelRequestIngestSourceVideoSource struct {
 	// The highest dynamic range the source will ever send to the transcoder.
 	DynamicRange *string `json:"dynamic_range,omitempty" enum:"SDR,HDR" doc:"The highest dynamic range the source will ever send to the transcoder."`
+	// If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate.
+	JpegXs *bool `json:"jpeg_xs,omitempty" doc:"If true, the source may be JPEG-XS. Enables allocation of additional resources required to handle the higher bitrate and decode JPEG-XS. If not enabled, JPEG-XS inputs will result in the source-loss slate."`
 	// The maximum resolution the source will ever send to the transcoder.
 	MaxResolution *string `json:"max_resolution,omitempty" enum:"SD,HD,FHD,TwoK,QHD,UHD" doc:"The maximum resolution the source will ever send to the transcoder."`
 }
@@ -73,6 +75,38 @@ func (o *PatchOrgChannelRequestIngestSourceVideoSource) SetDynamicRange(v string
 	o.DynamicRange = &v
 }
 
+// GetJpegXs returns the JpegXs field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequestIngestSourceVideoSource) GetJpegXs() bool {
+	if o == nil || IsNil(o.JpegXs) {
+		var ret bool
+		return ret
+	}
+	return *o.JpegXs
+}
+
+// GetJpegXsOk returns a tuple with the JpegXs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchOrgChannelRequestIngestSourceVideoSource) GetJpegXsOk() (*bool, bool) {
+	if o == nil || IsNil(o.JpegXs) {
+		return nil, false
+	}
+	return o.JpegXs, true
+}
+
+// HasJpegXs returns a boolean if a field has been set.
+func (o *PatchOrgChannelRequestIngestSourceVideoSource) HasJpegXs() bool {
+	if o != nil && !IsNil(o.JpegXs) {
+		return true
+	}
+
+	return false
+}
+
+// SetJpegXs gets a reference to the given bool and assigns it to the JpegXs field.
+func (o *PatchOrgChannelRequestIngestSourceVideoSource) SetJpegXs(v bool) {
+	o.JpegXs = &v
+}
+
 // GetMaxResolution returns the MaxResolution field value if set, zero value otherwise.
 func (o *PatchOrgChannelRequestIngestSourceVideoSource) GetMaxResolution() string {
 	if o == nil || IsNil(o.MaxResolution) {
@@ -117,6 +151,9 @@ func (o PatchOrgChannelRequestIngestSourceVideoSource) ToMap() (map[string]inter
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.DynamicRange) {
 		toSerialize["dynamic_range"] = o.DynamicRange
+	}
+	if !IsNil(o.JpegXs) {
+		toSerialize["jpeg_xs"] = o.JpegXs
 	}
 	if !IsNil(o.MaxResolution) {
 		toSerialize["max_resolution"] = o.MaxResolution

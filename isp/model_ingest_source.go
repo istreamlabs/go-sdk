@@ -18,7 +18,7 @@ var _ MappedNullable = &IngestSource{}
 
 // IngestSource struct for IngestSource
 type IngestSource struct {
-	AudioSources []PatchOrgChannelRequestIngestSourceAudioSourcesInner `json:"audio_sources,omitempty" minItems:"1"`
+	AudioSources []IngestSourceAudioSourcesInner `json:"audio_sources,omitempty" minItems:"1"`
 	// Closed captions source embedding. If unspecified, defaults to ATSC_A53.
 	CaptionsSource *string `json:"captions_source,omitempty" enum:"ATSC_A53,SMPTE_2038" doc:"Closed captions source embedding. If unspecified, defaults to ATSC_A53."`
 	// Unique identifier for this source.
@@ -47,9 +47,9 @@ func NewIngestSourceWithDefaults() *IngestSource {
 }
 
 // GetAudioSources returns the AudioSources field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *IngestSource) GetAudioSources() []PatchOrgChannelRequestIngestSourceAudioSourcesInner {
+func (o *IngestSource) GetAudioSources() []IngestSourceAudioSourcesInner {
 	if o == nil {
-		var ret []PatchOrgChannelRequestIngestSourceAudioSourcesInner
+		var ret []IngestSourceAudioSourcesInner
 		return ret
 	}
 	return o.AudioSources
@@ -58,7 +58,7 @@ func (o *IngestSource) GetAudioSources() []PatchOrgChannelRequestIngestSourceAud
 // GetAudioSourcesOk returns a tuple with the AudioSources field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *IngestSource) GetAudioSourcesOk() ([]PatchOrgChannelRequestIngestSourceAudioSourcesInner, bool) {
+func (o *IngestSource) GetAudioSourcesOk() ([]IngestSourceAudioSourcesInner, bool) {
 	if o == nil || IsNil(o.AudioSources) {
 		return nil, false
 	}
@@ -74,8 +74,8 @@ func (o *IngestSource) HasAudioSources() bool {
 	return false
 }
 
-// SetAudioSources gets a reference to the given []PatchOrgChannelRequestIngestSourceAudioSourcesInner and assigns it to the AudioSources field.
-func (o *IngestSource) SetAudioSources(v []PatchOrgChannelRequestIngestSourceAudioSourcesInner) {
+// SetAudioSources gets a reference to the given []IngestSourceAudioSourcesInner and assigns it to the AudioSources field.
+func (o *IngestSource) SetAudioSources(v []IngestSourceAudioSourcesInner) {
 	o.AudioSources = v
 }
 
