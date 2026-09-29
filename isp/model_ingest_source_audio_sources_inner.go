@@ -13,42 +13,42 @@ import (
 	"encoding/json"
 )
 
-// checks if the PatchOrgChannelRequestIngestSourceAudioSourcesInner type satisfies the MappedNullable interface at compile time
-var _ MappedNullable = &PatchOrgChannelRequestIngestSourceAudioSourcesInner{}
+// checks if the IngestSourceAudioSourcesInner type satisfies the MappedNullable interface at compile time
+var _ MappedNullable = &IngestSourceAudioSourcesInner{}
 
-// PatchOrgChannelRequestIngestSourceAudioSourcesInner struct for PatchOrgChannelRequestIngestSourceAudioSourcesInner
-type PatchOrgChannelRequestIngestSourceAudioSourcesInner struct {
+// IngestSourceAudioSourcesInner struct for IngestSourceAudioSourcesInner
+type IngestSourceAudioSourcesInner struct {
 	Id *string `json:"id,omitempty" minLength:"1"`
 	// RFC 5646, e.g. 'en' 'en-US'
 	Language *string `json:"language,omitempty" minLength:"1" doc:"RFC 5646, e.g. 'en' 'en-US'"`
 	// License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource.
 	License *string `json:"license,omitempty" enum:"LIVE,REPLAY" doc:"License specifies how the audio in this source is licensed. If license is not AUDIO_LICENSE_UNSPECIFIED, any remapped AudioSource which names this AudioSource in its remapping table must have the same license value as this AudioSource."`
 	// Language fiendly name, e.g. 'English', 'Spanish'
-	Name      *string                                                       `json:"name,omitempty" minLength:"1" doc:"Language fiendly name, e.g. 'English', 'Spanish'"`
-	Remapping *PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping `json:"remapping,omitempty"`
+	Name      *string                                 `json:"name,omitempty" minLength:"1" doc:"Language fiendly name, e.g. 'English', 'Spanish'"`
+	Remapping *IngestSourceAudioSourcesInnerRemapping `json:"remapping,omitempty"`
 	// Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input.
 	Selector *string `json:"selector,omitempty" doc:"Expression for choosing an audio track in the stream for this AudioSource https://wbdstreaming.atlassian.net/wiki/spaces/LIVE/pages/250351679/Proposal+Audio+Track+Selection An AudioSource which specifies a selector is an 'elementary audio source' which corresponds to exactly one elementary stream in the input."`
 }
 
-// NewPatchOrgChannelRequestIngestSourceAudioSourcesInner instantiates a new PatchOrgChannelRequestIngestSourceAudioSourcesInner object
+// NewIngestSourceAudioSourcesInner instantiates a new IngestSourceAudioSourcesInner object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewPatchOrgChannelRequestIngestSourceAudioSourcesInner() *PatchOrgChannelRequestIngestSourceAudioSourcesInner {
-	this := PatchOrgChannelRequestIngestSourceAudioSourcesInner{}
+func NewIngestSourceAudioSourcesInner() *IngestSourceAudioSourcesInner {
+	this := IngestSourceAudioSourcesInner{}
 	return &this
 }
 
-// NewPatchOrgChannelRequestIngestSourceAudioSourcesInnerWithDefaults instantiates a new PatchOrgChannelRequestIngestSourceAudioSourcesInner object
+// NewIngestSourceAudioSourcesInnerWithDefaults instantiates a new IngestSourceAudioSourcesInner object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewPatchOrgChannelRequestIngestSourceAudioSourcesInnerWithDefaults() *PatchOrgChannelRequestIngestSourceAudioSourcesInner {
-	this := PatchOrgChannelRequestIngestSourceAudioSourcesInner{}
+func NewIngestSourceAudioSourcesInnerWithDefaults() *IngestSourceAudioSourcesInner {
+	this := IngestSourceAudioSourcesInner{}
 	return &this
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetId() string {
+func (o *IngestSourceAudioSourcesInner) GetId() string {
 	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetIdOk() (*string, bool) {
+func (o *IngestSourceAudioSourcesInner) GetIdOk() (*string, bool) {
 	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
@@ -66,7 +66,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetIdOk() (*string
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasId() bool {
+func (o *IngestSourceAudioSourcesInner) HasId() bool {
 	if o != nil && !IsNil(o.Id) {
 		return true
 	}
@@ -75,12 +75,12 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasId() bool {
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetId(v string) {
+func (o *IngestSourceAudioSourcesInner) SetId(v string) {
 	o.Id = &v
 }
 
 // GetLanguage returns the Language field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLanguage() string {
+func (o *IngestSourceAudioSourcesInner) GetLanguage() string {
 	if o == nil || IsNil(o.Language) {
 		var ret string
 		return ret
@@ -90,7 +90,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLanguage() stri
 
 // GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLanguageOk() (*string, bool) {
+func (o *IngestSourceAudioSourcesInner) GetLanguageOk() (*string, bool) {
 	if o == nil || IsNil(o.Language) {
 		return nil, false
 	}
@@ -98,7 +98,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLanguageOk() (*
 }
 
 // HasLanguage returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasLanguage() bool {
+func (o *IngestSourceAudioSourcesInner) HasLanguage() bool {
 	if o != nil && !IsNil(o.Language) {
 		return true
 	}
@@ -107,12 +107,12 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasLanguage() bool
 }
 
 // SetLanguage gets a reference to the given string and assigns it to the Language field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetLanguage(v string) {
+func (o *IngestSourceAudioSourcesInner) SetLanguage(v string) {
 	o.Language = &v
 }
 
 // GetLicense returns the License field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLicense() string {
+func (o *IngestSourceAudioSourcesInner) GetLicense() string {
 	if o == nil || IsNil(o.License) {
 		var ret string
 		return ret
@@ -122,7 +122,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLicense() strin
 
 // GetLicenseOk returns a tuple with the License field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLicenseOk() (*string, bool) {
+func (o *IngestSourceAudioSourcesInner) GetLicenseOk() (*string, bool) {
 	if o == nil || IsNil(o.License) {
 		return nil, false
 	}
@@ -130,7 +130,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetLicenseOk() (*s
 }
 
 // HasLicense returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasLicense() bool {
+func (o *IngestSourceAudioSourcesInner) HasLicense() bool {
 	if o != nil && !IsNil(o.License) {
 		return true
 	}
@@ -139,12 +139,12 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasLicense() bool 
 }
 
 // SetLicense gets a reference to the given string and assigns it to the License field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetLicense(v string) {
+func (o *IngestSourceAudioSourcesInner) SetLicense(v string) {
 	o.License = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetName() string {
+func (o *IngestSourceAudioSourcesInner) GetName() string {
 	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
@@ -154,7 +154,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetNameOk() (*string, bool) {
+func (o *IngestSourceAudioSourcesInner) GetNameOk() (*string, bool) {
 	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
@@ -162,7 +162,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetNameOk() (*stri
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasName() bool {
+func (o *IngestSourceAudioSourcesInner) HasName() bool {
 	if o != nil && !IsNil(o.Name) {
 		return true
 	}
@@ -171,14 +171,14 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasName() bool {
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetName(v string) {
+func (o *IngestSourceAudioSourcesInner) SetName(v string) {
 	o.Name = &v
 }
 
 // GetRemapping returns the Remapping field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetRemapping() PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping {
+func (o *IngestSourceAudioSourcesInner) GetRemapping() IngestSourceAudioSourcesInnerRemapping {
 	if o == nil || IsNil(o.Remapping) {
-		var ret PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping
+		var ret IngestSourceAudioSourcesInnerRemapping
 		return ret
 	}
 	return *o.Remapping
@@ -186,7 +186,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetRemapping() Pat
 
 // GetRemappingOk returns a tuple with the Remapping field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetRemappingOk() (*PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping, bool) {
+func (o *IngestSourceAudioSourcesInner) GetRemappingOk() (*IngestSourceAudioSourcesInnerRemapping, bool) {
 	if o == nil || IsNil(o.Remapping) {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetRemappingOk() (
 }
 
 // HasRemapping returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasRemapping() bool {
+func (o *IngestSourceAudioSourcesInner) HasRemapping() bool {
 	if o != nil && !IsNil(o.Remapping) {
 		return true
 	}
@@ -202,13 +202,13 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasRemapping() boo
 	return false
 }
 
-// SetRemapping gets a reference to the given PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping and assigns it to the Remapping field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetRemapping(v PatchOrgChannelRequestIngestSourceAudioSourcesInnerRemapping) {
+// SetRemapping gets a reference to the given IngestSourceAudioSourcesInnerRemapping and assigns it to the Remapping field.
+func (o *IngestSourceAudioSourcesInner) SetRemapping(v IngestSourceAudioSourcesInnerRemapping) {
 	o.Remapping = &v
 }
 
 // GetSelector returns the Selector field value if set, zero value otherwise.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetSelector() string {
+func (o *IngestSourceAudioSourcesInner) GetSelector() string {
 	if o == nil || IsNil(o.Selector) {
 		var ret string
 		return ret
@@ -218,7 +218,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetSelector() stri
 
 // GetSelectorOk returns a tuple with the Selector field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetSelectorOk() (*string, bool) {
+func (o *IngestSourceAudioSourcesInner) GetSelectorOk() (*string, bool) {
 	if o == nil || IsNil(o.Selector) {
 		return nil, false
 	}
@@ -226,7 +226,7 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) GetSelectorOk() (*
 }
 
 // HasSelector returns a boolean if a field has been set.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasSelector() bool {
+func (o *IngestSourceAudioSourcesInner) HasSelector() bool {
 	if o != nil && !IsNil(o.Selector) {
 		return true
 	}
@@ -235,11 +235,11 @@ func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) HasSelector() bool
 }
 
 // SetSelector gets a reference to the given string and assigns it to the Selector field.
-func (o *PatchOrgChannelRequestIngestSourceAudioSourcesInner) SetSelector(v string) {
+func (o *IngestSourceAudioSourcesInner) SetSelector(v string) {
 	o.Selector = &v
 }
 
-func (o PatchOrgChannelRequestIngestSourceAudioSourcesInner) MarshalJSON() ([]byte, error) {
+func (o IngestSourceAudioSourcesInner) MarshalJSON() ([]byte, error) {
 	toSerialize, err := o.ToMap()
 	if err != nil {
 		return []byte{}, err
@@ -247,7 +247,7 @@ func (o PatchOrgChannelRequestIngestSourceAudioSourcesInner) MarshalJSON() ([]by
 	return json.Marshal(toSerialize)
 }
 
-func (o PatchOrgChannelRequestIngestSourceAudioSourcesInner) ToMap() (map[string]interface{}, error) {
+func (o IngestSourceAudioSourcesInner) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -270,38 +270,38 @@ func (o PatchOrgChannelRequestIngestSourceAudioSourcesInner) ToMap() (map[string
 	return toSerialize, nil
 }
 
-type NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner struct {
-	value *PatchOrgChannelRequestIngestSourceAudioSourcesInner
+type NullableIngestSourceAudioSourcesInner struct {
+	value *IngestSourceAudioSourcesInner
 	isSet bool
 }
 
-func (v NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) Get() *PatchOrgChannelRequestIngestSourceAudioSourcesInner {
+func (v NullableIngestSourceAudioSourcesInner) Get() *IngestSourceAudioSourcesInner {
 	return v.value
 }
 
-func (v *NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) Set(val *PatchOrgChannelRequestIngestSourceAudioSourcesInner) {
+func (v *NullableIngestSourceAudioSourcesInner) Set(val *IngestSourceAudioSourcesInner) {
 	v.value = val
 	v.isSet = true
 }
 
-func (v NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) IsSet() bool {
+func (v NullableIngestSourceAudioSourcesInner) IsSet() bool {
 	return v.isSet
 }
 
-func (v *NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) Unset() {
+func (v *NullableIngestSourceAudioSourcesInner) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
-func NewNullablePatchOrgChannelRequestIngestSourceAudioSourcesInner(val *PatchOrgChannelRequestIngestSourceAudioSourcesInner) *NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner {
-	return &NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner{value: val, isSet: true}
+func NewNullableIngestSourceAudioSourcesInner(val *IngestSourceAudioSourcesInner) *NullableIngestSourceAudioSourcesInner {
+	return &NullableIngestSourceAudioSourcesInner{value: val, isSet: true}
 }
 
-func (v NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) MarshalJSON() ([]byte, error) {
+func (v NullableIngestSourceAudioSourcesInner) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
-func (v *NullablePatchOrgChannelRequestIngestSourceAudioSourcesInner) UnmarshalJSON(src []byte) error {
+func (v *NullableIngestSourceAudioSourcesInner) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
