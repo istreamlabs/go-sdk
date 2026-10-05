@@ -1,19 +1,26 @@
 name: generate-sdk
 
-run-name: Generate SDK (${{ inputs.api || 'all' }})
+run-name: Generate SDK (${{ github.event.client_payload.service || inputs.sdk || 'all' }})
 
 on:
+  repository_dispatch:
+    types:
+      - service-deployed
+        # Payload fields:
+        # - service (service deployed) (ChannelAPI, ChannelLifecycleState, slate-management)
+        # - version (version deployed)
+        # - deployment_run_url (the run url of the deployment which triggered this dispatch)
   workflow_dispatch:
     inputs:
-      api:
+      sdk:
         description: 'sdk to generate'
         required: true
         type: choice
         options:
           - all
-          - channelapi
-          - slates
-          - lifecycle
+          - ChannelAPI
+          - ChannelLifecycleState
+          - slate-management
   workflow_call:
     inputs:
       pr-base:
@@ -61,16 +68,85 @@ jobs:
           token: ${{ steps.app-token.outputs.token }}
           submodules: recursive
 
+      - name: Parse and validate inputs
+        id: parse-inputs
+        env:
+          INPUT_PR_BASE: ${{ inputs.pr-base }}
+          INPUT_SDK: ${{ inputs.sdk || 'all' }}
+          CLIENT_PAYLOAD_SERVICE: ${{ github.event.client_payload.service }}
+          CLIENT_PAYLOAD_VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          # Resolve parameters across different triggers
+
+          echo "::group::Parse SDK to generate"
+            # Default to the sdk input of workflow dispatch
+            SDK_TO_GENERATE="$INPUT_SDK"
+
+            # If triggered by repository_dispatch, use the client payload's service field
+            if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
+              SDK_TO_GENERATE="$CLIENT_PAYLOAD_SERVICE"
+            fi
+
+            # Keep the human-readable name as given, then normalize to the
+            # lowercase, shortened key used for matching below
+            SDK_DISPLAY_NAME="$SDK_TO_GENERATE"
+
+            case "$SDK_TO_GENERATE" in
+              ChannelAPI)
+                SDK_TO_GENERATE="channelapi"
+                ;;
+              ChannelLifecycleState)
+                SDK_TO_GENERATE="lifecycle"
+                ;;
+              slate-management)
+                SDK_TO_GENERATE="slates"
+                ;;
+              all)
+                SDK_TO_GENERATE="all"
+                ;;
+              *)
+                echo "::error::Unrecognized sdk: $SDK_TO_GENERATE"
+                exit 1
+                ;;
+            esac
+
+            {
+              echo "sdk-to-generate=$SDK_TO_GENERATE";
+              echo "sdk-display-name=$SDK_DISPLAY_NAME";
+            } | tee -a "$GITHUB_OUTPUT"
+          echo "::endgroup::"
+
+          echo "::group::Determine the base for the PR, if one should be created"
+            # Default to the ref this workflow ran from
+            PR_BASE="$GITHUB_REF_NAME"
+
+            # If triggered via issue_comment, use the pr-base input
+            if [[ "$GITHUB_EVENT_NAME" == "issue_comment" ]]; then
+              PR_BASE="${INPUT_PR_BASE}"
+            fi
+
+            echo "pr-base=$PR_BASE" | tee -a "$GITHUB_OUTPUT"
+          echo "::endgroup::"
+
+          echo "::group::Determine the version of the service deployment, if one triggered this"
+            VERSION=""
+            if [[ -n "$CLIENT_PAYLOAD_VERSION" ]]; then
+              VERSION="$CLIENT_PAYLOAD_VERSION"
+            fi
+
+            echo "deployment-version=$VERSION" | tee -a "$GITHUB_OUTPUT"
+          echo "::endgroup::"
+
       - name: Output booleans for which SDKs to generate
         id: pick-sdks
         env:
-          INPUT_API: ${{ inputs.api || 'all' }}
+          SDK_TO_GENERATE: ${{ steps.parse-inputs.outputs.sdk-to-generate }}
         run: |
           CHANNELAPI=false
           SLATES=false
           LIFECYCLE=false
 
-          case "$INPUT_API" in
+          case "$SDK_TO_GENERATE" in
             all)
               CHANNELAPI=true
               SLATES=true
@@ -86,7 +162,7 @@ jobs:
               LIFECYCLE=true
               ;;
             *)
-              echo "::error::Unrecognized api: $INPUT_API"
+              echo "::error::Unrecognized sdk: $SDK_TO_GENERATE"
               exit 1
               ;;
           esac
@@ -97,19 +173,10 @@ jobs:
             echo "lifecycle=$LIFECYCLE";
           } | tee -a "$GITHUB_OUTPUT"
 
-      - name: Determine base branch name
-        id: pr-base
-        run: |
-          if [[ "${{ github.event_name }}" = "issue_comment" ]]; then
-            echo "name=${{ inputs.pr-base }}" | tee -a "$GITHUB_OUTPUT"
-          else
-            echo "name=${{ github.ref_name }}" | tee -a "$GITHUB_OUTPUT"
-          fi
-
       - name: Determine head branch name
         id: pr-head
         env:
-          BASE: ${{ steps.pr-base.outputs.name }}
+          BASE: ${{ steps.parse-inputs.outputs.pr-base }}
         run: |
           DATE=$(date '+%s')
           echo "name=gen/$BASE/$DATE" | tee -a "$GITHUB_OUTPUT"
@@ -156,20 +223,64 @@ jobs:
           branch: ${{ steps.pr-head.outputs.name }}
           file_pattern: 'isp isp-slate isp-lifecycle spec'
 
+      - name: Prepare PR details
+        id: pr-details
+        env:
+          SDK_TO_GENERATE: ${{ steps.parse-inputs.outputs.sdk-display-name }}
+          DEPLOYMENT_VERSION: ${{ steps.parse-inputs.outputs.deployment-version }}
+          REPO_DISPATCH_DEPLOYMENT_RUN_URL: ${{ github.event.client_payload.deployment_run_url }}
+          GENERATION_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          # Create a temporary file under the runner's temp dir to hold the PR body
+          echo "::group::Create a temporary file for the PR body"
+            PR_BODY_FILE="$RUNNER_TEMP/pr-body.md"
+            touch "$PR_BODY_FILE"
+            echo "file=$PR_BODY_FILE" | tee -a "$GITHUB_OUTPUT"
+          echo "::endgroup::"
+
+          echo "::group::Determine the PR title and body"
+            SDK_LABEL=""
+            if [[ "$SDK_TO_GENERATE" == "all" ]]; then
+              SDK_LABEL="all SDKs"
+            else
+              SDK_LABEL="${SDK_TO_GENERATE} SDK"
+            fi
+
+            if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
+              PR_TITLE="chore: re-generate $SDK_LABEL after depoyment of $DEPLOYMENT_VERSION"
+              echo "title=$PR_TITLE" | tee -a "$GITHUB_OUTPUT"
+
+              {
+                echo "Updating $SDK_TO_GENERATE SDK after deployment of $DEPLOYMENT_VERSION to production.";
+                echo "";
+                echo "Workflows that triggered this PR:";
+                echo "* [Deployment workflow]($REPO_DISPATCH_DEPLOYMENT_RUN_URL)";
+                echo "* [Generation workflow]($GENERATION_RUN_URL)";
+              } >> "$PR_BODY_FILE"
+            else
+              PR_TITLE="chore: re-generate $SDK_LABEL"
+              echo "title=$PR_TITLE" | tee -a "$GITHUB_OUTPUT"
+
+              {
+                echo "Update $SDK_LABEL.";
+                echo "";
+                echo "Workflows that triggered this PR:";
+                echo "* [Generation workflow]($GENERATION_RUN_URL)";
+              } >> "$PR_BODY_FILE"
+            fi
+
+          echo "::endgroup::"
+
       - name: Create Pull Request
         id: create-pr
         if: steps.changes.outputs.should-commit == 'true'
         env:
           GH_TOKEN: ${{ steps.app-token.outputs.token }}
-          PR_BODY: |
-            Generated by [${{ github.workflow }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
-
-            Comment `recreate-me` on this pull request to have it closed and re-created
         run: |
           PR_URL=$(gh pr create \
-            --title "chore: bump sdk version" \
-            --body "$PR_BODY" \
-            --base ${{ steps.pr-base.outputs.name }} \
+            --title "${{ steps.pr-details.outputs.title }}" \
+            --body-file "${{ steps.pr-details.outputs.file }}" \
+            --base ${{ steps.parse-inputs.outputs.pr-base }} \
             --head ${{ steps.pr-head.outputs.name }})
 
           PR_NUMBER=$(echo "$PR_URL" | grep -o '[0-9]\+$')
