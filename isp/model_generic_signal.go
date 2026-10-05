@@ -18,6 +18,7 @@ var _ MappedNullable = &GenericSignal{}
 
 // GenericSignal struct for GenericSignal
 type GenericSignal struct {
+	DeliveryRestrictions *DeliveryRestrictions `json:"delivery_restrictions,omitempty"`
 	// Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
 	Duration *int64 `json:"duration,omitempty" format:"int64" default:"0" doc:"Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used."`
 	// Identifies the active signaling segment. Use the same event_id for both START and END to reference the same segment. When signaling two STARTs with the same event_id, the second one will result in an error (ALREADY_EXISTS). Signaling a second start with a different event_id will end a previous active segment of the same type. After a segment has ended, its event_id can be reused. IDs are namespaced by segment type. E.g. it is allowed to have an active Chapter and an active Program with the same event_id. This field corresponds to SCTE-35 segmentation_event_id and splice_event_id.
@@ -60,6 +61,38 @@ func NewGenericSignalWithDefaults() *GenericSignal {
 	var duration int64 = 0
 	this.Duration = &duration
 	return &this
+}
+
+// GetDeliveryRestrictions returns the DeliveryRestrictions field value if set, zero value otherwise.
+func (o *GenericSignal) GetDeliveryRestrictions() DeliveryRestrictions {
+	if o == nil || IsNil(o.DeliveryRestrictions) {
+		var ret DeliveryRestrictions
+		return ret
+	}
+	return *o.DeliveryRestrictions
+}
+
+// GetDeliveryRestrictionsOk returns a tuple with the DeliveryRestrictions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GenericSignal) GetDeliveryRestrictionsOk() (*DeliveryRestrictions, bool) {
+	if o == nil || IsNil(o.DeliveryRestrictions) {
+		return nil, false
+	}
+	return o.DeliveryRestrictions, true
+}
+
+// HasDeliveryRestrictions returns a boolean if a field has been set.
+func (o *GenericSignal) HasDeliveryRestrictions() bool {
+	if o != nil && !IsNil(o.DeliveryRestrictions) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeliveryRestrictions gets a reference to the given DeliveryRestrictions and assigns it to the DeliveryRestrictions field.
+func (o *GenericSignal) SetDeliveryRestrictions(v DeliveryRestrictions) {
+	o.DeliveryRestrictions = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -337,6 +370,9 @@ func (o GenericSignal) MarshalJSON() ([]byte, error) {
 
 func (o GenericSignal) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.DeliveryRestrictions) {
+		toSerialize["delivery_restrictions"] = o.DeliveryRestrictions
+	}
 	if !IsNil(o.Duration) {
 		toSerialize["duration"] = o.Duration
 	}

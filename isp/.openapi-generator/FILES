@@ -36,6 +36,7 @@ model_collapse_vod_response_body.go
 model_color_description.go
 model_content_light_level_info.go
 model_content_protection.go
+model_delivery_restrictions.go
 model_deprecated_get_clip_manifests_body_item.go
 model_deprecated_get_clip_response_body.go
 model_deprecated_get_mp4_url_response_body.go
