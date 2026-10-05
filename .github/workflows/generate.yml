@@ -48,7 +48,7 @@ defaults:
     shell: bash
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-${{ github.event.client_payload.service || inputs.sdk || 'all'}}
   cancel-in-progress: true
 
 jobs:
@@ -257,7 +257,7 @@ jobs:
 
           echo "::group::Determine the PR title and body"
             if [[ "$GITHUB_EVENT_NAME" == "repository_dispatch" ]]; then
-              PR_TITLE="chore: re-generate $SDK_LABEL after depoyment of $DEPLOYMENT_VERSION"
+              PR_TITLE="chore: re-generate $SDK_LABEL after deployment of $DEPLOYMENT_VERSION"
               echo "title=$PR_TITLE" | tee -a "$GITHUB_OUTPUT"
 
               {
@@ -319,6 +319,7 @@ jobs:
       - name: Send PR to slack
         if: ${{ steps.changes.outputs.should-commit == 'true' && steps.check-for-slack-webhook.outputs.slack-webhook-url-set == 'true' }}
         uses: slackapi/slack-github-action@v4
+        continue-on-error: true
         with:
           errors: true
           webhook-type: incoming-webhook
