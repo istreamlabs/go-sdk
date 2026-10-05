@@ -813,6 +813,24 @@ components:
               type: string
           type: object
       type: object
+    DeliveryRestrictions:
+      additionalProperties: false
+      properties:
+        archive_allowed:
+          type: boolean
+        device_restrictions:
+          enum:
+            - undefined
+            - none
+            - restrict_group0
+            - restrict_group1
+            - restrict_group2
+          type: string
+        no_regional_blackout:
+          type: boolean
+        web_delivery_allowed:
+          type: boolean
+      type: object
     DeprecatedGetClipManifestsBodyItem:
       additionalProperties: false
       properties:
@@ -1292,6 +1310,9 @@ components:
     GenericSignal:
       additionalProperties: false
       properties:
+        delivery_restrictions:
+          $ref: '#/components/schemas/DeliveryRestrictions'
+          description: Delivery restrictions for the resulting signaling segment
         duration:
           default: 0
           description: Splice duration (ms). If no duration or a duration of 0 then the default duration for the segment type is used.
@@ -15058,6 +15079,8 @@ paths:
         The breakaway and resumption signal types are only valid with program segments.
 
         The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+        Delivery restrictions may be supplied on a signal with the delivery_restrictions field. The device_restrictions value may be undefined, none, restrict_group0, restrict_group1, or restrict_group2.
 
         ### Program Start
 

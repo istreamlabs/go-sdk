@@ -238,6 +238,8 @@ type ChannelOperationsForOrganizationAPI interface {
 
 		The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
 
+		Delivery restrictions may be supplied on a signal with the delivery_restrictions field. The device_restrictions value may be undefined, none, restrict_group0, restrict_group1, or restrict_group2.
+
 		### Program Start
 
 		Inserts a SCTE-35 program start message into the channel with the given event ID. Corresponding calls to end the program must use the same event ID.
@@ -3242,6 +3244,8 @@ Inserts an out-of-band signal into a channel. A signal represents a program sign
 The breakaway and resumption signal types are only valid with program segments.
 
 The required event_id identifies the active signaling segment. Use the same event_id for both start and end to reference the same segment.
+
+Delivery restrictions may be supplied on a signal with the delivery_restrictions field. The device_restrictions value may be undefined, none, restrict_group0, restrict_group1, or restrict_group2.
 
 ### Program Start
 
