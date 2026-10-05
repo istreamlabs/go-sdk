@@ -311,13 +311,13 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_LCP_PRS }}
         run: |
           if [[ -n "$SLACK_WEBHOOK_URL" ]]; then
-            echo "slack-webhook-url-set=true" | tee -a "$GITHUB_OUTPUT"
+            echo "set=true" | tee -a "$GITHUB_OUTPUT"
           else
-            echo "slack-webhook-url-set=false" | tee -a "$GITHUB_OUTPUT"
+            echo "set=false" | tee -a "$GITHUB_OUTPUT"
           fi
 
       - name: Send PR to slack
-        if: ${{ steps.changes.outputs.should-commit == 'true' && steps.check-for-slack-webhook.outputs.slack-webhook-url-set == 'true' }}
+        if: ${{ steps.changes.outputs.should-commit == 'true' && steps.check-for-slack-webhook.outputs.set == 'true' }}
         uses: slackapi/slack-github-action@v4
         continue-on-error: true
         with:
