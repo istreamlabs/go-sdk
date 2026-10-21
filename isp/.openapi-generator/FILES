@@ -79,6 +79,7 @@ model_hdr_settings_dolby_vision_profile101.go
 model_hdr_settings_dolby_vision_profile81.go
 model_hdr_settings_hdr10.go
 model_hdr_settings_mastering_display_color_volume.go
+model_imsc_sidecar_config.go
 model_ingest.go
 model_ingest_source.go
 model_ingest_source_audio_sources_inner.go
