@@ -1172,6 +1172,9 @@ components:
         correlation_id:
           description: Correlation ID for this FER archive request
           type: string
+        imsc_sidecar:
+          $ref: '#/components/schemas/IMSCSidecarConfig'
+          description: IMSC-Rosetta subtitle sidecar settings. Enabling writes a sidecar per subtitle language alongside the MP4; otherwise the conversion runs unwritten
         manifest_url:
           description: URL of the main manifest to reference for the mp4
           type: string
@@ -1181,6 +1184,9 @@ components:
         query_string:
           description: Query string containing params for the manifest url
           type: string
+        remove_embedded_captions:
+          description: Remove embedded EIA-608/708 captions from the MP4 (H.264 only). Skips SCC sidecar generation
+          type: boolean
         scc_sidecar:
           $ref: '#/components/schemas/SCCSidecarConfig'
           description: SCC sidecar caption file generation settings
@@ -2086,6 +2092,19 @@ components:
           maximum: 10000
           minimum: 0
           type: number
+      type: object
+    IMSCSidecarConfig:
+      additionalProperties: false
+      properties:
+        enabled:
+          type: boolean
+        languages:
+          items:
+            type: string
+          nullable: true
+          type: array
+        shadow_disabled:
+          type: boolean
       type: object
     Ingest:
       additionalProperties: false

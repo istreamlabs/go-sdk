@@ -22,13 +22,16 @@ type DynamicSyndicationRequest struct {
 	Schema  *string `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
 	Archive Archive `json:"archive"`
 	// Correlation ID for this FER archive request
-	CorrelationId string `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
+	CorrelationId string             `json:"correlation_id" doc:"Correlation ID for this FER archive request"`
+	ImscSidecar   *IMSCSidecarConfig `json:"imsc_sidecar,omitempty"`
 	// URL of the main manifest to reference for the mp4
 	ManifestUrl  string              `json:"manifest_url" doc:"URL of the main manifest to reference for the mp4"`
 	Notification DynamicNotification `json:"notification"`
 	// Query string containing params for the manifest url
-	QueryString string            `json:"query_string" doc:"Query string containing params for the manifest url"`
-	SccSidecar  *SCCSidecarConfig `json:"scc_sidecar,omitempty"`
+	QueryString string `json:"query_string" doc:"Query string containing params for the manifest url"`
+	// Remove embedded EIA-608/708 captions from the MP4 (H.264 only). Skips SCC sidecar generation
+	RemoveEmbeddedCaptions *bool             `json:"remove_embedded_captions,omitempty" doc:"Remove embedded EIA-608/708 captions from the MP4 (H.264 only). Skips SCC sidecar generation"`
+	SccSidecar             *SCCSidecarConfig `json:"scc_sidecar,omitempty"`
 	// List of files to be created by Syndication
 	SyndicationFiles []SyndicationMediaFile `json:"syndication_files" minItems:"1" doc:"List of files to be created by Syndication"`
 }
@@ -136,6 +139,38 @@ func (o *DynamicSyndicationRequest) SetCorrelationId(v string) {
 	o.CorrelationId = v
 }
 
+// GetImscSidecar returns the ImscSidecar field value if set, zero value otherwise.
+func (o *DynamicSyndicationRequest) GetImscSidecar() IMSCSidecarConfig {
+	if o == nil || IsNil(o.ImscSidecar) {
+		var ret IMSCSidecarConfig
+		return ret
+	}
+	return *o.ImscSidecar
+}
+
+// GetImscSidecarOk returns a tuple with the ImscSidecar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DynamicSyndicationRequest) GetImscSidecarOk() (*IMSCSidecarConfig, bool) {
+	if o == nil || IsNil(o.ImscSidecar) {
+		return nil, false
+	}
+	return o.ImscSidecar, true
+}
+
+// HasImscSidecar returns a boolean if a field has been set.
+func (o *DynamicSyndicationRequest) HasImscSidecar() bool {
+	if o != nil && !IsNil(o.ImscSidecar) {
+		return true
+	}
+
+	return false
+}
+
+// SetImscSidecar gets a reference to the given IMSCSidecarConfig and assigns it to the ImscSidecar field.
+func (o *DynamicSyndicationRequest) SetImscSidecar(v IMSCSidecarConfig) {
+	o.ImscSidecar = &v
+}
+
 // GetManifestUrl returns the ManifestUrl field value
 func (o *DynamicSyndicationRequest) GetManifestUrl() string {
 	if o == nil {
@@ -206,6 +241,38 @@ func (o *DynamicSyndicationRequest) GetQueryStringOk() (*string, bool) {
 // SetQueryString sets field value
 func (o *DynamicSyndicationRequest) SetQueryString(v string) {
 	o.QueryString = v
+}
+
+// GetRemoveEmbeddedCaptions returns the RemoveEmbeddedCaptions field value if set, zero value otherwise.
+func (o *DynamicSyndicationRequest) GetRemoveEmbeddedCaptions() bool {
+	if o == nil || IsNil(o.RemoveEmbeddedCaptions) {
+		var ret bool
+		return ret
+	}
+	return *o.RemoveEmbeddedCaptions
+}
+
+// GetRemoveEmbeddedCaptionsOk returns a tuple with the RemoveEmbeddedCaptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DynamicSyndicationRequest) GetRemoveEmbeddedCaptionsOk() (*bool, bool) {
+	if o == nil || IsNil(o.RemoveEmbeddedCaptions) {
+		return nil, false
+	}
+	return o.RemoveEmbeddedCaptions, true
+}
+
+// HasRemoveEmbeddedCaptions returns a boolean if a field has been set.
+func (o *DynamicSyndicationRequest) HasRemoveEmbeddedCaptions() bool {
+	if o != nil && !IsNil(o.RemoveEmbeddedCaptions) {
+		return true
+	}
+
+	return false
+}
+
+// SetRemoveEmbeddedCaptions gets a reference to the given bool and assigns it to the RemoveEmbeddedCaptions field.
+func (o *DynamicSyndicationRequest) SetRemoveEmbeddedCaptions(v bool) {
+	o.RemoveEmbeddedCaptions = &v
 }
 
 // GetSccSidecar returns the SccSidecar field value if set, zero value otherwise.
@@ -281,9 +348,15 @@ func (o DynamicSyndicationRequest) ToMap() (map[string]interface{}, error) {
 	}
 	toSerialize["archive"] = o.Archive
 	toSerialize["correlation_id"] = o.CorrelationId
+	if !IsNil(o.ImscSidecar) {
+		toSerialize["imsc_sidecar"] = o.ImscSidecar
+	}
 	toSerialize["manifest_url"] = o.ManifestUrl
 	toSerialize["notification"] = o.Notification
 	toSerialize["query_string"] = o.QueryString
+	if !IsNil(o.RemoveEmbeddedCaptions) {
+		toSerialize["remove_embedded_captions"] = o.RemoveEmbeddedCaptions
+	}
 	if !IsNil(o.SccSidecar) {
 		toSerialize["scc_sidecar"] = o.SccSidecar
 	}
