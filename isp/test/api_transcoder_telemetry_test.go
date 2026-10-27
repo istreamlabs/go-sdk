@@ -38,6 +38,21 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 
 	})
 
+	t.Run("Test TranscoderTelemetryAPIService GetChannelOriginObjectStorageWeights", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+		var channelId string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.GetChannelOriginObjectStorageWeights(context.Background(), org, channelId).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
 	t.Run("Test TranscoderTelemetryAPIService ListContentSegmentHistory", func(t *testing.T) {
 
 		t.Skip("skip test") // remove to run test
@@ -60,6 +75,20 @@ func Test_isp_TranscoderTelemetryAPIService(t *testing.T) {
 		var org string
 
 		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListOrganizationCostReports(context.Background(), org).Execute()
+
+		require.Nil(t, err)
+		require.NotNil(t, resp)
+		assert.Equal(t, 200, httpRes.StatusCode)
+
+	})
+
+	t.Run("Test TranscoderTelemetryAPIService ListOrganizationOriginObjectStorageWeights", func(t *testing.T) {
+
+		t.Skip("skip test") // remove to run test
+
+		var org string
+
+		resp, httpRes, err := apiClient.TranscoderTelemetryAPI.ListOrganizationOriginObjectStorageWeights(context.Background(), org).Execute()
 
 		require.Nil(t, err)
 		require.NotNil(t, resp)

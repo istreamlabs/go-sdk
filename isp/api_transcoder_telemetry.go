@@ -38,6 +38,22 @@ type TranscoderTelemetryAPI interface {
 	GetChannelCostReportExecute(r ApiGetChannelCostReportRequest) (*GetChannelCostReportResponseBody, *http.Response, error)
 
 	/*
+		GetChannelOriginObjectStorageWeights Get Channel Origin Object Storage Weight
+
+		Returns origin object storage PUT weight and retained bytes for a channel. Errors lists reasons the weight is incomplete.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@param channelId Unique channel identifier
+		@return ApiGetChannelOriginObjectStorageWeightsRequest
+	*/
+	GetChannelOriginObjectStorageWeights(ctx context.Context, org string, channelId string) ApiGetChannelOriginObjectStorageWeightsRequest
+
+	// GetChannelOriginObjectStorageWeightsExecute executes the request
+	//  @return GetChannelOriginObjectStorageWeightResponseBody
+	GetChannelOriginObjectStorageWeightsExecute(r ApiGetChannelOriginObjectStorageWeightsRequest) (*GetChannelOriginObjectStorageWeightResponseBody, *http.Response, error)
+
+	/*
 		ListContentSegmentHistory List Channel Content Segments History
 
 		Returns content segment history for a channel.
@@ -67,6 +83,21 @@ type TranscoderTelemetryAPI interface {
 	// ListOrganizationCostReportsExecute executes the request
 	//  @return []ChannelCostReport
 	ListOrganizationCostReportsExecute(r ApiListOrganizationCostReportsRequest) ([]ChannelCostReport, *http.Response, error)
+
+	/*
+		ListOrganizationOriginObjectStorageWeights List Organization Origin Object Storage Weights
+
+		Returns origin object storage PUT weight and retained bytes for channels in an organization. Errors lists reasons a weight is incomplete.
+
+		@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+		@param org Organization name
+		@return ApiListOrganizationOriginObjectStorageWeightsRequest
+	*/
+	ListOrganizationOriginObjectStorageWeights(ctx context.Context, org string) ApiListOrganizationOriginObjectStorageWeightsRequest
+
+	// ListOrganizationOriginObjectStorageWeightsExecute executes the request
+	//  @return []OriginObjectStorageWeight
+	ListOrganizationOriginObjectStorageWeightsExecute(r ApiListOrganizationOriginObjectStorageWeightsRequest) ([]OriginObjectStorageWeight, *http.Response, error)
 
 	/*
 		ListRawScteHistory Get SCTE-35 History
@@ -307,6 +338,218 @@ func (a *TranscoderTelemetryAPIService) GetChannelCostReportExecute(r ApiGetChan
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
 			localVarReturnValue = items.(*GetChannelCostReportResponseBody)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiGetChannelOriginObjectStorageWeightsRequest struct {
+	ctx        context.Context
+	ApiService TranscoderTelemetryAPI
+	org        string
+	channelId  string
+	from       *time.Time
+	to         *time.Time
+}
+
+// ISO 8601 UTC timestamp for start range of date filtering
+func (r ApiGetChannelOriginObjectStorageWeightsRequest) From(from time.Time) ApiGetChannelOriginObjectStorageWeightsRequest {
+	r.from = &from
+	return r
+}
+
+// ISO 8601 UTC timestamp for end range of date filtering
+func (r ApiGetChannelOriginObjectStorageWeightsRequest) To(to time.Time) ApiGetChannelOriginObjectStorageWeightsRequest {
+	r.to = &to
+	return r
+}
+
+func (r ApiGetChannelOriginObjectStorageWeightsRequest) Execute() (*GetChannelOriginObjectStorageWeightResponseBody, *http.Response, error) {
+	return r.ApiService.GetChannelOriginObjectStorageWeightsExecute(r)
+}
+
+/*
+GetChannelOriginObjectStorageWeights Get Channel Origin Object Storage Weight
+
+Returns origin object storage PUT weight and retained bytes for a channel. Errors lists reasons the weight is incomplete.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@param channelId Unique channel identifier
+	@return ApiGetChannelOriginObjectStorageWeightsRequest
+*/
+func (a *TranscoderTelemetryAPIService) GetChannelOriginObjectStorageWeights(ctx context.Context, org string, channelId string) ApiGetChannelOriginObjectStorageWeightsRequest {
+	return ApiGetChannelOriginObjectStorageWeightsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		org:        org,
+		channelId:  channelId,
+	}
+}
+
+// Execute executes the request
+//
+//	@return GetChannelOriginObjectStorageWeightResponseBody
+func (a *TranscoderTelemetryAPIService) GetChannelOriginObjectStorageWeightsExecute(r ApiGetChannelOriginObjectStorageWeightsRequest) (*GetChannelOriginObjectStorageWeightResponseBody, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue *GetChannelOriginObjectStorageWeightResponseBody
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.GetChannelOriginObjectStorageWeights")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/channels/{channel-id}/origin-object-storage-weights"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"channel-id"+"}", url.PathEscape(parameterToString(r.channelId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if strlen(r.channelId) > 60 {
+		return localVarReturnValue, nil, reportError("channelId must have less than 60 elements")
+	}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.(*GetChannelOriginObjectStorageWeightResponseBody)
 			localVarHTTPResponse = resp
 		}
 	}
@@ -774,6 +1017,231 @@ func (a *TranscoderTelemetryAPIService) ListOrganizationCostReportsExecute(r Api
 				return localVarReturnValue, localVarHTTPResponse, err
 			}
 			localVarReturnValue = items.([]ChannelCostReport)
+			localVarHTTPResponse = resp
+		}
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type ApiListOrganizationOriginObjectStorageWeightsRequest struct {
+	ctx        context.Context
+	ApiService TranscoderTelemetryAPI
+	org        string
+	from       *time.Time
+	to         *time.Time
+	cursor     *string
+	pageSize   *int32
+}
+
+// ISO 8601 UTC timestamp for start range of date filtering
+func (r ApiListOrganizationOriginObjectStorageWeightsRequest) From(from time.Time) ApiListOrganizationOriginObjectStorageWeightsRequest {
+	r.from = &from
+	return r
+}
+
+// ISO 8601 UTC timestamp for end range of date filtering
+func (r ApiListOrganizationOriginObjectStorageWeightsRequest) To(to time.Time) ApiListOrganizationOriginObjectStorageWeightsRequest {
+	r.to = &to
+	return r
+}
+
+// Current page cursor
+func (r ApiListOrganizationOriginObjectStorageWeightsRequest) Cursor(cursor string) ApiListOrganizationOriginObjectStorageWeightsRequest {
+	r.cursor = &cursor
+	return r
+}
+
+// Number of items to return
+func (r ApiListOrganizationOriginObjectStorageWeightsRequest) PageSize(pageSize int32) ApiListOrganizationOriginObjectStorageWeightsRequest {
+	r.pageSize = &pageSize
+	return r
+}
+
+func (r ApiListOrganizationOriginObjectStorageWeightsRequest) Execute() ([]OriginObjectStorageWeight, *http.Response, error) {
+	return r.ApiService.ListOrganizationOriginObjectStorageWeightsExecute(r)
+}
+
+/*
+ListOrganizationOriginObjectStorageWeights List Organization Origin Object Storage Weights
+
+Returns origin object storage PUT weight and retained bytes for channels in an organization. Errors lists reasons a weight is incomplete.
+
+	@param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+	@param org Organization name
+	@return ApiListOrganizationOriginObjectStorageWeightsRequest
+*/
+func (a *TranscoderTelemetryAPIService) ListOrganizationOriginObjectStorageWeights(ctx context.Context, org string) ApiListOrganizationOriginObjectStorageWeightsRequest {
+	return ApiListOrganizationOriginObjectStorageWeightsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		org:        org,
+	}
+}
+
+// Execute executes the request
+//
+//	@return []OriginObjectStorageWeight
+func (a *TranscoderTelemetryAPIService) ListOrganizationOriginObjectStorageWeightsExecute(r ApiListOrganizationOriginObjectStorageWeightsRequest) ([]OriginObjectStorageWeight, *http.Response, error) {
+	var (
+		localVarHTTPMethod  = http.MethodGet
+		localVarPostBody    interface{}
+		formFiles           []formFile
+		localVarReturnValue []OriginObjectStorageWeight
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TranscoderTelemetryAPIService.ListOrganizationOriginObjectStorageWeights")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v2/{org}/origin-object-storage-weights"
+	localVarPath = strings.Replace(localVarPath, "{"+"org"+"}", url.PathEscape(parameterToString(r.org, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.from != nil {
+		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
+	}
+	if r.to != nil {
+		localVarQueryParams.Add("to", parameterToString(*r.to, ""))
+	}
+	if r.cursor != nil {
+		localVarQueryParams.Add("cursor", parameterToString(*r.cursor, ""))
+	}
+	if r.pageSize != nil {
+		localVarQueryParams.Add("page_size", parameterToString(*r.pageSize, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json", "application/problem+json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 413 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 422 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 501 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 503 {
+			var v ErrorModel
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	if disablePaging := r.ctx.Value(ContextDisablePaging); disablePaging == nil {
+		if uri := GetLink(localVarHTTPResponse, RelNext); uri != nil {
+			// This response is paginated. Read all the pages and append the items.
+			items, resp, err := getAllPages(a.client, localVarReturnValue, localVarHTTPResponse)
+			if err.Error() != "" {
+				return localVarReturnValue, localVarHTTPResponse, err
+			}
+			localVarReturnValue = items.([]OriginObjectStorageWeight)
 			localVarHTTPResponse = resp
 		}
 	}

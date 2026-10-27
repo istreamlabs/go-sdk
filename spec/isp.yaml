@@ -1455,6 +1455,38 @@ components:
           minimum: 0
           type: integer
       type: object
+    GetChannelOriginObjectStorageWeightResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          example: https://api.istreamplanet.com/schemas/GetChannelOriginObjectStorageWeightResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        errors:
+          description: Reasons this weight is incomplete. Empty when every cost period was bounded.
+          items:
+            type: string
+          nullable: true
+          type: array
+        external_id:
+          type: string
+        model_version:
+          type: string
+        organization:
+          type: string
+        put_weight:
+          format: double
+          type: number
+        retained_bytes:
+          format: double
+          type: number
+      type: object
     GetClipProgramTimeResponseBody:
       additionalProperties: false
       properties:
@@ -2891,6 +2923,32 @@ components:
           format: int32
           minimum: 0
           type: integer
+      type: object
+    OriginObjectStorageWeight:
+      additionalProperties: false
+      properties:
+        channel_name:
+          type: string
+        channel_urn:
+          type: string
+        errors:
+          description: Reasons this weight is incomplete. Empty when every cost period was bounded.
+          items:
+            type: string
+          nullable: true
+          type: array
+        external_id:
+          type: string
+        model_version:
+          type: string
+        organization:
+          type: string
+        put_weight:
+          format: double
+          type: number
+        retained_bytes:
+          format: double
+          type: number
       type: object
     Package:
       additionalProperties: false
@@ -14392,6 +14450,95 @@ paths:
       summary: Validate Breaking Change
       tags:
         - Channel Operations for Organization
+  /v2/{org}/channels/{channel-id}/origin-object-storage-weights:
+    get:
+      description: Returns origin object storage PUT weight and retained bytes for a channel. Errors lists reasons the weight is incomplete.
+      operationId: get-channel-origin-object-storage-weights
+      parameters:
+        - description: Organization name
+          in: path
+          name: org
+          required: true
+          schema:
+            description: Organization name
+            type: string
+        - description: Unique channel identifier
+          in: path
+          name: channel-id
+          required: true
+          schema:
+            description: Unique channel identifier
+            maxLength: 60
+            pattern: ^([a-z0-9]+(-*[a-z0-9]+)*)$
+            type: string
+        - description: ISO 8601 UTC timestamp for start range of date filtering
+          explode: false
+          in: query
+          name: from
+          schema:
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+            type: string
+        - description: ISO 8601 UTC timestamp for end range of date filtering
+          explode: false
+          in: query
+          name: to
+          schema:
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetChannelOriginObjectStorageWeightResponseBody'
+          description: OK
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+      summary: Get Channel Origin Object Storage Weight
+      tags:
+        - Transcoder Telemetry
   /v2/{org}/channels/{channel-id}/playback:
     get:
       description: Get a channel's playback configuration
@@ -17131,6 +17278,111 @@ paths:
                 $ref: '#/components/schemas/ErrorModel'
           description: Service Unavailable
       summary: List Organization Cost Reports
+      tags:
+        - Transcoder Telemetry
+  /v2/{org}/origin-object-storage-weights:
+    get:
+      description: Returns origin object storage PUT weight and retained bytes for channels in an organization. Errors lists reasons a weight is incomplete.
+      operationId: list-organization-origin-object-storage-weights
+      parameters:
+        - description: Organization name
+          in: path
+          name: org
+          required: true
+          schema:
+            description: Organization name
+            type: string
+        - description: ISO 8601 UTC timestamp for start range of date filtering
+          explode: false
+          in: query
+          name: from
+          schema:
+            description: ISO 8601 UTC timestamp for start range of date filtering
+            format: date-time
+            type: string
+        - description: ISO 8601 UTC timestamp for end range of date filtering
+          explode: false
+          in: query
+          name: to
+          schema:
+            description: ISO 8601 UTC timestamp for end range of date filtering
+            format: date-time
+            type: string
+        - description: Current page cursor
+          explode: false
+          in: query
+          name: cursor
+          schema:
+            description: Current page cursor
+            type: string
+        - description: Number of items to return
+          explode: false
+          in: query
+          name: page_size
+          schema:
+            default: 100
+            description: Number of items to return
+            format: int32
+            maximum: 100
+            minimum: 1
+            type: integer
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/OriginObjectStorageWeight'
+                nullable: true
+                type: array
+          description: OK
+          headers:
+            Link:
+              schema:
+                type: string
+        "400":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Bad Request
+        "404":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Found
+        "413":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Request Entity Too Large
+        "422":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Unprocessable Entity
+        "500":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Internal Server Error
+        "501":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Not Implemented
+        "503":
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ErrorModel'
+          description: Service Unavailable
+      summary: List Organization Origin Object Storage Weights
       tags:
         - Transcoder Telemetry
   /v2/{org}/products:

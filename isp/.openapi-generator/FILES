@@ -60,6 +60,7 @@ model_filter_timespan.go
 model_generic_signal.go
 model_generic_signal_result.go
 model_get_channel_cost_report_response_body.go
+model_get_channel_origin_object_storage_weight_response_body.go
 model_get_clip_program_time_response_body.go
 model_get_preview_streams_response.go
 model_get_product_config_response_body.go
@@ -114,6 +115,7 @@ model_notification_config.go
 model_notification_config_by_event_type.go
 model_org_summary.go
 model_origin_manifest_defaults.go
+model_origin_object_storage_weight.go
 model_package.go
 model_package_urls.go
 model_packager.go
