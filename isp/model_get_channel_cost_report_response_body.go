@@ -19,17 +19,21 @@ var _ MappedNullable = &GetChannelCostReportResponseBody{}
 // GetChannelCostReportResponseBody struct for GetChannelCostReportResponseBody
 type GetChannelCostReportResponseBody struct {
 	// A URL to the JSON Schema for this object.
-	Schema             *string  `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
-	ChannelName        *string  `json:"channel_name,omitempty"`
-	ChannelUrn         *string  `json:"channel_urn,omitempty"`
-	DurationSecs       *int64   `json:"duration_secs,omitempty" format:"int64"`
-	ExternalId         *string  `json:"external_id,omitempty"`
-	HasHdr             *bool    `json:"has_hdr,omitempty"`
-	HasRealtimeOutput  *bool    `json:"has_realtime_output,omitempty"`
-	HasUhd             *bool    `json:"has_uhd,omitempty"`
-	Labels             []string `json:"labels,omitempty"`
-	Organization       *string  `json:"organization,omitempty"`
-	VerbitEncoderCount *int32   `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
+	Schema            *string  `json:"$schema,omitempty" format:"uri" doc:"A URL to the JSON Schema for this object."`
+	ChannelName       *string  `json:"channel_name,omitempty"`
+	ChannelUrn        *string  `json:"channel_urn,omitempty"`
+	DurationSecs      *int64   `json:"duration_secs,omitempty" format:"int64"`
+	ExternalId        *string  `json:"external_id,omitempty"`
+	HasHdr            *bool    `json:"has_hdr,omitempty"`
+	HasRealtimeOutput *bool    `json:"has_realtime_output,omitempty"`
+	HasUhd            *bool    `json:"has_uhd,omitempty"`
+	Labels            []string `json:"labels,omitempty"`
+	// node_instance_type is the AWS EC2 instance type of the node the channel ran on (for example c5.2xlarge). It comes from the same usage interval selected for node_type.
+	NodeInstanceType *string `json:"node_instance_type,omitempty" doc:"node_instance_type is the AWS EC2 instance type of the node the channel ran on (for example c5.2xlarge). It comes from the same usage interval selected for node_type."`
+	// node_type is the type of AWS EC2 node the channel ran on during the request window (for example NODE_TYPE_SPOT or NODE_TYPE_ON_DEMAND). When a channel used more than one node type in the window, this value is taken from the usage interval with the longest duration; mixed node types are not blended.
+	NodeType           *string `json:"node_type,omitempty" doc:"node_type is the type of AWS EC2 node the channel ran on during the request window (for example NODE_TYPE_SPOT or NODE_TYPE_ON_DEMAND). When a channel used more than one node type in the window, this value is taken from the usage interval with the longest duration; mixed node types are not blended."`
+	Organization       *string `json:"organization,omitempty"`
+	VerbitEncoderCount *int32  `json:"verbit_encoder_count,omitempty" format:"int32" minimum:"0"`
 }
 
 // NewGetChannelCostReportResponseBody instantiates a new GetChannelCostReportResponseBody object
@@ -338,6 +342,70 @@ func (o *GetChannelCostReportResponseBody) SetLabels(v []string) {
 	o.Labels = v
 }
 
+// GetNodeInstanceType returns the NodeInstanceType field value if set, zero value otherwise.
+func (o *GetChannelCostReportResponseBody) GetNodeInstanceType() string {
+	if o == nil || IsNil(o.NodeInstanceType) {
+		var ret string
+		return ret
+	}
+	return *o.NodeInstanceType
+}
+
+// GetNodeInstanceTypeOk returns a tuple with the NodeInstanceType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetChannelCostReportResponseBody) GetNodeInstanceTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.NodeInstanceType) {
+		return nil, false
+	}
+	return o.NodeInstanceType, true
+}
+
+// HasNodeInstanceType returns a boolean if a field has been set.
+func (o *GetChannelCostReportResponseBody) HasNodeInstanceType() bool {
+	if o != nil && !IsNil(o.NodeInstanceType) {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeInstanceType gets a reference to the given string and assigns it to the NodeInstanceType field.
+func (o *GetChannelCostReportResponseBody) SetNodeInstanceType(v string) {
+	o.NodeInstanceType = &v
+}
+
+// GetNodeType returns the NodeType field value if set, zero value otherwise.
+func (o *GetChannelCostReportResponseBody) GetNodeType() string {
+	if o == nil || IsNil(o.NodeType) {
+		var ret string
+		return ret
+	}
+	return *o.NodeType
+}
+
+// GetNodeTypeOk returns a tuple with the NodeType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GetChannelCostReportResponseBody) GetNodeTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.NodeType) {
+		return nil, false
+	}
+	return o.NodeType, true
+}
+
+// HasNodeType returns a boolean if a field has been set.
+func (o *GetChannelCostReportResponseBody) HasNodeType() bool {
+	if o != nil && !IsNil(o.NodeType) {
+		return true
+	}
+
+	return false
+}
+
+// SetNodeType gets a reference to the given string and assigns it to the NodeType field.
+func (o *GetChannelCostReportResponseBody) SetNodeType(v string) {
+	o.NodeType = &v
+}
+
 // GetOrganization returns the Organization field value if set, zero value otherwise.
 func (o *GetChannelCostReportResponseBody) GetOrganization() string {
 	if o == nil || IsNil(o.Organization) {
@@ -438,6 +506,12 @@ func (o GetChannelCostReportResponseBody) ToMap() (map[string]interface{}, error
 	}
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
+	}
+	if !IsNil(o.NodeInstanceType) {
+		toSerialize["node_instance_type"] = o.NodeInstanceType
+	}
+	if !IsNil(o.NodeType) {
+		toSerialize["node_type"] = o.NodeType
 	}
 	if !IsNil(o.Organization) {
 		toSerialize["organization"] = o.Organization
