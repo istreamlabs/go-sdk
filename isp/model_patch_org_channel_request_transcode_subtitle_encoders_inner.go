@@ -19,6 +19,8 @@ var _ MappedNullable = &PatchOrgChannelRequestTranscodeSubtitleEncodersInner{}
 // PatchOrgChannelRequestTranscodeSubtitleEncodersInner struct for PatchOrgChannelRequestTranscodeSubtitleEncodersInner
 type PatchOrgChannelRequestTranscodeSubtitleEncodersInner struct {
 	AtscCaptions *PatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaptions `json:"atsc_captions,omitempty"`
+	// If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708.
+	Cta708Output *int32 `json:"cta708_output,omitempty" format:"int32" minimum:"0" maximum:"63" doc:"If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708."`
 	// Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
 	Id *string `json:"id,omitempty" minLength:"1" doc:"Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing."`
 	// Language is the code for the language in which the subtitles are written.
@@ -78,6 +80,38 @@ func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) HasAtscCaptions()
 // SetAtscCaptions gets a reference to the given PatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaptions and assigns it to the AtscCaptions field.
 func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) SetAtscCaptions(v PatchOrgChannelRequestTranscodeSubtitleEncodersInnerAtscCaptions) {
 	o.AtscCaptions = &v
+}
+
+// GetCta708Output returns the Cta708Output field value if set, zero value otherwise.
+func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) GetCta708Output() int32 {
+	if o == nil || IsNil(o.Cta708Output) {
+		var ret int32
+		return ret
+	}
+	return *o.Cta708Output
+}
+
+// GetCta708OutputOk returns a tuple with the Cta708Output field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) GetCta708OutputOk() (*int32, bool) {
+	if o == nil || IsNil(o.Cta708Output) {
+		return nil, false
+	}
+	return o.Cta708Output, true
+}
+
+// HasCta708Output returns a boolean if a field has been set.
+func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) HasCta708Output() bool {
+	if o != nil && !IsNil(o.Cta708Output) {
+		return true
+	}
+
+	return false
+}
+
+// SetCta708Output gets a reference to the given int32 and assigns it to the Cta708Output field.
+func (o *PatchOrgChannelRequestTranscodeSubtitleEncodersInner) SetCta708Output(v int32) {
+	o.Cta708Output = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -284,6 +318,9 @@ func (o PatchOrgChannelRequestTranscodeSubtitleEncodersInner) ToMap() (map[strin
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.AtscCaptions) {
 		toSerialize["atsc_captions"] = o.AtscCaptions
+	}
+	if !IsNil(o.Cta708Output) {
+		toSerialize["cta708_output"] = o.Cta708Output
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id

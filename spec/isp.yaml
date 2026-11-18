@@ -257,6 +257,12 @@ components:
             type: string
           nullable: true
           type: array
+        node_instance_type:
+          description: node_instance_type is the AWS EC2 instance type of the node the channel ran on (for example c5.2xlarge). It comes from the same usage interval selected for node_type.
+          type: string
+        node_type:
+          description: node_type is the type of AWS EC2 node the channel ran on during the request window (for example NODE_TYPE_SPOT or NODE_TYPE_ON_DEMAND). When a channel used more than one node type in the window, this value is taken from the usage interval with the longest duration; mixed node types are not blended.
+          type: string
         organization:
           type: string
         verbit_encoder_count:
@@ -1448,6 +1454,12 @@ components:
             type: string
           nullable: true
           type: array
+        node_instance_type:
+          description: node_instance_type is the AWS EC2 instance type of the node the channel ran on (for example c5.2xlarge). It comes from the same usage interval selected for node_type.
+          type: string
+        node_type:
+          description: node_type is the type of AWS EC2 node the channel ran on during the request window (for example NODE_TYPE_SPOT or NODE_TYPE_ON_DEMAND). When a channel used more than one node type in the window, this value is taken from the usage interval with the longest duration; mixed node types are not blended.
+          type: string
         organization:
           type: string
         verbit_encoder_count:
@@ -5699,6 +5711,13 @@ components:
                         minimum: 0
                         type: integer
                     type: object
+                  cta708_output:
+                    description: If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708.
+                    example: 1
+                    format: int32
+                    maximum: 63
+                    minimum: 0
+                    type: integer
                   id:
                     description: Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
                     minLength: 1
@@ -7362,6 +7381,13 @@ components:
                     minimum: 0
                     type: integer
                 type: object
+              cta708_output:
+                description: If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708.
+                example: 1
+                format: int32
+                maximum: 63
+                minimum: 0
+                type: integer
               id:
                 description: Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
                 minLength: 1
@@ -10893,6 +10919,13 @@ paths:
                                 minimum: 0
                                 type: integer
                             type: object
+                          cta708_output:
+                            description: If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708.
+                            example: 1
+                            format: int32
+                            maximum: 63
+                            minimum: 0
+                            type: integer
                           id:
                             description: Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
                             minLength: 1
@@ -12561,6 +12594,13 @@ paths:
                                 minimum: 0
                                 type: integer
                             type: object
+                          cta708_output:
+                            description: If non-zero, subtitles produced by this encoder will be converted to CTA-708 using this service index and embedded into the video outputs. If this is used for ANY SubtitleEncoder, ALL source ATSC captions will be replaced with the generated CTA-708.
+                            example: 1
+                            format: int32
+                            maximum: 63
+                            minimum: 0
+                            type: integer
                           id:
                             description: Encoder ID. IDs must be unique for all encoders. This ID is referenced when setting up playlist publishing.
                             minLength: 1
